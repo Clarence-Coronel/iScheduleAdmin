@@ -1,9 +1,11 @@
 let headerBtn = document.querySelectorAll('.header-btn');
-let header = document.querySelector('header');
+let navLinks = document.querySelector('.nav-links');
+let screenDarken = document.querySelector('.darken-screen');
 
 headerBtn.forEach((item)=>{
     item.addEventListener('click', ()=>{
-        header.style.left = "0";
+        navLinks.style.left = "0";
+        screenDarken.style.display = 'block';
     });
 });
 
@@ -11,7 +13,8 @@ window.addEventListener('click', (e)=>{
     console.log(e.target);
 
     if(e.target.getAttribute('data-click') != 'doNothing'){
-        header.style.left = "-300px"
+        navLinks.style.left = "-300px"
+        screenDarken.style.display = 'none';
     }
 });
 

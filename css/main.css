@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 * {
   box-sizing: border-box;
   font-family: "Inter", sans-serif;
@@ -27,6 +28,37 @@ body {
 }
 
 header {
+  width: 100%;
+  height: 70px;
+  padding: 0.5vw 2vw;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+header .header__left {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 2vw;
+  justify-content: flex-start;
+  width: 100%;
+}
+header .header__left h1 {
+  margin: 0;
+  padding: 0;
+  color: rgb(80, 78, 78);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+footer {
+  background-color: rgb(232, 232, 114);
+  width: 100%;
+  height: 50vh;
+}
+
+.nav-links {
   background-color: pink;
   width: 70vw;
   position: absolute;
@@ -37,31 +69,21 @@ header {
   z-index: 9;
 }
 
-main {
-  background-color: aquamarine;
-  width: 100%;
-  height: 50vh;
-  padding: 2vw;
-}
-
-footer {
-  background-color: rgb(232, 232, 114);
-  width: 100%;
-  height: 50vh;
-}
-
 .header-btn {
-  max-width: 40px;
-  min-width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 60px;
+  min-width: 40px;
   width: 5vw;
-  height: 30px;
+  height: 40px;
   border: unset;
   z-index: 1;
   background-color: transparent;
 }
 .header-btn .burger-ico {
   background-color: transparent;
-  border: 2px solid black;
+  border: 2px solid rgb(80, 78, 78);
   max-width: 40px;
   min-width: 30px;
   width: 5vw;
@@ -71,7 +93,7 @@ footer {
 }
 .header-btn .burger-ico::before, .header-btn .burger-ico::after {
   content: "";
-  border: 2px solid rgb(0, 0, 0);
+  border: 2px solid rgb(80, 78, 78);
   max-width: 40px;
   min-width: 30px;
   width: 5vw;
@@ -83,6 +105,16 @@ footer {
 }
 .header-btn .burger-ico::after {
   top: 7px;
+}
+
+.darken-screen {
+  background-color: black;
+  height: 100vh;
+  width: 100vw;
+  opacity: 0.5;
+  position: absolute;
+  display: none;
+  transition-duration: 500ms;
 }
 
 @media only screen and (min-width: 700px) {
