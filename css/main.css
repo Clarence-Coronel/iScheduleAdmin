@@ -1,0 +1,95 @@
+* {
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+*::-webkit-scrollbar {
+  width: 0.5rem;
+  margin-right: 20px !important;
+}
+
+*::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(82, 111, 189, 0);
+  background-color: rgba(255, 255, 255, 0.468);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: red;
+  outline: 1px solid rgba(204, 202, 202, 0.69);
+  border-radius: 50px !important;
+}
+
+body {
+  width: 100vw;
+  position: relative;
+}
+
+header {
+  background-color: pink;
+  width: 70vw;
+  position: absolute;
+  height: 100vh;
+  left: -300px;
+  transition-duration: 500ms;
+  max-width: 300px;
+  z-index: 9;
+}
+
+main {
+  background-color: aquamarine;
+  width: 100%;
+  height: 50vh;
+  padding: 2vw;
+}
+
+footer {
+  background-color: rgb(232, 232, 114);
+  width: 100%;
+  height: 50vh;
+}
+
+.header-btn {
+  max-width: 40px;
+  min-width: 30px;
+  width: 5vw;
+  height: 30px;
+  border: unset;
+  z-index: 1;
+  background-color: transparent;
+}
+.header-btn .burger-ico {
+  background-color: transparent;
+  border: 2px solid black;
+  max-width: 40px;
+  min-width: 30px;
+  width: 5vw;
+  position: relative;
+  height: 3px;
+  border-radius: 5px;
+}
+.header-btn .burger-ico::before, .header-btn .burger-ico::after {
+  content: "";
+  border: 2px solid rgb(0, 0, 0);
+  max-width: 40px;
+  min-width: 30px;
+  width: 5vw;
+  position: absolute;
+  height: 3px;
+  left: -2px;
+  bottom: 7px;
+  border-radius: 5px;
+}
+.header-btn .burger-ico::after {
+  top: 7px;
+}
+
+@media only screen and (min-width: 700px) {
+  .header-btn .burger-ico::before, .header-btn .burger-ico::after {
+    bottom: 10px;
+  }
+  .header-btn .burger-ico::after {
+    top: 10px;
+  }
+}/*# sourceMappingURL=main.css.map */
