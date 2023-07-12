@@ -2,21 +2,35 @@
 @import "./variables";
 @import "./resets";
 
+
+html{
+    font-size: 10px;
+}
+
 body{
     width: 100vw;
     position: relative;
     background-color: whitesmoke;
 }
 
-header{
+.wrapper{
+    margin: 0 auto;
+    max-width: 1920px;
     width: 100%;
-    height: 70px;
-    padding: 2vw;
+    height: 50px;
     display: flex;
     flex-flow: row nowrap;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     user-select: none;
+}
+
+header{
+    width: 100%;
+    background-color: white;
+    position: sticky;
+    box-shadow:0px 1px 2px rgba(73, 73, 73, 0.633);
+    padding: 0 5vw;
 
     .header__left{
         display: flex;
@@ -24,46 +38,74 @@ header{
         align-items: center;
         gap: 2vw;
         justify-content: flex-start;
-        width: 100%;
-        h1{
-            margin: 0;
-            padding: 0;
-            color: $fontbase-color;
-            font-size: 1.3rem;
-            font-weight: 700;
-        }
+        width: 40%;
+
     }
 
     .header__right{
-        display: none;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            flex-flow: column;
+            position: relative;
     }
 
     .header__right:hover{
         cursor: pointer;
     }
-
 }
 
-main{
-    // background-color: aquamarine;
-    
-}
+.header__right{
+    .greeting{
+        width: 100%;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-end;
+        font-size: 1rem;
 
-footer{
-    background-color: rgb(232, 232, 114);
-    width: 100%;
-    height: 50vh;
-}
+        .welcome{
 
-.nav-links{
-    background-color: pink;
-    width: 70vw;
-    position: absolute;
-    height: 100vh;
-    left: -400px;
-    transition-duration: 500ms;
-    max-width: 400px;
-    z-index: 9;
+        }
+
+        .account-name{
+            font-weight: 700;
+        }
+    }
+    .role{
+        width: 100%;
+        color: rgb(88, 86, 86);
+        font-size: 0.8rem;
+        // position: relative;
+        // bottom: 5px;
+        text-align: right;
+    }
+
+    // @keyframes appear {
+    //     0% { height: 0px; }
+    //     20%  { height: 100px; }
+    //     40%  { height: 200px; }
+    //     60%  { height: 300px; }
+    //     100%   { height: 400px; }   
+    // }
+
+    .account-setting{
+        display: none;
+        width: 50vw;
+        height: 30vw;
+        background-color: white;
+        position: absolute;
+        top: 40px; 
+        border-radius: 5px;
+        box-shadow: inset 0px 0px 2px rgba(20, 20, 20, 0.589);
+
+        max-width: 150px;
+        max-height: 100px;
+
+        // animation-name: appear;
+        // animation-duration: 200ms;
+        // animation-iteration-count: 1;
+        // animation-timing-function: ease-in-out;
+    }
 }
 
 .header-btn{
@@ -118,74 +160,76 @@ footer{
     z-index: 9;
 }
 
-@media only screen and (min-width: 700px ){
+.nav-links{
+    background-color: $primary-color;
+    width: 40vw;
+    position: absolute;
+    height: 100vh;
+    left: -300px;
+    transition-duration: 500ms;
+    max-width: 300px;
+    z-index: 9;
+    padding: 2vw;
+}
+
+.account{
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+.acc-details{
+    .welcome{
+        color: white;
+    }
+    .account-name{
+        color: white;
+    }
+    .role{
+        color: white;
+    }
+}
+
+.btn--logout{
+    background-color: red;
+    border: 1px solid rgb(147, 9, 9);
+    color: white;
+    width: 25%;
+    height: 25px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+
+@media only screen and (min-width: 400px ){
+
+    html{
+        font-size: 15px;
+    }
+
+    .wrapper{
+        height: 60px;
+    }
 
     header{
         .header__left{
             width: 50%;
-            gap: 0.5vw;
+            gap: 1vw;
 
             h1{
                 font-size: 1.5rem;
             }
         }
+    }
 
-        .header__right{
-            width: 50%;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            flex-flow: column;
-            position: relative;
+    .header__right{
+        .account-setting{
+            top: 60px;
         }
     }
-
-    .greeting{
-        display: flex;
-        flex-flow: row nowrap;
-        font-weight: 700;
-        font-size: 1.2rem;
-
-        .welcome{
-
-        }
-
-        .account{
-            color: rgb(0, 115, 255);
-        }
-    }
-
-    .role{
-        color: rgb(88, 86, 86);
-        font-size: 1rem;
-        position: relative;
-        bottom: 5px;
-    }
-
-    @keyframes appear {
-        0% { height: 0px; }
-        20%  { height: 100px; }
-        40%  { height: 200px; }
-        60%  { height: 300px; }
-        100%   { height: 400px; }   
-    }
-
-    .account-setting{
-        display: none;
-        width: 250px;
-        height: 400px;
-        background-color: white;
-        position: absolute;
-        top: 50px; 
-        border-radius: 10px;
-        box-shadow: inset 0px 0px 2px rgba(20, 20, 20, 0.589);
-
-        animation-name: appear;
-        animation-duration: 200ms;
-        animation-iteration-count: 1;
-        animation-timing-function: ease-in-out;
-    }    
-
+        
     .header-btn{  
         .burger-ico::before, .burger-ico::after{
             bottom: 10px;
@@ -194,5 +238,23 @@ footer{
         .burger-ico::after{
             top: 10px;
         }
+    }
+}
+
+@media only screen and (min-width: 1200px ){
+    .wrapper{
+        height: 80px;
+    }
+
+    .header-btn{
+        display: none;
+    }
+
+    .nav-links{
+        left: 0 !important;
+    }
+
+    html{
+        font-size: 20px;
     }
 }
