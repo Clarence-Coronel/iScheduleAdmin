@@ -115,6 +115,7 @@ footer{
     position: absolute;
     display: none;
     transition-duration: 500ms;
+    z-index: 9;
 }
 
 @media only screen and (min-width: 700px ){
@@ -122,6 +123,7 @@ footer{
     header{
         .header__left{
             width: 50%;
+            gap: 0.5vw;
         }
 
         .header__right{
@@ -130,6 +132,7 @@ footer{
             align-items: flex-end;
             justify-content: center;
             flex-flow: column;
+            position: relative;
         }
     }
 
@@ -154,7 +157,17 @@ footer{
         position: relative;
         bottom: 5px;
     }
-    
+
+    .account-setting{
+        display: none;
+        width: 250px;
+        height: 400px;
+        background-color: white;
+        position: absolute;
+        top: 50px; 
+        border-radius: 10px;
+        box-shadow: inset 0px 0px 2px rgba(20, 20, 20, 0.589);
+    }
     
 
     .header-btn{  
