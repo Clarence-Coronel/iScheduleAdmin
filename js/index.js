@@ -13,7 +13,7 @@ window.addEventListener('click', (e)=>{
     console.log(e.target);
 
     if(e.target.getAttribute('data-click') != 'doNothing'){
-        navLinks.style.left = "-300px"
+        navLinks.style.left = "-400px"
         screenDarken.style.display = 'none';
     }
 });

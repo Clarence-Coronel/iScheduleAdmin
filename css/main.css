@@ -25,6 +25,7 @@
 body {
   width: 100vw;
   position: relative;
+  background-color: whitesmoke;
 }
 
 header {
@@ -35,6 +36,9 @@ header {
   flex-flow: row nowrap;
   justify-content: flex-start;
   align-items: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 header .header__left {
   display: flex;
@@ -51,6 +55,12 @@ header .header__left h1 {
   font-size: 1.5rem;
   font-weight: 700;
 }
+header .header__right {
+  display: none;
+}
+header .header__right:hover {
+  cursor: pointer;
+}
 
 footer {
   background-color: rgb(232, 232, 114);
@@ -63,9 +73,9 @@ footer {
   width: 70vw;
   position: absolute;
   height: 100vh;
-  left: -300px;
+  left: -400px;
   transition-duration: 500ms;
-  max-width: 300px;
+  max-width: 400px;
   z-index: 9;
 }
 
@@ -118,6 +128,31 @@ footer {
 }
 
 @media only screen and (min-width: 700px) {
+  header .header__left {
+    width: 50%;
+  }
+  header .header__right {
+    width: 50%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex-flow: column;
+  }
+  .greeting {
+    display: flex;
+    flex-flow: row nowrap;
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
+  .greeting .account {
+    color: rgb(0, 115, 255);
+  }
+  .role {
+    color: rgb(88, 86, 86);
+    font-size: 1rem;
+    position: relative;
+    bottom: 5px;
+  }
   .header-btn .burger-ico::before, .header-btn .burger-ico::after {
     bottom: 10px;
   }
