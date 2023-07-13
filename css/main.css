@@ -200,7 +200,7 @@ header .header__right:hover {
   height: 100vh;
   left: -300px;
   transition-duration: 400ms;
-  max-width: 300px;
+  max-width: 250px;
   z-index: 9;
   padding: 2vw;
 }
