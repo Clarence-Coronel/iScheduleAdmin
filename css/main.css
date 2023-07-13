@@ -89,19 +89,61 @@ header .header__right:hover {
   font-size: 0.8rem;
   text-align: right;
 }
+@keyframes appear {
+  0% {
+    height: 0;
+  }
+  20% {
+    height: 20%;
+  }
+  40% {
+    height: 40%;
+  }
+  60% {
+    height: 60%;
+  }
+  80% {
+    height: 80%;
+  }
+  100% {
+    height: 100%;
+  }
+}
 .header__right .account-setting {
   display: none;
-  width: 50vw;
-  height: 30vw;
+  width: 100%;
+  height: -moz-fit-content;
+  height: fit-content;
   background-color: white;
   position: absolute;
-  top: 40px;
+  top: 30px;
   border-radius: 5px;
   box-shadow: inset 0px 0px 2px rgba(20, 20, 20, 0.589);
-  max-width: 150px;
-  max-height: 100px;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
-
+.header__right .account-setting .account-setting__content {
+  background-color: transparent;
+  text-decoration: none;
+  border: unset;
+  color: rgb(80, 78, 78);
+  font-weight: 700;
+  width: 100%;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+  font-size: 1rem;
+  padding: clamp(5px, 7%, 20px) clamp(5px, 5%, 15px);
+}
+.header__right .account-setting .account-setting__content:hover {
+  background-color: rgb(208, 206, 206);
+}
 .header-btn {
   display: flex;
   align-items: center;
@@ -157,7 +199,7 @@ header .header__right:hover {
   position: absolute;
   height: 100vh;
   left: -300px;
-  transition-duration: 500ms;
+  transition-duration: 400ms;
   max-width: 300px;
   z-index: 9;
   padding: 2vw;
@@ -206,7 +248,7 @@ header .header__right:hover {
     font-size: 1.5rem;
   }
   .header__right .account-setting {
-    top: 60px;
+    top: 45px;
   }
   .header-btn .burger-ico::before, .header-btn .burger-ico::after {
     bottom: 10px;
@@ -228,4 +270,10 @@ header .header__right:hover {
   html {
     font-size: 20px;
   }
+  .header__right .account-setting {
+    top: 60px;
+  }
+}
+.material-icons-outlined, .material-icons {
+  color: rgb(80, 78, 78);
 }/*# sourceMappingURL=main.css.map */
