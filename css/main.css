@@ -202,7 +202,7 @@ header .header__right:hover {
   transition-duration: 400ms;
   max-width: 250px;
   z-index: 9;
-  padding: max(5px, 1vw);
+  padding: max(5px, 0.5vw);
 }
 .nav-links h1 {
   width: 100%;
@@ -222,7 +222,7 @@ header .header__right:hover {
 }
 
 .nav-links__item {
-  height: max(35px, 9%);
+  height: max(35px, 10%);
   display: flex;
   justify-content: flex-start;
   align-items: center;
