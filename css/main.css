@@ -202,7 +202,52 @@ header .header__right:hover {
   transition-duration: 400ms;
   max-width: 250px;
   z-index: 9;
-  padding: 2vw;
+  padding: max(5px, 1vw);
+}
+.nav-links h1 {
+  width: 100%;
+  color: white;
+  font-size: 1.2rem;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: max(5px, 0.5vw);
+  text-align: center;
+  font-weight: 1000;
+}
+.nav-links .ico-admin {
+  color: white;
+  font-size: 4rem;
+}
+
+.nav-links__item {
+  height: max(35px, 9%);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: rgb(210, 208, 208);
+  font-weight: 200;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.27);
+  gap: max(5px, 0.5vw);
+}
+.nav-links__item .ico-nav {
+  color: rgb(210, 208, 208);
+  font-size: 1.5rem;
+}
+
+.nav-links__item:hover {
+  color: white;
+  cursor: pointer;
+}
+
+.nav-links__title {
+  width: 100%;
+  padding-top: max(10px, 1vw);
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-bottom: max(15px, 2vw);
+  border-bottom: unset;
 }
 
 .account {
@@ -273,7 +318,13 @@ header .header__right:hover {
   .header__right .account-setting {
     top: 60px;
   }
+  .darken-screen {
+    display: none !important;
+  }
+  main {
+    margin-left: 250px;
+  }
 }
-.material-icons-outlined, .material-icons {
+.ico-acc {
   color: rgb(80, 78, 78);
 }/*# sourceMappingURL=main.css.map */

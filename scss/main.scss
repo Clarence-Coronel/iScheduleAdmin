@@ -196,8 +196,56 @@ header{
     transition-duration: 400ms;
     max-width: 250px;
     z-index: 9;
-    padding: 2vw;
+    padding: max(5px, 1vw);
+
+    h1{
+        width: 100%;
+        color: $fontOnPrimary-color;
+        font-size: 1.2rem;
+        display: flex;
+        flex-flow: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: max(5px, 0.5vw);
+        text-align: center;
+        font-weight: 1000;
+    }
+
+    .ico-admin{
+        color:$fontOnPrimary-color;
+        font-size: 4rem;
+    }
 }
+
+.nav-links__item{
+    height: max(35px, 9%);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: $gray;
+    font-weight: 200;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.27);
+    gap: max(5px, 0.5vw);
+
+    .ico-nav{
+        color: $gray;
+        font-size: 1.5rem;
+    }
+}
+
+.nav-links__item:hover{
+    color: $fontOnPrimary-color;
+    cursor: pointer;
+}
+
+.nav-links__title{
+    width: 100%;
+    padding-top: max(10px ,1vw);
+    height: fit-content;
+    margin-bottom: max(15px, 2vw);
+    border-bottom: unset;
+}
+
 
 .account{
     width: 100%;
@@ -290,9 +338,17 @@ header{
             top: 60px;
         }
     }
+
+    .darken-screen{
+        display: none !important;
+    }
+
+    main{
+        margin-left: 250px;
+    }
 }
 
 // GOOGLE SVG 
-.material-icons-outlined, .material-icons{
+.ico-acc{
     color:$fontbase-color;
 }
