@@ -224,8 +224,9 @@ header .header__right:hover {
   font-size: 4rem;
 }
 
-.nav-links__item {
+button.nav-links__item {
   height: max(35px, 10%);
+  border: unset;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -233,16 +234,19 @@ header .header__right:hover {
   font-weight: 200;
   border-bottom: 1px solid rgba(255, 255, 255, 0.27);
   gap: max(5px, 0.5vw);
+  text-align: left;
+  width: 100%;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+  background-color: transparent;
 }
-.nav-links__item .ico-nav {
+button.nav-links__item .ico-nav {
   color: rgb(210, 208, 208);
   font-size: 1.5rem;
 }
 
-.nav-links__item:hover {
+button.nav-links__item:hover {
   color: white;
   cursor: pointer;
 }
@@ -254,6 +258,9 @@ header .header__right:hover {
   height: fit-content;
   margin-bottom: max(15px, 2vw);
   border-bottom: unset;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 .nav-links__title:hover {
