@@ -7,28 +7,14 @@
   padding: 0;
 }
 
-*::-webkit-scrollbar {
-  width: 0.5rem;
-  margin-right: 20px !important;
-}
-
-*::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 6px rgba(82, 111, 189, 0);
-  background-color: rgba(255, 255, 255, 0.468);
-}
-
-*::-webkit-scrollbar-thumb {
-  background-color: red;
-  outline: 1px solid rgba(204, 202, 202, 0.69);
-  border-radius: 50px !important;
-}
-
 html {
-  font-size: 10px;
+  font-size: 12px;
 }
 
 body {
   width: 100vw;
+  height: -moz-fit-content;
+  height: fit-content;
   position: relative;
   background-color: whitesmoke;
 }
@@ -53,6 +39,7 @@ header {
   position: sticky;
   box-shadow: 0px 1px 2px rgba(73, 73, 73, 0.633);
   padding: 0 5vw;
+  z-index: 9;
 }
 header .header__left {
   display: flex;
@@ -115,14 +102,14 @@ header .header__right:hover {
   height: -moz-fit-content;
   height: fit-content;
   background-color: white;
-  position: absolute;
-  top: 30px;
   border-radius: 5px;
   box-shadow: inset 0px 0px 2px rgba(20, 20, 20, 0.589);
   flex-flow: column;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  position: absolute;
+  top: 30px;
 }
 .header__right .account-setting .account-setting__content {
   background-color: transparent;
@@ -190,7 +177,7 @@ header .header__right:hover {
   position: absolute;
   display: none;
   transition-duration: 500ms;
-  z-index: 9;
+  z-index: 998;
 }
 
 .nav-links {
@@ -201,7 +188,7 @@ header .header__right:hover {
   left: -300px;
   transition-duration: 400ms;
   max-width: 250px;
-  z-index: 9;
+  z-index: 999;
   padding: max(5px, 0.5vw);
 }
 .nav-links h1 {
@@ -230,6 +217,9 @@ header .header__right:hover {
   font-weight: 200;
   border-bottom: 1px solid rgba(255, 255, 255, 0.27);
   gap: max(5px, 0.5vw);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 .nav-links__item .ico-nav {
   color: rgb(210, 208, 208);
@@ -248,6 +238,10 @@ header .header__right:hover {
   height: fit-content;
   margin-bottom: max(15px, 2vw);
   border-bottom: unset;
+}
+
+.nav-links__title:hover {
+  cursor: unset;
 }
 
 .account {
@@ -302,7 +296,7 @@ header .header__right:hover {
     top: 10px;
   }
 }
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 900px) {
   .wrapper {
     height: 80px;
   }
@@ -322,9 +316,215 @@ header .header__right:hover {
     display: none !important;
   }
   main {
-    margin-left: 250px;
+    padding-left: 250px;
   }
 }
 .ico-acc {
   color: rgb(80, 78, 78);
+}
+
+body {
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-flow: column;
+}
+
+main {
+  flex: 1;
+  overflow: auto;
+}
+
+.add-admin {
+  width: 100%;
+  height: 100%;
+}
+
+.form-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.form {
+  background-color: white;
+  width: max(300px, 40%);
+  height: -moz-fit-content;
+  height: fit-content;
+  border-radius: max(7px, 1vw);
+  margin-top: max(10px, 2vw);
+  padding: max(10px, 2vw) max(20px, 5vw);
+  overflow: hidden;
+  border-bottom: min(10px, 5vw) solid #7995e7;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+  gap: max(20px, 1vw);
+  justify-items: center;
+  position: relative;
+  transition-duration: 500ms;
+}
+.form input {
+  outline: none;
+}
+.form input:hover {
+  border: unset;
+}
+.form input:focus {
+  outline: unset;
+}
+.form h2 {
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+  gap: max(5px, 0.5vw);
+  font-size: 1.5rem;
+  color: #4e73df;
+  font-weight: 700;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.form .ico-nav {
+  font-size: 5rem;
+  border-radius: 100px;
+  padding: max(15px, 1.2vw);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  transition-duration: 500ms;
+  z-index: 1;
+  background-color: #4e73df;
+  color: white;
+  border: 5px solid white;
+}
+.form .ico-nav:hover {
+  background-color: white;
+  color: #4e73df;
+  border: 5px solid #4e73df;
+  transform: rotate(360deg);
+  cursor: pointer;
+}
+
+.custom-shape-divider-top-1689432371 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.custom-shape-divider-top-1689432371 svg {
+  position: relative;
+  display: block;
+  width: calc(133% + 1.3px);
+  height: 130px !important;
+}
+
+.custom-shape-divider-top-1689432371 .shape-fill {
+  fill: #4E73DF;
+}
+
+/** For tablet devices **/
+@media (min-width: 768px) and (max-width: 1023px) {
+  .custom-shape-divider-top-1689432371 svg {
+    width: calc(140% + 1.3px);
+    height: 201px;
+  }
+}
+/** For mobile devices **/
+@media (max-width: 767px) {
+  .custom-shape-divider-top-1689432371 svg {
+    width: calc(142% + 1.3px);
+    height: 85px;
+  }
+}
+.input-container {
+  border: 2px solid rgb(80, 78, 78);
+  height: min(50px, 10vw);
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  border-radius: max(5px, 0.5vw);
+  padding: 2px;
+  width: 100%;
+  max-width: 500px;
+}
+.input-container input {
+  border: unset;
+  border-radius: max(10px, 1vw);
+  padding: 0 max(5px, 1vw);
+  min-height: 20px;
+  font-weight: 500;
+}
+.input-container input:focus ~ label,
+.input-container input:valid ~ label {
+  color: #4e73df;
+  font-size: 0.9rem;
+  transform: translate(10%, -110%);
+}
+.input-container label {
+  color: rgb(80, 78, 78);
+  position: absolute;
+  background-color: white;
+  transform: translateY(-10%);
+  padding: 0 max(2px, 0.2vw);
+  background-color: white;
+  transition-duration: 200ms;
+  font-size: 0.8rem;
+}
+.input-container label:hover {
+  cursor: text;
+}
+
+.btn--addAdmin {
+  background-color: #4e73df;
+  color: white;
+  border: unset;
+  padding: max(10px, 0.5vw);
+  border-radius: max(10px, 0.5vw);
+  width: 100%;
+  height: 50px;
+}
+
+.btn--addAdmin:hover {
+  background-color: #6484e3;
+}
+
+.radio-container {
+  flex: 1 0 auto;
+  display: flex;
+  flex-flow: row nowrap;
+  gap: max(10px, 1vw);
+}
+.radio-container label {
+  color: #4e73df;
+  font-weight: 700;
+}
+
+@media only screen and (min-width: 450px) {
+  .form {
+    width: 90%;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .form {
+    width: max(300px, 40%);
+    box-shadow: 10px 10px rgba(114, 114, 114, 0.472);
+  }
+  .form:hover {
+    transform: translate(-5px, -10px);
+    box-shadow: 20px 20px rgba(114, 114, 114, 0.472);
+  }
+  .btn--addAdmin {
+    width: 40%;
+  }
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
 }/*# sourceMappingURL=main.css.map */

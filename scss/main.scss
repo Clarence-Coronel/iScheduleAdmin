@@ -4,11 +4,12 @@
 
 
 html{
-    font-size: 10px;
+    font-size: 12px;
 }
 
 body{
     width: 100vw;
+    height: fit-content;
     position: relative;
     background-color: whitesmoke;
 }
@@ -29,8 +30,9 @@ header{
     width: 100%;
     background-color: white;
     position: sticky;
-    box-shadow:0px 1px 2px rgba(73, 73, 73, 0.633);
+    box-shadow:0px 1px 2px $boxShadowPrimary-color;
     padding: 0 5vw;
+    z-index: 9;
 
     .header__left{
         display: flex;
@@ -39,7 +41,6 @@ header{
         gap: 2vw;
         justify-content: flex-start;
         width: 40%;
-
     }
 
     .header__right{
@@ -94,14 +95,16 @@ header{
         width: 100%;
         height: fit-content;
         background-color: white;
-        position: absolute;
-        top: 30px; 
         border-radius: 5px;
         box-shadow: inset 0px 0px 2px rgba(20, 20, 20, 0.589);
         flex-flow: column;
         justify-content: center;
         align-items: center;
         overflow: hidden;
+
+        position: absolute;
+        top: 30px; 
+        
 
         // animation-name: appear;
         // animation-duration: 100ms;
@@ -184,7 +187,7 @@ header{
     position: absolute;
     display: none;
     transition-duration: 500ms;
-    z-index: 9;
+    z-index: 998;
 }
 
 .nav-links{
@@ -195,7 +198,7 @@ header{
     left: -300px;
     transition-duration: 400ms;
     max-width: 250px;
-    z-index: 9;
+    z-index: 999;
     padding: max(5px, 0.5vw);
 
     h1{
@@ -226,6 +229,7 @@ header{
     font-weight: 200;
     border-bottom: 1px solid rgba(255, 255, 255, 0.27);
     gap: max(5px, 0.5vw);
+    user-select: none;
 
     .ico-nav{
         color: $gray;
@@ -244,6 +248,10 @@ header{
     height: fit-content;
     margin-bottom: max(15px, 2vw);
     border-bottom: unset;
+}
+
+.nav-links__title:hover{
+    cursor: unset;
 }
 
 
@@ -316,7 +324,7 @@ header{
     }
 }
 
-@media only screen and (min-width: 1200px ){
+@media only screen and (min-width: 900px ){
     .wrapper{
         height: 80px;
     }
@@ -344,7 +352,7 @@ header{
     }
 
     main{
-        margin-left: 250px;
+        padding-left: 250px;
     }
 }
 
@@ -352,3 +360,249 @@ header{
 .ico-acc{
     color:$fontbase-color;
 }
+
+// 
+// Add Admin
+// 
+
+body{
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-flow: column;
+}
+
+main{
+    flex: 1;
+    overflow: auto;
+}
+
+.add-admin{
+    width: 100%;
+    height: 100%;
+}
+
+.form-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.form{
+    background-color: white;
+    width: max(300px, 40%);
+    height: fit-content;
+    border-radius: max(7px, 1vw);
+    margin-top: max(10px, 2vw);
+    padding: max(10px, 2vw) max(20px, 5vw);
+    overflow: hidden;
+    border-bottom: min(10px,5vw) solid lighten($primary-color, 10);
+
+    // display: flex;
+    // flex-flow: column;
+    // justify-content: flex-start;
+    // align-items: center;
+    // align-content: flex-start;
+    // gap: max(20px, 2vw);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100%,1fr));
+    gap: max(20px, 1vw);
+    justify-items: center;
+    position: relative;
+    transition-duration: 500ms;
+    
+
+    input{
+        outline: none;
+    }
+
+    input:hover{
+        border: unset;
+    }
+
+    input:focus{
+        outline: unset;
+    }
+
+    h2{
+        display: flex;
+        align-items: center;
+        flex-flow: column;
+        gap: max(5px, 0.5vw);
+        font-size: 1.5rem;
+        color: $primary-color;
+        font-weight: 700;
+        user-select: none;
+    }
+
+    .ico-nav{    
+        font-size: 5rem;
+        border-radius: 100px;
+        padding: max(15px, 1.2vw);
+        user-select: none;
+        transition-duration: 500ms;
+        z-index: 1;
+        
+        background-color: $primary-color;
+        color: white;
+        border: 5px solid white;
+    }
+    
+    .ico-nav:hover{
+        background-color: white;
+        color: $primary-color;
+        border: 5px solid $primary-color;
+        transform: rotate(360deg);
+        cursor: pointer;
+    }
+}
+
+.custom-shape-divider-top-1689432371 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1689432371 svg {
+    position: relative;
+    display: block;
+    width: calc(133% + 1.3px);
+    height: 130px !important;
+}
+
+.custom-shape-divider-top-1689432371 .shape-fill {
+    fill: #4E73DF;
+}
+
+/** For tablet devices **/
+@media (min-width: 768px) and (max-width: 1023px) {
+    .custom-shape-divider-top-1689432371 svg {
+        width: calc(140% + 1.3px);
+        height: 201px;
+    }
+}
+
+/** For mobile devices **/
+@media (max-width: 767px) {
+    .custom-shape-divider-top-1689432371 svg {
+        width: calc(142% + 1.3px);
+        height: 85px;
+    }
+}
+
+// .group-container{
+//     // display: flex;
+//     // flex-flow: row wrap;
+//     // gap: max(5px, 1vw);
+//     display: grid;
+//     width: 100%;
+//     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+//     justify-content: center;
+//     gap: max(20px, 2vw);
+// }
+
+.input-container{
+    border: 2px solid $fontbase-color;
+    height: min(50px, 10vw);
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    border-radius: max(5px, 0.5vw);
+    padding: 2px;
+    width: 100%;
+    max-width: 500px;
+    // position: relative;
+
+    input{
+        border: unset;
+        border-radius: max(10px, 1vw);
+        padding: 0 max(5px, 1vw);
+        min-height: 20px;
+        font-weight: 500;
+    }
+
+    input:focus~label,
+    input:valid~label{
+        color: $primary-color;
+        font-size: 0.9rem;
+        transform: translate(10%, -110%);
+    }
+
+    label{
+        color: $fontbase-color;
+        position: absolute;
+        background-color: white;
+        transform: translateY(-10%);
+        padding: 0 max(2px, 0.2vw);
+        background-color: white;
+        transition-duration: 200ms;
+        font-size: 0.8rem;
+    }
+
+    label:hover{
+        cursor: text;
+    }
+}
+
+.btn--addAdmin{
+    background-color: $primary-color;
+    color: white;
+    border: unset;
+    padding: max(10px, 0.5vw);
+    border-radius: max(10px, 0.5vw);
+    width: 100%;
+    height: 50px;
+}
+
+.btn--addAdmin:hover{
+    background-color: lighten($primary-color, 5);
+}
+
+.radio-container{
+    // width: 200px;
+    flex: 1 0 auto;
+    display: flex;
+    flex-flow: row nowrap;
+    gap: max(10px, 1vw);
+    
+    label{
+        color: $primary-color;
+        font-weight: 700;
+    }
+}
+
+@media only screen and (min-width: 450px ){
+    .form{
+        width: 90%;
+    }
+}
+
+@media only screen and (min-width:1200px){
+    .form{
+        width: max(300px, 40%);
+        box-shadow: 10px 10px rgba(114, 114, 114, 0.472);
+    }
+
+    .form:hover{
+        transform: translate(-5px,-10px);
+        box-shadow: 20px 20px rgba(114, 114, 114, 0.472);
+    }
+
+    .btn--addAdmin{
+        width: 40%;
+    }
+}
+
+// REMOVE AUTOFILL STYLE
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus{
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
