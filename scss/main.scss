@@ -30,6 +30,7 @@ header{
     width: 100%;
     background-color: white;
     position: sticky;
+    top: 0;
     box-shadow:0px 1px 2px $boxShadowPrimary-color;
     padding: 0 5vw;
     z-index: 9;
@@ -371,7 +372,7 @@ button.nav-links__item:hover{
 // 
 
 body{
-    overflow: hidden;
+    // overflow: hidden;
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -380,7 +381,7 @@ body{
 
 main{
     flex: 1;
-    overflow: hidden;
+    // overflow: hidden;
 }
 
 .add-admin{
