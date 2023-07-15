@@ -375,7 +375,7 @@ body{
 
 main{
     flex: 1;
-    overflow: auto;
+    overflow: hidden;
 }
 
 .add-admin{
@@ -389,6 +389,7 @@ main{
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    overflow: auto;
 }
 
 .form{
@@ -477,7 +478,7 @@ main{
 }
 
 .custom-shape-divider-top-1689432371 .shape-fill {
-    fill: #4E73DF;
+    fill: $primary-color;
 }
 
 /** For tablet devices **/
