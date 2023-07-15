@@ -14,7 +14,7 @@
 
 *::-webkit-scrollbar-track {
   box-shadow: inset 0 0 6px rgba(82, 111, 189, 0);
-  background-color: rgba(255, 255, 255, 0.468);
+  background-color: rgb(225, 222, 222);
 }
 
 *::-webkit-scrollbar-thumb {
@@ -352,10 +352,12 @@ body {
   height: 100vh;
   display: flex;
   flex-flow: column;
+  overflow: hidden;
 }
 
 main {
   flex: 1;
+  overflow: hidden;
 }
 
 .add-admin {
@@ -378,7 +380,7 @@ main {
   height: -moz-fit-content;
   height: fit-content;
   border-radius: max(7px, 1vw);
-  margin-top: max(10px, 1.5vw);
+  margin: max(10px, 1.5vw) 0;
   padding: max(10px, 2vw) max(20px, 5vw);
   overflow: hidden;
   border-bottom: min(10px, 5vw) solid #7995e7;
