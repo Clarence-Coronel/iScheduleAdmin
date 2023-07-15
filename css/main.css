@@ -379,7 +379,7 @@ main {
   height: -moz-fit-content;
   height: fit-content;
   border-radius: max(7px, 1vw);
-  margin-top: max(10px, 2vw);
+  margin-top: max(10px, 1.5vw);
   padding: max(10px, 2vw) max(20px, 5vw);
   overflow: hidden;
   border-bottom: min(10px, 5vw) solid #7995e7;
