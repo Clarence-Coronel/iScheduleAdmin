@@ -638,7 +638,7 @@ main {
 @media only screen and (min-width: 1200px) {
   .form {
     width: max(300px, 40%);
-    box-shadow: 7px 7px rgba(114, 114, 114, 0.472);
+    box-shadow: 10px 10px rgba(114, 114, 114, 0.472);
   }
   .form:hover {
     transform: translate(-5px, -10px);
