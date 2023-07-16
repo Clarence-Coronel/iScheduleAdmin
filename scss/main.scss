@@ -5,6 +5,7 @@
 
 html{
     font-size: 12px;
+    
 }
 
 body{
@@ -189,13 +190,22 @@ header{
     transition-duration: 500ms;
     z-index: 998;
 }
+.nav-item-wrapper{
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: flex-start;
+    // gap: max(10px, 2vw);
+    max-height: 1200px;
+    height: 90vh;
+}
 
 .nav-links{
     background-color: $primary-color;
-    width: 40vw;
+    width: 50vw;
     position: absolute;
     height: 100%;
-    min-height: 400px;
     left: -300px;
     transition-duration: 400ms;
     max-width: 250px;
@@ -228,8 +238,8 @@ header{
     }
 }
 
-button.nav-links__item{
-    height: max(35px, 10%);
+.nav-links__item{
+    height: max(35px, 20%);
     border: unset;
     display: flex;
     justify-content: flex-start;
@@ -245,7 +255,7 @@ button.nav-links__item{
 }
 
 .manage-admins{
-    min-height: max(35px, 10%);
+    height: max(35px, 20%);
     display: flex;
     flex-flow: column;
     // gap: max(5px, 5vw);
@@ -253,7 +263,6 @@ button.nav-links__item{
     align-items: flex-start;
     border-bottom: 1px solid rgba(255, 255, 255, 0.27);
     position: relative;
-    height: fit-content;
 
     @keyframes appear {
         0% { transform: translate(-200px,  0px); }
@@ -466,6 +475,7 @@ main{
 .add-admin{
     width: 100%;
     height: 100%;
+    overflow: hidden;
 }
 
 .form-container{
@@ -474,7 +484,7 @@ main{
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    overflow: auto;
+    overflow: hidden;
 }
 
 .form{
@@ -679,7 +689,7 @@ main{
 @media only screen and (min-width:1200px){
     .form{
         width: max(300px, 40%);
-        box-shadow: 10px 10px rgba(114, 114, 114, 0.472);
+        box-shadow: 7px 7px rgba(114, 114, 114, 0.472);
     }
 
     .form:hover{

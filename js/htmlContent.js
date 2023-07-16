@@ -1,5 +1,5 @@
 let myAccount = `<section class="add-admin">
-<div class="form-container" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="300">
+<div class="form-container"  data-aos="flip-right" data-aos-duration="1000" data-aos-delay="300">
     <form class="form" autocomplete="off">
         <div class="custom-shape-divider-top-1689432371">
             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">

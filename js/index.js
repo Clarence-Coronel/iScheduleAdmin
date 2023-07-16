@@ -4,7 +4,6 @@ let accountSetting = document.querySelector('.account-setting');
 let accountBtn = document.querySelectorAll('.accBtn');
 let screenDarken = document.querySelector('.darken-screen');
 let navLinkItem = document.querySelectorAll('.nav-links__item');
-let inputContainer = document.querySelectorAll('.input-container');
 const main = document.querySelector('main');
 let desktopMode = false;
 let contentIsOpen = false;
@@ -14,23 +13,6 @@ AOS.init();
 initial();
 
 function initial(){
-    inputContainer.forEach((item)=>{
-        try {
-            item.querySelector('input').addEventListener('focusin',()=>{
-                item.style.borderColor = '#4e73df'; //primary-color
-            })
-        
-            item.querySelector('input').addEventListener('focusout',()=>{
-                if(item.querySelector('input').value == ""){
-                    item.style.borderColor = 'rgb(80, 78, 78)'; //fontbase-color
-                }
-            })
-        } catch (error) {
-            
-        }
-            
-    });
-    
     headerBtn.forEach((item)=>{
         item.addEventListener('click', ()=>{
             navLinks.style.left = "0";
@@ -48,12 +30,17 @@ function initial(){
         // console.log(e.target.getAttribute('data-click'));
 
         if(e.target.getAttribute('data-click') != 'doNothing'){
+            
             navLinks.style.left = "-250px"
             screenDarken.style.display = 'none';
             accountSetting.style.display = 'none';
             document.querySelector('.manage-admins__sub-container').style.display = 'none';
-            let newIco = document.querySelector('.change').innerHTML == 'arrow_drop_down' ? 'arrow_right' : 'arrow_drop_down';
-            document.querySelector('.change').innerHTML = newIco;
+
+            if(document.querySelector('.manage-admins__sub-container').style.display == 'none'){
+                let newIco = document.querySelector('.change').innerHTML ='arrow_right';
+                document.querySelector('.change').innerHTML = newIco;
+            }
+
         }
     });
     
@@ -70,6 +57,22 @@ function initial(){
     //         });
     //     });
     // });
+}
+
+function createAccInputBorderStyle(){
+    let inputContainer = document.querySelectorAll('.input-container');
+    inputContainer.forEach((item)=>{
+            item.querySelector('input').addEventListener('focusin',()=>{
+                
+                item.style.borderColor = '#4e73df'; //primary-color
+            })
+        
+            item.querySelector('input').addEventListener('focusout',()=>{
+                if(item.querySelector('input').value == ""){
+                    item.style.borderColor = 'rgb(80, 78, 78)'; //fontbase-color
+                }
+            })   
+    });
 }
 
 function generateAdminTypeModal(val){
@@ -137,6 +140,7 @@ function generateCreateAcc(){
     document.querySelector('.change').innerHTML = newIco;
     contentIsOpen = true;
     main.innerHTML = myAccount;
+    createAccInputBorderStyle();
 }
 
 function generateDisableAcc(){

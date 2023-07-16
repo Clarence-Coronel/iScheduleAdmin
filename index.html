@@ -50,58 +50,60 @@
         </div>
     </header>
     <div class="nav-links" data-click="doNothing">
-        <div class="nav-links__item nav-links__title" data-click="doNothing">
-            <h1 data-click="doNothing"><span class="material-icons-outlined ico-admin"data-click="doNothing">admin_panel_settings</span>iSchedule <br> Admin Panel</h1>
-        </div>
-        <button class="nav-links__item" onclick="generateDashboard()">
-            <span class="material-icons-outlined ico-nav">dashboard</span>
-            Dashboard
-        </button>
-        <button class="nav-links__item">
-            <span class="material-icons-outlined ico-nav">calendar_month</span>
-            Schedule An Appointment
-        </button>
-        <button class="nav-links__item">
-            <span class="material-icons-outlined ico-nav">book</span>
-            View Scheduled Appointments
-        </button>
-        <button class="nav-links__item">
-            <span class="material-icons-outlined ico-nav">edit</span>
-            Edit Department Schedules
-        </button>
-        <div class="nav-links__item manage-admins" data-click="doNothing" onclick="showManageAdmins();">
-            <button class="btn-content" id="btn--manage-admins" data-click="doNothing">
-                <span class="material-icons-outlined ico-nav" data-click="doNothing">groups</span>
-                Manage Admins
-                <span class="material-icons-outlined ico-nav change" data-click="doNothing">arrow_right</span>
-            </button>
-            <div class="manage-admins__sub-container" style="display: none;">
-                <button class="btn-content manage-admins__sub" onclick="generateAdminLogs();">
-                    <span class="material-icons-outlined ico-nav--sub">feed</span>
-                    Admin Logs
-                </button>
-                <button class="btn-content manage-admins__sub" onclick="generateAdminLogs();">
-                    <span class="material-icons-outlined ico-nav--sub">badge</span>
-                    Edit Admin Level
-                </button>
-                <button class="btn-content manage-admins__sub"  onclick="generateCreateAcc()">
-                    <span class="material-icons-outlined ico-nav--sub">person_add_alt</span>
-                    Create New Admin
-                </button>
-                <button class="btn-content manage-admins__sub" onclick="generateDisableAcc()">
-                    <span class="material-icons-outlined ico-nav--sub">person_remove_alt_1</span>
-                    Remove Admin
-                </button>
+        <div class="nav-item-wrapper">
+            <div class="nav-links__item nav-links__title" data-click="doNothing">
+                <h1 data-click="doNothing"><span class="material-icons-outlined ico-admin"data-click="doNothing">admin_panel_settings</span>iSchedule <br> Admin Panel</h1>
             </div>
+            <button class="nav-links__item" onclick="generateDashboard()">
+                <span class="material-icons-outlined ico-nav">dashboard</span>
+                Dashboard
+            </button>
+            <button class="nav-links__item">
+                <span class="material-icons-outlined ico-nav">calendar_month</span>
+                Schedule An Appointment
+            </button>
+            <button class="nav-links__item">
+                <span class="material-icons-outlined ico-nav">book</span>
+                View Scheduled Appointments
+            </button>
+            <button class="nav-links__item">
+                <span class="material-icons-outlined ico-nav">edit</span>
+                Edit Department Schedules
+            </button>
+            <div class="nav-links__item manage-admins" data-click="doNothing" onclick="showManageAdmins();">
+                <button class="btn-content" id="btn--manage-admins" data-click="doNothing">
+                    <span class="material-icons-outlined ico-nav" data-click="doNothing">groups</span>
+                    Manage Admins
+                    <span class="material-icons-outlined ico-nav change" data-click="doNothing">arrow_right</span>
+                </button>
+                <div class="manage-admins__sub-container" style="display: none;">
+                    <button class="btn-content manage-admins__sub" onclick="generateAdminLogs();">
+                        <span class="material-icons-outlined ico-nav--sub">feed</span>
+                        Admin Logs
+                    </button>
+                    <button class="btn-content manage-admins__sub" onclick="generateAdminLogs();">
+                        <span class="material-icons-outlined ico-nav--sub">badge</span>
+                        Edit Admin Level
+                    </button>
+                    <button class="btn-content manage-admins__sub"  onclick="generateCreateAcc()">
+                        <span class="material-icons-outlined ico-nav--sub">person_add_alt</span>
+                        Create New Admin
+                    </button>
+                    <button class="btn-content manage-admins__sub" onclick="generateDisableAcc()">
+                        <span class="material-icons-outlined ico-nav--sub">person_remove_alt_1</span>
+                        Remove Admin
+                    </button>
+                </div>
+            </div>
+            <button class="nav-links__item">
+                <span class="material-icons-outlined ico-nav">medical_services</span>
+                Manage Website Status
+            </button>
+            <button class="nav-links__item">
+                <span class="material-icons-outlined ico-nav">block</span>
+                Block Dates
+            </button>
         </div>
-        <button class="nav-links__item">
-            <span class="material-icons-outlined ico-nav">medical_services</span>
-            Manage Website Status
-        </button>
-        <button class="nav-links__item">
-            <span class="material-icons-outlined ico-nav">block</span>
-            Block Dates
-        </button>
     </div>
     <main>
         <!-- Gawin dito sa HTML yung pages then icut then paste the innerHtml -->
