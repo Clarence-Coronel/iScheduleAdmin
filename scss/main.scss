@@ -265,7 +265,7 @@ button.nav-links__item{
 
     .manage-admins__sub-container{
         position: absolute;
-        background-color: lighten($primary-color,5);
+        background-color: $primary-color;
         top: 0;
         left: 105%;
         transition-duration: 1s;
