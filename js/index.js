@@ -108,9 +108,9 @@ function generateAdminTypeModal(val){
             *Schedule An Appointment <br>
             *View Scheduled Appointments  <br>
             *Edit Department Schedules  <br>
+            *Manage Admins <br>
             *Manage Website Status <br>
             *Block Dates <br>
-            *Manage Admins <br>
         `
     }
 

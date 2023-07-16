@@ -10,7 +10,7 @@ let myAccount = `<section class="add-admin">
         </div>
         <h2>
             <span class="material-icons-outlined ico-nav">person_add_alt</span>
-            New Admin Details
+            Admin Information
         </h2>
         <div class="input-container">
             <input type="text" name="firstName" id="firstName" required>

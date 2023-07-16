@@ -53,7 +53,7 @@ header {
   width: 100%;
   background-color: white;
   box-shadow: 0px 1px 2px rgba(73, 73, 73, 0.633);
-  padding: 0 5vw;
+  padding: 0 3vw;
   z-index: 9;
 }
 header .header__left {
@@ -469,12 +469,12 @@ main {
   height: fit-content;
   border-radius: max(7px, 1vw);
   margin: max(10px, 1.5vw) 0;
-  padding: max(10px, 2vw) max(20px, 5vw);
+  padding: max(10px, 1vw) max(20px, 5vw);
   overflow: hidden;
   border-bottom: min(10px, 5vw) solid #7995e7;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
-  gap: max(20px, 1vw);
+  gap: max(15px, 1.5vw);
   justify-items: center;
   position: relative;
   transition-duration: 500ms;
@@ -501,7 +501,7 @@ main {
           user-select: none;
 }
 .form .ico-nav {
-  font-size: 5rem;
+  font-size: 2.5rem;
   border-radius: 100px;
   padding: max(15px, 1.2vw);
   -webkit-user-select: none;
@@ -512,13 +512,6 @@ main {
   background-color: #4e73df;
   color: white;
   border: 5px solid white;
-}
-.form .ico-nav:hover {
-  background-color: white;
-  color: #4e73df;
-  border: 5px solid #4e73df;
-  transform: rotate(360deg);
-  cursor: pointer;
 }
 
 .custom-shape-divider-top-1689432371 {
@@ -634,6 +627,13 @@ main {
   .form:hover {
     transform: translate(-5px, -10px);
     box-shadow: 20px 20px rgba(114, 114, 114, 0.472);
+  }
+  .form:hover .ico-nav {
+    background-color: white;
+    color: #4e73df;
+    border: 5px solid #4e73df;
+    transform: rotate(360deg);
+    cursor: pointer;
   }
   .btn--addAdmin {
     width: 40%;
