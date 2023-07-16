@@ -17,6 +17,7 @@
     
     <link rel="stylesheet" href="./css/main.css">
     <script defer src="./js/index.js"></script>
+    <script defer src="./js/htmlContent.js"></script>
     <title>iSchedule Admin</title>
 </head>
 <body>
@@ -37,8 +38,8 @@
                 <div class="role accBtn" data-click="doNothing">Super Admin</div>
                 <div class="account-setting">
                     <a href="#" class="account-setting__content account-setting__link--myAcc">
-                        <span class="material-icons-outlined ico-acc">settings</span>
-                        My Account
+                        <span class="material-icons-outlined ico-acc">manage_accounts</span>
+                        Account Settings
                     </a>
                     <button class="account-setting__content account-setting__btn--logout" style="color:red;">
                         <span class="material-icons-outlined ico-acc" style="color:red;" >logout</span>
@@ -49,10 +50,10 @@
         </div>
     </header>
     <div class="nav-links" data-click="doNothing">
-        <div class="nav-links__item nav-links__title">
-            <h1><span class="material-icons-outlined ico-admin">admin_panel_settings</span>iSchedule <br> Admin Panel</h1>
+        <div class="nav-links__item nav-links__title" data-click="doNothing">
+            <h1 data-click="doNothing"><span class="material-icons-outlined ico-admin"data-click="doNothing">admin_panel_settings</span>iSchedule <br> Admin Panel</h1>
         </div>
-        <button class="nav-links__item">
+        <button class="nav-links__item" onclick="generateDashboard()">
             <span class="material-icons-outlined ico-nav">dashboard</span>
             Dashboard
         </button>
@@ -66,15 +67,36 @@
         </button>
         <button class="nav-links__item">
             <span class="material-icons-outlined ico-nav">edit</span>
-            Edit Schedules
+            Edit Department Schedules
+        </button>
+        <div class="nav-links__item manage-admins" data-click="doNothing" onclick="showManageAdmins();">
+            <button class="btn-content" id="btn--manage-admins" data-click="doNothing">
+                <span class="material-icons-outlined ico-nav" data-click="doNothing">groups</span>
+                Manage Admins
+                <span class="material-icons-outlined ico-nav change" data-click="doNothing">arrow_right</span>
+            </button>
+            <div class="manage-admins__sub-container" style="display: none;">
+                <button class="btn-content manage-admins__sub" onclick="generateAdminLogs();">
+                    <span class="material-icons-outlined ico-nav--sub">feed</span>
+                    Admin Logs
+                </button>
+                <button class="btn-content manage-admins__sub"  onclick="generateCreateAcc()">
+                    <span class="material-icons-outlined ico-nav--sub">person_add_alt</span>
+                    Create New Admin
+                </button>
+                <button class="btn-content manage-admins__sub" onclick="generateDisableAcc()">
+                    <span class="material-icons-outlined ico-nav--sub">person_remove_alt_1</span>
+                    Remove Admin
+                </button>
+            </div>
+        </div>
+        <button class="nav-links__item">
+            <span class="material-icons-outlined ico-nav">medical_services</span>
+            Manage Website Status
         </button>
         <button class="nav-links__item">
             <span class="material-icons-outlined ico-nav">block</span>
             Block Dates
-        </button>
-        <button class="nav-links__item">
-            <span class="material-icons-outlined ico-nav">person_add_alt</span>
-            Create New Admin
         </button>
     </div>
     <main>
@@ -119,10 +141,18 @@
                         <label for="confirmPassword">Confirm Password</label>
                     </div>
                     <div class="radio-container">
-                        <input type="radio" id="admin" name="adminType" value="Admin" required>
-                        <label for="admin">Admin</label>
-                        <input type="radio" id="superAdmin" name="adminType" value="SuperAdmin" required>
-                        <label for="superAdmin">Super Admin</label>
+                        <div class="radiobtn-container">
+                            <input type="radio" id="adminI" name="adminType" value="adminI" required onclick="generateAdminTypeModal(0)">
+                            <label for="adminI">Admin I</label>
+                        </div>
+                        <div class="radiobtn-container">
+                            <input type="radio" id="adminII" name="adminType" value="adminII" required onclick="generateAdminTypeModal(1)">
+                            <label for="adminII">Admin II</label>
+                        </div>
+                        <div class="radiobtn-container">
+                            <input type="radio" id="superAdmin" name="adminType" value="superAdmin" required onclick="generateAdminTypeModal(2)">
+                            <label for="superAdmin">Super Admin</label>
+                        </div>
                     </div>
                     <button class="btn--addAdmin">Create</button>
                     </div>
@@ -130,6 +160,25 @@
             </div>
         </section>
     </main>
-    
+    <button type="button" class="btn btn-primary modal-launcher" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="display:none">
+        Launch static backdrop modal
+    </button>
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> 
+            </div>
+            <div class="modal-body">
+            ...
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary negative" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary positive" data-bs-dismiss="modal">Understood</button>
+            </div>
+        </div>
+        </div>
+      </div>
 </body>
 </html>

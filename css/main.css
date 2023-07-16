@@ -52,8 +52,6 @@ body {
 header {
   width: 100%;
   background-color: white;
-  position: sticky;
-  top: 0;
   box-shadow: 0px 1px 2px rgba(73, 73, 73, 0.633);
   padding: 0 5vw;
   z-index: 9;
@@ -188,7 +186,8 @@ header .header__right:hover {
 
 .darken-screen {
   background-color: black;
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   width: 100vw;
   opacity: 0.5;
   position: absolute;
@@ -201,12 +200,17 @@ header .header__right:hover {
   background-color: #4e73df;
   width: 40vw;
   position: absolute;
-  height: 100vh;
+  height: 100%;
+  min-height: 400px;
   left: -300px;
   transition-duration: 400ms;
   max-width: 250px;
   z-index: 999;
   padding: max(5px, 0.5vw);
+}
+.nav-links .ico-nav, .nav-links .ico-nav--sub {
+  color: rgb(210, 208, 208);
+  font-size: 1.5rem;
 }
 .nav-links h1 {
   width: 100%;
@@ -242,12 +246,86 @@ button.nav-links__item {
           user-select: none;
   background-color: transparent;
 }
-button.nav-links__item .ico-nav {
-  color: rgb(210, 208, 208);
-  font-size: 1.5rem;
+
+.manage-admins {
+  min-height: max(35px, 10%);
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: flex-start;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.27);
+  position: relative;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+@keyframes appear {
+  0% {
+    transform: translate(-200px, 0px);
+  }
+  25% {
+    transform: translate(-150px, 0px);
+  }
+  50% {
+    transform: translate(-100px, 0px);
+  }
+  75% {
+    transform: translate(-50px, 0px);
+  }
+  100% {
+    transform: translate(0, 0px);
+  }
+}
+.manage-admins .manage-admins__sub-container {
+  position: absolute;
+  background-color: #6484e3;
+  top: 0;
+  left: 110%;
+  transition-duration: 1s;
+  width: 100%;
+  padding: 0 max(10px, 0.5vw);
+  animation-name: appear;
+  animation-duration: 200ms;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in-out;
+}
+.manage-admins .manage-admins__sub {
+  margin: 20px 0;
+  font-size: 0.8rem;
+}
+.manage-admins .manage-admins__sub:hover, .manage-admins .manage-admins__sub:hover .ico-nav--sub {
+  color: white;
 }
 
-button.nav-links__item:hover {
+.manage-admins__sub:hover .ico-nav--sub {
+  cursor: pointer !important;
+  color: white;
+}
+
+.manage-admins:hover .ico-nav, .manage-admins:hover #btn--manage-admins {
+  cursor: pointer !important;
+  color: white;
+}
+
+.btn-content {
+  min-height: max(35px, 10%);
+  height: -moz-fit-content;
+  height: fit-content;
+  display: flex;
+  border: unset;
+  justify-content: flex-start;
+  align-items: center;
+  color: rgb(210, 208, 208);
+  font-weight: 200;
+  gap: max(5px, 0.5vw);
+  text-align: left;
+  width: 100%;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  background-color: transparent;
+}
+
+button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
   color: white;
   cursor: pointer;
 }
@@ -257,7 +335,7 @@ button.nav-links__item:hover {
   padding-top: max(10px, 1vw);
   height: -moz-fit-content;
   height: fit-content;
-  margin-bottom: max(15px, 2vw);
+  margin-bottom: max(10px, 1vw);
   border-bottom: unset;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -349,15 +427,17 @@ button.nav-links__item:hover {
 
 body {
   width: 100vw;
-  height: 100vh;
+  height: -moz-fit-content;
+  height: fit-content;
+  min-height: 100vh;
   display: flex;
   flex-flow: column;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 main {
   flex: 1;
-  overflow: hidden;
 }
 
 .add-admin {
@@ -520,12 +600,15 @@ main {
 }
 
 .radio-container {
+  width: 120%;
   flex: 1 0 auto;
   display: flex;
   flex-flow: row nowrap;
-  gap: max(10px, 1vw);
+  justify-content: center;
+  gap: max(15px, 1vw);
+  font-size: 0.9rem;
 }
-.radio-container label {
+.radio-container .radiobtn-container label {
   color: #4e73df;
   font-weight: 700;
 }

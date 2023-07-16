@@ -29,8 +29,6 @@ body{
 header{
     width: 100%;
     background-color: white;
-    position: sticky;
-    top: 0;
     box-shadow:0px 1px 2px $boxShadowPrimary-color;
     padding: 0 5vw;
     z-index: 9;
@@ -182,7 +180,8 @@ header{
 
 .darken-screen{
     background-color: black;
-    height: 100vh;
+    height: 100%;
+    min-height: 100vh;
     width: 100vw;
     opacity: 0.5;
     position: absolute;
@@ -195,12 +194,21 @@ header{
     background-color: $primary-color;
     width: 40vw;
     position: absolute;
-    height: 100vh;
+    height: 100%;
+    min-height: 400px;
     left: -300px;
     transition-duration: 400ms;
     max-width: 250px;
     z-index: 999;
     padding: max(5px, 0.5vw);
+    // min-height: 900px;
+    // overflow-y: auto;
+
+
+    .ico-nav, .ico-nav--sub{
+        color: $gray;
+        font-size: 1.5rem;
+    }
 
     h1{
         width: 100%;
@@ -214,7 +222,6 @@ header{
         text-align: center;
         font-weight: 1000;
     }
-
     .ico-admin{
         color:$fontOnPrimary-color;
         font-size: 4rem;
@@ -235,14 +242,85 @@ button.nav-links__item{
     width: 100%;
     user-select: none;
     background-color: transparent;
+}
 
-    .ico-nav{
-        color: $gray;
-        font-size: 1.5rem;
+.manage-admins{
+    min-height: max(35px, 10%);
+    display: flex;
+    flex-flow: column;
+    // gap: max(5px, 5vw);
+    justify-content: center;
+    align-items: flex-start;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.27);
+    position: relative;
+    height: fit-content;
+
+    @keyframes appear {
+        0% { transform: translate(-200px,  0px); }
+        25%  { transform: translate(-150px, 0px); }
+        50%  { transform: translate(-100px, 0px); }
+        75%  { transform: translate(-50px, 0px); }
+        100%   { transform: translate(0, 0px); }   
+    }
+
+    .manage-admins__sub-container{
+        position: absolute;
+        background-color: lighten($primary-color,5);
+        top: 0;
+        left: 110%;
+        transition-duration: 1s;
+        width: 100%;
+        padding: 0 max(10px, 0.5vw);
+
+        animation-name: appear;
+        animation-duration: 200ms;
+        animation-iteration-count: 1;
+        animation-timing-function: ease-in-out;
+    }
+
+    .manage-admins__sub{
+        margin: 20px 0;
+        font-size: 0.8rem;
+        // border-bottom: 1px solid rgba(255, 255, 255, 0.27);
+    }
+
+    .manage-admins__sub:hover, .manage-admins__sub:hover .ico-nav--sub{
+        color: white;
     }
 }
 
-button.nav-links__item:hover{
+.manage-admins__sub:hover .ico-nav--sub{
+    cursor: pointer !important;
+    color: white;
+}
+
+.manage-admins:hover .ico-nav, .manage-admins:hover #btn--manage-admins{
+    cursor: pointer !important;
+    color: white;
+}
+
+// .manage-admins:hover > button.btn-content, .manage-admins:hover > .ico-nav{
+//     color: white;
+// }
+
+.btn-content{
+    min-height: max(35px, 10%);
+    height: fit-content;
+    display: flex;
+    border: unset;
+    justify-content: flex-start;
+    align-items: center;
+    color: $gray;
+    font-weight: 200;
+    gap: max(5px, 0.5vw);
+    text-align: left;
+    width: 100%;
+    user-select: none;
+    background-color: transparent;
+    // border-bottom: 1px solid rgba(255, 255, 255, 0.27);
+}
+
+button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
     color: $fontOnPrimary-color;
     cursor: pointer;
 }
@@ -251,7 +329,7 @@ button.nav-links__item:hover{
     width: 100%;
     padding-top: max(10px ,1vw);
     height: fit-content;
-    margin-bottom: max(15px, 2vw);
+    margin-bottom: max(10px, 1vw);
     border-bottom: unset;
     user-select: none;
 }
@@ -259,7 +337,6 @@ button.nav-links__item:hover{
 .nav-links__title:hover{
     cursor: unset;
 }
-
 
 .account{
     width: 100%;
@@ -342,6 +419,7 @@ button.nav-links__item:hover{
     .nav-links{
         left: 0 !important;
     }
+    
 
     html{
         font-size: 20px;
@@ -373,15 +451,17 @@ button.nav-links__item:hover{
 
 body{
     width: 100vw;
-    height: 100vh;
+    height: fit-content;
+    min-height: 100vh;
     display: flex;
     flex-flow: column;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 main{
     flex: 1;
-    overflow: hidden;
+    // overflow-y: auto;
 }
 
 .add-admin{
@@ -573,14 +653,21 @@ main{
 
 .radio-container{
     // width: 200px;
+    width: 120%;
     flex: 1 0 auto;
     display: flex;
     flex-flow: row nowrap;
-    gap: max(10px, 1vw);
-    
-    label{
-        color: $primary-color;
-        font-weight: 700;
+    justify-content: center;
+    gap: max(15px, 1vw);
+    font-size: 0.9rem;
+
+    .radiobtn-container{
+
+
+        label{
+            color: $primary-color;
+            font-weight: 700;
+        }
     }
 }
 
