@@ -37,13 +37,21 @@ let myAccount = `<section class="add-admin">
             <label for="confirmPassword">Confirm Password</label>
         </div>
         <div class="radio-container">
-            <input type="radio" id="admin" name="adminType" value="Admin" required>
-            <label for="admin">Admin</label>
-            <input type="radio" id="superAdmin" name="adminType" value="SuperAdmin" required>
-            <label for="superAdmin">Super Admin</label>
+            <div class="radiobtn-container">
+                <input type="radio" id="adminI" name="adminType" value="adminI" required onclick="generateAdminTypeModal(0)">
+                <label for="adminI">Admin I</label>
+            </div>
+            <div class="radiobtn-container">
+                <input type="radio" id="adminII" name="adminType" value="adminII" required onclick="generateAdminTypeModal(1)">
+                <label for="adminII">Admin II</label>
+            </div>
+            <div class="radiobtn-container">
+                <input type="radio" id="superAdmin" name="adminType" value="superAdmin" required onclick="generateAdminTypeModal(2)">
+                <label for="superAdmin">Super Admin</label>
+            </div>
         </div>
         <button class="btn--addAdmin">Create</button>
         </div>
     </form>
 </div>
-</section>`
+</section>`;
