@@ -31,7 +31,7 @@ function initial(){
 
         if(e.target.getAttribute('data-click') != 'doNothing'){
             
-            navLinks.style.left = "-250px"
+            navLinks.style.left = "-300px"
             screenDarken.style.display = 'none';
             accountSetting.style.display = 'none';
             document.querySelector('.manage-admins__sub-container').style.display = 'none';
@@ -136,11 +136,34 @@ function showManageAdmins(){
 }
 
 function generateCreateAcc(){
+    main.innerHTML = myAccount;
+    let iconPassword = document.querySelectorAll('.ico-pass');
     let newIco = document.querySelector('.change').innerHTML == 'arrow_drop_down' ? 'arrow_right' : 'arrow_drop_down';
+    
     document.querySelector('.change').innerHTML = newIco;
     contentIsOpen = true;
-    main.innerHTML = myAccount;
     createAccInputBorderStyle();
+
+    iconPassword.forEach((item)=>{
+        item.addEventListener('click', ()=>{
+            if(item.innerHTML == 'visibility_off'){
+                iconPassword.forEach((item2)=>{
+                    item2.innerHTML = 'visibility'
+                })
+                document.querySelector('#password').setAttribute('type', 'text');
+                document.querySelector('#confirmPassword').setAttribute('type', 'text');
+            }
+            else{
+                iconPassword.forEach((item)=>{
+                    item.innerHTML = 'visibility_off'
+                })
+                document.querySelector('#password').setAttribute('type', 'password');
+                document.querySelector('#confirmPassword').setAttribute('type', 'password');
+            }
+        })
+    });
+
+
 }
 
 function generateDisableAcc(){

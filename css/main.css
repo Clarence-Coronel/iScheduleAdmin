@@ -213,7 +213,7 @@ header .header__right:hover {
   height: 100%;
   left: -300px;
   transition-duration: 400ms;
-  max-width: 250px;
+  max-width: 300px;
   z-index: 999;
   padding: max(5px, 0.5vw);
 }
@@ -425,7 +425,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
     display: none !important;
   }
   main {
-    padding-left: 250px;
+    padding-left: 300px;
   }
 }
 .ico-acc {
@@ -493,7 +493,7 @@ main {
   align-items: center;
   flex-flow: column;
   gap: max(5px, 0.5vw);
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   color: #4e73df;
   font-weight: 700;
   -webkit-user-select: none;
@@ -501,7 +501,7 @@ main {
           user-select: none;
 }
 .form .ico-nav {
-  font-size: 2.5rem;
+  font-size: 3rem;
   border-radius: 100px;
   padding: max(15px, 1.2vw);
   -webkit-user-select: none;
@@ -527,7 +527,7 @@ main {
   position: relative;
   display: block;
   width: calc(133% + 1.3px);
-  height: 130px !important;
+  height: 100px !important;
 }
 
 .custom-shape-divider-top-1689432371 .shape-fill {
@@ -552,8 +552,9 @@ main {
   border: 2px solid rgb(80, 78, 78);
   height: min(50px, 10vw);
   display: flex;
-  flex-flow: column;
-  justify-content: center;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
   border-radius: max(5px, 0.5vw);
   padding: 2px;
   width: 100%;
@@ -565,25 +566,33 @@ main {
   padding: 0 max(5px, 1vw);
   min-height: 20px;
   font-weight: 500;
+  width: 100%;
 }
 .input-container input:focus ~ label,
 .input-container input:valid ~ label {
   color: #4e73df;
   font-size: 0.9rem;
-  transform: translate(10%, -110%);
+  transform: translate(5%, -110%);
 }
 .input-container label {
   color: rgb(80, 78, 78);
   position: absolute;
-  background-color: white;
-  transform: translateY(-10%);
-  padding: 0 max(2px, 0.2vw);
+  background-color: whitesmoke;
+  padding: 0 max(3px, 0.2vw);
   background-color: white;
   transition-duration: 200ms;
   font-size: 0.8rem;
 }
 .input-container label:hover {
   cursor: text;
+}
+.input-container .ico-pass {
+  margin-right: 1%;
+  font-size: 1rem;
+  color: rgb(80, 78, 78);
+}
+.input-container .ico-pass:hover {
+  cursor: pointer;
 }
 
 .btn--addAdmin {
@@ -608,6 +617,13 @@ main {
   justify-content: center;
   gap: max(15px, 1vw);
   font-size: 0.9rem;
+}
+.radio-container .radiobtn-container {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: max(3px, 0.3vw);
 }
 .radio-container .radiobtn-container label {
   color: #4e73df;

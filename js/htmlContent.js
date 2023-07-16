@@ -1,4 +1,5 @@
-let myAccount = `<section class="add-admin">
+let myAccount = `
+<section class="add-admin">
 <div class="form-container"  data-aos="flip-right" data-aos-duration="1000" data-aos-delay="300">
     <form class="form" autocomplete="off">
         <div class="custom-shape-divider-top-1689432371">
@@ -30,10 +31,12 @@ let myAccount = `<section class="add-admin">
         </div>
         <div class="input-container">
             <input type="password" name="password" id="password" required>
+            <span class="material-icons-outlined ico-pass">visibility_off</span>
             <label for="password">Password</label>
         </div>
         <div class="input-container">
             <input type="password" name="confirm-password" id="confirmPassword" required>
+            <span class="material-icons-outlined ico-pass">visibility_off</span>
             <label for="confirmPassword">Confirm Password</label>
         </div>
         <div class="radio-container">
