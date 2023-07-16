@@ -279,7 +279,7 @@ button.nav-links__item {
   position: absolute;
   background-color: #6484e3;
   top: 0;
-  left: 110%;
+  left: 105%;
   transition-duration: 1s;
   width: 100%;
   padding: 0 max(10px, 0.5vw);
