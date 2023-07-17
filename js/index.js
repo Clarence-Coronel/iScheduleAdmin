@@ -37,7 +37,7 @@ function initial(){
             document.querySelector('.manage-admins__sub-container').style.display = 'none';
 
             if(document.querySelector('.manage-admins__sub-container').style.display == 'none'){
-                let newIco = document.querySelector('.change').innerHTML ='arrow_right';
+                let newIco = document.querySelector('.change').innerHTML ='chevron_right';
                 document.querySelector('.change').innerHTML = newIco;
             }
 
@@ -127,8 +127,7 @@ function showManageAdmins(){
     const manageAdmin = document.querySelector('.manage-admins__sub-container');   
 
     let newDisplay = manageAdmin.style.display == 'none' ? 'block' : 'none';
-    let newIco = document.querySelector('.change').innerHTML == 'arrow_drop_down' ? 'arrow_right' : 'arrow_drop_down';
-    document.querySelector('.change').innerHTML = newIco;
+    changeArrow()
 
     if(!contentIsOpen) manageAdmin.style.display = newDisplay;
 
@@ -138,9 +137,7 @@ function showManageAdmins(){
 function generateCreateAcc(){
     main.innerHTML = myAccount;
     let iconPassword = document.querySelectorAll('.ico-pass');
-    let newIco = document.querySelector('.change').innerHTML == 'arrow_drop_down' ? 'arrow_right' : 'arrow_drop_down';
-    
-    document.querySelector('.change').innerHTML = newIco;
+    changeArrow();
     contentIsOpen = true;
     createAccInputBorderStyle();
 
@@ -167,15 +164,11 @@ function generateCreateAcc(){
 }
 
 function generateDisableAcc(){
-    let newIco = document.querySelector('.change').innerHTML == 'arrow_drop_down' ? 'arrow_right' : 'arrow_drop_down';
-    document.querySelector('.change').innerHTML = newIco;
     contentIsOpen = true;
     main.innerHTML = "";
 }
 
 function generateAdminLogs(){
-    let newIco = document.querySelector('.change').innerHTML == 'arrow_drop_down' ? 'arrow_right' : 'arrow_drop_down';
-    document.querySelector('.change').innerHTML = newIco;
     contentIsOpen = true;
     main.innerHTML = "";
 }
@@ -184,3 +177,7 @@ function generateDashboard(){
     main.innerHTML = "";
 }
 
+function changeArrow(){
+    let newIco = document.querySelector('.change').innerHTML == 'chevron_right' ? 'chevron_left' : 'chevron_right';
+    document.querySelector('.change').innerHTML = newIco;
+}
