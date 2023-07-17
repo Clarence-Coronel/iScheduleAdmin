@@ -1,4 +1,4 @@
-let myAccount = `
+let createAccount = `
 <section class="add-admin">
 <div class="form-container"  data-aos="flip-right" data-aos-duration="1000" data-aos-delay="300">
     <form class="form" autocomplete="off">
@@ -56,5 +56,85 @@ let myAccount = `
         <button class="btn--addAdmin">Create</button>
         </div>
     </form>
+</div>
+</section>`;
+
+let adminLogs = `<section class="admin-logs">
+<div class="admin-logs__body">
+    <h2>Filter By</h2>
+    <div class="admin-logs__filters">
+        <input type="date" name="" id="">
+        <select name="" id="">
+            <option hidden selected disabled>Activity</option>
+            <option value="">test</option>
+            <option value="">test</option>
+            <option value="">test</option>
+        </select>
+        <select name="" id="">
+            <option hidden selected disabled>Admin Level</option>
+            <option value="">test</option>
+            <option value="">test</option>
+            <option value="">test</option>
+        </select>
+        <select name="" id="">
+            <option hidden selected disabled>Sort By</option>
+            <option value="">test</option>
+            <option value="">test</option>
+            <option value="">test</option>
+        </select>
+        <input type="text" name="" id="" placeholder="Name">
+        <button>Apply</button>
+    </div>
+</div>
+
+<div class="table-container">
+    <table class="logs-table">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Activity</th>
+                <th>Date</th>
+                <th >Time</th>
+                <th>Admin Level</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>clarence-coronel</td>
+                <td>View Schedule</td>
+                <td>21 July 2023</td>
+                <td>13:00</td>
+                <td>Admin II</td>
+            </tr>
+            <tr>
+                <td>clarence-coronel</td>
+                <td>View Schedule</td>
+                <td>21 July 2023</td>
+                <td>13:00</td>
+                <td>Admin II</td>
+            </tr>
+            <tr>
+                <td>clarence-coronel</td>
+                <td>View Schedule</td>
+                <td>21 July 2023</td>
+                <td>13:00</td>
+                <td>Admin II</td>
+            </tr>
+            <tr>
+                <td>clarence-coronel</td>
+                <td>View Schedule</td>
+                <td>21 July 2023</td>
+                <td>13:00</td>
+                <td>Admin II</td>
+            </tr>
+            <tr>
+                <td>clarence-coronel</td>
+                <td>View Schedule</td>
+                <td>21 July 2023</td>
+                <td>13:00</td>
+                <td>Admin II</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 </section>`;

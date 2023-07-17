@@ -135,7 +135,7 @@ function showManageAdmins(){
 }
 
 function generateCreateAcc(){
-    main.innerHTML = myAccount;
+    main.innerHTML = createAccount;
     let iconPassword = document.querySelectorAll('.ico-pass');
     changeArrow();
     contentIsOpen = true;
@@ -170,7 +170,12 @@ function generateDisableAcc(){
 
 function generateAdminLogs(){
     contentIsOpen = true;
-    main.innerHTML = "";
+    main.innerHTML = adminLogs;
+}
+
+function generateAdminList(){
+    contentIsOpen = true;
+    main.innerHTML = '';
 }
 
 function generateDashboard(){
