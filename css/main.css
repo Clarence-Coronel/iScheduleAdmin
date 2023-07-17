@@ -654,6 +654,7 @@ input:-webkit-autofill:focus {
 }
 
 .admin-logs {
+  margin-top: max(15px, 1vw);
   display: flex;
   width: 100%;
   height: 90vh;
@@ -666,6 +667,10 @@ input:-webkit-autofill:focus {
 .admin-logs .admin-logs__body {
   width: 100%;
   border-radius: max(7px, 1vw);
+}
+.admin-logs h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 
 .admin-logs__filters {
@@ -731,7 +736,7 @@ th {
   justify-content: flex-start;
   align-items: center;
   padding: 0 max(2px, 0.4vw);
-  min-width: 150px;
+  max-width: 400px;
 }
 
 td {
