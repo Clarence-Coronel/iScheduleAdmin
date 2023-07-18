@@ -172,9 +172,11 @@ function showTableCell(){
 }
 
 function editPhone(element){
+    alert("labas modal");
     alert(element.getAttribute('data-username'));
 }
 
 function removeAdmin(element){
+    alert("labas modal");
     alert(element.getAttribute('data-username'));
 }
