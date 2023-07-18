@@ -98,7 +98,7 @@
                 <span class="material-icons-outlined ico-nav">medical_services</span>
                 Manage Website Status
             </button>
-            <button class="nav-links__item">
+            <button class="nav-links__item" onclick="generateBlockDates()">
                 <span class="material-icons-outlined ico-nav">block</span>
                 Block Dates
             </button>
@@ -107,37 +107,6 @@
     <main>
         <!-- Gawin dito sa HTML yung pages then icut then paste the innerHtml -->
         <!-- Yung overflow:auto sa section natin ipasok was sa main -->
-        <section class="block-date">
-            <div class="add-date">
-                <div class="date-picker">
-                    <input type="text" name="day" id="">
-                    <span>/</span>
-                    <input type="text" name="month" id="">
-                    <span>/</span>
-                    <input type="text" name="year" id="">
-                </div>
-                <input type="text" placeholder="name">
-                <button>Add</button>
-            </div>
-            <div class="table-container">
-                <table class="date-table">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Name</th>
-                            <th>&nbsp</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>25 December 2023</td>
-                            <td>ChristmasChristmasChristmasChristmasChristmasChristmasChristmasChristmasChristmasChristmasChristmasChristmasChristmasChristmasChristmas</td>
-                            <td><button class="removeDate" data-date="2023-12-25"><span class="material-icons-outlined">clear</span></button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
     </main>
     <button type="button" class="btn btn-primary modal-launcher" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="display:none">
         Launch static backdrop modal

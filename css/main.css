@@ -8,8 +8,8 @@
 }
 
 *::-webkit-scrollbar {
-  height: 0.3rem;
-  width: 0.3rem;
+  height: 0.5rem;
+  width: 0.5rem;
   margin-right: 20px !important;
 }
 
@@ -34,6 +34,7 @@ body {
   display: flex;
   flex-flow: column;
   overflow-x: hidden;
+  overflow-y: auto;
   background-color: whitesmoke;
   position: relative;
 }
@@ -654,6 +655,19 @@ input:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0px 1000px white inset;
 }
 
+.admin-logs-wrapper, .admin-list-wrapper {
+  width: 90%;
+  background-color: white;
+  padding: max(10px, 2vw);
+  box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
+  border-radius: max(10px, 1.2vw);
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: center;
+  max-height: 80vh;
+}
+
 .admin-logs, .admin-list {
   margin-top: max(15px, 1vw);
   display: flex;
@@ -662,7 +676,6 @@ input:-webkit-autofill:focus {
   flex-flow: column;
   justify-content: flex-start;
   align-items: center;
-  padding: max(10px, 2vw);
 }
 .admin-logs .admin-logs__body, .admin-logs .admin-table__body, .admin-list .admin-logs__body, .admin-list .admin-table__body {
   display: flex;
@@ -711,16 +724,14 @@ input:-webkit-autofill:focus {
 }
 
 .table-container {
-  width: -moz-fit-content;
-  width: fit-content;
+  width: 100%;
   max-width: 90vw;
   height: -moz-fit-content;
   height: fit-content;
   max-height: 80%;
-  min-height: 300px;
+  min-height: 250px;
   overflow: auto;
   border: 2px solid rgb(80, 78, 78);
-  border-radius: max(7px, 1vw);
 }
 
 .logs-table {
@@ -745,7 +756,6 @@ th {
   align-items: center;
   padding: 0 max(2px, 0.4vw);
   min-width: 120px;
-  max-width: 300px;
 }
 
 td {
@@ -753,7 +763,6 @@ td {
   padding: 0 max(2px, 0.4vw);
   text-align: left;
   min-width: 120px;
-  max-width: 300px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -822,6 +831,10 @@ td:nth-child(4), th:nth-child(4) {
   text-align: center;
 }
 
+.logs-table tr:nth-child(even), .admin-table tr:nth-child(even), .date-table tr:nth-child(even) {
+  background-color: rgb(221, 218, 218);
+}
+
 .admin-table__body {
   display: flex;
   justify-content: center;
@@ -869,22 +882,106 @@ td:nth-child(4), th:nth-child(4) {
   width: 100%;
   height: 90vh;
   display: flex;
-  flex-flow: column;
-  justify-content: flex-start;
+  flex-flow: row-reverse wrap;
+  justify-content: center;
   align-items: center;
   gap: max(10px, 2vw);
   padding: max(10px, 2vw);
+  overflow: hidden;
 }
 .block-date .add-date {
   height: -moz-fit-content;
   height: fit-content;
+  width: 100vw;
+  max-width: 1600px;
+  min-width: 250px;
+  min-height: 70px;
+  max-width: 80vh;
+  background-color: white;
+  padding: max(20px, 2vw);
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  gap: max(10px, 1vw);
+  border-radius: max(10px, 1.2vw);
+  box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
 }
-.block-date .date-table {
+.block-date .add-date .date-picker {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+.block-date .add-date input {
+  background-color: transparent;
+  border: unset;
+  border-bottom: 2px solid gray;
+  text-align: center;
+}
+.block-date .add-date input:focus {
+  outline: unset;
+}
+.block-date .add-date #block-day, .block-date .add-date #block-month {
+  flex: 1;
+  min-width: 0;
+}
+.block-date .add-date #block-year {
+  flex: 2;
+  min-width: 0;
+}
+.block-date .other-info {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  gap: max(10px, 2vw);
+}
+.block-date .other-info input {
+  text-align: left;
   width: 100%;
 }
-.block-date .date-table th:nth-child(3) {
+.block-date .btn-submitblock {
+  margin-top: auto;
+  border: unset;
+  color: white;
+  background-color: #4e73df;
+  padding: max(10px, 0.7vw);
+  width: 100%;
+  border-radius: max(7px, 0.5vw);
+}
+.block-date .btn-submitblock:hover {
+  background-color: #6484e3;
+}
+.date-table {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+}
+.date-table thead {
+  width: 100%;
+}
+.date-table th, .date-table td {
+  flex: 2;
+}
+.date-table th:nth-child(3), .date-table td:nth-child(3), .date-table th:nth-child(4), .date-table td:nth-child(4) {
   flex: 1;
 }
-.block-date .date-table td:nth-child(3) {
-  flex: 1;
+.date-table .ico-remove {
+  color: white;
+  background-color: red;
+  border-radius: 50px;
+  padding: 4px;
+  text-align: center;
+}
+
+.form-check-input {
+  width: max(20px, 2vw) !important;
+  max-width: 40px;
+  background-color: #4e73df !important;
+}
+
+@media only screen and (min-width: 1200px) {
+  .add-date .btn-submitblock {
+    width: 30%;
+  }
 }/*# sourceMappingURL=main.css.map */

@@ -1,6 +1,6 @@
 let createAccount = `
 <section class="add-admin">
-<div class="form-container"  data-aos="flip-right" data-aos-duration="1000" data-aos-delay="300">
+<div class="form-container"  data-aos="fade-right" data-aos-duration="1000">
     <form class="form" autocomplete="off">
         <div class="custom-shape-divider-top-1689432371">
             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -60,100 +60,201 @@ let createAccount = `
 </section>`;
 
 let adminLogs = `<section class="admin-logs">
-<div class="admin-logs__body">
-    <h2>Filter</h2>
-    <div class="admin-logs__filters">
-        <input type="date" name="" id="">
-        <select name="" id="">
-            <option hidden selected disabled>Activity</option>
-            <option value="">test</option>
-            <option value="">test</option>
-            <option value="">test</option>
-        </select>
-        <select name="" id="">
-            <option hidden selected disabled>Admin Level</option>
-            <option value="">test</option>
-            <option value="">test</option>
-            <option value="">test</option>
-        </select>
-        <select name="" id="">
-            <option hidden selected disabled>Sort By</option>
-            <option value="">test</option>
-            <option value="">test</option>
-            <option value="">test</option>
-        </select>
-        <input type="text" name="" id="" placeholder="Name">
-        <button>Apply</button>
+<div class="admin-logs-wrapper" data-aos="fade-right" data-aos-duration="1000">
+    <div class="admin-logs__body">
+        <h2>Filter</h2>
+        <div class="admin-logs__filters">
+            <input type="date" name="" id="">
+            <select name="" id="">
+                <option hidden selected disabled>Activity</option>
+                <option value="">test</option>
+                <option value="">test</option>
+                <option value="">test</option>
+            </select>
+            <select name="" id="">
+                <option hidden selected disabled>Admin Level</option>
+                <option value="">test</option>
+                <option value="">test</option>
+                <option value="">test</option>
+            </select>
+            <select name="" id="">
+                <option hidden selected disabled>Sort By</option>
+                <option value="">test</option>
+                <option value="">test</option>
+                <option value="">test</option>
+            </select>
+            <input type="text" name="" id="" placeholder="Name">
+            <button>Apply</button>
+        </div>
     </div>
-</div>
-<span>Click the row to highlight/see more.</span>
-<div class="table-container">
-    <table class="logs-table">
-        <thead>
-            <tr>
-                <th>Username</th>
-                <th>Activity</th>
-                <th>Date</th>
-                <th >Time</th>
-                <th>Admin Level</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>clarence-coronelclarence-coronelclarence-coronel</td>
-                <td>View Schedule view1 view2 view3 view4 view5 view6 view7 view8 view9 view10</td>
-                <td>21 July 2023</td>
-                <td>13:00</td>
-                <td>Admin II</td>
-            </tr>
-            <tr>
-                <td>clarence-coronel</td>
-                <td>View Schedule</td>
-                <td>21 July 2023</td>
-                <td>13:00</td>
-                <td>Admin II</td>
-            </tr>
-            <tr>
-                <td>clarence-coronel</td>
-                <td>View Schedule</td>
-                <td>21 July 2023</td>
-                <td>13:00</td>
-                <td>Admin II</td>
-            </tr>
-            <tr>
-                <td>clarence-coronel</td>
-                <td>View Schedule</td>
-                <td>21 July 2023</td>
-                <td>13:00</td>
-                <td>Admin II</td>
-            </tr>
-            <tr>
-                <td>clarence-coronel</td>
-                <td>View Schedule</td>
-                <td>21 July 2023</td>
-                <td>13:00</td>
-                <td>Admin II</td>
-            </tr>
-            <tr>
-                <td>clarence-coronel</td>
-                <td>View Schedule</td>
-                <td>21 July 2023</td>
-                <td>13:00</td>
-                <td>Admin II</td>
-            </tr>
-            <tr>
-                <td>clarence-coronel</td>
-                <td>View Schedule</td>
-                <td>21 July 2023</td>
-                <td>13:00</td>
-                <td>Admin II</td>
-            </tr>
-        </tbody>
-    </table>
+    <span>Click the row to highlight/see more.</span>
+    <div class="table-container">
+        <table class="logs-table">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Activity</th>
+                    <th>Date</th>
+                    <th >Time</th>
+                    <th>Admin Level</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>clarence-coronelclarence-coronelclarence-coronel</td>
+                    <td>View Schedule view1 view2 view3 view4 view5 view6 view7 view8 view9 view10</td>
+                    <td>21 July 2023</td>
+                    <td>13:00</td>
+                    <td>Admin II</td>
+                </tr>
+                <tr>
+                    <td>clarence-coronel</td>
+                    <td>View Schedule</td>
+                    <td>21 July 2023</td>
+                    <td>13:00</td>
+                    <td>Admin II</td>
+                </tr>
+                <tr>
+                    <td>clarence-coronel</td>
+                    <td>View Schedule</td>
+                    <td>21 July 2023</td>
+                    <td>13:00</td>
+                    <td>Admin II</td>
+                </tr>
+                <tr>
+                    <td>clarence-coronel</td>
+                    <td>View Schedule</td>
+                    <td>21 July 2023</td>
+                    <td>13:00</td>
+                    <td>Admin II</td>
+                </tr>
+                <tr>
+                    <td>clarence-coronel</td>
+                    <td>View Schedule</td>
+                    <td>21 July 2023</td>
+                    <td>13:00</td>
+                    <td>Admin II</td>
+                </tr>
+                <tr>
+                    <td>clarence-coronel</td>
+                    <td>View Schedule</td>
+                    <td>21 July 2023</td>
+                    <td>13:00</td>
+                    <td>Admin II</td>
+                </tr>
+                <tr>
+                    <td>clarence-coronel</td>
+                    <td>View Schedule</td>
+                    <td>21 July 2023</td>
+                    <td>13:00</td>
+                    <td>Admin II</td>
+                </tr>
+                <tr>
+                    <td>clarence-coronel</td>
+                    <td>View Schedule</td>
+                    <td>21 July 2023</td>
+                    <td>13:00</td>
+                    <td>Admin II</td>
+                </tr>
+                <tr>
+                    <td>clarence-coronel</td>
+                    <td>View Schedule</td>
+                    <td>21 July 2023</td>
+                    <td>13:00</td>
+                    <td>Admin II</td>
+                </tr>
+                <tr>
+                    <td>clarence-coronel</td>
+                    <td>View Schedule</td>
+                    <td>21 July 2023</td>
+                    <td>13:00</td>
+                    <td>Admin II</td>
+                </tr>
+                <tr>
+                    <td>clarence-coronel</td>
+                    <td>View Schedule</td>
+                    <td>21 July 2023</td>
+                    <td>13:00</td>
+                    <td>Admin II</td>
+                </tr>
+                <tr>
+                    <td>clarence-coronel</td>
+                    <td>View Schedule</td>
+                    <td>21 July 2023</td>
+                    <td>13:00</td>
+                    <td>Admin II</td>
+                </tr>
+                <tr>
+                    <td>clarence-coronel</td>
+                    <td>View Schedule</td>
+                    <td>21 July 2023</td>
+                    <td>13:00</td>
+                    <td>Admin II</td>
+                </tr>
+                <tr>
+                    <td>clarence-coronel</td>
+                    <td>View Schedule</td>
+                    <td>21 July 2023</td>
+                    <td>13:00</td>
+                    <td>Admin II</td>
+                </tr>
+                <tr>
+                    <td>clarence-coronel</td>
+                    <td>View Schedule</td>
+                    <td>21 July 2023</td>
+                    <td>13:00</td>
+                    <td>Admin II</td>
+                </tr>
+                <tr>
+                    <td>clarence-coronel</td>
+                    <td>View Schedule</td>
+                    <td>21 July 2023</td>
+                    <td>13:00</td>
+                    <td>Admin II</td>
+                </tr>
+                <tr>
+                    <td>clarence-coronel</td>
+                    <td>View Schedule</td>
+                    <td>21 July 2023</td>
+                    <td>13:00</td>
+                    <td>Admin II</td>
+                </tr>
+                <tr>
+                    <td>clarence-coronel</td>
+                    <td>View Schedule</td>
+                    <td>21 July 2023</td>
+                    <td>13:00</td>
+                    <td>Admin II</td>
+                </tr>
+                <tr>
+                    <td>clarence-coronel</td>
+                    <td>View Schedule</td>
+                    <td>21 July 2023</td>
+                    <td>13:00</td>
+                    <td>Admin II</td>
+                </tr>
+                <tr>
+                    <td>clarence-coronel</td>
+                    <td>View Schedule</td>
+                    <td>21 July 2023</td>
+                    <td>13:00</td>
+                    <td>Admin II</td>
+                </tr>
+                <tr>
+                    <td>clarence-coronel</td>
+                    <td>View Schedule</td>
+                    <td>21 July 2023</td>
+                    <td>13:00</td>
+                    <td>Admin II</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 </section>`;
 
-let adminList = ` <section class="admin-list">
+let adminList = `<section class="admin-list">
+<div class="admin-list-wrapper" data-aos="fade-right" data-aos-duration="1000">
 <div class="admin-table__body">
     <div class="search-container">
         <input type="text" placeholder="Search">
@@ -206,6 +307,59 @@ let adminList = ` <section class="admin-list">
 </div>
 </section>`;
 
+let blockDates = `
+<section class="block-date">
+            <div class="add-date" data-aos="fade-right" data-aos-duration="1000">
+                <div class="table-container">
+                    <table class="date-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Name</th>
+                                <th>Repeats</th>
+                                <th>&nbsp</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>25 December 2023</td>
+                                <td>Christmas</td>
+                                <td>Yes</td>
+                                <td><button class="removeDate" data-date="2023-12-25"><span class="material-icons-outlined ico-remove">clear</span></button></td>
+                            </tr>
+                            <tr>
+                                <td>25 December 2023</td>
+                                <td>Christmas</td>
+                                <td>Yes</td>
+                                <td><button class="removeDate" data-date="2023-12-25"><span class="material-icons-outlined ico-remove">clear</span></button></td>
+                            </tr>
+                            <tr>
+                                <td>25 December 2023</td>
+                                <td>Christmas</td>
+                                <td>Yes</td>
+                                <td><button class="removeDate" data-date="2023-12-25"><span class="material-icons-outlined ico-remove">clear</span></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="date-picker">
+                    <input type="text" name="day" id="block-day" placeholder="DD">
+                    <span>/</span>
+                    <input type="text" name="month" id="block-month" placeholder="MM">
+                    <span>/</span>
+                    <input type="text" name="year" id="block-year" placeholder="YYYY">
+                </div>
+                <div class="other-info">
+                    <input type="text" placeholder="name">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">Repeat Every Year</label>
+                    </div>
+                </div>
+                <button class="btn-submitblock" onclick="if(!document.querySelector('.form-check-input').checked){alert('nice')};">Add</button>
+            </div>
+</section>`
+
 function generateCreateAcc(){
     main.innerHTML = createAccount;
     let iconPassword = document.querySelectorAll('.ico-pass');
@@ -244,6 +398,11 @@ function generateAdminLogs(){
 function generateAdminList(){
     contentIsOpen = true;
     main.innerHTML = adminList;
+    showTableCell();
+}
+
+function generateBlockDates(){
+    main.innerHTML = blockDates;
     showTableCell();
 }
 
