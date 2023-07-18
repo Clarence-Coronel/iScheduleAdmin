@@ -134,55 +134,6 @@ function showManageAdmins(){
     contentIsOpen = false;
 }
 
-function generateCreateAcc(){
-    main.innerHTML = createAccount;
-    let iconPassword = document.querySelectorAll('.ico-pass');
-    changeArrow();
-    contentIsOpen = true;
-    createAccInputBorderStyle();
-
-    iconPassword.forEach((item)=>{
-        item.addEventListener('click', ()=>{
-            if(item.innerHTML == 'visibility_off'){
-                iconPassword.forEach((item2)=>{
-                    item2.innerHTML = 'visibility'
-                })
-                document.querySelector('#password').setAttribute('type', 'text');
-                document.querySelector('#confirmPassword').setAttribute('type', 'text');
-            }
-            else{
-                iconPassword.forEach((item)=>{
-                    item.innerHTML = 'visibility_off'
-                })
-                document.querySelector('#password').setAttribute('type', 'password');
-                document.querySelector('#confirmPassword').setAttribute('type', 'password');
-            }
-        })
-    });
-
-
-}
-
-function generateDisableAcc(){
-    contentIsOpen = true;
-    main.innerHTML = "";
-}
-
-function generateAdminLogs(){
-    contentIsOpen = true;
-    main.innerHTML = adminLogs;
-    showTableCell();
-}
-
-function generateAdminList(){
-    contentIsOpen = true;
-    main.innerHTML = '';
-}
-
-function generateDashboard(){
-    main.innerHTML = "";
-}
-
 function changeArrow(){
     let newIco = document.querySelector('.change').innerHTML == 'chevron_right' ? 'chevron_left' : 'chevron_right';
     document.querySelector('.change').innerHTML = newIco;
@@ -198,11 +149,32 @@ function showTableCell(){
         item.addEventListener('click', ()=>{
             tableData.forEach((item)=>{
                 item.classList.remove('show');
+                try {
+                    item.querySelector('button').style.color = 'rgb(80, 78, 78)';
+                    // item.querySelector('.ico-edit').style.color = 'rgb(80, 78, 78)';
+                } catch (error) {
+                    
+                }
             });
 
             item.querySelectorAll('td').forEach((item2)=>{
                 item2.classList.add('show');
+
+                try {
+                    item2.querySelector('button').style.color = 'white';
+                    // item2.querySelector('.ico-edit').style.color = 'white';
+                } catch (error) {
+                    
+                }
             });
         })
     })
+}
+
+function editPhone(element){
+    alert(element.getAttribute('data-username'));
+}
+
+function removeAdmin(element){
+    alert(element.getAttribute('data-username'));
 }

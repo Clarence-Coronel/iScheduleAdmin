@@ -27,7 +27,7 @@ let createAccount = `
         </div>
         <div class="input-container">
             <input type="text" name="phone" id="phone" required>
-            <label for="phone">Phone</label>
+            <label for="phone">Phone #</label>
         </div>
         <div class="input-container">
             <input type="password" name="password" id="password" required>
@@ -138,3 +138,101 @@ let adminLogs = `<section class="admin-logs">
     </table>
 </div>
 </section>`;
+
+let adminList = ` <section class="admin-list">
+<div class="admin-table__body">
+    <div class="search-container">
+        <input type="text" placeholder="Search">
+        <button><span class="material-icons-outlined ico-search">search</span></button>
+    </div>
+</div>
+<span>Click the row to highlight/see more.</span>
+<div class="table-container">
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Full Name</th>
+                <th>Phone #</th>
+                <th>Admin Level</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>clarence-coronel2l</td>
+                <td>Coronel, Clarence Reyes</td>
+                <td>0987 788 5644</td>
+                <td><button class="editLevel" onclick="editPhone(this)" data-username="clarence-coronel1">Level 1 <span class="ico-list ico-edit">(edit)</span></button></td>
+                <td><button class="removeAdmin" onclick="removeAdmin(this)" data-username="clarence-coronel1"><span class="material-icons-outlined ico-list ico-remove">clear</span></button></td>
+            </tr>
+            <tr>
+                <td>clarence-coronel2l</td>
+                <td>Coronel, Clarence Reyes</td>
+                <td>0987 788 5644</td>
+                <td><button class="editLevel" onclick="editPhone(this)" data-username="clarence-coronel1">Level 1 <span class="ico-list ico-edit">(edit)</span></button></td>
+                <td><button class="removeAdmin" onclick="removeAdmin(this)" data-username="clarence-coronel1"><span class="material-icons-outlined ico-list ico-remove">clear</span></button></td>
+            </tr>
+            <tr>
+                <td>clarence-coronel2l</td>
+                <td>Coronel, Clarence Reyes</td>
+                <td>0987 788 5644</td>
+                <td><button class="editLevel" onclick="editPhone(this)" data-username="clarence-coronel1">Level 1 <span class="ico-list ico-edit">(edit)</span></button></td>
+                <td><button class="removeAdmin" onclick="removeAdmin(this)" data-username="clarence-coronel1"><span class="material-icons-outlined ico-list ico-remove">clear</span></button></td>
+            </tr>
+            <tr>
+                <td>clarence-coronel2l</td>
+                <td>Coronel, Clarence Reyes</td>
+                <td>0987 788 5644</td>
+                <td><button class="editLevel" onclick="editPhone(this)" data-username="clarence-coronel1">Level 1 <span class="ico-list ico-edit">(edit)</span></button></td>
+                <td><button class="removeAdmin" onclick="removeAdmin(this)" data-username="clarence-coronel1"><span class="material-icons-outlined ico-list ico-remove">clear</span></button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</section>`;
+
+function generateCreateAcc(){
+    main.innerHTML = createAccount;
+    let iconPassword = document.querySelectorAll('.ico-pass');
+    changeArrow();
+    contentIsOpen = true;
+    createAccInputBorderStyle();
+
+    iconPassword.forEach((item)=>{
+        item.addEventListener('click', ()=>{
+            if(item.innerHTML == 'visibility_off'){
+                iconPassword.forEach((item2)=>{
+                    item2.innerHTML = 'visibility'
+                })
+                document.querySelector('#password').setAttribute('type', 'text');
+                document.querySelector('#confirmPassword').setAttribute('type', 'text');
+            }
+            else{
+                iconPassword.forEach((item)=>{
+                    item.innerHTML = 'visibility_off'
+                })
+                document.querySelector('#password').setAttribute('type', 'password');
+                document.querySelector('#confirmPassword').setAttribute('type', 'password');
+            }
+        })
+    });
+
+
+}
+
+function generateAdminLogs(){
+    contentIsOpen = true;
+    main.innerHTML = adminLogs;
+    showTableCell();
+}
+
+function generateAdminList(){
+    contentIsOpen = true;
+    main.innerHTML = adminList;
+    showTableCell();
+}
+
+function generateDashboard(){
+    main.innerHTML = "";
+}
