@@ -8,6 +8,7 @@
 }
 
 *::-webkit-scrollbar {
+  height: 0.3rem;
   width: 0.3rem;
   margin-right: 20px !important;
 }
@@ -707,7 +708,6 @@ input:-webkit-autofill:focus {
 
 .table-container {
   width: 100%;
-  max-width: 90vw;
   height: -moz-fit-content;
   height: fit-content;
   max-height: 80%;
@@ -769,7 +769,7 @@ td button {
   overflow: unset;
   text-overflow: unset;
   white-space: unset;
-  background-color: rgb(10, 93, 145);
+  background-color: rgb(4, 62, 123);
   color: white;
   cursor: pointer;
 }

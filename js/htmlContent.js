@@ -134,6 +134,20 @@ let adminLogs = `<section class="admin-logs">
                 <td>13:00</td>
                 <td>Admin II</td>
             </tr>
+            <tr>
+                <td>clarence-coronel</td>
+                <td>View Schedule</td>
+                <td>21 July 2023</td>
+                <td>13:00</td>
+                <td>Admin II</td>
+            </tr>
+            <tr>
+                <td>clarence-coronel</td>
+                <td>View Schedule</td>
+                <td>21 July 2023</td>
+                <td>13:00</td>
+                <td>Admin II</td>
+            </tr>
         </tbody>
     </table>
 </div>

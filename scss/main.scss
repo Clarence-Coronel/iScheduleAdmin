@@ -790,8 +790,8 @@ input:-webkit-autofill:focus{
 }
 
 .table-container{
-    width:100%;
-    max-width: 90vw;
+    width: 100%;
+    // max-width: 90vw;
     height: fit-content;
     max-height: 80%;
     overflow:auto;
@@ -839,11 +839,10 @@ td{
     // display: flex;
     padding: 0 max(2px,0.4vw);
 
-    // max-width: 200px;
     text-align: left;
 
     min-width: 120px;
-    // max-width: 200px;
+    // max-width: 400px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -869,7 +868,7 @@ td{
     overflow: unset;
     text-overflow: unset;
     white-space: unset;
-    background-color: rgb(10, 93, 145);
+    background-color: rgb(4, 62, 123);
     color: white;
     cursor: pointer;
 }
