@@ -1085,10 +1085,12 @@ td:nth-child(4), th:nth-child(4){
 
 .date-table{
     width: 100%;
-    display: flex;
-    flex-flow: column;
-
+    
     thead{
+        width: 100%;
+    }
+
+    tbody{
         width: 100%;
     }
 
