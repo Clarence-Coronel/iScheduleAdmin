@@ -738,10 +738,13 @@ input:-webkit-autofill:focus{
     // gap: max(5px, 1vw);
     
     .admin-logs__body, .admin-table__body{
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
         width: 100%;
-        // background-color: white;
         border-radius: max(7px, 1vw);
-        // box-shadow: 0 0 5px $boxShadowPrimary-color;
+        
     }
 
     h2{
@@ -760,7 +763,7 @@ input:-webkit-autofill:focus{
     width: 100%;
     display: flex;
     flex-flow: row wrap;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     gap: max(5px, 1vw);
 
@@ -789,11 +792,14 @@ input:-webkit-autofill:focus{
     }
 }
 
+//Logs Table
 .table-container{
-    width: 100%;
+    width: fit-content;
+    max-width: 90vw;
     // max-width: 90vw;
     height: fit-content;
     max-height: 80%;
+    min-height: 300px;
     overflow:auto;
     border: 2px solid $fontbase-color;
     border-radius: max(7px, 1vw);
@@ -804,19 +810,10 @@ input:-webkit-autofill:focus{
     // max-width: 1920px;
 }
 
-.logs-table tr:nth-child(even){
-    // background-color: rgb(204, 201, 201);
-}
-
 thead tr th{
     background-color: $primary-color;
     color: white;
 }
-
-// col{
-//     min-width: 20%;
-//     max-width: 40px;
-// }
 
 tr{
     width: 100%;
@@ -831,18 +828,15 @@ th{
     align-items: center;
     padding: 0 max(2px,0.4vw);
     min-width: 120px;
-    // max-width: 400px;
+    max-width: 300px;
 }
 
 td{
     flex: 2;
-    // display: flex;
     padding: 0 max(2px,0.4vw);
-
     text-align: left;
-
     min-width: 120px;
-    // max-width: 400px;
+    max-width: 300px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -864,6 +858,7 @@ td{
     }
 }
 
+// Added class to selected row
 .selected{
     overflow: unset;
     text-overflow: unset;
@@ -875,17 +870,12 @@ td{
 
 td:nth-child(4), th:nth-child(4){
     flex: 1;
-    // min-width: 70px;
 }
 
+// Admin Table
 .admin-table{
     width: 100%;
-    // max-width: 1920px;
 
-    // td{
-    //     min-width: 120px;
-    //     max-width: 400px;
-    // }
     td:nth-child(4), th:nth-child(4){
         flex: 2;
         // min-width: 70px;
@@ -984,6 +974,37 @@ td:nth-child(4), th:nth-child(4){
     span{
         // margin: unset;
     }
+}
+
+.block-date{
+    width: 100%;
+    height:90vh;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: max(10px, 2vw);
+    padding: max(10px, 2vw);
+
+    .add-date{
+        height: fit-content;
+    }
+
+    .table-container{
+
+    }
+    .date-table{
+        width: 100%;
+
+        th:nth-child(3){
+            flex: 1;
+        }
+
+        td:nth-child(3){
+            flex: 1;
+        }
+    }
+
 }
 
 

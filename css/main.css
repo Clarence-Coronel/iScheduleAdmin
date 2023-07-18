@@ -665,6 +665,10 @@ input:-webkit-autofill:focus {
   padding: max(10px, 2vw);
 }
 .admin-logs .admin-logs__body, .admin-logs .admin-table__body, .admin-list .admin-logs__body, .admin-list .admin-table__body {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   border-radius: max(7px, 1vw);
 }
@@ -682,7 +686,7 @@ input:-webkit-autofill:focus {
   width: 100%;
   display: flex;
   flex-flow: row wrap;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   gap: max(5px, 1vw);
 }
@@ -707,10 +711,13 @@ input:-webkit-autofill:focus {
 }
 
 .table-container {
-  width: 100%;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 90vw;
   height: -moz-fit-content;
   height: fit-content;
   max-height: 80%;
+  min-height: 300px;
   overflow: auto;
   border: 2px solid rgb(80, 78, 78);
   border-radius: max(7px, 1vw);
@@ -738,6 +745,7 @@ th {
   align-items: center;
   padding: 0 max(2px, 0.4vw);
   min-width: 120px;
+  max-width: 300px;
 }
 
 td {
@@ -745,6 +753,7 @@ td {
   padding: 0 max(2px, 0.4vw);
   text-align: left;
   min-width: 120px;
+  max-width: 300px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -854,4 +863,28 @@ td:nth-child(4), th:nth-child(4) {
   margin: unset;
   align-items: center;
   justify-content: center;
+}
+
+.block-date {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: max(10px, 2vw);
+  padding: max(10px, 2vw);
+}
+.block-date .add-date {
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.block-date .date-table {
+  width: 100%;
+}
+.block-date .date-table th:nth-child(3) {
+  flex: 1;
+}
+.block-date .date-table td:nth-child(3) {
+  flex: 1;
 }/*# sourceMappingURL=main.css.map */
