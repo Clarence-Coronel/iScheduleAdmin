@@ -171,6 +171,7 @@ function generateDisableAcc(){
 function generateAdminLogs(){
     contentIsOpen = true;
     main.innerHTML = adminLogs;
+    showTableCell();
 }
 
 function generateAdminList(){
@@ -185,4 +186,23 @@ function generateDashboard(){
 function changeArrow(){
     let newIco = document.querySelector('.change').innerHTML == 'chevron_right' ? 'chevron_left' : 'chevron_right';
     document.querySelector('.change').innerHTML = newIco;
+}
+
+function showTableCell(){
+    let tableRow = document.querySelectorAll('tr');
+    let tableData = document.querySelectorAll('td');
+    
+    console.table(tableRow);
+
+    tableRow.forEach((item)=>{
+        item.addEventListener('click', ()=>{
+            tableData.forEach((item)=>{
+                item.classList.remove('show');
+            });
+
+            item.querySelectorAll('td').forEach((item2)=>{
+                item2.classList.add('show');
+            });
+        })
+    })
 }

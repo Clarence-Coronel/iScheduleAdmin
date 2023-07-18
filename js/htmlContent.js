@@ -61,7 +61,7 @@ let createAccount = `
 
 let adminLogs = `<section class="admin-logs">
 <div class="admin-logs__body">
-    <h2>Filter By</h2>
+    <h2>Filter</h2>
     <div class="admin-logs__filters">
         <input type="date" name="" id="">
         <select name="" id="">
@@ -86,7 +86,7 @@ let adminLogs = `<section class="admin-logs">
         <button>Apply</button>
     </div>
 </div>
-
+<span>Click the row to highlight/see more.</span>
 <div class="table-container">
     <table class="logs-table">
         <thead>
@@ -100,8 +100,8 @@ let adminLogs = `<section class="admin-logs">
         </thead>
         <tbody>
             <tr>
-                <td>clarence-coronel</td>
-                <td>View Schedule</td>
+                <td>clarence-coronelclarence-coronelclarence-coronel</td>
+                <td>View Schedule view1 view2 view3 view4 view5 view6 view7 view8 view9 view10</td>
                 <td>21 July 2023</td>
                 <td>13:00</td>
                 <td>Admin II</td>

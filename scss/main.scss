@@ -735,7 +735,7 @@ input:-webkit-autofill:focus{
     justify-content: flex-start;
     align-items: center;
     padding: max(10px, 2vw);
-    gap: max(5px, 1vw);
+    // gap: max(5px, 1vw);
     
     .admin-logs__body{
         width: 100%;
@@ -747,6 +747,12 @@ input:-webkit-autofill:focus{
     h2{
         font-size: 1.5rem;
         font-weight: 600;
+    }
+
+    span{
+        margin-top: max(5px, 1vw);
+        color: gray;
+        font-size: 0.8rem;
     }
 }
 
@@ -840,6 +846,16 @@ td{
     text-overflow: ellipsis;
     white-space: nowrap;
     border: 1px solid rgba(95, 94, 94, 0.351);
+    transition-duration: 200ms;
+}
+
+.show{
+    overflow: unset;
+    text-overflow: unset;
+    white-space: unset;
+    background-color: lighten($primary-color, 10);
+    color: white;
+    cursor: pointer;
 }
 
 td:nth-child(4), th:nth-child(4){
