@@ -791,7 +791,7 @@ input:-webkit-autofill:focus{
 
 .table-container{
     width:100%;
-    max-width: 1600px;
+    max-width: 90vw;
     height: fit-content;
     max-height: 80%;
     overflow:auto;
@@ -831,7 +831,7 @@ th{
     align-items: center;
     padding: 0 max(2px,0.4vw);
     min-width: 120px;
-    max-width: 400px;
+    // max-width: 400px;
 }
 
 td{
@@ -843,7 +843,7 @@ td{
     text-align: left;
 
     min-width: 120px;
-    max-width: 400px;
+    // max-width: 200px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -883,6 +883,10 @@ td:nth-child(4), th:nth-child(4){
     width: 100%;
     // max-width: 1920px;
 
+    // td{
+    //     min-width: 120px;
+    //     max-width: 400px;
+    // }
     td:nth-child(4), th:nth-child(4){
         flex: 2;
         // min-width: 70px;
