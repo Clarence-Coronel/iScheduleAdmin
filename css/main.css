@@ -707,6 +707,7 @@ input:-webkit-autofill:focus {
 
 .table-container {
   width: 100%;
+  max-width: 1600px;
   height: -moz-fit-content;
   height: fit-content;
   max-height: 80%;
