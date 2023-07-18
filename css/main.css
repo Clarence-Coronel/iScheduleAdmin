@@ -767,7 +767,7 @@ td button {
   gap: max(2px, 0.3vw);
 }
 
-.show {
+.selected {
   overflow: unset;
   text-overflow: unset;
   white-space: unset;

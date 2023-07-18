@@ -148,7 +148,7 @@ function showTableCell(){
     tableRow.forEach((item)=>{
         item.addEventListener('click', ()=>{
             tableData.forEach((item)=>{
-                item.classList.remove('show');
+                item.classList.remove('selected');
                 try {
                     item.querySelector('button').style.color = 'rgb(80, 78, 78)';
                     // item.querySelector('.ico-edit').style.color = 'rgb(80, 78, 78)';
@@ -158,7 +158,7 @@ function showTableCell(){
             });
 
             item.querySelectorAll('td').forEach((item2)=>{
-                item2.classList.add('show');
+                item2.classList.add('selected');
 
                 try {
                     item2.querySelector('button').style.color = 'white';
