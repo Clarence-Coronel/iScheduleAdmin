@@ -736,6 +736,7 @@ th {
   justify-content: flex-start;
   align-items: center;
   padding: 0 max(2px, 0.4vw);
+  min-width: 120px;
   max-width: 400px;
 }
 
@@ -743,6 +744,7 @@ td {
   flex: 2;
   padding: 0 max(2px, 0.4vw);
   text-align: left;
+  min-width: 120px;
   max-width: 400px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -752,15 +754,4 @@ td {
 
 td:nth-child(4), th:nth-child(4) {
   flex: 1;
-}
-
-.first {
-  color: red;
-}
-
-.test {
-  width: 100px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }/*# sourceMappingURL=main.css.map */
