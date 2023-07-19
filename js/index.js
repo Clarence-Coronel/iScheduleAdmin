@@ -149,9 +149,9 @@ function showTableCell(){
         item.addEventListener('click', ()=>{
             tableData.forEach((item)=>{
                 item.classList.remove('selected');
+
                 try {
-                    item.querySelector('button').style.color = 'rgb(80, 78, 78)';
-                    // item.querySelector('.ico-edit').style.color = 'rgb(80, 78, 78)';
+                    item.querySelector('.editLevel').style.color = 'rgb(80, 78, 78)';
                 } catch (error) {
                     
                 }
@@ -161,7 +161,7 @@ function showTableCell(){
                 item2.classList.add('selected');
 
                 try {
-                    item2.querySelector('button').style.color = 'white';
+                    item2.querySelector('.editLevel').style.color = 'white';
                     // item2.querySelector('.ico-edit').style.color = 'white';
                 } catch (error) {
                     
@@ -171,7 +171,7 @@ function showTableCell(){
     })
 }
 
-function editPhone(element){
+function editLevel(element){
     alert("labas modal");
     alert(element.getAttribute('data-username'));
 }

@@ -860,7 +860,7 @@ td{
         display: flex;
         justify-content: center;
         align-items: center;
-        color: $fontbase-color;
+        // color: $fontbase-color;
         width: 100%;
         text-align: left;
         border-radius: 20px;
@@ -916,16 +916,26 @@ td:nth-child(4), th:nth-child(4){
         font-size: 0.7rem;
     }
 
-    .ico-edit:hover{
+    .editLevel:hover .ico-edit{
+        color: rgb(9, 94, 168);
         cursor: pointer;
     }
 
-    .ico-remove{
-        color: white;
-        background-color: red;
-        border-radius: 50px;
-        padding: 4px;
-        text-align: center;
+    // .ico-remove{
+    //     color: white;
+    //     background-color: red;
+    //     border-radius: 50px;
+    //     padding: 4px;
+    //     text-align: center;
+    // }
+
+    .removeAdmin{
+        color: red;
+    }
+
+    .removeAdmin:hover{
+        cursor: pointer;
+        color: darken(red, 10);
     }
 }
 
@@ -1048,7 +1058,7 @@ td:nth-child(4), th:nth-child(4){
             // width: 30px;
         }
     }
-
+    
     .other-info{
         display: flex;
         flex-flow: column;
@@ -1058,7 +1068,7 @@ td:nth-child(4), th:nth-child(4){
         gap: max(10px, 2vw);
 
         input{
-            text-align: left;
+            text-align: center;
             width: 100%;
         }
     }
@@ -1102,15 +1112,22 @@ td:nth-child(4), th:nth-child(4){
         flex: 1;
     }
 
-    .ico-remove{
-        color: white;
-        background-color: red;
-        border-radius: 50px;
-        padding: 4px;
-        text-align: center;
+    // .ico-remove{
+    //     color: white;
+    //     background-color: red;
+    //     border-radius: 50px;
+    //     padding: 4px;
+    //     text-align: center;
+    // }
+
+    .removeDate{
+        color: red;
+    }
+
+    .removeDate:hover{
+        color: darken(red, 10);
     }
 }
-
 .form-check-input{
     width: max(20px, 2vw) !important;
     max-width: 40px;

@@ -278,29 +278,36 @@ let adminList = `<section class="admin-list">
                 <td>clarence-coronel2l</td>
                 <td>Coronel, Clarence Reyes</td>
                 <td>0987 788 5644</td>
-                <td><button class="editLevel" onclick="editPhone(this)" data-username="clarence-coronel1">Level 1 <span class="ico-list ico-edit">(edit)</span></button></td>
-                <td><button class="removeAdmin" onclick="removeAdmin(this)" data-username="clarence-coronel1"><span class="material-icons-outlined ico-list ico-remove">clear</span></button></td>
+                <td><button class="editLevel" onclick="editLevel(this)" data-username="clarence-coronel1">Level 1 <span class="ico-list ico-edit">(edit)</span></button></td>
+                <td><button class="removeAdmin" onclick="removeAdmin(this)" data-username="clarence-coronel1">delete</button></td>
             </tr>
             <tr>
                 <td>clarence-coronel2l</td>
                 <td>Coronel, Clarence Reyes</td>
                 <td>0987 788 5644</td>
-                <td><button class="editLevel" onclick="editPhone(this)" data-username="clarence-coronel1">Level 1 <span class="ico-list ico-edit">(edit)</span></button></td>
-                <td><button class="removeAdmin" onclick="removeAdmin(this)" data-username="clarence-coronel1"><span class="material-icons-outlined ico-list ico-remove">clear</span></button></td>
+                <td><button class="editLevel" onclick="editLevel(this)" data-username="clarence-coronel1">Level 1 <span class="ico-list ico-edit">(edit)</span></button></td>
+                <td><button class="removeAdmin" onclick="removeAdmin(this)" data-username="clarence-coronel1">delete</button></td>
             </tr>
             <tr>
                 <td>clarence-coronel2l</td>
                 <td>Coronel, Clarence Reyes</td>
                 <td>0987 788 5644</td>
-                <td><button class="editLevel" onclick="editPhone(this)" data-username="clarence-coronel1">Level 1 <span class="ico-list ico-edit">(edit)</span></button></td>
-                <td><button class="removeAdmin" onclick="removeAdmin(this)" data-username="clarence-coronel1"><span class="material-icons-outlined ico-list ico-remove">clear</span></button></td>
+                <td><button class="editLevel" onclick="editLevel(this)" data-username="clarence-coronel1">Level 1 <span class="ico-list ico-edit">(edit)</span></button></td>
+                <td><button class="removeAdmin" onclick="removeAdmin(this)" data-username="clarence-coronel1">delete</button></td>
             </tr>
             <tr>
                 <td>clarence-coronel2l</td>
                 <td>Coronel, Clarence Reyes</td>
                 <td>0987 788 5644</td>
-                <td><button class="editLevel" onclick="editPhone(this)" data-username="clarence-coronel1">Level 1 <span class="ico-list ico-edit">(edit)</span></button></td>
-                <td><button class="removeAdmin" onclick="removeAdmin(this)" data-username="clarence-coronel1"><span class="material-icons-outlined ico-list ico-remove">clear</span></button></td>
+                <td><button class="editLevel" onclick="editLevel(this)" data-username="clarence-coronel1">Level 1 <span class="ico-list ico-edit">(edit)</span></button></td>
+                <td><button class="removeAdmin" onclick="removeAdmin(this)" data-username="clarence-coronel1">delete</button></td>
+            </tr>
+            <tr>
+                <td>clarence-coronel2l</td>
+                <td>Coronel, Clarence Reyes</td>
+                <td>0987 788 5644</td>
+                <td><button class="editLevel" onclick="editLevel(this)" data-username="clarence-coronel1">Level 1 <span class="ico-list ico-edit">(edit)</span></button></td>
+                <td><button class="removeAdmin" onclick="removeAdmin(this)" data-username="clarence-coronel1">delete</button></td>
             </tr>
         </tbody>
     </table>
@@ -325,19 +332,19 @@ let blockDates = `
                                 <td>25 December 2023</td>
                                 <td>Christmas</td>
                                 <td>Yes</td>
-                                <td><button class="removeDate" data-date="2023-12-25"><span class="material-icons-outlined ico-remove">clear</span></button></td>
+                                <td><button class="removeDate" data-date="2023-12-25">delete</button></td>
                             </tr>
                             <tr>
                                 <td>25 December 2023</td>
                                 <td>Christmas</td>
                                 <td>Yes</td>
-                                <td><button class="removeDate" data-date="2023-12-25"><span class="material-icons-outlined ico-remove">clear</span></button></td>
+                                <td><button class="removeDate" data-date="2023-12-25">delete</button></td>
                             </tr>
                             <tr>
                                 <td>25 December 2023</td>
                                 <td>Christmas</td>
                                 <td>Yes</td>
-                                <td><button class="removeDate" data-date="2023-12-25"><span class="material-icons-outlined ico-remove">clear</span></button></td>
+                                <td><button class="removeDate" data-date="2023-12-25">delete</button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -350,7 +357,7 @@ let blockDates = `
                     <input type="text" name="year" id="block-year" placeholder="YYYY">
                 </div>
                 <div class="other-info">
-                    <input type="text" placeholder="name">
+                    <input type="text" placeholder="Name">
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
                         <label class="form-check-label" for="flexSwitchCheckDefault">Repeat Every Year</label>
