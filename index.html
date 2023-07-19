@@ -107,6 +107,41 @@
     <main>
         <!-- Gawin dito sa HTML yung pages then icut then paste the innerHtml -->
         <!-- Yung overflow:auto sa section natin ipasok was sa main -->
+        <section class="website-status">
+            <div class="website-status__wrapper">
+                <div class="status">
+                    <div class="status__header">
+                        <!-- highlight_off = kapag down website -->
+                        <!-- block =kapag down scheduling -->
+                        <span class="material-icons-outlined ico-status ico-live">check_circle_outline</span>
+                        Website is Up
+                        <!-- Possible Values
+                            *Website Is Up
+                            *Website Is Down
+                            *Scheduling Is Down
+                        -->
+                    </div>
+                    <div class="status__msg">
+                        <span class="msg-label">Message:</span> Not Applicable
+                        <!-- Applicable lang if either Website is Down or Online Scheduling is down -->
+                    </div>
+                </div>
+                <div class="change-status">
+                    <select name="status" id="">
+                        <!-- Yung unang opt is kung ano yung current status -->
+                        <option value="up">Website is Up</option>
+                        <option value="down">Website is Down</option>
+                        <option value="scheduledown">Scheduling is Down</option>
+                    </select>
+
+                    <!-- Naka enable lang to if either website is down or scheduling is down hindi kapag completely up si website -->
+                    <label for="msg">Message:</label>
+                    <textarea name="text" id="msg" cols="30" rows="10"></textarea>
+                    
+                    <button class="changeStatus">Apply</button>
+                </div>
+            </div>
+        </section>
     </main>
     <button type="button" class="btn btn-primary modal-launcher" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="display:none">
         Launch static backdrop modal

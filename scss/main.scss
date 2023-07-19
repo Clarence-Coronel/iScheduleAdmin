@@ -1134,11 +1134,100 @@ td:nth-child(4), th:nth-child(4){
     background-color: $primary-color !important;
 }
 
+.website-status{
+    background-color: whitesmoke;
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    .website-status__wrapper{
+        background-color: white;
+        width: 80%;
+        height: fit-content;
+        margin-top: max(15px, 1vw);
+        border-radius: max(10px, 1.2vw);
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
+
+    }
+}
+
+.status{
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    padding: max(10px, 2vw);
+    // box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
+    border-bottom: 2px solid rgba(128, 128, 128, 0.679);
+
+    .status__header{
+        width: 100%;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+        color: rgb(10, 204, 10);
+        font-size: 2rem;
+        font-weight: 700;
+        user-select: none;
+
+        .ico-live{
+            color: rgb(10, 204, 10);
+            font-size: 3rem;
+            background-color: white;
+        }
+    }
+
+    .status__msg{
+        
+        .msg-label{
+            font-weight: 600;
+        }
+    }
+}
+
+.change-status{
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    padding: max(15px, 2vw);
+    align-items: center;
+    gap: max(10px, 1vw);
+
+    #msg{
+        width:100%;
+    }
+
+    button{
+        background-color: $primary-color;
+        color: white;
+        height: max(50px, 3vw);
+        border-radius: max(5px, 0.5vw);
+        border: unset;
+        width: 100%;
+        max-width: 600px;
+    }
+
+    button:hover{
+        background-color: lighten($primary-color, 5);
+    }
+}
 
 @media only screen and (min-width: 1200px ){
     .add-date{
         .btn-submitblock{
             width: 30%;
+        }
+    }
+
+    .change-status{
+        button{
+            width: 25%;
         }
     }
 }
