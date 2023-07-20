@@ -108,7 +108,7 @@
         <!-- Gawin dito sa HTML yung pages then icut then paste the innerHtml -->
         <!-- Yung overflow:auto sa section natin ipasok was sa main -->
         <section class="website-status">
-            <div class="website-status__wrapper">
+            <div class="website-status__wrapper" data-aos="fade-right" data-aos-duration="1000">
                 <div class="status">
                     <div class="status__header">
                         <!-- highlight_off = kapag down website -->
@@ -127,7 +127,8 @@
                     </div>
                 </div>
                 <div class="change-status">
-                    <select name="status" id="">
+                    <!-- <h3>Change Status</h3> -->
+                    <select name="changeStatus" id="changeStatus">
                         <!-- Yung unang opt is kung ano yung current status -->
                         <option value="up">Website is Up</option>
                         <option value="down">Website is Down</option>
@@ -135,10 +136,11 @@
                     </select>
 
                     <!-- Naka enable lang to if either website is down or scheduling is down hindi kapag completely up si website -->
-                    <label for="msg">Message:</label>
-                    <textarea name="text" id="msg" cols="30" rows="10"></textarea>
-                    
-                    <button class="changeStatus">Apply</button>
+                    <div class="msg-container">
+                        <label for="msg">Message:</label>
+                        <textarea name="text" id="msg" cols="30" rows="7"></textarea>
+                    </div>
+                    <button class="changeStatus" onclick="alert('give warning regarding new status, such as what will happen')">Apply</button>
                 </div>
             </div>
         </section>

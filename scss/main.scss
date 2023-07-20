@@ -9,7 +9,7 @@ html{
 
 body{
     width: 100vw;
-    height: 100%;
+    height: fit-content;
     min-height: 100vh;
     display: flex;
     flex-flow: column;
@@ -472,7 +472,6 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
 .add-admin{
     width: 100%;
     height: 100%;
-    overflow: hidden;
 }
 
 .form-container{
@@ -736,6 +735,7 @@ input:-webkit-autofill:focus{
     justify-content: flex-start;
     align-items: center;
     max-height:80vh;
+
 }
 
 .admin-logs, .admin-list{
@@ -780,6 +780,7 @@ input:-webkit-autofill:focus{
 
     input[type="date"]{
         position: relative;
+        
     }
 
     input[type="date"]::-webkit-calendar-picker-indicator {
@@ -808,9 +809,7 @@ input:-webkit-autofill:focus{
     width: 100%;
     max-width: 90vw;
     // max-width: 90vw;
-    height: fit-content;
-    max-height: 80%;
-    min-height: 250px;
+    
     overflow:auto;
     border: 2px solid $fontbase-color;
     // border-radius: max(7px, 1vw);
@@ -853,6 +852,7 @@ td{
     white-space: nowrap;
     border: 1px solid rgb(95, 94, 94);
     transition-duration: 200ms;
+    font-size: 0.8rem;
 
     button{
         background-color: transparent;
@@ -1037,6 +1037,7 @@ td:nth-child(4), th:nth-child(4){
             background-color: transparent;
             border: unset;
             border-bottom: 2px solid gray;
+            border-radius: unset;
             text-align: center;
         }
 
@@ -1131,18 +1132,21 @@ td:nth-child(4), th:nth-child(4){
 .form-check-input{
     width: max(20px, 2vw) !important;
     max-width: 40px;
+    border-radius: max(15px, 1vw) !important;
     background-color: $primary-color !important;
 }
 
 .website-status{
     background-color: whitesmoke;
     width: 100%;
-    height: 90vh;
+    // height: 90vh;
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    // overflow: auto;
 
     .website-status__wrapper{
+        position: relative;
         background-color: white;
         width: 80%;
         height: fit-content;
@@ -1152,6 +1156,7 @@ td:nth-child(4), th:nth-child(4){
         flex-flow: column;
         align-items: center;
         box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
+        overflow: hidden;
 
     }
 }
@@ -1163,7 +1168,8 @@ td:nth-child(4), th:nth-child(4){
     align-items: center;
     padding: max(10px, 2vw);
     // box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
-    border-bottom: 2px solid rgba(128, 128, 128, 0.679);
+    border-bottom: 2px solid rgba(112, 109, 109, 0.177);
+    background-color: white;
 
     .status__header{
         width: 100%;
@@ -1198,9 +1204,40 @@ td:nth-child(4), th:nth-child(4){
     padding: max(15px, 2vw);
     align-items: center;
     gap: max(10px, 1vw);
+    border-radius: 20px;
+    overflow: hidden;
+    // border: 2px solid black;
+    // box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
+
+    // #changeStatus:focus{
+    //     outline: none;
+    // }
+
+    .msg-container{
+        // display: flex;
+        // flex-flow: column;
+        // gap: 20px;
+
+        width: 100%;
+        label{
+            font-weight: 600;
+        }
+        
+    }
 
     #msg{
         width:100%;
+        resize: none;
+        padding: max(10px, 1vw);
+        border-radius: max(10px, 1vw);
+    }
+
+    #msg:focus{
+        outline: none;
+    }
+
+    #changeStatus{
+        
     }
 
     button{
@@ -1215,6 +1252,12 @@ td:nth-child(4), th:nth-child(4){
 
     button:hover{
         background-color: lighten($primary-color, 5);
+    }
+
+    h3{
+        font-size: 1rem;
+        margin: 0;
+        padding: 0;
     }
 }
 

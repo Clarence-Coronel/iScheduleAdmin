@@ -7,6 +7,14 @@
   padding: 0;
 }
 
+input, select, textarea, input:focus, select:focus, textarea:focus {
+  outline: none !important;
+  border-radius: max(10px, 1vw);
+  padding: max(7px, 0.5vw);
+  border: unset;
+  border: 1px solid rgb(80, 78, 78);
+}
+
 *::-webkit-scrollbar {
   height: 0.5rem;
   width: 0.5rem;
@@ -29,7 +37,8 @@ html {
 
 body {
   width: 100vw;
-  height: 100%;
+  height: -moz-fit-content;
+  height: fit-content;
   min-height: 100vh;
   display: flex;
   flex-flow: column;
@@ -444,7 +453,6 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
 .add-admin {
   width: 100%;
   height: 100%;
-  overflow: hidden;
 }
 
 .form-container {
@@ -726,10 +734,6 @@ input:-webkit-autofill:focus {
 .table-container {
   width: 100%;
   max-width: 90vw;
-  height: -moz-fit-content;
-  height: fit-content;
-  max-height: 80%;
-  min-height: 250px;
   overflow: auto;
   border: 2px solid rgb(80, 78, 78);
 }
@@ -768,6 +772,7 @@ td {
   white-space: nowrap;
   border: 1px solid rgb(95, 94, 94);
   transition-duration: 200ms;
+  font-size: 0.8rem;
 }
 td button {
   background-color: transparent;
@@ -915,6 +920,7 @@ td:nth-child(4), th:nth-child(4) {
   background-color: transparent;
   border: unset;
   border-bottom: 2px solid gray;
+  border-radius: unset;
   text-align: center;
 }
 .block-date .add-date input:focus {
@@ -977,18 +983,19 @@ td:nth-child(4), th:nth-child(4) {
 .form-check-input {
   width: max(20px, 2vw) !important;
   max-width: 40px;
+  border-radius: max(15px, 1vw) !important;
   background-color: #4e73df !important;
 }
 
 .website-status {
   background-color: whitesmoke;
   width: 100%;
-  height: 90vh;
   display: flex;
   justify-content: center;
   align-items: flex-start;
 }
 .website-status .website-status__wrapper {
+  position: relative;
   background-color: white;
   width: 80%;
   height: -moz-fit-content;
@@ -999,6 +1006,7 @@ td:nth-child(4), th:nth-child(4) {
   flex-flow: column;
   align-items: center;
   box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
+  overflow: hidden;
 }
 
 .status {
@@ -1007,7 +1015,8 @@ td:nth-child(4), th:nth-child(4) {
   flex-flow: column;
   align-items: center;
   padding: max(10px, 2vw);
-  border-bottom: 2px solid rgba(128, 128, 128, 0.679);
+  border-bottom: 2px solid rgba(112, 109, 109, 0.177);
+  background-color: white;
 }
 .status .status__header {
   width: 100%;
@@ -1038,9 +1047,23 @@ td:nth-child(4), th:nth-child(4) {
   padding: max(15px, 2vw);
   align-items: center;
   gap: max(10px, 1vw);
+  border-radius: 20px;
+  overflow: hidden;
+}
+.change-status .msg-container {
+  width: 100%;
+}
+.change-status .msg-container label {
+  font-weight: 600;
 }
 .change-status #msg {
   width: 100%;
+  resize: none;
+  padding: max(10px, 1vw);
+  border-radius: max(10px, 1vw);
+}
+.change-status #msg:focus {
+  outline: none;
 }
 .change-status button {
   background-color: #4e73df;
@@ -1053,6 +1076,11 @@ td:nth-child(4), th:nth-child(4) {
 }
 .change-status button:hover {
   background-color: #6484e3;
+}
+.change-status h3 {
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
 }
 
 @media only screen and (min-width: 1200px) {
