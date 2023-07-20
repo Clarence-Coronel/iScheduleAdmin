@@ -35,6 +35,9 @@ input, select, textarea, input:focus, select:focus, textarea:focus{
     // border-radius: 50px !important;
 }
 
+label:hover{
+  cursor: pointer;
+}
 
 .form-select{
   border: 1px solid $fontbase-color !important;
@@ -45,6 +48,14 @@ input, select, textarea, input:focus, select:focus, textarea:focus{
 
 .form-select:focus{
   border-color: unset !important;
+  box-shadow: unset !important;
+}
+
+.form-check-input:hover{
+  cursor: pointer;
+}
+
+.form-check-input:focus{
   box-shadow: unset !important;
 }
 

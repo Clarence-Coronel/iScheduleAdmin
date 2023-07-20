@@ -29,6 +29,10 @@ input, select, textarea, input:focus, select:focus, textarea:focus {
   outline: 1px solid rgba(204, 202, 202, 0.69);
 }
 
+label:hover {
+  cursor: pointer;
+}
+
 .form-select {
   border: 1px solid rgb(80, 78, 78) !important;
   border-width: 1px !important;
@@ -37,6 +41,14 @@ input, select, textarea, input:focus, select:focus, textarea:focus {
 
 .form-select:focus {
   border-color: unset !important;
+  box-shadow: unset !important;
+}
+
+.form-check-input:hover {
+  cursor: pointer;
+}
+
+.form-check-input:focus {
   box-shadow: unset !important;
 }
 
