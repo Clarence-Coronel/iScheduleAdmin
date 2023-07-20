@@ -1003,7 +1003,7 @@ td:nth-child(4), th:nth-child(4){
     display: flex;
     flex-flow: row-reverse wrap;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     gap: max(10px, 2vw);
     padding: max(10px, 2vw);
     overflow: hidden;
