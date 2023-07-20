@@ -367,6 +367,44 @@ let blockDates = `
             </div>
 </section>`
 
+let websiteStatus = `<section class="website-status">
+<div class="website-status__wrapper" data-aos="fade-right" data-aos-duration="1000">
+    <div class="status">
+        <div class="status__header">
+            <!-- highlight_off = kapag down website -->
+            <!-- block =kapag down scheduling -->
+            <span class="material-icons-outlined ico-status ico-live">check_circle_outline</span>
+            Website is Up
+            <!-- Possible Values
+                *Website Is Up
+                *Website Is Down
+                *Scheduling Is Down
+            -->
+        </div>
+        <div class="status__msg">
+            <span class="msg-label">Message:</span> Not Applicable
+            <!-- Applicable lang if either Website is Down or Online Scheduling is down -->
+        </div>
+    </div>
+    <div class="change-status">
+        <!-- <h3>Change Status</h3> -->
+        <select name="changeStatus" id="changeStatus">
+            <!-- Yung unang opt is kung ano yung current status -->
+            <option value="up">Website is Up</option>
+            <option value="down">Website is Down</option>
+            <option value="scheduledown">Scheduling is Down</option>
+        </select>
+
+        <!-- Naka enable lang to if either website is down or scheduling is down hindi kapag completely up si website -->
+        <div class="msg-container">
+            <label for="msg">Message:</label>
+            <textarea name="text" id="msg" cols="30" rows="7"></textarea>
+        </div>
+        <button class="changeStatus" onclick="alert('give warning regarding new status, such as what will happen')">Apply</button>
+    </div>
+</div>
+</section>`;
+
 function generateCreateAcc(){
     main.innerHTML = createAccount;
     let iconPassword = document.querySelectorAll('.ico-pass');
@@ -415,4 +453,8 @@ function generateBlockDates(){
 
 function generateDashboard(){
     main.innerHTML = "";
+}
+
+function generateWebsiteStatus(){
+    main.innerHTML = websiteStatus;
 }
