@@ -100,7 +100,7 @@ let adminLogs = `<section class="admin-logs">
                     <th>Activity</th>
                     <th>Date</th>
                     <th >Time</th>
-                    <th>Admin Level</th>
+                    <th>Admin Type</th>
                 </tr>
             </thead>
             <tbody>
@@ -273,7 +273,7 @@ let adminList = `<section class="admin-list">
                 <th>Username</th>
                 <th>Full Name</th>
                 <th>Phone #</th>
-                <th>Admin Level</th>
+                <th>Admin Type</th>
                 <th>&nbsp;</th>
             </tr>
         </thead>
@@ -282,35 +282,35 @@ let adminList = `<section class="admin-list">
                 <td>clarence-coronel2l</td>
                 <td>Coronel, Clarence Reyes</td>
                 <td>0987 788 5644</td>
-                <td><button class="editLevel" onclick="editLevel(this)" data-username="clarence-coronel1">Level 1 <span class="ico-list ico-edit">(edit)</span></button></td>
+                <td><button class="editLevel" onclick="editLevel(this)" data-username="clarence-coronel1">Admin I<span class="ico-list ico-edit">(edit)</span></button></td>
                 <td><button class="removeAdmin" onclick="removeAdmin(this)" data-username="clarence-coronel1">delete</button></td>
             </tr>
             <tr>
                 <td>clarence-coronel2l</td>
                 <td>Coronel, Clarence Reyes</td>
                 <td>0987 788 5644</td>
-                <td><button class="editLevel" onclick="editLevel(this)" data-username="clarence-coronel1">Level 1 <span class="ico-list ico-edit">(edit)</span></button></td>
+                <td><button class="editLevel" onclick="editLevel(this)" data-username="clarence-coronel1">Admin I<span class="ico-list ico-edit">(edit)</span></button></td>
                 <td><button class="removeAdmin" onclick="removeAdmin(this)" data-username="clarence-coronel1">delete</button></td>
             </tr>
             <tr>
                 <td>clarence-coronel2l</td>
                 <td>Coronel, Clarence Reyes</td>
                 <td>0987 788 5644</td>
-                <td><button class="editLevel" onclick="editLevel(this)" data-username="clarence-coronel1">Level 1 <span class="ico-list ico-edit">(edit)</span></button></td>
+                <td><button class="editLevel" onclick="editLevel(this)" data-username="clarence-coronel1">Admin II<span class="ico-list ico-edit">(edit)</span></button></td>
                 <td><button class="removeAdmin" onclick="removeAdmin(this)" data-username="clarence-coronel1">delete</button></td>
             </tr>
             <tr>
                 <td>clarence-coronel2l</td>
                 <td>Coronel, Clarence Reyes</td>
                 <td>0987 788 5644</td>
-                <td><button class="editLevel" onclick="editLevel(this)" data-username="clarence-coronel1">Level 1 <span class="ico-list ico-edit">(edit)</span></button></td>
+                <td><button class="editLevel" onclick="editLevel(this)" data-username="clarence-coronel1">Admin I <span class="ico-list ico-edit">(edit)</span></button></td>
                 <td><button class="removeAdmin" onclick="removeAdmin(this)" data-username="clarence-coronel1">delete</button></td>
             </tr>
             <tr>
                 <td>clarence-coronel2l</td>
                 <td>Coronel, Clarence Reyes</td>
                 <td>0987 788 5644</td>
-                <td><button class="editLevel" onclick="editLevel(this)" data-username="clarence-coronel1">Level 1 <span class="ico-list ico-edit">(edit)</span></button></td>
+                <td><button class="editLevel" onclick="editLevel(this)" data-username="clarence-coronel1">Super Admin<span class="ico-list ico-edit">(edit)</span></button></td>
                 <td><button class="removeAdmin" onclick="removeAdmin(this)" data-username="clarence-coronel1">delete</button></td>
             </tr>
         </tbody>

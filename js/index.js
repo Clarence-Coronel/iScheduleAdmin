@@ -20,7 +20,7 @@ const newAdmin = {
     'lastName': '',
     'phone': '',
     'password': '',
-    'level': '',
+    'adminType': '',
 }
 
 function initial(){
@@ -333,13 +333,13 @@ function createAccountValidator(){
     }
 
     if(document.querySelector('#adminI').checked){
-        patient['level'] = 1;
+        patient['adminType'] = 1;
     }
     else if(document.querySelector('#adminII').checked){
-        patient['level'] = 2;
+        patient['adminType'] = 2;
     }
     else if(document.querySelector('#superAdmin').checked){
-        patient['level'] = 3;
+        patient['adminType'] = 3;
     }
     else{
         // If pumili si user
@@ -427,7 +427,7 @@ function errorHandler(code){
     // LEVEL **************************
     // 
     else if(code == '50'){
-        formErrorMessage = 'No admin level is selected.';
+        formErrorMessage = 'No admin type is selected.';
     }
 
     generateErrorModal();
