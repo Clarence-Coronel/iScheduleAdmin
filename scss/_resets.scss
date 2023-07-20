@@ -8,11 +8,15 @@
 
 input, select, textarea, input:focus, select:focus, textarea:focus{
   outline: none !important; 
-  border-radius: max(10px, 1vw);
-  padding: max(7px, 0.5vw);
-  border: unset;
-  border: 1px solid $fontbase-color;
+  border-width: 1px !important;
+  border-color: $fontbase-color;
 }
+
+// select {
+//   -moz-appearance:none; /* Firefox */
+//   -webkit-appearance:none; /* Safari and Chrome */
+//   appearance:none;
+// }
 
 *::-webkit-scrollbar {
   height: 0.5rem;
@@ -29,5 +33,18 @@ input, select, textarea, input:focus, select:focus, textarea:focus{
   background-color: $primary-color;
   outline: 1px solid rgba(204, 202, 202, 0.69);
     // border-radius: 50px !important;
+}
+
+
+.form-select{
+  border: 1px solid $fontbase-color !important;
+  border-width: 1px !important;
+  min-width: 120px;
+  // font-size: 1rem;
+}
+
+.form-select:focus{
+  border-color: unset !important;
+  box-shadow: unset !important;
 }
 

@@ -9,10 +9,8 @@
 
 input, select, textarea, input:focus, select:focus, textarea:focus {
   outline: none !important;
-  border-radius: max(10px, 1vw);
-  padding: max(7px, 0.5vw);
-  border: unset;
-  border: 1px solid rgb(80, 78, 78);
+  border-width: 1px !important;
+  border-color: rgb(80, 78, 78);
 }
 
 *::-webkit-scrollbar {
@@ -29,6 +27,17 @@ input, select, textarea, input:focus, select:focus, textarea:focus {
 *::-webkit-scrollbar-thumb {
   background-color: #4e73df;
   outline: 1px solid rgba(204, 202, 202, 0.69);
+}
+
+.form-select {
+  border: 1px solid rgb(80, 78, 78) !important;
+  border-width: 1px !important;
+  min-width: 120px;
+}
+
+.form-select:focus {
+  border-color: unset !important;
+  box-shadow: unset !important;
 }
 
 html {
@@ -708,6 +717,9 @@ input:-webkit-autofill:focus {
 }
 .admin-logs__filters input[type=date] {
   position: relative;
+  border-radius: 0.375rem;
+  padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+  text-align: left;
 }
 .admin-logs__filters input[type=date]::-webkit-calendar-picker-indicator {
   position: absolute;
@@ -739,6 +751,9 @@ input:-webkit-autofill:focus {
   border-radius: max(10px, 1vw);
   height: 100%;
   padding: 0 max(10px, 1vw);
+}
+.admin-logs__filters .form-select {
+  width: 20%;
 }
 
 .table-container {
@@ -1046,6 +1061,15 @@ td:nth-child(4), th:nth-child(4) {
   font-size: 3rem;
   background-color: white;
 }
+.status .status__msg {
+  max-width: 100%;
+  text-align: center;
+  overflow: auto;
+  word-wrap: break-word;
+  font-size: 0.9rem;
+  color: gray;
+  font-weight: 100;
+}
 .status .status__msg .msg-label {
   font-weight: 600;
 }
@@ -1074,6 +1098,10 @@ td:nth-child(4), th:nth-child(4) {
 }
 .change-status #msg:focus {
   outline: none;
+}
+.change-status .form-select {
+  width: 20%;
+  min-width: 150px;
 }
 .change-status button {
   background-color: #4e73df;

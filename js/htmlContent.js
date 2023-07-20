@@ -67,19 +67,19 @@ let adminLogs = `<section class="admin-logs">
         <h2>Filter</h2>
         <div class="admin-logs__filters">
             <input type="date" name="" id="">
-            <select name="" id="">
+            <select class="form-select" aria-label="Default select example">
                 <option hidden selected disabled>Activity</option>
                 <option value="">test</option>
                 <option value="">test</option>
                 <option value="">test</option>
             </select>
-            <select name="" id="">
-                <option hidden selected disabled>Admin Level</option>
+            <select class="form-select" aria-label="Default select example">
+                <option hidden selected disabled>Admin Type</option>
                 <option value="">test</option>
                 <option value="">test</option>
                 <option value="">test</option>
             </select>
-            <select name="" id="">
+            <select class="form-select" aria-label="Default select example">
                 <option hidden selected disabled>Sort By</option>
                 <option value="">test</option>
                 <option value="">test</option>
@@ -386,19 +386,17 @@ let websiteStatus = `<section class="website-status">
             -->
         </div>
         <div class="status__msg">
-            <span class="msg-label">Message:</span> Not Applicable
+            <span class="msg-label">Message:</span> loresmloresmloresmloresmloresmloresmloresmloresmloresmloresmloresmloresmloresm loresmloresmloresmloresmloresm loresmloresmloresmloresmloresmloresm loresmloresmloresmloresmloresm
             <!-- Applicable lang if either Website is Down or Online Scheduling is down -->
         </div>
     </div>
     <div class="change-status">
         <!-- <h3>Change Status</h3> -->
-        <select name="changeStatus" id="changeStatus">
-            <!-- Yung unang opt is kung ano yung current status -->
+        <select class="form-select" aria-label="Default select example">
             <option value="up">Website is Up</option>
             <option value="down">Website is Down</option>
             <option value="scheduledown">Scheduling is Down</option>
         </select>
-
         <!-- Naka enable lang to if either website is down or scheduling is down hindi kapag completely up si website -->
         <div class="msg-container">
             <label for="msg">Message:</label>

@@ -780,6 +780,9 @@ input:-webkit-autofill:focus{
 
     input[type="date"]{
         position: relative;
+        border-radius: 0.375rem;
+        padding: 0.375rem 2.25rem 0.375rem 0.75rem;   
+        text-align: left;
         
     }
 
@@ -818,6 +821,10 @@ input:-webkit-autofill:focus{
             height: 100%;
             padding: 0 max(10px, 1vw);
         }
+    }
+
+    .form-select{
+        width: 20%;
     }
 }
 
@@ -1202,7 +1209,14 @@ td:nth-child(4), th:nth-child(4){
     }
 
     .status__msg{
-        
+        max-width: 100%;
+        text-align: center;
+        overflow: auto;
+        word-wrap: break-word;
+        font-size: 0.9rem;
+        color: gray;
+        font-weight: 100;
+
         .msg-label{
             font-weight: 600;
         }
@@ -1248,8 +1262,9 @@ td:nth-child(4), th:nth-child(4){
         outline: none;
     }
 
-    #changeStatus{
-        
+    .form-select{
+        width: 20%;
+        min-width: 150px;
     }
 
     button{
