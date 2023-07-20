@@ -812,6 +812,10 @@ td button {
   gap: max(2px, 0.3vw);
 }
 
+td:hover {
+  cursor: pointer;
+}
+
 .selected {
   overflow: unset;
   text-overflow: unset;

@@ -877,6 +877,7 @@ td{
     border: 1px solid rgb(95, 94, 94);
     transition-duration: 200ms;
     font-size: 0.8rem;
+    
 
     button{
         background-color: transparent;
@@ -893,6 +894,9 @@ td{
     }
 }
 
+td:hover{
+    cursor: pointer;
+}
 // Added class to selected row
 .selected{
     overflow: unset;
