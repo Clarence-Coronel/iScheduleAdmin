@@ -693,13 +693,13 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
 @media only screen and (min-width:1200px){
     .form{
         width: max(300px, 40%);
-        box-shadow: 10px 10px rgba(114, 114, 114, 0.472);
+        // box-shadow: 10px 10px rgba(114, 114, 114, 0.472);
     }
 
-    .form:hover{
-        transform: translate(-5px,-10px);
-        box-shadow: 20px 20px rgba(114, 114, 114, 0.472);
-    }
+    // .form:hover{
+    //     transform: translate(-5px,-10px);
+    //     box-shadow: 20px 20px rgba(114, 114, 114, 0.472);
+    // }
 
     .form:hover .ico-nav{
         background-color: white;
@@ -801,6 +801,23 @@ input:-webkit-autofill:focus{
 
     button:hover{
         background-color: lighten($primary-color, 5);
+    }
+
+    .search-container{
+        width: 40%;
+        min-width: 250px;
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: flex-start;
+        height:max(30px, 3vw);
+    
+        input{
+            width: 100%;
+            border: 2px solid $fontbase-color;
+            border-radius: max(10px, 1vw);
+            height: 100%;
+            padding: 0 max(10px, 1vw);
+        }
     }
 }
 
@@ -991,11 +1008,6 @@ td:nth-child(4), th:nth-child(4){
     }
 }
 
-.admin-list{
-    span{
-        // margin: unset;
-    }
-}
 
 .block-date{
     width: 100%;
@@ -1273,4 +1285,10 @@ td:nth-child(4), th:nth-child(4){
             width: 25%;
         }
     }
+}
+
+// MODAL
+.modal-title{
+    font-weight: 1000 !important;
+    font-size:1.3rem !important;
 }
