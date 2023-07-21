@@ -479,3 +479,15 @@ function containsLetterNumSpeChar(pass){
 
     return checkSpeChar && checkUpper && checkLower && checkNum;
 }
+
+// gets the value of given sa id param and then ilimit siya gamit yung max
+function inputLimiter(id, max){
+    let element = document.getElementById(id);
+    if (element.value.length > max){
+        element.value = element.value.slice(0, -1);
+        // alert('test');
+    }
+
+    // if want natin numbers lang meron pede isama yung asa baba
+    // element.value = element.value.replace(/\D+/g, '');
+}

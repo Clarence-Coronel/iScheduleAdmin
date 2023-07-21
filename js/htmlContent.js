@@ -61,6 +61,8 @@ let createAccount = `
 </div>
 </section>`;
 
+
+// By default yung content ni table is yung today lang
 let adminLogs = `<section class="admin-logs">
 <div class="admin-logs-wrapper" data-aos="fade-right" data-aos-duration="1000">
     <div class="admin-logs__body">
@@ -86,7 +88,7 @@ let adminLogs = `<section class="admin-logs">
                 <option value="">test</option>
             </select>
             <div class="search-container">
-                <input type="text" placeholder="Search">
+                <input type="text" placeholder="Search" id="adminLogsSearch" oninput="inputLimiter(this.id, 60)">
             </div>
             <button>Apply</button>
         </div>
