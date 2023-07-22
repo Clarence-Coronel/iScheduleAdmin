@@ -403,7 +403,7 @@ let websiteStatus = `<section class="website-status">
         <div class="msg-container">
             <label for="msg">Message:</label>
             <textarea name="text" id="statusMsg" cols="30" rows="2" onblur="inputLimiterBlur(this.id, 120); statusMsgCounter();" oninput="inputLimiter(this.id, 120); statusMsgCounter();"></textarea>
-            <div class="textAreaCounter">120/120</div>
+            <div class="textAreaCounter">120</div>
         </div>
         <button class="changeStatus" onclick="alert('give warning regarding new status, such as what will happen')">Apply</button>
     </div>

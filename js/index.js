@@ -509,5 +509,5 @@ function statusMsgCounter(){
 
     let remainingChar = 120 - textArea.value.length;
 
-    statusMsgCtr.innerHTML = `${remainingChar} / 120`;
+    statusMsgCtr.innerHTML = `${remainingChar}`;
 }
