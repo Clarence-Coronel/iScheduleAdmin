@@ -1107,7 +1107,7 @@ td:nth-child(4), th:nth-child(4) {
 .change-status .msg-container label {
   font-weight: 600;
 }
-.change-status #msg {
+.change-status #statusMsg {
   width: 100%;
   resize: none;
   padding: max(10px, 1vw);
@@ -1149,4 +1149,9 @@ td:nth-child(4), th:nth-child(4) {
 .modal-title {
   font-weight: 1000 !important;
   font-size: 1.3rem !important;
+}
+
+.textAreaCounter {
+  text-align: right;
+  color: gray;
 }/*# sourceMappingURL=main.css.map */

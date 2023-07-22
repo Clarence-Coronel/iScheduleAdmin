@@ -88,7 +88,7 @@ let adminLogs = `<section class="admin-logs">
                 <option value="">test</option>
             </select>
             <div class="search-container">
-                <input type="text" placeholder="Search" id="adminLogsSearch" oninput="inputLimiter(this.id, 60)">
+                <input type="text" placeholder="Search" id="adminLogsSearch" onblur="inputLimiterBlur(this.id, 60)" oninput="inputLimiter(this.id, 60)">
             </div>
             <button>Apply</button>
         </div>
@@ -263,7 +263,7 @@ let adminList = `<section class="admin-list">
 <div class="admin-list-wrapper" data-aos="fade-right" data-aos-duration="1000">
 <div class="admin-table__body">
     <div class="search-container">
-        <input type="text" placeholder="Search">
+        <input type="text" placeholder="Search" id="adminSearch" onblur="inputLimiterBlur(this.id, 60)" oninput="inputLimiter(this.id, 60)">
         <button><span class="material-icons-outlined ico-search">search</span></button>
     </div>
 </div>
@@ -402,7 +402,8 @@ let websiteStatus = `<section class="website-status">
         <!-- Naka enable lang to if either website is down or scheduling is down hindi kapag completely up si website -->
         <div class="msg-container">
             <label for="msg">Message:</label>
-            <textarea name="text" id="msg" cols="30" rows="7"></textarea>
+            <textarea name="text" id="statusMsg" cols="30" rows="2" onblur="inputLimiterBlur(this.id, 120); statusMsgCounter();" oninput="inputLimiter(this.id, 120); statusMsgCounter();"></textarea>
+            <div class="textAreaCounter">120/120</div>
         </div>
         <button class="changeStatus" onclick="alert('give warning regarding new status, such as what will happen')">Apply</button>
     </div>

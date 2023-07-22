@@ -7,7 +7,6 @@ let navLinkItem = document.querySelectorAll('.nav-links__item');
 let desktopMode = false;
 let contentIsOpen = false;
 let formErrorMessage = '';
-
 // AOS Initialization
 AOS.init();
 initial();
@@ -490,4 +489,25 @@ function inputLimiter(id, max){
 
     // if want natin numbers lang meron pede isama yung asa baba
     // element.value = element.value.replace(/\D+/g, '');
+}
+
+// cuts content if after blur
+function inputLimiterBlur(id, max){
+    let element = document.getElementById(id);
+    let newVal = "";
+    if(element.value.length > max){
+        for(i=0; i < max; i++){
+            newVal += element.value[i];
+        }
+        element.value = newVal;
+    }
+}
+
+function statusMsgCounter(){
+    let textArea = document.querySelector('#statusMsg');
+    let statusMsgCtr = document.querySelector('.textAreaCounter');
+
+    let remainingChar = 120 - textArea.value.length;
+
+    statusMsgCtr.innerHTML = `${remainingChar} / 120`;
 }
