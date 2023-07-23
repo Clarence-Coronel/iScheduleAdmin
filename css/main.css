@@ -771,7 +771,7 @@ input:-webkit-autofill:focus {
 
 .table-container {
   width: 100%;
-  max-width: 90vw;
+  max-height: 40vh;
   overflow: auto;
   border: 2px solid rgb(80, 78, 78);
 }

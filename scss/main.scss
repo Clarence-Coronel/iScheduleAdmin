@@ -832,7 +832,7 @@ input:-webkit-autofill:focus{
 //Logs Table
 .table-container{
     width: 100%;
-    max-width: 90vw;
+    max-height: 40vh;
     // max-width: 90vw;
     
     overflow:auto;
@@ -1120,7 +1120,6 @@ td:nth-child(4), th:nth-child(4){
 
 .date-table{
     width: 100%;
-    
     thead{
         width: 100%;
     }

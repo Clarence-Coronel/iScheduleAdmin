@@ -352,6 +352,96 @@ let blockDates = `
                                 <td>Yes</td>
                                 <td><button class="removeDate" data-date="2023-12-25">delete</button></td>
                             </tr>
+                            <tr>
+                                <td>25 December 2023</td>
+                                <td>Christmas</td>
+                                <td>Yes</td>
+                                <td><button class="removeDate" data-date="2023-12-25">delete</button></td>
+                            </tr>
+                            <tr>
+                                <td>25 December 2023</td>
+                                <td>Christmas</td>
+                                <td>Yes</td>
+                                <td><button class="removeDate" data-date="2023-12-25">delete</button></td>
+                            </tr>
+                            <tr>
+                                <td>25 December 2023</td>
+                                <td>Christmas</td>
+                                <td>Yes</td>
+                                <td><button class="removeDate" data-date="2023-12-25">delete</button></td>
+                            </tr>
+                            <tr>
+                            <td>25 December 2023</td>
+                            <td>Christmas</td>
+                            <td>Yes</td>
+                            <td><button class="removeDate" data-date="2023-12-25">delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>25 December 2023</td>
+                            <td>Christmas</td>
+                            <td>Yes</td>
+                            <td><button class="removeDate" data-date="2023-12-25">delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>25 December 2023</td>
+                            <td>Christmas</td>
+                            <td>Yes</td>
+                            <td><button class="removeDate" data-date="2023-12-25">delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>25 December 2023</td>
+                            <td>Christmas</td>
+                            <td>Yes</td>
+                            <td><button class="removeDate" data-date="2023-12-25">delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>25 December 2023</td>
+                            <td>Christmas</td>
+                            <td>Yes</td>
+                            <td><button class="removeDate" data-date="2023-12-25">delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>25 December 2023</td>
+                            <td>Christmas</td>
+                            <td>Yes</td>
+                            <td><button class="removeDate" data-date="2023-12-25">delete</button></td>
+                        </tr>
+                        <tr>
+                        <td>25 December 2023</td>
+                        <td>Christmas</td>
+                        <td>Yes</td>
+                        <td><button class="removeDate" data-date="2023-12-25">delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>25 December 2023</td>
+                            <td>Christmas</td>
+                            <td>Yes</td>
+                            <td><button class="removeDate" data-date="2023-12-25">delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>25 December 2023</td>
+                            <td>Christmas</td>
+                            <td>Yes</td>
+                            <td><button class="removeDate" data-date="2023-12-25">delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>25 December 2023</td>
+                            <td>Christmas</td>
+                            <td>Yes</td>
+                            <td><button class="removeDate" data-date="2023-12-25">delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>25 December 2023</td>
+                            <td>Christmas</td>
+                            <td>Yes</td>
+                            <td><button class="removeDate" data-date="2023-12-25">delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>25 December 2023</td>
+                            <td>Christmas</td>
+                            <td>Yes</td>
+                            <td><button class="removeDate" data-date="2023-12-25">delete</button></td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
