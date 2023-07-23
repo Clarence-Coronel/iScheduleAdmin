@@ -356,14 +356,14 @@ let blockDates = `
                     </table>
                 </div>
                 <div class="date-picker">
-                    <input type="text" name="day" id="block-day" placeholder="DD">
+                    <input type="text" name="day" id="block-day" placeholder="DD" oninput="inputLimiterNum(this.id, 2)" onblur="inputLimiterBlur(this.id, 2)">
                     <span>/</span>
-                    <input type="text" name="month" id="block-month" placeholder="MM">
+                    <input type="text" name="month" id="block-month" placeholder="MM" oninput="inputLimiterNum(this.id, 2)" onblur="inputLimiterBlur(this.id, 2)">
                     <span>/</span>
-                    <input type="text" name="year" id="block-year" placeholder="YYYY">
+                    <input type="text" name="year" id="block-year" placeholder="YYYY" oninput="inputLimiterNum(this.id, 4)" onblur="inputLimiterBlur(this.id, 4)">
                 </div>
                 <div class="other-info">
-                    <input type="text" placeholder="Name">
+                    <input type="text" placeholder="Name" id="blockDateName" onblur="inputLimiterBlur(this.id, 30)" oninput="inputLimiter(this.id, 30)">
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
                         <label class="form-check-label" for="flexSwitchCheckDefault">Repeat Every Year</label>

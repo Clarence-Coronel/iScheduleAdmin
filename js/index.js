@@ -503,6 +503,17 @@ function inputLimiterBlur(id, max){
     }
 }
 
+function inputLimiterNum(id, max){
+    let element = document.getElementById(id);
+    if (element.value.length > max){
+        element.value = element.value.slice(0, -1);
+        // alert('test');
+    }
+
+    // if want natin numbers lang meron pede isama yung asa baba
+    element.value = element.value.replace(/\D+/g, '');
+}
+
 function statusMsgCounter(){
     let textArea = document.querySelector('#statusMsg');
     let statusMsgCtr = document.querySelector('.textAreaCounter');
@@ -511,3 +522,4 @@ function statusMsgCounter(){
 
     statusMsgCtr.innerHTML = `${remainingChar}`;
 }
+
