@@ -323,6 +323,7 @@ let adminList = `<section class="admin-list">
 let blockDates = `
 <section class="block-date">
             <div class="add-date" data-aos="fade-right" data-aos-duration="1000">
+                <span>Click the row to highlight/see more.</span>
                 <div class="table-container">
                     <table class="date-table">
                         <thead>

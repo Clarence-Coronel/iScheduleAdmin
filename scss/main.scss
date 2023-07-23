@@ -1049,6 +1049,14 @@ td:nth-child(4), th:nth-child(4){
         box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
         // height: fit-content;
 
+        span{
+            
+            position: relative;
+            top: 10px;
+            color: gray;
+            font-size: 0.8rem;
+        }
+
         .date-picker{
             width: 100%;
             // width: fit-content;
@@ -1267,7 +1275,7 @@ td:nth-child(4), th:nth-child(4){
     }
 
     .form-select{
-        width: 20%;
+        width: 30%;
         min-width: 150px;
     }
 
