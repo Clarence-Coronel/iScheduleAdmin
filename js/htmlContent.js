@@ -320,6 +320,7 @@ let adminList = `<section class="admin-list">
 </div>
 </section>`;
 
+// PAG PININDOT YUNG REPEAT EVERY YEAR MADISABLE YUNG YEAR FIELD
 let blockDates = `
 <section class="block-date">
             <div class="add-date" data-aos="fade-right" data-aos-duration="1000">
