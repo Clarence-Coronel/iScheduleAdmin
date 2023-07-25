@@ -106,7 +106,6 @@ function generateAdminTypeModal(val){
         modalTitle.innerHTML = 'Admin II Capabilities'
         modalBody.innerHTML = 
         `   
-            *Dashboard <br>
             *Schedule An Appointment <br>
             *View Scheduled Appointments  <br>
             *Post An Announcement  <br>
