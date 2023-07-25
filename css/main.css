@@ -14,19 +14,23 @@ input, select, textarea, input:focus, select:focus, textarea:focus {
 }
 
 *::-webkit-scrollbar {
-  height: 0.5rem;
-  width: 0.5rem;
+  height: 0.8rem;
+  width: 0.8rem;
   margin-right: 20px !important;
 }
 
 *::-webkit-scrollbar-track {
   box-shadow: inset 0 0 6px rgba(82, 111, 189, 0);
-  background-color: rgb(225, 222, 222);
+  background-color: rgb(236, 233, 233);
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #4e73df;
+  background-color: rgb(194, 192, 192);
   outline: 1px solid rgba(204, 202, 202, 0.69);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(168, 167, 167);
 }
 
 label:hover {
@@ -696,7 +700,7 @@ input:-webkit-autofill:focus {
   margin-top: max(15px, 1vw);
   display: flex;
   width: 100%;
-  height: 90vh;
+  height: 80vh;
   flex-flow: column;
   justify-content: flex-start;
   align-items: center;
