@@ -357,7 +357,7 @@ let websiteStatus = `<section class="website-status">
 
 // Add modal when delete is pressed confirming the action and then another modal to obtain OTP  from super admin's number  for additional security
 let manageData = `<section class="manage-data">
-<div class="manage-date__content">
+<div class="manage-date__content" data-aos="fade-right" data-aos-duration="1000">
     <div class="field">
         <span class="field__name">Admin Logs</span>
         <p class="field__desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam quidem mollitia numquam pariatur autem.</p>
@@ -375,7 +375,6 @@ let manageData = `<section class="manage-data">
     </div>
 </div>
 </section>`;
-
 
 // PAG PININDOT YUNG REPEAT EVERY YEAR MADISABLE YUNG YEAR FIELD
 let blockDates = `
