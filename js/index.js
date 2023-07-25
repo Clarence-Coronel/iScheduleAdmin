@@ -109,6 +109,7 @@ function generateAdminTypeModal(val){
             *Dashboard <br>
             *Schedule An Appointment <br>
             *View Scheduled Appointments  <br>
+            *Post An Announcement  <br>
         `
     }
     else if(val == 2){
@@ -121,6 +122,8 @@ function generateAdminTypeModal(val){
             *Edit Department Schedules  <br>
             *Manage Admins <br>
             *Manage Website Status <br>
+            *Post An Announcement  <br>
+            *Manage Data  <br>
             *Block Dates <br>
         `
     }
