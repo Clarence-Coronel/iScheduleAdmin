@@ -1175,7 +1175,7 @@ td:nth-child(4), th:nth-child(4) {
   padding: max(20px, 2vw);
   display: flex;
   flex-flow: column;
-  gap: max(30px, 5vw);
+  gap: max(30px, 3vw);
 }
 
 .manage-date__content .field {
@@ -1200,4 +1200,7 @@ td:nth-child(4), th:nth-child(4) {
   width: 40%;
   margin-left: auto !important;
   max-width: 120px;
+}
+.manage-date__content .field__delete-btn:hover {
+  background-color: #cc0000;
 }/*# sourceMappingURL=main.css.map */
