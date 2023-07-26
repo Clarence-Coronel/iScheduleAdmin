@@ -23,7 +23,7 @@ main{
     flex: 1;
     width: 100%;
     height: 100%;
-    
+    // background-color: red;
     // overflow-y: auto;
 }
 
@@ -735,7 +735,6 @@ input:-webkit-autofill:focus{
     justify-content: flex-start;
     align-items: center;
     max-height:80vh;
-
 }
 
 .admin-logs, .admin-list{
@@ -1023,16 +1022,17 @@ td:nth-child(4), th:nth-child(4){
 
 .block-date{
     width: 100%;
-    height:90vh;
+    height: fit-content;
     display: flex;
     flex-flow: row-reverse wrap;
     justify-content: center;
     align-items: flex-start;
     gap: max(10px, 2vw);
-    padding: max(10px, 2vw);
+    // padding: max(10px, 2vw);
     overflow: hidden;
     
     .add-date{
+        margin: max(15px, 1vw) 0;
         height: fit-content;
         width: 100%;
         // min-width: 300px;
@@ -1367,7 +1367,7 @@ td:nth-child(4), th:nth-child(4){
 
 .postAnnouncement{
     width: 100%;
-    height: 80vh;
+    // height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1452,5 +1452,146 @@ td:nth-child(4), th:nth-child(4){
         button{
             max-width: 25%;
         }
+    }
+}
+
+.dashboard{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+
+    .dashboard__left{
+        flex: 1 0 auto;
+        margin-top: max(15px, 1vw);
+        width: 50%;
+        min-width: 320px;
+        max-width: 960px;
+        height: 80vh;
+    }
+
+    .dashboard__right{
+        flex: 1 0 auto;
+        margin-top: max(15px, 1vw);
+        width: 50%;
+        min-width: 320px;
+        max-width: 960px;
+        height: 80vh;
+    }
+}
+
+.dashboard__left{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: flex-start;
+
+    .dashboard__all-patients{
+        width: 90%;
+        height: 45%;
+        background-color: white;
+        overflow-y: auto;
+        box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
+    }
+
+    .dashboard__per-dept{
+        width: 90%;
+        height: 45%;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
+    }
+}
+
+.dashboard__header{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: max(5px, 0.5vw);
+    padding: max(7px, 1vw);
+    select{
+        width: fit-content;
+    }
+}
+
+.dept-bargraph{
+    display: flex;
+    flex-flow: column;
+    overflow-y: auto;
+    align-items: flex-start;
+    // gap: max(10px, 0.5vw);
+
+    .dept{
+        color: $fontbase-color;
+        text-align: center;
+        background-color: rgb(95, 205, 124);
+        white-space: nowrap;
+    } 
+    
+    .dept:nth-child(1){
+        width: 10.88%;
+    }
+    .dept:nth-child(2){
+        width: 3.88%;
+    }
+    .dept:nth-child(3){
+        width: 2.88%;
+    }
+    .dept:nth-child(4){
+        width: 1.88%;
+    }
+    .dept:nth-child(5){
+        width: 9.88%;
+    }
+    .dept:nth-child(6){
+        width: 1.88%;
+    }
+    .dept:nth-child(7){
+        width: 1.88%;
+    }
+    .dept:nth-child(8){
+        width: 13.88%;
+    }
+    .dept:nth-child(9){
+        width: 2.88%;
+    }
+    .dept:nth-child(10){
+        width: 2.88%;
+    }
+    .dept:nth-child(11){
+        width: 11.88%;
+    }
+    .dept:nth-child(12){
+        width: 1.88%;
+    }
+    .dept:nth-child(13){
+        width: 2.88%;
+    }
+    .dept:nth-child(14){
+        width: 3.88%;
+    }
+    .dept:nth-child(15){
+        width: 11.88%;
+    }
+    .dept:nth-child(16){
+        width: 1.88%;
+    }
+    .dept:nth-child(17){
+        width: 9.88%;
+    }
+}
+
+.dashboard__right{
+    display: flex;
+    justify-content: center;
+    // padding: max(10px, 1vw);
+
+    .dashboard__stats{
+        height: 100%;
+        width: 90%;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
     }
 }
