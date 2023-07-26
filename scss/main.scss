@@ -1297,33 +1297,13 @@ td:nth-child(4), th:nth-child(4){
     }
 }
 
-@media only screen and (min-width: 1200px ){
-    .add-date{
-        .btn-submitblock{
-            width: 30%;
-        }
-    }
-
-    .change-status{
-        button{
-            width: 25%;
-        }
-    }
-
-    .block-date{
-        .add-date{
-            max-width: 900px;
-        }
-    }
-}
-
 // MODAL
 .modal-title{
     font-weight: 1000 !important;
     font-size:1.3rem !important;
 }
 
-.textAreaCounter{
+#textAreaCounter{
     text-align: right;
     color: gray;
 }
@@ -1382,5 +1362,95 @@ td:nth-child(4), th:nth-child(4){
 
     .field__delete-btn:hover{
         background-color: darken(red, 10);
+    }
+}
+
+.postAnnouncement{
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .postAnnouncement__content{
+        margin-top: max(15px, 1vw);
+        background-color: white;
+        width: 80%;
+        border-radius: max(7px, 0.5vw);
+        display: flex;
+        flex-flow: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: max(15px, 2vw);
+        gap: max(10px, 1vw);
+        box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
+    }
+}
+
+.postAnnouncement__content{
+    
+    .announcement__input-container{
+        width: 100%;
+        display: flex;
+        flex-flow: column;
+
+        label{
+            font-weight: 600;
+        }
+
+        input{
+            border-radius: max(5px, 0.5vw);
+            padding: max(10px, 0.5vw);
+        }
+
+        textarea{
+            border-radius: max(10px, 0.5vw);
+            resize: none;
+            padding: max(10px, 1vw);
+        }
+
+        div{
+            text-align: right;
+        }
+    }
+
+    button{
+        background-color: $primary-color;
+        color: white;
+        border: unset;
+        border-radius: max(5px, 0.5vw);
+        height: max(50px, 3vw);
+        width: 100%;
+        max-width: 600px;
+    }
+
+    button:hover{
+        background-color: lighten($primary-color, 5);
+    }
+}
+
+@media only screen and (min-width: 1200px ){
+    .add-date{
+        .btn-submitblock{
+            width: 30%;
+        }
+    }
+
+    .change-status{
+        button{
+            width: 25%;
+        }
+    }
+
+    .block-date{
+        .add-date{
+            max-width: 900px;
+        }
+    }
+
+    .postAnnouncement__content{
+        button{
+            max-width: 25%;
+        }
     }
 }

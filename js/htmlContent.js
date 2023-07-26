@@ -1,5 +1,7 @@
 const main = document.querySelector('main');
 
+//GAWING FORM YUNG MGA CONTAINER NG INPUT FIELDS?
+
 // By default yung content ni table is yung today lang
 let adminLogs = `<section class="admin-logs">
 <div class="admin-logs-wrapper" data-aos="fade-right" data-aos-duration="1000">
@@ -347,11 +349,26 @@ let websiteStatus = `<section class="website-status">
         <!-- Naka enable lang to if either website is down or scheduling is down hindi kapag completely up si website -->
         <div class="msg-container">
             <label for="msg">Message:</label>
-            <textarea name="text" id="statusMsg" cols="30" rows="2" onblur="inputLimiterBlur(this.id, 120); statusMsgCounter();" oninput="inputLimiter(this.id, 120); statusMsgCounter();"></textarea>
-            <div class="textAreaCounter">120</div>
+            <textarea name="text" id="statusMsg" cols="30" rows="2" onblur="inputLimiterBlur(this.id, 120); statusMsgCounter(this.id, 'textAreaCounter', 120);" oninput="inputLimiter(this.id, 120); statusMsgCounter(this.id, 'textAreaCounter', 120);"></textarea>
+            <div id="textAreaCounter">120</div>
         </div>
         <button class="changeStatus" onclick="alert('give warning regarding new status, such as what will happen')">Apply</button>
     </div>
+</div>
+</section>`;
+
+let postAnnouncement = `<section class="postAnnouncement">
+<div class="postAnnouncement__content" data-aos="fade-right" data-aos-duration="1000">
+    <div class="announcement__input-container">
+        <label for="announcementTitle">Announcement Title:</label>
+        <input type="text" name="announcementTitle" id="announcementTitle" onblur="inputLimiterBlur(this.id, 30);" oninput="inputLimiter(this.id, 30)">
+    </div>
+    <div class="announcement__input-container">
+        <label for="announcementBody">Announcement Body:</label>
+        <textarea cols="30" rows="10" name="announcementBody" id="announcementBody" onblur="inputLimiterBlur(this.id, 1000); statusMsgCounter(this.id, 'announcementBody__counter', 1000);" oninput="inputLimiter(this.id, 1000); statusMsgCounter(this.id, 'announcementBody__counter', 1000);"></textarea>
+        <div id="announcementBody__counter">1000</div>
+    </div>
+    <button id="announcementSubmit">Post</button>
 </div>
 </section>`;
 
@@ -569,6 +586,10 @@ function generateCreateAcc(){
 
 function generateWebsiteStatus(){
     main.innerHTML = websiteStatus;
+}
+
+function generatePostAnnouncement(){
+    main.innerHTML = postAnnouncement;
 }
 
 function generateManageData(){

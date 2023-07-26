@@ -516,11 +516,17 @@ function inputLimiterNum(id, max){
     element.value = element.value.replace(/\D+/g, '');
 }
 
-function statusMsgCounter(){
-    let textArea = document.querySelector('#statusMsg');
-    let statusMsgCtr = document.querySelector('.textAreaCounter');
+function statusMsgCounter(inputFieldId, counterId, max){
+    let textArea = document.getElementById(inputFieldId);
+    let statusMsgCtr = document.getElementById(counterId);
+    let remainingChar = max - textArea.value.length;
 
-    let remainingChar = 120 - textArea.value.length;
+    if(remainingChar <= 10){
+        statusMsgCtr.style.color = 'red';
+    }
+    else{
+        statusMsgCtr.style.color = 'unset';
+    }
 
     statusMsgCtr.innerHTML = `${remainingChar}`;
 }
