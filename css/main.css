@@ -246,7 +246,7 @@ header .header__right:hover {
   flex-flow: column;
   justify-content: center;
   align-items: flex-start;
-  height: 90vh;
+  height: 95vh;
 }
 
 .nav-links {
@@ -282,9 +282,10 @@ header .header__right:hover {
 }
 
 .nav-links__item {
-  height: max(35px, 20%);
+  height: max(45px, 25%);
   border: unset;
   display: flex;
+  font-size: 0.9rem;
   justify-content: flex-start;
   align-items: center;
   color: rgb(210, 208, 208);
@@ -300,7 +301,7 @@ header .header__right:hover {
 }
 
 .manage-admins {
-  height: max(35px, 20%);
+  height: max(35px, 25%);
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -373,6 +374,7 @@ header .header__right:hover {
      -moz-user-select: none;
           user-select: none;
   background-color: transparent;
+  font-size: 0.9rem;
 }
 
 button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
@@ -1299,6 +1301,7 @@ td:nth-child(4), th:nth-child(4) {
 }
 .dashboard__left .dashboard__stats .dashboard__block {
   flex: 1 0 30%;
+  max-width: 33.33%;
   height: 50%;
   display: flex;
   justify-content: center;
@@ -1311,11 +1314,16 @@ td:nth-child(4), th:nth-child(4) {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+  padding: max(5px, 0.5vw);
 }
 .dashboard__left .dashboard__stats .dashboard__block span {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 1000;
   color: white;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .dashboard__left .dashboard__stats .dashboard__block:nth-child(1) {
   background-color: rgb(239, 63, 63);

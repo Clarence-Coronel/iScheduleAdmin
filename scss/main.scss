@@ -210,7 +210,7 @@ header{
     align-items: flex-start;
     // gap: max(10px, 1vw);
     // max-height: 1200px;
-    height: 90vh;
+    height: 95vh;
 }
 
 .nav-links{
@@ -251,9 +251,10 @@ header{
 }
 
 .nav-links__item{
-    height: max(35px, 20%);
+    height: max(45px, 25%);
     border: unset;
     display: flex;
+    font-size: 0.9rem;
     justify-content: flex-start;
     align-items: center;
     color: $gray;
@@ -267,7 +268,7 @@ header{
 }
 
 .manage-admins{
-    height: max(35px, 20%);
+    height: max(35px, 25%);
     display: flex;
     flex-flow: column;
     // gap: max(5px, 5vw);
@@ -338,6 +339,7 @@ header{
     width: 100%;
     user-select: none;
     background-color: transparent;
+    font-size: 0.9rem;
     // border-bottom: 1px solid rgba(255, 255, 255, 0.27);
 }
 
@@ -1475,6 +1477,7 @@ td:nth-child(4), th:nth-child(4){
 
         .dashboard__block{
             flex: 1 0 30%;
+            max-width: 33.33%;
             height: 50%;
             display: flex;
             justify-content: center;
@@ -1485,11 +1488,16 @@ td:nth-child(4), th:nth-child(4){
             font-size: 0.6rem;
             flex-flow: column;
             user-select: none;
+            padding: max(5px, 0.5vw);
             
             span{
-                font-size: 2rem;
+                font-size: 1.5rem;
                 font-weight: 1000;
                 color: white;
+                width: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
         }
 
