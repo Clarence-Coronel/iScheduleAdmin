@@ -1292,7 +1292,7 @@ td:nth-child(4), th:nth-child(4) {
   gap: 6%;
 }
 .dashboard__left .dashboard__stats {
-  width: 95%;
+  width: 90%;
   height: 47%;
   background-color: white;
   box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
@@ -1346,7 +1346,7 @@ td:nth-child(4), th:nth-child(4) {
   background-color: rgb(113, 93, 226);
 }
 .dashboard__left .dashboard__per-dept {
-  width: 95%;
+  width: 90%;
   height: 47%;
   background-color: white;
   box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
@@ -1362,9 +1362,9 @@ td:nth-child(4), th:nth-child(4) {
 }
 .dashboard__right .dashboard__all-patients {
   height: 100%;
-  width: 95%;
+  width: 90%;
   background-color: white;
-  max-height: 500px;
+  max-height: 60vh;
   border-radius: max(10px, 1.2vw);
   overflow-y: auto;
   box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
@@ -1408,18 +1408,23 @@ td:nth-child(4), th:nth-child(4) {
   overflow-y: auto;
   align-items: flex-start;
   gap: max(5px, 0.2vw);
+  overflow: hidden;
 }
 .dept-bargraph .dept {
   color: rgb(80, 78, 78);
-  text-align: left;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
   background-color: rgb(95, 205, 124);
   white-space: nowrap;
-  padding-left: max(15px, 1vw);
+  padding-left: max(10px, 1vw);
   transition-duration: 500ms;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
   font-size: 0.8rem;
+  height: 3vh;
 }
 .dept-bargraph .dept:hover {
   cursor: pointer;
