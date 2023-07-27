@@ -282,7 +282,7 @@ header .header__right:hover {
 }
 
 .nav-links__item {
-  height: max(45px, 25%);
+  height: max(35px, 15%);
   border: unset;
   display: flex;
   font-size: 0.9rem;
@@ -301,7 +301,7 @@ header .header__right:hover {
 }
 
 .manage-admins {
-  height: max(35px, 25%);
+  height: max(35px, 15%);
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -358,7 +358,7 @@ header .header__right:hover {
 }
 
 .btn-content {
-  min-height: max(35px, 10%);
+  min-height: max(35px, 15%);
   height: -moz-fit-content;
   height: fit-content;
   display: flex;
