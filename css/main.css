@@ -1319,7 +1319,7 @@ td:nth-child(4), th:nth-child(4) {
   padding: max(5px, 0.5vw);
 }
 .dashboard__left .dashboard__stats .dashboard__block span {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 1000;
   color: white;
   width: 100%;
