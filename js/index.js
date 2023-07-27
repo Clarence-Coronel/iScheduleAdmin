@@ -11,6 +11,8 @@ let formErrorMessage = '';
 AOS.init();
 initial();
 
+// Auto generate dashboard assuming si super admin nag login lagyan pa logic to kung ano una page depende sa nag login
+generateDashboard()
 
 // DI KASAMA YUNG USERNAME KASI SA BACKEND NATIN SIYA IGENERATE FIRSTNAME-LASTNAME#kung pangilan siya ex.clarence-coronel2
 const newAdmin = {
