@@ -1498,4 +1498,32 @@ td:nth-child(4), th:nth-child(4) {
   .dashboard__right .dashboard__all-patients {
     max-height: unset;
   }
+}
+.account-settings {
+  width: 100%;
+  height: 85vh;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+.account-settings .account-settings__content {
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+  width: 50%;
+  height: -moz-fit-content;
+  height: fit-content;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
+  border-radius: max(10px, 1.2vw);
+  margin-top: max(15px, 1vw);
+  padding: max(15px, 2vw);
+  gap: max(15px, 1vw);
+}
+.account-settings .account-settings__content .account-settings__input-container {
+  display: flex;
+  flex-flow: row wrap;
+}
+.account-settings .account-settings__content .account-settings__input-container label {
+  width: 100%;
 }/*# sourceMappingURL=main.css.map */

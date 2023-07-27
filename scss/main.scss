@@ -740,7 +740,7 @@ input:-webkit-autofill:focus{
 }
 
 .admin-logs, .admin-list{
-    margin-top: max(15px, 1vw);
+    margin-top: $box-margin-top;
     display: flex;
     width: 100%;
     height: 80vh;
@@ -1034,7 +1034,7 @@ td:nth-child(4), th:nth-child(4){
     overflow: hidden;
     
     .add-date{
-        margin: max(15px, 1vw) 0;
+        margin: $box-margin-top 0;
         height: fit-content;
         width: 100%;
         // min-width: 300px;
@@ -1180,7 +1180,7 @@ td:nth-child(4), th:nth-child(4){
         background-color: white;
         width: 80%;
         height: fit-content;
-        margin-top: max(15px, 1vw);
+        margin-top: $box-margin-top;
         border-radius: max(10px, 1.2vw);
         display: flex;
         flex-flow: column;
@@ -1238,7 +1238,7 @@ td:nth-child(4), th:nth-child(4){
     width: 100%;
     display: flex;
     flex-flow: column;
-    padding: max(15px, 2vw);
+    padding: $box-padding;
     align-items: center;
     gap: max(10px, 1vw);
     border-radius: 20px;
@@ -1375,7 +1375,7 @@ td:nth-child(4), th:nth-child(4){
     align-items: center;
 
     .postAnnouncement__content{
-        margin-top: max(15px, 1vw);
+        margin-top: $box-margin-top;
         background-color: white;
         width: 80%;
         border-radius: max(7px, 0.5vw);
@@ -1383,7 +1383,7 @@ td:nth-child(4), th:nth-child(4){
         flex-flow: column;
         justify-content: flex-start;
         align-items: center;
-        padding: max(15px, 2vw);
+        padding: $box-padding;
         gap: max(10px, 1vw);
         box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
     }
@@ -1442,7 +1442,7 @@ td:nth-child(4), th:nth-child(4){
 
     .dashboard__left{
         flex: 1 0 auto;
-        margin-top: max(15px, 1vw);
+        margin-top: $box-margin-top;
         width: 50%;
         min-width: 320px;
         max-width: 960px;
@@ -1451,7 +1451,7 @@ td:nth-child(4), th:nth-child(4){
 
     .dashboard__right{
         flex: 1 0 auto;
-        margin-top: max(15px, 1vw);
+        margin-top: $box-margin-top;
         width: 50%;
         min-width: 320px;
         max-width: 960px;
@@ -1464,7 +1464,7 @@ td:nth-child(4), th:nth-child(4){
     flex-flow: row wrap;
     justify-content: center;
     align-items: flex-start;
-    margin: max(15px, 1vw) 0;
+    margin: $box-margin-top 0;
     gap: 6%;
 
     .dashboard__stats{
@@ -1546,7 +1546,7 @@ td:nth-child(4), th:nth-child(4){
 .dashboard__right{
     display: flex;
     justify-content: center;
-    margin: max(15px, 1vw) 0;
+    margin: $box-margin-top 0;
     height: 100%;
     // overflow: hidden;
     // padding: max(10px, 1vw);
@@ -1711,6 +1711,38 @@ td:nth-child(4), th:nth-child(4){
     .dashboard__right{
         .dashboard__all-patients{
             max-height: unset;
+        }
+    }
+}
+
+.account-settings{
+    width: 100%;
+    height: 85vh;
+    display: flex;
+    flex-flow: column;
+    // justify-content: center;
+    align-items: center;
+
+    .account-settings__content{
+        display: flex;
+        flex-flow: column;
+        align-items: flex-start;
+        width: 50%;
+        height: fit-content;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
+        border-radius: max(10px, 1.2vw);
+        margin-top: $box-margin-top;
+        padding: $box-padding;
+        gap: max(15px, 1vw);
+
+        .account-settings__input-container{
+            display: flex;
+            flex-flow: row wrap;
+
+            label{
+                width: 100%;
+            }
         }
     }
 }

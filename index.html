@@ -32,7 +32,7 @@
             <div class="header__right">
                 <div class="greeting accBtn" data-click="doNothing">
                     <span class="welcome accBtn" data-click="doNothing">Welcome,&nbsp</span>
-                    <span class="account-name accBtn"data-click="doNothing">Juan Dela Cruz</span>
+                    <span class="account-name accBtn"data-click="doNothing">Juan Reyes Dela Cruz</span>
                 </div>
                 <div class="role accBtn" data-click="doNothing">Super Admin</div>
                 <div class="account-setting">
@@ -117,7 +117,32 @@
     <main>
         <!-- Gawin dito sa HTML yung pages then icut then paste the innerHtml -->
         <!-- Yung overflow:auto sa section natin ipasok was sa main -->
-        
+        <section class="account-settings">
+            <div class="account-settings__content">
+                <div class="account-settings__input-container">
+                    <label for="accountID">Account ID:</label>
+                    <input type="text" name="accountID" id="accountID" value="1" disabled>
+                </div>
+                <div class="account-settings__input-container">
+                    <label for="accountUsername">Username:</label>
+                    <input type="text" name="accountUsername" id="accountUsername" value="juan-delacruz1" disabled>
+                </div>
+                <div class="account-settings__input-container">
+                    <label for="accountFullName">Full Name:</label>
+                    <input type="text" name="accountFullName" id="accountFullName" value="Juan Reyes Dela Cruz" disabled>
+                </div>
+                <div class="account-settings__input-container">
+                    <label for="accountPhone">Phone Number:</label>
+                    <input type="text" name="accountPhone" id="accountPhone" value="0967 599 2312" disabled>
+                    <span class="account-settings__edit">&nbsp;edit</span>
+                </div>
+                <div class="account-settings__input-container">
+                    <label for="accountPassword">Password:</label>
+                    <input type="password" name="accountPassword" id="accountPassword" value="Testing1!" disabled>
+                    <span class="account-settings__edit">&nbsp;edit</span>
+                </div>
+            </div>
+        </section>
     </main>
     <button type="button" class="btn btn-primary modal-launcher" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="display:none">
         Launch static backdrop modal
