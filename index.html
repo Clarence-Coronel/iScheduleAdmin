@@ -119,16 +119,46 @@
         <!-- Yung overflow:auto sa section natin ipasok was sa main -->
         <section class="dashboard">
             <div class="dashboard__left">
-                <div class="dashboard__stats" data-aos="fade-down" data-aos-duration="1000">
-                    <div class="dashboard__block">Recent Schedules<span>1134</span></div>
-                    <div class="dashboard__block">Recent Schedules from Website<span> 1112</span></div>
-                    <div class="dashboard__block">Recent Schedules from Others<span> 22</span></div>
-                    <div class="dashboard__block">Total Schedules<span> 2123</span></div>
-                    <div class="dashboard__block">Recent Admin Activities<span> 752</span></div>
-                    <div class="dashboard__block">Recent Website Visits<span> 1421</span></div>
+                <div class="dashboard__per-dept" data-aos="fade-down" data-aos-duration="1000">
+                    <select class="form-select" aria-label="Default select example">
+                        <option value="" selected hidden disabled>Select a Department</option>
+                        <option value="">Internal Medicine</option>
+                        <option value="">Internal Medicine Clearance</option>
+                        <option value="">Pediatric General</option>
+                        <option value="">Pediatric Cardiology</option>
+                        <option value="">Pediatric Clearance</option>
+                        <option value="">Surgery</option>
+                        <option value="">Surgery ROS</option>
+                        <option value="">Psychiatry (New)</option>
+                        <option value="">Psychiatry (Old)</option>
+                        <option value="">Nephrology</option>
+                        <option value="">Hematology</option>
+                        <option value="">Oncology</option>
+                        <option value="">OB GYNE (New)</option>
+                        <option value="">OB GYNE (Old)</option>
+                        <option value="">OB GYNE ROS</option>
+                        <option value="">ENT</option>
+                        <option value="">Neurology</option>
+                    </select>
+
+                    <div class="data-wrapper">
+                        <span class="data" title="Testing Tooltip...">Appointment Rate: 22%</span>
+                        <span class="data" title="Testing Tooltip...">Appointment Rate: 22%</span>
+                        <span class="data" title="Testing Tooltip...">Appointment Rate: 22%</span>
+                        <span class="data" title="Testing Tooltip...">Appointment Rate: 22%</span>
+                        <span class="data" title="Testing Tooltip...">Appointment Rate: 22%</span>
+                        <span class="data" title="Testing Tooltip...">Appointment Rate: 22%</span>
+                        <span class="data" title="Testing Tooltip...">Appointment Rate: 22%</span>
+                        <span class="data" title="Testing Tooltip...">Appointment Rate: 22%</span>
+                    </div>
                 </div>
-                <div class="dashboard__per-dept" data-aos="fade-up" data-aos-duration="1000">
-                    test
+                <div class="dashboard__stats" data-aos="fade-up" data-aos-duration="1000">
+                    <div class="dashboard__block" title="Recent appointments from the last 30 days.">Recent Appointments<span>1134</span></div>
+                    <div class="dashboard__block" title="Recent appointments obtained from the website.">Recent Appointments from Website<span> 1112</span></div>
+                    <div class="dashboard__block" title="Recent appointments obtained from other.">Recent Appointments from Others<span> 22</span></div>
+                    <div class="dashboard__block" title="Overall number of all appointments.">Total Appointments<span>2123</span></div>
+                    <div class="dashboard__block" title="Recent admin activities from the last 30 days.">Recent Admin Activities<span> 752</span></div>
+                    <div class="dashboard__block" title="Recent website visits from the last 30 days.">Recent Website Visits<span> 1421</span></div>
                 </div>
             </div>
             <div class="dashboard__right">

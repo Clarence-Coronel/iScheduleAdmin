@@ -1264,6 +1264,7 @@ td:nth-child(4), th:nth-child(4) {
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 .dashboard .dashboard__left {
   flex: 1 0 auto;
@@ -1288,10 +1289,11 @@ td:nth-child(4), th:nth-child(4) {
   justify-content: center;
   align-items: flex-start;
   margin: max(15px, 1vw) 0;
+  gap: 6%;
 }
 .dashboard__left .dashboard__stats {
   width: 90%;
-  height: 45%;
+  height: 47%;
   background-color: white;
   box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
   border-radius: max(10px, 1.2vw);
@@ -1345,10 +1347,11 @@ td:nth-child(4), th:nth-child(4) {
 }
 .dashboard__left .dashboard__per-dept {
   width: 90%;
-  height: 45%;
+  height: 47%;
   background-color: white;
   box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
   border-radius: max(10px, 1.2vw);
+  padding: max(10px, 2vw);
 }
 
 .dashboard__right {
@@ -1360,10 +1363,27 @@ td:nth-child(4), th:nth-child(4) {
   height: 100%;
   width: 90%;
   background-color: white;
-  max-height: 550px;
+  max-height: -moz-fit-content;
+  max-height: fit-content;
   border-radius: max(10px, 1.2vw);
   overflow-y: auto;
   box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
+}
+
+.data-wrapper {
+  width: 100%;
+  height: 80%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(45%, 1fr));
+  grid-template-rows: repeat(auto-fit, minmax(15%, 1fr));
+  gap: max(15px, 1vw);
+  padding: max(10px, 0.5vw);
+}
+.data-wrapper .data {
+  font-size: 0.7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .dashboard__header {
@@ -1371,6 +1391,7 @@ td:nth-child(4), th:nth-child(4) {
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
+  margin-bottom: max(10px, 1.5vw);
   gap: max(5px, 0.5vw);
   padding: max(7px, 1vw);
 }
@@ -1397,6 +1418,7 @@ td:nth-child(4), th:nth-child(4) {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+  font-size: 0.8rem;
 }
 .dept-bargraph .dept:hover {
   cursor: pointer;
@@ -1466,8 +1488,5 @@ td:nth-child(4), th:nth-child(4) {
   }
   .postAnnouncement__content button {
     max-width: 25%;
-  }
-  .dashboard__right .dashboard__all-patients {
-    max-height: 750px;
   }
 }/*# sourceMappingURL=main.css.map */
