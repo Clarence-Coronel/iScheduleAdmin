@@ -531,3 +531,11 @@ function statusMsgCounter(inputFieldId, counterId, max){
     statusMsgCtr.innerHTML = `${remainingChar}`;
 }
 
+function seePassword(fieldID, iconID){
+    field = document.getElementById(fieldID);
+    icon = document.getElementById(iconID);
+
+    icon.innerHTML = icon.innerHTML == 'visibility_off' ? 'visibility' : 'visibility_off';
+
+    field.setAttribute('type', icon.innerHTML == 'visibility_off' ? 'password' : 'text');
+}
