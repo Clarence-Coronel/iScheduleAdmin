@@ -684,5 +684,10 @@ function generateBlockDates(){
     showTableCell();
 }
 
+function generateChangePhone(){
 
+}
 
+function generateChangePassword(){
+    
+}
