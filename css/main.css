@@ -1600,13 +1600,13 @@ td:nth-child(4), th:nth-child(4) {
 .acc-edit-container .account-field:hover {
   cursor: unset !important;
 }
-.acc-edit-container span:nth-child(2) {
+.acc-edit-container .ico--acc-edit {
   width: 100%;
   text-align: right;
   color: rgb(9, 129, 235);
 }
 
-.acc-edit-container:hover span:nth-child(2) {
+.acc-edit-container:hover .ico--acc-edit {
   cursor: pointer !important;
   color: #0a58ca;
 }

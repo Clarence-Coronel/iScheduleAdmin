@@ -685,9 +685,9 @@ function generateBlockDates(){
 }
 
 function generateChangePhone(){
-
+    alert('change phone');
 }
 
 function generateChangePassword(){
-    
+    alert('change password');
 }
