@@ -1495,7 +1495,8 @@ td:nth-child(4), th:nth-child(4) {
   display: flex;
   flex-flow: column;
   align-items: center;
-  width: 30%;
+  width: 40%;
+  max-width: 400px;
   min-width: 310px;
   height: -moz-fit-content;
   height: fit-content;
@@ -1507,6 +1508,7 @@ td:nth-child(4), th:nth-child(4) {
   padding: max(15px, 2vw);
   gap: max(15px, 1vw);
   overflow: hidden;
+  padding-bottom: max(70px, 5%);
   border-bottom: min(10px, 5vw) solid #7995e7;
   /** For tablet devices **/
   /** For mobile devices **/
@@ -1568,9 +1570,14 @@ td:nth-child(4), th:nth-child(4) {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+  font-weight: 700;
 }
 .account-settings .account-settings__content .account-settings__input-container .account-field:hover {
   cursor: not-allowed;
+}
+.account-settings .account-settings__content .account-settings__input-container label {
+  color: gray;
+  font-size: 0.8rem;
 }
 .account-settings .account-settings__content .account-settings__input-container label:hover {
   cursor: unset;
