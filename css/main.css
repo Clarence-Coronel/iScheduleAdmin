@@ -1482,6 +1482,132 @@ td:nth-child(4), th:nth-child(4) {
   width: 30.88%;
 }
 
+.account-settings {
+  width: 100%;
+  height: 85vh;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+.account-settings .account-settings__content {
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  width: 30%;
+  min-width: 310px;
+  height: -moz-fit-content;
+  height: fit-content;
+  min-height: 400px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
+  border-radius: max(10px, 1.2vw);
+  margin-top: max(15px, 1vw);
+  padding: max(15px, 2vw);
+  gap: max(15px, 1vw);
+  overflow: hidden;
+  border-bottom: min(10px, 5vw) solid #7995e7;
+  /** For tablet devices **/
+  /** For mobile devices **/
+}
+.account-settings .account-settings__content .custom-shape-divider-top-1689432371 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+.account-settings .account-settings__content .custom-shape-divider-top-1689432371 svg {
+  position: relative;
+  display: block;
+  width: calc(133% + 1.3px);
+  height: 70px !important;
+}
+.account-settings .account-settings__content .custom-shape-divider-top-1689432371 .shape-fill {
+  fill: #4e73df;
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .account-settings .account-settings__content .custom-shape-divider-top-1689432371 svg {
+    width: calc(140% + 1.3px);
+    height: 201px;
+  }
+}
+@media (max-width: 767px) {
+  .account-settings .account-settings__content .custom-shape-divider-top-1689432371 svg {
+    width: calc(142% + 1.3px);
+    height: 85px;
+  }
+}
+.account-settings .account-settings__content .ico-acc {
+  font-size: 3rem;
+  border-radius: 100px;
+  padding: max(15px, 1.2vw);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  transition-duration: 500ms;
+  z-index: 1;
+  background-color: #4e73df;
+  color: white;
+  border: 5px solid white;
+}
+.account-settings .account-settings__content .account-settings__input-container {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  border: unset;
+  border-bottom: 1px solid rgb(71, 70, 70);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.account-settings .account-settings__content .account-settings__input-container .account-field {
+  width: 100%;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.account-settings .account-settings__content .account-settings__input-container .account-field:hover {
+  cursor: not-allowed;
+}
+.account-settings .account-settings__content .account-settings__input-container label:hover {
+  cursor: unset;
+}
+
+.account-settings__content:hover .ico-acc {
+  background-color: white;
+  color: #4e73df;
+  border: 5px solid #4e73df;
+  transform: rotate(360deg);
+  cursor: pointer;
+}
+
+.acc-edit-container {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  width: 100%;
+}
+.acc-edit-container .account-field:hover {
+  cursor: unset !important;
+}
+.acc-edit-container span:nth-child(2) {
+  width: 100%;
+  text-align: right;
+  color: rgb(9, 129, 235);
+}
+
+.acc-edit-container:hover span:nth-child(2) {
+  cursor: pointer !important;
+  color: #0a58ca;
+}
+
+.acc-edit-container:hover .account-field {
+  cursor: pointer !important;
+}
+
 @media only screen and (min-width: 1200px) {
   .add-date .btn-submitblock {
     width: 30%;
@@ -1498,32 +1624,4 @@ td:nth-child(4), th:nth-child(4) {
   .dashboard__right .dashboard__all-patients {
     max-height: unset;
   }
-}
-.account-settings {
-  width: 100%;
-  height: 85vh;
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-}
-.account-settings .account-settings__content {
-  display: flex;
-  flex-flow: column;
-  align-items: flex-start;
-  width: 50%;
-  height: -moz-fit-content;
-  height: fit-content;
-  background-color: white;
-  box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
-  border-radius: max(10px, 1.2vw);
-  margin-top: max(15px, 1vw);
-  padding: max(15px, 2vw);
-  gap: max(15px, 1vw);
-}
-.account-settings .account-settings__content .account-settings__input-container {
-  display: flex;
-  flex-flow: row wrap;
-}
-.account-settings .account-settings__content .account-settings__input-container label {
-  width: 100%;
 }/*# sourceMappingURL=main.css.map */

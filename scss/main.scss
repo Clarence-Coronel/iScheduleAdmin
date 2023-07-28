@@ -1683,6 +1683,142 @@ td:nth-child(4), th:nth-child(4){
     }
 }
 
+.account-settings{
+    width: 100%;
+    height: 85vh;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: flex-start;
+
+    .account-settings__content{
+        position: relative;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        width: 30%;
+        min-width: 310px;
+        height: fit-content;
+        min-height: 400px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
+        border-radius: max(10px, 1.2vw);
+        margin-top: $box-margin-top;
+        padding: $box-padding;
+        gap: max(15px, 1vw);
+        overflow: hidden;
+        // padding-top: max(70px, 5%);
+        border-bottom: min(10px,5vw) solid lighten($primary-color, 10);
+
+        .custom-shape-divider-top-1689432371 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+        
+        .custom-shape-divider-top-1689432371 svg {
+            position: relative;
+            display: block;
+            width: calc(133% + 1.3px);
+            height: 70px !important;
+        }
+        
+        .custom-shape-divider-top-1689432371 .shape-fill {
+            fill: $primary-color;
+        }
+        
+        /** For tablet devices **/
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .custom-shape-divider-top-1689432371 svg {
+                width: calc(140% + 1.3px);
+                height: 201px;
+            }
+        }
+        
+        /** For mobile devices **/
+        @media (max-width: 767px) {
+            .custom-shape-divider-top-1689432371 svg {
+                width: calc(142% + 1.3px);
+                height: 85px;
+            }
+        }
+
+        .ico-acc{
+            font-size: 3rem;
+            border-radius: 100px;
+            padding: max(15px, 1.2vw);
+            user-select: none;
+            transition-duration: 500ms;
+            z-index: 1;
+            background-color: #4e73df;
+            color: white;
+            border: 5px solid white;
+        }
+
+        .account-settings__input-container{
+            width: 100%;
+            display: flex;
+            flex-flow: column;
+            border: unset;
+            border-bottom: 1px solid rgb(71, 70, 70);
+            user-select: none;
+
+            .account-field{
+                width: 100%;
+                user-select: none;
+            }
+
+            .account-field:hover{
+                cursor: not-allowed;
+            }
+
+            label:hover{
+                cursor: unset;
+            }
+        }
+
+    }
+}
+
+.account-settings__content:hover .ico-acc{
+    background-color: white;
+    color: $primary-color;
+    border: 5px solid $primary-color;
+    transform: rotate(360deg);
+    cursor: pointer;
+}
+
+.acc-edit-container{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    width: 100%;
+
+    .account-field:hover{
+        cursor: unset !important;
+    }
+
+    span:nth-child(2){
+        width: 100%;
+        text-align: right;
+        // position: absolute;
+        // left: 0;
+        color: rgb(9, 129, 235);
+    }
+}
+
+.acc-edit-container:hover span:nth-child(2){
+    cursor: pointer !important;
+    color: #0a58ca;
+}
+
+.acc-edit-container:hover .account-field{
+    cursor: pointer !important;
+}
+
 @media only screen and (min-width: 1200px ){
     .add-date{
         .btn-submitblock{
@@ -1713,36 +1849,10 @@ td:nth-child(4), th:nth-child(4){
             max-height: unset;
         }
     }
-}
 
-.account-settings{
-    width: 100%;
-    height: 85vh;
-    display: flex;
-    flex-flow: column;
-    // justify-content: center;
-    align-items: center;
-
-    .account-settings__content{
-        display: flex;
-        flex-flow: column;
-        align-items: flex-start;
-        width: 50%;
-        height: fit-content;
-        background-color: white;
-        box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
-        border-radius: max(10px, 1.2vw);
-        margin-top: $box-margin-top;
-        padding: $box-padding;
-        gap: max(15px, 1vw);
-
-        .account-settings__input-container{
-            display: flex;
-            flex-flow: row wrap;
-
-            label{
-                width: 100%;
-            }
-        }
-    }
+    // .account-settings{
+    //     .account-settings__content{
+    //         min-height: 600px;
+    //     }
+    // }
 }
