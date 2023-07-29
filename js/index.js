@@ -158,9 +158,11 @@ function showManageAdmins(){
     let newDisplay = manageAdmin.style.display == 'none' ? 'block' : 'none';
     changeArrow()
 
-    if(!contentIsOpen) manageAdmin.style.display = newDisplay;
+    manageAdmin.style.display = newDisplay;
 
-    contentIsOpen = false;
+    // if(!contentIsOpen) manageAdmin.style.display = newDisplay;
+
+    // contentIsOpen = false;
 }
 
 function changeArrow(){

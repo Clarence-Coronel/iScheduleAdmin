@@ -26,18 +26,63 @@ let accountSettings = `<section class="account-settings">
     </div>
     <div class="account-settings__input-container">
         <label for="">Phone Number</label>
-        <div class="acc-edit-container" onclick="generateChangePhone()">
+        <div class="acc-edit-container" onclick="generateEditPhone()">
             <span class="accountPhone account-field"id="accountPhone" >0967 599 2312</span>
             <span class="account-settings__edit"><span class="material-icons-outlined ico--acc-edit">edit</span></span>
         </div>
     </div>
     <div class="account-settings__input-container">
         <label for="">Password</label>
-        <div class="acc-edit-container" onclick="generateChangePassword()">
+        <div class="acc-edit-container" onclick="generateEditPassword()">
             <span class="accountPassword account-field" name="accountPassword" id="accountPassword">********</span>
             <span class="account-settings__edit"><span class="material-icons-outlined ico--acc-edit">edit</span></span>
         </div>
     </div>
+</div>
+</section>`;
+
+let editPhone = `<section class="editPhone">
+<div class="editPhone__content" data-aos="fade-right" data-aos-duration="1000">
+    <div class="editPhone__input-container">
+        <label for="">New Phone #</label>
+        <input type="text" id="newPhone" oninput="filterPhoneInput(this.id)">
+    </div>
+    <div class="editPhone__input-container">
+        <label for="">Password</label>
+        <div class="password-container">
+            <input type="password" id="confirmation" onpaste="return false;" ondrop="return false;">
+            <span class="material-icons-outlined ico-see" id="passwordIco" onclick="seePassword('confirmation', this.id)">visibility_off</span>
+        </div>
+    </div>
+    <button class="editPhone__submit" onclick="alert('labas modal na kunin OTP from new phone')">Update</button>
+</div>
+</section>`;
+
+let editPassword = `<section class="edit-password">
+<div class="edit-password__content" data-aos="fade-right" data-aos-duration="1000">
+    <div class="edit-password__input-container">
+        <label for="">Current Password</label>
+        <div class="password-container">
+            <input type="password" name="currentPassword" id="currentPassword">
+            <span class="material-icons-outlined ico-see" id="currentPasswordLabel" onclick="seePassword('currentPassword', this.id)">visibility_off</span>
+        </div>
+    </div>
+    <div class="edit-password__input-container">
+        <label for="">New Password</label>
+        <div class="password-container">
+            <input type="password" name="newPassword" id="newPassword">
+            <span class="material-icons-outlined ico-see" id="newPasswordLabel" onclick="seePassword('newPassword', this.id)">visibility_off</span>
+        </div>
+    </div>
+    <div class="edit-password__input-container">
+        <label for="">Confirm New Password</label>
+        <div class="password-container">
+            <input type="password" name="confirmNewPassword" id="confirmNewPassword">
+            <span class="material-icons-outlined ico-see" id="confirmNewPasswordLabel" onclick="seePassword('confirmNewPassword', this.id)">visibility_off</span>
+        </div>
+    </div>
+
+    <button class="edit-password__submit" onclick="alert('labas modal password is sucessfully changed')">Apply</button>
 </div>
 </section>`;
 
@@ -408,13 +453,13 @@ let createAccount = `<section class="add-admin">
             <label for="phone">Phone #</label>
         </div>
         <div class="input-container">
-            <input type="password" name="password" id="password" required onpaste="return false;" ondrop="return false;">
-            <span class="material-icons-outlined ico-pass">visibility_off</span>
+            <input type="password" name="password" id="password" required onpaste="return false;" ondrop="return false;" >
+            <span class="material-icons-outlined ico-pass" id="passwordLabel" onclick="seePassword('password', this.id)">visibility_off</span>
             <label for="password">Password</label>
         </div>
         <div class="input-container">
             <input type="password" name="confirm-password" id="confirmPassword" required onpaste="return false;" ondrop="return false;">
-            <span class="material-icons-outlined ico-pass">visibility_off</span>
+            <span class="material-icons-outlined ico-pass" id="confirmPasswordLabel" onclick="seePassword('confirmPassword', this.id)">visibility_off</span>
             <label for="confirmPassword">Confirm Password</label>
         </div>
         <div class="radio-container">
@@ -667,18 +712,26 @@ function generateAccountSettings(){
     main.innerHTML = accountSettings;
 }
 
+function generateEditPhone(){
+    main.innerHTML = editPhone;
+}
+
+function generateEditPassword(){
+    main.innerHTML = editPassword;
+}
+
 function generateDashboard(){
     main.innerHTML = dashboard;
 }
 
 function generateAdminLogs(){
-    contentIsOpen = true;
+    // contentIsOpen = true;
     main.innerHTML = adminLogs;
     showTableCell();
 }
 
 function generateAdminList(){
-    contentIsOpen = true;
+    // contentIsOpen = true;
     main.innerHTML = adminList;
     showTableCell();
 }
@@ -687,27 +740,27 @@ function generateCreateAcc(){
     main.innerHTML = createAccount;
     let iconPassword = document.querySelectorAll('.ico-pass');
     changeArrow();
-    contentIsOpen = true;
+    // contentIsOpen = true;
     createAccInputBorderStyle();
 
-    iconPassword.forEach((item)=>{
-        item.addEventListener('click', ()=>{
-            if(item.innerHTML == 'visibility_off'){
-                iconPassword.forEach((item2)=>{
-                    item2.innerHTML = 'visibility'
-                })
-                document.querySelector('#password').setAttribute('type', 'text');
-                document.querySelector('#confirmPassword').setAttribute('type', 'text');
-            }
-            else{
-                iconPassword.forEach((item)=>{
-                    item.innerHTML = 'visibility_off'
-                })
-                document.querySelector('#password').setAttribute('type', 'password');
-                document.querySelector('#confirmPassword').setAttribute('type', 'password');
-            }
-        })
-    });
+    // iconPassword.forEach((item)=>{
+    //     item.addEventListener('click', ()=>{
+    //         if(item.innerHTML == 'visibility_off'){
+    //             iconPassword.forEach((item2)=>{
+    //                 item2.innerHTML = 'visibility'
+    //             })
+    //             document.querySelector('#password').setAttribute('type', 'text');
+    //             document.querySelector('#confirmPassword').setAttribute('type', 'text');
+    //         }
+    //         else{
+    //             iconPassword.forEach((item)=>{
+    //                 item.innerHTML = 'visibility_off'
+    //             })
+    //             document.querySelector('#password').setAttribute('type', 'password');
+    //             document.querySelector('#confirmPassword').setAttribute('type', 'password');
+    //         }
+    //     })
+    // });
 }
 
 function generateWebsiteStatus(){
@@ -725,12 +778,4 @@ function generateManageData(){
 function generateBlockDates(){
     main.innerHTML = blockDates;
     showTableCell();
-}
-
-function generateChangePhone(){
-    alert('change phone');
-}
-
-function generateChangePassword(){
-    alert('change password');
 }
