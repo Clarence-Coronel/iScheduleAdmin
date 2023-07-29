@@ -1381,7 +1381,7 @@ td:nth-child(4), th:nth-child(4) {
   padding: max(10px, 0.5vw);
 }
 .data-wrapper .data {
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   display: flex;
   justify-content: center;
   align-items: center;
