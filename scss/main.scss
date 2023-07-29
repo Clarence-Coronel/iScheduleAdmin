@@ -14,7 +14,7 @@ body{
     display: flex;
     flex-flow: column;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: hidden;
     background-color: whitesmoke;
     position: relative;
 }
@@ -24,7 +24,7 @@ main{
     width: 100%;
     height: 100%;
     // background-color: red;
-    // overflow-y: auto;
+    overflow-y: auto;
 }
 
 .wrapper{
@@ -64,9 +64,9 @@ header{
         position: relative;
     }
 
-    .header__right:hover{
-        cursor: pointer;
-    }
+    // .header__right:hover{
+    //     cursor: pointer;
+    // }
 }
 
 .header__right{
@@ -84,6 +84,10 @@ header{
         .account-name{
             font-weight: 700;
         }
+
+        .welcome:hover, .account-name:hover{
+            cursor: pointer;
+        }
     }
     .role{
         width: 100%;
@@ -92,6 +96,10 @@ header{
         // position: relative;
         // bottom: 5px;
         text-align: right;
+    }
+
+    .role:hover{
+        cursor: pointer;
     }
 
     @keyframes appear {
@@ -226,6 +234,7 @@ header{
     z-index: 999;
     padding: max(5px, 0.5vw);
     // min-height: 900px;
+    // overflow-x: auto;
     // overflow-y: auto;
 
 
@@ -489,7 +498,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
 
 .form{
     background-color: white;
-    width: max(300px, 40%);
+    width: max(280px, 40%);
     height: fit-content;
     border-radius: max(7px, 1vw);
     margin: max(10px, 1.5vw) 0;
@@ -1685,6 +1694,7 @@ td:nth-child(4), th:nth-child(4){
     }
 }
 
+// walang s yung sa header tapos yung sa form may s
 .account-settings{
     width: 100%;
     height: 85vh;
@@ -1700,7 +1710,7 @@ td:nth-child(4), th:nth-child(4){
         align-items: center;
         width: 40%;
         max-width: 400px;
-        min-width: 310px;
+        min-width: 280px;
         height: fit-content;
         min-height: 400px;
         background-color: white;
