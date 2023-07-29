@@ -1638,7 +1638,12 @@ td:nth-child(4), th:nth-child(4) {
   display: flex;
   flex-flow: column;
 }
-.editPhone .editPhone__submit {
+.editPhone .editPhone__btn-container {
+  display: flex;
+  flex-flow: column-reverse;
+  gap: max(10px, 0.7vw);
+}
+.editPhone .editPhone__submit, .editPhone .editPhone__back {
   background-color: #4e73df;
   border: unset;
   color: white;
@@ -1648,8 +1653,14 @@ td:nth-child(4), th:nth-child(4) {
   width: 100%;
   height: 50px;
 }
+.editPhone .editPhone__back {
+  background-color: rgb(210, 208, 208);
+}
 .editPhone .editPhone__submit:hover {
   background-color: #6484e3;
+}
+.editPhone .editPhone__back:hover {
+  background-color: #dedddd;
 }
 
 .editPhone__input-container label {
@@ -1699,7 +1710,12 @@ td:nth-child(4), th:nth-child(4) {
   flex-flow: column;
   gap: max(15px, 2.5vw);
 }
-.edit-password .edit-password__submit {
+.edit-password .edit-password__btn-container {
+  display: flex;
+  flex-flow: column-reverse;
+  gap: max(10px, 0.7vw);
+}
+.edit-password .edit-password__submit, .edit-password .edit-password__back {
   background-color: #4e73df;
   border: unset;
   color: white;
@@ -1709,8 +1725,14 @@ td:nth-child(4), th:nth-child(4) {
   width: 100%;
   height: 50px;
 }
+.edit-password .edit-password__back {
+  background-color: rgb(210, 208, 208);
+}
 .edit-password .edit-password__submit:hover {
   background-color: #6484e3;
+}
+.edit-password .edit-password__back:hover {
+  background-color: #dedddd;
 }
 
 .edit-password__content .edit-password__input-container input {
@@ -1740,14 +1762,22 @@ td:nth-child(4), th:nth-child(4) {
   .dashboard__right .dashboard__all-patients {
     max-height: unset;
   }
-  .editPhone .editPhone__submit {
-    margin: 0 auto;
-    width: -moz-fit-content;
-    width: fit-content;
+  .editPhone .editPhone__btn-container {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
   }
-  .edit-password .edit-password__submit {
-    margin: 0 auto;
-    width: -moz-fit-content;
-    width: fit-content;
+  .editPhone .editPhone__submit, .editPhone .editPhone__back {
+    width: 150px;
+  }
+  .edit-password .edit-password__btn-container {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+  }
+  .edit-password .edit-password__submit, .edit-password .edit-password__back {
+    width: 150px;
   }
 }/*# sourceMappingURL=main.css.map */

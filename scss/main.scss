@@ -1854,7 +1854,13 @@ td:nth-child(4), th:nth-child(4){
         flex-flow: column;
     }
 
-    .editPhone__submit{
+    .editPhone__btn-container{
+        display: flex;
+        flex-flow: column-reverse;
+        gap: max(10px, 0.7vw);
+    }
+
+    .editPhone__submit, .editPhone__back{
         background-color: $primary-color;
         border: unset;
         color: white;
@@ -1865,9 +1871,19 @@ td:nth-child(4), th:nth-child(4){
         height: 50px;
     }
 
+    .editPhone__back{
+        background-color: $gray;
+    }
+
     .editPhone__submit:hover{
         background-color: lighten($primary-color, 5);
     }
+
+    .editPhone__back:hover{
+        background-color: lighten($color: $gray, $amount: 5);
+    }
+
+    
 }
 
 .editPhone__input-container{
@@ -1923,7 +1939,13 @@ td:nth-child(4), th:nth-child(4){
         gap: max(15px, 2.5vw);
     }
 
-    .edit-password__submit{
+    .edit-password__btn-container{
+        display: flex;
+        flex-flow: column-reverse;
+        gap: max(10px, 0.7vw);
+    }
+
+    .edit-password__submit, .edit-password__back{
         background-color: $primary-color;
         border: unset;
         color: white;
@@ -1934,8 +1956,16 @@ td:nth-child(4), th:nth-child(4){
         height: 50px;
     }
 
+    .edit-password__back{
+        background-color: $gray;
+    }
+
     .edit-password__submit:hover{
         background-color: lighten($color: $primary-color, $amount: 5);
+    }
+
+    .edit-password__back:hover{
+        background-color: lighten($gray, 5);
     }
 }
 
@@ -1986,17 +2016,38 @@ td:nth-child(4), th:nth-child(4){
         }
     }
 
+
     .editPhone{
-        .editPhone__submit{
-            margin: 0 auto;
-            width: fit-content;
+        .editPhone__btn-container{
+            width: 100%;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+            // gap: 0;
+        }
+    }
+    
+
+    .editPhone{
+        .editPhone__submit,  .editPhone__back{
+            // margin: 0 auto;
+            width: 150px;
         }
     }
 
     .edit-password{
-        .edit-password__submit{
-            margin: 0 auto;
-            width: fit-content;
+        .edit-password__btn-container{
+            width: 100%;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+        }
+    }
+
+    .edit-password{
+        .edit-password__submit, .edit-password__back{
+            // margin: 0 auto;
+            width: 150px;
         }
     }
 }

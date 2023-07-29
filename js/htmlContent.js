@@ -54,7 +54,10 @@ let editPhone = `<section class="editPhone">
             <span class="material-icons-outlined ico-see" id="passwordIco" onclick="seePassword('confirmation', this.id)">visibility_off</span>
         </div>
     </div>
-    <button class="editPhone__submit" onclick="alert('labas modal na kunin OTP from new phone')">Update</button>
+    <div class="editPhone__btn-container">
+        <button class="editPhone__back" onclick="generateAccountSettings()">Back</button>
+        <button class="editPhone__submit" onclick="alert('labas modal na kunin OTP from new phone')">Update</button>
+    </div>
 </div>
 </section>`;
 
@@ -81,8 +84,10 @@ let editPassword = `<section class="edit-password">
             <span class="material-icons-outlined ico-see" id="confirmNewPasswordLabel" onclick="seePassword('confirmNewPassword', this.id)">visibility_off</span>
         </div>
     </div>
-
-    <button class="edit-password__submit" onclick="alert('labas modal password is sucessfully changed')">Apply</button>
+    <div class="edit-password__btn-container">
+        <button class="edit-password__back" onclick="generateAccountSettings()">Back</button>
+        <button class="edit-password__submit" onclick="alert('labas modal password is sucessfully changed')">Update</button>
+    </div>
 </div>
 </section>`;
 
