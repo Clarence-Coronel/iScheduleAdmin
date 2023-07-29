@@ -502,7 +502,7 @@ let websiteStatus = `<section class="website-status">
             -->
         </div>
         <div class="status__msg">
-            <span class="msg-label">Message:</span> loresmloresmloresmloresmloresmloresmloresmloresmloresmloresmloresmloresmloresm loresmloresmloresmloresmloresm loresmloresmloresmloresmloresmloresm loresmloresmloresmloresmloresm
+            <span class="msg-label">Message:</span> Not Applicable
             <!-- Applicable lang if either Website is Down or Online Scheduling is down -->
         </div>
     </div>
