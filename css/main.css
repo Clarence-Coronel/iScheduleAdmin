@@ -1492,6 +1492,7 @@ td:nth-child(4), th:nth-child(4) {
   flex-flow: row nowrap;
   justify-content: center;
   align-items: flex-start;
+  overflow: auto;
 }
 .account-settings .account-settings__content {
   position: relative;
@@ -1509,7 +1510,7 @@ td:nth-child(4), th:nth-child(4) {
   border-radius: max(10px, 1.2vw);
   margin-top: max(15px, 1vw);
   padding: max(15px, 2vw);
-  gap: max(15px, 1vw);
+  gap: max(20px, 2.5vw);
   overflow: hidden;
   padding-bottom: max(70px, 5%);
   border-bottom: min(10px, 5vw) solid #7995e7;
@@ -1563,10 +1564,13 @@ td:nth-child(4), th:nth-child(4) {
   display: flex;
   flex-flow: column;
   border: unset;
-  border-bottom: 1px solid rgb(71, 70, 70);
+  border: 2px solid #4e73df;
+  border-radius: max(5px, 0.5vw);
+  padding: max(7px, 0.5vw);
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+  position: relative;
 }
 .account-settings .account-settings__content .account-settings__input-container .account-field {
   width: 100%;
@@ -1574,13 +1578,19 @@ td:nth-child(4), th:nth-child(4) {
      -moz-user-select: none;
           user-select: none;
   font-weight: 700;
+  height: 100%;
 }
 .account-settings .account-settings__content .account-settings__input-container .account-field:hover {
   cursor: not-allowed;
 }
 .account-settings .account-settings__content .account-settings__input-container label {
-  color: gray;
-  font-size: 0.8rem;
+  position: absolute;
+  padding: 0 max(3px, 0.2vw);
+  background-color: white;
+  transition-duration: 200ms;
+  color: #4e73df;
+  font-size: 0.9rem;
+  transform: translate(0, -110%);
 }
 .account-settings .account-settings__content .account-settings__input-container label:hover {
   cursor: unset;
@@ -1604,8 +1614,12 @@ td:nth-child(4), th:nth-child(4) {
   cursor: unset !important;
 }
 .acc-edit-container .ico--acc-edit {
+  font-size: 1rem;
   width: 100%;
   text-align: right;
+  position: absolute;
+  right: 2%;
+  top: 20%;
   color: rgb(9, 129, 235);
 }
 
@@ -1618,14 +1632,14 @@ td:nth-child(4), th:nth-child(4) {
   cursor: pointer !important;
 }
 
-.editPhone {
+.changeInfo {
   width: 100%;
   height: 85vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.editPhone .editPhone__content {
+.changeInfo .changeInfo__content {
   width: 40%;
   min-width: 300px;
   padding: max(15px, 2vw);
@@ -1634,18 +1648,14 @@ td:nth-child(4), th:nth-child(4) {
   background-color: white;
   display: flex;
   flex-flow: column;
-  gap: max(15px, 2.5vw);
+  gap: max(15px, 2vw);
 }
-.editPhone .editPhone__input-container {
-  display: flex;
-  flex-flow: column;
-}
-.editPhone .editPhone__btn-container {
+.changeInfo .changeInfo__btn-container {
   display: flex;
   flex-flow: column-reverse;
   gap: max(10px, 0.7vw);
 }
-.editPhone .editPhone__submit, .editPhone .editPhone__back {
+.changeInfo .changeInfo__submit, .changeInfo .changeInfo__back {
   background-color: #4e73df;
   border: unset;
   color: white;
@@ -1655,97 +1665,63 @@ td:nth-child(4), th:nth-child(4) {
   width: 100%;
   height: 50px;
 }
-.editPhone .editPhone__back {
+.changeInfo .changeInfo__back {
   background-color: rgb(210, 208, 208);
 }
-.editPhone .editPhone__submit:hover {
+.changeInfo .changeInfo__submit:hover {
   background-color: #6484e3;
 }
-.editPhone .editPhone__back:hover {
+.changeInfo .changeInfo__back:hover {
   background-color: #dedddd;
 }
 
-.editPhone__input-container label {
-  color: gray;
-  font-size: 0.8rem;
-}
-.editPhone__input-container input {
+.changeInfo__input-container {
+  border: 2px solid rgb(80, 78, 78);
+  height: min(50px, 10vw);
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: max(5px, 0.5vw);
   width: 100%;
-  border: unset;
-  border-bottom: 1px solid rgb(71, 70, 70);
-  padding-right: 10%;
-}
-
-.password-container {
-  width: 100%;
+  max-width: 500px;
   position: relative;
+  padding: 2px;
 }
-.password-container .ico-see {
-  font-size: 1rem;
+.changeInfo__input-container label {
+  color: rgb(80, 78, 78);
   position: absolute;
-  right: 2%;
+  padding: 0 max(3px, 0.2vw);
+  background-color: white;
+  transition-duration: 200ms;
+  font-size: 0.8rem;
+  left: 0;
+  bottom: 27%;
+}
+.changeInfo__input-container input {
+  border: unset;
+  border-radius: max(10px, 1vw);
+  padding: 0 max(5px, 1vw);
+  min-height: 20px;
+  font-weight: 500;
+  width: 100%;
+  height: 100%;
+}
+.changeInfo__input-container .ico-see {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+  margin-right: 1%;
+  font-size: 1rem;
 }
-.password-container .ico-see:hover {
+.changeInfo__input-container .ico-see:hover {
   cursor: pointer;
 }
-
-.edit-password {
-  width: 100%;
-  height: 85vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-.edit-password .edit-password__content {
-  width: 40%;
-  min-width: 300px;
-  padding: max(15px, 2vw);
-  margin-top: max(15px, 1vw);
-  border-radius: max(7px, 1vw);
-  box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
-  background-color: white;
-  display: flex;
-  flex-flow: column;
-  gap: max(15px, 2.5vw);
-}
-.edit-password .edit-password__btn-container {
-  display: flex;
-  flex-flow: column-reverse;
-  gap: max(10px, 0.7vw);
-}
-.edit-password .edit-password__submit, .edit-password .edit-password__back {
-  background-color: #4e73df;
-  border: unset;
-  color: white;
-  padding: max(10px, 0.5vw);
-  border-radius: max(10px, 0.5vw);
-  font-size: 1rem;
-  width: 100%;
-  height: 50px;
-}
-.edit-password .edit-password__back {
-  background-color: rgb(210, 208, 208);
-}
-.edit-password .edit-password__submit:hover {
-  background-color: #6484e3;
-}
-.edit-password .edit-password__back:hover {
-  background-color: #dedddd;
-}
-
-.edit-password__content .edit-password__input-container input {
-  width: 100%;
-  border: unset;
-  border-bottom: 1px solid rgb(71, 70, 70);
-  padding-right: 10%;
-}
-.edit-password__content .edit-password__input-container label {
-  color: gray;
-  font-size: 0.8rem;
+.changeInfo__input-container input:focus ~ label,
+.changeInfo__input-container input:valid ~ label {
+  color: #4e73df;
+  font-size: 0.9rem;
+  transform: translate(5%, -110%);
 }
 
 @media only screen and (min-width: 1200px) {
@@ -1764,22 +1740,13 @@ td:nth-child(4), th:nth-child(4) {
   .dashboard__right .dashboard__all-patients {
     max-height: unset;
   }
-  .editPhone .editPhone__btn-container {
+  .changeInfo .changeInfo__btn-container {
     width: 100%;
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
   }
-  .editPhone .editPhone__submit, .editPhone .editPhone__back {
-    width: 150px;
-  }
-  .edit-password .edit-password__btn-container {
-    width: 100%;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
-  }
-  .edit-password .edit-password__submit, .edit-password .edit-password__back {
+  .changeInfo .changeInfo__submit, .changeInfo .changeInfo__back {
     width: 150px;
   }
 }/*# sourceMappingURL=main.css.map */

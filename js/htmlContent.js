@@ -3,7 +3,7 @@ const main = document.querySelector('main');
 //GAWING FORM YUNG MGA CONTAINER NG INPUT FIELDS?
 
 let accountSettings = `<section class="account-settings">
-<div class="account-settings__content"  data-aos="fade-right" data-aos-duration="1000">
+<div class="account-settings__content"  data-aos="fade-right" data-aos-duration="500">
     <div class="custom-shape-divider-top-1689432371">
         <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
             <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
@@ -41,59 +41,51 @@ let accountSettings = `<section class="account-settings">
 </div>
 </section>`;
 
-let editPhone = `<section class="editPhone">
-<div class="editPhone__content" data-aos="fade-right" data-aos-duration="1000">
-    <div class="editPhone__input-container">
-        <label for="">New Phone #</label>
-        <input type="text" id="newPhone" oninput="filterPhoneInput(this.id)">
+let editPhone = `<section class="changeInfo">
+<div class="changeInfo__content" data-aos="fade-right" data-aos-duration="500">
+    <div class="changeInfo__input-container">
+        <input type="text" id="newPhone" oninput="filterPhoneInput(this.id)" required onfocus="changeBorderFocus(this.id)" onblur="changeBorderBlur(this.id)">
+        <label for="newPhone">New Phone #</label>
     </div>
-    <div class="editPhone__input-container">
-        <label for="">Password</label>
-        <div class="password-container">
-            <input type="password" id="confirmation" onpaste="return false;" ondrop="return false;">
-            <span class="material-icons-outlined ico-see" id="passwordIco" onclick="seePassword('confirmation', this.id)">visibility_off</span>
-        </div>
+    <div class="changeInfo__input-container">
+        <input type="password" id="confirmation" onpaste="return false;" ondrop="return false;" required onfocus="changeBorderFocus(this.id)" onblur="changeBorderBlur(this.id)">
+        <label for="confirmation">Password</label>
+        <span class="material-icons-outlined ico-see" id="passwordIco" onclick="seePassword('confirmation', this.id)">visibility_off</span>
     </div>
-    <div class="editPhone__btn-container">
-        <button class="editPhone__back" onclick="generateAccountSettings()">Back</button>
-        <button class="editPhone__submit" onclick="alert('labas modal na kunin OTP from new phone')">Update</button>
+    <div class="changeInfo__btn-container">
+        <button class="changeInfo__back" onclick="generateAccountSettings()">Back</button>
+        <button class="changeInfo__submit" onclick="alert('labas modal na kunin OTP from new phone')">Update</button>
     </div>
 </div>
 </section>`;
 
-let editPassword = `<section class="edit-password">
-<div class="edit-password__content" data-aos="fade-right" data-aos-duration="1000">
-    <div class="edit-password__input-container">
-        <label for="">Current Password</label>
-        <div class="password-container">
-            <input type="password" name="currentPassword" id="currentPassword">
-            <span class="material-icons-outlined ico-see" id="currentPasswordLabel" onclick="seePassword('currentPassword', this.id)">visibility_off</span>
-        </div>
+let editPassword = `<section class="changeInfo" id="changePassword">
+<div class="changeInfo__content" data-aos="fade-right" data-aos-duration="500">
+    <div class="changeInfo__input-container">
+        <input type="password" id="currentPassword" onpaste="return false;" ondrop="return false;" required onfocus="changeBorderFocus(this.id)" onblur="changeBorderBlur(this.id)">
+        <label for="currentPassword">Current Password</label>
+        <span class="material-icons-outlined ico-see" id="currentPasswordIco" onclick="seePassword('currentPassword', this.id)">visibility_off</span>
     </div>
-    <div class="edit-password__input-container">
-        <label for="">New Password</label>
-        <div class="password-container">
-            <input type="password" name="newPassword" id="newPassword">
-            <span class="material-icons-outlined ico-see" id="newPasswordLabel" onclick="seePassword('newPassword', this.id)">visibility_off</span>
-        </div>
+    <div class="changeInfo__input-container">
+        <input type="password" id="newPassword" onpaste="return false;" ondrop="return false;" required onfocus="changeBorderFocus(this.id)" onblur="changeBorderBlur(this.id)">
+        <label for="newPassword">New Password</label>
+        <span class="material-icons-outlined ico-see" id="newPasswordIco" onclick="seePassword('newPassword', this.id)">visibility_off</span>
     </div>
-    <div class="edit-password__input-container">
-        <label for="">Confirm New Password</label>
-        <div class="password-container">
-            <input type="password" name="confirmNewPassword" id="confirmNewPassword">
-            <span class="material-icons-outlined ico-see" id="confirmNewPasswordLabel" onclick="seePassword('confirmNewPassword', this.id)">visibility_off</span>
-        </div>
+    <div class="changeInfo__input-container">
+        <input type="password" id="confirmNewPassword" onpaste="return false;" ondrop="return false;" required onfocus="changeBorderFocus(this.id)" onblur="changeBorderBlur(this.id)">
+        <label for="confirmNewPassword">Confirm New Password</label>
+        <span class="material-icons-outlined ico-see" id="confirNewPasswordIco" onclick="seePassword('confirmNewPassword', this.id)">visibility_off</span>
     </div>
-    <div class="edit-password__btn-container">
-        <button class="edit-password__back" onclick="generateAccountSettings()">Back</button>
-        <button class="edit-password__submit" onclick="alert('labas modal password is sucessfully changed')">Update</button>
+    <div class="changeInfo__btn-container">
+        <button class="changeInfo__back" onclick="generateAccountSettings()">Back</button>
+        <button class="changeInfo__submit" onclick="alert('labas modal password is successfully changed')">Update</button>
     </div>
 </div>
 </section>`;
 
 let dashboard = `<section class="dashboard">
 <div class="dashboard__left">
-    <div class="dashboard__per-dept" data-aos="fade-down" data-aos-duration="1000">
+    <div class="dashboard__per-dept" data-aos="fade-down" data-aos-duration="500">
         <select class="form-select" aria-label="Default select example">
             <option value="" selected hidden disabled>Select a Department</option>
             <option value="">ENT</option>
@@ -126,7 +118,7 @@ let dashboard = `<section class="dashboard">
             <span class="data" title="Testing Tooltip...">Appointment Rate: 22%</span>
         </div>
     </div>
-    <div class="dashboard__stats" data-aos="fade-up" data-aos-duration="1000">
+    <div class="dashboard__stats" data-aos="fade-up" data-aos-duration="500">
         <div class="dashboard__block" title="Recent appointments from the last 30 days.">Recent Appointments<span>1134</span></div>
         <div class="dashboard__block" title="Recent appointments obtained from the website.">Recent Appointments from Website<span> 1112</span></div>
         <div class="dashboard__block" title="Recent appointments obtained from others.">Recent Appointments from Others<span> 22</span></div>
@@ -136,7 +128,7 @@ let dashboard = `<section class="dashboard">
     </div>
 </div>
 <div class="dashboard__right">
-    <div class="dashboard__all-patients" data-aos="fade-left" data-aos-duration="1000">
+    <div class="dashboard__all-patients" data-aos="fade-left" data-aos-duration="500">
         <div class="dashboard__header">
             <span class="title">Distribution Of Appointments By</span>
             <select class="form-select" aria-label="Default select example">
@@ -170,7 +162,7 @@ let dashboard = `<section class="dashboard">
 
 // By default yung content ni table is yung today lang
 let adminLogs = `<section class="admin-logs">
-<div class="admin-logs-wrapper" data-aos="fade-right" data-aos-duration="1000">
+<div class="admin-logs-wrapper" data-aos="fade-right" data-aos-duration="500">
     <div class="admin-logs__body">
         <h2>Filter</h2>
         <div class="admin-logs__filters">
@@ -366,7 +358,7 @@ let adminLogs = `<section class="admin-logs">
 </section>`;
 
 let adminList = `<section class="admin-list">
-<div class="admin-list-wrapper" data-aos="fade-right" data-aos-duration="1000">
+<div class="admin-list-wrapper" data-aos="fade-right" data-aos-duration="500">
 <div class="admin-table__body">
     <div class="search-container">
         <input type="text" placeholder="Search" id="adminSearch" onblur="inputLimiterBlur(this.id, 60)" oninput="inputLimiter(this.id, 60)">
@@ -428,7 +420,7 @@ let adminList = `<section class="admin-list">
 
 // mag popup modal hinihingi otp from sa tintype. so bali yung superadmin acc need pero yung actual gamit ng acc mag regis
 let createAccount = `<section class="add-admin">
-<div class="form-container"  data-aos="fade-right" data-aos-duration="1000">
+<div class="form-container"  data-aos="fade-right" data-aos-duration="500">
     <form class="form" autocomplete="off" onsubmit="return createAccountValidator()">
         <div class="custom-shape-divider-top-1689432371">
             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -488,7 +480,7 @@ let createAccount = `<section class="add-admin">
 </section>`;
 
 let websiteStatus = `<section class="website-status">
-<div class="website-status__wrapper" data-aos="fade-right" data-aos-duration="1000">
+<div class="website-status__wrapper" data-aos="fade-right" data-aos-duration="500">
     <div class="status">
         <div class="status__header">
             <!-- highlight_off = kapag down website -->
@@ -525,7 +517,7 @@ let websiteStatus = `<section class="website-status">
 </section>`;
 
 let postAnnouncement = `<section class="postAnnouncement">
-<div class="postAnnouncement__content" data-aos="fade-right" data-aos-duration="1000">
+<div class="postAnnouncement__content" data-aos="fade-right" data-aos-duration="500">
     <div class="announcement__input-container">
         <label for="announcementTitle">Announcement Title:</label>
         <input type="text" name="announcementTitle" id="announcementTitle" onblur="inputLimiterBlur(this.id, 30);" oninput="inputLimiter(this.id, 30)">
@@ -541,7 +533,7 @@ let postAnnouncement = `<section class="postAnnouncement">
 
 // Add modal when delete is pressed confirming the action and then another modal to obtain OTP  from super admin's number  for additional security
 let manageData = `<section class="manage-data">
-<div class="manage-date__content" data-aos="fade-right" data-aos-duration="1000">
+<div class="manage-date__content" data-aos="fade-right" data-aos-duration="500">
     <div class="field">
         <span class="field__name">Admin Logs</span>
         <p class="field__desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam quidem mollitia numquam pariatur autem.</p>
@@ -563,7 +555,7 @@ let manageData = `<section class="manage-data">
 // PAG PININDOT YUNG REPEAT EVERY YEAR MADISABLE YUNG YEAR FIELD
 let blockDates = `
 <section class="block-date">
-            <div class="add-date" data-aos="fade-right" data-aos-duration="1000">
+            <div class="add-date" data-aos="fade-right" data-aos-duration="500">
                 <span>Click the row to highlight/see more.</span>
                 <div class="table-container">
                     <table class="date-table">
