@@ -495,6 +495,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
 }
 
 .form {
+  box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
   background-color: white;
   width: max(280px, 40%);
   height: -moz-fit-content;
