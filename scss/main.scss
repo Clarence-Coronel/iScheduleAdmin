@@ -1973,72 +1973,24 @@ td:nth-child(4), th:nth-child(4){
     }
 }
 
-@media only screen and (min-width: 1200px ){
-    .add-date{
-        .btn-submitblock{
-            width: 30%;
-        }
-    }
-
-    .change-status{
-        button{
-            width: 25%;
-        }
-    }
-
-    .block-date{
-        .add-date{
-            max-width: 900px;
-        }
-    }
-
-    .postAnnouncement__content{
-        button{
-            max-width: 25%;
-        }
-    }
-
-    .dashboard__right{
-        .dashboard__all-patients{
-            max-height: unset;
-        }
-    }
-
-
-    .changeInfo{
-        .changeInfo__btn-container{
-            width: 100%;
-            display: flex;
-            flex-flow: row nowrap;
-            justify-content: center;
-            // gap: 0;
-        }
-    }
-    
-
-    .changeInfo{
-        .changeInfo__submit,  .changeInfo__back{
-            // margin: 0 auto;
-            width: 150px;
-        }
-    }
-}
-
 .schedule{
     width: 100%;
-    height: 85vh;
+    height: fit-content;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    align-items: center;
+    flex-flow: column;
+    gap: max(10px,1vw);
+    overflow-y: auto;
 
     .schedule__content{
         width: 90%;
-        height: 100%;
+        height: 80%;
         background-color: white;
         margin-top: $box-margin-top;
         padding: $box-padding;
         border-radius: $box-border-radius;
         box-shadow: $box-shadow;
+        overflow-y:auto;
     }
 }
 
@@ -2105,6 +2057,423 @@ td:nth-child(4), th:nth-child(4){
     .schedule__content{
         .schedule__partA{
             grid-template-columns: repeat(2, minmax(30%, 1fr));
+        }
+    }
+}
+
+.schedule__button-container{
+    display: flex;
+    flex-flow: column-reverse;
+    width: 90%;
+    height: 20%;
+    gap: max(7px, 1vw);
+
+    .schedule__btn{
+        width: 100%;
+        height: max(50px, 3vw);
+        padding: max(10px, 0.5vw);
+        border-radius: max(5px, 0.5vw);
+        border: unset;
+        color: white;
+    }
+
+    .schedule__back{
+        background-color: $gray;
+    }
+
+    .schedule__back:hover{
+        background-color: lighten($gray, 5);
+    }
+
+    .schedule__next{
+        background-color: $primary-color;
+    }
+
+    .schedule__next:hover{
+        background-color: lighten($primary-color, 5);
+    }
+}
+
+@media only screen and (min-width: 1200px ){
+    .add-date{
+        .btn-submitblock{
+            width: 30%;
+        }
+    }
+
+    .change-status{
+        button{
+            width: 25%;
+        }
+    }
+
+    .block-date{
+        .add-date{
+            max-width: 900px;
+        }
+    }
+
+    .postAnnouncement__content{
+        button{
+            max-width: 25%;
+        }
+    }
+
+    .dashboard__right{
+        .dashboard__all-patients{
+            max-height: unset;
+        }
+    }
+
+
+    .changeInfo{
+        .changeInfo__btn-container{
+            width: 100%;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+            // gap: 0;
+        }
+    }
+    
+    .changeInfo{
+        .changeInfo__submit,  .changeInfo__back{
+            // margin: 0 auto;
+            width: 150px;
+        }
+    }
+
+    .schedule__button-container{
+        display: flex;
+        flex-flow: row nowrap;
+        width: 90%;
+        height: 200px;
+        gap: max(7px, 1vw);
+        justify-content: flex-end;
+    
+        .schedule__btn{
+            width: 15%;
+        }
+    }
+}
+
+.third{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    overflow-y: auto;
+    padding:2vw;
+    gap: 2vw;
+
+    .calendar-container{
+        width: fit-content;
+        height: fit-content;
+        user-select: none;
+        width: fit-content;
+        display: flex;
+        flex-flow: column;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        border: 3px solid $fontbase-color;
+        border-radius: 5px;
+        // height: 1200px !important;
+
+        // max-width: 470px;
+        // max-height: 450px;
+    }
+
+    .calendar__info{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-flow: column;
+        justify-content: flex-start;
+        align-items: center;
+        max-width: 800px;
+    }
+
+    .calendar__color-indicator{
+        width: 100%;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+        gap: 5vw;
+        padding: 3px 0;
+    }
+
+    .slot-container{
+        display: flex;
+        flex-flow: column;
+        width: 100%;
+    }
+}
+
+.calendar-container{
+
+    .calendar__header{
+        padding: 0 5vw;
+        width: 100%;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+        min-height: 50px;
+        background-color: rgb(250, 108, 108);
+
+        height: 5vh;
+        // border-radius: 5px;
+
+        .calendar__month{
+            font-weight: 600;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .calendar__btn{
+            border: unset;
+            border-radius: 5px;
+            min-width: 20px;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition-duration: 400ms;
+        }
+
+    }
+
+    .calendar__arrow{
+        width: 25px;
+    }
+
+    .calendar-row{
+        height: fit-content;
+        width: 100%;
+        display: flex;
+        flex-flow: row nowrap;
+        // justify-content: flex-start;
+    }
+
+    .box{
+        border: 2px solid $fontbase-color;
+        width: 9vw;
+        height: 5vh;
+        flex-grow: 1;
+        max-width: 80px;
+        min-width: 30px;
+        max-height: 80px;
+        min-height: 30px;
+        border-radius: 5px;
+        margin: 2px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: black;
+        font-weight: 1000;
+    }
+
+    .block{
+        border: 2px solid $fontbase-color;
+        width: 9vw;
+        height: 5vh;
+        flex-grow: 1;
+        max-width: 80px;
+        min-width: 30px;
+        max-height: 80px;
+        min-height: 30px;
+        border-radius: 5px;
+        margin: 2px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: black;
+        font-weight: 1000;
+        
+        color: rgb(148, 145, 145);
+        background-color: rgb(218, 213, 213) !important;
+        user-select: none;
+        border: 2px solid black !important;
+        cursor: unset !important;
+    }
+
+    .date-selected{
+        background-color: $primary-color !important;
+        border-color: $primary-color;
+        color: white !important;
+    }
+    
+    .day{
+        text-align: center;
+        font-size: 0.7rem;
+        font-weight: 700;
+        border: unset;
+        height: fit-content;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+
+    .day:hover{
+        background-color: unset;
+        cursor: unset;
+    }
+    
+}
+
+.slot-container{
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .slot{
+        padding: 1vw;
+        width: 100%;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        border-bottom: 1px solid $fontbase-color;
+    }
+
+    .slot:hover{
+        cursor: pointer;
+        background-color: rgb(235, 233, 233);
+    }
+
+    .slot-selected{
+        background-color: $primary-color !important;
+        color: white !important;
+    }
+
+    .time{
+        font-style: italic;
+    }
+
+    .slotAvail{
+        font-weight: 700;
+    }
+
+    .calendar__instruction{
+        font-weight: 700;
+    }
+}
+
+.calendar__color-indicator{
+    .calendar__desc{
+        display: flex;
+        font-size: 0.8rem;
+        align-items: center;
+        gap: 3px;
+    }
+
+    .green{
+        background-color: white;
+        width: 12px;
+        height: 12px;
+        border: 1px solid $fontbase-color;
+    }
+
+    .red{
+        background-color: $unavail-color;
+        width: 12px;
+        height: 12px;
+        border: 1px solid $fontbase-color;
+    }
+
+    .gray{
+        background-color: rgb(218, 213, 213);
+        width: 12px;
+        height: 12px;
+        border: 1px solid $fontbase-color;
+    }
+}
+
+@media only screen and (min-width: 500px){
+
+    .calendar-container{
+        .box{
+            width: 7vw;
+            min-width: 50px;
+            min-height: 50px;
+        }
+
+        .calendar__header{
+            height: 5vh;
+            max-height: 100px;
+            
+        }
+    }
+    
+}
+
+@media only screen and (min-width: 1600px){
+    .third{
+        flex-flow: row nowrap;
+        justify-content: center;
+
+        .calendar__info{
+            justify-content: center;
+        }
+
+        .calendar-container{
+            box-shadow: -10px 10px rgba(110, 109, 109, 0.446);
+            transition-duration: 500ms;
+
+            .date:hover{
+                border: 5px solid $primary-color;
+                cursor: pointer;
+            }
+        }
+
+        .calendar-container:hover{
+            transform:  translateY(-15px);
+            box-shadow: -15px 15px rgba(110, 109, 109, 0.446);
+        }
+
+        .slot-container{
+            width: 100%;
+            height: 55%;
+            border: 3px solid $fontbase-color;
+            box-shadow: 10px 10px rgba(110, 109, 109, 0.446);
+            border-radius: 5px;
+            transition-duration: 500ms;
+        }
+
+        .slot-container:hover{
+            transform:  translateY(-15px);
+            box-shadow: 15px 15px rgba(110, 109, 109, 0.446);
+        }
+    }
+
+    // .calendar-container{
+    //     .box{
+    //         height: 7vh;
+    //     }
+    // }
+
+    .slot{
+        .time{
+            width: 100px;
+        }
+    }
+}
+
+@media only screen and (min-width: 1200px ){
+
+    .calendar__btn:hover{
+        cursor: pointer;
+        scale: 1.5;
+    }
+    
+    .slot{
+        .time{
+            width: unset;
         }
     }
 }

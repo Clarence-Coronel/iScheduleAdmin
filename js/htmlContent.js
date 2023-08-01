@@ -535,7 +535,7 @@ let postAnnouncement = `<section class="postAnnouncement">
 let manageData = `<section class="manage-data">
 <div class="manage-date__content" data-aos="fade-right" data-aos-duration="500">
     <div class="field">
-        <span class="field__name">Admin Logs</span>
+        <span class="field__name">Archived Admin Logs</span>
         <p class="field__desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam quidem mollitia numquam pariatur autem.</p>
         <button class="field__delete-btn">Delete</button>
     </div>

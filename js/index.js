@@ -7,6 +7,7 @@ let navLinkItem = document.querySelectorAll('.nav-links__item');
 let desktopMode = false;
 let contentIsOpen = false;
 let formErrorMessage = '';
+let formState = 0;
 // AOS Initialization
 AOS.init();
 initial();
@@ -551,4 +552,44 @@ function changeBorderBlur(id){
     let field = document.getElementById(id);
 
     if(field.value == "") field.parentElement.style.borderColor = 'rgb(80, 78, 78)';
+}
+
+
+// yung formState na variable is if magclick sa new generatePage dapat ma reset sa 0
+function nextForm(){
+    const formParts = document.querySelectorAll('.schedule__form');
+
+    if(formState < 2){
+        formState++;
+        
+        formParts.forEach((form)=>{
+            form.style.display = 'none';
+        });
+
+        if(formState == 1){
+            formParts[formState].style.display = 'flex';
+        }
+        else if(formState == 2){
+            formParts[formState].style.display = 'flex';
+        }
+    }
+}
+
+function backForm(){
+    const formParts = document.querySelectorAll('.schedule__form');
+
+    if(formState > 0){
+        formState--;
+
+        formParts.forEach((form)=>{
+            form.style.display = 'none';
+        });
+
+        if(formState == 0){
+            formParts[formState].style.display = 'grid';
+        }
+        else if(formState == 1){
+            formParts[formState].style.display = 'flex';
+        }
+    }
 }
