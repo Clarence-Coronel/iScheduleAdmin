@@ -160,7 +160,7 @@ header .header__right {
 .header__right .account-setting {
   display: none;
   width: 100%;
-  max-width: 300px;
+  max-width: 150px;
   height: -moz-fit-content;
   height: fit-content;
   background-color: white;
@@ -2133,6 +2133,11 @@ td:nth-child(4), th:nth-child(4) {
   }
   .slot .time {
     width: 100px;
+  }
+}
+@media only screen and (min-width: 400px) {
+  .header__right .account-setting {
+    max-width: 300px;
   }
 }
 @media only screen and (min-width: 1200px) {
