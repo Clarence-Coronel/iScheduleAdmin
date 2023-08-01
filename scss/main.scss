@@ -813,6 +813,12 @@ input:-webkit-autofill:focus{
         opacity: 0;
     }
 
+    .DatePickerInput::-webkit-inner-spin-button,
+    .DatePickerInput::-webkit-calendar-picker-indicator {
+        opacity:0 !important;   
+        -webkit-appearance: none !important;
+    }
+
     button{
         background-color: $primary-color;
         border: unset;

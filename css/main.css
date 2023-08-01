@@ -751,6 +751,11 @@ input:-webkit-autofill:focus {
   width: 100%;
   opacity: 0;
 }
+.admin-logs__filters .DatePickerInput::-webkit-inner-spin-button,
+.admin-logs__filters .DatePickerInput::-webkit-calendar-picker-indicator {
+  opacity: 0 !important;
+  -webkit-appearance: none !important;
+}
 .admin-logs__filters button {
   background-color: #4e73df;
   border: unset;
