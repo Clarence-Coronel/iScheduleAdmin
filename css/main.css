@@ -758,7 +758,7 @@ input:-webkit-autofill:focus {
   border-radius: max(4px, 0.5vw);
   padding: max(5px, 0.4vw);
   min-width: 100px;
-  width: 20%;
+  width: 30%;
   height: 100%;
 }
 .admin-logs__filters button:hover {
