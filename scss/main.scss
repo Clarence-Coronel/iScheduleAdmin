@@ -2511,3 +2511,22 @@ td:nth-child(4), th:nth-child(4){
         }
     }
 }
+
+
+.schedule__partC{
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+
+    .schedule__review-field{
+        width: 100%;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        padding: max(7px, 0.7vw)  max(10px, 1vw);
+    }
+    
+    .schedule__review-field:nth-child(odd){
+        background-color: rgb(237, 236, 236);
+    }
+}
