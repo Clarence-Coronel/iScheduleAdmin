@@ -1551,6 +1551,14 @@ td:nth-child(4), th:nth-child(4){
         box-shadow: $box-shadow;
         border-radius: max(10px, 1.2vw);
         padding: max(10px, 2vw);
+        overflow-y: auto;
+
+        select{
+            font-size: 1rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
     }
 }
 
@@ -1579,8 +1587,8 @@ td:nth-child(4), th:nth-child(4){
     height: 80%;
     display: grid;
     grid-template-columns: repeat( auto-fit, minmax(45%, 1fr) );
-    grid-template-rows: repeat( auto-fit, minmax(15%, 1fr) );
-    gap: max(15px, 1vw);
+    // grid-template-rows: repeat( auto-fit, minmax(15%, 1fr) );
+    gap: max(30px, 1.5vw);
     padding: max(10px, 0.5vw);
 
     .data{
@@ -1589,7 +1597,7 @@ td:nth-child(4), th:nth-child(4){
         font-size: 0.9rem;
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: center;        
     }
 }
 
@@ -2038,5 +2046,65 @@ td:nth-child(4), th:nth-child(4){
     .schedule__form{
         width: 100%;
         height: 100%;
+    }
+
+    .schedule__partA{
+        display: grid;
+        grid-template-columns: repeat(1, minmax(30%, 1fr));
+        align-items: center;
+        align-content: start;
+        gap: max(15px, 3vw);
+    }
+}
+
+.schedule__partA{
+    select,input{
+        // display: flex;
+        // align-items: flex-end;
+        // height: 50px;
+        border: unset !important;
+        border-radius:  unset !important;
+        padding: max(5px, 0.2vw) !important;
+
+        border-bottom: 1px solid black !important;
+    }
+
+    .schedule__input-container{
+        display: flex;
+        flex-flow: column;
+
+        label{
+            color: gray;
+        }
+    }
+}
+
+.birth-container{
+    width: 100%;
+    display: flex;
+    flex-flow: nowrap;
+    gap: max(10px, 1vw);
+
+    input{
+        width: 33.33%;
+    }
+}
+
+.name-container{
+    width: 100%;
+    display: flex;
+    flex-flow: nowrap;
+    gap: max(10px, 1vw);
+
+    input{
+        width: 33.33%;
+    }
+}
+
+@media only screen and (min-width: 1400px ){
+    .schedule__content{
+        .schedule__partA{
+            grid-template-columns: repeat(2, minmax(30%, 1fr));
+        }
     }
 }

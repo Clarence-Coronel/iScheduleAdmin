@@ -121,11 +121,96 @@
         <section class="schedule">
             <div class="schedule__content">
                 <div class="schedule__form schedule__partA">
-                    <select class="form-select" aria-label="Default select example">
-                        <option value="up">Website is Up</option>
-                        <option value="down">Website is Down</option>
-                        <option value="scheduledown">Scheduling is Down</option>
-                    </select>
+
+                    <div class="schedule__input-container">
+                        <label for="">Department</label>
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected disabled hidden></option>
+                            <option value="up">ENT</option>
+                        </select>
+                    </div>
+
+                    <!-- <div class="schedule__input-container">
+                        <label for="">First Name</label>
+                        <input type="text" name="" id="">
+                    </div>
+
+                    <div class="schedule__input-container">
+                        <label for="">Middle Name</label>
+                        <input type="text" name="" id="">
+                    </div>
+
+                    <div class="schedule__input-container">
+                        <label for="">Last Name</label>
+                        <input type="text" name="" id="">
+                    </div> -->
+
+                    <div class="schedule__input-container">
+                        <label for="">Full Name</label>
+                        <div class="name-container">
+                            <input type="text" name="" id="" placeholder="First Name">
+                            <input type="text" name="" id="" placeholder="Middle Name">
+                            <input type="text" name="" id="" placeholder="Last Name">
+                        </div>
+                    </div>
+                    
+                    <div class="schedule__input-container">
+                        <label for="">Sex</label>
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected disabled hidden></option>
+                            <option value="up">Male</option>
+                            <option value="down">Female</option>
+                        </select>
+                    </div>
+
+                    <div class="schedule__input-container">
+                        <label for="">Birthdate</label>
+                        <div class="birth-container">
+                            <input type="text" name="" id="" placeholder="DD">
+                            <input type="text" name="" id="" placeholder="MM">
+                            <input type="text" name="" id="" placeholder="YYYY">
+                        </div>
+                    </div>
+
+                    <div class="schedule__input-container">
+                        <label for="">Phone</label>
+                        <input type="text" name="phone" id="">
+                    </div>
+
+                    <div class="schedule__input-container">
+                        <label for="">Municipality</label>
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected disabled hidden></option>
+                            <option value="up">Municipality</option>
+                        </select>
+                    </div>
+
+                    <div class="schedule__input-container">
+                        <label for="">Barangay</label>
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected disabled hidden></option>
+                            <option value="up">Barangay</option>
+                        </select>
+                    </div>
+
+                    <div class="schedule__input-container">
+                        <label for="">Patient Type</label>
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected disabled hidden></option>
+                            <option value="up">Old Patient</option>
+                            <option value="down">New Patient</option>
+                        </select>
+                    </div>
+
+                    <div class="schedule__input-container">
+                        <label for="">Appointment Type</label>
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected disabled hidden></option>
+                            <option value="">Facebook</option>
+                            <option value="">Phone</option>
+                        </select>
+                    </div>
+
                 </div>
                 <div class="schedule__form schedule__partB" style="display: none;">
 

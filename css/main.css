@@ -1356,6 +1356,13 @@ td:nth-child(4), th:nth-child(4) {
   box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
   border-radius: max(10px, 1.2vw);
   padding: max(10px, 2vw);
+  overflow-y: auto;
+}
+.dashboard__left .dashboard__per-dept select {
+  font-size: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .dashboard__right {
@@ -1379,8 +1386,7 @@ td:nth-child(4), th:nth-child(4) {
   height: 80%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(45%, 1fr));
-  grid-template-rows: repeat(auto-fit, minmax(15%, 1fr));
-  gap: max(15px, 1vw);
+  gap: max(30px, 1.5vw);
   padding: max(10px, 0.5vw);
 }
 .data-wrapper .data {
@@ -1771,4 +1777,51 @@ td:nth-child(4), th:nth-child(4) {
 .schedule__content .schedule__form {
   width: 100%;
   height: 100%;
+}
+.schedule__content .schedule__partA {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(30%, 1fr));
+  align-items: center;
+  align-content: start;
+  gap: max(15px, 3vw);
+}
+
+.schedule__partA select, .schedule__partA input {
+  border: unset !important;
+  border-radius: unset !important;
+  padding: max(5px, 0.2vw) !important;
+  border-bottom: 1px solid black !important;
+}
+.schedule__partA .schedule__input-container {
+  display: flex;
+  flex-flow: column;
+}
+.schedule__partA .schedule__input-container label {
+  color: gray;
+}
+
+.birth-container {
+  width: 100%;
+  display: flex;
+  flex-flow: nowrap;
+  gap: max(10px, 1vw);
+}
+.birth-container input {
+  width: 33.33%;
+}
+
+.name-container {
+  width: 100%;
+  display: flex;
+  flex-flow: nowrap;
+  gap: max(10px, 1vw);
+}
+.name-container input {
+  width: 33.33%;
+}
+
+@media only screen and (min-width: 1400px) {
+  .schedule__content .schedule__partA {
+    grid-template-columns: repeat(2, minmax(30%, 1fr));
+  }
 }/*# sourceMappingURL=main.css.map */
