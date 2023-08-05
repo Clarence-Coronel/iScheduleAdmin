@@ -550,10 +550,8 @@ function changeBorderFocus(id){
 
 function changeBorderBlur(id){
     let field = document.getElementById(id);
-
     if(field.value == "") field.parentElement.style.borderColor = 'rgb(80, 78, 78)';
 }
-
 
 // yung formState na variable is if magclick sa new generatePage dapat ma reset sa 0
 function nextForm(){
