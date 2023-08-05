@@ -42,6 +42,7 @@ h1{
 }
 
 .login-form{
+    z-index: 1;
     border-radius: $box-border-radius;
     padding: $box-padding;
     box-shadow: $box-shadow;

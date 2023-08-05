@@ -97,6 +97,7 @@ h1 span {
 }
 
 .login-form {
+  z-index: 1;
   border-radius: max(7px, 1vw);
   padding: max(15px, 2vw);
   box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
