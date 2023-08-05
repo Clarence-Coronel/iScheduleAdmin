@@ -149,6 +149,9 @@ function generateErrorModal(){
 }
 
 function modalLauncher(){
+    let positive = document.querySelector('.positive');
+
+    positive.removeAttribute('onclick');
     let modalLauncher = document.querySelector('.modal-launcher');
     modalLauncher.click();
 }
@@ -590,4 +593,22 @@ function backForm(){
             formParts[formState].style.display = 'flex';
         }
     }
+}
+
+function confirmSignOut(){
+    const modalTitle = document.querySelector('.modal-title');
+    const modalBody = document.querySelector('.modal-body');
+    const positive = document.querySelector('.positive');
+    const negative = document.querySelector('.negative');
+    
+    modalTitle.innerHTML = 'Signing Out...';
+    modalBody.innerHTML = 'Are you sure?';
+    positive.innerHTML = 'Confirm';
+    modalLauncher()
+
+    positive.setAttribute('onclick', 'signOut()');
+}
+
+function signOut(){
+    window.location.href='./page/login.html';
 }
