@@ -55,11 +55,11 @@
             <div class="nav-links__item nav-links__title" data-click="doNothing">
                 <h1 data-click="doNothing"><span class="material-icons-outlined ico-admin"data-click="doNothing">admin_panel_settings</span>iSchedule <br> Admin Panel</h1>
             </div>
-            <button class="nav-links__item" onclick="generateDashboard()">
+            <button class="nav-links__item" onclick="generateDashboard();">
                 <span class="material-icons-outlined ico-nav">dashboard</span>
                 Dashboard
             </button>
-            <button class="nav-links__item">
+            <button class="nav-links__item" onclick="generateSchedule();">
                 <span class="material-icons-outlined ico-nav">calendar_month</span>
                 Schedule An Appointment
             </button>
@@ -87,7 +87,7 @@
                         <span class="material-icons-outlined ico-nav--sub">format_list_bulleted</span>
                         Admin List
                     </button>
-                    <button class="btn-content manage-admins__sub"  onclick="generateCreateAcc()">
+                    <button class="btn-content manage-admins__sub"  onclick="generateCreateAcc();">
                         <span class="material-icons-outlined ico-nav--sub">person_add_alt</span>
                         Create New Admin
                     </button>
@@ -120,204 +120,7 @@
         <!-- Gawin dito sa HTML yung pages then icut then paste the innerHtml -->
         <!-- Yung overflow:auto sa section natin ipasok was sa main -->
 
-        <section class="schedule">
-            <div class="schedule__content">
-                <div class="schedule__form schedule__partA">
-                    <div class="schedule__input-container">
-                        <label for="">Department</label>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected disabled hidden></option>
-                            <option value="up">ENT</option>
-                        </select>
-                    </div>
-
-                    <div class="schedule__input-container">
-                        <label for="">Full Name</label>
-                        <div class="name-container">
-                            <input type="text" name="" id="" placeholder="First Name">
-                            <input type="text" name="" id="" placeholder="Middle Name">
-                            <input type="text" name="" id="" placeholder="Last Name">
-                        </div>
-                    </div>
-                    
-                    <div class="schedule__input-container">
-                        <label for="">Sex</label>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected disabled hidden></option>
-                            <option value="up">Male</option>
-                            <option value="down">Female</option>
-                        </select>
-                    </div>
-                    <div class="schedule__input-container">
-                        <label for="">Birthdate</label>
-                        <div class="birth-container">
-                            <input type="text" name="" id="" placeholder="DD">
-                            <input type="text" name="" id="" placeholder="MM">
-                            <input type="text" name="" id="" placeholder="YYYY">
-                        </div>
-                    </div>
-
-                    <div class="schedule__input-container">
-                        <label for="">Phone #</label>
-                        <input type="text" name="phone" id="" placeholder="09XX XXX XXXX">
-                    </div>
-
-                    <div class="schedule__input-container">
-                        <label for="">Municipality</label>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected disabled hidden></option>
-                            <option value="up">Municipality</option>
-                        </select>
-                    </div>
-
-                    <div class="schedule__input-container">
-                        <label for="">Barangay</label>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected disabled hidden></option>
-                            <option value="up">Barangay</option>
-                        </select>
-                    </div>
-
-                    <div class="schedule__input-container">
-                        <label for="">Patient Type</label>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected disabled hidden></option>
-                            <option value="up">Old Patient</option>
-                            <option value="down">New Patient</option>
-                        </select>
-                    </div>
-
-                    <div class="schedule__input-container">
-                        <label for="">Appointment Type</label>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected disabled hidden></option>
-                            <option value="">Facebook</option>
-                            <option value="">Phone</option>
-                        </select>
-                    </div>
-
-                </div>
-                <div class="schedule__form schedule__partB" style="display: none;">
-                    <div class="form-part third">                                
-                        <input type="text" name="scheduleDate" id="scheduleDate" style="display: none;">
-                        <input type="text" name="timeSlot" id="timeSlot" style="display: none;">
-                        <div class="calendar-container">
-                            <div class="calendar__header">
-                                <div class="calendar__btn" id="calendar__prev"><img draggable="false" class="calendar__arrow" src="./../imgs/arrow-back.png" alt="" srcset=""></div>
-                                <div class="calendar__month"></div>
-                                <div class="calendar__btn" id="calendar__next"><img draggable="false" class="calendar__arrow" src="./../imgs/arrow-forward.png" alt="" srcset=""></div>
-                            </div>
-                            <div class="calendar-row zeroRow">
-                                <div class="box day">Sun</div>
-                                <div class="box day">Mon</div>
-                                <div class="box day">Tue</div>
-                                <div class="box day">Wed</div>
-                                <div class="box day">Thu</div>
-                                <div class="box day">Fri</div>
-                                <div class="box day">Sat</div>
-                            </div>
-                            <div class="calendar-row firstRow date-content">
-                            </div>
-                            <div class="calendar-row secondRow date-content">
-                            </div>
-                            <div class="calendar-row thirdRow date-content">
-                            </div>
-                            <div class="calendar-row fourthRow date-content">
-                            </div>
-                            <div class="calendar-row fifthRow date-content">
-                            </div>
-                            <div class="calendar-row sixthRow date-content">
-                            </div>
-                            <div class="calendar__color-indicator">
-                                <div class="calendar__desc">
-                                    <div class="green"></div>
-                                    <div class="calendar__color-green">Slots Open</div>
-                                </div>
-                                <div class="calendar__desc">
-                                    <div class="red"></div>
-                                    <div class="calendar__color-red">Slots Full</div>
-                                </div>
-                                <div class="calendar__desc">
-                                    <div class="gray"></div>
-                                    <div class="calendar__color-gray">Closed</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="calendar__info">
-                            <div class="slot-container">
-                                <!-- <div class="slot" id="a">
-                                    <div class="time">8:00 AM - 10:00 AM</div>
-                                    <div class="slotAvail">5 Slots Available</div>
-                                </div>
-                                <div class="slot" id="b">
-                                    <div class="time">10:00 AM - 11:00 AM</div>
-                                    <div class="slotAvail">7 Slots Available</div>
-                                </div>
-                                <div class="slot" id="c">
-                                    <div class="time">1:00 PM - 2:00 PM</div>
-                                    <div class="slotAvail">4 Slots Available</div>
-                                </div>
-                                <div class="slot" id="d">
-                                    <div class="time">2:00 PM - 4:00 PM</div>
-                                    <div class="slotAvail">9 Slots Available</div>
-                                </div> -->
-
-                                <div class="calendar__instruction">Pumili ng Petsa</div>
-                                <!-- <div class="calendar__instruction">Select a Date</div> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="schedule__form schedule__partC" style="display: none;">
-                    <div class="schedule__review-field">
-                        <span class="schedule__field-name">Schedule</span>
-                        <span class="schedule__field-content">August 17, 2023 (1:00 PM - 2:00 PM)</span>
-                    </div>
-                    <div class="schedule__review-field">
-                        <span class="schedule__field-name">Department</span>
-                        <span class="schedule__field-content">ENT</span>
-                    </div>
-                    <div class="schedule__review-field">
-                        <span class="schedule__field-name">Full Name</span>
-                        <span class="schedule__field-content">Pedro Santos Valiente</span>
-                    </div>
-                    <div class="schedule__review-field">
-                        <span class="schedule__field-name">Sex</span>
-                        <span class="schedule__field-content">Male</span>
-                    </div>
-                    <div class="schedule__review-field">
-                        <span class="schedule__field-name">Birthdate</span>
-                        <span class="schedule__field-content">January 12, 2000</span>
-                    </div>
-                    <div class="schedule__review-field">
-                        <span class="schedule__field-name">Phone #</span>
-                        <span class="schedule__field-content">0957 588 7844</span>
-                    </div>
-                    <div class="schedule__review-field">
-                        <span class="schedule__field-name">Address</span>
-                        <span class="schedule__field-content">Banga I, Plaridel, Bulacan</span>
-                    </div>
-                    <div class="schedule__review-field">
-                        <span class="schedule__field-name">Patient Type</span>
-                        <span class="schedule__field-content">New Patient</span>
-                    </div>
-                    <div class="schedule__review-field">
-                        <span class="schedule__field-name">Case #</span>
-                        <span class="schedule__field-content"></span>
-                    </div>
-                    <div class="schedule__review-field">
-                        <span class="schedule__field-name">Appointment Type</span>
-                        <span class="schedule__field-content">Facebook</span>
-                    </div>
-                </div>
-            </div>
-
-            
-            <div class="schedule__button-container">
-                <button class="schedule__btn schedule__back" onclick="backForm();">Back</button>
-                <button class="schedule__btn schedule__next" onclick="nextForm();">Next</button>
-            </div>
-        </section>
+        
     </main>
     <button type="button" class="btn btn-primary modal-launcher" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="display:none">
         Launch static backdrop modal
