@@ -2163,4 +2163,82 @@ td:nth-child(4), th:nth-child(4) {
 }
 .schedule__partC .schedule__review-field:nth-child(odd) {
   background-color: rgb(237, 236, 236);
+}
+
+.schedule-table {
+  width: 100%;
+}
+
+.view-schedule {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.view-schedule .view-schedule__content {
+  margin-top: max(15px, 1vw);
+  width: 80%;
+  height: 95%;
+  background-color: white;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: center;
+  box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
+  padding: max(15px, 2vw);
+  border-radius: max(7px, 1vw);
+}
+
+.view-schedule__content .view-schedule__header {
+  width: 100%;
+  height: 30%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+.view-schedule__content .view-schedule__table {
+  width: 100%;
+  height: 70%;
+  background-color: gray;
+}
+
+.view-schedule__header .view-schedule__nav {
+  width: 50%;
+  height: 40px;
+  min-width: 300px;
+  overflow: hidden;
+  display: flex;
+  background-color: rgb(194, 191, 191);
+}
+.view-schedule__header .view-schedule__nav .btn--quick-view {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+.view-schedule__header .view-schedule__nav .btn--filter {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+.view-schedule__header .view-schedule__nav .btn--quick-view:hover, .view-schedule__header .view-schedule__nav .btn--filter:hover {
+  cursor: pointer;
+  background-color: #cecccc;
+}
+.view-schedule__header .view-schedule__nav .view-schedule__selected {
+  background-color: #4e73df;
+}
+.view-schedule__header .view-schedule__nav .view-schedule__selected:hover {
+  cursor: pointer;
+  background-color: #6484e3;
+}
+.view-schedule__header .view-schedule__field {
+  width: 100%;
+  background-color: blue;
 }/*# sourceMappingURL=main.css.map */

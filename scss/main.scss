@@ -2530,3 +2530,103 @@ td:nth-child(4), th:nth-child(4){
         background-color: rgb(237, 236, 236);
     }
 }
+
+.schedule-table{
+    width: 100%;
+}
+
+.view-schedule{
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    
+    .view-schedule__content{
+        margin-top: $box-margin-top;
+        width: 80%;
+        height: 95%;
+        background-color: white;
+        display: flex;
+        flex-flow: column;
+        justify-content: flex-start;
+        align-items: center;
+        box-shadow: $box-shadow;
+        padding: $box-padding;
+        border-radius: $box-border-radius;
+    }
+}
+
+.view-schedule__content{
+
+    .view-schedule__header{
+        width: 100%;
+        height: 30%;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+    }
+
+    .view-schedule__table{
+        width: 100%;
+        height: 70%;
+        background-color: gray;
+    }
+}
+
+.view-schedule__header{
+
+    .view-schedule__nav{
+        width: 50%;
+        height: 40px;
+        min-width: 300px;
+        // border-radius: 50px;
+        overflow: hidden;
+        // border: 1px solid rgb(191, 191, 191);
+        display: flex;
+        background-color: rgb(194, 191, 191);
+
+        .btn--quick-view{
+            width: 50%;
+            height: 100%;
+            // border-radius: 50px;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .btn--filter{
+            width: 50%;
+            height: 100%;
+            // border-radius: 50px;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .btn--quick-view:hover, .btn--filter:hover{
+            cursor: pointer;
+            background-color: lighten($color: rgb(194, 191, 191), $amount: 5);
+        }
+
+        .view-schedule__selected{
+            background-color: $primary-color;
+        }
+
+        .view-schedule__selected:hover{
+            cursor: pointer;
+            background-color: lighten($color: $primary-color, $amount: 5);
+        }
+
+
+    }
+
+    .view-schedule__field{
+        width: 100%;
+        background-color: blue;
+    }
+}

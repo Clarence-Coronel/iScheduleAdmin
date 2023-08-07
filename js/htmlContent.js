@@ -1,3 +1,5 @@
+showTableCell();
+
 const main = document.querySelector('main');
 
 //GAWING FORM YUNG MGA CONTAINER NG INPUT FIELDS?
@@ -385,7 +387,7 @@ let adminLogs = `<section class="admin-logs">
                 <option value="">test</option>
             </select>
             <div class="search-container">
-                <input type="text" placeholder="Search" id="adminLogsSearch" onblur="inputLimiterBlur(this.id, 60)" oninput="inputLimiter(this.id, 60)">
+                <input type="text" placeholder="Search Username" id="adminLogsSearch" onblur="inputLimiterBlur(this.id, 60)" oninput="inputLimiter(this.id, 60)">
             </div>
             <button>Apply</button>
         </div>
@@ -922,6 +924,8 @@ function generateDashboard(){
 
 function generateSchedule(){
     main.innerHTML = schedule;
+    formState = 0;
+    InitialSetup();
 }
 
 function generateAdminLogs(){

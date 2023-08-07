@@ -5,11 +5,9 @@
 // Pagkanagpalit ng buwan iclear yung slots
 // pagkanagpalit ng date iclear yung slots
 // If walang laman slots mag lagay text na select a date
-const container = document.querySelector('.calendar-container');
-const monthContainer = document.querySelector('.calendar__month');
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-const calendarPrev = document.querySelector('#calendar__prev');
-const calendarNext = document.querySelector('#calendar__next');
+
+let container, monthContainer, calendarPrev, calendarNext;
 
 let nextMonthActive = false;
 
@@ -18,11 +16,6 @@ let selectedMonth = '';
 let selectedYear = '';
 let selectedDate = '';
 let selectedSlot = '';
-
-InitialSetup();
-
-calendarNext.addEventListener('click', nextMonthBtn);
-calendarPrev.addEventListener('click', prevMonthBtn);
 
 function loadSlots(selectedDateVal){
     let slotContainer = document.querySelector('.slot-container');
@@ -154,6 +147,15 @@ function prevMonthBtn(){
 }
 
 function InitialSetup(){
+
+    container = document.querySelector('.calendar-container');
+    monthContainer = document.querySelector('.calendar__month');
+    calendarPrev = document.querySelector('#calendar__prev');
+    calendarNext = document.querySelector('#calendar__next');
+
+    calendarNext.addEventListener('click', nextMonthBtn);
+    calendarPrev.addEventListener('click', prevMonthBtn);
+
     selectedMonth = months[date.getMonth()];
     selectedYear = date.getFullYear();
 
