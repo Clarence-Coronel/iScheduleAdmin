@@ -629,17 +629,16 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
 }
 
 .btn--addAdmin {
-  background-color: #4e73df;
+  background-color: #0577fa;
   color: white;
   border: unset;
-  padding: max(10px, 0.5vw);
   border-radius: max(10px, 0.5vw);
   width: 100%;
-  height: 50px;
+  height: max(30px, 3vw);
 }
 
 .btn--addAdmin:hover {
-  background-color: #6484e3;
+  background-color: #1e85fb;
 }
 
 .radio-container {
@@ -680,7 +679,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
     cursor: pointer;
   }
   .btn--addAdmin {
-    width: 40%;
+    width: 60%;
   }
 }
 input:-webkit-autofill,
@@ -757,17 +756,17 @@ input:-webkit-autofill:focus {
   -webkit-appearance: none !important;
 }
 .admin-logs__filters button {
-  background-color: #4e73df;
+  background-color: #0577fa;
   border: unset;
   color: white;
   border-radius: max(4px, 0.5vw);
   padding: max(5px, 0.4vw);
-  min-width: 100px;
+  min-width: 70px;
   width: 30%;
   height: 100%;
 }
 .admin-logs__filters button:hover {
-  background-color: #6484e3;
+  background-color: #1e85fb;
 }
 .admin-logs__filters .search-container {
   width: 100%;
@@ -786,6 +785,7 @@ input:-webkit-autofill:focus {
 .admin-logs__filters .form-select {
   width: 100%;
   height: 100%;
+  min-width: unset !important;
 }
 
 .table-container {
@@ -800,7 +800,7 @@ input:-webkit-autofill:focus {
 }
 
 thead tr th {
-  background-color: #4e73df;
+  background-color: rgb(67, 67, 67);
   color: white;
 }
 
@@ -852,7 +852,7 @@ td:hover {
   overflow: unset;
   text-overflow: unset;
   white-space: unset;
-  background-color: rgb(4, 62, 123);
+  background-color: rgb(67, 67, 67);
   color: white;
   cursor: pointer;
 }
@@ -1014,13 +1014,13 @@ td:nth-child(4), th:nth-child(4) {
   margin-top: auto;
   border: unset;
   color: white;
-  background-color: #4e73df;
-  padding: max(10px, 0.7vw);
+  background-color: #0577fa;
   width: 100%;
   border-radius: max(7px, 0.5vw);
+  height: max(30px, 3vw);
 }
 .block-date .btn-submitblock:hover {
-  background-color: #6484e3;
+  background-color: #1e85fb;
 }
 .date-table {
   width: 100%;
@@ -1048,7 +1048,7 @@ td:nth-child(4), th:nth-child(4) {
   width: max(20px, 2vw) !important;
   max-width: 40px;
   border-radius: max(15px, 1vw) !important;
-  background-color: #4e73df !important;
+  background-color: #0577fa !important;
 }
 
 .website-status {
@@ -1143,16 +1143,16 @@ td:nth-child(4), th:nth-child(4) {
   min-width: 150px;
 }
 .change-status button {
-  background-color: #4e73df;
+  background-color: #0577fa;
   color: white;
-  height: max(50px, 3vw);
+  height: max(30px, 3vw);
   border-radius: max(5px, 0.5vw);
   border: unset;
   width: 100%;
   max-width: 600px;
 }
 .change-status button:hover {
-  background-color: #6484e3;
+  background-color: #1e85fb;
 }
 .change-status h3 {
   font-size: 1rem;
@@ -1258,16 +1258,16 @@ td:nth-child(4), th:nth-child(4) {
   text-align: right;
 }
 .postAnnouncement__content button {
-  background-color: #4e73df;
+  background-color: #0577fa;
   color: white;
   border: unset;
   border-radius: max(5px, 0.5vw);
-  height: max(50px, 3vw);
+  height: max(30px, 3vw);
   width: 100%;
   max-width: 600px;
 }
 .postAnnouncement__content button:hover {
-  background-color: #6484e3;
+  background-color: #1e85fb;
 }
 
 .dashboard {
@@ -1672,20 +1672,19 @@ td:nth-child(4), th:nth-child(4) {
   gap: max(10px, 0.7vw);
 }
 .changeInfo .changeInfo__submit, .changeInfo .changeInfo__back {
-  background-color: #4e73df;
+  background-color: #0577fa;
   border: unset;
   color: white;
-  padding: max(10px, 0.5vw);
   border-radius: max(10px, 0.5vw);
   font-size: 1rem;
   width: 100%;
-  height: 50px;
+  height: max(30px, 3vw);
 }
 .changeInfo .changeInfo__back {
   background-color: rgb(210, 208, 208);
 }
 .changeInfo .changeInfo__submit:hover {
-  background-color: #6484e3;
+  background-color: #1e85fb;
 }
 .changeInfo .changeInfo__back:hover {
   background-color: #dedddd;
@@ -1824,8 +1823,7 @@ td:nth-child(4), th:nth-child(4) {
 }
 .schedule__button-container .schedule__btn {
   width: 100%;
-  height: max(50px, 3vw);
-  padding: max(10px, 0.5vw);
+  height: max(30px, 3vw);
   border-radius: max(5px, 0.5vw);
   border: unset;
   color: white;
@@ -1837,10 +1835,10 @@ td:nth-child(4), th:nth-child(4) {
   background-color: #dedddd;
 }
 .schedule__button-container .schedule__next {
-  background-color: #4e73df;
+  background-color: #0577fa;
 }
 .schedule__button-container .schedule__next:hover {
-  background-color: #6484e3;
+  background-color: #1e85fb;
 }
 
 @media only screen and (min-width: 1200px) {
@@ -2177,13 +2175,12 @@ td:nth-child(4), th:nth-child(4) {
   align-items: flex-start;
 }
 .view-schedule .view-schedule__content {
-  margin-top: max(15px, 1vw);
   width: 80%;
   height: 95%;
   background-color: white;
   display: flex;
   flex-flow: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
   padding: max(15px, 2vw);
@@ -2192,24 +2189,33 @@ td:nth-child(4), th:nth-child(4) {
 
 .view-schedule__content .view-schedule__header {
   width: 100%;
-  height: 30%;
+  height: -moz-fit-content;
+  height: fit-content;
   display: flex;
   flex-flow: column;
   align-items: center;
 }
 .view-schedule__content .view-schedule__table {
   width: 100%;
-  height: 70%;
-  background-color: gray;
+  height: 100%;
+}
+.view-schedule__content .view-schedule__table .table-container {
+  background-color: white;
+}
+.view-schedule__content .view-schedule__table tr:nth-child(even) {
+  background-color: rgb(221, 218, 218);
 }
 
 .view-schedule__header .view-schedule__nav {
-  width: 50%;
-  height: 40px;
-  min-width: 300px;
+  width: 100%;
+  height: 5vh;
+  min-height: 35px;
+  border-radius: 50px;
   overflow: hidden;
   display: flex;
   background-color: rgb(194, 191, 191);
+  max-width: 400px;
+  margin-bottom: min(15px, 5%);
 }
 .view-schedule__header .view-schedule__nav .btn--quick-view {
   width: 50%;
@@ -2240,5 +2246,40 @@ td:nth-child(4), th:nth-child(4) {
 }
 .view-schedule__header .view-schedule__field {
   width: 100%;
-  background-color: blue;
+  padding: max(10px, 1vw);
+}
+
+.view-schedule__quick-view .view-schedule__btn-group {
+  display: flex;
+  width: 100%;
+  flex-flow: column;
+  gap: max(10px, 1vw);
+  margin: max(10px, 1vw) 0;
+}
+.view-schedule__quick-view .view-schedule__btn-group button {
+  font-size: 1rem;
+  width: 100%;
+  background-color: #4e73df;
+  color: white;
+  border: unset;
+  border-radius: max(5px, 0.5vw);
+  min-height: 35px;
+  padding: 0.5%;
+}
+.view-schedule__quick-view .view-schedule__btn-group button:hover {
+  background-color: #6484e3;
+}
+
+@media only screen and (min-width: 1200px) {
+  .view-schedule__quick-view .view-schedule__btn-group {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    gap: max(10px, 1vw);
+  }
+  .view-schedule__quick-view .view-schedule__btn-group button {
+    min-height: 55px;
+    font-size: 1rem;
+    width: 33.33%;
+  }
 }/*# sourceMappingURL=main.css.map */

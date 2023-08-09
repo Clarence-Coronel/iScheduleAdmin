@@ -66,6 +66,7 @@ body {
 }
 
 main {
+  position: relative;
   width: 100%;
   height: 100%;
   background-image: linear-gradient(to right, #4e73df, rgb(140, 101, 192));
@@ -128,15 +129,15 @@ h1 span {
 .login-form .button-field button {
   width: 100%;
   color: white;
-  background-color: #4e73df;
+  background-color: #0577fa;
   border: unset;
-  height: 50px;
-  font-size: 1.1rem;
+  height: max(30px, 3vw);
+  font-size: 1.2rem;
   font-weight: 500;
   border-radius: max(5px, 0.5vw);
 }
 .login-form .button-field button:hover {
-  background-color: #6484e3;
+  background-color: #1e85fb;
   cursor: pointer;
 }
 .login-form .button-field a {
