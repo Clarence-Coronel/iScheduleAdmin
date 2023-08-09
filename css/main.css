@@ -689,7 +689,7 @@ input:-webkit-autofill:focus {
 }
 
 .admin-logs-wrapper, .admin-list-wrapper {
-  width: 80%;
+  width: 95%;
   background-color: white;
   padding: max(10px, 2vw);
   box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
@@ -959,7 +959,7 @@ td:nth-child(4), th:nth-child(4) {
   margin: max(15px, 1vw) 0;
   height: -moz-fit-content;
   height: fit-content;
-  width: 80%;
+  width: 95%;
   background-color: white;
   padding: max(20px, 2vw);
   display: flex;
@@ -1849,7 +1849,8 @@ td:nth-child(4), th:nth-child(4) {
     width: 25%;
   }
   .block-date .add-date {
-    max-width: 900px;
+    max: widt;
+    h: 900px;
   }
   .postAnnouncement__content button {
     max-width: 25%;
@@ -2169,18 +2170,18 @@ td:nth-child(4), th:nth-child(4) {
 
 .view-schedule {
   width: 100%;
-  height: 90vh;
+  height: 85vh;
   display: flex;
   justify-content: center;
   align-items: flex-start;
 }
 .view-schedule .view-schedule__content {
-  width: 80%;
-  height: 95%;
+  margin-top: max(15px, 1vw);
+  width: 95%;
   background-color: white;
   display: flex;
   flex-flow: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
   padding: max(15px, 2vw);
@@ -2238,11 +2239,11 @@ td:nth-child(4), th:nth-child(4) {
   background-color: #cecccc;
 }
 .view-schedule__header .view-schedule__nav .view-schedule__selected {
-  background-color: #4e73df;
+  background-color: #0577fa;
 }
 .view-schedule__header .view-schedule__nav .view-schedule__selected:hover {
   cursor: pointer;
-  background-color: #6484e3;
+  background-color: #1e85fb;
 }
 .view-schedule__header .view-schedule__field {
   width: 100%;
@@ -2259,7 +2260,7 @@ td:nth-child(4), th:nth-child(4) {
 .view-schedule__quick-view .view-schedule__btn-group button {
   font-size: 1rem;
   width: 100%;
-  background-color: #4e73df;
+  background-color: #0577fa;
   color: white;
   border: unset;
   border-radius: max(5px, 0.5vw);
@@ -2267,7 +2268,7 @@ td:nth-child(4), th:nth-child(4) {
   padding: 0.5%;
 }
 .view-schedule__quick-view .view-schedule__btn-group button:hover {
-  background-color: #6484e3;
+  background-color: #1e85fb;
 }
 
 @media only screen and (min-width: 1200px) {
