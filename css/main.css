@@ -817,6 +817,9 @@ th {
   align-items: center;
   padding: 0 max(2px, 0.4vw);
   min-width: 120px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 td {
@@ -852,7 +855,7 @@ td:hover {
   overflow: unset;
   text-overflow: unset;
   white-space: unset;
-  background-color: rgb(67, 67, 67);
+  background-color: rgb(130, 129, 129);
   color: white;
   cursor: pointer;
 }
@@ -2202,6 +2205,13 @@ td:nth-child(4), th:nth-child(4) {
 }
 .view-schedule__content .view-schedule__table .table-container {
   background-color: white;
+}
+.view-schedule__content .view-schedule__table td, .view-schedule__content .view-schedule__table th {
+  flex: 1 1 auto;
+  width: 200px;
+}
+.view-schedule__content .view-schedule__table td:nth-child(2), .view-schedule__content .view-schedule__table th:nth-child(2), .view-schedule__content .view-schedule__table td:nth-child(5), .view-schedule__content .view-schedule__table th:nth-child(5), .view-schedule__content .view-schedule__table td:nth-child(6), .view-schedule__content .view-schedule__table th:nth-child(6) {
+  width: 100px;
 }
 .view-schedule__content .view-schedule__table tr:nth-child(even) {
   background-color: rgb(221, 218, 218);
