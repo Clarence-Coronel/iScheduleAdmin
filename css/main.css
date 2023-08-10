@@ -2217,6 +2217,9 @@ td:nth-child(4), th:nth-child(4) {
   background-color: rgb(194, 191, 191);
   max-width: 400px;
   margin-bottom: min(15px, 5%);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 .view-schedule__header .view-schedule__nav .btn--quick-view {
   width: 50%;
@@ -2238,26 +2241,26 @@ td:nth-child(4), th:nth-child(4) {
   cursor: pointer;
   background-color: #cecccc;
 }
-.view-schedule__header .view-schedule__nav .view-schedule__selected {
-  background-color: #0577fa;
-}
 .view-schedule__header .view-schedule__nav .view-schedule__selected:hover {
   cursor: pointer;
   background-color: #1e85fb;
+}
+.view-schedule__header .view-schedule__nav .view-schedule__selected {
+  background-color: #0577fa;
 }
 .view-schedule__header .view-schedule__field {
   width: 100%;
   padding: max(10px, 1vw);
 }
 
-.view-schedule__quick-view .view-schedule__btn-group {
+.quick-view-container .view-schedule__btn-group {
   display: flex;
   width: 100%;
   flex-flow: column;
   gap: max(10px, 1vw);
   margin: max(10px, 1vw) 0;
 }
-.view-schedule__quick-view .view-schedule__btn-group button {
+.quick-view-container .view-schedule__btn-group button {
   font-size: 1rem;
   width: 100%;
   background-color: #0577fa;
@@ -2267,18 +2270,18 @@ td:nth-child(4), th:nth-child(4) {
   min-height: 35px;
   padding: 0.5%;
 }
-.view-schedule__quick-view .view-schedule__btn-group button:hover {
+.quick-view-container .view-schedule__btn-group button:hover {
   background-color: #1e85fb;
 }
 
 @media only screen and (min-width: 1200px) {
-  .view-schedule__quick-view .view-schedule__btn-group {
+  .quick-view-container .view-schedule__btn-group {
     display: flex;
     flex-flow: row;
     justify-content: center;
     gap: max(10px, 1vw);
   }
-  .view-schedule__quick-view .view-schedule__btn-group button {
+  .quick-view-container .view-schedule__btn-group button {
     min-height: 55px;
     font-size: 1rem;
     width: 33.33%;

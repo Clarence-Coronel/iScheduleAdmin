@@ -123,38 +123,13 @@
             <div class="view-schedule__content">
                 <div class="view-schedule__header">
                     <div class="view-schedule__nav">
-                        <div class="btn--quick-view view-schedule__selected">Quick View</div>
-                        <div class="btn--filter">Filter</div>
+                        <div class="btn--quick-view view-schedule__selected" onclick="viewScheduleNav(this.id)" id="quickViewBtn">Quick View</div>
+                        <div class="btn--filter" onclick="viewScheduleNav(this.id)" id="filterBtn">Filter</div>
                     </div>
-                    <div class="view-schedule__field view-schedule__quick-view">
-                        <select class="form-select" aria-label="Default select example">
-                            <option value="" selected hidden disabled>Select a Department</option>
-                            <option value="">ENT</option>
-                            <option value="">Hematology</option>
-                            <option value="">Internal Medicine</option>
-                            <option value="">Internal Medicine Clearance</option>
-                            <option value="">Nephrology</option>
-                            <option value="">Neurology</option>
-                            <option value="">OB GYNE New</option>
-                            <option value="">OB GYNE Old</option>
-                            <option value="">OB GYNE ROS</option>
-                            <option value="">Oncology</option>
-                            <option value="">Pediatric Cardiology</option>
-                            <option value="">Pediatric Clearance</option>
-                            <option value="">Pediatric General</option>
-                            <option value="">Psychiatry New</option>
-                            <option value="">Psychiatry Old</option>
-                            <option value="">Surgery</option>
-                            <option value="">Surgery ROS</option>
-                        </select>
-                        <div class="view-schedule__btn-group">
-                            <button>View Today's Appointments</button>
-                            <button>View All Active Appointments</button>
-                            <button>View Archived Appointments</button>
+                    <div class="view-schedule__field">
+                        <div class="filter-container">
+                            
                         </div>
-                    </div>
-                    <div class="view-schedule__field view-schedule__filter" style="display: none;">
-                        test
                     </div>
                 </div>
                 <span>Click the row to highlight/see more.</span>

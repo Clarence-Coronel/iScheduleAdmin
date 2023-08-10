@@ -2598,6 +2598,7 @@ td:nth-child(4), th:nth-child(4){
         background-color: rgb(194, 191, 191);
         max-width:400px;
         margin-bottom: min(15px, 5%);
+        user-select: none;
 
         .btn--quick-view{
             width: 50%;
@@ -2626,16 +2627,14 @@ td:nth-child(4), th:nth-child(4){
             background-color: lighten($color: rgb(194, 191, 191), $amount: 5);
         }
 
-        .view-schedule__selected{
-            background-color: $btn-color;
-        }
-
         .view-schedule__selected:hover{
             cursor: pointer;
             background-color: lighten($color: $btn-color, $amount: 5);
         }
 
-
+        .view-schedule__selected{
+            background-color: $btn-color;
+        }
     }
 
     .view-schedule__field{
@@ -2645,7 +2644,7 @@ td:nth-child(4), th:nth-child(4){
 }
 
 
-.view-schedule__quick-view{
+.quick-view-container{
 
     .form-select{
 
@@ -2677,7 +2676,7 @@ td:nth-child(4), th:nth-child(4){
 }
 
 @media only screen and (min-width: 1200px ){
-    .view-schedule__quick-view{
+    .quick-view-container{
 
         .form-select{
     
