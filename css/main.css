@@ -855,7 +855,7 @@ td:hover {
   overflow: unset;
   text-overflow: unset;
   white-space: unset;
-  background-color: rgb(130, 129, 129);
+  background-color: rgb(108, 107, 107);
   color: white;
   cursor: pointer;
 }
