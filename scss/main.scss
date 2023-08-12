@@ -878,6 +878,8 @@ input:-webkit-autofill:focus{
 thead tr th{
     background-color: rgb(67, 67, 67);
     color: white;
+    position: sticky;
+    top: 0;
 }
 
 tr{
@@ -885,6 +887,7 @@ tr{
     // display: flex;
     // flex-flow: row nowrap;
 }
+
 
 th{
     // flex: 2;
