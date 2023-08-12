@@ -947,7 +947,7 @@ td:hover {
   margin: max(15px, 1vw) 0;
   height: -moz-fit-content;
   height: fit-content;
-  width: 65%;
+  width: 95%;
   background-color: white;
   padding: max(20px, 2vw);
   display: flex;
@@ -1831,8 +1831,7 @@ td:hover {
     width: 25%;
   }
   .block-date .add-date {
-    max: widt;
-    h: 900px;
+    max-width: 900px;
   }
   .postAnnouncement__content button {
     max-width: 25%;

@@ -1066,7 +1066,7 @@ td:hover{
     .add-date{
         margin: $box-margin-top 0;
         height: fit-content;
-        width: 65%;
+        width: 95%;
         // min-width: 300px;
         background-color: white;
         padding: max(20px,2vw);
@@ -2139,7 +2139,7 @@ td:hover{
 
     .block-date{
         .add-date{
-            max: widt;h: 900px;
+            max-width: 900px;
         }
     }
 
