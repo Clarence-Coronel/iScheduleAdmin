@@ -15,7 +15,7 @@ body{
     flex-flow: column;
     overflow-x: hidden;
     // overflow-y: hidden;
-    background-color: whitesmoke;
+    background-color: $background-color;
     position: relative;
 }
 
@@ -637,7 +637,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
     label{
         color: $fontbase-color;
         position: absolute;
-        background-color: whitesmoke;
+        background-color: $background-color;
         padding: 0 max(3px, 0.2vw);
         background-color: white;
         transition-duration: 200ms;
@@ -865,9 +865,9 @@ input:-webkit-autofill:focus{
     max-height: 40vh;
     // max-width: 90vw;
     
-    overflow:auto;
-    border: 2px solid $fontbase-color;
-    // border-radius: max(7px, 1vw);
+    overflow:auto !important;
+    border: 1px solid rgb(226, 222, 222);
+    // border-radius: max(7px, 0.5vw);
 }
 
 .logs-table{
@@ -882,33 +882,33 @@ thead tr th{
 
 tr{
     width: 100%;
-    display: flex;
-    flex-flow: row nowrap;
+    // display: flex;
+    // flex-flow: row nowrap;
 }
 
 th{
-    flex: 2;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 0 max(2px,0.4vw);
-    min-width: 120px;
+    // flex: 2;
+    text-align: left;
+    padding: max(10px,1vw);
     user-select: none;
-    // max-width: 350px;
+    // max-width: max(10vw, 80px);
 }
 
 td{
-    flex: 2;
-    padding: 0 max(2px,0.4vw);
+    // flex: 2;
+    padding: max(10px,1vw);
     text-align: left;
-    min-width: 120px;
-    // max-width: 350px;
+    max-width: max(10vw, 120px);   
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    border: 1px solid rgb(95, 94, 94);
+    border: 1px solid rgb(236, 233, 233);
     transition-duration: 200ms;
     font-size: 0.8rem;
+    border-right: none;
+    border-left: none;
+
+    
     
 
     button{
@@ -934,21 +934,21 @@ td:hover{
     overflow: unset;
     text-overflow: unset;
     white-space: unset;
-    background-color: rgb(108, 107, 107);
+    background-color: $btn-color;
     color: white;
     cursor: pointer;
 }
 
-td:nth-child(4), th:nth-child(4){
-    flex: 1;
-}
+// td:nth-child(4), th:nth-child(4){
+//     flex: 1;
+// }
 
 // Admin Table
 .admin-table{
     width: 100%;
 
     td:nth-child(4), th:nth-child(4){
-        flex: 2;
+        // flex: 2;
         // min-width: 70px;
         button{
             display: flex;
@@ -958,7 +958,7 @@ td:nth-child(4), th:nth-child(4){
 
     td:nth-child(5), th:nth-child(5){
         // flex: 1;
-        max-width: 10px;
+        // max-width: 10px;
     }
 
     .ico-list{
@@ -968,7 +968,7 @@ td:nth-child(4), th:nth-child(4){
     }
 
     .ico-edit{
-        color: rgb(9, 129, 235);
+        color: rgb(135, 176, 241);
         // border-color: rgb(12, 100, 232);
         border-radius: 50px;
         padding: 4px;
@@ -977,7 +977,7 @@ td:nth-child(4), th:nth-child(4){
     }
 
     .editLevel:hover .ico-edit{
-        color: rgb(9, 94, 168);
+        color:lighten($color: rgb(135, 176, 241), $amount: 5);
         cursor: pointer;
     }
 
@@ -1000,7 +1000,7 @@ td:nth-child(4), th:nth-child(4){
 }
 
 .logs-table tr:nth-child(even), .admin-table tr:nth-child(even), .date-table tr:nth-child(even){
-    background-color: rgb(221, 218, 218);
+    background-color: rgb(236, 235, 235);
 }
 
 .admin-table__body{
@@ -1066,7 +1066,7 @@ td:nth-child(4), th:nth-child(4){
     .add-date{
         margin: $box-margin-top 0;
         height: fit-content;
-        width:95%;
+        width: 65%;
         // min-width: 300px;
         background-color: white;
         padding: max(20px,2vw);
@@ -1167,11 +1167,11 @@ td:nth-child(4), th:nth-child(4){
     }
 
     th, td{
-        flex: 2;
+        // flex: 1;
     }
 
     th:nth-child(3), td:nth-child(3), th:nth-child(4), td:nth-child(4){
-        flex: 1;
+        // flex: 1;
     }
 
     // .ico-remove{
@@ -1183,6 +1183,7 @@ td:nth-child(4), th:nth-child(4){
     // }
 
     .removeDate{
+        
         color: red;
     }
 
@@ -1198,7 +1199,7 @@ td:nth-child(4), th:nth-child(4){
 }
 
 .website-status{
-    background-color: whitesmoke;
+    background-color: $background-color;
     width: 100%;
     // height: 90vh;
     display: flex;
@@ -2530,7 +2531,7 @@ td:nth-child(4), th:nth-child(4){
     }
     
     .schedule__review-field:nth-child(odd){
-        background-color: rgb(237, 236, 236);
+        background-color: rgb(236, 235, 235);
     }
 }
 
@@ -2581,16 +2582,16 @@ td:nth-child(4), th:nth-child(4){
         }
 
         td,th{
-            flex: 1 1 auto;
-            width: 200px;
+            // flex: 1 1 0;
+            // width: 10vw;
         }
 
-        td:nth-child(2), th:nth-child(2), td:nth-child(5), th:nth-child(5), td:nth-child(6), th:nth-child(6){
-            width: 100px;
-        }
+        // td:nth-child(2), th:nth-child(2), td:nth-child(5), th:nth-child(5), td:nth-child(6), th:nth-child(6){
+        //     width: 140px;
+        // }
 
         tr:nth-child(even){
-            background-color: rgb(221, 218, 218);
+            background-color: rgb(236, 235, 235);
         }
 
         // tr{

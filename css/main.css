@@ -25,12 +25,12 @@ input, select, textarea, input:focus, select:focus, textarea:focus {
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: rgb(194, 192, 192);
+  background-color: rgb(209, 208, 208);
   outline: 1px solid rgba(204, 202, 202, 0.69);
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background-color: rgb(168, 167, 167);
+  background-color: rgb(191, 189, 189);
 }
 
 label:hover {
@@ -68,7 +68,7 @@ body {
   display: flex;
   flex-flow: column;
   overflow-x: hidden;
-  background-color: whitesmoke;
+  background-color: rgb(225, 233, 241);
   position: relative;
 }
 
@@ -610,7 +610,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
 .input-container label {
   color: rgb(80, 78, 78);
   position: absolute;
-  background-color: whitesmoke;
+  background-color: rgb(225, 233, 241);
   padding: 0 max(3px, 0.2vw);
   background-color: white;
   transition-duration: 200ms;
@@ -791,8 +791,8 @@ input:-webkit-autofill:focus {
 .table-container {
   width: 100%;
   max-height: 40vh;
-  overflow: auto;
-  border: 2px solid rgb(80, 78, 78);
+  overflow: auto !important;
+  border: 1px solid rgb(226, 222, 222);
 }
 
 .logs-table {
@@ -806,33 +806,28 @@ thead tr th {
 
 tr {
   width: 100%;
-  display: flex;
-  flex-flow: row nowrap;
 }
 
 th {
-  flex: 2;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0 max(2px, 0.4vw);
-  min-width: 120px;
+  text-align: left;
+  padding: max(10px, 1vw);
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
 }
 
 td {
-  flex: 2;
-  padding: 0 max(2px, 0.4vw);
+  padding: max(10px, 1vw);
   text-align: left;
-  min-width: 120px;
+  max-width: max(10vw, 120px);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  border: 1px solid rgb(95, 94, 94);
+  border: 1px solid rgb(236, 233, 233);
   transition-duration: 200ms;
   font-size: 0.8rem;
+  border-right: none;
+  border-left: none;
 }
 td button {
   background-color: transparent;
@@ -855,27 +850,17 @@ td:hover {
   overflow: unset;
   text-overflow: unset;
   white-space: unset;
-  background-color: rgb(108, 107, 107);
+  background-color: #0577fa;
   color: white;
   cursor: pointer;
-}
-
-td:nth-child(4), th:nth-child(4) {
-  flex: 1;
 }
 
 .admin-table {
   width: 100%;
 }
-.admin-table td:nth-child(4), .admin-table th:nth-child(4) {
-  flex: 2;
-}
 .admin-table td:nth-child(4) button, .admin-table th:nth-child(4) button {
   display: flex;
   justify-content: flex-start;
-}
-.admin-table td:nth-child(5), .admin-table th:nth-child(5) {
-  max-width: 10px;
 }
 .admin-table .ico-list {
   margin: unset;
@@ -883,13 +868,13 @@ td:nth-child(4), th:nth-child(4) {
   font-size: 1rem;
 }
 .admin-table .ico-edit {
-  color: rgb(9, 129, 235);
+  color: rgb(135, 176, 241);
   border-radius: 50px;
   padding: 4px;
   font-size: 0.7rem;
 }
 .admin-table .editLevel:hover .ico-edit {
-  color: rgb(9, 94, 168);
+  color: #9ebff4;
   cursor: pointer;
 }
 .admin-table .removeAdmin {
@@ -901,7 +886,7 @@ td:nth-child(4), th:nth-child(4) {
 }
 
 .logs-table tr:nth-child(even), .admin-table tr:nth-child(even), .date-table tr:nth-child(even) {
-  background-color: rgb(221, 218, 218);
+  background-color: rgb(236, 235, 235);
 }
 
 .admin-table__body {
@@ -962,7 +947,7 @@ td:nth-child(4), th:nth-child(4) {
   margin: max(15px, 1vw) 0;
   height: -moz-fit-content;
   height: fit-content;
-  width: 95%;
+  width: 65%;
   background-color: white;
   padding: max(20px, 2vw);
   display: flex;
@@ -1034,12 +1019,6 @@ td:nth-child(4), th:nth-child(4) {
 .date-table tbody {
   width: 100%;
 }
-.date-table th, .date-table td {
-  flex: 2;
-}
-.date-table th:nth-child(3), .date-table td:nth-child(3), .date-table th:nth-child(4), .date-table td:nth-child(4) {
-  flex: 1;
-}
 .date-table .removeDate {
   color: red;
 }
@@ -1055,7 +1034,7 @@ td:nth-child(4), th:nth-child(4) {
 }
 
 .website-status {
-  background-color: whitesmoke;
+  background-color: rgb(225, 233, 241);
   width: 100%;
   display: flex;
   justify-content: center;
@@ -2164,7 +2143,7 @@ td:nth-child(4), th:nth-child(4) {
   padding: max(7px, 0.7vw) max(10px, 1vw);
 }
 .schedule__partC .schedule__review-field:nth-child(odd) {
-  background-color: rgb(237, 236, 236);
+  background-color: rgb(236, 235, 235);
 }
 
 .schedule-table {
@@ -2206,15 +2185,8 @@ td:nth-child(4), th:nth-child(4) {
 .view-schedule__content .view-schedule__table .table-container {
   background-color: white;
 }
-.view-schedule__content .view-schedule__table td, .view-schedule__content .view-schedule__table th {
-  flex: 1 1 auto;
-  width: 200px;
-}
-.view-schedule__content .view-schedule__table td:nth-child(2), .view-schedule__content .view-schedule__table th:nth-child(2), .view-schedule__content .view-schedule__table td:nth-child(5), .view-schedule__content .view-schedule__table th:nth-child(5), .view-schedule__content .view-schedule__table td:nth-child(6), .view-schedule__content .view-schedule__table th:nth-child(6) {
-  width: 100px;
-}
 .view-schedule__content .view-schedule__table tr:nth-child(even) {
-  background-color: rgb(221, 218, 218);
+  background-color: rgb(236, 235, 235);
 }
 
 .view-schedule__header .view-schedule__nav {

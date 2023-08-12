@@ -407,148 +407,148 @@ let adminLogs = `<section class="admin-logs">
             <tbody>
                 <tr>
                     <td>clarence-coronelclarence-coronelclarence-coronel</td>
-                    <td>View Schedule view1 view2 view3 view4 view5 view6 view7 view8 view9 view10</td>
-                    <td>21 July 2023</td>
+                    <td>View Schedule</td>
+                    <td>2023-10-21</td>
                     <td>13:00</td>
                     <td>Admin II</td>
                 </tr>
                 <tr>
                     <td>clarence-coronel</td>
                     <td>View Schedule</td>
-                    <td>21 July 2023</td>
+                    <td>2023-10-21</td>
                     <td>13:00</td>
                     <td>Admin II</td>
                 </tr>
                 <tr>
                     <td>clarence-coronel</td>
                     <td>View Schedule</td>
-                    <td>21 July 2023</td>
+                    <td>2023-10-21</td>
                     <td>13:00</td>
                     <td>Admin II</td>
                 </tr>
                 <tr>
                     <td>clarence-coronel</td>
                     <td>View Schedule</td>
-                    <td>21 July 2023</td>
+                    <td>2023-10-21</td>
                     <td>13:00</td>
                     <td>Admin II</td>
                 </tr>
                 <tr>
                     <td>clarence-coronel</td>
                     <td>View Schedule</td>
-                    <td>21 July 2023</td>
+                    <td>2023-10-21</td>
                     <td>13:00</td>
                     <td>Admin II</td>
                 </tr>
                 <tr>
                     <td>clarence-coronel</td>
                     <td>View Schedule</td>
-                    <td>21 July 2023</td>
+                    <td>2023-10-21</td>
                     <td>13:00</td>
                     <td>Admin II</td>
                 </tr>
                 <tr>
                     <td>clarence-coronel</td>
                     <td>View Schedule</td>
-                    <td>21 July 2023</td>
+                    <td>2023-10-21</td>
                     <td>13:00</td>
                     <td>Admin II</td>
                 </tr>
                 <tr>
                     <td>clarence-coronel</td>
                     <td>View Schedule</td>
-                    <td>21 July 2023</td>
+                    <td>2023-10-21</td>
                     <td>13:00</td>
                     <td>Admin II</td>
                 </tr>
                 <tr>
                     <td>clarence-coronel</td>
                     <td>View Schedule</td>
-                    <td>21 July 2023</td>
+                    <td>2023-10-21</td>
                     <td>13:00</td>
                     <td>Admin II</td>
                 </tr>
                 <tr>
                     <td>clarence-coronel</td>
                     <td>View Schedule</td>
-                    <td>21 July 2023</td>
+                    <td>2023-10-21</td>
                     <td>13:00</td>
                     <td>Admin II</td>
                 </tr>
                 <tr>
                     <td>clarence-coronel</td>
                     <td>View Schedule</td>
-                    <td>21 July 2023</td>
+                    <td>2023-10-21</td>
                     <td>13:00</td>
                     <td>Admin II</td>
                 </tr>
                 <tr>
                     <td>clarence-coronel</td>
                     <td>View Schedule</td>
-                    <td>21 July 2023</td>
+                    <td>2023-10-21</td>
                     <td>13:00</td>
                     <td>Admin II</td>
                 </tr>
                 <tr>
                     <td>clarence-coronel</td>
                     <td>View Schedule</td>
-                    <td>21 July 2023</td>
+                    <td>2023-10-21</td>
                     <td>13:00</td>
                     <td>Admin II</td>
                 </tr>
                 <tr>
                     <td>clarence-coronel</td>
                     <td>View Schedule</td>
-                    <td>21 July 2023</td>
+                    <td>2023-10-21</td>
                     <td>13:00</td>
                     <td>Admin II</td>
                 </tr>
                 <tr>
                     <td>clarence-coronel</td>
                     <td>View Schedule</td>
-                    <td>21 July 2023</td>
+                    <td>2023-10-21</td>
                     <td>13:00</td>
                     <td>Admin II</td>
                 </tr>
                 <tr>
                     <td>clarence-coronel</td>
                     <td>View Schedule</td>
-                    <td>21 July 2023</td>
+                    <td>2023-10-21</td>
                     <td>13:00</td>
                     <td>Admin II</td>
                 </tr>
                 <tr>
                     <td>clarence-coronel</td>
                     <td>View Schedule</td>
-                    <td>21 July 2023</td>
+                    <td>2023-10-21</td>
                     <td>13:00</td>
                     <td>Admin II</td>
                 </tr>
                 <tr>
                     <td>clarence-coronel</td>
                     <td>View Schedule</td>
-                    <td>21 July 2023</td>
+                    <td>2023-10-21</td>
                     <td>13:00</td>
                     <td>Admin II</td>
                 </tr>
                 <tr>
                     <td>clarence-coronel</td>
                     <td>View Schedule</td>
-                    <td>21 July 2023</td>
+                    <td>2023-10-21</td>
                     <td>13:00</td>
                     <td>Admin II</td>
                 </tr>
                 <tr>
                     <td>clarence-coronel</td>
                     <td>View Schedule</td>
-                    <td>21 July 2023</td>
+                    <td>2023-10-21</td>
                     <td>13:00</td>
                     <td>Admin II</td>
                 </tr>
                 <tr>
                     <td>clarence-coronel</td>
                     <td>View Schedule</td>
-                    <td>21 July 2023</td>
+                    <td>2023-10-21</td>
                     <td>13:00</td>
                     <td>Admin II</td>
                 </tr>
