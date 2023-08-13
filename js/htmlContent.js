@@ -362,200 +362,202 @@ let schedule = `<section class="schedule" data-aos="fade-right" data-aos-duratio
 </section>`;
 
 // By default yung content ni table is yung today lang
-let adminLogs = `<section class="admin-logs">
-<div class="admin-logs-wrapper" data-aos="fade-right" data-aos-duration="500">
-    <div class="admin-logs__body">
-        <h2>Filter</h2>
-        <div class="admin-logs__filters">
-            <input type="date" name="" id="">
-            <select class="form-select" aria-label="Default select example">
-                <option hidden selected disabled>Activity</option>
-                <option value="">test</option>
-                <option value="">test</option>
-                <option value="">test</option>
-            </select>
-            <select class="form-select" aria-label="Default select example">
-                <option hidden selected disabled>Admin Type</option>
-                <option value="">test</option>
-                <option value="">test</option>
-                <option value="">test</option>
-            </select>
-            <select class="form-select" aria-label="Default select example">
-                <option hidden selected disabled>Sort By</option>
-                <option value="">test</option>
-                <option value="">test</option>
-                <option value="">test</option>
-            </select>
+let adminLogs = `
+<section class="admin-logs">
+    <div class="admin-logs-wrapper" data-aos="fade-right" data-aos-duration="500">
+        <div class="admin-logs__body">
             <div class="search-container">
-                <input type="text" placeholder="Search Username" id="adminLogsSearch" onblur="inputLimiterBlur(this.id, 60)" oninput="inputLimiter(this.id, 60)">
+                <input type="text" placeholder="Search" id="adminSearch" onblur="inputLimiterBlur(this.id, 60)" oninput="inputLimiter(this.id, 60)">
+                <button><span class="material-icons-outlined ico-search">search</span></button>
+            </div>
+            <h2>Filter</h2>
+            <div class="admin-logs__filters">
+                <input type="date" name="" id="">
+                <select class="form-select" aria-label="Default select example">
+                    <option hidden selected disabled>Activity</option>
+                    <option value="">test</option>
+                    <option value="">test</option>
+                    <option value="">test</option>
+                </select>
+                <select class="form-select" aria-label="Default select example">
+                    <option hidden selected disabled>Admin Type</option>
+                    <option value="">test</option>
+                    <option value="">test</option>
+                    <option value="">test</option>
+                </select>
+                <select class="form-select" aria-label="Default select example">
+                    <option hidden selected disabled>Sort By</option>
+                    <option value="">test</option>
+                    <option value="">test</option>
+                    <option value="">test</option>
+                </select>
             </div>
             <button>Apply</button>
         </div>
+        <span>Click the row to highlight/see more.</span>
+        <div class="table-container">
+            <table class="logs-table">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Activity</th>
+                        <th>Date</th>
+                        <th >Time</th>
+                        <th>Admin Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>clarence-coronelclarence-coronelclarence-coronel</td>
+                        <td>View Schedule</td>
+                        <td>2023-10-21</td>
+                        <td>13:00</td>
+                        <td>Admin II</td>
+                    </tr>
+                    <tr>
+                        <td>clarence-coronel</td>
+                        <td>View Schedule</td>
+                        <td>2023-10-21</td>
+                        <td>13:00</td>
+                        <td>Admin II</td>
+                    </tr>
+                    <tr>
+                        <td>clarence-coronel</td>
+                        <td>View Schedule</td>
+                        <td>2023-10-21</td>
+                        <td>13:00</td>
+                        <td>Admin II</td>
+                    </tr>
+                    <tr>
+                        <td>clarence-coronel</td>
+                        <td>View Schedule</td>
+                        <td>2023-10-21</td>
+                        <td>13:00</td>
+                        <td>Admin II</td>
+                    </tr>
+                    <tr>
+                        <td>clarence-coronel</td>
+                        <td>View Schedule</td>
+                        <td>2023-10-21</td>
+                        <td>13:00</td>
+                        <td>Admin II</td>
+                    </tr>
+                    <tr>
+                        <td>clarence-coronel</td>
+                        <td>View Schedule</td>
+                        <td>2023-10-21</td>
+                        <td>13:00</td>
+                        <td>Admin II</td>
+                    </tr>
+                    <tr>
+                        <td>clarence-coronel</td>
+                        <td>View Schedule</td>
+                        <td>2023-10-21</td>
+                        <td>13:00</td>
+                        <td>Admin II</td>
+                    </tr>
+                    <tr>
+                        <td>clarence-coronel</td>
+                        <td>View Schedule</td>
+                        <td>2023-10-21</td>
+                        <td>13:00</td>
+                        <td>Admin II</td>
+                    </tr>
+                    <tr>
+                        <td>clarence-coronel</td>
+                        <td>View Schedule</td>
+                        <td>2023-10-21</td>
+                        <td>13:00</td>
+                        <td>Admin II</td>
+                    </tr>
+                    <tr>
+                        <td>clarence-coronel</td>
+                        <td>View Schedule</td>
+                        <td>2023-10-21</td>
+                        <td>13:00</td>
+                        <td>Admin II</td>
+                    </tr>
+                    <tr>
+                        <td>clarence-coronel</td>
+                        <td>View Schedule</td>
+                        <td>2023-10-21</td>
+                        <td>13:00</td>
+                        <td>Admin II</td>
+                    </tr>
+                    <tr>
+                        <td>clarence-coronel</td>
+                        <td>View Schedule</td>
+                        <td>2023-10-21</td>
+                        <td>13:00</td>
+                        <td>Admin II</td>
+                    </tr>
+                    <tr>
+                        <td>clarence-coronel</td>
+                        <td>View Schedule</td>
+                        <td>2023-10-21</td>
+                        <td>13:00</td>
+                        <td>Admin II</td>
+                    </tr>
+                    <tr>
+                        <td>clarence-coronel</td>
+                        <td>View Schedule</td>
+                        <td>2023-10-21</td>
+                        <td>13:00</td>
+                        <td>Admin II</td>
+                    </tr>
+                    <tr>
+                        <td>clarence-coronel</td>
+                        <td>View Schedule</td>
+                        <td>2023-10-21</td>
+                        <td>13:00</td>
+                        <td>Admin II</td>
+                    </tr>
+                    <tr>
+                        <td>clarence-coronel</td>
+                        <td>View Schedule</td>
+                        <td>2023-10-21</td>
+                        <td>13:00</td>
+                        <td>Admin II</td>
+                    </tr>
+                    <tr>
+                        <td>clarence-coronel</td>
+                        <td>View Schedule</td>
+                        <td>2023-10-21</td>
+                        <td>13:00</td>
+                        <td>Admin II</td>
+                    </tr>
+                    <tr>
+                        <td>clarence-coronel</td>
+                        <td>View Schedule</td>
+                        <td>2023-10-21</td>
+                        <td>13:00</td>
+                        <td>Admin II</td>
+                    </tr>
+                    <tr>
+                        <td>clarence-coronel</td>
+                        <td>View Schedule</td>
+                        <td>2023-10-21</td>
+                        <td>13:00</td>
+                        <td>Admin II</td>
+                    </tr>
+                    <tr>
+                        <td>clarence-coronel</td>
+                        <td>View Schedule</td>
+                        <td>2023-10-21</td>
+                        <td>13:00</td>
+                        <td>Admin II</td>
+                    </tr>
+                    <tr>
+                        <td>clarence-coronel</td>
+                        <td>View Schedule</td>
+                        <td>2023-10-21</td>
+                        <td>13:00</td>
+                        <td>Admin II</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-    <span>Click the row to highlight/see more.</span>
-    <div class="table-container">
-        <table class="logs-table">
-            <thead>
-                <tr>
-                    <th>Username</th>
-                    <th>Activity</th>
-                    <th>Date</th>
-                    <th >Time</th>
-                    <th>Admin Type</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>clarence-coronelclarence-coronelclarence-coronel</td>
-                    <td>View Schedule</td>
-                    <td>2023-10-21</td>
-                    <td>13:00</td>
-                    <td>Admin II</td>
-                </tr>
-                <tr>
-                    <td>clarence-coronel</td>
-                    <td>View Schedule</td>
-                    <td>2023-10-21</td>
-                    <td>13:00</td>
-                    <td>Admin II</td>
-                </tr>
-                <tr>
-                    <td>clarence-coronel</td>
-                    <td>View Schedule</td>
-                    <td>2023-10-21</td>
-                    <td>13:00</td>
-                    <td>Admin II</td>
-                </tr>
-                <tr>
-                    <td>clarence-coronel</td>
-                    <td>View Schedule</td>
-                    <td>2023-10-21</td>
-                    <td>13:00</td>
-                    <td>Admin II</td>
-                </tr>
-                <tr>
-                    <td>clarence-coronel</td>
-                    <td>View Schedule</td>
-                    <td>2023-10-21</td>
-                    <td>13:00</td>
-                    <td>Admin II</td>
-                </tr>
-                <tr>
-                    <td>clarence-coronel</td>
-                    <td>View Schedule</td>
-                    <td>2023-10-21</td>
-                    <td>13:00</td>
-                    <td>Admin II</td>
-                </tr>
-                <tr>
-                    <td>clarence-coronel</td>
-                    <td>View Schedule</td>
-                    <td>2023-10-21</td>
-                    <td>13:00</td>
-                    <td>Admin II</td>
-                </tr>
-                <tr>
-                    <td>clarence-coronel</td>
-                    <td>View Schedule</td>
-                    <td>2023-10-21</td>
-                    <td>13:00</td>
-                    <td>Admin II</td>
-                </tr>
-                <tr>
-                    <td>clarence-coronel</td>
-                    <td>View Schedule</td>
-                    <td>2023-10-21</td>
-                    <td>13:00</td>
-                    <td>Admin II</td>
-                </tr>
-                <tr>
-                    <td>clarence-coronel</td>
-                    <td>View Schedule</td>
-                    <td>2023-10-21</td>
-                    <td>13:00</td>
-                    <td>Admin II</td>
-                </tr>
-                <tr>
-                    <td>clarence-coronel</td>
-                    <td>View Schedule</td>
-                    <td>2023-10-21</td>
-                    <td>13:00</td>
-                    <td>Admin II</td>
-                </tr>
-                <tr>
-                    <td>clarence-coronel</td>
-                    <td>View Schedule</td>
-                    <td>2023-10-21</td>
-                    <td>13:00</td>
-                    <td>Admin II</td>
-                </tr>
-                <tr>
-                    <td>clarence-coronel</td>
-                    <td>View Schedule</td>
-                    <td>2023-10-21</td>
-                    <td>13:00</td>
-                    <td>Admin II</td>
-                </tr>
-                <tr>
-                    <td>clarence-coronel</td>
-                    <td>View Schedule</td>
-                    <td>2023-10-21</td>
-                    <td>13:00</td>
-                    <td>Admin II</td>
-                </tr>
-                <tr>
-                    <td>clarence-coronel</td>
-                    <td>View Schedule</td>
-                    <td>2023-10-21</td>
-                    <td>13:00</td>
-                    <td>Admin II</td>
-                </tr>
-                <tr>
-                    <td>clarence-coronel</td>
-                    <td>View Schedule</td>
-                    <td>2023-10-21</td>
-                    <td>13:00</td>
-                    <td>Admin II</td>
-                </tr>
-                <tr>
-                    <td>clarence-coronel</td>
-                    <td>View Schedule</td>
-                    <td>2023-10-21</td>
-                    <td>13:00</td>
-                    <td>Admin II</td>
-                </tr>
-                <tr>
-                    <td>clarence-coronel</td>
-                    <td>View Schedule</td>
-                    <td>2023-10-21</td>
-                    <td>13:00</td>
-                    <td>Admin II</td>
-                </tr>
-                <tr>
-                    <td>clarence-coronel</td>
-                    <td>View Schedule</td>
-                    <td>2023-10-21</td>
-                    <td>13:00</td>
-                    <td>Admin II</td>
-                </tr>
-                <tr>
-                    <td>clarence-coronel</td>
-                    <td>View Schedule</td>
-                    <td>2023-10-21</td>
-                    <td>13:00</td>
-                    <td>Admin II</td>
-                </tr>
-                <tr>
-                    <td>clarence-coronel</td>
-                    <td>View Schedule</td>
-                    <td>2023-10-21</td>
-                    <td>13:00</td>
-                    <td>Admin II</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
 </section>`;
 
 let adminList = `<section class="admin-list">

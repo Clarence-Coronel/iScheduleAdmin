@@ -128,7 +128,66 @@
                     </div>
                     <div class="view-schedule__field">
                         <div class="filter-container">
-                            
+                            <div class="search-container">
+                                <input type="text" placeholder="Search" id="adminSearch" onblur="inputLimiterBlur(this.id, 60)" oninput="inputLimiter(this.id, 60)">
+                                <button><span class="material-icons-outlined ico-search">search</span></button>
+                            </div>
+                            <h2>Filter</h2>
+                            <div class="filter-fields">
+                                <select class="form-select" aria-label="Default select example">
+                                    <option value="" selected hidden disabled>Select a Department</option>
+                                    <option value="">ENT</option>
+                                    <option value="">Hematology</option>
+                                    <option value="">Internal Medicine</option>
+                                    <option value="">Internal Medicine Clearance</option>
+                                    <option value="">Nephrology</option>
+                                    <option value="">Neurology</option>
+                                    <option value="">OB GYNE New</option>
+                                    <option value="">OB GYNE Old</option>
+                                    <option value="">OB GYNE ROS</option>
+                                    <option value="">Oncology</option>
+                                    <option value="">Pediatric Cardiology</option>
+                                    <option value="">Pediatric Clearance</option>
+                                    <option value="">Pediatric General</option>
+                                    <option value="">Psychiatry New</option>
+                                    <option value="">Psychiatry Old</option>
+                                    <option value="">Surgery</option>
+                                    <option value="">Surgery ROS</option>
+                                </select>
+                                <input type="date" name="" id="">
+                                <select class="form-select" aria-label="Default select example">
+                                    <option value="" selected hidden disabled>Time Slot</option>
+                                    <option value="">8:00 AM - 9:00 AM</option>
+                                    <option value="">8:00 AM - 9:00 AM</option>
+                                    <option value="">8:00 AM - 9:00 AM</option>
+                                </select>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option value="" selected hidden disabled>Sex</option>
+                                    <option value="">Male</option>
+                                    <option value="">Female</option>
+                                </select>
+                                <div class="filter-fields__address">
+                                    <input type="text" name="" id="" placeholder="Barangay">
+                                    <input type="text" name="" id="" placeholder="Municipality">
+                                    <input type="text" name="" id="" placeholder="Province">
+                                </div>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option value="" selected hidden disabled>Sort By</option>
+                                    <option value="">Name (A-Z)</option>
+                                    <option value="">etc</option>
+                                </select>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option value="" selected hidden disabled>Patient Type</option>
+                                    <option value="">New Patient</option>
+                                    <option value="">Old Patient</option>
+                                </select>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option value="" selected hidden disabled>Status</option>
+                                    <option value="">Active</option>
+                                    <option value="">Archived</option>
+                                </select>
+                            </div>
+                            <button type="button">Apply</button>
                         </div>
                     </div>
                 </div>
@@ -139,7 +198,7 @@
                             <thead>
                                 <tr>
                                     <th>Department</th>
-                                    <th>Date</th>
+                                    <th>Appointment Date</th>
                                     <th>Time Slot</th>
                                     <th>Full Name</th>
                                     <th>Sex</th>
@@ -175,12 +234,109 @@
                                     <td>New Patient</td>
                                     <td>&nbsp;</td>
                                 </tr>
+                                <tr>
+                                    <td>Oncology</td>
+                                    <td>2023-08-25</td>
+                                    <td>1:00 PM - 2:00PM (0)</td>
+                                    <td>John Reyes Cruz</td>
+                                    <td>Male</td>
+                                    <td>2001-10-21</td>
+                                    <td>0942 423 4277</td>
+                                    <td>Banga II, Plaridel, Bulacan</td>
+                                    <td>New Patient</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>Oncology</td>
+                                    <td>2023-08-25</td>
+                                    <td>1:00 PM - 2:00PM (0)</td>
+                                    <td>John Reyes Cruz testest</td>
+                                    <td>Male</td>
+                                    <td>2001-10-21</td>
+                                    <td>0942 423 4277</td>
+                                    <td>Banga II, Plaridel, Bulacan</td>
+                                    <td>New Patient</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>Oncology</td>
+                                    <td>2023-08-25</td>
+                                    <td>1:00 PM - 2:00PM (0)</td>
+                                    <td>John Reyes Cruz</td>
+                                    <td>Male</td>
+                                    <td>2001-10-21</td>
+                                    <td>0942 423 4277</td>
+                                    <td>Banga II, Plaridel, Bulacan</td>
+                                    <td>New Patient</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>Oncology</td>
+                                    <td>2023-08-25</td>
+                                    <td>1:00 PM - 2:00PM (0)</td>
+                                    <td>John Reyes Cruz testest</td>
+                                    <td>Male</td>
+                                    <td>2001-10-21</td>
+                                    <td>0942 423 4277</td>
+                                    <td>Banga II, Plaridel, Bulacan</td>
+                                    <td>New Patient</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>Oncology</td>
+                                    <td>2023-08-25</td>
+                                    <td>1:00 PM - 2:00PM (0)</td>
+                                    <td>John Reyes Cruz</td>
+                                    <td>Male</td>
+                                    <td>2001-10-21</td>
+                                    <td>0942 423 4277</td>
+                                    <td>Banga II, Plaridel, Bulacan</td>
+                                    <td>New Patient</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>Oncology</td>
+                                    <td>2023-08-25</td>
+                                    <td>1:00 PM - 2:00PM (0)</td>
+                                    <td>John Reyes Cruz testest</td>
+                                    <td>Male</td>
+                                    <td>2001-10-21</td>
+                                    <td>0942 423 4277</td>
+                                    <td>Banga II, Plaridel, Bulacan</td>
+                                    <td>New Patient</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>Oncology</td>
+                                    <td>2023-08-25</td>
+                                    <td>1:00 PM - 2:00PM (0)</td>
+                                    <td>John Reyes Cruz</td>
+                                    <td>Male</td>
+                                    <td>2001-10-21</td>
+                                    <td>0942 423 4277</td>
+                                    <td>Banga II, Plaridel, Bulacan</td>
+                                    <td>New Patient</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>Oncology</td>
+                                    <td>2023-08-25</td>
+                                    <td>1:00 PM - 2:00PM (0)</td>
+                                    <td>John Reyes Cruz testest</td>
+                                    <td>Male</td>
+                                    <td>2001-10-21</td>
+                                    <td>0942 423 4277</td>
+                                    <td>Banga II, Plaridel, Bulacan</td>
+                                    <td>New Patient</td>
+                                    <td>&nbsp;</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </section>
+        
     </main>
     <button type="button" class="btn btn-primary modal-launcher" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="display:none">
         Launch static backdrop modal
