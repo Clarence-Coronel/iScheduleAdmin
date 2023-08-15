@@ -617,45 +617,18 @@ function signOut(){
 function viewScheduleNav(id){
     const quickViewBtn = document.querySelector('.btn--quick-view');
     const filterBtn = document.querySelector('.btn--filter');
-    const field = document.querySelector('.view-schedule__field');
+    const field = document.querySelector('.view-schedule__field')
 
     if(id == 'filterBtn'){
         quickViewIsActive = false;
         quickViewBtn.classList.remove('view-schedule__selected');
         filterBtn.classList.add('view-schedule__selected');
-        field.innerHTML = '<div> TESTINGGGGGGGGGGGG</div>';
+        field.innerHTML = filter;
     }
     else if(id == 'quickViewBtn'){
         quickViewIsActive = true;
         quickViewBtn.classList.add('view-schedule__selected');
         filterBtn.classList.remove('view-schedule__selected');
-        field.innerHTML = 
-        `<div class="quick-view-container">
-            <select class="form-select" aria-label="Default select example">
-                <option value="" selected hidden disabled>Select a Department</option>
-                <option value="">ENT</option>
-                <option value="">Hematology</option>
-                <option value="">Internal Medicine</option>
-                <option value="">Internal Medicine Clearance</option>
-                <option value="">Nephrology</option>
-                <option value="">Neurology</option>
-                <option value="">OB GYNE New</option>
-                <option value="">OB GYNE Old</option>
-                <option value="">OB GYNE ROS</option>
-                <option value="">Oncology</option>
-                <option value="">Pediatric Cardiology</option>
-                <option value="">Pediatric Clearance</option>
-                <option value="">Pediatric General</option>
-                <option value="">Psychiatry New</option>
-                <option value="">Psychiatry Old</option>
-                <option value="">Surgery</option>
-                <option value="">Surgery ROS</option>
-            </select>
-            <div class="view-schedule__btn-group">
-                <button>View Today's Appointments</button>
-                <button>View All Active Appointments</button>
-                <button>View Archived Appointments</button>
-            </div>
-        </div>`;
+        field.innerHTML = quickView;
     }
 }

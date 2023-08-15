@@ -2612,6 +2612,8 @@ td:hover{
         border-radius: $box-border-radius;
         overflow-y: auto;
         height: 100%;
+
+        scrollbar-gutter: stable;
     }
 }
 
@@ -2697,13 +2699,14 @@ td:hover{
             background-color: lighten($color: rgb(194, 191, 191), $amount: 5);
         }
 
-        .view-schedule__selected:hover{
-            cursor: pointer;
-            background-color: lighten($color: $btn-color, $amount: 5);
-        }
 
         .view-schedule__selected{
             background-color: $btn-color;
+        }
+        
+        .view-schedule__selected:hover{
+            cursor: pointer;
+            background-color: lighten($color: $btn-color, $amount: 5);
         }
     }
 
