@@ -40,7 +40,6 @@ label:hover {
 .form-select {
   border: 1px solid rgb(80, 78, 78) !important;
   border-width: 1px !important;
-  min-width: 120px;
 }
 
 .form-select:focus {

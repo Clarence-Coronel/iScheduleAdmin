@@ -2858,6 +2858,10 @@ td:hover{
         padding: 0.375rem 2.25rem 0.375rem 0.75rem;   
         text-align: left;
         background-color: white;
+        // min-width: 120px;
+    }
+
+    select{
     }
 
     input[type="date"]::-webkit-calendar-picker-indicator {
@@ -2872,16 +2876,30 @@ td:hover{
         -webkit-appearance: none !important;
     }
 
-    .filter-fields__address{
-        display: flex;
-        flex-flow: row wrap;
-        gap: 2%;
+    // .filter-fields__address{
+    //     display: flex;
+    //     flex-flow: column;
+    //     gap: 2%;
 
-        input[type="text"]{
-            width: 32%;
-        }
+    //     input[type="text"]{
+    //         padding: 0.375rem 0 0.375rem 0.75rem;
+    //         font-size: 0.8rem;
+    //         width: 32%;
+    //         border-radius: 0.375rem;
+    //     }
+    // }
+
+    #barangay, #municipality, #province{
+        padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+        font-size: 1rem;
+        width: 100%;
+        border-radius: 0.375rem;
     }
 }
+
+// .filter-fields select:nth-child(6){
+//     height: 33px;
+// }
 
 
 @media only screen and (min-width: 1200px ){

@@ -40,7 +40,6 @@ label:hover {
 .form-select {
   border: 1px solid rgb(80, 78, 78) !important;
   border-width: 1px !important;
-  min-width: 120px;
 }
 
 .form-select:focus {
@@ -2395,13 +2394,11 @@ td:hover {
   opacity: 0 !important;
   -webkit-appearance: none !important;
 }
-.filter-fields .filter-fields__address {
-  display: flex;
-  flex-flow: row wrap;
-  gap: 2%;
-}
-.filter-fields .filter-fields__address input[type=text] {
-  width: 32%;
+.filter-fields #barangay, .filter-fields #municipality, .filter-fields #province {
+  padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+  font-size: 1rem;
+  width: 100%;
+  border-radius: 0.375rem;
 }
 
 @media only screen and (min-width: 1200px) {
