@@ -2638,6 +2638,9 @@ td:hover{
 
         .table-container{
             background-color: white;
+            height: 100%;
+            width: 100%;
+            max-height: 45vh;
         }
 
         td,th{
