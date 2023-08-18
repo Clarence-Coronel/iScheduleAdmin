@@ -887,7 +887,7 @@ input:-webkit-autofill:focus{
         position: absolute;
         width: 100%;
         opacity: 0;
-        appearance: none;
+        // appearance: none;
     }
 
     .DatePickerInput::-webkit-inner-spin-button,
@@ -2866,25 +2866,23 @@ td:hover{
         padding: 0.375rem 2.25rem 0.375rem 0.75rem;   
         text-align: left;
         background-color: white;
-        -webkit-appearance: none !important;
+        // -webkit-appearance: none !important;
         // appearance: none;
         // min-width: 120px;
     }
 
-    select{
-    }
 
     input[type="date"]::-webkit-calendar-picker-indicator {
         position: absolute;
         width: 100%;
         opacity: 0;
-        // appearance: none;
+        appearance: none;
     }
 
     .DatePickerInput::-webkit-inner-spin-button,
     .DatePickerInput::-webkit-calendar-picker-indicator {
         opacity:0 !important;   
-        -webkit-appearance: none !important;
+        // -webkit-appearance: none !important;
         // appearance: none;
     }
 
