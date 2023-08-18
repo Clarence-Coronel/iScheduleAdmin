@@ -799,11 +799,16 @@ input:-webkit-autofill:focus {
   padding: 0.375rem 2.25rem 0.375rem 0.75rem;
   text-align: left;
   background-color: white;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 }
 .admin-logs__filters input[type=date]::-webkit-calendar-picker-indicator {
   position: absolute;
   width: 100%;
   opacity: 0;
+  -webkit-appearance: none;
+          appearance: none;
 }
 .admin-logs__filters .DatePickerInput::-webkit-inner-spin-button,
 .admin-logs__filters .DatePickerInput::-webkit-calendar-picker-indicator {
@@ -2384,11 +2389,16 @@ td:hover {
   padding: 0.375rem 2.25rem 0.375rem 0.75rem;
   text-align: left;
   background-color: white;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 }
 .filter-fields input[type=date]::-webkit-calendar-picker-indicator {
   position: absolute;
   width: 100%;
   opacity: 0;
+  -webkit-appearance: none;
+          appearance: none;
 }
 .filter-fields .DatePickerInput::-webkit-inner-spin-button,
 .filter-fields .DatePickerInput::-webkit-calendar-picker-indicator {
