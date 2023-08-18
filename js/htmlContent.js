@@ -581,7 +581,7 @@ let filter = `
             <option value="">Surgery</option>
             <option value="">Surgery ROS</option>
         </select>
-        <input type="date" name="" id="">
+        <input type="date" name="" id="" placeholder="Date">
         <select class="form-select" aria-label="Default select example">
             <option value="" selected hidden disabled>Time Slot</option>
             <option value="">8:00 AM - 9:00 AM</option>
