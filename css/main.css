@@ -2307,6 +2307,7 @@ td:hover {
     min-height: 55px;
     font-size: 1rem;
     width: 33.33%;
+    line-height: 20px;
   }
 }
 .filter-container {
