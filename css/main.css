@@ -1059,7 +1059,7 @@ td:hover {
 }
 
 .form-check-input {
-  width: max(20px, 2vw) !important;
+  width: max(22px, 3vw) !important;
   max-width: 40px;
   border-radius: max(15px, 1vw) !important;
   background-color: #0577fa !important;
