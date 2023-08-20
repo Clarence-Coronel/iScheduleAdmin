@@ -1,5 +1,3 @@
-showTableCell();
-
 const main = document.querySelector('main');
 
 //GAWING FORM YUNG MGA CONTAINER NG INPUT FIELDS?
@@ -1194,6 +1192,7 @@ function generateSchedule(){
 function generateViewSchedule(){
     main.innerHTML = viewSchedule;
     document.querySelector('.view-schedule__field').innerHTML = quickView;
+    showTableCell();
 }
 
 function generateAdminLogs(){
