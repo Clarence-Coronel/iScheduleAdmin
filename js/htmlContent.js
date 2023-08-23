@@ -981,7 +981,7 @@ let postAnnouncement = `
     <div class="postAnnouncement__content" data-aos="fade-right" data-aos-duration="500">
         <div class="announcement__input-container">
             <label for="announcementTitle">Announcement Title:</label>
-            <input type="text" name="announcementTitle" id="announcementTitle" onblur="inputLimiterBlur(this.id, 30);" oninput="inputLimiter(this.id, 30)">
+            <input type="text" name="announcementTitle" id="announcementTitle" onblur="inputLimiterBlur(this.id, 120);" oninput="inputLimiter(this.id, 120)">
         </div>
         <div class="announcement__input-container">
             <label for="announcementBody">Announcement Body:</label>
