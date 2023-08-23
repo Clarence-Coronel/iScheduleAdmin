@@ -350,7 +350,6 @@ function createAccountValidator(){
         patient['adminType'] = 3;
     }
     else{
-        // If pumili si user
         errorHandler('50');
         return false;
     }
