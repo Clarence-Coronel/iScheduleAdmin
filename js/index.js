@@ -569,9 +569,11 @@ function nextForm(){
 
         if(formState == 1){
             formParts[formState].style.display = 'flex';
+            document.querySelector('.followup-container').style.display = 'flex';
         }
         else if(formState == 2){
             formParts[formState].style.display = 'flex';
+            document.querySelector('.followup-container').style.display = 'none';
         }
     }
 }
@@ -588,9 +590,11 @@ function backForm(){
 
         if(formState == 0){
             formParts[formState].style.display = 'grid';
+            document.querySelector('.followup-container').style.display = 'none';
         }
         else if(formState == 1){
             formParts[formState].style.display = 'flex';
+            document.querySelector('.followup-container').style.display = 'flex';
         }
     }
 }

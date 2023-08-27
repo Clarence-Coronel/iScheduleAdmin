@@ -1832,7 +1832,8 @@ td:hover {
   display: flex;
   flex-flow: column-reverse;
   width: 90%;
-  height: 20%;
+  height: -moz-fit-content !important;
+  height: fit-content !important;
   gap: max(7px, 1vw);
 }
 .schedule__button-container .schedule__btn {
@@ -2410,5 +2411,34 @@ td:hover {
 @media only screen and (min-width: 1200px) {
   .filter-container button {
     width: 15%;
+  }
+}
+.followup-container {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  width: 100%;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.followup-container button {
+  font-size: 0.8rem;
+  color: red;
+  background-color: transparent;
+  font-weight: 1000;
+  border: 2px solid red;
+  border-radius: max(0.5vw, 5px);
+  padding: max(0.2vw, 4px) max(0.5vw, 7px);
+  margin: max(2vw, 20px);
+}
+.followup-container button:hover {
+  background-color: #ff3333;
+  color: white;
+}
+
+@media only screen and (min-width: 900px) {
+  .followup-container button {
+    font-size: 1.3rem;
   }
 }/*# sourceMappingURL=main.css.map */

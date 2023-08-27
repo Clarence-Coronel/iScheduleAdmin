@@ -317,6 +317,9 @@ let schedule = `
                 </div>
             </div>
         </div>
+        <div class="followup-container" style="display: none;">
+            <button type="button">Full slot ang araw ng SCHEDULED FOLLOW UP mo? Pindutin ito.</button>
+        </div>
         <div class="schedule__form schedule__partC" style="display: none;">
             <div class="schedule__review-field">
                 <span class="schedule__field-name">Schedule</span>
