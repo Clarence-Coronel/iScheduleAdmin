@@ -231,6 +231,11 @@ let schedule = `
                     <option value="down">New Patient</option>
                 </select>
             </div>
+            
+            <div class="schedule__input-container">
+                <label for="">Case #</label>
+                <input type="text" name="caseNo" id="caseNo">
+            </div>
 
             <div class="schedule__input-container">
                 <label for="">Appointment Type</label>
@@ -240,7 +245,6 @@ let schedule = `
                     <option value="">Phone</option>
                 </select>
             </div>
-
         </div>
         <div class="schedule__form schedule__partB" style="display: none;">
             <div class="form-part third">                                
