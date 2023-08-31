@@ -101,7 +101,7 @@ function generateAdminTypeModal(val){
         modalTitle.innerHTML = 'Admin I Capabilities'
         modalBody.innerHTML = 
         `
-            *View Scheduled Appointments
+            *View Appointments
         `
     }
     else if(val == 1){
@@ -109,8 +109,10 @@ function generateAdminTypeModal(val){
         modalBody.innerHTML = 
         `   
             *Schedule An Appointment <br>
-            *View Scheduled Appointments  <br>
+            *View Appointments  <br>
+            *Pending Follow-Up Requests  <br>
             *Post An Announcement  <br>
+            *Feedback  <br>
         `
     }
     else if(val == 2){
@@ -119,13 +121,15 @@ function generateAdminTypeModal(val){
         `   
             *Dashboard <br>
             *Schedule An Appointment <br>
-            *View Scheduled Appointments  <br>
+            *View Appointments  <br>
+            *Pending Follow-Up Requests  <br>
             *Edit Department Schedules  <br>
             *Manage Admins <br>
             *Manage Website Status <br>
             *Post An Announcement  <br>
             *Manage Data  <br>
             *Block Dates <br>
+            *Feedback <br>
         `
     }
 
