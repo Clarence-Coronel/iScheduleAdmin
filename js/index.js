@@ -187,7 +187,7 @@ function showTableCell(){
                 item.classList.remove('selected');
 
                 try {
-                    item.querySelector('.editLevel').style.color = 'rgb(80, 78, 78)';
+                    item.querySelector('.editBtn').style.color = 'rgb(80, 78, 78)';
                 } catch (error) {
                     
                 }
@@ -197,7 +197,7 @@ function showTableCell(){
                 item2.classList.add('selected');
 
                 try {
-                    item2.querySelector('.editLevel').style.color = 'white';
+                    item2.querySelector('.editBtn').style.color = 'white';
                     // item2.querySelector('.ico-edit').style.color = 'white';
                 } catch (error) {
                     

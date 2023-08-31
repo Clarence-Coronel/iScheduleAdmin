@@ -371,6 +371,7 @@ let schedule = `
     </div>
 </section>`;
 
+// Pag inedit yung status tas pinili yung cancel sa modal kailangan hingin din natin reason then automatic siya malalagay rin
 let viewSchedule = `
 <section class="view-schedule">
     <div class="view-schedule__content" data-aos="fade-right" data-aos-duration="500">
@@ -392,6 +393,7 @@ let viewSchedule = `
                             <th>Department</th>
                             <th>Appointment Date</th>
                             <th>Time Slot</th>
+                            <th>Status</th>
                             <th>Full Name</th>
                             <th>Sex</th>
                             <th>Birthdate</th>
@@ -399,6 +401,7 @@ let viewSchedule = `
                             <th>Address</th>
                             <th>Patient Type</th>
                             <th>Case #</th>
+                            <th>Reason Cancelled</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -406,122 +409,100 @@ let viewSchedule = `
                             <td>Oncology</td>
                             <td>2023-08-25</td>
                             <td>1:00 PM - 2:00PM (0)</td>
+                            <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Active<span class="ico-list ico-edit">(edit)</span></button></td>
                             <td>John Reyes Cruz</td>
                             <td>Male</td>
                             <td>2001-10-21</td>
                             <td>0942 423 4277</td>
                             <td>Banga II, Plaridel, Bulacan</td>
                             <td>New Patient</td>
+                            <td>123456</td>
                             <td>&nbsp;</td>
-                        </tr>
+                        </tr>      
                         <tr>
                             <td>Oncology</td>
                             <td>2023-08-25</td>
                             <td>1:00 PM - 2:00PM (0)</td>
-                            <td>John Reyes Cruz testest</td>
-                            <td>Male</td>
-                            <td>2001-10-21</td>
-                            <td>0942 423 4277</td>
-                            <td>Banga II, Plaridel, Bulacan</td>
-                            <td>New Patient</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>Oncology</td>
-                            <td>2023-08-25</td>
-                            <td>1:00 PM - 2:00PM (0)</td>
+                            <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Active<span class="ico-list ico-edit">(edit)</span></button></td>
                             <td>John Reyes Cruz</td>
                             <td>Male</td>
                             <td>2001-10-21</td>
                             <td>0942 423 4277</td>
                             <td>Banga II, Plaridel, Bulacan</td>
                             <td>New Patient</td>
+                            <td>123456</td>
                             <td>&nbsp;</td>
-                        </tr>
+                        </tr>  
                         <tr>
                             <td>Oncology</td>
                             <td>2023-08-25</td>
                             <td>1:00 PM - 2:00PM (0)</td>
-                            <td>John Reyes Cruz testest</td>
-                            <td>Male</td>
-                            <td>2001-10-21</td>
-                            <td>0942 423 4277</td>
-                            <td>Banga II, Plaridel, Bulacan</td>
-                            <td>New Patient</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>Oncology</td>
-                            <td>2023-08-25</td>
-                            <td>1:00 PM - 2:00PM (0)</td>
+                            <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Active<span class="ico-list ico-edit">(edit)</span></button></td>
                             <td>John Reyes Cruz</td>
                             <td>Male</td>
                             <td>2001-10-21</td>
                             <td>0942 423 4277</td>
                             <td>Banga II, Plaridel, Bulacan</td>
                             <td>New Patient</td>
+                            <td>123456</td>
                             <td>&nbsp;</td>
-                        </tr>
+                        </tr>  
                         <tr>
                             <td>Oncology</td>
                             <td>2023-08-25</td>
                             <td>1:00 PM - 2:00PM (0)</td>
-                            <td>John Reyes Cruz testest</td>
-                            <td>Male</td>
-                            <td>2001-10-21</td>
-                            <td>0942 423 4277</td>
-                            <td>Banga II, Plaridel, Bulacan</td>
-                            <td>New Patient</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>Oncology</td>
-                            <td>2023-08-25</td>
-                            <td>1:00 PM - 2:00PM (0)</td>
+                            <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Active<span class="ico-list ico-edit">(edit)</span></button></td>
                             <td>John Reyes Cruz</td>
                             <td>Male</td>
                             <td>2001-10-21</td>
                             <td>0942 423 4277</td>
                             <td>Banga II, Plaridel, Bulacan</td>
                             <td>New Patient</td>
+                            <td>123456</td>
                             <td>&nbsp;</td>
-                        </tr>
+                        </tr>  
                         <tr>
                             <td>Oncology</td>
                             <td>2023-08-25</td>
                             <td>1:00 PM - 2:00PM (0)</td>
-                            <td>John Reyes Cruz testest</td>
-                            <td>Male</td>
-                            <td>2001-10-21</td>
-                            <td>0942 423 4277</td>
-                            <td>Banga II, Plaridel, Bulacan</td>
-                            <td>New Patient</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>Oncology</td>
-                            <td>2023-08-25</td>
-                            <td>1:00 PM - 2:00PM (0)</td>
+                            <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Active<span class="ico-list ico-edit">(edit)</span></button></td>
                             <td>John Reyes Cruz</td>
                             <td>Male</td>
                             <td>2001-10-21</td>
                             <td>0942 423 4277</td>
                             <td>Banga II, Plaridel, Bulacan</td>
                             <td>New Patient</td>
+                            <td>123456</td>
                             <td>&nbsp;</td>
-                        </tr>
+                        </tr>  
                         <tr>
                             <td>Oncology</td>
                             <td>2023-08-25</td>
                             <td>1:00 PM - 2:00PM (0)</td>
-                            <td>John Reyes Cruz testest</td>
+                            <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Active<span class="ico-list ico-edit">(edit)</span></button></td>
+                            <td>John Reyes Cruz</td>
                             <td>Male</td>
                             <td>2001-10-21</td>
                             <td>0942 423 4277</td>
                             <td>Banga II, Plaridel, Bulacan</td>
                             <td>New Patient</td>
+                            <td>123456</td>
                             <td>&nbsp;</td>
-                        </tr>
+                        </tr>  
+                        <tr>
+                            <td>Oncology</td>
+                            <td>2023-08-25</td>
+                            <td>1:00 PM - 2:00PM (0)</td>
+                            <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Active<span class="ico-list ico-edit">(edit)</span></button></td>
+                            <td>John Reyes Cruz</td>
+                            <td>Male</td>
+                            <td>2001-10-21</td>
+                            <td>0942 423 4277</td>
+                            <td>Banga II, Plaridel, Bulacan</td>
+                            <td>New Patient</td>
+                            <td>123456</td>
+                            <td>&nbsp;</td>
+                        </tr>            
                     </tbody>
                 </table>
             </div>
@@ -554,7 +535,8 @@ let quickView = `
     <div class="view-schedule__btn-group">
         <button>View Today's Appointments</button>
         <button>View All Active Appointments</button>
-        <button>View Archived Appointments</button>
+        <button>View All Complete Appointments</button>
+        <button>View All Cancelled Appointments</button>   
     </div>
 </div>`;
 
@@ -616,7 +598,8 @@ let filter = `
         <select class="form-select" aria-label="Default select example">
             <option value="" selected hidden disabled>Status</option>
             <option value="">Active</option>
-            <option value="">Archived</option>
+            <option value="">Complete</option>
+            <option value="">Cancelled</option>
         </select>
     </div>
     <button type="button">Apply</button>
@@ -847,35 +830,35 @@ let adminList = `
                     <td>clarence-coronel2l</td>
                     <td>Coronel, Clarence Reyes</td>
                     <td>0987 788 5644</td>
-                    <td><button class="editLevel" onclick="editLevel(this)" data-username="clarence-coronel1">Admin I<span class="ico-list ico-edit">(edit)</span></button></td>
+                    <td><button class="editBtn" onclick="editLevel(this)" data-username="clarence-coronel1">Admin I<span class="ico-list ico-edit">(edit)</span></button></td>
                     <td><button class="removeAdmin" onclick="removeAdmin(this)" data-username="clarence-coronel1">delete</button></td>
                 </tr>
                 <tr>
                     <td>clarence-coronel2l</td>
                     <td>Coronel, Clarence Reyes</td>
                     <td>0987 788 5644</td>
-                    <td><button class="editLevel" onclick="editLevel(this)" data-username="clarence-coronel1">Admin I<span class="ico-list ico-edit">(edit)</span></button></td>
+                    <td><button class="editBtn" onclick="editLevel(this)" data-username="clarence-coronel1">Admin I<span class="ico-list ico-edit">(edit)</span></button></td>
                     <td><button class="removeAdmin" onclick="removeAdmin(this)" data-username="clarence-coronel1">delete</button></td>
                 </tr>
                 <tr>
                     <td>clarence-coronel2l</td>
                     <td>Coronel, Clarence Reyes</td>
                     <td>0987 788 5644</td>
-                    <td><button class="editLevel" onclick="editLevel(this)" data-username="clarence-coronel1">Admin II<span class="ico-list ico-edit">(edit)</span></button></td>
+                    <td><button class="editBtn" onclick="editLevel(this)" data-username="clarence-coronel1">Admin II<span class="ico-list ico-edit">(edit)</span></button></td>
                     <td><button class="removeAdmin" onclick="removeAdmin(this)" data-username="clarence-coronel1">delete</button></td>
                 </tr>
                 <tr>
                     <td>clarence-coronel2l</td>
                     <td>Coronel, Clarence Reyes</td>
                     <td>0987 788 5644</td>
-                    <td><button class="editLevel" onclick="editLevel(this)" data-username="clarence-coronel1">Admin I <span class="ico-list ico-edit">(edit)</span></button></td>
+                    <td><button class="editBtn" onclick="editLevel(this)" data-username="clarence-coronel1">Admin I <span class="ico-list ico-edit">(edit)</span></button></td>
                     <td><button class="removeAdmin" onclick="removeAdmin(this)" data-username="clarence-coronel1">delete</button></td>
                 </tr>
                 <tr>
                     <td>clarence-coronel2l</td>
                     <td>Coronel, Clarence Reyes</td>
                     <td>0987 788 5644</td>
-                    <td><button class="editLevel" onclick="editLevel(this)" data-username="clarence-coronel1">Super Admin<span class="ico-list ico-edit">(edit)</span></button></td>
+                    <td><button class="editBtn" onclick="editLevel(this)" data-username="clarence-coronel1">Super Admin<span class="ico-list ico-edit">(edit)</span></button></td>
                     <td><button class="removeAdmin" onclick="removeAdmin(this)" data-username="clarence-coronel1">delete</button></td>
                 </tr>
             </tbody>
