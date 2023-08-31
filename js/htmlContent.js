@@ -124,8 +124,8 @@ let dashboard = `
         </div>
         <div class="dashboard__stats" data-aos="fade-up" data-aos-duration="500">
             <div class="dashboard__block" title="Recent appointments from the last 30 days.">Recent Appointments<span>1134</span></div>
-            <div class="dashboard__block" title="Recent appointments obtained from the website.">Recent Appointments from Website<span> 1112</span></div>
-            <div class="dashboard__block" title="Recent appointments obtained from others.">Recent Appointments from Others<span> 22</span></div>
+            <div class="dashboard__block" title="Recent complete appointments from the last 30 days.">Recent Completed Appointments<span> 1112</span></div>
+            <div class="dashboard__block" title="Recent cancelled appointments from the last 30 days.">Recent Cancelled Appointments<span> 22</span></div>
             <div class="dashboard__block" title="Overall amount of appointments.">Total Appointments<span>2123</span></div>
             <div class="dashboard__block" title="Recent admin activities from the last 30 days.">Recent Admin Activities<span> 752</span></div>
             <div class="dashboard__block" title="Recent website visits from the last 30 days.">Recent Website Visits<span> 1421</span></div>
@@ -535,7 +535,7 @@ let quickView = `
     <div class="view-schedule__btn-group">
         <button>View Today's Appointments</button>
         <button>View All Active Appointments</button>
-        <button>View All Complete Appointments</button>
+        <button>View All Completed Appointments</button>
         <button>View All Cancelled Appointments</button>   
     </div>
 </div>`;
@@ -598,7 +598,7 @@ let filter = `
         <select class="form-select" aria-label="Default select example">
             <option value="" selected hidden disabled>Status</option>
             <option value="">Active</option>
-            <option value="">Complete</option>
+            <option value="">Completed</option>
             <option value="">Cancelled</option>
         </select>
     </div>
