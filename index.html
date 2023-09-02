@@ -118,7 +118,7 @@
                 <span class="material-icons-outlined ico-nav">block</span>
                 Block Dates
             </button>
-            <button class="nav-links__item" onclick="alert('gawan')">
+            <button class="nav-links__item" onclick="generateFeedback()">
                 <span class="material-icons-outlined ico-nav">chat</span>
                 Feedback
             </button>
@@ -127,34 +127,7 @@
     <main>
         <!-- Gawin dito sa HTML yung pages then icut then paste the innerHtml -->
         <!-- Yung overflow:auto sa section natin ipasok was sa main -->
-        <section class="feedback">
-            <div class="feedback-content">
-                <select class="form-select" aria-label="Default select example">
-                    <option value="" selected hidden disabled>Sort By</option>
-                    <option value="">Oldest to Latest</option>
-                    <option value="">Latest to Oldest</option>
-                    <option value="">Lowest Rating to Highest Rating</option>
-                    <option value="">Highest Rating to Lowest Rating</option>
-                </select>
-                <div class="feedback__table">
-                    <span>Click the row to highlight/see more.</span>
-                    <div class="table-container">
-                        <table class="schedule-table">
-                            <thead>
-                                <tr>
-                                    <th>Feedback</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Oncology</td>
-                                </tr>         
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </section>
+        
     </main>
     <button type="button" class="btn btn-primary modal-launcher" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="display:none">
         Launch static backdrop modal

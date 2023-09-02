@@ -2623,6 +2623,12 @@ td:hover{
 
 .view-schedule__content{
 
+    span{
+        margin-top: $margin-top-span;
+        font-size: 0.8rem;
+        color: gray;
+    }
+
     .view-schedule__header{
         width: 100%;
         height: fit-content;
@@ -2734,6 +2740,7 @@ td:hover{
     .view-schedule__field{
         width: 100%;
         padding: max(10px,1vw);
+        padding-bottom: unset;
     }
 }
 
@@ -2970,6 +2977,56 @@ td:hover{
     .followup-container{
         button{
             font-size: 1.3rem;
+        }
+    }
+}
+
+.feedback{
+    width: 100%;
+    height: 85vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: $box-padding;
+    padding-top: unset;
+    
+    .feedback-content{
+        height: 90%;
+        background-color: white;
+        padding: $box-padding;
+        border-radius: $box-border-radius;
+        box-shadow: $box-shadow;
+        overflow: auto;
+        width: max(80%, 300px);
+        margin-top: $box-margin-top;
+
+        select{
+            margin: auto;
+            max-width: 400px;
+        }
+    }
+
+    .feedback__table{
+        // height: 100%;
+
+        .table-container{
+            max-height: 55vh;
+        }
+
+        span{
+            display: block;
+            width: 100%;
+            text-align: center;
+            margin-top: $margin-top-span;
+            font-size: 0.8rem;
+            color: gray;
+        }
+
+        
+        th:nth-child(1), td:nth-child(1){
+            width: 10%;
+            // background-color: red;
         }
     }
 }

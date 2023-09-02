@@ -1144,7 +1144,121 @@ let blockDates = `
                 </div>
                 <button class="btn-submitblock" onclick="if(!document.querySelector('.form-check-input').checked){alert('nice')};">Add</button>
             </div>
-</section>`
+</section>`;
+
+let feedback = `
+<section class="feedback">
+            <div class="feedback-content" data-aos="fade-right" data-aos-duration="500">
+                <select class="form-select" aria-label="Default select example">
+                    <option value="" selected hidden disabled>Sort By</option>
+                    <option value="">Oldest to Latest</option>
+                    <option value="">Latest to Oldest</option>
+                    <option value="">Lowest Rating to Highest Rating</option>
+                    <option value="">Highest Rating to Lowest Rating</option>
+                </select>
+                <div class="feedback__table">
+                    <span>Click the row to highlight/see more.</span>
+                    <div class="table-container">
+                        <table class="schedule-table">
+                            <thead>
+                                <tr>
+                                    <th>Rating</th>
+                                    <th>Feedback</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
+                                    Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
+                                    Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
+                                    Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
+                                    Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
+                                    Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
+                                    Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
+                                    Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
+                                    Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
+                                    Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
+                                    Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
+                                    Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
+                                    Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
+                                    Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
+                                    Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
+                                    Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
+                                    Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
+                                    Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
+                                </tr>  
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+`;
 
 
 // Ipakita autogenerated na username after success OTP ex clarence-coronel12; or possible wala nang otp sa pag gawa ng acc tingnan natin
@@ -1235,5 +1349,10 @@ function generateManageData(){
 
 function generateBlockDates(){
     main.innerHTML = blockDates;
+    showTableCell();
+}
+
+function generateFeedback(){
+    main.innerHTML = feedback;
     showTableCell();
 }
