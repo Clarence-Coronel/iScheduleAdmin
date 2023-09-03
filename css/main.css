@@ -845,13 +845,13 @@ th {
      -moz-user-select: none;
           user-select: none;
   font-size: 0.7rem;
-  max-width: max(5vw, 100px);
+  max-width: max(10vw, 100px);
 }
 
 td {
   padding: max(10px, 0.8vw);
   text-align: left;
-  max-width: max(5vw, 100px);
+  max-width: max(10vw, 100px);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -1189,7 +1189,7 @@ td:hover {
   justify-content: center;
   align-items: flex-start;
   width: 100%;
-  height: 85vh;
+  height: 90vh;
   overflow: hidden;
 }
 .manage-data .manage-date__content {
@@ -2181,7 +2181,7 @@ td:hover {
   background-color: rgb(236, 235, 235);
 }
 
-.schedule-table {
+table {
   width: 100%;
 }
 
@@ -2239,6 +2239,7 @@ td:hover {
   border-radius: 50px;
   padding: 4px;
   font-size: 0.7rem;
+  margin: unset;
 }
 .view-schedule__content .view-schedule__table .editStatus:hover .ico-edit {
   color: #9ebff4;
@@ -2460,7 +2461,7 @@ td:hover {
 }
 .feedback {
   width: 100%;
-  height: 85vh;
+  height: 90vh;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -2474,7 +2475,6 @@ td:hover {
   padding: max(15px, 2vw);
   border-radius: max(7px, 1vw);
   box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
-  overflow: auto;
   width: max(80%, 300px);
   margin-top: max(15px, 1vw);
 }
@@ -2482,8 +2482,11 @@ td:hover {
   margin: auto;
   max-width: 400px;
 }
+.feedback .feedback__table {
+  height: 100%;
+}
 .feedback .feedback__table .table-container {
-  max-height: 55vh;
+  max-height: 80%;
 }
 .feedback .feedback__table span {
   display: block;
@@ -2495,4 +2498,47 @@ td:hover {
 }
 .feedback .feedback__table th:nth-child(1), .feedback .feedback__table td:nth-child(1) {
   width: 10%;
+}
+
+.request {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.request .request-content {
+  margin-top: max(15px, 1vw);
+  background-color: white;
+  width: 90%;
+  height: 90%;
+  border-radius: max(7px, 1vw);
+  box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
+  padding: max(15px, 2vw);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.request .request__table {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+.request .request__table span {
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0 auto;
+  color: gray;
+  font-size: 0.8rem;
+  margin-top: max(5px, 1vw);
+}
+.request .table-container {
+  width: 100%;
+  height: 100%;
+  max-height: 90%;
+}
+.request .request-view--btn {
+  color: rgb(135, 176, 241);
 }/*# sourceMappingURL=main.css.map */

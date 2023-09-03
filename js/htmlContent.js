@@ -387,119 +387,142 @@ let viewSchedule = `
                 <table class="schedule-table">
                     <thead>
                         <tr>
+                            <th>Full Name</th>
                             <th>Department</th>
                             <th>Appointment Date</th>
                             <th>Time Slot</th>
                             <th>Status</th>
-                            <th>Full Name</th>
                             <th>Sex</th>
                             <th>Birthdate</th>
                             <th>Phone #</th>
                             <th>Address</th>
                             <th>Patient Type</th>
                             <th>Case #</th>
+                            <th>Submitted On</th>
                             <th>Reason Cancelled</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
+                            <td>Cruz, John Reyes</td>
                             <td>Oncology</td>
                             <td>2023-08-25</td>
                             <td>1:00 PM - 2:00PM (0)</td>
                             <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Active<span class="ico-list ico-edit">(edit)</span></button></td>
-                            <td>John Reyes Cruz</td>
                             <td>Male</td>
                             <td>2001-10-21</td>
                             <td>0942 423 4277</td>
                             <td>Banga II, Plaridel, Bulacan</td>
                             <td>New Patient</td>
                             <td>123456</td>
+                            <td>2023-06-27</td>
                             <td>&nbsp;</td>
-                        </tr>      
+                        </tr>
                         <tr>
+                            <td>Cruz, John Reyes</td>
                             <td>Oncology</td>
                             <td>2023-08-25</td>
                             <td>1:00 PM - 2:00PM (0)</td>
                             <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Active<span class="ico-list ico-edit">(edit)</span></button></td>
-                            <td>John Reyes Cruz</td>
                             <td>Male</td>
                             <td>2001-10-21</td>
                             <td>0942 423 4277</td>
                             <td>Banga II, Plaridel, Bulacan</td>
                             <td>New Patient</td>
                             <td>123456</td>
+                            <td>2023-06-27</td>
                             <td>&nbsp;</td>
-                        </tr>  
+                        </tr> 
                         <tr>
+                            <td>Cruz, John Reyes</td>
                             <td>Oncology</td>
                             <td>2023-08-25</td>
                             <td>1:00 PM - 2:00PM (0)</td>
                             <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Active<span class="ico-list ico-edit">(edit)</span></button></td>
-                            <td>John Reyes Cruz</td>
                             <td>Male</td>
                             <td>2001-10-21</td>
                             <td>0942 423 4277</td>
                             <td>Banga II, Plaridel, Bulacan</td>
                             <td>New Patient</td>
                             <td>123456</td>
+                            <td>2023-06-27</td>
                             <td>&nbsp;</td>
-                        </tr>  
+                        </tr> 
                         <tr>
+                            <td>Cruz, John Reyes</td>
                             <td>Oncology</td>
                             <td>2023-08-25</td>
                             <td>1:00 PM - 2:00PM (0)</td>
                             <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Active<span class="ico-list ico-edit">(edit)</span></button></td>
-                            <td>John Reyes Cruz</td>
                             <td>Male</td>
                             <td>2001-10-21</td>
                             <td>0942 423 4277</td>
                             <td>Banga II, Plaridel, Bulacan</td>
                             <td>New Patient</td>
                             <td>123456</td>
+                            <td>2023-06-27</td>
                             <td>&nbsp;</td>
-                        </tr>  
+                        </tr> 
                         <tr>
+                            <td>Cruz, John Reyes</td>
                             <td>Oncology</td>
                             <td>2023-08-25</td>
                             <td>1:00 PM - 2:00PM (0)</td>
                             <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Active<span class="ico-list ico-edit">(edit)</span></button></td>
-                            <td>John Reyes Cruz</td>
                             <td>Male</td>
                             <td>2001-10-21</td>
                             <td>0942 423 4277</td>
                             <td>Banga II, Plaridel, Bulacan</td>
                             <td>New Patient</td>
                             <td>123456</td>
+                            <td>2023-06-27</td>
                             <td>&nbsp;</td>
-                        </tr>  
+                        </tr> 
                         <tr>
+                            <td>Cruz, John Reyes</td>
                             <td>Oncology</td>
                             <td>2023-08-25</td>
                             <td>1:00 PM - 2:00PM (0)</td>
                             <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Active<span class="ico-list ico-edit">(edit)</span></button></td>
-                            <td>John Reyes Cruz</td>
                             <td>Male</td>
                             <td>2001-10-21</td>
                             <td>0942 423 4277</td>
                             <td>Banga II, Plaridel, Bulacan</td>
                             <td>New Patient</td>
                             <td>123456</td>
+                            <td>2023-06-27</td>
                             <td>&nbsp;</td>
-                        </tr>  
+                        </tr> 
                         <tr>
+                            <td>Cruz, John Reyes</td>
                             <td>Oncology</td>
                             <td>2023-08-25</td>
                             <td>1:00 PM - 2:00PM (0)</td>
                             <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Active<span class="ico-list ico-edit">(edit)</span></button></td>
-                            <td>John Reyes Cruz</td>
                             <td>Male</td>
                             <td>2001-10-21</td>
                             <td>0942 423 4277</td>
                             <td>Banga II, Plaridel, Bulacan</td>
                             <td>New Patient</td>
                             <td>123456</td>
+                            <td>2023-06-27</td>
                             <td>&nbsp;</td>
-                        </tr>            
+                        </tr> 
+                        <tr>
+                            <td>Cruz, John Reyes</td>
+                            <td>Oncology</td>
+                            <td>2023-08-25</td>
+                            <td>1:00 PM - 2:00PM (0)</td>
+                            <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Active<span class="ico-list ico-edit">(edit)</span></button></td>
+                            <td>Male</td>
+                            <td>2001-10-21</td>
+                            <td>0942 423 4277</td>
+                            <td>Banga II, Plaridel, Bulacan</td>
+                            <td>New Patient</td>
+                            <td>123456</td>
+                            <td>2023-06-27</td>
+                            <td>&nbsp;</td>
+                        </tr> 
                     </tbody>
                 </table>
             </div>
@@ -1159,7 +1182,7 @@ let feedback = `
                 <div class="feedback__table">
                     <span>Click the row to highlight/see more.</span>
                     <div class="table-container">
-                        <table class="schedule-table">
+                        <table>
                             <thead>
                                 <tr>
                                     <th>Rating</th>

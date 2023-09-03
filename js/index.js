@@ -154,9 +154,9 @@ function generateErrorModal(){
 }
 
 function modalLauncher(){
-    let positive = document.querySelector('.positive');
+    // let positive = document.querySelector('.positive');
 
-    positive.removeAttribute('onclick');
+    // positive.removeAttribute('onclick');
     let modalLauncher = document.querySelector('.modal-launcher');
     modalLauncher.click();
 }
@@ -612,9 +612,45 @@ function confirmSignOut(){
     modalTitle.innerHTML = 'Signing Out...';
     modalBody.innerHTML = 'Are you sure?';
     positive.innerHTML = 'Confirm';
+    document.querySelector('.modal-dialog').classList.remove('modal-lg');
     modalLauncher()
 
     positive.setAttribute('onclick', 'signOut()');
+}
+
+function viewRequest(id){
+    let requestTarget = document.getElementById(id);
+    let appID = requestTarget.getAttribute('data-appID');
+    
+    let title = document.querySelector('.modal-title');
+    let body = document.querySelector('.modal-body');
+    let positive = document.querySelector('.positive');
+    let html = `
+        <div class="view-container">
+            <div class="img-container">
+            </div>
+            <div class="details-container">
+                <span>Schedule Appointment On</span>
+                <div class="input-container">
+                    <div class="date-container">
+                        <input type="text" name="day" id="" placeholder="DD">
+                        <input type="text" name="month" id="" placeholder="MM">
+                        <input type="text" name="year" id="" placeholder="YYYY">
+                    </div>
+                    <div class="button-container">
+                        <button>Logo ng approve check ba</button>
+                        <button>Logo ng reject check ba</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    title.innerHTML = 'Follow-Up Request';
+    positive.style.display = 'none';
+    body.innerHTML = html;
+    document.querySelector('.modal-dialog').classList.add('modal-lg');
+    modalLauncher();
 }
 
 function signOut(){

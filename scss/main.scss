@@ -940,14 +940,16 @@ th{
     padding: max(10px,0.8vw);
     user-select: none;
     font-size: 0.7rem;
-    max-width: max(5vw, 100px);
+    max-width: max(10vw, 100px);
+    // min-width: 150px;
 }
 
 td{
+    // min-width: 150px;
     // flex: 2;
     padding: max(10px,0.8vw);
     text-align: left;
-    max-width: max(5vw, 100px);   
+    max-width: max(10vw, 100px);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -956,9 +958,6 @@ td{
     font-size: 0.7rem;
     border-right: none;
     border-left: none;
-
-    
-    
 
     button{
         background-color: transparent;
@@ -1396,7 +1395,7 @@ td:hover{
     justify-content: center;
     align-items: flex-start;
     width: 100%;
-    height: 85vh;
+    height: 90vh;
     overflow: hidden;
     // min-height: 700px;
     // background-color: red;
@@ -2592,7 +2591,7 @@ td:hover{
     }
 }
 
-.schedule-table{
+table{
     width: 100%;
 }
 
@@ -2671,6 +2670,7 @@ td:hover{
             padding: 4px;
             // text-decoration: underline;
             font-size: 0.7rem;
+            margin: unset;
         }
     
         .editStatus:hover .ico-edit{
@@ -2983,7 +2983,7 @@ td:hover{
 
 .feedback{
     width: 100%;
-    height: 85vh;
+    height: 90vh;
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -2997,7 +2997,7 @@ td:hover{
         padding: $box-padding;
         border-radius: $box-border-radius;
         box-shadow: $box-shadow;
-        overflow: auto;
+        // overflow: auto;
         width: max(80%, 300px);
         margin-top: $box-margin-top;
 
@@ -3008,10 +3008,10 @@ td:hover{
     }
 
     .feedback__table{
-        // height: 100%;
+        height: 100%;
 
         .table-container{
-            max-height: 55vh;
+            max-height: 80%;
         }
 
         span{
@@ -3028,5 +3028,54 @@ td:hover{
             width: 10%;
             // background-color: red;
         }
+    }
+}
+
+.request{
+    width: 100%;
+    height: 90vh;
+    // background-color: rgb(230, 151, 151);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    .request-content{
+        margin-top: $box-margin-top;
+        background-color: white;
+        width: 90%;
+        height: 90%;
+        border-radius: $box-border-radius;
+        box-shadow: $box-shadow;
+        padding: $box-padding;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .request__table{
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+
+        span{
+            width: fit-content;
+            margin: 0 auto;
+            color: gray;
+            font-size: 0.8rem;
+            margin-top: $margin-top-span;
+        }
+    }
+
+    .table-container{
+        width: 100%;
+        height: 100%;
+        max-height: 90%;
+    }
+
+    .request-view--btn{
+        color: rgb(135, 176, 241);
     }
 }
