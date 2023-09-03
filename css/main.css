@@ -2496,7 +2496,7 @@ table {
   font-size: 0.8rem;
   color: gray;
 }
-.feedback .feedback__table th:nth-child(1), .feedback .feedback__table td:nth-child(1) {
+.feedback .feedback__table th:nth-child(1), .feedback .feedback__table td:nth-child(1), .feedback .feedback__table th:nth-child(3), .feedback .feedback__table td:nth-child(3) {
   width: 10%;
 }
 

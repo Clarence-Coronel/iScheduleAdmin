@@ -404,125 +404,111 @@ let viewSchedule = `
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Cruz, John Reyes</td>
+                            <td>Cruz, John Test</td>
                             <td>Oncology</td>
-                            <td>2023-08-25</td>
+                            <td title="YYYY-MM-DD">2023-08-25</td>
                             <td>1:00 PM - 2:00PM (0)</td>
                             <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Active<span class="ico-list ico-edit">(edit)</span></button></td>
                             <td>Male</td>
-                            <td>2001-10-21</td>
+                            <td title="YYYY-MM-DD">2001-10-21</td>
                             <td>0942 423 4277</td>
                             <td>Banga II, Plaridel, Bulacan</td>
                             <td>New Patient</td>
                             <td>123456</td>
-                            <td>2023-06-27</td>
+                            <td title="YYYY-MM-DD">2023-06-27</td>
                             <td>&nbsp;</td>
                         </tr>
                         <tr>
-                            <td>Cruz, John Reyes</td>
+                            <td>Cruz, John Test</td>
                             <td>Oncology</td>
-                            <td>2023-08-25</td>
+                            <td title="YYYY-MM-DD">2023-08-25</td>
                             <td>1:00 PM - 2:00PM (0)</td>
                             <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Active<span class="ico-list ico-edit">(edit)</span></button></td>
                             <td>Male</td>
-                            <td>2001-10-21</td>
+                            <td title="YYYY-MM-DD">2001-10-21</td>
                             <td>0942 423 4277</td>
                             <td>Banga II, Plaridel, Bulacan</td>
                             <td>New Patient</td>
                             <td>123456</td>
-                            <td>2023-06-27</td>
+                            <td title="YYYY-MM-DD">2023-06-27</td>
                             <td>&nbsp;</td>
-                        </tr> 
+                        </tr>
                         <tr>
-                            <td>Cruz, John Reyes</td>
+                            <td>Cruz, John Test</td>
                             <td>Oncology</td>
-                            <td>2023-08-25</td>
+                            <td title="YYYY-MM-DD">2023-08-25</td>
                             <td>1:00 PM - 2:00PM (0)</td>
                             <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Active<span class="ico-list ico-edit">(edit)</span></button></td>
                             <td>Male</td>
-                            <td>2001-10-21</td>
+                            <td title="YYYY-MM-DD">2001-10-21</td>
                             <td>0942 423 4277</td>
                             <td>Banga II, Plaridel, Bulacan</td>
                             <td>New Patient</td>
                             <td>123456</td>
-                            <td>2023-06-27</td>
+                            <td title="YYYY-MM-DD">2023-06-27</td>
                             <td>&nbsp;</td>
-                        </tr> 
+                        </tr>
                         <tr>
-                            <td>Cruz, John Reyes</td>
+                            <td>Cruz, John Test</td>
                             <td>Oncology</td>
-                            <td>2023-08-25</td>
+                            <td title="YYYY-MM-DD">2023-08-25</td>
                             <td>1:00 PM - 2:00PM (0)</td>
                             <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Active<span class="ico-list ico-edit">(edit)</span></button></td>
                             <td>Male</td>
-                            <td>2001-10-21</td>
+                            <td title="YYYY-MM-DD">2001-10-21</td>
                             <td>0942 423 4277</td>
                             <td>Banga II, Plaridel, Bulacan</td>
                             <td>New Patient</td>
                             <td>123456</td>
-                            <td>2023-06-27</td>
+                            <td title="YYYY-MM-DD">2023-06-27</td>
                             <td>&nbsp;</td>
-                        </tr> 
+                        </tr>
                         <tr>
-                            <td>Cruz, John Reyes</td>
+                            <td>Cruz, John Test</td>
                             <td>Oncology</td>
-                            <td>2023-08-25</td>
+                            <td title="YYYY-MM-DD">2023-08-25</td>
                             <td>1:00 PM - 2:00PM (0)</td>
                             <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Active<span class="ico-list ico-edit">(edit)</span></button></td>
                             <td>Male</td>
-                            <td>2001-10-21</td>
+                            <td title="YYYY-MM-DD">2001-10-21</td>
                             <td>0942 423 4277</td>
                             <td>Banga II, Plaridel, Bulacan</td>
                             <td>New Patient</td>
                             <td>123456</td>
-                            <td>2023-06-27</td>
+                            <td title="YYYY-MM-DD">2023-06-27</td>
                             <td>&nbsp;</td>
-                        </tr> 
+                        </tr>
                         <tr>
-                            <td>Cruz, John Reyes</td>
+                            <td>Cruz, John Test</td>
                             <td>Oncology</td>
-                            <td>2023-08-25</td>
+                            <td title="YYYY-MM-DD">2023-08-25</td>
                             <td>1:00 PM - 2:00PM (0)</td>
                             <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Active<span class="ico-list ico-edit">(edit)</span></button></td>
                             <td>Male</td>
-                            <td>2001-10-21</td>
+                            <td title="YYYY-MM-DD">2001-10-21</td>
                             <td>0942 423 4277</td>
                             <td>Banga II, Plaridel, Bulacan</td>
                             <td>New Patient</td>
                             <td>123456</td>
-                            <td>2023-06-27</td>
+                            <td title="YYYY-MM-DD">2023-06-27</td>
                             <td>&nbsp;</td>
-                        </tr> 
+                        </tr>
                         <tr>
-                            <td>Cruz, John Reyes</td>
+                            <td>Cruz, John Test</td>
                             <td>Oncology</td>
-                            <td>2023-08-25</td>
+                            <td title="YYYY-MM-DD">2023-08-25</td>
                             <td>1:00 PM - 2:00PM (0)</td>
                             <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Active<span class="ico-list ico-edit">(edit)</span></button></td>
                             <td>Male</td>
-                            <td>2001-10-21</td>
+                            <td title="YYYY-MM-DD">2001-10-21</td>
                             <td>0942 423 4277</td>
                             <td>Banga II, Plaridel, Bulacan</td>
                             <td>New Patient</td>
                             <td>123456</td>
-                            <td>2023-06-27</td>
+                            <td title="YYYY-MM-DD">2023-06-27</td>
                             <td>&nbsp;</td>
-                        </tr> 
-                        <tr>
-                            <td>Cruz, John Reyes</td>
-                            <td>Oncology</td>
-                            <td>2023-08-25</td>
-                            <td>1:00 PM - 2:00PM (0)</td>
-                            <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Active<span class="ico-list ico-edit">(edit)</span></button></td>
-                            <td>Male</td>
-                            <td>2001-10-21</td>
-                            <td>0942 423 4277</td>
-                            <td>Banga II, Plaridel, Bulacan</td>
-                            <td>New Patient</td>
-                            <td>123456</td>
-                            <td>2023-06-27</td>
-                            <td>&nbsp;</td>
-                        </tr> 
+                        </tr>
+                        
                     </tbody>
                 </table>
             </div>
@@ -674,147 +660,49 @@ let adminLogs = `
                     <tr>
                         <td>clarence-coronelclarence-coronelclarence-coronel</td>
                         <td>View Schedule</td>
-                        <td>2023-10-21</td>
+                        <td title="YYYY-MM-DD">2023-10-21</td>
                         <td>13:00</td>
                         <td>Admin II</td>
                     </tr>
                     <tr>
-                        <td>clarence-coronel</td>
+                        <td>clarence-coronelclarence-coronelclarence-coronel</td>
                         <td>View Schedule</td>
-                        <td>2023-10-21</td>
+                        <td title="YYYY-MM-DD">2023-10-21</td>
                         <td>13:00</td>
                         <td>Admin II</td>
                     </tr>
                     <tr>
-                        <td>clarence-coronel</td>
+                        <td>clarence-coronelclarence-coronelclarence-coronel</td>
                         <td>View Schedule</td>
-                        <td>2023-10-21</td>
+                        <td title="YYYY-MM-DD">2023-10-21</td>
                         <td>13:00</td>
                         <td>Admin II</td>
                     </tr>
                     <tr>
-                        <td>clarence-coronel</td>
+                        <td>clarence-coronelclarence-coronelclarence-coronel</td>
                         <td>View Schedule</td>
-                        <td>2023-10-21</td>
+                        <td title="YYYY-MM-DD">2023-10-21</td>
                         <td>13:00</td>
                         <td>Admin II</td>
                     </tr>
                     <tr>
-                        <td>clarence-coronel</td>
+                        <td>clarence-coronelclarence-coronelclarence-coronel</td>
                         <td>View Schedule</td>
-                        <td>2023-10-21</td>
+                        <td title="YYYY-MM-DD">2023-10-21</td>
                         <td>13:00</td>
                         <td>Admin II</td>
                     </tr>
                     <tr>
-                        <td>clarence-coronel</td>
+                        <td>clarence-coronelclarence-coronelclarence-coronel</td>
                         <td>View Schedule</td>
-                        <td>2023-10-21</td>
+                        <td title="YYYY-MM-DD">2023-10-21</td>
                         <td>13:00</td>
                         <td>Admin II</td>
                     </tr>
                     <tr>
-                        <td>clarence-coronel</td>
+                        <td>clarence-coronelclarence-coronelclarence-coronel</td>
                         <td>View Schedule</td>
-                        <td>2023-10-21</td>
-                        <td>13:00</td>
-                        <td>Admin II</td>
-                    </tr>
-                    <tr>
-                        <td>clarence-coronel</td>
-                        <td>View Schedule</td>
-                        <td>2023-10-21</td>
-                        <td>13:00</td>
-                        <td>Admin II</td>
-                    </tr>
-                    <tr>
-                        <td>clarence-coronel</td>
-                        <td>View Schedule</td>
-                        <td>2023-10-21</td>
-                        <td>13:00</td>
-                        <td>Admin II</td>
-                    </tr>
-                    <tr>
-                        <td>clarence-coronel</td>
-                        <td>View Schedule</td>
-                        <td>2023-10-21</td>
-                        <td>13:00</td>
-                        <td>Admin II</td>
-                    </tr>
-                    <tr>
-                        <td>clarence-coronel</td>
-                        <td>View Schedule</td>
-                        <td>2023-10-21</td>
-                        <td>13:00</td>
-                        <td>Admin II</td>
-                    </tr>
-                    <tr>
-                        <td>clarence-coronel</td>
-                        <td>View Schedule</td>
-                        <td>2023-10-21</td>
-                        <td>13:00</td>
-                        <td>Admin II</td>
-                    </tr>
-                    <tr>
-                        <td>clarence-coronel</td>
-                        <td>View Schedule</td>
-                        <td>2023-10-21</td>
-                        <td>13:00</td>
-                        <td>Admin II</td>
-                    </tr>
-                    <tr>
-                        <td>clarence-coronel</td>
-                        <td>View Schedule</td>
-                        <td>2023-10-21</td>
-                        <td>13:00</td>
-                        <td>Admin II</td>
-                    </tr>
-                    <tr>
-                        <td>clarence-coronel</td>
-                        <td>View Schedule</td>
-                        <td>2023-10-21</td>
-                        <td>13:00</td>
-                        <td>Admin II</td>
-                    </tr>
-                    <tr>
-                        <td>clarence-coronel</td>
-                        <td>View Schedule</td>
-                        <td>2023-10-21</td>
-                        <td>13:00</td>
-                        <td>Admin II</td>
-                    </tr>
-                    <tr>
-                        <td>clarence-coronel</td>
-                        <td>View Schedule</td>
-                        <td>2023-10-21</td>
-                        <td>13:00</td>
-                        <td>Admin II</td>
-                    </tr>
-                    <tr>
-                        <td>clarence-coronel</td>
-                        <td>View Schedule</td>
-                        <td>2023-10-21</td>
-                        <td>13:00</td>
-                        <td>Admin II</td>
-                    </tr>
-                    <tr>
-                        <td>clarence-coronel</td>
-                        <td>View Schedule</td>
-                        <td>2023-10-21</td>
-                        <td>13:00</td>
-                        <td>Admin II</td>
-                    </tr>
-                    <tr>
-                        <td>clarence-coronel</td>
-                        <td>View Schedule</td>
-                        <td>2023-10-21</td>
-                        <td>13:00</td>
-                        <td>Admin II</td>
-                    </tr>
-                    <tr>
-                        <td>clarence-coronel</td>
-                        <td>View Schedule</td>
-                        <td>2023-10-21</td>
+                        <td title="YYYY-MM-DD">2023-10-21</td>
                         <td>13:00</td>
                         <td>Admin II</td>
                     </tr>
@@ -1187,6 +1075,7 @@ let feedback = `
                                 <tr>
                                     <th>Rating</th>
                                     <th>Feedback</th>
+                                    <th>Date Submitted</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1194,87 +1083,44 @@ let feedback = `
                                     <td>5</td>
                                     <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
                                     Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
+                                    <td title="YYYY-MM-DD">2023-07-01</td>
                                 </tr>
                                 <tr>
                                     <td>5</td>
                                     <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
                                     Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
+                                    <td title="YYYY-MM-DD">2023-07-01</td>
                                 </tr>
                                 <tr>
                                     <td>5</td>
                                     <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
                                     Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
+                                    <td title="YYYY-MM-DD">2023-07-01</td>
                                 </tr>
                                 <tr>
                                     <td>5</td>
                                     <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
                                     Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
+                                    <td title="YYYY-MM-DD">2023-07-01</td>
                                 </tr>
                                 <tr>
                                     <td>5</td>
                                     <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
                                     Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
+                                    <td title="YYYY-MM-DD">2023-07-01</td>
                                 </tr>
                                 <tr>
                                     <td>5</td>
                                     <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
                                     Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
+                                    <td title="YYYY-MM-DD">2023-07-01</td>
                                 </tr>
                                 <tr>
                                     <td>5</td>
                                     <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
                                     Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
+                                    <td title="YYYY-MM-DD">2023-07-01</td>
                                 </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
-                                    Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
-                                    Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
-                                    Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
-                                    Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
-                                    Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
-                                    Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
-                                    Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
-                                    Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
-                                    Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
-                                    Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
-                                </tr>  
                             </tbody>
                         </table>
                     </div>
