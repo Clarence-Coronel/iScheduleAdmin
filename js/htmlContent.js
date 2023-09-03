@@ -126,7 +126,7 @@ let dashboard = `
             <div class="dashboard__block" title="Recent appointments from the last 30 days.">Recent Appointments<span>1134</span></div>
             <div class="dashboard__block" title="Recent complete appointments from the last 30 days.">Recent Completed Appointments<span> 1112</span></div>
             <div class="dashboard__block" title="Recent cancelled appointments from the last 30 days.">Recent Cancelled Appointments<span> 22</span></div>
-            <div class="dashboard__block" title="Overall amount of appointments.">Total Appointments<span>2123</span></div>
+            <div class="dashboard__block" title="Recent website rating from the last 30 days.">Recent Website Rating<span>2123</span></div>
             <div class="dashboard__block" title="Recent admin activities from the last 30 days.">Recent Admin Activities<span> 752</span></div>
             <div class="dashboard__block" title="Recent website visits from the last 30 days.">Recent Website Visits<span> 1421</span></div>
         </div>
