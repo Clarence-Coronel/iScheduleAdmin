@@ -369,7 +369,7 @@ let schedule = `
 </section>`;
 
 // Pag inedit yung status tas pinili yung cancel sa modal kailangan hingin din natin reason then automatic siya malalagay rin
-// Pag cancelled na bawal na ibahin status
+// Pag active lang kailangan pede iedit yung other status bawal na
 let viewSchedule = `
 <section class="view-schedule">
     <div class="view-schedule__content" data-aos="fade-right" data-aos-duration="500">
@@ -409,7 +409,7 @@ let viewSchedule = `
                             <td>Oncology</td>
                             <td title="YYYY-MM-DD">2023-08-25</td>
                             <td>1:00 PM - 2:00PM (0)</td>
-                            <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Cancelled<span class="ico-list ico-edit">(edit)</span></button></td>
+                            <td><button class="editBtn cancelled" onclick="alert('Change status')" data-id="12">Cancelled<span class="ico-list ico-edit">(edit)</span></button></td>
                             <td>Male</td>
                             <td title="YYYY-MM-DD">2001-10-21</td>
                             <td>0942 423 4277</td>
@@ -424,7 +424,7 @@ let viewSchedule = `
                             <td>Oncology</td>
                             <td title="YYYY-MM-DD">2023-08-25</td>
                             <td>1:00 PM - 2:00PM (0)</td>
-                            <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Cancelled<span class="ico-list ico-edit">(edit)</span></button></td>
+                            <td><button class="editBtn cancelled" onclick="alert('Change status')" data-id="12">Cancelled<span class="ico-list ico-edit">(edit)</span></button></td>
                             <td>Male</td>
                             <td title="YYYY-MM-DD">2001-10-21</td>
                             <td>0942 423 4277</td>
@@ -439,7 +439,7 @@ let viewSchedule = `
                             <td>Oncology</td>
                             <td title="YYYY-MM-DD">2023-08-25</td>
                             <td>1:00 PM - 2:00PM (0)</td>
-                            <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Cancelled<span class="ico-list ico-edit">(edit)</span></button></td>
+                            <td><button class="editBtn cancelled" onclick="alert('Change status')" data-id="12">Cancelled<span class="ico-list ico-edit">(edit)</span></button></td>
                             <td>Male</td>
                             <td title="YYYY-MM-DD">2001-10-21</td>
                             <td>0942 423 4277</td>
@@ -454,7 +454,7 @@ let viewSchedule = `
                             <td>Oncology</td>
                             <td title="YYYY-MM-DD">2023-08-25</td>
                             <td>1:00 PM - 2:00PM (0)</td>
-                            <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Active<span class="ico-list ico-edit">(edit)</span></button></td>
+                            <td><button class="editBtn active" onclick="alert('Change status')" data-id="12">Active<span class="ico-list ico-edit">(edit)</span></button></td>
                             <td>Male</td>
                             <td title="YYYY-MM-DD">2001-10-21</td>
                             <td>0942 423 4277</td>
@@ -469,7 +469,7 @@ let viewSchedule = `
                             <td>Oncology</td>
                             <td title="YYYY-MM-DD">2023-08-25</td>
                             <td>1:00 PM - 2:00PM (0)</td>
-                            <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Active<span class="ico-list ico-edit">(edit)</span></button></td>
+                            <td><button class="editBtn missed" onclick="alert('Change status')" data-id="12">Missed<span class="ico-list ico-edit">(edit)</span></button></td>
                             <td>Male</td>
                             <td title="YYYY-MM-DD">2001-10-21</td>
                             <td>0942 423 4277</td>
@@ -484,7 +484,7 @@ let viewSchedule = `
                             <td>Oncology</td>
                             <td title="YYYY-MM-DD">2023-08-25</td>
                             <td>1:00 PM - 2:00PM (0)</td>
-                            <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Active<span class="ico-list ico-edit">(edit)</span></button></td>
+                            <td><button class="editBtn completed" onclick="alert('Change status')" data-id="12">Completed<span class="ico-list ico-edit">(edit)</span></button></td>
                             <td>Male</td>
                             <td title="YYYY-MM-DD">2001-10-21</td>
                             <td>0942 423 4277</td>
@@ -499,7 +499,7 @@ let viewSchedule = `
                             <td>Oncology</td>
                             <td title="YYYY-MM-DD">2023-08-25</td>
                             <td>1:00 PM - 2:00PM (0)</td>
-                            <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Active<span class="ico-list ico-edit">(edit)</span></button></td>
+                            <td><button class="editBtn active" onclick="alert('Change status')" data-id="12">Active<span class="ico-list ico-edit">(edit)</span></button></td>
                             <td>Male</td>
                             <td title="YYYY-MM-DD">2001-10-21</td>
                             <td>0942 423 4277</td>

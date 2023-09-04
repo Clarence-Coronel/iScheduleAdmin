@@ -942,6 +942,8 @@ th{
     font-size: 0.7rem;
     max-width: max(10vw, 100px);
     // min-width: 150px;
+
+    // text-align: left;
 }
 
 td{
@@ -959,11 +961,14 @@ td{
     border-right: none;
     border-left: none;
 
+
+
     button{
         background-color: transparent;
         border: unset;
         display: flex;
-        justify-content: center;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
         align-items: center;
         // color: $fontbase-color;
         width: 100%;
@@ -3143,4 +3148,20 @@ table{
             text-align: center;
         }
     }
+}
+
+.cancelled{
+    color: red !important;
+}
+
+.active{
+    color: rgb(9, 219, 9) !important;
+}
+
+.missed{
+    color: gold !important;
+}
+
+.completed{
+    color: #9014f6 !important;
 }

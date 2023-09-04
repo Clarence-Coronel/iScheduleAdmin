@@ -865,7 +865,8 @@ td button {
   background-color: transparent;
   border: unset;
   display: flex;
-  justify-content: center;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
   text-align: left;
@@ -2590,4 +2591,20 @@ table {
   border: unset;
   border-bottom: 1px solid black;
   text-align: center;
+}
+
+.cancelled {
+  color: red !important;
+}
+
+.active {
+  color: rgb(9, 219, 9) !important;
+}
+
+.missed {
+  color: gold !important;
+}
+
+.completed {
+  color: #9014f6 !important;
 }/*# sourceMappingURL=main.css.map */
