@@ -615,10 +615,12 @@ function confirmSignOut(){
     document.querySelector('.modal-dialog').classList.remove('modal-lg');
     modalLauncher()
 
+    // gumamit ng setattribute sa pag bigay ng onclick and tanggal
+
     positive.setAttribute('onclick', 'signOut()');
 }
 
-function viewRequest(id){
+function viewRequestApprove(id){
     let requestTarget = document.getElementById(id);
     let appID = requestTarget.getAttribute('data-appID');
     
@@ -627,29 +629,40 @@ function viewRequest(id){
     let positive = document.querySelector('.positive');
     let html = `
         <div class="view-container">
-            <div class="img-container">
-            </div>
-            <div class="details-container">
-                <span>Schedule Appointment On</span>
-                <div class="input-container">
-                    <div class="date-container">
-                        <input type="text" name="day" id="" placeholder="DD">
-                        <input type="text" name="month" id="" placeholder="MM">
-                        <input type="text" name="year" id="" placeholder="YYYY">
-                    </div>
-                    <div class="button-container">
-                        <button>Logo ng approve check ba</button>
-                        <button>Logo ng reject check ba</button>
-                    </div>
+            <div class="viewinput-container">
+                <div class="date-container">
+                    <input type="text" name="day" id="" placeholder="DD">
+                    <input type="text" name="month" id="" placeholder="MM">
+                    <input type="text" name="year" id="" placeholder="YYYY">
                 </div>
             </div>
+            <span>4 Buffer Slot Remaining</span>
         </div>
     `;
 
-    title.innerHTML = 'Follow-Up Request';
-    positive.style.display = 'none';
+    title.innerHTML = 'Schedule Appointment On';
+    positive.innerHTML = 'Schedule';
     body.innerHTML = html;
-    document.querySelector('.modal-dialog').classList.add('modal-lg');
+    // document.querySelector('.modal-dialog').classList.add('modal-lg');
+
+    modalLauncher();
+}
+
+function viewRequestReject(id){
+    let requestTarget = document.getElementById(id);
+    let appID = requestTarget.getAttribute('data-appID');
+    
+    let title = document.querySelector('.modal-title');
+    let body = document.querySelector('.modal-body');
+    let positive = document.querySelector('.positive');
+
+    title.innerHTML = 'Rejecting Appointment...';
+    body.innerHTML = 'Are you sure?';
+    positive.innerHTML = 'Confirm';
+
+    // positive.setAttribute('onclick', 'alert("test")');
+    // positive.removeAttribute('onclick');
+
     modalLauncher();
 }
 

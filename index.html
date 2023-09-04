@@ -67,7 +67,7 @@
                 <span class="material-icons-outlined ico-nav">book</span>
                 View Appointments
             </button>
-            <button class="nav-links__item" onclick="alert('gawan');">
+            <button class="nav-links__item" onclick="generateRequest();">
                 <span class="material-icons-outlined ico-nav">pending_actions</span>
                 Pending Follow-Up Requests
             </button>
@@ -127,35 +127,7 @@
     <main>
         <!-- Gawin dito sa HTML yung pages then icut then paste the innerHtml -->
         <!-- Yung overflow:auto sa section natin ipasok was sa main -->
-        <section class="request">
-            <div class="request-content">
-                <div class="request__table">
-                    <span>Click the row to highlight/see more.</span>
-                    <div class="table-container">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>&nbsp;</th>
-                                    <th>Full Name</th>
-                                    <th>Department</th>
-                                    <th>Scheduled Follow-Up Date (YYYY-MM-DD)</th>
-                                    <th>Phone #</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td>
-                                    <td>Coronel, Clarence Reyes</td>
-                                    <td>Oncology</td>
-                                    <td>2023-12-30</td>
-                                    <td>09XX XXX XXXX</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </section>
+        
     </main>
     <button type="button" class="btn btn-primary modal-launcher" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="display:none">
         Launch static backdrop modal

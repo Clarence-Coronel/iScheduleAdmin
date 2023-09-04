@@ -369,6 +369,7 @@ let schedule = `
 </section>`;
 
 // Pag inedit yung status tas pinili yung cancel sa modal kailangan hingin din natin reason then automatic siya malalagay rin
+// Pag cancelled na bawal na ibahin status
 let viewSchedule = `
 <section class="view-schedule">
     <div class="view-schedule__content" data-aos="fade-right" data-aos-duration="500">
@@ -408,7 +409,7 @@ let viewSchedule = `
                             <td>Oncology</td>
                             <td title="YYYY-MM-DD">2023-08-25</td>
                             <td>1:00 PM - 2:00PM (0)</td>
-                            <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Active<span class="ico-list ico-edit">(edit)</span></button></td>
+                            <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Cancelled<span class="ico-list ico-edit">(edit)</span></button></td>
                             <td>Male</td>
                             <td title="YYYY-MM-DD">2001-10-21</td>
                             <td>0942 423 4277</td>
@@ -416,14 +417,14 @@ let viewSchedule = `
                             <td>New Patient</td>
                             <td>123456</td>
                             <td title="YYYY-MM-DD">2023-06-27</td>
-                            <td>&nbsp;</td>
+                            <td>TrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabaho</td>
                         </tr>
                         <tr>
                             <td>Cruz, John Test</td>
                             <td>Oncology</td>
                             <td title="YYYY-MM-DD">2023-08-25</td>
                             <td>1:00 PM - 2:00PM (0)</td>
-                            <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Active<span class="ico-list ico-edit">(edit)</span></button></td>
+                            <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Cancelled<span class="ico-list ico-edit">(edit)</span></button></td>
                             <td>Male</td>
                             <td title="YYYY-MM-DD">2001-10-21</td>
                             <td>0942 423 4277</td>
@@ -431,14 +432,14 @@ let viewSchedule = `
                             <td>New Patient</td>
                             <td>123456</td>
                             <td title="YYYY-MM-DD">2023-06-27</td>
-                            <td>&nbsp;</td>
+                            <td>TrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabaho</td>
                         </tr>
                         <tr>
                             <td>Cruz, John Test</td>
                             <td>Oncology</td>
                             <td title="YYYY-MM-DD">2023-08-25</td>
                             <td>1:00 PM - 2:00PM (0)</td>
-                            <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Active<span class="ico-list ico-edit">(edit)</span></button></td>
+                            <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Cancelled<span class="ico-list ico-edit">(edit)</span></button></td>
                             <td>Male</td>
                             <td title="YYYY-MM-DD">2001-10-21</td>
                             <td>0942 423 4277</td>
@@ -446,7 +447,7 @@ let viewSchedule = `
                             <td>New Patient</td>
                             <td>123456</td>
                             <td title="YYYY-MM-DD">2023-06-27</td>
-                            <td>&nbsp;</td>
+                            <td>TrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabaho</td>
                         </tr>
                         <tr>
                             <td>Cruz, John Test</td>
@@ -515,6 +516,215 @@ let viewSchedule = `
         </div>
     </div>
 </section>`;
+
+let request = `
+<section class="request">
+            <div class="request-content" data-aos="fade-right" data-aos-duration="500">
+                <div class="request__table">
+                    <span>Click the row to highlight/see more.</span>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>&nbsp;</th>
+                                    <th>&nbsp;</th>
+                                    <th>Full Name</th>
+                                    <th>Department</th>
+                                    <th>Scheduled Follow-Up Date</th>
+                                    <th>Phone #</th>
+                                    <th>Follow-Up Slip</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <button data-appID="1" id="1" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
+                                    </td>
+                                    <td>
+                                        <button data-appID="1" id="1" onclick="viewRequestReject(this.id)"><span class="material-icons-outlined">close</span></button>
+                                    </td>
+                                    <td>Coronel, Clarence Reyes</td>
+                                    <td>Oncology</td>
+                                    <td>2023-12-30</td>
+                                    <td>09XX XXX XXXX</td>
+                                    <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
+                                    <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <button data-appID="2" id="2" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
+                                    </td>
+                                    <td>
+                                        <button data-appID="2" id="2" onclick="viewRequestReject(this.id)"><span class="material-icons-outlined">close</span></button>
+                                    </td>
+                                    <td>Coronel, Clarence Reyes</td>
+                                    <td>Oncology</td>
+                                    <td>2023-12-30</td>
+                                    <td>09XX XXX XXXX</td>
+                                    <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
+                                    <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <button data-appID="3" id="3" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
+                                    </td>
+                                    <td>
+                                        <button data-appID="3" id="3" onclick="viewRequestReject(this.id)"><span class="material-icons-outlined">close</span></button>
+                                    </td>
+                                    <td>Coronel, Clarence Reyes</td>
+                                    <td>Oncology</td>
+                                    <td>2023-12-30</td>
+                                    <td>09XX XXX XXXX</td>
+                                    <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
+                                    <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <button data-appID="3" id="3" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
+                                    </td>
+                                    <td>
+                                        <button data-appID="3" id="3" onclick="viewRequestReject(this.id)"><span class="material-icons-outlined">close</span></button>
+                                    </td>
+                                    <td>Coronel, Clarence Reyes</td>
+                                    <td>Oncology</td>
+                                    <td>2023-12-30</td>
+                                    <td>09XX XXX XXXX</td>
+                                    <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
+                                    <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <button data-appID="3" id="3" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
+                                    </td>
+                                    <td>
+                                        <button data-appID="3" id="3" onclick="viewRequestReject(this.id)"><span class="material-icons-outlined">close</span></button>
+                                    </td>
+                                    <td>Coronel, Clarence Reyes</td>
+                                    <td>Oncology</td>
+                                    <td>2023-12-30</td>
+                                    <td>09XX XXX XXXX</td>
+                                    <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
+                                    <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <button data-appID="3" id="3" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
+                                    </td>
+                                    <td>
+                                        <button data-appID="3" id="3" onclick="viewRequestReject(this.id)"><span class="material-icons-outlined">close</span></button>
+                                    </td>
+                                    <td>Coronel, Clarence Reyes</td>
+                                    <td>Oncology</td>
+                                    <td>2023-12-30</td>
+                                    <td>09XX XXX XXXX</td>
+                                    <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
+                                    <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <button data-appID="3" id="3" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
+                                    </td>
+                                    <td>
+                                        <button data-appID="3" id="3" onclick="viewRequestReject(this.id)"><span class="material-icons-outlined">close</span></button>
+                                    </td>
+                                    <td>Coronel, Clarence Reyes</td>
+                                    <td>Oncology</td>
+                                    <td>2023-12-30</td>
+                                    <td>09XX XXX XXXX</td>
+                                    <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
+                                    <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <button data-appID="3" id="3" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
+                                    </td>
+                                    <td>
+                                        <button data-appID="3" id="3" onclick="viewRequestReject(this.id)"><span class="material-icons-outlined">close</span></button>
+                                    </td>
+                                    <td>Coronel, Clarence Reyes</td>
+                                    <td>Oncology</td>
+                                    <td>2023-12-30</td>
+                                    <td>09XX XXX XXXX</td>
+                                    <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
+                                    <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <button data-appID="3" id="3" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
+                                    </td>
+                                    <td>
+                                        <button data-appID="3" id="3" onclick="viewRequestReject(this.id)"><span class="material-icons-outlined">close</span></button>
+                                    </td>
+                                    <td>Coronel, Clarence Rey21321wsdwdwedrqes</td>
+                                    <td>Oncology</td>
+                                    <td>2023-12-30</td>
+                                    <td>09XX XXX XXXX</td>
+                                    <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
+                                    <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <button data-appID="3" id="3" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
+                                    </td>
+                                    <td>
+                                        <button data-appID="3" id="3" onclick="viewRequestReject(this.id)"><span class="material-icons-outlined">close</span></button>
+                                    </td>
+                                    <td>Coronel, Clarence Reyes</td>
+                                    <td>Oncology</td>
+                                    <td>2023-12-30</td>
+                                    <td>09XX XXX XXXX</td>
+                                    <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
+                                    <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <button data-appID="3" id="3" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
+                                    </td>
+                                    <td>
+                                        <button data-appID="3" id="3" onclick="viewRequestReject(this.id)"><span class="material-icons-outlined">close</span></button>
+                                    </td>
+                                    <td>Coronel, Clarence Reyes</td>
+                                    <td>Oncology</td>
+                                    <td>2023-12-30</td>
+                                    <td>09XX XXX XXXX</td>
+                                    <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
+                                    <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <button data-appID="3" id="3" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
+                                    </td>
+                                    <td>
+                                        <button data-appID="3" id="3" onclick="viewRequestReject(this.id)"><span class="material-icons-outlined">close</span></button>
+                                    </td>
+                                    <td>Coronel, Clarence Reyes</td>
+                                    <td>Oncology</td>
+                                    <td>2023-12-30</td>
+                                    <td>09XX XXX XXXX</td>
+                                    <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
+                                    <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <button data-appID="3" id="3" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
+                                    </td>
+                                    <td>
+                                        <button data-appID="3" id="3" onclick="viewRequestReject(this.id)"><span class="material-icons-outlined">close</span></button>
+                                    </td>
+                                    <td>Coronel, Clarence Reyes</td>
+                                    <td>Oncology</td>
+                                    <td>2023-12-30</td>
+                                    <td>09XX XXX XXXX</td>
+                                    <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
+                                    <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+`;
 
 let quickView = `
 <div class="quick-view-container">
@@ -658,7 +868,7 @@ let adminLogs = `
                 </thead>
                 <tbody>
                     <tr>
-                        <td>clarence-coronelclarence-coronelclarence-coronel</td>
+                        <td>coronelclarencecoronelclarencecoronelclarencecoronelclarencecoronelclarencecoronelclarencecoronelclarencecoronelclarencecoronelclarence</td>
                         <td>View Schedule</td>
                         <td title="YYYY-MM-DD">2023-10-21</td>
                         <td>13:00</td>
@@ -1162,6 +1372,11 @@ function generateSchedule(){
 function generateViewSchedule(){
     main.innerHTML = viewSchedule;
     document.querySelector('.view-schedule__field').innerHTML = quickView;
+    showTableCell();
+}
+
+function generateRequest(){
+    main.innerHTML = request;
     showTableCell();
 }
 

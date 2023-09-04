@@ -882,9 +882,10 @@ td:hover {
   overflow: unset;
   text-overflow: unset;
   white-space: unset;
-  background-color: #0577fa;
+  background-color: gray;
   color: white;
   cursor: pointer;
+  overflow-wrap: break-word;
 }
 
 .admin-table {
@@ -2534,11 +2535,59 @@ table {
   font-size: 0.8rem;
   margin-top: max(5px, 1vw);
 }
+.request .request__table td:nth-child(1) span, .request .request__table td:nth-child(2) span {
+  margin: unset;
+}
+.request .request__table td:nth-child(1) span {
+  color: rgb(6, 195, 6);
+  font-size: 1rem;
+}
+.request .request__table td:nth-child(2) span {
+  color: red;
+  font-size: 1rem;
+}
 .request .table-container {
   width: 100%;
   height: 100%;
   max-height: 90%;
 }
-.request .request-view--btn {
+
+.viewBtn {
   color: rgb(135, 176, 241);
+  text-decoration: none;
+}
+
+.view-container {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  height: 15vh;
+  justify-content: center;
+  align-items: center;
+  gap: max(1vw, 15px);
+}
+.view-container span {
+  text-align: center;
+}
+.view-container .viewinput-container {
+  width: 100%;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.viewinput-container .date-container {
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+  gap: 1%;
+}
+.viewinput-container .date-container input {
+  width: 32.33%;
+  height: -moz-fit-content;
+  height: fit-content;
+  border: unset;
+  border-bottom: 1px solid black;
+  text-align: center;
 }/*# sourceMappingURL=main.css.map */
