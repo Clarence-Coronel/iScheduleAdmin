@@ -2951,33 +2951,33 @@ table{
     }
 }
 
-.followup-container{
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
-    width: 100%;
-    user-select: none;
-    // background-color: red;
+// .followup-container{
+//     display: flex;
+//     flex-flow: row nowrap;
+//     justify-content: center;
+//     width: 100%;
+//     user-select: none;
+//     // background-color: red;
 
-    button{
-        // height: 5vh;
-        font-size: 0.8rem;
-        color: red;
-        background-color: transparent;
-        font-weight: 1000;
-        border: 2px solid red;
-        // background-color: red;
-        border-radius: max(0.5vw, 5px);
-        padding: max(0.2vw, 4px) max(0.5vw, 7px);
-        margin: max(2vw, 20px);
-        // text-decoration: underline;
-    }
+//     button{
+//         // height: 5vh;
+//         font-size: 0.8rem;
+//         color: red;
+//         background-color: transparent;
+//         font-weight: 1000;
+//         border: 2px solid red;
+//         // background-color: red;
+//         border-radius: max(0.5vw, 5px);
+//         padding: max(0.2vw, 4px) max(0.5vw, 7px);
+//         margin: max(2vw, 20px);
+//         // text-decoration: underline;
+//     }
 
-    button:hover{
-        background-color: lighten($color: red, $amount: 10);
-        color: white;
-    }
-}
+//     button:hover{
+//         background-color: lighten($color: red, $amount: 10);
+//         color: white;
+//     }
+// }
 
 @media only screen and (min-width: 900px){
     .followup-container{
@@ -3082,6 +3082,11 @@ table{
         }
 
         td:nth-child(1){
+
+            button{
+                justify-content: flex-end;
+            }
+
             span{
                 color: rgb(6, 195, 6);
                 font-size: 1rem;
@@ -3089,6 +3094,11 @@ table{
         }
 
         td:nth-child(2){
+
+            button{
+                justify-content: flex-start;
+            }
+
             span{
                 color: red;
                 font-size: 1rem;

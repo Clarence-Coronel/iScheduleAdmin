@@ -2432,30 +2432,6 @@ table {
     width: 15%;
   }
 }
-.followup-container {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-  width: 100%;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
-}
-.followup-container button {
-  font-size: 0.8rem;
-  color: red;
-  background-color: transparent;
-  font-weight: 1000;
-  border: 2px solid red;
-  border-radius: max(0.5vw, 5px);
-  padding: max(0.2vw, 4px) max(0.5vw, 7px);
-  margin: max(2vw, 20px);
-}
-.followup-container button:hover {
-  background-color: #ff3333;
-  color: white;
-}
-
 @media only screen and (min-width: 900px) {
   .followup-container button {
     font-size: 1.3rem;
@@ -2539,9 +2515,15 @@ table {
 .request .request__table td:nth-child(1) span, .request .request__table td:nth-child(2) span {
   margin: unset;
 }
+.request .request__table td:nth-child(1) button {
+  justify-content: flex-end;
+}
 .request .request__table td:nth-child(1) span {
   color: rgb(6, 195, 6);
   font-size: 1rem;
+}
+.request .request__table td:nth-child(2) button {
+  justify-content: flex-start;
 }
 .request .request__table td:nth-child(2) span {
   color: red;
