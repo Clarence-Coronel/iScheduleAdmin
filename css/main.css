@@ -2589,4 +2589,104 @@ table {
 
 .completed {
   color: #9014f6 !important;
+}
+
+.scheduling {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  overflow: hidden;
+}
+.scheduling .scheduling-content {
+  background-color: white;
+  border-radius: max(7px, 1vw);
+  box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
+  padding: max(15px, 2vw);
+  margin-top: max(15px, 1vw);
+  width: 95%;
+  height: 85vh;
+  overflow-y: auto;
+}
+.scheduling .week-container {
+  width: 100%;
+  height: 90%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
+  gap: 1%;
+  padding-top: max(1%, 10px);
+}
+.scheduling .week-container .day {
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  padding: 5% 0;
+}
+.scheduling .week-container .day-header {
+  width: 100%;
+  text-align: center;
+  border: unset;
+  height: -moz-fit-content;
+  height: fit-content;
+  background-color: rgb(250, 108, 108);
+  color: white;
+  border-radius: max(0.1vw, 5px);
+  padding: 0.2rem;
+  font-size: 1rem;
+}
+.scheduling .week-container .block {
+  margin-top: 2%;
+  width: 100%;
+  padding: 5%;
+  background-color: rgb(235, 235, 235);
+  border-radius: max(0.1vw, 5px);
+  display: flex;
+  flex-flow: column;
+  gap: 2vh;
+}
+.scheduling .week-container .buffer {
+  background-color: rgb(245, 234, 170);
+}
+.scheduling .week-container .timeslot-container {
+  display: flex;
+  flex-flow: column;
+}
+.scheduling .week-container .timeslot {
+  width: 100%;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.7rem;
+}
+.scheduling .week-container .max {
+  color: red;
+}
+.scheduling .week-container .max::before {
+  content: "Slot: ";
+  color: rgb(80, 78, 78);
+}
+.scheduling .week-container .button-container {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2%;
+}
+.scheduling .week-container .button-container button {
+  border: unset;
+  background-color: #0577fa;
+  color: white;
+  width: 49%;
+  padding: max(0.2rem, 5px) 0;
+  border-radius: max(0.1rem, 5px);
+  font-size: 0.8rem;
+  text-align: center;
+}
+.scheduling .week-container .button-container button:hover {
+  background-color: #1e85fb;
+}
+
+@media only screen and (min-width: 1200px) {
+  .scheduling .week-container {
+    grid-template-columns: repeat(auto-fill, minmax(15%, 1fr));
+  }
 }/*# sourceMappingURL=main.css.map */
