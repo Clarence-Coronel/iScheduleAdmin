@@ -3238,6 +3238,10 @@ table{
 
         .buffer{
             background-color: rgb(245, 234, 170);
+
+            .time::after{
+                content: ' (Buffer)';
+            }
         }
 
         .timeslot-container{

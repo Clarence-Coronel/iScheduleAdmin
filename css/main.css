@@ -2646,6 +2646,9 @@ table {
 .scheduling .week-container .buffer {
   background-color: rgb(245, 234, 170);
 }
+.scheduling .week-container .buffer .time::after {
+  content: " (Buffer)";
+}
 .scheduling .week-container .timeslot-container {
   display: flex;
   flex-flow: column;

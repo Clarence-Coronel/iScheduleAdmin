@@ -757,7 +757,7 @@ let scheduling = `
                         <div class="timeslot-container">
                             <div class="block buffer">
                                 <div class="timeslot">
-                                    <div class="time">8:00 AM - 9:00 AM (Buffer)</div>
+                                    <div class="time">8:00 AM - 9:00 AM</div>
                                     <div class="max">15</div>
                                 </div>
                                 <div class="button-container">
@@ -772,7 +772,7 @@ let scheduling = `
                         <div class="timeslot-container">
                             <div class="block buffer">
                                 <div class="timeslot">
-                                    <div class="time">8:00 AM - 9:00 AM (Buffer)</div>
+                                    <div class="time">8:00 AM - 9:00 AM</div>
                                     <div class="max">15</div>
                                 </div>
                                 <div class="button-container">
@@ -797,7 +797,7 @@ let scheduling = `
                         <div class="timeslot-container">
                             <div class="block buffer">
                                 <div class="timeslot">
-                                    <div class="time">8:00 AM - 9:00 AM (Buffer)</div>
+                                    <div class="time">8:00 AM - 9:00 AM</div>
                                     <div class="max">15</div>
                                 </div>
                                 <div class="button-container">
@@ -842,7 +842,7 @@ let scheduling = `
                         <div class="timeslot-container">
                             <div class="block buffer">
                                 <div class="timeslot">
-                                    <div class="time">8:00 AM - 9:00 AM (Buffer)</div>
+                                    <div class="time">8:00 AM - 9:00 AM</div>
                                     <div class="max">15</div>
                                 </div>
                                 <div class="button-container">
@@ -867,7 +867,7 @@ let scheduling = `
                         <div class="timeslot-container">
                             <div class="block buffer">
                                 <div class="timeslot">
-                                    <div class="time">8:00 AM - 9:00 AM (Buffer)</div>
+                                    <div class="time">8:00 AM - 9:00 AM</div>
                                     <div class="max">15</div>
                                 </div>
                                 <div class="button-container">
@@ -892,7 +892,7 @@ let scheduling = `
                         <div class="timeslot-container">
                             <div class="block buffer">
                                 <div class="timeslot">
-                                    <div class="time">8:00 AM - 9:00 AM (Buffer)</div>
+                                    <div class="time">8:00 AM - 9:00 AM</div>
                                     <div class="max">15</div>
                                 </div>
                                 <div class="button-container">
