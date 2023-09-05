@@ -9,13 +9,16 @@ const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
 
 let container, monthContainer, calendarPrev, calendarNext;
 
-let nextMonthActive = false;
+let nextCounter = 0;
 
 let date = new Date();
 let selectedMonth = '';
 let selectedYear = '';
 let selectedDate = '';
 let selectedSlot = '';
+
+let oldMonth;
+let currentMonth = date.getMonth();
 
 function loadSlots(selectedDateVal){
     let slotContainer = document.querySelector('.slot-container');
@@ -103,10 +106,21 @@ function nextMonthBtn(){
         item.style.border = '2px solid rgb(80, 78, 78)';
     });
 
-    if(!nextMonthActive){
+    if(nextCounter < 11 && nextCounter >= 0){
         // Clears scheduleDate content para pag nag next or prev burado yung salected
         document.getElementById('scheduleDate').value = "";
         let nextMonth = months[date.getMonth()+1];
+
+        oldMonth = currentMonth;
+        currentMonth = date.getMonth()+1;
+
+        if(currentMonth == 12){
+            currentMonth = 0;
+        }
+
+        console.log('old month: ' + oldMonth);
+        console.log('current month: ' + currentMonth);
+
         let year = date.getFullYear();
         if(!nextMonth)
         {
@@ -114,11 +128,12 @@ function nextMonthBtn(){
             nextMonth='January';
         } 
         date = new Date(`${nextMonth} 1, ${year}`);
-        nextMonthActive = true;
+        nextCounter++;
         InitialSetup();
+        console.log(nextCounter);
     }
     else{
-        openModalUserError("Paalala",'Maari lamang mag schedule ng appointment sa kasalukuyang buwan o sa susunod na buwan.');
+        openModalUserError("Paalala",'Maari lamang mag schedule ng appointment sa susunod na labing-dalawang (12) buwan.');
     }
 }
 
@@ -130,19 +145,39 @@ function prevMonthBtn(){
         item.style.border = '2px solid rgb(80, 78, 78)';
     });
 
-    if(nextMonthActive){
+    if(nextCounter > 0){
         // Clears scheduleDate content para pag nag next or prev burado yung salected
         document.getElementById('scheduleDate').value = "";
         let temp = new Date();
-        let nextMonth = months[temp.getMonth()];
-        let year = temp.getFullYear();
-        let currentDate = temp.getDate();
-        date = new Date(`${nextMonth} ${currentDate}, ${year}`);
-        nextMonthActive = false;
+        let nextMonth = months[oldMonth];
+        
+        currentMonth = oldMonth;
+        oldMonth = oldMonth-1;
+
+        if(oldMonth == -1){
+            oldMonth = 11;
+        }
+        
+        // console.log('TESTING ' + oldMonth);
+        // console.log('TESTING ' + currentMonth);
+        // alert(currentMonthNav-1);
+
+        if(temp.getMonth() == currentMonth){
+            let year = temp.getFullYear();
+            let currentDate = temp.getDate();
+            date = new Date(`${nextMonth} ${currentDate}, ${year}`);
+        }
+        else{
+            let year = temp.getFullYear();
+            date = new Date(`${nextMonth} 1, ${year}`);
+        }
+        
+        nextCounter--;
         InitialSetup();
+        console.log(nextCounter);
     }
     else{ 
-        openModalUserError("Paalala",'Maari lamang mag schedule ng appointment sa kasalukuyang buwan o sa susunod na buwan.');
+        openModalUserError("Paalala",'Maari lamang mag schedule ng appointment sa kasalukuyang buwan.');
     }
 }
 
@@ -205,7 +240,7 @@ function generateDate(days, NameOfDay1st){
         }
     }
     calendarCell.forEach((item)=>{
-        if(!nextMonthActive){
+        if(nextCounter <= 1){
             if(item.innerHTML <= date.getDate()){
                 item.classList.remove('date');
                 item.classList.add('block');

@@ -552,7 +552,12 @@ function seePassword(fieldID, iconID){
 
 function changeBorderFocus(id){
     let field = document.getElementById(id);
-    field.parentElement.style.borderColor = '#4e73df';
+
+    try {
+        field.parentElement.style.borderColor = '#4e73df';
+    } catch (error) {
+        
+    }
 }
 
 function changeBorderBlur(id){
@@ -573,7 +578,13 @@ function nextForm(){
 
         if(formState == 1){
             formParts[formState].style.display = 'flex';
-            document.querySelector('.followup-container').style.display = 'flex';
+
+            try {
+                document.querySelector('.followup-container').style.display = 'flex';
+            } catch (error) {
+                
+            }
+            
         }
         else if(formState == 2){
             formParts[formState].style.display = 'flex';
