@@ -3180,6 +3180,7 @@ table{
     display: flex;
     flex-flow: column;
     align-items: center;
+    height: 90vh;
     overflow: hidden;
 
     .scheduling-content{
@@ -3189,7 +3190,7 @@ table{
         padding: $box-padding;
         margin-top: $box-margin-top;
         width: 95%;
-        height: 85vh;
+        height: 90%;
         overflow-y: auto;
     }
 
