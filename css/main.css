@@ -249,7 +249,6 @@ header .header__right {
   justify-content: center;
   align-items: flex-start;
   height: 95vh;
-  overflow: auto;
 }
 
 .nav-links {

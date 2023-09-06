@@ -1542,7 +1542,7 @@ let feedback = `
 
 let editTutorial = `
 <section class="edit-tutorial">
-            <div class="edit-tutorial-content" data-aos="fade-right" data-aos-duration="500">
+            <div class="edit-tutorial-content" data-aos="fade-right" data-aos-duration="500"z>
                 <div class="edit-tutorial__instruction">
                     <span class="edit-tutorial__header">How to get embedded youtube link</span>
                     <ol>
