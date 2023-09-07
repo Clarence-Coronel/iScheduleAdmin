@@ -1,3 +1,11 @@
+<?php
+    $_SESSION['username'] = 'clarence-coronel';
+
+    if(!isset($_SESSION['username'])){
+        header("Location: https://www.geeksforgeeks.org");
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

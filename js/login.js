@@ -16,3 +16,22 @@ function changeBorderBlur(id){
     let field = document.getElementById(id);
     if(field.value == "") field.parentElement.style.borderColor = 'rgb(80, 78, 78)';
 }
+
+function validateLogin(){
+    const xhr = new XMLHttpRequest();
+    let username = 'clarence-coronel';
+    let password = '123';
+
+
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4){
+            if(xhr.status == 200){
+                console.log(xhr.responseText);
+            }
+        }
+    }
+
+    xhr.open("POST", "../php/processLogin.php");
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send(`user=${username}&pass=${password}`);
+}

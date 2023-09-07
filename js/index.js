@@ -678,7 +678,7 @@ function viewRequestReject(id){
 }
 
 function signOut(){
-    window.location.href='./page/login.html';
+    window.location.href='./page/login.php';
 }
 
 function viewScheduleNav(id){

@@ -37,7 +37,7 @@
                 </div>
             </div>
             <div class="button-field">
-                <button>Login</button>
+                <button onclick="validateLogin()">Login</button>
                 <a href="">Forgot Password?</a>
             </div>     
         </section>
