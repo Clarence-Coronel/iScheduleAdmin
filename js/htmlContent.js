@@ -1546,7 +1546,7 @@ let editTutorial = `
                 <div class="edit-tutorial__instruction">
                     <span class="edit-tutorial__header">How to get embedded youtube link</span>
                     <ol>
-                        <li>Video must be set to either public or unlisted</li>
+                        <li>Video must be set to either public/unlisted and in landscape</li>
                         <li>Go to the video and click "share"</li>
                         <li>Choose "Embed" option</li>
                         <li>Find the src, example: src="<span>https://www.youtube.com/embed/a3ICNMQW7Ok?si=IWnYUlj7YutcHo1O</span>"</li>
