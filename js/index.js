@@ -624,11 +624,12 @@ function confirmSignOut(){
     modalBody.innerHTML = 'Are you sure?';
     positive.innerHTML = 'Confirm';
     document.querySelector('.modal-dialog').classList.remove('modal-lg');
-    modalLauncher()
 
-    // gumamit ng setattribute sa pag bigay ng onclick and tanggal
 
+     // gumamit ng setattribute sa pag bigay ng onclick and tanggal
     positive.setAttribute('onclick', 'signOut()');
+
+    modalLauncher()
 }
 
 function viewRequestApprove(id){
@@ -678,7 +679,10 @@ function viewRequestReject(id){
 }
 
 function signOut(){
-    window.location.href='./page/login.php';
+    const positive = document.querySelector('.positive');
+    positive.removeAttribute('onclick');
+
+    window.location.href='./php/processSignout.php';
 }
 
 function viewScheduleNav(id){

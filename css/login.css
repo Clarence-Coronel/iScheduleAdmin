@@ -103,7 +103,7 @@ h1 span {
   box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
   width: max(300px, 70vw);
   max-width: 600px;
-  height: 40%;
+  height: 35%;
   min-height: 300px;
   background-color: white;
   display: flex;
@@ -116,7 +116,7 @@ h1 span {
   display: flex;
   flex-flow: column;
   justify-content: center;
-  gap: max(25px, 1vw);
+  gap: max(15px, 0.3vw);
 }
 .login-form .button-field {
   height: 30%;
@@ -256,4 +256,42 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+.error-container {
+  width: 100%;
+  height: 3vh;
+  text-align: center;
+  position: relative;
+}
+
+.login-msg {
+  width: 100%;
+  text-align: center;
+  font-size: 1rem;
+  color: red;
+  transition-duration: 500ms;
+  position: absolute;
+  left: 0;
+}
+
+@keyframes horizontal-shaking {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(2px);
+  }
+  50% {
+    transform: translateX(-2px);
+  }
+  75% {
+    transform: translateX(2px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.error-animate {
+  animation: horizontal-shaking 0.35s infinite;
 }/*# sourceMappingURL=login.css.map */

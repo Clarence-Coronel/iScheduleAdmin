@@ -1,8 +1,8 @@
 <?php
-    $_SESSION['username'] = 'clarence-coronel';
+    session_start();
 
-    if(!isset($_SESSION['username'])){
-        header("Location: https://www.geeksforgeeks.org");
+    if(!isset($_SESSION['authenticated'])){
+        header("Location: ./page/login.php");
     }
 ?>
 

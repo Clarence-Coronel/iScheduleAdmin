@@ -19,14 +19,24 @@ function changeBorderBlur(id){
 
 function validateLogin(){
     const xhr = new XMLHttpRequest();
-    let username = 'clarence-coronel';
-    let password = '123';
+    let username = document.querySelector('#username').value;
+    let password = document.querySelector('#password').value;
+    
+    if(username == "" || password == ""){
+        showError("Please fill up both fields.");
+        return;
+    }
 
-
-    xhr.onreadystatechange = function(){
+    xhr.onload = function(){
         if(xhr.readyState == 4){
             if(xhr.status == 200){
-                console.log(xhr.responseText);
+                let result = parseInt(xhr.responseText);
+                if(result == 1){
+                    window.location.href="../index.php";
+                }
+                else{
+                    showError("Incorrect username or password");
+                }
             }
         }
     }
@@ -34,4 +44,16 @@ function validateLogin(){
     xhr.open("POST", "../php/processLogin.php");
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(`user=${username}&pass=${password}`);
+}
+
+function showError(str = ""){
+    let msg = document.querySelector('.login-msg');
+
+    msg.innerHTML = str;
+    msg.classList.add('error-animate');
+
+    setTimeout(()=>{
+        msg.classList.remove('error-animate');
+    },500);
+    
 }

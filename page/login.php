@@ -1,3 +1,11 @@
+<?php
+    session_start();
+
+    if(isset($_SESSION['authenticated'])){
+        header("Location: ../index.php");
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +32,7 @@
         <h1><span class="material-icons">
             account_circle
             </span>iSchedule Admin Panel</h1>
-        <section class="login-form">
+        <form class="login-form">
             <div class="input-container">
                 <div class="input-field">
                     <input type="text" name="username" id="username" required onfocus="changeBorderFocus(this.id)" onblur="changeBorderBlur(this.id)">
@@ -36,11 +44,14 @@
                     <span class="material-icons see-password" id="seePassword" onclick="seePassword('password', this.id)">visibility_off</span>
                 </div>
             </div>
+            <div class="error-container">
+                    <span class="login-msg"></span>
+                </div>
             <div class="button-field">
-                <button onclick="validateLogin()">Login</button>
+                <button type="button" onclick="validateLogin()">Login</button>
                 <a href="">Forgot Password?</a>
             </div>     
-        </section>
+        </form>
     </main>
 </body>
 </html>
