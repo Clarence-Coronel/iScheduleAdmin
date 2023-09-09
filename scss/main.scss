@@ -262,11 +262,17 @@ header{
     }
 }
 
+.nav-item-wrapper{
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+}
+
 .nav-links__item{
     height: max(35px, 15%);
     border: unset;
     display: flex;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     justify-content: flex-start;
     align-items: center;
     color: $gray;
@@ -277,6 +283,12 @@ header{
     width: 100%;
     user-select: none;
     background-color: transparent;
+    max-height: 70px;
+}
+
+.nav-links__item:nth-child(1){
+    max-height: unset;
+
 }
 
 .manage-admins{
