@@ -2,9 +2,9 @@ function seePassword(fieldID, iconID){
     field = document.getElementById(fieldID);
     icon = document.getElementById(iconID);
 
-    icon.innerHTML = icon.innerHTML == 'visibility_off' ? 'visibility' : 'visibility_off';
+    icon.innerText = icon.innerText == 'visibility_off' ? 'visibility' : 'visibility_off';
 
-    field.setAttribute('type', icon.innerHTML == 'visibility_off' ? 'password' : 'text');
+    field.setAttribute('type', icon.innerText == 'visibility_off' ? 'password' : 'text');
 }
 
 function changeBorderFocus(id){
@@ -23,7 +23,7 @@ function validateLogin(){
     let password = document.querySelector('#password').value;
     
     if(username == "" || password == ""){
-        showError("Please fill up both fields.");
+        showError("Please fill up both fields");
         return;
     }
 
@@ -49,7 +49,7 @@ function validateLogin(){
 function showError(str = ""){
     let msg = document.querySelector('.login-msg');
 
-    msg.innerHTML = str;
+    msg.innerText = str;
     msg.classList.add('error-animate');
 
     setTimeout(()=>{

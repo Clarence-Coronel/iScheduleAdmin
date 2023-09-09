@@ -19,14 +19,14 @@
         array_push($arr, $input);
     }
 
-    $query = "SELECT password FROM `admins` WHERE username='$arr[0]'";
+    $query = "SELECT * FROM `admins` WHERE username='$arr[0]'";
     $result = mysqli_query($conn,$query);
 	$count = mysqli_num_rows($result);
 
     // sa pag register lang ng password chaka ihash otherwise dont
     // $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
-    if($count > 0){
+    if($count == 1){
         while($row = mysqli_fetch_array($result)){
 
             $encrypted_password = $row['password'];
@@ -34,7 +34,7 @@
             if (password_verify($arr[1], $encrypted_password)) {
                 
                 //Di gumagana
-                
+
                 // server should keep session data for AT LEAST 18 hours
                 // ini_set('session.gc_maxlifetime', 64800);
 
@@ -42,6 +42,13 @@
                 // session_set_cookie_params(64800);
                 
                 $_SESSION['authenticated'] = true;
+                $_SESSION['username'] = $row['username'];
+                $_SESSION['firstName'] = $row['firstName'];
+                $_SESSION['middleName'] = $row['middleName'];
+                $_SESSION['lastName'] = $row['lastName'];
+                $_SESSION['adminType'] = $row['adminType'];
+                $_SESSION['phone'] = $row['phone'];
+
                 session_regenerate_id(true);
 
                 echo 1;

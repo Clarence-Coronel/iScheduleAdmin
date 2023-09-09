@@ -4,6 +4,20 @@
     if(!isset($_SESSION['authenticated'])){
         header("Location: ./page/login.php");
     }
+    else{
+        echo "
+            <script> 
+                const signedInAdmin = {
+                    username: '" . $_SESSION['username'] ."',
+                    adminType: '" . $_SESSION['adminType'] ."',
+                    phone: '" . $_SESSION['phone'] ."',
+                    firstName: '" . $_SESSION['firstName'] ."',
+                    middleName: '" . $_SESSION['middleName'] ."',
+                    lastName: '" . $_SESSION['lastName'] ."',
+                }               
+            </script>
+        ";
+    }
 ?>
 
 <!DOCTYPE html>
@@ -63,28 +77,28 @@
             <div class="nav-links__item nav-links__title" data-click="doNothing">
                 <h1 data-click="doNothing"><span class="material-icons-outlined ico-admin"data-click="doNothing">admin_panel_settings</span>iSchedule <br> Admin Panel</h1>
             </div>
-            <button class="nav-links__item" onclick="generateDashboard();">
+            <button id="0" class="nav-links__item" onclick="generateDashboard();">
                 <span class="material-icons-outlined ico-nav">dashboard</span>
                 Dashboard
             </button>
-            <button class="nav-links__item" onclick="generateSchedule();">
+            <button id="1" class="nav-links__item" onclick="generateSchedule();">
                 <span class="material-icons-outlined ico-nav">calendar_month</span>
                 Schedule An Appointment
             </button>
-            <button class="nav-links__item" onclick="generateViewSchedule();">
+            <button id="2" class="nav-links__item" onclick="generateViewSchedule();">
                 <span class="material-icons-outlined ico-nav">book</span>
                 View Appointments
             </button>
-            <button class="nav-links__item" onclick="generateRequest();">
+            <button id="3" class="nav-links__item" onclick="generateRequest();">
                 <span class="material-icons-outlined ico-nav">pending_actions</span>
                 Follow-Up Requests
             </button>
             <!-- IN HERE ASIDE SA PEDE IEDIT YUNG SCHEDULE PER DEPARTMENT PEDE RIN IBLOCK OR ISARADO ALL INCOMING APPOINTMENTS -->
-            <button class="nav-links__item" onclick="generateScheduling()">
+            <button id="4" class="nav-links__item" onclick="generateScheduling()">
                 <span class="material-icons-outlined ico-nav">edit_calendar</span>
                 Edit Department Schedules
             </button>
-            <div class="nav-links__item manage-admins" data-click="doNothing" onclick="showManageAdmins();">
+            <div id="5" class="nav-links__item manage-admins" data-click="doNothing" onclick="showManageAdmins();">
                 <button class="btn-content" id="btn--manage-admins" data-click="doNothing">
                     <span class="material-icons-outlined ico-nav" data-click="doNothing">groups</span>
                     Manage Admins
@@ -109,28 +123,28 @@
                     </button> -->
                 </div>
             </div>
-            <button class="nav-links__item" onclick="generateWebsiteStatus()">
+            <button id="6" class="nav-links__item" onclick="generateWebsiteStatus()">
                 <span class="material-icons-outlined ico-nav">medical_services</span>
                 Manage Website Status
             </button>
-            <button class="nav-links__item" onclick="generatePostAnnouncement()">
+            <button  id="7" class="nav-links__item" onclick="generatePostAnnouncement()">
                 <span class="material-icons-outlined ico-nav">campaign</span>
                 Post An Announcement
             </button>
             <!-- dito pede mag perma delete ng schedules logs admins data whatever -->
-            <button class="nav-links__item" onclick="generateManageData()">
+            <button id="8" class="nav-links__item" onclick="generateManageData()">
                 <span class="material-icons-outlined ico-nav">storage</span>
                 Manage Data
             </button>
-            <button class="nav-links__item" onclick="generateBlockDates()">
+            <button id="9" class="nav-links__item" onclick="generateBlockDates()">
                 <span class="material-icons-outlined ico-nav">block</span>
                 Block Dates
             </button>
-            <button class="nav-links__item" onclick="generateFeedback()">
+            <button id="10" class="nav-links__item" onclick="generateFeedback()">
                 <span class="material-icons-outlined ico-nav">chat</span>
                 Feedback
             </button>
-            <button class="nav-links__item" onclick="generateEditTutorial()">
+            <button id="11" class="nav-links__item" onclick="generateEditTutorial()">
                 <span class="material-icons-outlined ico-nav">videocam</span>
                 Manage Video Tutorial
             </button>
@@ -155,7 +169,7 @@
             ...
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-secondary negative" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary negative" data-bs-dismiss="modal">Cancel</button>
             <button type="button" class="btn btn-primary positive" data-bs-dismiss="modal">Understood</button>
             </div>
         </div>

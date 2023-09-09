@@ -517,6 +517,101 @@ let viewSchedule = `
     </div>
 </section>`;
 
+let quickView = `
+<div class="quick-view-container">
+    <select class="form-select" aria-label="Default select example">
+        <option value="" selected hidden disabled>Select a Department</option>
+        <option value="">ENT</option>
+        <option value="">Hematology</option>
+        <option value="">Internal Medicine</option>
+        <option value="">Internal Medicine Clearance</option>
+        <option value="">Nephrology</option>
+        <option value="">Neurology</option>
+        <option value="">OB GYNE New</option>
+        <option value="">OB GYNE Old</option>
+        <option value="">OB GYNE ROS</option>
+        <option value="">Oncology</option>
+        <option value="">Pediatric Cardiology</option>
+        <option value="">Pediatric Clearance</option>
+        <option value="">Pediatric General</option>
+        <option value="">Psychiatry New</option>
+        <option value="">Psychiatry Old</option>
+        <option value="">Surgery</option>
+        <option value="">Surgery ROS</option>
+    </select>
+    <div class="view-schedule__btn-group">
+        <button>View Today's Appointments</button>
+        <button>View All Active Appointments</button>
+        <button>View All Completed Appointments</button>
+        <button>View All Cancelled Appointments</button>   
+    </div>
+</div>`;
+
+let filter = `
+<div class="filter-container">
+    <div class="search-container">
+        <input type="text" placeholder="Search" id="adminSearch" onblur="inputLimiterBlur(this.id, 60)" oninput="inputLimiter(this.id, 60)">
+        <button><span class="material-icons-outlined ico-search">search</span></button>
+    </div>
+    <h2>Filter</h2>
+    <div class="filter-fields">
+        <select class="form-select" aria-label="Default select example">
+            <option value="" selected hidden disabled>Select a Department</option>
+            <option value="">ENT</option>
+            <option value="">Hematology</option>
+            <option value="">Internal Medicine</option>
+            <option value="">Internal Medicine Clearance</option>
+            <option value="">Nephrology</option>
+            <option value="">Neurology</option>
+            <option value="">OB GYNE New</option>
+            <option value="">OB GYNE Old</option>
+            <option value="">OB GYNE ROS</option>
+            <option value="">Oncology</option>
+            <option value="">Pediatric Cardiology</option>
+            <option value="">Pediatric Clearance</option>
+            <option value="">Pediatric General</option>
+            <option value="">Psychiatry New</option>
+            <option value="">Psychiatry Old</option>
+            <option value="">Surgery</option>
+            <option value="">Surgery ROS</option>
+        </select>
+        <input type="date" name="" id="" placeholder="Date">
+        <select class="form-select" aria-label="Default select example">
+            <option value="" selected hidden disabled>Time Slot</option>
+            <option value="">8:00 AM - 9:00 AM</option>
+            <option value="">8:00 AM - 9:00 AM</option>
+            <option value="">8:00 AM - 9:00 AM</option>
+        </select>
+        <select class="form-select" aria-label="Default select example">
+            <option value="" selected hidden disabled>Sex</option>
+            <option value="">Male</option>
+            <option value="">Female</option>
+        </select>
+        <!-- <div class="filter-fields__address"> -->
+        <input type="text" name="barangay" id="barangay" placeholder="Barangay">
+        <input type="text" name="municipality" id="municipality" placeholder="Municipality">
+        <input type="text" name="province" id="province" placeholder="Province">
+        <!-- </div> -->
+        <select class="form-select" aria-label="Default select example">
+            <option value="" selected hidden disabled>Sort By</option>
+            <option value="">Name (A-Z)</option>
+            <option value="">etc</option>
+        </select>
+        <select class="form-select" aria-label="Default select example">
+            <option value="" selected hidden disabled>Patient Type</option>
+            <option value="">New Patient</option>
+            <option value="">Old Patient</option>
+        </select>
+        <select class="form-select" aria-label="Default select example">
+            <option value="" selected hidden disabled>Status</option>
+            <option value="">Active</option>
+            <option value="">Completed</option>
+            <option value="">Cancelled</option>
+        </select>
+    </div>
+    <button type="button">Apply</button>
+</div>`;
+
 let request = `
 <section class="request">
             <div class="request-content" data-aos="fade-right" data-aos-duration="500">
@@ -926,101 +1021,6 @@ let scheduling = `
             </div>
         </section>
 `;
-
-let quickView = `
-<div class="quick-view-container">
-    <select class="form-select" aria-label="Default select example">
-        <option value="" selected hidden disabled>Select a Department</option>
-        <option value="">ENT</option>
-        <option value="">Hematology</option>
-        <option value="">Internal Medicine</option>
-        <option value="">Internal Medicine Clearance</option>
-        <option value="">Nephrology</option>
-        <option value="">Neurology</option>
-        <option value="">OB GYNE New</option>
-        <option value="">OB GYNE Old</option>
-        <option value="">OB GYNE ROS</option>
-        <option value="">Oncology</option>
-        <option value="">Pediatric Cardiology</option>
-        <option value="">Pediatric Clearance</option>
-        <option value="">Pediatric General</option>
-        <option value="">Psychiatry New</option>
-        <option value="">Psychiatry Old</option>
-        <option value="">Surgery</option>
-        <option value="">Surgery ROS</option>
-    </select>
-    <div class="view-schedule__btn-group">
-        <button>View Today's Appointments</button>
-        <button>View All Active Appointments</button>
-        <button>View All Completed Appointments</button>
-        <button>View All Cancelled Appointments</button>   
-    </div>
-</div>`;
-
-let filter = `
-<div class="filter-container">
-    <div class="search-container">
-        <input type="text" placeholder="Search" id="adminSearch" onblur="inputLimiterBlur(this.id, 60)" oninput="inputLimiter(this.id, 60)">
-        <button><span class="material-icons-outlined ico-search">search</span></button>
-    </div>
-    <h2>Filter</h2>
-    <div class="filter-fields">
-        <select class="form-select" aria-label="Default select example">
-            <option value="" selected hidden disabled>Select a Department</option>
-            <option value="">ENT</option>
-            <option value="">Hematology</option>
-            <option value="">Internal Medicine</option>
-            <option value="">Internal Medicine Clearance</option>
-            <option value="">Nephrology</option>
-            <option value="">Neurology</option>
-            <option value="">OB GYNE New</option>
-            <option value="">OB GYNE Old</option>
-            <option value="">OB GYNE ROS</option>
-            <option value="">Oncology</option>
-            <option value="">Pediatric Cardiology</option>
-            <option value="">Pediatric Clearance</option>
-            <option value="">Pediatric General</option>
-            <option value="">Psychiatry New</option>
-            <option value="">Psychiatry Old</option>
-            <option value="">Surgery</option>
-            <option value="">Surgery ROS</option>
-        </select>
-        <input type="date" name="" id="" placeholder="Date">
-        <select class="form-select" aria-label="Default select example">
-            <option value="" selected hidden disabled>Time Slot</option>
-            <option value="">8:00 AM - 9:00 AM</option>
-            <option value="">8:00 AM - 9:00 AM</option>
-            <option value="">8:00 AM - 9:00 AM</option>
-        </select>
-        <select class="form-select" aria-label="Default select example">
-            <option value="" selected hidden disabled>Sex</option>
-            <option value="">Male</option>
-            <option value="">Female</option>
-        </select>
-        <!-- <div class="filter-fields__address"> -->
-        <input type="text" name="barangay" id="barangay" placeholder="Barangay">
-        <input type="text" name="municipality" id="municipality" placeholder="Municipality">
-        <input type="text" name="province" id="province" placeholder="Province">
-        <!-- </div> -->
-        <select class="form-select" aria-label="Default select example">
-            <option value="" selected hidden disabled>Sort By</option>
-            <option value="">Name (A-Z)</option>
-            <option value="">etc</option>
-        </select>
-        <select class="form-select" aria-label="Default select example">
-            <option value="" selected hidden disabled>Patient Type</option>
-            <option value="">New Patient</option>
-            <option value="">Old Patient</option>
-        </select>
-        <select class="form-select" aria-label="Default select example">
-            <option value="" selected hidden disabled>Status</option>
-            <option value="">Active</option>
-            <option value="">Completed</option>
-            <option value="">Cancelled</option>
-        </select>
-    </div>
-    <button type="button">Apply</button>
-</div>`;
 
 // By default yung content ni table is yung today lang
 let adminLogs = `

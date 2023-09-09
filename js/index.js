@@ -13,7 +13,6 @@ let quickViewIsActive = true;
 AOS.init();
 initial();
 
-
 // DI KASAMA YUNG USERNAME KASI SA BACKEND NATIN SIYA IGENERATE FIRSTNAME-LASTNAME#kung pangilan siya ex.clarence-coronel2
 const newAdmin = {
     'firstName': '',
@@ -23,6 +22,8 @@ const newAdmin = {
     'password': '',
     'adminType': '',
 }
+
+applyAdminInfo();
 
 function initial(){
     headerBtn.forEach((item)=>{
@@ -69,6 +70,25 @@ function initial(){
     //         });
     //     });
     // });
+}
+
+function applyAdminInfo(){
+    let accName = document.querySelector('.account-name');
+    let role = document.querySelector('.role');
+    let adminType = signedInAdmin.adminType;
+    let roleTypes = ['Admin I', 'Admin II', 'Super Admin'];
+
+    accName.innerText = `${signedInAdmin.firstName} ${signedInAdmin.middleName} ${signedInAdmin.lastName}`;
+
+    if(adminType == 'admin_i'){
+        role.innerText = 'Admin I';
+    }
+    else if(adminType == 'admin_ii'){
+        role.innerText = 'Admin II';
+    }
+    else if(adminType == 'admin_super'){
+        role.innerText = 'Super Admin';
+    }
 }
 
 function createAccInputBorderStyle(){
@@ -623,6 +643,7 @@ function confirmSignOut(){
     modalTitle.innerHTML = 'Signing Out...';
     modalBody.innerHTML = 'Are you sure?';
     positive.innerHTML = 'Confirm';
+    negative.innerHTML = 'Cancel';
     document.querySelector('.modal-dialog').classList.remove('modal-lg');
 
 
