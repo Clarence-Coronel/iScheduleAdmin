@@ -171,9 +171,25 @@ let schedule = `
             <div class="schedule__input-container">
                 <label for="">Department</label>
                 <select class="form-select" aria-label="Default select example">
-                    <option selected disabled hidden></option>
-                    <option value="up">ENT</option>
-                </select>
+                        <option value="" selected hidden disabled>Select a Department</option>
+                        <option value="">ENT</option>
+                        <option value="">Hematology</option>
+                        <option value="">Internal Medicine</option>
+                        <option value="">Internal Medicine Clearance</option>
+                        <option value="">Nephrology</option>
+                        <option value="">Neurology</option>
+                        <option value="">OB GYNE New</option>
+                        <option value="">OB GYNE Old</option>
+                        <option value="">OB GYNE ROS</option>
+                        <option value="">Oncology</option>
+                        <option value="">Pediatric Cardiology</option>
+                        <option value="">Pediatric Clearance</option>
+                        <option value="">Pediatric General</option>
+                        <option value="">Psychiatry New</option>
+                        <option value="">Psychiatry Old</option>
+                        <option value="">Surgery</option>
+                        <option value="">Surgery ROS</option>
+                    </select>
             </div>
 
             <div class="schedule__input-container">
@@ -1189,7 +1205,7 @@ let adminList = `
 let createAccount = `
 <section class="add-admin">
     <div class="form-container"  data-aos="fade-right" data-aos-duration="500">
-        <form class="form" autocomplete="off" onsubmit="return createAccountValidator()">
+        <form class="form" autocomplete="off">
             <div class="custom-shape-divider-top-1689432371">
                 <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
                     <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
@@ -1219,12 +1235,12 @@ let createAccount = `
             </div>
             <div class="input-container">
                 <input type="password" name="password" id="password" required onpaste="return false;" ondrop="return false;" >
-                <span class="material-icons-outlined ico-pass" id="passwordLabel" onclick="seePassword('password', this.id)">visibility_off</span>
+                <span class="material-icons-outlined ico-pass" id="passwordLabel" onclick="seePassword('password', this.id); seePassword('confirmPassword', 'confirmPasswordLabel')">visibility_off</span>
                 <label for="password">Password</label>
             </div>
             <div class="input-container">
                 <input type="password" name="confirm-password" id="confirmPassword" required onpaste="return false;" ondrop="return false;">
-                <span class="material-icons-outlined ico-pass" id="confirmPasswordLabel" onclick="seePassword('confirmPassword', this.id)">visibility_off</span>
+                <span class="material-icons-outlined ico-pass" id="confirmPasswordLabel" onclick="seePassword('confirmPassword', this.id) ; seePassword('password', 'passwordLabel')">visibility_off</span>
                 <label for="confirmPassword">Confirm Password</label>
             </div>
             <div class="radio-container">
@@ -1241,7 +1257,7 @@ let createAccount = `
                     <label for="superAdmin">Super Admin</label>
                 </div>
             </div>
-            <button class="btn--addAdmin" formnovalidate>Create</button>
+            <button type="button" class="btn--addAdmin" onclick="createAccountValidator()">Create</button>
             </div>
         </form>
     </div>
@@ -1586,6 +1602,7 @@ let editTutorial = `
 
 function generateAccountSettings(){
     main.innerHTML = accountSettings;
+    insertAccInfo();
 }
 
 function generateEditPhone(){

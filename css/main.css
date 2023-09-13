@@ -2778,4 +2778,10 @@ table {
 .tutorial__video-container iframe {
   border-radius: 20px;
   box-shadow: 5px 5px 15px rgb(186, 185, 185);
+}
+
+.ico-pass {
+  -webkit-user-select: none !important;
+     -moz-user-select: none !important;
+          user-select: none !important;
 }/*# sourceMappingURL=main.css.map */

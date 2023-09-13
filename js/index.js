@@ -76,7 +76,6 @@ function applyAdminInfo(){
     let accName = document.querySelector('.account-name');
     let role = document.querySelector('.role');
     let adminType = signedInAdmin.adminType;
-    let roleTypes = ['Admin I', 'Admin II', 'Super Admin'];
 
     accName.innerText = `${signedInAdmin.firstName} ${signedInAdmin.middleName} ${signedInAdmin.lastName}`;
 
@@ -113,6 +112,9 @@ function generateAdminTypeModal(val){
     let modalPositive = document.querySelector('.positive');
     let modalNegative = document.querySelector('.negative');
     let close = document.querySelector('.btn-close');
+
+    modalNegative.innerText = 'Close';
+    
     modalPositive.style.display = 'none';
     close.style.display = 'none';
     modalTitle.style.color = 'rgb(80, 78, 78)';
@@ -167,6 +169,7 @@ function generateErrorModal(){
     modalPositive.style.display = 'none';
     modalTitle.innerHTML = 'Invalid Input';
     modalTitle.style.color = 'red';
+    modalNegative.innerText = 'Close';
 
     modalBody.innerHTML = formErrorMessage;
 
@@ -365,19 +368,20 @@ function createAccountValidator(){
     }
 
     if(document.querySelector('#adminI').checked){
-        patient['adminType'] = 1;
+        newAdmin['adminType'] = 1;
     }
     else if(document.querySelector('#adminII').checked){
-        patient['adminType'] = 2;
+        newAdmin['adminType'] = 2;
     }
     else if(document.querySelector('#superAdmin').checked){
-        patient['adminType'] = 3;
+        newAdmin['adminType'] = 3;
     }
     else{
         errorHandler('50');
         return false;
     }
     
+    console.table(newAdmin);
     insertNewAdminAcc();
 }
 
@@ -466,7 +470,16 @@ function errorHandler(code){
 }
 
 function insertNewAdminAcc(){
-    alert('test')
+
+    newAdmin.firstName = '';
+    newAdmin.middleName = '';
+    newAdmin.lastName = '';
+    newAdmin.phone = '';
+    newAdmin.password = '';
+    newAdmin.adminType = '';
+
+    console.table(newAdmin);
+    alert('display modal with confirmation and generated username');
 }
 
 function filterPhoneInput(id){
@@ -675,6 +688,7 @@ function viewRequestApprove(id){
 
     title.innerHTML = 'Schedule Appointment On';
     positive.innerHTML = 'Schedule';
+    modalNegative.innerText = 'Cancel';
     body.innerHTML = html;
     // document.querySelector('.modal-dialog').classList.add('modal-lg');
 

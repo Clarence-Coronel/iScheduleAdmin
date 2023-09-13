@@ -14,7 +14,7 @@
                     firstName: '" . $_SESSION['firstName'] ."',
                     middleName: '" . $_SESSION['middleName'] ."',
                     lastName: '" . $_SESSION['lastName'] ."',
-                }               
+                }     
             </script>
         ";
     }

@@ -48,7 +48,7 @@
                 $_SESSION['lastName'] = $row['lastName'];
                 $_SESSION['adminType'] = $row['adminType'];
                 $_SESSION['phone'] = $row['phone'];
-
+                
                 session_regenerate_id(true);
 
                 echo 1;
