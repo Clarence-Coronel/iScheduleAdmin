@@ -387,7 +387,7 @@ header .header__right {
      -moz-user-select: none;
           user-select: none;
   background-color: transparent;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
