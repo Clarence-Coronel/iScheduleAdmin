@@ -56,20 +56,30 @@ function initial(){
 
         }
     });
-    
-    // navLinkItem.forEach((item)=>{
-    //     item.addEventListener('mouseover',()=>{
-    //         item.querySelectorAll('.ico-nav').forEach((item2)=>{
-    //             item2.style.color = 'white';
-    //         });
-    //     });
+}
 
-    //     item.addEventListener('mouseout',()=>{
-    //         item.querySelectorAll('.ico-nav').forEach((item2)=>{
-    //             item2.style.color = 'rgb(210, 208, 208)';
-    //         });
-    //     });
-    // });
+function determineDeviceDB(){
+    let deptStatitics = document.querySelector('.dashboard__all-patients');
+    
+    if(window.innerWidth < window.innerHeight) {
+        // mobile
+        deptStatitics.removeAttribute('data-aos');
+        deptStatitics.removeAttribute('data-aos-duration');
+    }
+    else{
+        // desktop
+
+        try {
+            deptStatitics.removeAttribute('data-aos');
+            deptStatitics.removeAttribute('data-aos-duration');
+        } catch (error) {
+            
+        }
+        
+
+        deptStatitics.setAttribute('data-aos', 'fade-left');
+        deptStatitics.setAttribute('data-aos-duration', '500');
+    }
 }
 
 function applyAdminInfo(){

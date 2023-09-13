@@ -89,7 +89,7 @@ let editPassword = `
 let dashboard = `
 <section class="dashboard">
     <div class="dashboard__left">
-        <div class="dashboard__per-dept" data-aos="fade-down" data-aos-duration="500">
+        <div class="dashboard__per-dept" data-aos="fade-right" data-aos-duration="500">
             <select class="form-select" aria-label="Default select example">
                 <option value="" selected hidden disabled>Select a Department</option>
                 <option value="">ENT</option>
@@ -122,7 +122,7 @@ let dashboard = `
                 <span class="data" title="Testing Tooltip...">Appointment Rate: 22%</span>
             </div>
         </div>
-        <div class="dashboard__stats" data-aos="fade-up" data-aos-duration="500">
+        <div class="dashboard__stats" data-aos="fade-right" data-aos-duration="500">
             <div class="dashboard__block" title="Recent appointments from the last 30 days.">Recent Appointments<span>1134</span></div>
             <div class="dashboard__block" title="Recent complete appointments from the last 30 days.">Recent Completed Appointments<span> 1112</span></div>
             <div class="dashboard__block" title="Recent cancelled appointments from the last 30 days.">Recent Cancelled Appointments<span> 22</span></div>
@@ -132,7 +132,7 @@ let dashboard = `
         </div>
     </div>
     <div class="dashboard__right">
-        <div class="dashboard__all-patients" data-aos="fade-left" data-aos-duration="500">
+        <div class="dashboard__all-patients" data-aos="fade-left" data-aos-duration="500" data-aos-anchor=".dashboard">
             <div class="dashboard__header">
                 <span class="title">Distribution Of Appointments By</span>
                 <select class="form-select" aria-label="Default select example">
@@ -1615,6 +1615,7 @@ function generateEditPassword(){
 
 function generateDashboard(){
     main.innerHTML = dashboard;
+    determineDeviceDB();
 }
 
 function generateSchedule(){
