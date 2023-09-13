@@ -673,6 +673,7 @@ function viewRequestApprove(id){
     let title = document.querySelector('.modal-title');
     let body = document.querySelector('.modal-body');
     let positive = document.querySelector('.positive');
+    let negative = document.querySelector('.negative');
     let html = `
         <div class="view-container">
             <div class="viewinput-container">
@@ -687,8 +688,8 @@ function viewRequestApprove(id){
     `;
 
     title.innerHTML = 'Schedule Appointment On';
-    positive.innerHTML = 'Schedule';
-    modalNegative.innerText = 'Cancel';
+    positive.innerText = 'Schedule';
+    negative.innerText = 'Cancel';
     body.innerHTML = html;
     // document.querySelector('.modal-dialog').classList.add('modal-lg');
 
