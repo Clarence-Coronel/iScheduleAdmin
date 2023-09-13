@@ -724,3 +724,13 @@ function viewScheduleNav(id){
         field.innerHTML = quickView;
     }
 }
+
+function insertAccInfo(){
+    const username = document.querySelector('#accountUsername');
+    const name = document.querySelector('#accountFullName');
+    const phone = document.querySelector('#accountPhone');
+
+    username.innerText = signedInAdmin.username;
+    name.innerText = `${signedInAdmin.firstName} ${signedInAdmin.middleName} ${signedInAdmin.lastName}`;
+    phone.innerText = signedInAdmin.phone;
+}
