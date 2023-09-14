@@ -9,9 +9,13 @@ let contentIsOpen = false;
 let formErrorMessage = '';
 let formState = 0;
 let quickViewIsActive = true;
+let generatedUsername = '';
 // AOS Initialization
 AOS.init();
 initial();
+
+// DAPAT NAKA BCRYPT DIN YUNG OTP(LAHAT) AND CHAKA NATIN ICOMPARE SA DATABASE
+const fakeOTP = '12345';
 
 // DI KASAMA YUNG USERNAME KASI SA BACKEND NATIN SIYA IGENERATE FIRSTNAME-LASTNAME#kung pangilan siya ex.clarence-coronel2
 const newAdmin = {
@@ -87,7 +91,7 @@ function applyAdminInfo(){
     let role = document.querySelector('.role');
     let adminType = signedInAdmin.adminType;
 
-    accName.innerText = `${signedInAdmin.firstName} ${signedInAdmin.middleName} ${signedInAdmin.lastName}`;
+    accName.innerText = `${capitalFirstLetter(signedInAdmin.firstName)} ${capitalFirstLetter(signedInAdmin.middleName)} ${capitalFirstLetter(signedInAdmin.lastName)}`;
 
     if(adminType == 'admin_i'){
         role.innerText = 'Admin I';
@@ -394,20 +398,22 @@ function createAccountValidator(){
         return false;
     }
 
+
     if(document.querySelector('#adminI').checked){
-        newAdmin['adminType'] = 1;
+        newAdmin['adminType'] = 'admin_i';
     }
     else if(document.querySelector('#adminII').checked){
-        newAdmin['adminType'] = 2;
+        newAdmin['adminType'] = 'admin_ii';
     }
     else if(document.querySelector('#superAdmin').checked){
-        newAdmin['adminType'] = 3;
+        newAdmin['adminType'] = 'admin_super';
     }
     else{
         errorHandler('50');
         return false;
     }
     
+    console.table(newAdmin);
     openModalOTP();
 }
 
@@ -473,13 +479,13 @@ function errorHandler(code){
         formErrorMessage = 'Confirm password cannot be empty.';
     }
     else if(code == '42'){
-        formErrorMessage = 'Password must be equal or greater than 8 characters';
+        formErrorMessage = 'Password must be equal or greater than 8 characters.';
     }
     else if(code == '43'){
-        formErrorMessage = 'Password must be equal or less than 64 characters';
+        formErrorMessage = 'Password must be equal or less than 64 characters.';
     }
     else if(code == '44'){
-        formErrorMessage = 'Password must contain upper and lower case letters, a number, and a special character.';
+        formErrorMessage = 'Password must contain an upper & lower case letter, a number, and a special character.';
     }
     else if(code == '45'){
         formErrorMessage = 'Password do not match.';
@@ -495,7 +501,10 @@ function errorHandler(code){
 
 }
 
-function insertNewAdminAcc(){
+function createAdminSuccess(){
+    newAdminSuccessConfirmationModal();
+
+    main.innerHTML = createAccount;
 
     newAdmin.firstName = '';
     newAdmin.middleName = '';
@@ -503,9 +512,25 @@ function insertNewAdminAcc(){
     newAdmin.phone = '';
     newAdmin.password = '';
     newAdmin.adminType = '';
+}
 
-    console.table(newAdmin);
-    alert('display modal with confirmation and generated username');
+function newAdminSuccessConfirmationModal(){
+    resetModal();
+
+    let title = document.querySelector('.modal-title');
+    let body = document.querySelector('.modal-body');
+    let positive = document.querySelector('.positive');
+    let negative = document.querySelector('.negative');
+
+    title.innerText = 'Success';
+    positive.style.display = 'none';
+    negative.innerText = 'Close';
+    console.log('customized display');
+
+    let html = `
+        <span class="newAdmin-username">Admin Username: <span class="username-highlight">${generatedUsername}</span></span>
+    `
+    body.innerHTML = html;
 }
 
 function filterPhoneInput(id){
@@ -791,7 +816,7 @@ function insertAccInfo(){
     const phone = document.querySelector('#accountPhone');
 
     username.innerText = signedInAdmin.username;
-    name.innerText = `${signedInAdmin.firstName} ${signedInAdmin.middleName} ${signedInAdmin.lastName}`;
+    name.innerText = `${capitalFirstLetter(signedInAdmin.firstName)} ${capitalFirstLetter(signedInAdmin.middleName)} ${capitalFirstLetter(signedInAdmin.lastName)}`;
     phone.innerText = signedInAdmin.phone;
 }
 
@@ -822,7 +847,7 @@ function openModalOTP(){
         </div>
         <div class="OTP-body">
             <div class="OTP-field">
-                <input type="text" name="OTP1" id="OTP1" oninput="inputLimiter(this.id, 5)" onblur="inputLimiterBlur(this.id, 5)">
+                <input type="text" name="OTP" id="OTP" oninput="inputLimiterNum(this.id, 5)" onblur="inputLimiterNum(this.id, 5)" oninput="inputLimiter(this.id, 5)" onblur="inputLimiterBlur(this.id, 5)">
                 <button class="resend-btn">Re-Send</button>
             </div>
             <div class="error-msg"></div>
@@ -878,14 +903,39 @@ function resetCD(){
 }
 
 function checkOTP(){
+    let OTPField = document.querySelector('#OTP').value;
     let close = document.querySelector('.negative');
 
     let error = document.querySelector('.error-msg');
 
-    // DITO NAKALAGAY YUNG CHECKING TAPOS IF MALI BAGSAK DITO SA BABA
     
+
+    // Kunin yung OTP sa database pero sa ngayon konwari na get na tapos yun yung fakeOTP
+
+    // Check if magkamuka input
+    if(OTPField == fakeOTP){
+
+        const jsonString = JSON.stringify(newAdmin);
+        const xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4){
+                if(xhr.status == 200){
+                    if(xhr.responseText != 0){
+                        generatedUsername = xhr.responseText;
+                        createAdminSuccess();
+                    }
+                }
+            }
+        }
+
+        xhr.open("POST", "./php/createNewAdmin.php");
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(jsonString);
+        return;
+    }
     // If Tama
-    // close.click();
+    // 
 
     // Pag mali input ni user ere labas
     // second time na mali mag shake si error msg
@@ -895,7 +945,7 @@ function checkOTP(){
             error.classList.remove('error-animate');
         },500);
     }
-    error.innerHTML = 'Mali ang iyong ibinigay na OTP.';
+    error.innerHTML = 'Invalid OTP';
 }
 
 function resetModal(){
@@ -914,6 +964,15 @@ function resetModal(){
     negative.style.display = 'block';
     positive.innerText = 'Understood';
     negative.innerText = 'Cancel';
+}
 
-    
+function capitalFirstLetter(str){
+    str = str.split(' ');
+    let newStr = [];
+
+    str.forEach((item)=>{
+        newStr.push(item.charAt(0).toUpperCase() + item.substring(1));
+    });
+
+    return newStr.join(', ');
 }

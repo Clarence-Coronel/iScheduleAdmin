@@ -15,8 +15,12 @@
     <!-- GOOGLE API -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
     
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="./../css/login.css">
-    <script src="./../js/login.js"></script>
+    <script defer src="./../js/login.js"></script>
 
     <title>iSchedule Admin</title>
 </head>
@@ -29,29 +33,33 @@
                 <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
             </svg>
         </div>
-        <h1><span class="material-icons">
-            account_circle
-            </span>iSchedule Admin Panel</h1>
-        <form class="login-form">
-            <div class="input-container">
-                <div class="input-field">
-                    <input type="text" name="username" id="username" required onfocus="changeBorderFocus(this.id)" onblur="changeBorderBlur(this.id)">
-                    <label for="username">Username</label>
-                </div>
-                <div class="input-field">
-                    <input type="password" name="password" id="password" required onfocus="changeBorderFocus(this.id)" onblur="changeBorderBlur(this.id)">
-                    <label for="password">Password</label>
-                    <span class="material-icons see-password" id="seePassword" onclick="seePassword('password', this.id)">visibility_off</span>
-                </div>
-            </div>
-            <div class="error-container">
-                    <span class="login-msg"></span>
-                </div>
-            <div class="button-field">
-                <button type="button" onclick="validateLogin()">Login</button>
-                <a href="">Forgot Password?</a>
-            </div>     
-        </form>
+        <h1 class="ischedule-header">
+            <span class="material-icons">account_circle</span>
+            iSchedule Admin Panel
+        </h1>
+        <div class="form-container">
+                
+        </div>
     </main>
+    <button type="button" class="btn btn-primary modal-launcher" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="display:none">
+        Launch static backdrop modal
+    </button>
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> 
+            </div>
+            <div class="modal-body">
+            ...
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary negative" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary positive" data-bs-dismiss="modal">Understood</button>
+            </div>
+        </div>
+        </div>
+    </div>
 </body>
 </html>
