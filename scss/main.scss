@@ -722,9 +722,17 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
 
 @media only screen and (min-width:1200px){
     .form{
-        width: max(300px, 40%);
+        width: max(300px, 50%) !important;
+        max-width: 600px !important;
         // box-shadow: 10px 10px rgba(114, 114, 114, 0.472);
     }
+
+    // .account-settings{
+    //     .account-settings__content{
+    //         width: max(300px, 50%) !important;
+    //         max-width: 600px !important;
+    //     }
+    // }
 
     // .form:hover{
     //     transform: translate(-5px,-10px);
@@ -1824,7 +1832,7 @@ td:hover{
         // max-width: 400px;
         // min-width: 280px;
         height: fit-content;
-        min-height: 350px;
+        min-height: 700px;
         background-color: white;
         box-shadow: $box-shadow;
         border-radius: max(10px, 1.2vw);
