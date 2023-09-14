@@ -49,11 +49,11 @@ function validateLogin(){
 function showError(str = ""){
     let msg = document.querySelector('.login-msg');
 
+    if(msg.innerText != ""){
+        msg.classList.add('error-animate');
+        setTimeout(()=>{
+            msg.classList.remove('error-animate');
+        },500);
+    } 
     msg.innerText = str;
-    msg.classList.add('error-animate');
-
-    setTimeout(()=>{
-        msg.classList.remove('error-animate');
-    },500);
-    
 }

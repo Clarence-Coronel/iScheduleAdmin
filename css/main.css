@@ -494,6 +494,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
 .add-admin {
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 
 .form-container {
@@ -502,7 +503,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .form {
@@ -2792,4 +2793,140 @@ table {
   -webkit-user-select: none !important;
      -moz-user-select: none !important;
           user-select: none !important;
+}
+
+.OTP-container {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  gap: 3vh;
+  padding: 0 5vw;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+}
+
+.textInfo-container {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5vw;
+}
+.textInfo-container .mainText {
+  font-weight: 1000;
+  font-size: 1.2rem;
+  text-align: center;
+}
+.textInfo-container .subText {
+  text-align: center;
+  font-size: 1rem;
+}
+.textInfo-container .phoneDisplay {
+  color: rgb(1, 81, 221);
+  font-weight: 500;
+}
+
+.OTP-body {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.OTP-body .OTP-field {
+  display: flex;
+  flex-flow: row nowrap;
+  width: 90%;
+  max-width: 350px;
+  height: 50px;
+  justify-content: center;
+}
+.OTP-body .error-msg {
+  font-size: 1rem;
+  color: red;
+  transition-duration: 500;
+}
+
+@keyframes horizontal-shaking {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(2px);
+  }
+  50% {
+    transform: translateX(-2px);
+  }
+  75% {
+    transform: translateX(2px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.error-animate {
+  animation: horizontal-shaking 0.35s infinite;
+}
+
+.OTP-field input {
+  width: 60%;
+  border-radius: 10px 0 0 10px;
+  border-right: none;
+  text-align: center;
+  border: 1px solid rgb(80, 78, 78);
+  border-right: unset;
+}
+.OTP-field input:focus {
+  outline: unset;
+}
+.OTP-field button {
+  font-size: 1rem;
+  width: 120px;
+  background-color: rgb(1, 81, 221);
+  color: white;
+  border: unset;
+  border-radius: 0 10px 10px 0;
+}
+.OTP-field button:hover {
+  background-color: #0148c4;
+}
+.OTP-field .cd {
+  background-color: #878787;
+}
+.OTP-field .cd:hover {
+  background-color: #7e7d7d;
+}
+
+.OTP-btn {
+  background-color: rgb(1, 81, 221);
+  color: white;
+  border: unset;
+  border-radius: 10px;
+  height: 50px;
+  width: 100%;
+  max-width: 400px;
+  min-height: 50px;
+}
+
+.OTP-btn:hover {
+  background-color: #0148c4;
+}
+
+@media only screen and (min-width: 1000px) {
+  .OTP-container {
+    padding: 1vw 2vw;
+  }
+  .textInfo-container {
+    gap: 1vw;
+  }
+  .textInfo-container .mainText {
+    font-size: 1.2rem;
+  }
+  .textInfo-container .subText {
+    font-size: 1rem;
+  }
+  .OTP-btn {
+    width: 25%;
+    height: 55px;
+  }
 }/*# sourceMappingURL=main.css.map */

@@ -117,11 +117,19 @@ function createAccInputBorderStyle(){
 }
 
 function generateAdminTypeModal(val){
+    resetModal();
+
     let modalTitle = document.querySelector('.modal-title');
     let modalBody = document.querySelector('.modal-body');
     let modalPositive = document.querySelector('.positive');
     let modalNegative = document.querySelector('.negative');
     let close = document.querySelector('.btn-close');
+    let modalHeader = document.querySelector('.modal-header');
+    let modalFooter = document.querySelector('.modal-footer');
+    
+    // modal.classList.add('modal-lg');
+    modalHeader.style.display = 'flex';
+    modalFooter.style.display = 'flex';
 
     modalNegative.innerText = 'Close';
     
@@ -170,14 +178,23 @@ function generateAdminTypeModal(val){
 }
 
 function generateErrorModal(){
+    resetModal();
+
     let modalTitle = document.querySelector('.modal-title');
     let modalBody = document.querySelector('.modal-body');
     let modalPositive = document.querySelector('.positive');
     let modalNegative = document.querySelector('.negative');
     let close = document.querySelector('.btn-close');
 
+    let modalHeader = document.querySelector('.modal-header');
+    let modalFooter = document.querySelector('.modal-footer');
+    
+    // modal.classList.add('modal-lg');
+    modalHeader.style.display = 'flex';
+    modalFooter.style.display = 'flex';
+
     modalPositive.style.display = 'none';
-    modalTitle.innerHTML = 'Invalid Input';
+    modalTitle.innerText = 'Invalid Input';
     modalTitle.style.color = 'red';
     modalNegative.innerText = 'Close';
 
@@ -391,8 +408,7 @@ function createAccountValidator(){
         return false;
     }
     
-    console.table(newAdmin);
-    insertNewAdminAcc();
+    openModalOTP();
 }
 
 function errorHandler(code){
@@ -658,15 +674,24 @@ function backForm(){
 }
 
 function confirmSignOut(){
+    resetModal();
+
     const modalTitle = document.querySelector('.modal-title');
     const modalBody = document.querySelector('.modal-body');
     const positive = document.querySelector('.positive');
     const negative = document.querySelector('.negative');
-    
-    modalTitle.innerHTML = 'Signing Out...';
-    modalBody.innerHTML = 'Are you sure?';
-    positive.innerHTML = 'Confirm';
-    negative.innerHTML = 'Cancel';
+
+    let modalHeader = document.querySelector('.modal-header');
+    let modalFooter = document.querySelector('.modal-footer');
+    positive.style.display = 'block';
+    // modal.classList.add('modal-lg');
+    modalHeader.style.display = 'flex';
+    modalFooter.style.display = 'flex';
+
+    modalTitle.innerText = 'Signing Out...';
+    modalBody.innerText = 'Are you sure?';
+    positive.innerText = 'Confirm';
+    negative.innerText = 'Cancel';
     document.querySelector('.modal-dialog').classList.remove('modal-lg');
 
 
@@ -684,6 +709,14 @@ function viewRequestApprove(id){
     let body = document.querySelector('.modal-body');
     let positive = document.querySelector('.positive');
     let negative = document.querySelector('.negative');
+
+    let modalHeader = document.querySelector('.modal-header');
+    let modalFooter = document.querySelector('.modal-footer');
+    
+    // modal.classList.add('modal-lg');
+    modalHeader.style.display = 'flex';
+    modalFooter.style.display = 'flex';
+
     let html = `
         <div class="view-container">
             <div class="viewinput-container">
@@ -713,10 +746,12 @@ function viewRequestReject(id){
     let title = document.querySelector('.modal-title');
     let body = document.querySelector('.modal-body');
     let positive = document.querySelector('.positive');
+    let negative = document.querySelector('.negative');
 
-    title.innerHTML = 'Rejecting Appointment...';
-    body.innerHTML = 'Are you sure?';
-    positive.innerHTML = 'Confirm';
+    title.innerText = 'Rejecting Appointment...';
+    body.innerText = 'Are you sure?';
+    positive.innerText = 'Confirm';
+    negative.innerText = 'Cancel';
 
     // positive.setAttribute('onclick', 'alert("test")');
     // positive.removeAttribute('onclick');
@@ -758,4 +793,127 @@ function insertAccInfo(){
     username.innerText = signedInAdmin.username;
     name.innerText = `${signedInAdmin.firstName} ${signedInAdmin.middleName} ${signedInAdmin.lastName}`;
     phone.innerText = signedInAdmin.phone;
+}
+
+function openModalOTP(){
+    resetModal();
+
+    let modalTitle = document.querySelector('.modal-title');
+    let modalBody = document.querySelector('.modal-body');
+    let modalCloseBtn = document.querySelector('.btn-close');
+    let negativeBtn = document.querySelector('.negative');
+    let positiveBtn = document.querySelector('.positive');
+    let modal = document.querySelector('.modal-dialog');
+    let modalItself = document.querySelector('.modal');
+    let modalHeader = document.querySelector('.modal-header');
+    let modalFooter = document.querySelector('.modal-footer');
+    
+    // modal.classList.add('modal-lg');
+    modalHeader.style.display = 'none';
+    modalFooter.style.display = 'none';
+    modalTitle.style.color = 'unset';
+
+
+    let htmlCode = `
+    <div class="OTP-container">
+        <div class="textInfo-container">
+            <span class="mainText">Input One-Time Password</span>
+            <span class="subText">Your One-Time Password has been sent to <span class="phoneDisplay">09XX XXX XXXX</span></span>
+        </div>
+        <div class="OTP-body">
+            <div class="OTP-field">
+                <input type="text" name="OTP1" id="OTP1" oninput="inputLimiter(this.id, 5)" onblur="inputLimiterBlur(this.id, 5)">
+                <button class="resend-btn">Re-Send</button>
+            </div>
+            <div class="error-msg"></div>
+        </div>
+        <button class="OTP-btn">Submit</button>
+    </div>
+    `
+    modalBody.innerHTML = htmlCode;
+    document.querySelector('.phoneDisplay').innerHTML = newAdmin['phone'];
+    document.querySelector('.OTP-btn').addEventListener('click', ()=>{
+        checkOTP();
+    });
+    modalLauncher();
+    resetCD();
+
+    document.querySelector('.resend-btn').addEventListener('click', ()=>{
+        if(isResendAvail){
+            resendOTP();
+            resetCD();
+            isResendAvail = false;
+        } 
+    });
+}
+
+function sendOTP(){
+    // magsend otp
+
+    openModalOTP();
+}
+
+function resendOTP(){
+    // di na magopen panibago modal kaya nakahiwalay tong function na to
+}
+
+function resetCD(){
+    let time = 30;
+    let resend = document.querySelector('.resend-btn');
+    resend.classList.add('cd');
+    resend.innerHTML = time + 's';
+
+    let timer = setInterval(()=>{
+        time--;
+        resend.innerHTML = time + 's';
+        
+        if(time == 0){
+            time = 30;
+            clearInterval(timer);
+            resend.innerHTML = 'Re-send';
+            isResendAvail = true;
+            resend.classList.remove('cd');
+        }
+    },1000);
+}
+
+function checkOTP(){
+    let close = document.querySelector('.negative');
+
+    let error = document.querySelector('.error-msg');
+
+    // DITO NAKALAGAY YUNG CHECKING TAPOS IF MALI BAGSAK DITO SA BABA
+    
+    // If Tama
+    // close.click();
+
+    // Pag mali input ni user ere labas
+    // second time na mali mag shake si error msg
+    if(error.innerHTML != ""){
+        error.classList.add('error-animate');
+        setTimeout(()=>{
+            error.classList.remove('error-animate');
+        },500);
+    }
+    error.innerHTML = 'Mali ang iyong ibinigay na OTP.';
+}
+
+function resetModal(){
+    let header = document.querySelector('.modal-header');
+    let footer = document.querySelector('.modal-footer');
+    let title = document.querySelector('.modal-title');
+    let headerClose = document.querySelector('.btn-close');
+    let positive = document.querySelector('.positive');
+    let negative = document.querySelector('.negative');
+
+    header.style.display = 'flex';
+    footer.style.display = 'flex';
+    title.innerText = 'Modal Title';
+    headerClose.style.display = 'block'
+    positive.style.display = 'block';
+    negative.style.display = 'block';
+    positive.innerText = 'Understood';
+    negative.innerText = 'Cancel';
+
+    
 }
