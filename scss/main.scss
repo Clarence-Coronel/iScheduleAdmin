@@ -514,8 +514,9 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
 .form{
     box-shadow: $box-shadow;
     background-color: white;
-    width: max(280px, 40%);
+    width: max(300px, 30%);
     height: fit-content;
+    min-height: 350px;
     border-radius: max(7px, 1vw);
     margin: max(10px, 1.5vw) 0;
     padding: max(10px, 1vw) max(20px, 5vw);
@@ -1819,11 +1820,11 @@ td:hover{
         display: flex;
         flex-flow: column;
         align-items: center;
-        width: 40%;
-        max-width: 400px;
-        min-width: 280px;
+        width: max(300px, 30%);
+        // max-width: 400px;
+        // min-width: 280px;
         height: fit-content;
-        min-height: 400px;
+        min-height: 350px;
         background-color: white;
         box-shadow: $box-shadow;
         border-radius: max(10px, 1.2vw);
