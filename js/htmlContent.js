@@ -50,13 +50,16 @@ let editPhone = `
             <label for="newPhone">New Phone #</label>
         </div>
         <div class="changeInfo__input-container">
-            <input type="password" id="confirmation" onpaste="return false;" ondrop="return false;" required onfocus="changeBorderFocus(this.id)" onblur="changeBorderBlur(this.id)">
+            <input type="password" id="confirmation" onpaste="return false;" ondrop="return false;" required oninput="inputLimiter(this.id, 64)" onfocus="changeBorderFocus(this.id)" onblur="changeBorderBlur(this.id);inputLimiterBlur(this.id, 64)">
             <label for="confirmation">Password</label>
             <span class="material-icons-outlined ico-see" id="passwordIco" onclick="seePassword('confirmation', this.id)">visibility_off</span>
         </div>
+        <div class="error-container">
+            <span class="msg"></span>
+        </div>
         <div class="changeInfo__btn-container">
             <button class="changeInfo__back" onclick="generateAccountSettings()">Back</button>
-            <button class="changeInfo__submit" onclick="alert('labas modal na kunin OTP from new phone')">Update</button>
+            <button class="changeInfo__submit" onclick="applyNewPhone()">Update</button>
         </div>
     </div>
 </section>`;
@@ -78,6 +81,9 @@ let editPassword = `
             <input type="password" id="confirmNewPassword" onpaste="return false;" ondrop="return false;" required onfocus="changeBorderFocus(this.id)" onblur="changeBorderBlur(this.id)">
             <label for="confirmNewPassword">Confirm New Password</label>
             <span class="material-icons-outlined ico-see" id="confirNewPasswordIco" onclick="seePassword('confirmNewPassword', this.id)">visibility_off</span>
+        </div>
+        <div class="error-container">
+            <span class="msg"></span>
         </div>
         <div class="changeInfo__btn-container">
             <button class="changeInfo__back" onclick="generateAccountSettings()">Back</button>

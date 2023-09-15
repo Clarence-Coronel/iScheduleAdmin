@@ -79,6 +79,8 @@ formContainer.innerHTML = loginHTML;
 let ctr = 1;
 let retrieveUsername = "";
 let forgotPassPhone = "";
+
+
 const fakeOTP = "12345";
 
 // gets the value of given sa id param and then ilimit siya gamit yung max
@@ -393,7 +395,7 @@ function forgotNext(){
             }
         }
 
-        xhr.open("POST", "../php/updateAdminAcc.php");
+        xhr.open("POST", "../php/forgotUpdatePass.php");
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send(`username=${retrieveUsername}&newPassword=${password.value}`);
     }

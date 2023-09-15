@@ -1700,7 +1700,7 @@ td:hover {
   background-color: white;
   display: flex;
   flex-flow: column;
-  gap: max(15px, 2vw);
+  gap: max(10px, 1vw);
 }
 .changeInfo .changeInfo__btn-container {
   display: flex;
@@ -1724,6 +1724,23 @@ td:hover {
 }
 .changeInfo .changeInfo__back:hover {
   background-color: #dedddd;
+}
+.changeInfo .error-container {
+  width: 100%;
+  height: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.changeInfo .msg {
+  width: 100%;
+  text-align: center;
+  font-size: 0.9rem;
+  color: red;
+  transition-duration: 500ms;
+  position: absolute;
+  left: 0;
 }
 
 .changeInfo__input-container {

@@ -10,6 +10,9 @@ let formErrorMessage = '';
 let formState = 0;
 let quickViewIsActive = true;
 let generatedUsername = '';
+let newInsertedPhone = "";
+let isResendAvail = false;
+
 // AOS Initialization
 AOS.init();
 initial();
@@ -357,7 +360,7 @@ function createAccountValidator(){
         errorHandler('32');
         return false;
     }
-    else if((newAdmin["phone"]).charAt(0) != '0'){
+    else if((newAdmin["phone"]).slice(0, 2) != '09'){
         errorHandler('33');
         return false;
     }
@@ -467,7 +470,7 @@ function errorHandler(code){
         formErrorMessage = 'Phone number cannot contain letter or special character.';
     }
     else if(code == '33'){
-        formErrorMessage = 'Phone number requires to start with "0". Example: 09XX XXX XXXX.';
+        formErrorMessage = 'Phone number is required to start with "09". Example: 09XX XXX XXXX.';
     }
     // 
     // PASSWORD **************************
@@ -843,7 +846,7 @@ function openModalOTP(){
     <div class="OTP-container">
         <div class="textInfo-container">
             <span class="mainText">Input One-Time Password</span>
-            <span class="subText">Your One-Time Password has been sent to <span class="phoneDisplay">09XX XXX XXXX</span></span>
+            <span class="subText">One-Time Password has been sent to <span class="phoneDisplay">09XX XXX XXXX</span></span>
         </div>
         <div class="OTP-body">
             <div class="OTP-field">
@@ -908,8 +911,6 @@ function checkOTP(){
 
     let error = document.querySelector('.error-msg');
 
-    
-
     // Kunin yung OTP sa database pero sa ngayon konwari na get na tapos yun yung fakeOTP
 
     // Check if magkamuka input
@@ -924,6 +925,7 @@ function checkOTP(){
                     if(xhr.responseText != 0){
                         generatedUsername = xhr.responseText;
                         createAdminSuccess();
+                        isResendAvail = true;
                     }
                 }
             }
@@ -947,6 +949,142 @@ function checkOTP(){
     }
     error.innerHTML = 'Invalid OTP';
 }
+
+
+// Editing phone #
+function openModalOTP_Edit(){
+    resetModal();
+
+    let modalTitle = document.querySelector('.modal-title');
+    let modalBody = document.querySelector('.modal-body');
+    let modalCloseBtn = document.querySelector('.btn-close');
+    let negativeBtn = document.querySelector('.negative');
+    let positiveBtn = document.querySelector('.positive');
+    let modal = document.querySelector('.modal-dialog');
+    let modalItself = document.querySelector('.modal');
+    let modalHeader = document.querySelector('.modal-header');
+    let modalFooter = document.querySelector('.modal-footer');
+    
+    // modal.classList.add('modal-lg');
+    modalHeader.style.display = 'none';
+    modalFooter.style.display = 'none';
+    modalTitle.style.color = 'unset';
+
+
+    let htmlCode = `
+    <div class="OTP-container">
+        <div class="textInfo-container">
+            <span class="mainText">Input One-Time Password</span>
+            <span class="subText">One-Time Password has been sent to <span class="phoneDisplay">09XX XXX XXXX</span></span>
+        </div>
+        <div class="OTP-body">
+            <div class="OTP-field">
+                <input type="text" name="OTP" id="OTP" oninput="inputLimiterNum(this.id, 5)" onblur="inputLimiterNum(this.id, 5)" oninput="inputLimiter(this.id, 5)" onblur="inputLimiterBlur(this.id, 5)">
+                <button class="resend-btn">Re-Send</button>
+            </div>
+            <div class="error-msg"></div>
+        </div>
+        <button class="OTP-btn">Submit</button>
+    </div>
+    `
+    modalBody.innerHTML = htmlCode;
+    document.querySelector('.phoneDisplay').innerHTML = newInsertedPhone;
+    document.querySelector('.OTP-btn').addEventListener('click', ()=>{
+        checkOTP_Edit();
+    });
+    modalLauncher();
+    resetCD();
+
+    document.querySelector('.resend-btn').addEventListener('click', ()=>{
+        if(isResendAvail){
+            resendOTP_Edit();
+            resetCD();
+            isResendAvail = false;
+        } 
+    });
+}
+
+function sendOTP_Edit(){
+    // magsend otp
+
+    openModalOTP();
+}
+
+function resendOTP_Edit(){
+    // di na magopen panibago modal kaya nakahiwalay tong function na to
+}
+
+function checkOTP_Edit(){
+    let OTPField = document.querySelector('#OTP').value;
+    let close = document.querySelector('.negative');
+
+    let error = document.querySelector('.error-msg');
+
+    
+
+    // Kunin yung OTP sa database pero sa ngayon konwari na get na tapos yun yung fakeOTP
+
+    // Check if magkamuka input
+    if(OTPField == fakeOTP){
+        const xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4){
+                if(xhr.status == 200){
+                    if(xhr.responseText == 1){
+                         showSuccessModal('Phone has been updated', true);
+                         signedInAdmin.phone = newInsertedPhone;
+                         generateAccountSettings();
+                         insertAccInfo()
+                         
+                    }
+                }
+            }
+        }
+
+        xhr.open("POST", "./php/changePhone.php");
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send("newPhone="+newInsertedPhone);
+        return;
+    }
+    // If Tama
+    // 
+
+    // Pag mali input ni user ere labas
+    // second time na mali mag shake si error msg
+    if(error.innerHTML != ""){
+        error.classList.add('error-animate');
+        setTimeout(()=>{
+            error.classList.remove('error-animate');
+        },500);
+    }
+    error.innerHTML = 'Invalid OTP';
+}
+
+
+function showSuccessModal(str = '', currentModalisUp = false){
+    resetModal();
+
+    let modalTitle = document.querySelector('.modal-title');
+    let modalBody = document.querySelector('.modal-body');
+    let modalCloseBtn = document.querySelector('.btn-close');
+    let negativeBtn = document.querySelector('.negative');
+    let positiveBtn = document.querySelector('.positive');
+    let modal = document.querySelector('.modal-dialog');
+    let modalItself = document.querySelector('.modal');
+    let modalHeader = document.querySelector('.modal-header');
+    let modalFooter = document.querySelector('.modal-footer');
+
+    modalTitle.innerText = "Success";
+    positiveBtn.style.display = 'none';
+    negativeBtn.innerText = 'close';
+    modalBody.innerText = str;
+
+    if(!currentModalisUp){
+        modalLauncher();
+    }
+}
+
 
 function resetModal(){
     let header = document.querySelector('.modal-header');
@@ -975,4 +1113,58 @@ function capitalFirstLetter(str){
     });
 
     return newStr.join(', ');
+}
+
+function applyNewPhone(){
+    const newPhone = properPhoneNum(document.querySelector('#newPhone').value.replaceAll(' ', '').trim());
+    const pass = document.querySelector('#confirmation').value;
+
+    if(newPhone == "" || pass == ""){
+        showError("Please fill in both fields");
+        return;
+    }
+    else if(newPhone.slice(0, 2) != '09'){
+        showError("Phone # must start with 09");
+        return;
+    }
+    else if(newPhone.length != 13){
+        showError("Invalid phone #");
+        return;
+    }
+    else{
+        const xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4){
+                if(xhr.status == 200){
+                    if(xhr.responseText == 1){
+                        newInsertedPhone = newPhone
+                        openModalOTP_Edit();
+                    }
+                    else{
+                        showError("Password is incorrect");
+                    }
+                }
+            }
+        }
+
+        xhr.open("POST", "./php/testPassword.php");
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send(`password=${pass}`);
+    }
+    
+    console.log(newPhone)
+}
+
+// Exclusive use for editPhone and editPass
+function showError(str = ""){
+    let msg = document.querySelector('.msg');
+
+    if(msg.innerText != ""){
+        msg.classList.add('error-animate');
+        setTimeout(()=>{
+            msg.classList.remove('error-animate');
+        },500);
+    } 
+    msg.innerText = str;
 }
