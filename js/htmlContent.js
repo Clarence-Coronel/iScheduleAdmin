@@ -68,19 +68,19 @@ let editPassword = `
 <section class="changeInfo" id="changePassword">
     <div class="changeInfo__content" data-aos="fade-right" data-aos-duration="500">
         <div class="changeInfo__input-container">
-            <input type="password" id="currentPassword" onpaste="return false;" ondrop="return false;" required onfocus="changeBorderFocus(this.id)" onblur="changeBorderBlur(this.id)">
+            <input type="password" id="currentPassword" onpaste="return false;" ondrop="return false;" required oninput="inputLimiter(this.id, 64)" onfocus="changeBorderFocus(this.id)" onblur="changeBorderBlur(this.id); inputLimiterBlur(this.id, 64)">
             <label for="currentPassword">Current Password</label>
-            <span class="material-icons-outlined ico-see" id="currentPasswordIco" onclick="seePassword('currentPassword', this.id)">visibility_off</span>
+            <span class="material-icons-outlined ico-see" id="currentPasswordIco" onclick="seePassword('currentPassword', this.id); seePassword('newPassword', 'newPasswordIco'); seePassword('confirmNewPassword', 'confirNewPasswordIco');">visibility_off</span>
         </div>
         <div class="changeInfo__input-container">
-            <input type="password" id="newPassword" onpaste="return false;" ondrop="return false;" required onfocus="changeBorderFocus(this.id)" onblur="changeBorderBlur(this.id)">
+            <input type="password" id="newPassword" onpaste="return false;" ondrop="return false;" required oninput="inputLimiter(this.id, 64)" onfocus="changeBorderFocus(this.id)" onblur="changeBorderBlur(this.id); inputLimiterBlur(this.id, 64)">
             <label for="newPassword">New Password</label>
-            <span class="material-icons-outlined ico-see" id="newPasswordIco" onclick="seePassword('newPassword', this.id)">visibility_off</span>
+            <span class="material-icons-outlined ico-see" id="newPasswordIco" onclick="seePassword('newPassword', this.id); seePassword('currentPassword', 'currentPasswordIco'); seePassword('confirmNewPassword', 'confirNewPasswordIco');">visibility_off</span>
         </div>
         <div class="changeInfo__input-container">
-            <input type="password" id="confirmNewPassword" onpaste="return false;" ondrop="return false;" required onfocus="changeBorderFocus(this.id)" onblur="changeBorderBlur(this.id)">
+            <input type="password" id="confirmNewPassword" onpaste="return false;" ondrop="return false;" required oninput="inputLimiter(this.id, 64)" onfocus="changeBorderFocus(this.id)" onblur="changeBorderBlur(this.id); inputLimiterBlur(this.id, 64)">
             <label for="confirmNewPassword">Confirm New Password</label>
-            <span class="material-icons-outlined ico-see" id="confirNewPasswordIco" onclick="seePassword('confirmNewPassword', this.id)">visibility_off</span>
+            <span class="material-icons-outlined ico-see" id="confirNewPasswordIco" onclick="seePassword('confirmNewPassword', this.id); seePassword('newPassword', 'newPasswordIco'); seePassword('currentPassword', 'currentPasswordIco');">visibility_off</span>
         </div>
         <div class="error-container">
             <span class="msg"></span>
@@ -1246,7 +1246,7 @@ let createAccount = `
             </div>
             <div class="input-container">
                 <input type="password" name="confirm-password" id="confirmPassword" required onpaste="return false;" ondrop="return false;">
-                <span class="material-icons-outlined ico-pass" id="confirmPasswordLabel" onclick="seePassword('confirmPassword', this.id) ; seePassword('password', 'passwordLabel')">visibility_off</span>
+                <span class="material-icons-outlined ico-pass" id="confirmPasswordLabel" onclick="seePassword('confirmPassword', this.id); seePassword('password', 'passwordLabel')">visibility_off</span>
                 <label for="confirmPassword">Confirm Password</label>
             </div>
             <div class="radio-container">

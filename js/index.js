@@ -633,8 +633,12 @@ function seePassword(fieldID, iconID){
     icon = document.getElementById(iconID);
 
     icon.innerHTML = icon.innerHTML == 'visibility_off' ? 'visibility' : 'visibility_off';
-
+    
     field.setAttribute('type', icon.innerHTML == 'visibility_off' ? 'password' : 'text');
+
+
+    console.log('+1');
+    
 }
 
 function changeBorderFocus(id){
