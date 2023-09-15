@@ -1169,5 +1169,5 @@ function showError(str = ""){
 }
 
 function applyNewPass(){
-    
+    alert('pasok sa func')
 }

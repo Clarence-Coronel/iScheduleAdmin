@@ -1622,6 +1622,7 @@ td:hover {
           user-select: none;
   font-weight: 700;
   height: 100%;
+  overflow-wrap: break-word;
 }
 .account-settings .account-settings__content .account-settings__input-container .account-field:hover {
   cursor: not-allowed;

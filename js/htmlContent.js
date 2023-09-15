@@ -87,7 +87,7 @@ let editPassword = `
         </div>
         <div class="changeInfo__btn-container">
             <button class="changeInfo__back" onclick="generateAccountSettings()">Back</button>
-            <button class="changeInfo__submit" onclick="alert('labas modal password is successfully changed')">Update</button>
+            <button class="changeInfo__submit" onclick="applyNewPass()">Update</button>
         </div>
     </div>
 </section>`;
