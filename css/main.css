@@ -628,6 +628,9 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
   background-color: white;
   transition-duration: 200ms;
   font-size: 0.8rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 .input-container label:hover {
   cursor: text;
@@ -1635,6 +1638,9 @@ td:hover {
   color: #4e73df;
   font-size: 0.9rem;
   transform: translate(0, -110%);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 .account-settings .account-settings__content .account-settings__input-container label:hover {
   cursor: unset;
@@ -1776,6 +1782,9 @@ td:hover {
   font-size: 0.8rem;
   left: 0;
   bottom: 27%;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 .changeInfo__input-container input {
   border: unset;

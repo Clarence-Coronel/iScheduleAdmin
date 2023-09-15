@@ -482,7 +482,7 @@ function errorHandler(code){
         formErrorMessage = 'Confirm password cannot be empty.';
     }
     else if(code == '42'){
-        formErrorMessage = 'Password must be equal or greater than 8 characters.';
+        formErrorMessage = 'Password must be at least 8 characters.';
     }
     else if(code == '43'){
         formErrorMessage = 'Password must be equal or less than 64 characters.';
@@ -635,9 +635,6 @@ function seePassword(fieldID, iconID){
     icon.innerHTML = icon.innerHTML == 'visibility_off' ? 'visibility' : 'visibility_off';
     
     field.setAttribute('type', icon.innerHTML == 'visibility_off' ? 'password' : 'text');
-
-
-    console.log('+1');
     
 }
 
@@ -1155,8 +1152,6 @@ function applyNewPhone(){
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send(`password=${pass}`);
     }
-    
-    console.log(newPhone)
 }
 
 // Exclusive use for editPhone and editPass
@@ -1173,5 +1168,65 @@ function showError(str = ""){
 }
 
 function applyNewPass(){
-    alert('pasok sa func')
+    const currentPass = document.querySelector('#currentPassword').value;
+    const newPass = document.querySelector('#newPassword').value;
+    const confirmNewPass = document.querySelector('#confirmNewPassword').value;
+
+    if(currentPass == "" || newPass == "" || confirmNewPass == ""){
+        showError("Please fill in all fields");
+        return;
+    }
+    else if(newPass != confirmNewPass){
+        showError("Password do not match");
+        return;
+    }
+    else if(newPass > 64){
+        showError("Password must be equal or less than 64 characters");
+        return;
+    }
+    else if(newPass < 8){
+        showError("Password must at least be 8 characters");
+        return;
+    }
+    else if(!containsLetterNumSpeChar(newPass)){
+        showError("Password must contain an upper & lower case letter, a number, and a special character");
+        return;
+    }
+    
+        const xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function (){
+        if(xhr.readyState == 4){
+            if(xhr.status == 200){
+                if(xhr.responseText == 1){
+                    // makarating dito if tama lahat ng input
+                    const xhr2 = new XMLHttpRequest();
+
+                    xhr2.onreadystatechange = function (){
+                        if(xhr2.readyState == 4){
+                            if(xhr2.status == 200){
+                                if(xhr2.responseText == 1){
+                                    showSuccessModal('Password has been updated');
+                                    generateAccountSettings();
+                                }
+                            }
+                        }
+                    }
+
+                    xhr2.open("POST", "./php/changePassword.php");
+                    xhr2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    xhr2.send("pass="+ newPass);
+                }
+                else if(xhr.responseText == 0){
+                    showError("Current password is incorrect");
+                    return;
+                }
+            }
+        }
+    }
+
+    xhr.open("POST", "./php/testPassword.php");
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("pass="+ currentPass);
+
 }

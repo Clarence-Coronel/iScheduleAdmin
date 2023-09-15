@@ -571,6 +571,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
         color: white;
         border: 5px solid white;
     }
+
 }
 
 .custom-shape-divider-top-1689432371 {
@@ -657,6 +658,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
         background-color: white;
         transition-duration: 200ms;
         font-size: 0.8rem;
+        user-select: none;
     }
 
     label:hover{
@@ -1904,6 +1906,7 @@ td:hover{
                 color: $primary-color;
                 font-size: 0.9rem;
                 transform: translate(0, -110%);
+                user-select: none;
             }
 
             label:hover{
@@ -2079,6 +2082,7 @@ td:hover{
         // z-index: 2;
         left: 0;
         bottom: 27%;
+        user-select: none;
     }
     
     input{
