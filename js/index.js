@@ -1035,8 +1035,7 @@ function checkOTP_Edit(){
                          showSuccessModal('Phone has been updated', true);
                          signedInAdmin.phone = newInsertedPhone;
                          generateAccountSettings();
-                         insertAccInfo()
-                         
+                         insertAccInfo();
                     }
                 }
             }
@@ -1077,7 +1076,7 @@ function showSuccessModal(str = '', currentModalisUp = false){
 
     modalTitle.innerText = "Success";
     positiveBtn.style.display = 'none';
-    negativeBtn.innerText = 'close';
+    negativeBtn.innerText = 'Close';
     modalBody.innerText = str;
 
     if(!currentModalisUp){
@@ -1167,4 +1166,8 @@ function showError(str = ""){
         },500);
     } 
     msg.innerText = str;
+}
+
+function applyNewPass(){
+    
 }
