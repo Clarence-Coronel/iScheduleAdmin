@@ -1,7 +1,6 @@
 const main = document.querySelector('main');
 
 //GAWING FORM YUNG MGA CONTAINER NG INPUT FIELDS?
-
 let accountSettings = `
 <section class="account-settings">
     <div class="account-settings__content"  data-aos="fade-right" data-aos-duration="500">
@@ -1620,92 +1619,120 @@ function generateEditPassword(){
 }
 
 function generateDashboard(){
-    main.innerHTML = dashboard;
-    determineDeviceDB();
+    if(checkPrivilege('admin_super')){
+        main.innerHTML = dashboard;
+        determineDeviceDB();
+    }
 }
 
 function generateSchedule(){
-    main.innerHTML = schedule;
-    formState = 0;
-    InitialSetup();
+    if(checkPrivilege('admin_ii') || checkPrivilege('admin_super')){
+        main.innerHTML = schedule;
+        formState = 0;
+        InitialSetup();
+    }   
 }
 
 function generateViewSchedule(){
-    main.innerHTML = viewSchedule;
-    document.querySelector('.view-schedule__field').innerHTML = quickView;
-    showTableCell();
+    if(checkPrivilege('admin_i') || checkPrivilege('admin_ii') || checkPrivilege('admin_super')){
+        main.innerHTML = viewSchedule;
+        document.querySelector('.view-schedule__field').innerHTML = quickView;
+        showTableCell();
+    }
 }
 
 function generateRequest(){
-    main.innerHTML = request;
-    showTableCell();
+    if(checkPrivilege('admin_ii') || checkPrivilege('admin_super')){
+        main.innerHTML = request;
+        showTableCell();
+    }
 }
 
 function generateScheduling(){
-    main.innerHTML = scheduling;
+    if(checkPrivilege('admin_super')){
+        main.innerHTML = scheduling;
+    }
 }
 
 function generateAdminLogs(){
     // contentIsOpen = true;
-    main.innerHTML = adminLogs;
-    showTableCell();
+    if(checkPrivilege('admin_super')){
+        main.innerHTML = adminLogs;
+        showTableCell();
+    }
 }
 
 function generateAdminList(){
     // contentIsOpen = true;
-    main.innerHTML = adminList;
-    showTableCell();
+    if(checkPrivilege('admin_super')){
+        main.innerHTML = adminList;
+        showTableCell();
+    }
 }
 
 function generateCreateAcc(){
-    main.innerHTML = createAccount;
-    let iconPassword = document.querySelectorAll('.ico-pass');
-    changeArrow();
-    // contentIsOpen = true;
-    createAccInputBorderStyle();
-
-    // iconPassword.forEach((item)=>{
-    //     item.addEventListener('click', ()=>{
-    //         if(item.innerHTML == 'visibility_off'){
-    //             iconPassword.forEach((item2)=>{
-    //                 item2.innerHTML = 'visibility'
-    //             })
-    //             document.querySelector('#password').setAttribute('type', 'text');
-    //             document.querySelector('#confirmPassword').setAttribute('type', 'text');
-    //         }
-    //         else{
-    //             iconPassword.forEach((item)=>{
-    //                 item.innerHTML = 'visibility_off'
-    //             })
-    //             document.querySelector('#password').setAttribute('type', 'password');
-    //             document.querySelector('#confirmPassword').setAttribute('type', 'password');
-    //         }
-    //     })
-    // });
+    if(checkPrivilege('admin_super')){
+        main.innerHTML = createAccount;
+        let iconPassword = document.querySelectorAll('.ico-pass');
+        changeArrow();
+        // contentIsOpen = true;
+        createAccInputBorderStyle();
+    
+        // iconPassword.forEach((item)=>{
+        //     item.addEventListener('click', ()=>{
+        //         if(item.innerHTML == 'visibility_off'){
+        //             iconPassword.forEach((item2)=>{
+        //                 item2.innerHTML = 'visibility'
+        //             })
+        //             document.querySelector('#password').setAttribute('type', 'text');
+        //             document.querySelector('#confirmPassword').setAttribute('type', 'text');
+        //         }
+        //         else{
+        //             iconPassword.forEach((item)=>{
+        //                 item.innerHTML = 'visibility_off'
+        //             })
+        //             document.querySelector('#password').setAttribute('type', 'password');
+        //             document.querySelector('#confirmPassword').setAttribute('type', 'password');
+        //         }
+        //     })
+        // });
+    }
 }
 
 function generateWebsiteStatus(){
-    main.innerHTML = websiteStatus;
+    if(checkPrivilege('admin_super')){
+        main.innerHTML = websiteStatus;
+    }
 }
 
 function generatePostAnnouncement(){
-    main.innerHTML = postAnnouncement;
+    if(checkPrivilege('admin_ii') || checkPrivilege('admin_super')){
+        main.innerHTML = postAnnouncement;
+    }
 }
 
 function generateManageData(){
-    main.innerHTML = manageData;
+    if(checkPrivilege('admin_super')){
+        main.innerHTML = manageData;
+    }
 }
 
 function generateBlockDates(){
-    main.innerHTML = blockDates;
-    showTableCell();
+    if(checkPrivilege('admin_super')){
+        main.innerHTML = blockDates;
+        showTableCell();
+    }
 }
 
 function generateFeedback(){
-    main.innerHTML = feedback;
-    showTableCell();
+    if(checkPrivilege('admin_ii') || checkPrivilege('admin_super')){
+        main.innerHTML = feedback;
+        showTableCell();
+    }
 }
 
 function generateEditTutorial(){
-    main.innerHTML = editTutorial;
+    if(checkPrivilege('admin_super')){
+        main.innerHTML = editTutorial;
+    }
 }

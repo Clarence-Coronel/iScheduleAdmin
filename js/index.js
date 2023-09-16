@@ -33,6 +33,9 @@ const newAdmin = {
 applyAdminInfo();
 
 function initial(){
+
+    changeAccess();
+
     headerBtn.forEach((item)=>{
         item.addEventListener('click', ()=>{
             navLinks.style.left = "0";
@@ -157,7 +160,7 @@ function generateAdminTypeModal(val){
         `   
             *Schedule An Appointment <br>
             *View Appointments  <br>
-            *Pending Follow-Up Requests  <br>
+            *Follow-Up Requests  <br>
             *Post An Announcement  <br>
             *Feedback  <br>
         `
@@ -169,7 +172,7 @@ function generateAdminTypeModal(val){
             *Dashboard <br>
             *Schedule An Appointment <br>
             *View Appointments  <br>
-            *Pending Follow-Up Requests  <br>
+            *Follow-Up Requests  <br>
             *Edit Department Schedules  <br>
             *Manage Admins <br>
             *Manage Website Status <br>
@@ -1229,4 +1232,145 @@ function applyNewPass(){
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send("pass="+ currentPass);
 
+}
+
+function changeAccess(){
+    const nav = document.querySelector('.nav-item-wrapper');
+
+    const navBtns = [
+        `
+        <button class="nav-links__item" onclick="generateDashboard();">
+            <span class="material-icons-outlined ico-nav">dashboard</span>
+            Dashboard
+        </button>
+        `,
+        `
+        <button class="nav-links__item" onclick="generateSchedule();">
+            <span class="material-icons-outlined ico-nav">calendar_month</span>
+            Schedule An Appointment
+        </button>
+        `,
+        `
+        <button class="nav-links__item" onclick="generateViewSchedule();">
+            <span class="material-icons-outlined ico-nav">book</span>
+            View Appointments
+        </button>
+        `,
+        `
+        <button class="nav-links__item" onclick="generateRequest();">
+            <span class="material-icons-outlined ico-nav">pending_actions</span>
+            Follow-Up Requests
+        </button>
+        `,
+        `
+        <button class="nav-links__item" onclick="generateScheduling()">
+            <span class="material-icons-outlined ico-nav">edit_calendar</span>
+            Edit Department Schedules
+        </button>
+        `,
+        `
+        <div class="nav-links__item manage-admins" data-click="doNothing" onclick="showManageAdmins();">
+            <button class="btn-content" id="btn--manage-admins" data-click="doNothing">
+                <span class="material-icons-outlined ico-nav" data-click="doNothing">groups</span>
+                Manage Admins
+                <span class="material-icons-outlined ico-nav change" data-click="doNothing">chevron_right</span>
+            </button>
+            <div class="manage-admins__sub-container" style="display: none;">
+                <button class="btn-content manage-admins__sub" onclick="generateAdminLogs();">
+                    <span class="material-icons-outlined ico-nav--sub">feed</span>
+                    Admin Logs
+                </button>
+                <button class="btn-content manage-admins__sub" onclick="generateAdminList();">
+                    <span class="material-icons-outlined ico-nav--sub">format_list_bulleted</span>
+                    Admin List
+                </button>
+                <button class="btn-content manage-admins__sub"  onclick="generateCreateAcc();">
+                    <span class="material-icons-outlined ico-nav--sub">person_add_alt</span>
+                    Create New Admin
+                </button>
+                <!-- <button class="btn-content manage-admins__sub" onclick="generateDisableAcc()">
+                    <span class="material-icons-outlined ico-nav--sub">person_remove_alt_1</span>
+                    Remove Admin
+                </button> -->
+            </div>
+        </div>
+        `,
+        `
+        <button class="nav-links__item" onclick="generateWebsiteStatus()">
+            <span class="material-icons-outlined ico-nav">medical_services</span>
+            Manage Website Status
+        </button>
+        `,
+        `
+        <button class="nav-links__item" onclick="generatePostAnnouncement()">
+            <span class="material-icons-outlined ico-nav">campaign</span>
+            Post An Announcement
+        </button>
+        `,
+        `
+        <button class="nav-links__item" onclick="generateManageData()">
+            <span class="material-icons-outlined ico-nav">storage</span>
+            Manage Data
+        </button>
+        `,
+        `
+        <button class="nav-links__item" onclick="generateBlockDates()">
+            <span class="material-icons-outlined ico-nav">block</span>
+            Block Dates
+        </button>
+        `,
+        `
+        <button class="nav-links__item" onclick="generateFeedback()">
+            <span class="material-icons-outlined ico-nav">chat</span>
+            Feedback
+        </button>
+        `,
+        `
+        <button class="nav-links__item" onclick="generateEditTutorial()">
+            <span class="material-icons-outlined ico-nav">videocam</span>
+            Manage Video Tutorial
+        </button>
+        `
+        ]
+
+    const admin_i = [2];
+    const admin_ii = [1, 2, 3, 7, 10];
+    const admin_s = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+
+    if(signedInAdmin.adminType == 'admin_i'){
+        admin_i.forEach(item=>{
+            nav.innerHTML += navBtns[item];
+        });
+    }
+    else if(signedInAdmin.adminType == 'admin_ii'){
+        admin_ii.forEach(item=>{
+            nav.innerHTML += navBtns[item];
+        });
+    }
+    else if(signedInAdmin.adminType == 'admin_super'){
+        admin_s.forEach(item=>{
+            nav.innerHTML += navBtns[item];
+        });
+    }
+}
+
+// For added security
+function checkPrivilege(type){
+    allowAccess = false;
+    const xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4){
+            if(xhr.status == 200){
+                if(xhr.response == type){
+                    allowAccess = true;
+                }
+            }
+        }
+    }
+
+    xhr.open('GET', './php/getAdminPrivilege.php', false);
+    xhr.send();
+
+    return allowAccess;
 }
