@@ -1336,7 +1336,10 @@ let postAnnouncement = `
             <textarea cols="30" rows="10" name="announcementBody" id="announcementBody" onblur="inputLimiterBlur(this.id, 1000); statusMsgCounter(this.id, 'announcementBody__counter', 1000);" oninput="inputLimiter(this.id, 1000); statusMsgCounter(this.id, 'announcementBody__counter', 1000);"></textarea>
             <div id="announcementBody__counter">1000</div>
         </div>
-        <button id="announcementSubmit">Post</button>
+        <div class="error-container">
+            <span class="msg"></span>
+        </div>
+        <button id="announcementSubmit"">Post</button>
     </div>
 </section>`;
 
@@ -1726,6 +1729,7 @@ function generateWebsiteStatus(){
 function generatePostAnnouncement(){
     if(checkPrivilege('admin_ii') || checkPrivilege('admin_super')){
         main.innerHTML = postAnnouncement;
+        insertAnnouncement();
     }
 }
 

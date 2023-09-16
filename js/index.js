@@ -1036,10 +1036,13 @@ function checkOTP_Edit(){
             if(xhr.readyState == 4){
                 if(xhr.status == 200){
                     if(xhr.responseText == 1){
-                         showSuccessModal('Phone has been updated', true);
+                         showResModal('Phone has been updated', true);
                          signedInAdmin.phone = newInsertedPhone;
                          generateAccountSettings();
                          insertAccInfo();
+                    }
+                    else{
+                        showResModal('Something went wrong',"Failed", true);
                     }
                 }
             }
@@ -1065,9 +1068,8 @@ function checkOTP_Edit(){
 }
 
 
-function showSuccessModal(str = '', currentModalisUp = false){
+function showResModal(str = '', currentModalisUp = false, type = 'Success'){
     resetModal();
-
     let modalTitle = document.querySelector('.modal-title');
     let modalBody = document.querySelector('.modal-body');
     let modalCloseBtn = document.querySelector('.btn-close');
@@ -1078,10 +1080,18 @@ function showSuccessModal(str = '', currentModalisUp = false){
     let modalHeader = document.querySelector('.modal-header');
     let modalFooter = document.querySelector('.modal-footer');
 
-    modalTitle.innerText = "Success";
+
+    modalTitle.innerText = type;
     positiveBtn.style.display = 'none';
     negativeBtn.innerText = 'Close';
     modalBody.innerText = str;
+
+    if(type == 'Success'){
+        modalTitle.style.color = 'rgb(10, 204, 10)';
+    }
+    else{
+        modalTitle.style.color = 'red';
+    }
 
     if(!currentModalisUp){
         modalLauncher();
@@ -1100,6 +1110,7 @@ function resetModal(){
     header.style.display = 'flex';
     footer.style.display = 'flex';
     title.innerText = 'Modal Title';
+    title.style.color = 'unset';
     headerClose.style.display = 'block'
     positive.style.display = 'block';
     negative.style.display = 'block';
@@ -1209,8 +1220,11 @@ function applyNewPass(){
                         if(xhr2.readyState == 4){
                             if(xhr2.status == 200){
                                 if(xhr2.responseText == 1){
-                                    showSuccessModal('Password has been updated');
+                                    showResModal('Password has been updated');
                                     generateAccountSettings();
+                                }
+                                else{
+                                    showResModal('Something went wrong', 'Failed');
                                 }
                             }
                         }
@@ -1373,4 +1387,45 @@ function checkPrivilege(type){
     xhr.send();
 
     return allowAccess;
+}
+
+function insertAnnouncement(){
+    const submitBtn = document.querySelector('#announcementSubmit');
+
+    submitBtn.addEventListener('click', ()=>{
+        const title = document.querySelector('#announcementTitle').value;
+        const body = document.querySelector('#announcementBody').value;
+
+        if(title == "" || body == ""){
+            showError("Please fill in all fields");
+            return;
+        }
+
+        let ann = {
+            title: title,
+            body: body
+        }
+
+        const jsonString = JSON.stringify(ann);
+
+        const xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4){
+                if(xhr.status == 200){
+                    if(xhr.responseText == 1){
+                        showResModal("Announcement has been posted");
+                        generatePostAnnouncement();
+                    }
+                    else{
+                        showResModal("Something went wrong.", "Failed");
+                    }
+                }
+            }
+        }
+
+        xhr.open("POST", "./php/postAnnouncement.php");
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(jsonString);
+    })
 }
