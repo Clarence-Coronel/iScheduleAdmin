@@ -3317,6 +3317,20 @@ table{
             }
         }
 
+        .add{
+            // transition-duration: 500ms;
+            .add-btn{
+                border: unset;
+                background-color: transparent;
+                width: 100%;
+            }
+        }
+        
+        .add:hover{
+            cursor: pointer;
+            background-color: darken(rgb(235, 235, 235), 5);
+        }
+
         .timeslot-container{
             display: flex;
             flex-flow: column;

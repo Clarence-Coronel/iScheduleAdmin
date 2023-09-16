@@ -2707,6 +2707,15 @@ table {
 .scheduling .week-container .buffer .time::after {
   content: " (Buffer)";
 }
+.scheduling .week-container .add .add-btn {
+  border: unset;
+  background-color: transparent;
+  width: 100%;
+}
+.scheduling .week-container .add:hover {
+  cursor: pointer;
+  background-color: #dedede;
+}
 .scheduling .week-container .timeslot-container {
   display: flex;
   flex-flow: column;

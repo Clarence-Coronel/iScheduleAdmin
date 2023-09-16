@@ -881,6 +881,9 @@ let scheduling = `
                                     <button data-timeslotID="1" onclick="alert('labas modal')">Delete</button>
                                 </div>
                             </div>
+                            <div class="block add">
+                                <button class="add-btn"><span class="material-icons-outlined">add</span></button>
+                            </div>
                         </div>
                     </div>
                     <div id="tuesday" class="day">
@@ -905,6 +908,9 @@ let scheduling = `
                                     <button data-timeslotID="1" onclick="alert('labas modal')">Edit</button>
                                     <button data-timeslotID="1" onclick="alert('labas modal')">Delete</button>
                                 </div>
+                            </div>
+                            <div class="block add">
+                                <button class="add-btn"><span class="material-icons-outlined">add</span></button>
                             </div>
                         </div>
                     </div>
@@ -951,6 +957,9 @@ let scheduling = `
                                     <button data-timeslotID="1" onclick="alert('labas modal')">Delete</button>
                                 </div>
                             </div>
+                            <div class="block add">
+                                <button class="add-btn"><span class="material-icons-outlined">add</span></button>
+                            </div>
                         </div>
                     </div>
                     <div id="thursday" class="day">
@@ -976,6 +985,9 @@ let scheduling = `
                                     <button data-timeslotID="1" onclick="alert('labas modal')">Delete</button>
                                 </div>
                             </div>
+                            <div class="block add">
+                                <button class="add-btn"><span class="material-icons-outlined">add</span></button>
+                            </div>
                         </div>
                     </div>
                     <div id="friday" class="day">
@@ -1000,6 +1012,9 @@ let scheduling = `
                                     <button data-timeslotID="1" onclick="alert('labas modal')">Edit</button>
                                     <button data-timeslotID="1" onclick="alert('labas modal')">Delete</button>
                                 </div>
+                            </div>
+                            <div class="block add">
+                                <button class="add-btn"><span class="material-icons-outlined">add</span></button>
                             </div>
                         </div>
                     </div>
@@ -1035,6 +1050,9 @@ let scheduling = `
                                     <button data-timeslotID="1" onclick="alert('labas modal')">Edit</button>
                                     <button data-timeslotID="1" onclick="alert('labas modal')">Delete</button>
                                 </div>
+                            </div>
+                            <div class="block add">
+                                <button class="add-btn"><span class="material-icons-outlined">add</span></button>
                             </div>
                         </div>
                     </div>
