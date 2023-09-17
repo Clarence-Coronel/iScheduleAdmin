@@ -8,8 +8,10 @@
         'httponly' => true,  // Prevent JavaScript access to the cookie
         'samesite' => 'Strict',  // Improve CSRF protection
     ]);
-
-    session_start();
+    ini_set('session.gc_maxlifetime', 86400);
+    session_set_cookie_params(86400);
+    
+    
 
     require 'connect.php';
 
@@ -40,6 +42,7 @@
 
                 // each client should remember their session id for EXACTLY 18 hours
                 // session_set_cookie_params(64800);
+                session_start();
                 
                 $_SESSION['authenticated'] = true;
                 $_SESSION['username'] = $row['username'];

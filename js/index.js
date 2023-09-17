@@ -13,6 +13,8 @@ let generatedUsername = '';
 let newInsertedPhone = "";
 let isResendAvail = false;
 
+
+
 // AOS Initialization
 AOS.init();
 initial();
@@ -31,6 +33,26 @@ const newAdmin = {
 }
 
 applyAdminInfo();
+
+setInterval(checkSession, 1000);
+
+function checkSession(){
+    const xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4){
+            if(xhr.status == 200){
+                if(xhr.responseText == 0){
+                    alert('Your session has ended. Please login again to continue.');
+                    window.location.replace("./page/login.php");
+                }
+            }
+        }
+    }
+
+    xhr.open('GET', './php/testSession.php', true);
+    xhr.send();
+}
 
 function initial(){
 
