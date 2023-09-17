@@ -7,7 +7,7 @@
     $newPhone = null;
 
     foreach($_POST as $temp){
-        $newPhone = $temp;
+        $newPhone = htmlspecialchars($temp);
     }
 
     if(isset($newPhone)){

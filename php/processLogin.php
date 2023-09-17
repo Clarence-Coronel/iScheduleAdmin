@@ -21,7 +21,9 @@
         array_push($arr, $input);
     }
 
-    $query = "SELECT * FROM `admins` WHERE username='$arr[0]'";
+    $convertedUsername = htmlspecialchars($arr[0]);
+
+    $query = "SELECT * FROM `admins` WHERE username='$convertedUsername'";
     $result = mysqli_query($conn,$query);
 	$count = mysqli_num_rows($result);
 

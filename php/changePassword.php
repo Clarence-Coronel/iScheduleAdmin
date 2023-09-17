@@ -7,7 +7,7 @@
     $newPass = null;
 
     foreach($_POST as $temp){
-        $newPass = $temp;
+        $newPass = htmlspecialchars($temp);
     }
 
     $hashedPassword = password_hash($newPass, PASSWORD_BCRYPT);
