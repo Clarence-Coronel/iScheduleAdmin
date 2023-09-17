@@ -32,6 +32,11 @@ const newAdmin = {
     'adminType': '',
 }
 
+// if(window.innerWidth > window.innerHeight){
+//     alert('pasok');
+//     document.querySelector('.nav-links').style.minHeight = "500px";
+// }
+
 applyAdminInfo();
 
 setInterval(checkSession, 1000);

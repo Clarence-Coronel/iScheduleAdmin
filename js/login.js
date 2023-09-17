@@ -20,7 +20,7 @@ const loginHTML =
                 </div>
                 <div class="button-field">
                     <button class="login-btn" type="button" onclick="validateLogin()">Login</button>
-                    <button class="forgot-btn" onclick="openForgotPassword()">Forgot Password?</button>
+                    <button class="forgot-btn" type="button" onclick="openForgotPassword()">Forgot Password?</button>
                 </div>     
             </form>
 `;

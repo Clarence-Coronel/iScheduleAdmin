@@ -61,8 +61,7 @@ html {
 
 body {
   width: 100vw;
-  height: -moz-fit-content;
-  height: fit-content;
+  height: 100vh;
   min-height: 100vh;
   display: flex;
   flex-flow: column;
@@ -243,15 +242,6 @@ header .header__right {
   z-index: 998;
 }
 
-.nav-item-wrapper {
-  width: 100%;
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  align-items: flex-start;
-  height: 95vh;
-}
-
 .nav-links {
   background-color: #4e73df;
   width: 50vw;
@@ -262,6 +252,14 @@ header .header__right {
   max-width: 300px;
   z-index: 999;
   padding: max(5px, 0.5vw);
+}
+.nav-links .nav-item-wrapper {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 95vh;
 }
 .nav-links .ico-nav, .nav-links .ico-nav--sub {
   color: rgb(210, 208, 208);
@@ -1423,7 +1421,7 @@ td:hover {
   height: 80%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(45%, 1fr));
-  gap: max(30px, 1.5vw);
+  gap: max(10px, 1vw);
   padding: max(10px, 0.5vw);
 }
 .data-wrapper .data {

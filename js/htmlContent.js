@@ -957,6 +957,26 @@ let scheduling = `
                                     <button data-timeslotID="1" onclick="alert('labas modal')">Delete</button>
                                 </div>
                             </div>
+                            <div class="block">
+                                <div class="timeslot">
+                                    <div class="time">8:00 AM - 9:00 AM</div>
+                                    <div class="max">15</div>
+                                </div>
+                                <div class="button-container">
+                                    <button data-timeslotID="1" onclick="alert('labas modal')">Edit</button>
+                                    <button data-timeslotID="1" onclick="alert('labas modal')">Delete</button>
+                                </div>
+                            </div>
+                            <div class="block">
+                                <div class="timeslot">
+                                    <div class="time">8:00 AM - 9:00 AM</div>
+                                    <div class="max">15</div>
+                                </div>
+                                <div class="button-container">
+                                    <button data-timeslotID="1" onclick="alert('labas modal')">Edit</button>
+                                    <button data-timeslotID="1" onclick="alert('labas modal')">Delete</button>
+                                </div>
+                            </div>
                             <div class="block add">
                                 <button class="add-btn"><span class="material-icons-outlined">add</span></button>
                             </div>
