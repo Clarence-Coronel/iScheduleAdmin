@@ -15,6 +15,9 @@
         $query = "UPDATE `admins` SET `password`='$hashedPassword' WHERE `username` = '$convertedSpeChar'";
         
         if(mysqli_query($conn, $query)){
+            session_start();
+            $adminStampQuery = "INSERT INTO `admin_logs`(`username`, `activity`) VALUES ('$arr[0]','Changed password')";
+            mysqli_query($conn, $adminStampQuery);
             echo "success";
         }
         else{

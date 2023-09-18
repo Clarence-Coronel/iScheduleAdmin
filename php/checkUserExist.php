@@ -4,7 +4,7 @@
     $username = "";
 
     foreach($_POST as $temp){
-        $username = $temp;
+        $username = htmlspecialchars($temp);
     }
 
     if(isset($username)){

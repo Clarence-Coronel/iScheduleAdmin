@@ -19,6 +19,10 @@
 	
 		if (mysqli_query($conn, $sql_query)) 
 		{
+            session_start();
+            $username = $_SESSION['username'];
+            $adminStampQuery = "INSERT INTO `admin_logs`(`username`, `activity`) VALUES ('$username','Created a new admin: $generatedUsername')";
+            mysqli_query($conn, $adminStampQuery);
             echo $generatedUsername;
 		} 
 		else

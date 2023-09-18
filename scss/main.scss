@@ -228,14 +228,14 @@ header{
     
     .nav-item-wrapper{
         width: 100%;
-        display: flex;
-        flex-flow: column;
-        justify-content: center;
-        align-items: flex-start;
         // gap: max(10px, 1vw);
         // max-height: 1200px;
         height: 95vh;
         // overflow-y: auto;
+        display: flex;
+        flex-flow: column;
+        justify-content: flex-start;
+        align-items: flex-start;
     }
 
 
