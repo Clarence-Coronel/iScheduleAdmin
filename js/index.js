@@ -164,7 +164,6 @@ function generateAdminTypeModal(val){
     let modalHeader = document.querySelector('.modal-header');
     let modalFooter = document.querySelector('.modal-footer');
     
-    // modal.classList.add('modal-lg');
     modalHeader.style.display = 'flex';
     modalFooter.style.display = 'flex';
 
@@ -225,8 +224,7 @@ function generateErrorModal(){
 
     let modalHeader = document.querySelector('.modal-header');
     let modalFooter = document.querySelector('.modal-footer');
-    
-    // modal.classList.add('modal-lg');
+
     modalHeader.style.display = 'flex';
     modalFooter.style.display = 'flex';
 
@@ -731,34 +729,12 @@ function backForm(){
 }
 
 function confirmSignOut(){
-    resetModal();
-
-    const modalTitle = document.querySelector('.modal-title');
-    const modalBody = document.querySelector('.modal-body');
-    const positive = document.querySelector('.positive');
-    const negative = document.querySelector('.negative');
-
-    let modalHeader = document.querySelector('.modal-header');
-    let modalFooter = document.querySelector('.modal-footer');
-    positive.style.display = 'block';
-    // modal.classList.add('modal-lg');
-    modalHeader.style.display = 'flex';
-    modalFooter.style.display = 'flex';
-
-    modalTitle.innerText = 'Signing Out...';
-    modalBody.innerText = 'Are you sure?';
-    positive.innerText = 'Confirm';
-    negative.innerText = 'Cancel';
-    document.querySelector('.modal-dialog').classList.remove('modal-lg');
-
-
-     // gumamit ng setattribute sa pag bigay ng onclick and tanggal
-    positive.setAttribute('onclick', 'signOut()');
-
-    modalLauncher()
+    confirmModal("Signing out...", "Are you sure?", "signOut");
 }
 
 function viewRequestApprove(id){
+    resetModal();
+
     let requestTarget = document.getElementById(id);
     let appID = requestTarget.getAttribute('data-appID');
     
@@ -770,7 +746,6 @@ function viewRequestApprove(id){
     let modalHeader = document.querySelector('.modal-header');
     let modalFooter = document.querySelector('.modal-footer');
     
-    // modal.classList.add('modal-lg');
     modalHeader.style.display = 'flex';
     modalFooter.style.display = 'flex';
 
@@ -791,12 +766,13 @@ function viewRequestApprove(id){
     positive.innerText = 'Schedule';
     negative.innerText = 'Cancel';
     body.innerHTML = html;
-    // document.querySelector('.modal-dialog').classList.add('modal-lg');
 
     modalLauncher();
 }
 
 function viewRequestReject(id){
+    resetModal();
+
     let requestTarget = document.getElementById(id);
     let appID = requestTarget.getAttribute('data-appID');
     
@@ -865,7 +841,6 @@ function openModalOTP(){
     let modalHeader = document.querySelector('.modal-header');
     let modalFooter = document.querySelector('.modal-footer');
     
-    // modal.classList.add('modal-lg');
     modalHeader.style.display = 'none';
     modalFooter.style.display = 'none';
     modalTitle.style.color = 'unset';
@@ -994,7 +969,6 @@ function openModalOTP_Edit(){
     let modalHeader = document.querySelector('.modal-header');
     let modalFooter = document.querySelector('.modal-footer');
     
-    // modal.classList.add('modal-lg');
     modalHeader.style.display = 'none';
     modalFooter.style.display = 'none';
     modalTitle.style.color = 'unset';
@@ -1141,6 +1115,7 @@ function resetModal(){
     negative.style.display = 'block';
     positive.innerText = 'Understood';
     negative.innerText = 'Cancel';
+    positive.removeAttribute('onclick');
 }
 
 function capitalFirstLetter(str){
@@ -1490,6 +1465,87 @@ function getFeedback(sortBy = 1){
     showTableCell();
 }
 
-// function updateFbTable(val){
-//     getFee
-// }
+function confirmModal(title, content, posBtnFunction){
+    resetModal();
+
+    const modalTitle = document.querySelector('.modal-title');
+    const modalBody = document.querySelector('.modal-body');
+    const positive = document.querySelector('.positive');
+    const negative = document.querySelector('.negative');
+
+    modalTitle.innerText = title;
+    modalBody.innerText = content
+    positive.innerText = 'Confirm';
+    negative.innerText = 'Cancel';
+    positive.setAttribute("onclick", `${posBtnFunction}()`);
+
+    modalLauncher();
+}
+
+function confirmPhoneTutorial(){
+    if(document.querySelector("#mobile").value == ""){
+        showError("Please fill in the phone field");
+        return;
+    }
+    confirmModal("Applying...", "Are you sure you want to use this video for mobile phone view?", "applyPhoneTutorial");
+}
+
+function confirmDesktopTutorial(){
+    if(document.querySelector("#desktop").value == ""){
+        showError("Please fill in the desktop field");
+        return;
+    }
+    confirmModal("Applying...", "Are you sure you want to use this video for desktop view?", "applyDesktopTutorial");
+}
+
+function applyPhoneTutorial(){
+    const mobileInput = document.querySelector("#mobile").value;
+    
+    const xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4){
+            if(xhr.status == 200){
+                if(xhr.responseText == 1){
+                    setTimeout(showDeskMobileRes, 500);
+                }
+                else{
+                    alert("Something went wrong...");
+                }
+            }
+        }
+    }
+
+    xhr.open("POST", "./php/changeVid.php", false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send('type=mobile&link=' + mobileInput);
+}
+
+function applyDesktopTutorial(){
+    const desktopInput = document.querySelector("#desktop").value;
+    
+    const xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4){
+            if(xhr.status == 200){
+                if(xhr.responseText == 1){
+                    setTimeout(showDeskMobileRes, 500);
+                }
+                else{
+                    alert("Something went wrong...");
+                }
+            }
+        }
+    }
+
+    xhr.open("POST", "./php/changeVid.php", false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send('type=desktop&link=' + desktopInput);
+}
+
+// work around kasi ayaw mag show ng second modal kasi masyadung mabilis
+function showDeskMobileRes(){
+    showResModal("New video tutorial applied");
+}
+

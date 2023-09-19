@@ -3400,8 +3400,12 @@ table{
     justify-content: center;
     align-items: flex-start;
     width: 100%;
-    height: 85vh;
+    height: fit-content;
     overflow: hidden;
+
+    .error-container{
+        margin-top: 5vh;
+    }
 
     .edit-tutorial-content{
         width: 50%;

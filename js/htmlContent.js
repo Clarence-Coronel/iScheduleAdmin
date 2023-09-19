@@ -1596,18 +1596,18 @@ let editTutorial = `
                     <label for="mobile">Phone</label>
                     <div class="edit__input-container">
                         <input type="text" name="" id="mobile">
-                        <button class="edit-tutorial--btn" onclick="alert('confirm if sure ba using modal')">Apply</button>
+                        <button class="edit-tutorial--btn" onclick="confirmPhoneTutorial()">Apply</button>
                     </div>
                 </div>
                 <div class="embed-input">
-                    <!-- <div class="tutorial__video-container" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">
-                        <iframe loading="lazy" width="100%" height="100%" src="https://www.youtube.com/embed/lhUXVfEQiRM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                    </div> -->
                     <label for="desktop">Desktop</label>
                     <div class="edit__input-container">
                         <input type="text" name="" id="desktop">
-                        <button class="edit-tutorial--btn" onclick="alert('confirm if sure ba using modal')">Apply</button>
+                        <button class="edit-tutorial--btn" onclick="confirmDesktopTutorial()">Apply</button>
                     </div>
+                </div>
+                <div class="error-container">
+                    <span class="msg"></span>
                 </div>
             </div>
         </section>

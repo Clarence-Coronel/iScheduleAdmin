@@ -2763,8 +2763,12 @@ table {
   justify-content: center;
   align-items: flex-start;
   width: 100%;
-  height: 85vh;
+  height: -moz-fit-content;
+  height: fit-content;
   overflow: hidden;
+}
+.edit-tutorial .error-container {
+  margin-top: 5vh;
 }
 .edit-tutorial .edit-tutorial-content {
   width: 50%;
