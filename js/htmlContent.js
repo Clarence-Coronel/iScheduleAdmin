@@ -1533,12 +1533,12 @@ let blockDates = `
 let feedback = `
 <section class="feedback">
             <div class="feedback-content" data-aos="fade-right" data-aos-duration="500">
-                <select class="form-select" aria-label="Default select example">
+                <select class="form-select" aria-label="Default select example" onchange="getFeedback(this.value)">
                     <option value="" selected hidden disabled>Sort By</option>
-                    <option value="">Oldest to Latest</option>
-                    <option value="">Latest to Oldest</option>
-                    <option value="">Lowest Rating to Highest Rating</option>
-                    <option value="">Highest Rating to Lowest Rating</option>
+                    <option value="0">Oldest to Latest</option>
+                    <option value="1">Latest to Oldest</option>
+                    <option value="2">Lowest Rating to Highest Rating</option>
+                    <option value="3">Highest Rating to Lowest Rating</option>
                 </select>
                 <div class="feedback__table">
                     <span>Click the row to highlight/see more.</span>
@@ -1552,48 +1552,7 @@ let feedback = `
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
-                                    Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
-                                    <td title="YYYY-MM-DD">2023-07-01</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
-                                    Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
-                                    <td title="YYYY-MM-DD">2023-07-01</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
-                                    Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
-                                    <td title="YYYY-MM-DD">2023-07-01</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
-                                    Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
-                                    <td title="YYYY-MM-DD">2023-07-01</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
-                                    Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
-                                    <td title="YYYY-MM-DD">2023-07-01</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
-                                    Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
-                                    <td title="YYYY-MM-DD">2023-07-01</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat tenetur, nulla laboriosam maxime eveniet deleniti non porro ipsum minus, rem repellat obcaecati est, possimus nesciunt consectetur quae labore dolorum ratione.
-                                    Enim sequi maiores perferendis voluptas eligendi aliquid at, culpa aut dolorem possimus maxime est consectetur cum quis nam voluptatum. Placeat, neque aperiam quia cumque assumenda sint commodi ad culpa consequatur!</td>
-                                    <td title="YYYY-MM-DD">2023-07-01</td>
-                                </tr>
+                                
                             </tbody>
                         </table>
                     </div>
@@ -1769,7 +1728,7 @@ function generateBlockDates(){
 function generateFeedback(){
     if(checkPrivilege('admin_ii') || checkPrivilege('admin_super')){
         main.innerHTML = feedback;
-        showTableCell();
+        getFeedback();
     }
 }
 

@@ -269,8 +269,6 @@ function changeArrow(){
 function showTableCell(){
     let tableRow = document.querySelectorAll('tr');
     let tableData = document.querySelectorAll('td');
-    
-    console.table(tableRow);
 
     tableRow.forEach((item)=>{
         item.addEventListener('click', ()=>{
@@ -1456,3 +1454,42 @@ function insertAnnouncement(){
         xhr.send(jsonString);
     })
 }
+
+function getFeedback(sortBy = 1){
+    const feedbackTable = document.querySelector('.feedback__table tbody');
+    feedbackTable.innerHTML = "";
+
+    const xhr = new XMLHttpRequest();
+    
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4){
+            if(xhr.status == 200){
+                if(xhr.responseText != 0){
+                    let arrayOfObjects = JSON.parse(xhr.responseText);
+                    arrayOfObjects.forEach(item=>{
+                        let rowTemplate =
+                        `
+                        <tr>
+                            <td>${item.rate}</td>
+                            <td>${item.content}</td>
+                            <td title="YYYY-MM-DD">${item.dateSubmitted}</td>
+                        </tr>
+                        `;
+    
+                        feedbackTable.innerHTML += rowTemplate;
+                        
+                    });
+                }
+            }
+        }
+    }
+
+    xhr.open("POST", "./php/getFeedback.php", false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send(`sortBy=`+sortBy);
+    showTableCell();
+}
+
+// function updateFbTable(val){
+//     getFee
+// }

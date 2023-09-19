@@ -1,7 +1,7 @@
 <?php
     // Set session cookie attributes
     session_set_cookie_params([
-        'lifetime' => 0,  // Session expires when the browser is closed
+        'lifetime' => 1,  // Session expires when the browser is closed
         'path' => '/',
         'domain' => '',
         'secure' => true,  // Only send cookies over HTTPS
