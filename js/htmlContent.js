@@ -475,6 +475,21 @@ let viewSchedule = `
                             <td>Oncology</td>
                             <td title="YYYY-MM-DD">2023-08-25</td>
                             <td>1:00 PM - 2:00PM (0)</td>
+                            <td><button class="editBtn cancelled" onclick="alert('Change status')" data-id="12">Cancelled<span class="ico-list ico-edit">(edit)</span></button></td>
+                            <td>Male</td>
+                            <td title="YYYY-MM-DD">2001-10-21</td>
+                            <td>0942 423 4277</td>
+                            <td>Banga II, Plaridel, Bulacan</td>
+                            <td>New Patient</td>
+                            <td>123456</td>
+                            <td title="YYYY-MM-DD">2023-06-27</td>
+                            <td>TrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabaho</td>
+                        </tr>
+                        <tr>
+                            <td>Cruz, John Test</td>
+                            <td>Oncology</td>
+                            <td title="YYYY-MM-DD">2023-08-25</td>
+                            <td>1:00 PM - 2:00PM (0)</td>
                             <td><button class="editBtn active" onclick="alert('Change status')" data-id="12">Active<span class="ico-list ico-edit">(edit)</span></button></td>
                             <td>Male</td>
                             <td title="YYYY-MM-DD">2001-10-21</td>
