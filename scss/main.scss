@@ -1522,6 +1522,18 @@ td:hover{
     button:hover{
         background-color: lighten($btn-color, 5);
     }
+
+    #announcementSee{
+        background-color: transparent;
+        border: unset;
+        color: $btn-color;
+        border-radius:  unset;
+        padding: 0;
+        height: fit-content;
+        width: fit-content;
+        font-size: 0.8rem;
+        text-decoration: underline;
+    }
 }
 
 .dashboard{

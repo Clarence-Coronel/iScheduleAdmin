@@ -1588,6 +1588,30 @@ function checkBlockDate(){
         showError("Name can only contain letters and numbers");
         return;
     }
+
+    const toSend = {
+        dateName: name,
+        date: tempDate,
+        isYearly: repeats
+    }
+    const jsonString = JSON.stringify(toSend);
+    const xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function(){
+        if(this.readyState == 4){
+            if(this.status == 200){
+                if(this.responseText == 1){
+                    showResModal("Date has been blocked");
+                }else{
+                    alert("Something went wrong...")
+                }
+            }
+        }
+    }
+
+    xhr.open("OPEN", "./php/postBlockDate.php", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(jsonString);
 }
 
 function isDateValid(dateString) {

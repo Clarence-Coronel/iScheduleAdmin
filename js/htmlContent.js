@@ -1375,6 +1375,7 @@ let postAnnouncement = `
             <span class="msg"></span>
         </div>
         <button id="announcementSubmit"">Post</button>
+        <button id="announcementSee"">See posted announcements</button>
     </div>
 </section>`;
 

@@ -1292,6 +1292,19 @@ td:hover {
 .postAnnouncement__content button:hover {
   background-color: #1e85fb;
 }
+.postAnnouncement__content #announcementSee {
+  background-color: transparent;
+  border: unset;
+  color: #0577fa;
+  border-radius: unset;
+  padding: 0;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: 0.8rem;
+  text-decoration: underline;
+}
 
 .dashboard {
   width: 100%;
