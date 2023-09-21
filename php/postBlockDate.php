@@ -13,7 +13,7 @@
     if(mysqli_query($conn, $query)){
         session_start();
         $username = $_SESSION['username'];
-        $adminStampQuery = "INSERT INTO `admin_logs`(`username`, `activity`) VALUES ('$username','Posted an announcement: $object->dateName')";
+        $adminStampQuery = "INSERT INTO `admin_logs`(`username`, `activity`) VALUES ('$username','Blocked a date: $object->dateName')";
         mysqli_query($conn, $adminStampQuery);
         echo 1;
     }

@@ -1417,12 +1417,6 @@ let blockDates = `
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>December 25, 2023</td>
-                                <td>Christmas</td>
-                                <td>Yes</td>
-                                <td><button class="removeDate" data-date="2023-12-25">delete</button></td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -1638,6 +1632,7 @@ function generateManageData(){
 function generateBlockDates(){
     if(checkPrivilege('admin_super')){
         main.innerHTML = blockDates;
+        insertBlockDate();
         showTableCell();
     }
 }

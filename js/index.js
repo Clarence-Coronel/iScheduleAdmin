@@ -1370,6 +1370,17 @@ function changeAccess(){
             nav.innerHTML += navBtns[item];
         });
     }
+
+    if(signedInAdmin.adminType == 'admin_i'){
+        generateViewSchedule();
+    }
+    else if(signedInAdmin.adminType == 'admin_ii'){
+        generateSchedule();
+    }
+    else if(signedInAdmin.adminType == 'admin_super'){
+        // generateDashboard();
+        // commented for testing
+    }
 }
 
 // For added security
@@ -1451,7 +1462,7 @@ function getFeedback(sortBy = 1){
                         <tr>
                             <td>${item.rate}</td>
                             <td>${item.content}</td>
-                            <td title="YYYY-MM-DD">${item.dateSubmitted}</td>
+                            <td title="YYYY-MM-DD">${convertRetrievedDate(item.dateSubmitted)}</td>
                         </tr>
                         `;
     
@@ -1630,4 +1641,99 @@ function isDateValid(dateString) {
     } else {
       return false; // Invalid date
     }
+}
+
+function insertBlockDate(){
+    const table = document.querySelector(".date-table tbody");
+
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4){
+            if(xhr.status == 200){
+                let arrayOfObjects = JSON.parse(xhr.responseText);
+
+                arrayOfObjects.forEach((item)=>{
+                    let id = item.id;
+                    let date = convertRetrievedDate(item.date);
+                    let dateName = item.dateName;
+                    let isYearly = null;
+
+                    if(item.isYearly == 1){
+                        isYearly = true;
+                    }
+                    else{
+                        isYearly = false;
+                    }
+
+                    
+
+                    const template = 
+                    `
+                    <tr>
+                        <td>${date}</td>
+                        <td>${dateName}</td>
+                        <td>${isYearly}</td>
+                        <td><button class="removeDate" data-date="${id}">delete</button></td>
+                    </tr>
+                    `;
+
+                    table.innerHTML += template;
+                })
+            }
+        }
+    }
+
+
+    xhr.open("GET", "./php/getBlockDate.php", false);
+    xhr.send();
+}
+
+function convertRetrievedDate(date){
+    let arrDate = date.split('-');
+    let convertedDate = "";
+
+    arrDate[1] = parseInt(arrDate[1]);
+
+    switch(arrDate[1]){
+        case 1:
+            convertedDate += "January ";
+            break;
+        case 2:
+            convertedDate += "February ";
+            break;
+        case 3:
+            convertedDate += "March ";
+            break;
+        case 4:
+            convertedDate += "April ";
+            break;
+        case 5:
+            convertedDate += "May ";
+            break;
+        case 6:
+            convertedDate += "June ";
+            break;
+        case 7:
+            convertedDate += "July ";
+            break;
+        case 8:
+            convertedDate += "August ";
+            break;
+        case 9:
+            convertedDate += "September ";
+            break;
+        case 10:
+            convertedDate += "October ";
+            break;
+        case 11:
+            convertedDate += "November ";
+            break;
+        case 12:
+            convertedDate += "December ";
+    }
+
+    convertedDate += `${arrDate[2]}, `;
+    convertedDate += `${arrDate[0]}`;
+
+    return convertedDate;
 }
