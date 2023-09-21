@@ -1417,120 +1417,18 @@ let blockDates = `
                         </thead>
                         <tbody>
                             <tr>
-                                <td>25 December 2023</td>
+                                <td>December 25, 2023</td>
                                 <td>Christmas</td>
                                 <td>Yes</td>
                                 <td><button class="removeDate" data-date="2023-12-25">delete</button></td>
                             </tr>
-                            <tr>
-                                <td>25 December 2023</td>
-                                <td>Christmas</td>
-                                <td>Yes</td>
-                                <td><button class="removeDate" data-date="2023-12-25">delete</button></td>
-                            </tr>
-                            <tr>
-                                <td>25 December 2023</td>
-                                <td>Christmas</td>
-                                <td>Yes</td>
-                                <td><button class="removeDate" data-date="2023-12-25">delete</button></td>
-                            </tr>
-                            <tr>
-                                <td>25 December 2023</td>
-                                <td>Christmas</td>
-                                <td>Yes</td>
-                                <td><button class="removeDate" data-date="2023-12-25">delete</button></td>
-                            </tr>
-                            <tr>
-                                <td>25 December 2023</td>
-                                <td>Christmas</td>
-                                <td>Yes</td>
-                                <td><button class="removeDate" data-date="2023-12-25">delete</button></td>
-                            </tr>
-                            <tr>
-                                <td>25 December 2023</td>
-                                <td>Christmas</td>
-                                <td>Yes</td>
-                                <td><button class="removeDate" data-date="2023-12-25">delete</button></td>
-                            </tr>
-                            <tr>
-                            <td>25 December 2023</td>
-                            <td>Christmas</td>
-                            <td>Yes</td>
-                            <td><button class="removeDate" data-date="2023-12-25">delete</button></td>
-                        </tr>
-                        <tr>
-                            <td>25 December 2023</td>
-                            <td>Christmas</td>
-                            <td>Yes</td>
-                            <td><button class="removeDate" data-date="2023-12-25">delete</button></td>
-                        </tr>
-                        <tr>
-                            <td>25 December 2023</td>
-                            <td>Christmas</td>
-                            <td>Yes</td>
-                            <td><button class="removeDate" data-date="2023-12-25">delete</button></td>
-                        </tr>
-                        <tr>
-                            <td>25 December 2023</td>
-                            <td>Christmas</td>
-                            <td>Yes</td>
-                            <td><button class="removeDate" data-date="2023-12-25">delete</button></td>
-                        </tr>
-                        <tr>
-                            <td>25 December 2023</td>
-                            <td>Christmas</td>
-                            <td>Yes</td>
-                            <td><button class="removeDate" data-date="2023-12-25">delete</button></td>
-                        </tr>
-                        <tr>
-                            <td>25 December 2023</td>
-                            <td>Christmas</td>
-                            <td>Yes</td>
-                            <td><button class="removeDate" data-date="2023-12-25">delete</button></td>
-                        </tr>
-                        <tr>
-                        <td>25 December 2023</td>
-                        <td>Christmas</td>
-                        <td>Yes</td>
-                        <td><button class="removeDate" data-date="2023-12-25">delete</button></td>
-                        </tr>
-                        <tr>
-                            <td>25 December 2023</td>
-                            <td>Christmas</td>
-                            <td>Yes</td>
-                            <td><button class="removeDate" data-date="2023-12-25">delete</button></td>
-                        </tr>
-                        <tr>
-                            <td>25 December 2023</td>
-                            <td>Christmas</td>
-                            <td>Yes</td>
-                            <td><button class="removeDate" data-date="2023-12-25">delete</button></td>
-                        </tr>
-                        <tr>
-                            <td>25 December 2023</td>
-                            <td>Christmas</td>
-                            <td>Yes</td>
-                            <td><button class="removeDate" data-date="2023-12-25">delete</button></td>
-                        </tr>
-                        <tr>
-                            <td>25 December 2023</td>
-                            <td>Christmas</td>
-                            <td>Yes</td>
-                            <td><button class="removeDate" data-date="2023-12-25">delete</button></td>
-                        </tr>
-                        <tr>
-                            <td>25 December 2023</td>
-                            <td>Christmas</td>
-                            <td>Yes</td>
-                            <td><button class="removeDate" data-date="2023-12-25">delete</button></td>
-                        </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="date-picker">
-                    <input type="text" name="day" id="block-day" placeholder="DD" oninput="inputLimiterNum(this.id, 2)" onblur="inputLimiterBlur(this.id, 2)">
-                    <span>/</span>
                     <input type="text" name="month" id="block-month" placeholder="MM" oninput="inputLimiterNum(this.id, 2)" onblur="inputLimiterBlur(this.id, 2)">
+                    <span>/</span>
+                    <input type="text" name="day" id="block-day" placeholder="DD" oninput="inputLimiterNum(this.id, 2)" onblur="inputLimiterBlur(this.id, 2)">
                     <span>/</span>
                     <input type="text" name="year" id="block-year" placeholder="YYYY" oninput="inputLimiterNum(this.id, 4)" onblur="inputLimiterBlur(this.id, 4)">
                 </div>
@@ -1541,7 +1439,10 @@ let blockDates = `
                         <label class="form-check-label" for="flexSwitchCheckDefault">Repeat Every Year</label>
                     </div>
                 </div>
-                <button class="btn-submitblock" onclick="if(!document.querySelector('.form-check-input').checked){alert('nice')};">Add</button>
+                <div class="error-container">
+                    <span class="msg"></span>
+                </div>
+                <button class="btn-submitblock" onclick="checkBlockDate();">Add</button>
             </div>
 </section>`;
 

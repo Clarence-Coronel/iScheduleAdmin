@@ -604,6 +604,10 @@ function containsLetterNumSpeChar(pass){
     return checkSpeChar && checkUpper && checkLower && checkNum;
 }
 
+function onlyLettersAndNumbers(str) {
+    return /^[A-Za-z0-9]*$/.test(str);
+}
+
 // gets the value of given sa id param and then ilimit siya gamit yung max
 function inputLimiter(id, max){
     let element = document.getElementById(id);
@@ -1549,3 +1553,57 @@ function showDeskMobileRes(){
     showResModal("New video tutorial applied");
 }
 
+function checkBlockDate(){
+    const month = document.querySelector("#block-month").value;
+    const day = document.querySelector("#block-day").value;
+    const year = document.querySelector("#block-year").value;
+    const name = document.querySelector("#blockDateName").value;
+    const repeats = document.querySelector("#flexSwitchCheckDefault").checked;
+    const tempDate = `${year}-${month}-${day}`;
+
+    const tempObj = new Date();
+    const tempObj2 = new Date(tempDate);
+
+    if(month == "" || day == "" || year == "" || name == ""){
+        showError("Fill in all fields");
+        return;
+    }
+    else if(parseInt(month) <= 0 || parseInt(month) > 12){
+        showError("Input between 1 - 12 in month field");
+        return;
+    }
+    else if(parseInt(day) <= 0 || parseInt(day) > 31){
+        showError("Input between 1 - 31 in date field");
+        return;
+    }
+    else if(!isDateValid(tempDate)){
+        showError("Input a valid date");
+        return;
+    }
+    else if(tempObj >= tempObj2){
+        showError("Input am upcoming date");
+        return;
+    }
+    else if(!onlyLettersAndNumbers(name)){
+        showError("Name can only contain letters and numbers");
+        return;
+    }
+}
+
+function isDateValid(dateString) {
+    // Try to create a Date object with the provided date string
+    const date = new Date(dateString);
+    
+    // Check if the created Date object is not "Invalid Date"
+    // and the year, month, and day match the input values
+    if (
+      date.toString() !== "Invalid Date" &&
+      date.getFullYear() === parseInt(dateString.split('-')[0], 10) &&
+      date.getMonth() === parseInt(dateString.split('-')[1], 10) - 1 && // Month is 0-based
+      date.getDate() === parseInt(dateString.split('-')[2], 10)
+    ){
+      return true; // Valid date
+    } else {
+      return false; // Invalid date
+    }
+}
