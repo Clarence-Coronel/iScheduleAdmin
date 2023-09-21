@@ -1415,10 +1415,10 @@ td:hover{
 
     .manage-date__content{
         width: 80%;
-        margin-top: max(20px, 1.5vw);
         background-color: white;
         border-radius: $box-border-radius;
         box-shadow: $box-shadow;
+        margin-top: $box-margin-top;
         padding: max(20px, 2vw);
         display: flex;
         flex-flow: column;

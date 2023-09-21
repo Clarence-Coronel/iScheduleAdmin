@@ -1203,10 +1203,10 @@ td:hover {
 }
 .manage-data .manage-date__content {
   width: 80%;
-  margin-top: max(20px, 1.5vw);
   background-color: white;
   border-radius: max(7px, 1vw);
   box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
+  margin-top: max(15px, 1vw);
   padding: max(20px, 2vw);
   display: flex;
   flex-flow: column;
