@@ -8,7 +8,6 @@
     class announcement {
         public $id;
         public $title;
-        public $body;
         public $datePosted;
         public $timePosted;
         public $author;
@@ -23,7 +22,6 @@
 
             $tempObj->id = $row['annID'];
             $tempObj->title = $row['annTitle'];
-            $tempObj->body = $row['annBody'];
 
             $seperatedDateTime = seperateDateTime($row['annDateTime']);
 
