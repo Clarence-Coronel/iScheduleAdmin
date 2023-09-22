@@ -3,7 +3,7 @@
     session_start();
     $loggedIn = $_SESSION['username'];
 
-    $query = " SELECT `username`, `adminType`, `firstName`, `middleName`, `lastName`, `phone` FROM `admins` WHERE `username` != '$loggedIn' ORDER BY lastName ASC;";
+    $query = " SELECT `username`, `adminType`, `firstName`, `middleName`, `lastName`, `phone` FROM `admins` WHERE `username` != '$loggedIn' AND `isActive` = true ORDER BY lastName ASC;";
     $result = mysqli_query($conn,$query);
 	$count = mysqli_num_rows($result);
 

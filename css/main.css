@@ -3065,6 +3065,9 @@ table {
 }
 .modal-body .radio-container {
   width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
 }
 .modal-body .radio-container label {
   -webkit-user-select: none;

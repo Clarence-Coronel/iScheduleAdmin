@@ -23,7 +23,7 @@
 
     $convertedUsername = htmlspecialchars($arr[0]);
 
-    $query = "SELECT * FROM `admins` WHERE username='$convertedUsername'";
+    $query = "SELECT * FROM `admins` WHERE username='$convertedUsername' AND isActive = true";
     $result = mysqli_query($conn,$query);
 	$count = mysqli_num_rows($result);
 

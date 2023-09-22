@@ -1037,7 +1037,6 @@ function checkOTP(){
     error.innerHTML = 'Invalid OTP';
 }
 
-
 // Editing phone #
 function openModalOTP_Edit(){
     resetModal();
@@ -1149,7 +1148,6 @@ function checkOTP_Edit(){
     error.innerHTML = 'Invalid OTP';
 }
 
-
 function showResModal(str = '', currentModalisUp = false, type = 'Success'){
     resetModal();
     let modalTitle = document.querySelector('.modal-title');
@@ -1179,7 +1177,6 @@ function showResModal(str = '', currentModalisUp = false, type = 'Success'){
         modalLauncher();
     }
 }
-
 
 function resetModal(){
     let header = document.querySelector('.modal-header');
@@ -1999,7 +1996,7 @@ function insertAdmin(isInitial = true){
                             <td>${username}</td>
                             <td>${phone}</td>
                             <td><button class="editBtn" id="${username}_${adminType}" onclick="editType(this.id)">${adminType}<span class="ico-list ico-edit">(edit)</span></button></td>
-                            <td><button class="removeAdmin" onclick="removeAdmin(this)" id="${username}">delete</button></td>
+                            <td><button class="removeAdmin" onclick="confirmAdminRemove(this.id)" id="${username}">delete</button></td>
                         </tr>
                         `;
 
@@ -2051,4 +2048,31 @@ function checkAdminPrivChange(){
 
     xhr.open("GET", "./php/checkAdminPrivChange.php", true);
     xhr.send();
+}
+
+function confirmAdminRemove(username){
+    confirmModal("Deleting...", `Are you sure you want to remove ${username}?`, `removeAdmin("${username}")`);
+}
+
+function removeAdmin(username){
+
+    const xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function(){
+        if(this.readyState == 4){
+            if(this.status == 200){
+                if(xhr.responseText == 1){
+                    setTimeout(()=>{
+                        showResModal("Admin has been removed")
+                    },500)
+                    generateAdminList();
+                    showTableCell();
+                }
+            }
+        }
+    }
+    
+    xhr.open("POST", "./php/deleteAdmin.php", false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("username="+username);
 }
