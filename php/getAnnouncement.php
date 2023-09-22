@@ -1,7 +1,7 @@
 <?php 
     require "connect.php";
     
-    $query = "SELECT * FROM `announcements` ORDER BY annDateTime DESC LIMIT 20";
+    $query = "SELECT `annID`, `annTitle`, `annDateTime`, `author` FROM `announcements` ORDER BY annDateTime DESC LIMIT 20";
     $result = mysqli_query($conn,$query);
 	$count = mysqli_num_rows($result);
 
