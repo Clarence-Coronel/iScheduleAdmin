@@ -1375,10 +1375,32 @@ let postAnnouncement = `
             <span class="msg"></span>
         </div>
         <button id="announcementSubmit"">Post</button>
-        <button id="announcementSee"">See posted announcements</button>
+        <button id="announcementSee" onclick="generateSeePostedAnn()">See posted announcements</button>
     </div>
 </section>`;
 
+let seePostedAnn =`
+<section class="seeAnnouncements">
+    <div class="seeAnnouncements__content" data-aos="fade-right" data-aos-duration="500">
+        <span>Click the row to highlight/see more.</span>
+        <div class="table-container">
+            <table class="ann-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Date Posted</th>
+                        <th>Time Posted</th>
+                        <th>Author</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+`;
 // Add modal when delete is pressed confirming the action and then another modal to obtain OTP  from super admin's number  for additional security
 let manageData = `
 <section class="manage-data">
@@ -1620,6 +1642,14 @@ function generatePostAnnouncement(){
     if(checkPrivilege('admin_ii') || checkPrivilege('admin_super')){
         main.innerHTML = postAnnouncement;
         insertAnnouncement();
+    }
+}
+
+function generateSeePostedAnn(){
+    if(checkPrivilege('admin_ii') || checkPrivilege('admin_super')){
+        main.innerHTML = seePostedAnn;
+        insertPostedAnn();
+        showTableCell();
     }
 }
 

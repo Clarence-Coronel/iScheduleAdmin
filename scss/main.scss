@@ -1533,6 +1533,11 @@ td:hover{
         width: fit-content;
         font-size: 0.8rem;
         text-decoration: underline;
+        min-width: fit-content;
+    }
+
+    #announcementSee:hover{
+        color: lighten($btn-color, 5);
     }
 }
 
@@ -3690,4 +3695,29 @@ table{
         padding: $box-padding;
         margin-top: $box-margin-top;
     }
+
+    .table-container{
+        max-height: 70vh;
+    }
+
+    span{
+        display: block;
+        margin: 0 auto;
+        width: fit-content;
+        margin-top: max(5px, 1vw);
+        color: gray;
+        font-size: 0.8rem;
+    }
+
+    button{
+        color: red;
+    }
+
+    button:hover{
+        color: darken(red, 5);
+    }
+}
+
+.modal-body{
+    overflow-wrap: break-word;
 }

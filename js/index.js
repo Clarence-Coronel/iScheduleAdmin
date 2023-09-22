@@ -13,7 +13,8 @@ let generatedUsername = '';
 let newInsertedPhone = "";
 let isResendAvail = false;
 
-
+// If want natin ireset auto increment
+// ALTER TABLE tableName AUTO_INCREMENT = 1
 
 // AOS Initialization
 AOS.init();
@@ -733,7 +734,7 @@ function backForm(){
 }
 
 function confirmSignOut(){
-    confirmModal("Signing out...", "Are you sure?", "signOut");
+    confirmModal("Signing out...", "Are you sure?", "signOut()");
 }
 
 function viewRequestApprove(id){
@@ -1492,8 +1493,7 @@ function confirmModal(title, content, posBtnFunction){
     modalBody.innerText = content
     positive.innerText = 'Confirm';
     negative.innerText = 'Cancel';
-    positive.setAttribute("onclick", `${posBtnFunction}()`);
-
+    positive.setAttribute("onclick", `${posBtnFunction}`);
     modalLauncher();
 }
 
@@ -1502,7 +1502,7 @@ function confirmPhoneTutorial(){
         showError("Please fill in the phone field");
         return;
     }
-    confirmModal("Applying...", "Are you sure you want to use this video for mobile phone view?", "applyPhoneTutorial");
+    confirmModal("Applying...", "Are you sure you want to use this video for mobile phone view?", "applyPhoneTutorial()");
 }
 
 function confirmDesktopTutorial(){
@@ -1510,7 +1510,7 @@ function confirmDesktopTutorial(){
         showError("Please fill in the desktop field");
         return;
     }
-    confirmModal("Applying...", "Are you sure you want to use this video for desktop view?", "applyDesktopTutorial");
+    confirmModal("Applying...", "Are you sure you want to use this video for desktop view?", "applyDesktopTutorial()");
 }
 
 function applyPhoneTutorial(){
@@ -1599,7 +1599,11 @@ function checkBlockDate(){
         showError("Name can only contain letters and numbers");
         return;
     }
-
+    else if(checkDateExist(tempDate)){
+        showError("Date already exist");
+        return;
+    }
+    
     const toSend = {
         dateName: name,
         date: tempDate,
@@ -1612,7 +1616,15 @@ function checkBlockDate(){
         if(this.readyState == 4){
             if(this.status == 200){
                 if(this.responseText == 1){
+                    insertBlockDate();
+                    showTableCell();
                     showResModal("Date has been blocked");
+                    document.querySelector("#block-month").value = "";
+                    document.querySelector("#block-day").value = "";
+                    document.querySelector("#block-year").value = "";
+                    document.querySelector("#blockDateName").value = "";
+                    document.querySelector("#flexSwitchCheckDefault").checked = false;
+                    showError("");
                 }else{
                     alert("Something went wrong...")
                 }
@@ -1623,6 +1635,30 @@ function checkBlockDate(){
     xhr.open("OPEN", "./php/postBlockDate.php", true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(jsonString);
+}
+
+function checkDateExist(date){
+    let result = null;
+
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4){
+            if(xhr.status == 200){
+                if(xhr.responseText == 1){
+                    result = true;
+                }
+                else{
+                    result = false;
+                }
+            }
+        }
+    }
+
+    xhr.open("POST", "./php/checkDateExist.php", false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("date="+date);
+
+    return result;
 }
 
 function isDateValid(dateString) {
@@ -1645,40 +1681,46 @@ function isDateValid(dateString) {
 
 function insertBlockDate(){
     const table = document.querySelector(".date-table tbody");
+    table.innerHTML = "";
 
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function(){
         if(xhr.readyState == 4){
             if(xhr.status == 200){
-                let arrayOfObjects = JSON.parse(xhr.responseText);
+                try {
+                    let arrayOfObjects = JSON.parse(xhr.responseText);
 
-                arrayOfObjects.forEach((item)=>{
-                    let id = item.id;
-                    let date = convertRetrievedDate(item.date);
-                    let dateName = item.dateName;
-                    let isYearly = null;
+                    arrayOfObjects.forEach((item)=>{
+                        let id = item.id;
+                        let date = convertRetrievedDate(item.date);
+                        let dateName = item.dateName;
+                        let isYearly = null;
 
-                    if(item.isYearly == 1){
-                        isYearly = true;
-                    }
-                    else{
-                        isYearly = false;
-                    }
+                        if(item.isYearly == 1){
+                            isYearly = true;
+                        }
+                        else{
+                            isYearly = false;
+                        }
 
+                        
+
+                        const template = 
+                        `
+                        <tr>
+                            <td>${date}</td>
+                            <td>${dateName}</td>
+                            <td>${isYearly}</td>
+                            <td><button class="removeDate" id="blockDate-${id}" data-name="${dateName}" onclick="confirmBlockDateRemove(this.id)">Delete</button></td>
+                        </tr>
+                        `;
+
+                        table.innerHTML += template;
+                    })
+                } catch (error) {
                     
-
-                    const template = 
-                    `
-                    <tr>
-                        <td>${date}</td>
-                        <td>${dateName}</td>
-                        <td>${isYearly}</td>
-                        <td><button class="removeDate" data-date="${id}">delete</button></td>
-                    </tr>
-                    `;
-
-                    table.innerHTML += template;
-                })
+                }
+                
             }
         }
     }
@@ -1686,6 +1728,36 @@ function insertBlockDate(){
 
     xhr.open("GET", "./php/getBlockDate.php", false);
     xhr.send();
+}
+
+function confirmBlockDateRemove(id){
+    let dateName = document.querySelector(`#${id}`).getAttribute("data-name");
+    let dateID = id.split("-")[1];
+    confirmModal("Deleting...", `Are you sure you want to remove ${dateName}?`, `removeBlockDate(${dateID}, "${dateName}")`);
+}
+
+function removeBlockDate(id, dateName){
+    // let dateID = id.split('-');
+    // console.table(dateID);
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4){
+            if(xhr.status == 200){
+                if(this.responseText == 1){
+                    insertBlockDate();
+                    showTableCell();
+                    
+                }
+                else{
+                    // FAILED
+                }
+            }
+        }
+    }
+
+    xhr.open("POST", "./php/deleteBlockDate.php", false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send(`id=${id}&${dateName}`);
 }
 
 function convertRetrievedDate(date){
@@ -1736,4 +1808,79 @@ function convertRetrievedDate(date){
     convertedDate += `${arrDate[0]}`;
 
     return convertedDate;
+}
+
+function insertPostedAnn(){
+    const table = document.querySelector(".ann-table tbody");
+    table.innerHTML = "";
+    
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4){
+            if(xhr.status == 200){
+                
+                try {
+                    let arrayOfObjects = JSON.parse(xhr.responseText);
+                    
+                    arrayOfObjects.forEach((item)=>{
+                        let id = item.id;
+                        let title = item.title;
+                        let body = item.body;
+                        let datePosted = item.datePosted;
+                        let timePosted = item.timePosted;
+                        let author = item.author;
+
+                        
+
+                        const template = 
+                        `
+                        <tr>
+                            <td>${title}</td>
+                            <td>${datePosted}</td>
+                            <td>${timePosted}</td>
+                            <td>${author}</td>
+                            <td><button id="ann-${id}" data-title="${title}" onclick="confirmAnnRemove(this.id)">Delete</button></td>
+                        </tr>
+                        `;
+
+                        table.innerHTML += template;
+                    })
+                } catch (error) {
+                    
+                }
+                
+            }
+        }
+    }
+
+
+    xhr.open("GET", "./php/getAnnouncement.php", false);
+    xhr.send();
+}
+
+function confirmAnnRemove(id){
+    let annTitle = document.querySelector(`#${id}`).getAttribute("data-title");
+    let dateID = id.split("-")[1];
+    confirmModal("Deleting...", `Are you sure you want to remove ${annTitle}?`, `removeAnn(${dateID}, "${annTitle}")`);
+}
+
+function removeAnn(id, title){
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4){
+            if(xhr.status == 200){
+                if(this.responseText == 1){
+                    insertPostedAnn();
+                    showTableCell();
+                }
+                else{
+                    // FAILED
+                }
+            }
+        }
+    }
+
+    xhr.open("POST", "./php/deletePostedAnn.php", false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send(`id=${id}&${title}`);
 }

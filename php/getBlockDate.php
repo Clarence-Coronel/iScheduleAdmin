@@ -2,7 +2,7 @@
     require "connect.php";
 
 
-    $query = "SELECT * FROM block_dates ORDER BY MONTHNAME(blockDate);";
+    $query = "SELECT * FROM block_dates ORDER BY blockDate ASC;";
     $result = mysqli_query($conn,$query);
 	$count = mysqli_num_rows($result);
 

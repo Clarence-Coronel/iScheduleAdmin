@@ -1304,6 +1304,11 @@ td:hover {
   width: fit-content;
   font-size: 0.8rem;
   text-decoration: underline;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+}
+.postAnnouncement__content #announcementSee:hover {
+  color: #1e85fb;
 }
 
 .dashboard {
@@ -3029,4 +3034,26 @@ table {
   box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
   padding: max(15px, 2vw);
   margin-top: max(15px, 1vw);
+}
+.seeAnnouncements .table-container {
+  max-height: 70vh;
+}
+.seeAnnouncements span {
+  display: block;
+  margin: 0 auto;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-top: max(5px, 1vw);
+  color: gray;
+  font-size: 0.8rem;
+}
+.seeAnnouncements button {
+  color: red;
+}
+.seeAnnouncements button:hover {
+  color: #e60000;
+}
+
+.modal-body {
+  overflow-wrap: break-word;
 }/*# sourceMappingURL=main.css.map */
