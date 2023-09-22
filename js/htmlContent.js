@@ -1202,8 +1202,8 @@ let adminList = `
     <div class="admin-list-wrapper" data-aos="fade-right" data-aos-duration="500">
     <div class="admin-table__body">
         <div class="search-container">
-            <input type="text" placeholder="Search" id="adminSearch" onblur="inputLimiterBlur(this.id, 60)" oninput="inputLimiter(this.id, 60)">
-            <button><span class="material-icons-outlined ico-search">search</span></button>
+            <input type="text" placeholder="Search" id="adminSearch" onblur="inputLimiterBlur(this.id, 60)" oninput="inputLimiter(this.id, 60); resetAdmin(this.value);">
+            <button><span class="material-icons-outlined ico-search" onclick="insertAdmin(false)">search</span></button>
         </div>
     </div>
     <span>Click the row to highlight/see more.</span>
@@ -1211,49 +1211,14 @@ let adminList = `
         <table class="admin-table">
             <thead>
                 <tr>
-                    <th>Username</th>
                     <th>Full Name</th>
+                    <th>Username</th>
                     <th>Phone #</th>
                     <th>Admin Type</th>
                     <th>&nbsp;</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>clarence-coronel2l</td>
-                    <td>Coronel, Clarence Reyes</td>
-                    <td>0987 788 5644</td>
-                    <td><button class="editBtn" onclick="editLevel(this)" data-username="clarence-coronel1">Admin I<span class="ico-list ico-edit">(edit)</span></button></td>
-                    <td><button class="removeAdmin" onclick="removeAdmin(this)" data-username="clarence-coronel1">delete</button></td>
-                </tr>
-                <tr>
-                    <td>clarence-coronel2l</td>
-                    <td>Coronel, Clarence Reyes</td>
-                    <td>0987 788 5644</td>
-                    <td><button class="editBtn" onclick="editLevel(this)" data-username="clarence-coronel1">Admin I<span class="ico-list ico-edit">(edit)</span></button></td>
-                    <td><button class="removeAdmin" onclick="removeAdmin(this)" data-username="clarence-coronel1">delete</button></td>
-                </tr>
-                <tr>
-                    <td>clarence-coronel2l</td>
-                    <td>Coronel, Clarence Reyes</td>
-                    <td>0987 788 5644</td>
-                    <td><button class="editBtn" onclick="editLevel(this)" data-username="clarence-coronel1">Admin II<span class="ico-list ico-edit">(edit)</span></button></td>
-                    <td><button class="removeAdmin" onclick="removeAdmin(this)" data-username="clarence-coronel1">delete</button></td>
-                </tr>
-                <tr>
-                    <td>clarence-coronel2l</td>
-                    <td>Coronel, Clarence Reyes</td>
-                    <td>0987 788 5644</td>
-                    <td><button class="editBtn" onclick="editLevel(this)" data-username="clarence-coronel1">Admin I <span class="ico-list ico-edit">(edit)</span></button></td>
-                    <td><button class="removeAdmin" onclick="removeAdmin(this)" data-username="clarence-coronel1">delete</button></td>
-                </tr>
-                <tr>
-                    <td>clarence-coronel2l</td>
-                    <td>Coronel, Clarence Reyes</td>
-                    <td>0987 788 5644</td>
-                    <td><button class="editBtn" onclick="editLevel(this)" data-username="clarence-coronel1">Super Admin<span class="ico-list ico-edit">(edit)</span></button></td>
-                    <td><button class="removeAdmin" onclick="removeAdmin(this)" data-username="clarence-coronel1">delete</button></td>
-                </tr>
             </tbody>
         </table>
     </div>
@@ -1599,7 +1564,7 @@ function generateAdminList(){
     // contentIsOpen = true;
     if(checkPrivilege('admin_super')){
         main.innerHTML = adminList;
-        showTableCell();
+        insertAdmin();
     }
 }
 

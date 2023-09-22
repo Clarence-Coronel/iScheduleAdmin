@@ -1884,3 +1884,71 @@ function removeAnn(id, title){
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(`id=${id}&${title}`);
 }
+
+function insertAdmin(isInitial = true){
+    const table = document.querySelector(".admin-table tbody");
+    
+    table.innerHTML = "";
+    
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4){
+            if(xhr.status == 200){
+                
+                try {
+                    let arrayOfObjects = JSON.parse(xhr.responseText);
+                    
+                    arrayOfObjects.forEach((item)=>{
+                        let username = item.username;
+                        let adminType = item.adminType;
+                        let firstName = item.firstName;
+                        let middleName = item.middleName;
+                        let lastName = item.lastName;
+                        let phone = item.phone;
+
+                        if(adminType == 'admin_i') adminType = "Admin I";
+                        else if(adminType == 'admin_ii') adminType = "Admin II";
+                        else if(adminType == 'admin_super') adminType = "Super Admin";
+
+                        const template = 
+                        `
+                        <tr>
+                            <td>${capitalFirstLetter(lastName)}, ${capitalFirstLetter(firstName)} ${capitalFirstLetter(middleName)}</td>
+                            <td>${username}</td>
+                            <td>${phone}</td>
+                            <td><button class="editBtn" onclick="editLevel(this)" id="${username}">${adminType}<span class="ico-list ico-edit">(edit)</span></button></td>
+                            <td><button class="removeAdmin" onclick="removeAdmin(this)" id="${username}">delete</button></td>
+                        </tr>
+                        `;
+
+                        table.innerHTML += template;
+                    })
+
+                    showTableCell();
+                } catch (error) {
+                    
+                }
+                
+            }
+        }
+    }
+
+    if(isInitial){
+        xhr.open("GET", "./php/getAdmin.php", true);
+        xhr.send();
+    }
+    else{
+        let input = document.querySelector("#adminSearch").value;
+
+        xhr.open("POST", "./php/searchAdmin.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send("input="+input);
+    }
+}
+
+function resetAdmin(input){
+    input = input.trim();
+    if(input == ""){
+        insertAdmin();
+    }
+}
