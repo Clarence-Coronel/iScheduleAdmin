@@ -674,6 +674,9 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
 .radio-container .radiobtn-container label {
   color: #4e73df;
   font-weight: 700;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 @media only screen and (min-width: 1200px) {
@@ -3059,4 +3062,12 @@ table {
 
 .modal-body {
   overflow-wrap: break-word;
+}
+.modal-body .radio-container {
+  width: 100%;
+}
+.modal-body .radio-container label {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }/*# sourceMappingURL=main.css.map */

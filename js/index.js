@@ -40,7 +40,8 @@ const newAdmin = {
 
 applyAdminInfo();
 
-setInterval(checkSession, 1000);
+setInterval(checkSession, 30000);
+setInterval(checkAdminPrivChange, 30000);
 
 function checkSession(){
     const xhr = new XMLHttpRequest();
@@ -295,9 +296,86 @@ function showTableCell(){
     })
 }
 
-function editLevel(element){
-    alert("labas modal");
-    alert(element.getAttribute('data-username'));
+function editType(data){
+    let username = data.split("_")[0];
+    let type = data.split("_")[1];
+
+    resetModal();
+    
+    let body = document.querySelector(".modal-body");
+    let title = document.querySelector('.modal-title');
+    let headerClose = document.querySelector('.btn-close');
+    let positive = document.querySelector('.positive');
+    let negative = document.querySelector('.negative');
+
+    body.innerHTML = `
+    <div class="radio-container">
+        <div class="radiobtn-container">
+            <input type="radio" id="adminI" name="adminType" value="adminI" required>
+            <label for="adminI">Admin I</label>
+        </div>
+        <div class="radiobtn-container">
+            <input type="radio" id="adminII" name="adminType" value="adminII" required>
+            <label for="adminII">Admin II</label>
+        </div>
+        <div class="radiobtn-container">
+            <input type="radio" id="superAdmin" name="adminType" value="superAdmin" required>
+            <label for="superAdmin">Super Admin</label>
+        </div>
+    </div>
+    `
+
+    if(type == "Admin I") document.querySelector("#adminI").checked = true;
+    else if(type == "Admin II") document.querySelector("#adminII").checked = true;
+    else if(type == "Super Admin") document.querySelector("#superAdmin").checked = true;
+
+    title.innerText = 'Edit admin level'
+    positive.innerText = 'Apply';
+    negative.innerText = 'Cancel';
+    
+    positive.setAttribute('onclick', `applyNewType("${username}", "${type}")`);
+    modalLauncher();
+}
+
+function applyNewType(username, currentType){
+
+    let selected = null;
+    let convertedType = null;
+
+    if(document.querySelector("#adminI").checked){
+        selected = "Admin I"
+        convertedType = "admin_i"
+    }
+    else if(document.querySelector("#adminII").checked){
+        selected = "Admin II"
+        convertedType = "admin_ii"
+    }
+    else if(document.querySelector("#superAdmin").checked){
+        selected = "Super Admin"
+        convertedType = "admin_super"
+    }
+
+    if(currentType != selected){
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4){
+                if(xhr.status == 200){
+                    if(xhr.responseText == 1){
+                        setTimeout(()=>{
+                            showResModal("Admin type has been changed");
+                            generateAdminList();
+                            showTableCell();
+                        }, 500)
+                    }
+                }
+            }
+        }
+
+        xhr.open("POST", "./php/changeAdminType.php", false);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send(`username=${username}&newType=${convertedType}`);
+
+    }
 }
 
 function removeAdmin(element){
@@ -1545,7 +1623,10 @@ function applyDesktopTutorial(){
         if(xhr.readyState == 4){
             if(xhr.status == 200){
                 if(xhr.responseText == 1){
-                    setTimeout(showDeskMobileRes, 500);
+                    setTimeout(()=>{
+                        showResModal("New video tutorial applied");
+                    }, 500);
+                    generateEditTutorial();
                 }
                 else{
                     alert("Something went wrong...");
@@ -1557,11 +1638,6 @@ function applyDesktopTutorial(){
     xhr.open("POST", "./php/changeVid.php", false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send('type=desktop&link=' + desktopInput);
-}
-
-// work around kasi ayaw mag show ng second modal kasi masyadung mabilis
-function showDeskMobileRes(){
-    showResModal("New video tutorial applied");
 }
 
 function checkBlockDate(){
@@ -1744,6 +1820,9 @@ function removeBlockDate(id, dateName){
         if(xhr.readyState == 4){
             if(xhr.status == 200){
                 if(this.responseText == 1){
+                    setTimeout(()=>{
+                        showResModal("Blocked date has been removed")
+                    }, 500);
                     insertBlockDate();
                     showTableCell();
                     
@@ -1870,6 +1949,9 @@ function removeAnn(id, title){
         if(xhr.readyState == 4){
             if(xhr.status == 200){
                 if(this.responseText == 1){
+                    setTimeout(()=>{
+                        showResModal("Announcement has been removed")
+                    }, 500);
                     insertPostedAnn();
                     showTableCell();
                 }
@@ -1916,7 +1998,7 @@ function insertAdmin(isInitial = true){
                             <td>${capitalFirstLetter(lastName)}, ${capitalFirstLetter(firstName)} ${capitalFirstLetter(middleName)}</td>
                             <td>${username}</td>
                             <td>${phone}</td>
-                            <td><button class="editBtn" onclick="editLevel(this)" id="${username}">${adminType}<span class="ico-list ico-edit">(edit)</span></button></td>
+                            <td><button class="editBtn" id="${username}_${adminType}" onclick="editType(this.id)">${adminType}<span class="ico-list ico-edit">(edit)</span></button></td>
                             <td><button class="removeAdmin" onclick="removeAdmin(this)" id="${username}">delete</button></td>
                         </tr>
                         `;
@@ -1951,4 +2033,22 @@ function resetAdmin(input){
     if(input == ""){
         insertAdmin();
     }
+}
+
+function checkAdminPrivChange(){
+    const xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4){
+            if(xhr.status == 200){
+                if(xhr.responseText == 1){
+                    alert('Your admin privilege has been changed. Login again to continue.');
+                }
+
+            }
+        }
+    }
+
+    xhr.open("GET", "./php/checkAdminPrivChange.php", true);
+    xhr.send();
 }

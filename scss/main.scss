@@ -710,6 +710,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
         label{
             color: $primary-color;
             font-weight: 700;
+            user-select: none;
         }
     }
 }
@@ -3731,4 +3732,16 @@ table{
 
 .modal-body{
     overflow-wrap: break-word;
+
+    .radio-container{
+        width: 100%;
+        // background-color: red;
+
+        label{
+            user-select: none;
+        }
+    }
 }
+
+
+
