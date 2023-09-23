@@ -2164,6 +2164,10 @@ function applyLogFilter(){
         sortBy: sortBy
     }
 
+    if(fulldate == "" && activity == "" && adminType == "" && sortBy == ""){
+        return;
+    }
+
     let toSend = JSON.stringify(obj);
 
     const xhr = new XMLHttpRequest();
