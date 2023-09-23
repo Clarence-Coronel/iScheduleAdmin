@@ -128,15 +128,7 @@ function applyAdminInfo(){
 
     accName.innerText = `${capitalFirstLetter(signedInAdmin.firstName)} ${capitalFirstLetter(signedInAdmin.middleName)} ${capitalFirstLetter(signedInAdmin.lastName)}`;
 
-    if(adminType == 'admin_i'){
-        role.innerText = 'Admin I';
-    }
-    else if(adminType == 'admin_ii'){
-        role.innerText = 'Admin II';
-    }
-    else if(adminType == 'admin_super'){
-        role.innerText = 'Super Admin';
-    }
+    role.innerText = capitalFirstLetter(adminType);
 }
 
 function createAccInputBorderStyle(){
@@ -340,19 +332,15 @@ function editType(data){
 function applyNewType(username, currentType){
 
     let selected = null;
-    let convertedType = null;
 
     if(document.querySelector("#adminI").checked){
         selected = "Admin I"
-        convertedType = "admin_i"
     }
     else if(document.querySelector("#adminII").checked){
         selected = "Admin II"
-        convertedType = "admin_ii"
     }
     else if(document.querySelector("#superAdmin").checked){
         selected = "Super Admin"
-        convertedType = "admin_super"
     }
 
     if(currentType != selected){
@@ -373,7 +361,7 @@ function applyNewType(username, currentType){
 
         xhr.open("POST", "./php/changeAdminType.php", false);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.send(`username=${username}&newType=${convertedType}`);
+        xhr.send(`username=${username}&newType=${selected}`);
 
     }
 }
@@ -508,13 +496,13 @@ function createAccountValidator(){
 
 
     if(document.querySelector('#adminI').checked){
-        newAdmin['adminType'] = 'admin_i';
+        newAdmin['adminType'] = 'admin i';
     }
     else if(document.querySelector('#adminII').checked){
-        newAdmin['adminType'] = 'admin_ii';
+        newAdmin['adminType'] = 'admin ii';
     }
     else if(document.querySelector('#superAdmin').checked){
-        newAdmin['adminType'] = 'admin_super';
+        newAdmin['adminType'] = 'super admin';
     }
     else{
         errorHandler('50');
@@ -1198,7 +1186,7 @@ function resetModal(){
     positive.removeAttribute('onclick');
 }
 
-function capitalFirstLetter(str){
+function capitalFirstLetter(str, isFullName = true){
     str = str.split(' ');
     let newStr = [];
 
@@ -1206,7 +1194,8 @@ function capitalFirstLetter(str){
         newStr.push(item.charAt(0).toUpperCase() + item.substring(1));
     });
 
-    return newStr.join(', ');
+    return newStr.join(' ');
+    
 }
 
 function applyNewPhone(){
@@ -1427,33 +1416,33 @@ function changeAccess(){
         `
         ]
 
-    const admin_i = [2];
-    const admin_ii = [1, 2, 3, 7, 10];
-    const admin_s = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+    const adminI = [2];
+    const adminII = [1, 2, 3, 7, 10];
+    const adminS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
-    if(signedInAdmin.adminType == 'admin_i'){
-        admin_i.forEach(item=>{
+    if(signedInAdmin.adminType == 'admin i'){
+        adminI.forEach(item=>{
             nav.innerHTML += navBtns[item];
         });
     }
-    else if(signedInAdmin.adminType == 'admin_ii'){
-        admin_ii.forEach(item=>{
+    else if(signedInAdmin.adminType == 'admin ii'){
+        adminII.forEach(item=>{
             nav.innerHTML += navBtns[item];
         });
     }
-    else if(signedInAdmin.adminType == 'admin_super'){
-        admin_s.forEach(item=>{
+    else if(signedInAdmin.adminType == 'super admin'){
+        adminS.forEach(item=>{
             nav.innerHTML += navBtns[item];
         });
     }
 
-    if(signedInAdmin.adminType == 'admin_i'){
+    if(signedInAdmin.adminType == 'admin i'){
         generateViewSchedule();
     }
-    else if(signedInAdmin.adminType == 'admin_ii'){
+    else if(signedInAdmin.adminType == 'admin ii'){
         generateSchedule();
     }
-    else if(signedInAdmin.adminType == 'admin_super'){
+    else if(signedInAdmin.adminType == 'super admin'){
         // generateDashboard();
         // commented for testing
     }
@@ -1968,7 +1957,6 @@ function removeAnn(id, title){
 
 function insertAdmin(isInitial = true){
     const table = document.querySelector(".admin-table tbody");
-
     
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function(){
@@ -1987,9 +1975,9 @@ function insertAdmin(isInitial = true){
                         let lastName = item.lastName;
                         let phone = item.phone;
 
-                        if(adminType == 'admin_i') adminType = "Admin I";
-                        else if(adminType == 'admin_ii') adminType = "Admin II";
-                        else if(adminType == 'admin_super') adminType = "Super Admin";
+                        if(adminType == 'admin i') adminType = "Admin I";
+                        else if(adminType == 'admin ii') adminType = "Admin II";
+                        else if(adminType == 'super admin') adminType = "Super Admin";
 
                         const template = 
                         `
@@ -2029,10 +2017,13 @@ function insertAdmin(isInitial = true){
     }
 }
 
-function resetAdmin(input){
+function resetAdminTable(input, table){
     input = input.trim();
-    if(input == ""){
+    if(input == "" && table == 'admin'){
         insertAdmin();
+    }
+    else if(input == "" && table == 'adminlog'){
+        insertAdminLogs();
     }
 }
 
@@ -2084,8 +2075,6 @@ function removeAdmin(username){
 function insertAdminLogs(isInitial = true){
     const table = document.querySelector(".logs-table tbody");
     
-    table.innerHTML = "";
-    
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function(){
         if(xhr.readyState == 4){
@@ -2093,7 +2082,8 @@ function insertAdminLogs(isInitial = true){
                 
                 try {
                     let arrayOfObjects = JSON.parse(xhr.responseText);
-                    
+                    table.innerHTML = "";
+
                     arrayOfObjects.forEach((item)=>{
                         let username = item.username;
                         let activity = item.activity;
@@ -2101,9 +2091,9 @@ function insertAdminLogs(isInitial = true){
                         let logDate = item.logDate;
                         let logTime = item.logTime;
                         
-                        if(adminType == 'admin_i') adminType = "Admin I";
-                        else if(adminType == 'admin_ii') adminType = "Admin II";
-                        else if(adminType == 'admin_super') adminType = "Super Admin";
+                        if(adminType == 'admin i') adminType = "Admin I";
+                        else if(adminType == 'admin ii') adminType = "Admin II";
+                        else if(adminType == 'super admin') adminType = "Super Admin";
 
                         const template = 
                         `
@@ -2134,6 +2124,8 @@ function insertAdminLogs(isInitial = true){
     }
     else{
         let input = document.querySelector("#adminSearch").value;
+
+        if(input == "") return;
 
         xhr.open("POST", "./php/searchAdminLogs.php", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");

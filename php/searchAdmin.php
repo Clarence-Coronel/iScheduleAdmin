@@ -7,7 +7,7 @@
         $input = htmlspecialchars($temp);
     }
 
-    $query = "SELECT * FROM admins WHERE CONCAT(username, lastName, ', ', firstName, ' ', middleName , phone) LIKE '%$input%' ORDER BY lastName ASC;";
+    $query = "SELECT * FROM admins WHERE CONCAT(username, lastName, ', ', firstName, ' ', middleName, adminType, phone) LIKE '%$input%' ORDER BY lastName ASC;";
     $result = mysqli_query($conn,$query);
 	$count = mysqli_num_rows($result);
 

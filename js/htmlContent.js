@@ -1102,8 +1102,8 @@ let adminLogs = `
             <div class="admin-logs-wrapper" data-aos="fade-right" data-aos-duration="500">
                 <div class="admin-logs__body">
                     <div class="search-container">
-                        <input type="text" placeholder="Search" id="adminSearch" onblur="inputLimiterBlur(this.id, 60)" oninput="inputLimiter(this.id, 60)">
-                        <button><span class="material-icons-outlined ico-search">search</span></button>
+                        <input type="text" placeholder="Search" id="adminSearch" onblur="inputLimiterBlur(this.id, 60)" oninput="inputLimiter(this.id, 60); resetAdminTable(this.value, 'adminlog');">
+                        <button onclick="insertAdminLogs(false)"><span class="material-icons-outlined ico-search">search</span></button>
                     </div>
                     <h2>Filter</h2>
                     <div class="admin-logs__filters">
@@ -1160,8 +1160,8 @@ let adminList = `
     <div class="admin-list-wrapper" data-aos="fade-right" data-aos-duration="500">
     <div class="admin-table__body">
         <div class="search-container">
-            <input type="text" placeholder="Search" id="adminSearch" onblur="inputLimiterBlur(this.id, 60)" oninput="inputLimiter(this.id, 60); resetAdmin(this.value);">
-            <button><span class="material-icons-outlined ico-search" onclick="insertAdmin(false)">search</span></button>
+            <input type="text" placeholder="Search" id="adminSearch" onblur="inputLimiterBlur(this.id, 60)" oninput="inputLimiter(this.id, 60); resetAdminTable(this.value, 'admin');">
+            <button onclick="insertAdmin(false)"><span class="material-icons-outlined ico-search">search</span></button>
         </div>
     </div>
     <span>Click the row to highlight/see more.</span>
@@ -1475,14 +1475,14 @@ function generateEditPassword(){
 }
 
 function generateDashboard(){
-    if(checkPrivilege('admin_super')){
+    if(checkPrivilege('super admin')){
         main.innerHTML = dashboard;
         determineDeviceDB();
     }
 }
 
 function generateSchedule(){
-    if(checkPrivilege('admin_ii') || checkPrivilege('admin_super')){
+    if(checkPrivilege('admin ii') || checkPrivilege('super admin')){
         main.innerHTML = schedule;
         formState = 0;
         InitialSetup();
@@ -1490,7 +1490,7 @@ function generateSchedule(){
 }
 
 function generateViewSchedule(){
-    if(checkPrivilege('admin_i') || checkPrivilege('admin_ii') || checkPrivilege('admin_super')){
+    if(checkPrivilege('admin i') || checkPrivilege('admin ii') || checkPrivilege('super admin')){
         main.innerHTML = viewSchedule;
         document.querySelector('.view-schedule__field').innerHTML = quickView;
         showTableCell();
@@ -1498,21 +1498,21 @@ function generateViewSchedule(){
 }
 
 function generateRequest(){
-    if(checkPrivilege('admin_ii') || checkPrivilege('admin_super')){
+    if(checkPrivilege('admin ii') || checkPrivilege('super admin')){
         main.innerHTML = request;
         showTableCell();
     }
 }
 
 function generateScheduling(){
-    if(checkPrivilege('admin_super')){
+    if(checkPrivilege('super admin')){
         main.innerHTML = scheduling;
     }
 }
 
 function generateAdminLogs(){
     // contentIsOpen = true;
-    if(checkPrivilege('admin_super')){
+    if(checkPrivilege('super admin')){
         main.innerHTML = adminLogs;
         insertAdminLogs();
     }
@@ -1520,14 +1520,14 @@ function generateAdminLogs(){
 
 function generateAdminList(){
     // contentIsOpen = true;
-    if(checkPrivilege('admin_super')){
+    if(checkPrivilege('super admin')){
         main.innerHTML = adminList;
         insertAdmin();
     }
 }
 
 function generateCreateAcc(){
-    if(checkPrivilege('admin_super')){
+    if(checkPrivilege('super admin')){
         main.innerHTML = createAccount;
         let iconPassword = document.querySelectorAll('.ico-pass');
         changeArrow();
@@ -1556,20 +1556,20 @@ function generateCreateAcc(){
 }
 
 function generateWebsiteStatus(){
-    if(checkPrivilege('admin_super')){
+    if(checkPrivilege('super admin')){
         main.innerHTML = websiteStatus;
     }
 }
 
 function generatePostAnnouncement(){
-    if(checkPrivilege('admin_ii') || checkPrivilege('admin_super')){
+    if(checkPrivilege('admin ii') || checkPrivilege('super admin')){
         main.innerHTML = postAnnouncement;
         insertAnnouncement();
     }
 }
 
 function generateSeePostedAnn(){
-    if(checkPrivilege('admin_ii') || checkPrivilege('admin_super')){
+    if(checkPrivilege('admin ii') || checkPrivilege('super admin')){
         main.innerHTML = seePostedAnn;
         insertPostedAnn();
         showTableCell();
@@ -1577,13 +1577,13 @@ function generateSeePostedAnn(){
 }
 
 function generateManageData(){
-    if(checkPrivilege('admin_super')){
+    if(checkPrivilege('super admin')){
         main.innerHTML = manageData;
     }
 }
 
 function generateBlockDates(){
-    if(checkPrivilege('admin_super')){
+    if(checkPrivilege('super admin')){
         main.innerHTML = blockDates;
         insertBlockDate();
         showTableCell();
@@ -1591,14 +1591,14 @@ function generateBlockDates(){
 }
 
 function generateFeedback(){
-    if(checkPrivilege('admin_ii') || checkPrivilege('admin_super')){
+    if(checkPrivilege('admin ii') || checkPrivilege('super admin')){
         main.innerHTML = feedback;
         getFeedback();
     }
 }
 
 function generateEditTutorial(){
-    if(checkPrivilege('admin_super')){
+    if(checkPrivilege('super admin')){
         main.innerHTML = editTutorial;
     }
 }
