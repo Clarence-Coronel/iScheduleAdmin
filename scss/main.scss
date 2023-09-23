@@ -756,7 +756,7 @@ input:-webkit-autofill:focus{
     flex-flow: column;
     justify-content: flex-start;
     align-items: center;
-    max-height:80vh;
+    max-height:85vh;
 }
 
 .admin-logs, .admin-list{
@@ -776,7 +776,6 @@ input:-webkit-autofill:focus{
         align-items: center;
         width: 100%;
         border-radius: max(7px, 1vw);
-        
     }
 
     h2{
@@ -827,7 +826,8 @@ input:-webkit-autofill:focus{
             align-items: center;
             justify-content: flex-end;
             height: 100%;
-
+            width: fit-content !important;
+            min-width: fit-content !important
         }
 
         button:hover{
@@ -845,6 +845,10 @@ input:-webkit-autofill:focus{
         }
     }
 
+    .error-container{
+        margin-top: 3vh;
+    }
+
     button{
         background-color: $btn-color;
         border: unset;
@@ -855,11 +859,16 @@ input:-webkit-autofill:focus{
         // margin-left: auto;
         min-width: 70px;
         width: 100%;
-        height: 100%;
+        height: $btn-height;
+        // 
     }
 
     button:hover{
         background-color: lighten($btn-color, 5);
+    }
+
+    .apply-logfilter{
+        margin-top: 3vh;
     }
 }
 
@@ -883,7 +892,7 @@ input:-webkit-autofill:focus{
     grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
     gap: max(10px, 1vw);
     justify-items: flex-start;
-    margin-bottom: $box-margin-top;
+    // margin-bottom: $box-margin-top;
 
     // input[type="date"]{
     //     width: 100%;

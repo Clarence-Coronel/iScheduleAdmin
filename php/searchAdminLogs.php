@@ -7,7 +7,7 @@
         $input = htmlspecialchars($temp);
     }
 
-    $query = "SELECT admin_logs.username, admin_logs.activity, admin_logs.logDateTime, admins.adminType FROM `admin_logs` INNER JOIN `admins` ON admin_logs.username = admins.username WHERE CONCAT(admin_logs.username, admin_logs.activity, admin_logs.logDateTime, admins.adminType) LIKE '%$input%' ORDER BY logDateTime DESC LIMIT 100;";
+    $query = "SELECT admin_logs.username, admin_logs.activity, admin_logs.logDateTime, admins.adminType FROM `admin_logs` INNER JOIN `admins` ON admin_logs.username = admins.username WHERE CONCAT(admin_logs.username, admin_logs.activity, admin_logs.logDateTime, admins.adminType) LIKE '%$input%' ORDER BY logDateTime DESC;";
     $result = mysqli_query($conn,$query);
 	$count = mysqli_num_rows($result);
 

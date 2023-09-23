@@ -321,7 +321,7 @@ function editType(data){
     else if(type == "Admin II") document.querySelector("#adminII").checked = true;
     else if(type == "Super Admin") document.querySelector("#superAdmin").checked = true;
 
-    title.innerText = 'Edit admin level'
+    title.innerText = 'Edit admin type'
     positive.innerText = 'Apply';
     negative.innerText = 'Cancel';
     
@@ -1563,7 +1563,7 @@ function confirmModal(title, content, posBtnFunction){
 
 function confirmPhoneTutorial(){
     if(document.querySelector("#mobile").value == ""){
-        showError("Please fill in the phone field");
+        showError("Please fill in the mobile phone field");
         return;
     }
     confirmModal("Applying...", "Are you sure you want to use this video for mobile phone view?", "applyPhoneTutorial()");
@@ -2079,7 +2079,7 @@ function insertAdminLogs(isInitial = true){
     xhr.onreadystatechange = function(){
         if(xhr.readyState == 4){
             if(xhr.status == 200){
-                
+
                 try {
                     let arrayOfObjects = JSON.parse(xhr.responseText);
                     table.innerHTML = "";
@@ -2131,4 +2131,85 @@ function insertAdminLogs(isInitial = true){
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send("input="+input);
     }
+}
+
+function applyLogFilter(){
+    const month = document.querySelector('#logMonth').value;
+    const day = document.querySelector('#logDay').value;
+    const year = document.querySelector('#logYear').value;
+    const activity = document.querySelector('#logActivity').value;
+    const adminType = document.querySelector('#logAdminType').value;
+    const sortBy = document.querySelector('#logSortBy').value;
+    let fullDate = `${year}-${month}-${day}`;
+    const table = document.querySelector(".logs-table tbody");
+
+    if(month != "" || day != "" || year != ""){
+        if(month == "" || day == "" || year == ""){
+            showError("Date is incomplete");
+            return;
+        }
+        else if(!isDateValid(fullDate)){
+            showError("Invalid Date")
+            return;
+        }
+    }
+    else{
+        fullDate = "";
+    }
+
+    let obj = {
+        date: fullDate,
+        activity: activity,
+        adminType: adminType,
+        sortBy: sortBy
+    }
+
+    let toSend = JSON.stringify(obj);
+
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+        if(this.readyState == 4){
+            if(this.status == 200){
+               try {
+                console.log(xhr.responseText)
+                    
+                    let arrayOfObjects = JSON.parse(xhr.responseText);
+                    table.innerHTML = "";
+
+                    arrayOfObjects.forEach((item)=>{
+                        let username = item.username;
+                        let activity = item.activity;
+                        let adminType = item.adminType
+                        let logDate = item.logDate;
+                        let logTime = item.logTime;
+                        
+                        if(adminType == 'admin i') adminType = "Admin I";
+                        else if(adminType == 'admin ii') adminType = "Admin II";
+                        else if(adminType == 'super admin') adminType = "Super Admin";
+
+                        const template = 
+                        `
+                        <tr>
+                            <td>${username}</td>
+                            <td>${activity}</td>
+                            <td>${adminType}</td>
+                            <td>${logDate}</td>
+                            <td>${logTime}</td>
+                        </tr>
+                        `;
+
+                        table.innerHTML += template;
+                    })
+
+                    showTableCell();
+                } catch (error) {
+                    
+                }
+            }
+        }
+    }
+
+    xhr.open("OPEN", "./php/filterAdminLog.php", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(toSend);
 }

@@ -38,8 +38,9 @@ label:hover {
 }
 
 .form-select {
-  border: 1px solid rgb(80, 78, 78) !important;
-  border-width: 1px !important;
+  border: unset !important;
+  border-radius: unset !important;
+  border-bottom: 1px solid rgb(80, 78, 78) !important;
 }
 
 .form-select:focus {
@@ -707,7 +708,7 @@ input:-webkit-autofill:focus {
   flex-flow: column;
   justify-content: flex-start;
   align-items: center;
-  max-height: 80vh;
+  max-height: 85vh;
 }
 
 .admin-logs, .admin-list {
@@ -767,6 +768,10 @@ input:-webkit-autofill:focus {
   align-items: center;
   justify-content: flex-end;
   height: 100%;
+  width: -moz-fit-content !important;
+  width: fit-content !important;
+  min-width: -moz-fit-content !important;
+  min-width: fit-content !important;
 }
 .admin-logs__body .search-container button:hover {
   background-color: white;
@@ -780,6 +785,9 @@ input:-webkit-autofill:focus {
   align-items: center;
   justify-content: center;
 }
+.admin-logs__body .error-container {
+  margin-top: 3vh;
+}
 .admin-logs__body button {
   background-color: #0577fa;
   border: unset;
@@ -788,10 +796,13 @@ input:-webkit-autofill:focus {
   padding: max(5px, 0.4vw);
   min-width: 70px;
   width: 100%;
-  height: 100%;
+  height: max(40px, 6vh);
 }
 .admin-logs__body button:hover {
   background-color: #1e85fb;
+}
+.admin-logs__body .apply-logfilter {
+  margin-top: 3vh;
 }
 
 .admin-logs__filters {
@@ -800,7 +811,6 @@ input:-webkit-autofill:focus {
   grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
   gap: max(10px, 1vw);
   justify-items: flex-start;
-  margin-bottom: max(15px, 1vw);
 }
 .admin-logs__filters .date-picker {
   display: flex;

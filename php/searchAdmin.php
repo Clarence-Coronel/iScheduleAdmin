@@ -1,13 +1,16 @@
 <?php
     require "connect.php";
 
+    session_start();
+    $username = $_SESSION['username'];
+
     $input = null;
 
     foreach($_POST as $temp){
         $input = htmlspecialchars($temp);
     }
 
-    $query = "SELECT * FROM admins WHERE CONCAT(username, lastName, ', ', firstName, ' ', middleName, adminType, phone) LIKE '%$input%' ORDER BY lastName ASC;";
+    $query = "SELECT * FROM admins WHERE isActive = true AND username != '$username' AND CONCAT(username, lastName, ', ', firstName, ' ', middleName, adminType, phone) LIKE '%$input%' ORDER BY lastName ASC;";
     $result = mysqli_query($conn,$query);
 	$count = mysqli_num_rows($result);
 
@@ -35,6 +38,7 @@
     
             array_push($allAdmin, $tempObj); 
         }
+
         echo json_encode($allAdmin);
     }
     else{

@@ -38,8 +38,9 @@ label:hover {
 }
 
 .form-select {
-  border: 1px solid rgb(80, 78, 78) !important;
-  border-width: 1px !important;
+  border: unset !important;
+  border-radius: unset !important;
+  border-bottom: 1px solid rgb(80, 78, 78) !important;
 }
 
 .form-select:focus {

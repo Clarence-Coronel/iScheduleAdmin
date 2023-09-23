@@ -1108,32 +1108,46 @@ let adminLogs = `
                     <h2>Filter</h2>
                     <div class="admin-logs__filters">
                         <div class="date-picker">
-                            <input type="text" name="month" id="block-month" placeholder="MM" oninput="inputLimiterNum(this.id, 2)" onblur="inputLimiterBlur(this.id, 2)">
+                            <input type="text" name="month" id="logMonth" placeholder="MM" oninput="inputLimiterNum(this.id, 2)" onblur="inputLimiterBlur(this.id, 2)">
                             <span>/</span>
-                            <input type="text" name="day" id="block-day" placeholder="DD" oninput="inputLimiterNum(this.id, 2)" onblur="inputLimiterBlur(this.id, 2)">
+                            <input type="text" name="day" id="logDay" placeholder="DD" oninput="inputLimiterNum(this.id, 2)" onblur="inputLimiterBlur(this.id, 2)">
                             <span>/</span>
-                            <input type="text" name="year" id="block-year" placeholder="YYYY" oninput="inputLimiterNum(this.id, 4)" onblur="inputLimiterBlur(this.id, 4)">
+                            <input type="text" name="year" id="logYear" placeholder="YYYY" oninput="inputLimiterNum(this.id, 4)" onblur="inputLimiterBlur(this.id, 4)">
                         </div>
-                        <select class="form-select" aria-label="Default select example">
-                            <option hidden selected disabled>Activity</option>
-                            <option value="">test</option>
-                            <option value="">test</option>
-                            <option value="">test</option>
+                        <select id="logActivity" class="form-select" aria-label="Default select example">
+                            <option hidden selected disabled value="">Activity</option>
+                            <option value="Changed Password">Changed Password</option>
+                            <option value="Changed Phone">Changed Phone</option>
+                            <option value="Changed Mobile Video Tutorial">Changed Mobile Video Tutorial</option>
+                            <option value="Changed Desktop Video Tutorial">Changed Desktop Video Tutorial</option>
+                            <option value="Changed admin type of">Changed an admin's type</option>
+                            <option value="Created a new admin">Created a New Admin</option>
+                            <option value="Removed an admin">Removed an Admin</option>
+                            <option value="Blocked a new date">Blocked a date</option>
+                            <option value="Removed a blocked date">Unblocked a date</option>
+                            <option value="Posted an announcement">Posted an Announcement</option>
+                            <option value="Removed an announcement">Removed an Announcement</option>
                         </select>
-                        <select class="form-select" aria-label="Default select example">
-                            <option hidden selected disabled>Admin Type</option>
-                            <option value="">test</option>
-                            <option value="">test</option>
-                            <option value="">test</option>
+                        <select id="logAdminType" class="form-select" aria-label="Default select example">
+                            <option hidden selected disabled value="">Admin Type</option>
+                            <option value="admin i">Admin I</option>
+                            <option value="admin ii">Admin II</option>
+                            <option value="super admin">Admin Super</option>
                         </select>
-                        <select class="form-select" aria-label="Default select example">
-                            <option hidden selected disabled>Sort By</option>
-                            <option value="">test</option>
-                            <option value="">test</option>
-                            <option value="">test</option>
+                        <select id="logSortBy" class="form-select" aria-label="Default select example">
+                            <option hidden selected disabled value="">Sort By</option>
+                            <option value="0">Username (A-Z)</option>
+                            <option value="1">Username (Z-A)</option>
+                            <option value="2">Activity</option>
+                            <option value="3">Admin Type</option>
+                            <option value="4">Latest - Oldest</option>
+                            <option value="5">Oldest - Latest</option>
                         </select>
                     </div>
-                    <button>Apply</button>
+                    <div class="error-container">
+                        <span class="msg"></span>
+                    </div>
+                    <button class="apply-logfilter" onclick="applyLogFilter()">Apply</button>
                 </div>
                 <span>Click the row to highlight/see more.</span>
                 <div class="table-container">
@@ -1434,7 +1448,7 @@ let editTutorial = `
                     <!-- <div class="tutorial__video-container">
                         <iframe loading="lazy" width="100%" height="100%" src="https://www.youtube.com/embed/lhUXVfEQiRM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div> -->
-                    <label for="mobile">Phone</label>
+                    <label for="mobile">Mobile Phone</label>
                     <div class="edit__input-container">
                         <input type="text" name="" id="mobile">
                         <button class="edit-tutorial--btn" onclick="confirmPhoneTutorial()">Apply</button>
