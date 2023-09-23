@@ -1597,7 +1597,9 @@ function applyPhoneTutorial(){
         if(xhr.readyState == 4){
             if(xhr.status == 200){
                 if(xhr.responseText == 1){
-                    setTimeout(showDeskMobileRes, 500);
+                    setTimeout(()=>{
+                        showResModal("New video tutorial applied");
+                    }, 500);
                 }
                 else{
                     alert("Something went wrong...");
@@ -1966,8 +1968,7 @@ function removeAnn(id, title){
 
 function insertAdmin(isInitial = true){
     const table = document.querySelector(".admin-table tbody");
-    
-    table.innerHTML = "";
+
     
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function(){
@@ -1975,6 +1976,7 @@ function insertAdmin(isInitial = true){
             if(xhr.status == 200){
                 
                 try {
+                    table.innerHTML = "";
                     let arrayOfObjects = JSON.parse(xhr.responseText);
                     
                     arrayOfObjects.forEach((item)=>{
@@ -2018,6 +2020,8 @@ function insertAdmin(isInitial = true){
     }
     else{
         let input = document.querySelector("#adminSearch").value;
+
+        if(input == "") return;
 
         xhr.open("POST", "./php/searchAdmin.php", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -2075,4 +2079,64 @@ function removeAdmin(username){
     xhr.open("POST", "./php/deleteAdmin.php", false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send("username="+username);
+}
+
+function insertAdminLogs(isInitial = true){
+    const table = document.querySelector(".logs-table tbody");
+    
+    table.innerHTML = "";
+    
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4){
+            if(xhr.status == 200){
+                
+                try {
+                    let arrayOfObjects = JSON.parse(xhr.responseText);
+                    
+                    arrayOfObjects.forEach((item)=>{
+                        let username = item.username;
+                        let activity = item.activity;
+                        let adminType = item.adminType
+                        let logDate = item.logDate;
+                        let logTime = item.logTime;
+                        
+                        if(adminType == 'admin_i') adminType = "Admin I";
+                        else if(adminType == 'admin_ii') adminType = "Admin II";
+                        else if(adminType == 'admin_super') adminType = "Super Admin";
+
+                        const template = 
+                        `
+                        <tr>
+                            <td>${username}</td>
+                            <td>${activity}</td>
+                            <td>${adminType}</td>
+                            <td>${logDate}</td>
+                            <td>${logTime}</td>
+                        </tr>
+                        `;
+
+                        table.innerHTML += template;
+                    })
+
+                    showTableCell();
+                } catch (error) {
+                    
+                }
+                
+            }
+        }
+    }
+
+    if(isInitial){
+        xhr.open("GET", "./php/getAdminLogs.php", true);
+        xhr.send();
+    }
+    else{
+        let input = document.querySelector("#adminSearch").value;
+
+        xhr.open("POST", "./php/searchAdminLogs.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send("input="+input);
+    }
 }

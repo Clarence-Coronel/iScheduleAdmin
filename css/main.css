@@ -802,24 +802,24 @@ input:-webkit-autofill:focus {
   justify-items: flex-start;
   margin-bottom: max(15px, 1vw);
 }
-.admin-logs__filters input[type=date] {
+.admin-logs__filters .date-picker {
+  display: flex;
+  flex-flow: row nowrap;
   width: 100%;
   height: 100%;
-  position: relative;
-  border-radius: 0.375rem;
-  padding: 0.375rem 2.25rem 0.375rem 0.75rem;
-  text-align: left;
-  background-color: white;
+  align-items: flex-end;
 }
-.admin-logs__filters input[type=date]::-webkit-calendar-picker-indicator {
-  position: absolute;
-  width: 100%;
-  opacity: 0;
+.admin-logs__filters .date-picker input {
+  height: 100%;
+  width: 32%;
+  text-align: center;
+  border: unset;
+  border-bottom: 1px solid rgb(80, 78, 78);
 }
-.admin-logs__filters .DatePickerInput::-webkit-inner-spin-button,
-.admin-logs__filters .DatePickerInput::-webkit-calendar-picker-indicator {
-  opacity: 0 !important;
-  -webkit-appearance: none !important;
+.admin-logs__filters .date-picker span {
+  width: 2%;
+  color: rgb(80, 78, 78);
+  text-align: center;
 }
 .admin-logs__filters .form-select {
   width: 100%;

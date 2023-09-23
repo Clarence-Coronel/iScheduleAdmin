@@ -1098,104 +1098,62 @@ let scheduling = `
 
 // By default yung content ni table is yung today lang
 let adminLogs = `
-<section class="admin-logs">
-    <div class="admin-logs-wrapper" data-aos="fade-right" data-aos-duration="500">
-        <div class="admin-logs__body">
-            <div class="search-container">
-                <input type="text" placeholder="Search" id="adminSearch" onblur="inputLimiterBlur(this.id, 60)" oninput="inputLimiter(this.id, 60)">
-                <button><span class="material-icons-outlined ico-search">search</span></button>
+    <section class="admin-logs">
+            <div class="admin-logs-wrapper" data-aos="fade-right" data-aos-duration="500">
+                <div class="admin-logs__body">
+                    <div class="search-container">
+                        <input type="text" placeholder="Search" id="adminSearch" onblur="inputLimiterBlur(this.id, 60)" oninput="inputLimiter(this.id, 60)">
+                        <button><span class="material-icons-outlined ico-search">search</span></button>
+                    </div>
+                    <h2>Filter</h2>
+                    <div class="admin-logs__filters">
+                        <div class="date-picker">
+                            <input type="text" name="month" id="block-month" placeholder="MM" oninput="inputLimiterNum(this.id, 2)" onblur="inputLimiterBlur(this.id, 2)">
+                            <span>/</span>
+                            <input type="text" name="day" id="block-day" placeholder="DD" oninput="inputLimiterNum(this.id, 2)" onblur="inputLimiterBlur(this.id, 2)">
+                            <span>/</span>
+                            <input type="text" name="year" id="block-year" placeholder="YYYY" oninput="inputLimiterNum(this.id, 4)" onblur="inputLimiterBlur(this.id, 4)">
+                        </div>
+                        <select class="form-select" aria-label="Default select example">
+                            <option hidden selected disabled>Activity</option>
+                            <option value="">test</option>
+                            <option value="">test</option>
+                            <option value="">test</option>
+                        </select>
+                        <select class="form-select" aria-label="Default select example">
+                            <option hidden selected disabled>Admin Type</option>
+                            <option value="">test</option>
+                            <option value="">test</option>
+                            <option value="">test</option>
+                        </select>
+                        <select class="form-select" aria-label="Default select example">
+                            <option hidden selected disabled>Sort By</option>
+                            <option value="">test</option>
+                            <option value="">test</option>
+                            <option value="">test</option>
+                        </select>
+                    </div>
+                    <button>Apply</button>
+                </div>
+                <span>Click the row to highlight/see more.</span>
+                <div class="table-container">
+                    <table class="logs-table">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Activity</th>
+                                <th>Admin Type</th>
+                                <th>Date</th>
+                                <th >Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <h2>Filter</h2>
-            <div class="admin-logs__filters">
-                <input type="date" name="" id="">
-                <select class="form-select" aria-label="Default select example">
-                    <option hidden selected disabled>Activity</option>
-                    <option value="">test</option>
-                    <option value="">test</option>
-                    <option value="">test</option>
-                </select>
-                <select class="form-select" aria-label="Default select example">
-                    <option hidden selected disabled>Admin Type</option>
-                    <option value="">test</option>
-                    <option value="">test</option>
-                    <option value="">test</option>
-                </select>
-                <select class="form-select" aria-label="Default select example">
-                    <option hidden selected disabled>Sort By</option>
-                    <option value="">test</option>
-                    <option value="">test</option>
-                    <option value="">test</option>
-                </select>
-            </div>
-            <button>Apply</button>
-        </div>
-        <span>Click the row to highlight/see more.</span>
-        <div class="table-container">
-            <table class="logs-table">
-                <thead>
-                    <tr>
-                        <th>Username</th>
-                        <th>Activity</th>
-                        <th>Date</th>
-                        <th >Time</th>
-                        <th>Admin Type</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>coronelclarencecoronelclarencecoronelclarencecoronelclarencecoronelclarencecoronelclarencecoronelclarencecoronelclarencecoronelclarence</td>
-                        <td>View Schedule</td>
-                        <td title="YYYY-MM-DD">2023-10-21</td>
-                        <td>13:00</td>
-                        <td>Admin II</td>
-                    </tr>
-                    <tr>
-                        <td>clarence-coronelclarence-coronelclarence-coronel</td>
-                        <td>View Schedule</td>
-                        <td title="YYYY-MM-DD">2023-10-21</td>
-                        <td>13:00</td>
-                        <td>Admin II</td>
-                    </tr>
-                    <tr>
-                        <td>clarence-coronelclarence-coronelclarence-coronel</td>
-                        <td>View Schedule</td>
-                        <td title="YYYY-MM-DD">2023-10-21</td>
-                        <td>13:00</td>
-                        <td>Admin II</td>
-                    </tr>
-                    <tr>
-                        <td>clarence-coronelclarence-coronelclarence-coronel</td>
-                        <td>View Schedule</td>
-                        <td title="YYYY-MM-DD">2023-10-21</td>
-                        <td>13:00</td>
-                        <td>Admin II</td>
-                    </tr>
-                    <tr>
-                        <td>clarence-coronelclarence-coronelclarence-coronel</td>
-                        <td>View Schedule</td>
-                        <td title="YYYY-MM-DD">2023-10-21</td>
-                        <td>13:00</td>
-                        <td>Admin II</td>
-                    </tr>
-                    <tr>
-                        <td>clarence-coronelclarence-coronelclarence-coronel</td>
-                        <td>View Schedule</td>
-                        <td title="YYYY-MM-DD">2023-10-21</td>
-                        <td>13:00</td>
-                        <td>Admin II</td>
-                    </tr>
-                    <tr>
-                        <td>clarence-coronelclarence-coronelclarence-coronel</td>
-                        <td>View Schedule</td>
-                        <td title="YYYY-MM-DD">2023-10-21</td>
-                        <td>13:00</td>
-                        <td>Admin II</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</section>`;
+        </section>
+`;
 
 let adminList = `
 <section class="admin-list">
@@ -1556,7 +1514,7 @@ function generateAdminLogs(){
     // contentIsOpen = true;
     if(checkPrivilege('admin_super')){
         main.innerHTML = adminLogs;
-        showTableCell();
+        insertAdminLogs();
     }
 }
 
