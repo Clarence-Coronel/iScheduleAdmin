@@ -12,6 +12,7 @@ let quickViewIsActive = true;
 let generatedUsername = '';
 let newInsertedPhone = "";
 let isResendAvail = false;
+let currentWebStatus = null;
 
 // If want natin ireset auto increment
 // ALTER TABLE tableName AUTO_INCREMENT = 1
@@ -1477,7 +1478,7 @@ function insertAnnouncement(){
         const body = document.querySelector('#announcementBody').value;
 
         if(title == "" || body == ""){
-            showError("Please fill in all fields");
+            showError("Fill in all fields");
             return;
         }
 
@@ -2216,4 +2217,116 @@ function applyLogFilter(){
     xhr.open("OPEN", "./php/filterAdminLog.php", true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(toSend);
+}
+
+function insertWebsiteStatus(){
+    const xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function(){
+        if(this.readyState ==4){
+            if(this.status == 200){
+                let obj = JSON.parse(xhr.responseText);
+                currentWebStatus = obj.status;
+
+                let ico = document.querySelector('.ico-live');
+                let header = document.querySelector('.status__header');
+                let displayMsg = document.querySelector('.status__msg');
+                let statusName = document.querySelector('.status-name');
+                let statusOp = document.querySelectorAll('.status-option');
+
+                
+                if(obj.status == 1){
+                    // Naka Up
+                    ico.innerText = 'check_circle_outline';
+                    header.style.color = 'rgb(10, 204, 10)';
+                    ico.style.color = 'rgb(10, 204, 10)';
+                    displayMsg.innerHTML += 'Not Applicable';
+                    statusOp[0].setAttribute("selected", "selected");
+                    document.querySelector('#statusMsg').setAttribute("disabled", "disabled");
+                    statusName.innerText = "Website is Up";
+                }
+                else if(obj.status == 2){
+                    // Naka down website
+                    ico.innerText = 'highlight_off';
+                    header.style.color = 'red';
+                    ico.style.color = 'red';
+                    displayMsg.innerHTML += obj.message;
+                    statusOp[1].setAttribute("selected", "selected");
+                    statusName.innerText = "Website is Down";
+                }
+                else if(obj.status == 3){
+                    // Naka down lang yung scheduling
+                    ico.innerText = 'block';
+                    header.style.color = 'orange';
+                    ico.style.color = 'orange';
+                    displayMsg.innerHTML += obj.message;
+                    statusOp[2].setAttribute("selected", "selected");
+                    statusName.innerText = "Scheduling is Down";
+                }
+            }
+        }
+    }
+
+    xhr.open("GET", "./php/getCurrentWebStatus.php", false);
+    xhr.send();
+}
+
+function confirmStatusChange(){
+    let select = document.querySelector('.selectStatus').value;
+    let warning = null;
+
+    if(select == 1) warning = "Patients will be able to access the website and schedule appointments. ";
+    else if(select == 2) warning = "Patients will not be able to access website and schedule appointments. ";
+    else if(select == 3) warning = "Patients will be able to access the website but not schedule appointments. ";
+
+    if(select == 2 || select == 3){
+        if(document.querySelector('#statusMsg').value == "") {
+            showError("Fill in message");
+            return;
+        }
+    }
+    confirmModal("Applying...", warning + "Are you sure?", "applyNewWebStatus()");
+    showError("");
+}
+
+function closeMsg(){
+    let select = document.querySelector('.selectStatus').value;
+
+    if(select == 1){
+        document.getElementById('statusMsg').setAttribute("disabled", "disabled");
+        document.getElementById('statusMsg').value = '';
+    }
+    else{
+        document.getElementById('statusMsg').removeAttribute("disabled");
+    }
+}
+
+function applyNewWebStatus(){
+    let select = document.querySelector('.selectStatus').value;
+    let msg = document.querySelector('#statusMsg').value;
+
+    const xhr = new XMLHttpRequest();
+
+    const obj = {
+        newStatus: select,
+        currentStatus: currentWebStatus,
+        message: msg,
+    }
+
+    const toSend = JSON.stringify(obj);
+
+    xhr.onreadystatechange = function(){
+        if(this.readyState == 4){
+            if(this.status == 200){
+                if(this.responseText == 1){
+                    showResModal("Website status has been updated");
+                    generateWebsiteStatus();
+                }
+            }
+        }
+    }
+
+    xhr.open("POST", "./php/changeWebsiteStatus.php", false);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(toSend)
 }

@@ -38,6 +38,8 @@ label:hover {
 }
 
 .form-select {
+  padding-left: 0.2rem !important;
+  padding-right: 0.2rem !important;
   border: unset !important;
   border-radius: unset !important;
   border-bottom: 1px solid rgb(80, 78, 78) !important;
@@ -786,7 +788,7 @@ input:-webkit-autofill:focus {
   justify-content: center;
 }
 .admin-logs__body .error-container {
-  margin-top: 3vh;
+  margin-top: 1vh;
 }
 .admin-logs__body button {
   background-color: #0577fa;
@@ -1138,6 +1140,9 @@ td:hover {
   color: rgb(10, 204, 10);
   font-size: 3rem;
   background-color: white;
+}
+.status .status__header .status-name {
+  color: inherit;
 }
 .status .status__msg {
   max-width: 100%;

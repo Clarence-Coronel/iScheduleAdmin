@@ -1352,6 +1352,10 @@ td:hover{
             font-size: 3rem;
             background-color: white;
         }
+
+        .status-name{
+            color: inherit;
+        }
     }
 
     .status__msg{
@@ -1412,6 +1416,7 @@ td:hover{
         width: 30%;
         min-width: 150px;
     }
+    
 
     button{
         background-color: $btn-color;

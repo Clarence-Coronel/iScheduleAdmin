@@ -1265,8 +1265,8 @@ let websiteStatus = `
             <div class="status__header">
                 <!-- highlight_off = kapag down website -->
                 <!-- block =kapag down scheduling -->
-                <span class="material-icons-outlined ico-status ico-live">check_circle_outline</span>
-                Website is Up
+                <span class="material-icons-outlined ico-status ico-live"></span>
+                <span class="status-name">Website Is Up</span>
                 <!-- Possible Values
                     *Website Is Up
                     *Website Is Down
@@ -1274,24 +1274,27 @@ let websiteStatus = `
                 -->
             </div>
             <div class="status__msg">
-                <span class="msg-label">Message:</span> Not Applicable
+                <span class="msg-label">Message:</span>
                 <!-- Applicable lang if either Website is Down or Online Scheduling is down -->
             </div>
         </div>
         <div class="change-status">
             <!-- <h3>Change Status</h3> -->
-            <select class="form-select" aria-label="Default select example">
-                <option value="up">Website is Up</option>
-                <option value="down">Website is Down</option>
-                <option value="scheduledown">Scheduling is Down</option>
+            <select class="form-select selectStatus" aria-label="Default select example" onchange="closeMsg()">
+                <option class="status-option" value="1">Website is Up</option>
+                <option class="status-option" value="2">Website is Down</option>
+                <option class="status-option" value="3">Scheduling is Down</option>
             </select>
             <!-- Naka enable lang to if either website is down or scheduling is down hindi kapag completely up si website -->
             <div class="msg-container">
                 <label for="msg">Message:</label>
-                <textarea name="text" id="statusMsg" cols="30" rows="2" onblur="inputLimiterBlur(this.id, 120); statusMsgCounter(this.id, 'textAreaCounter', 120);" oninput="inputLimiter(this.id, 120); statusMsgCounter(this.id, 'textAreaCounter', 120);"></textarea>
-                <div id="textAreaCounter">120</div>
+                <textarea name="text" id="statusMsg" cols="30" rows="2" onblur="inputLimiterBlur(this.id, 240); statusMsgCounter(this.id, 'textAreaCounter', 240);" oninput="inputLimiter(this.id, 240); statusMsgCounter(this.id, 'textAreaCounter', 240);"></textarea>
+                <div id="textAreaCounter">240</div>
             </div>
-            <button class="changeStatus" onclick="alert('give warning regarding new status, such as what will happen')">Apply</button>
+            <div class="error-container">
+                <span class="msg"></span>
+            </div>
+            <button class="changeStatus" onclick="confirmStatusChange()">Apply</button>
         </div>
     </div>
 </section>`;
@@ -1572,6 +1575,7 @@ function generateCreateAcc(){
 function generateWebsiteStatus(){
     if(checkPrivilege('super admin')){
         main.innerHTML = websiteStatus;
+        insertWebsiteStatus();
     }
 }
 

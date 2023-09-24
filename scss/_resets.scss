@@ -53,9 +53,12 @@ label:hover{
   // min-width: 120px;
   // font-size: 1rem;
   
+  padding-left: 0.2rem !important;
+  padding-right: 0.2rem !important;
   border: unset !important;
   border-radius: unset !important;
   border-bottom: 1px solid $fontbase-color !important;
+  
 }
 
 .form-select:focus{
