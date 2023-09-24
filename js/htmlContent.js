@@ -1122,6 +1122,7 @@ let adminLogs = `
                             <option value="Changed Desktop Video Tutorial">Changed Desktop Video Tutorial</option>
                             <option value="Changed admin type of">Changed an admin's type</option>
                             <option value="Created a new admin">Created a New Admin</option>
+                            <option value="Changed website status">Changed website status</option>
                             <option value="Removed an admin">Removed an Admin</option>
                             <option value="Blocked a new date">Blocked a date</option>
                             <option value="Removed a blocked date">Unblocked a date</option>

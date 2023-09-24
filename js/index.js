@@ -2319,7 +2319,9 @@ function applyNewWebStatus(){
         if(this.readyState == 4){
             if(this.status == 200){
                 if(this.responseText == 1){
-                    showResModal("Website status has been updated");
+                    setTimeout(()=>{
+                        showResModal("Website status has been updated");
+                    }, 500)
                     generateWebsiteStatus();
                 }
             }
