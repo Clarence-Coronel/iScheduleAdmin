@@ -2332,3 +2332,158 @@ function applyNewWebStatus(){
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(toSend)
 }
+
+function generateDeptSched(dept){
+    const xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4){
+            if(xhr.status = 200){
+                
+                let monContainer = document.querySelector('#monday .timeslot-container');
+                let tueContainer = document.querySelector('#tuesday .timeslot-container');
+                let wedContainer = document.querySelector('#wednesday .timeslot-container');
+                let thuContainer = document.querySelector('#thursday .timeslot-container');
+                let friContainer = document.querySelector('#friday .timeslot-container');
+                let satContainer = document.querySelector('#saturday .timeslot-container');
+
+                monContainer.innerHTML = "";
+                tueContainer.innerHTML = "";
+                wedContainer.innerHTML = "";
+                thuContainer.innerHTML = "";
+                friContainer.innerHTML = "";
+                satContainer.innerHTML = "";
+
+                const arrayOfObjects = JSON.parse(xhr.responseText);
+
+                const mon = [];
+                const tue = [];
+                const wed = [];
+                const thu = [];
+                const fri = [];
+                const sat = [];
+
+                arrayOfObjects.forEach(item=>{
+                    const id = item.scheduleID;
+                    const day = item.day;
+                    const startTime = item.startTime;
+                    const stopTime = item.stopTime;
+                    const max = item.max;
+                    let isBuffer = item.isBuffer;
+                    let clss;
+
+                    if(isBuffer == 1) isBuffer = true;
+                    else if(isBuffer == 0) isBuffer = false;
+
+                    if(isBuffer) clss = 'buffer';
+                    else clss = 'nope';
+                    
+                    let blockTemplate = 
+                    `
+                    <div class="block ${clss}">
+                        <div class="timeslot">
+                            <div class="time">${startTime} - ${stopTime}</div>
+                            <div class="max">${max}</div>
+                        </div>
+                        <div class="button-container">
+                            <button data-sched_id="${id}" onclick="editSched(this.dataset.sched_id)">Edit</button>
+                            <button data-sched_id="${id}" onclick="deleteSched(this.dataset.sched_id)">Delete</button>
+                        </div>
+                    </div>
+                    `;
+
+                    if(day == 'mon'){
+                        if(isBuffer) mon.unshift(blockTemplate);
+                        else{
+                            mon.push(blockTemplate);
+                            mon.push(`
+                            <div class="block add">
+                                <button class="add-btn" data-day="mon"><span class="material-icons-outlined">add</span></button>
+                            </div>`);
+                        }
+                    }
+                    else if(day == 'tue'){
+                        if(isBuffer) tue.unshift(blockTemplate);
+                        else{
+                            tue.push(blockTemplate);
+                            tue.push(`
+                            <div class="block add">
+                                <button class="add-btn" data-day="tue"><span class="material-icons-outlined">add</span></button>
+                            </div>`);
+                        }
+                    }
+                    else if(day == 'wed'){
+                        if(isBuffer) wed.unshift(blockTemplate);
+                        else{
+                            wed.push(blockTemplate);
+                            wed.push(`
+                            <div class="block add">
+                                <button class="add-btn" data-day="wed"><span class="material-icons-outlined">add</span></button>
+                            </div>`);
+                        }
+                    }
+                    else if(day == 'thu'){
+                        if(isBuffer) thu.unshift(blockTemplate);
+                        else{
+                            thu.push(blockTemplate);
+                            thu.push(`
+                            <div class="block add">
+                                <button class="add-btn" data-day="thu"><span class="material-icons-outlined">add</span></button>
+                            </div>`);
+                        }
+                    }
+                    else if(day == 'fri'){
+                        if(isBuffer) fri.unshift(blockTemplate);
+                        else{
+                            fri.push(blockTemplate);
+                            fri.push(`
+                            <div class="block add">
+                                <button class="add-btn" data-day="fri"><span class="material-icons-outlined">add</span></button>
+                            </div>`);
+                        }
+                    }
+                    else if(day == 'sat'){
+                        if(isBuffer) sat.unshift(blockTemplate);
+                        else{
+                            sat.push(blockTemplate);
+                            sat.push(`
+                            <div class="block add">
+                                <button class="add-btn" data-day="sat"><span class="material-icons-outlined">add</span></button>
+                            </div>`);
+                        }
+                    }
+                })
+                mon.forEach(item=>{
+                    monContainer.innerHTML += item; 
+                });
+                tue.forEach(item=>{
+                    tueContainer.innerHTML += item;
+                });
+                wed.forEach(item=>{
+                    wedContainer.innerHTML += item;
+                });
+                thu.forEach(item=>{
+                    thuContainer.innerHTML += item;
+                });
+                fri.forEach(item=>{
+                    friContainer.innerHTML += item;
+                });
+                sat.forEach(item=>{
+                    satContainer.innerHTML += item;
+                });
+            }
+        }
+    };
+
+    xhr.open("POST", "./php/getDepartmentSched.php", false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("id="+dept);
+}
+
+function editSched(schedID){
+    alert("Confirm Edit " + schedID);
+}
+
+function deleteSched(schedID){
+    alert("Confirm Delete " + schedID);
+}

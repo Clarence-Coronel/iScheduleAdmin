@@ -42,14 +42,6 @@
         echo 0;
     }
 
-    // $test = new announcement();
-
-    //  $test->title = 'sample title';
-    //  $test->body = 'sample body';
-    //  $test->datetime = 'sample datetime';
-
-    // echo json_encode($test);
-
     function seperateDateTime($datetime){
         $delimiter = ' ';
         return $seperated = explode($delimiter, $datetime);

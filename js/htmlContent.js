@@ -861,234 +861,56 @@ let scheduling = `
 <section class="scheduling">
             <div class="scheduling-content" data-aos="fade-right" data-aos-duration="500">
                 <div class="scheduling__dept-picker">
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" aria-label="Default select example" onchange="generateDeptSched(this.value)">
                         <option value="" selected hidden disabled>Select a Department</option>
-                        <option value="">ENT</option>
-                        <option value="">Hematology</option>
-                        <option value="">Internal Medicine</option>
-                        <option value="">Internal Medicine Clearance</option>
-                        <option value="">Nephrology</option>
-                        <option value="">Neurology</option>
-                        <option value="">OB GYNE New</option>
-                        <option value="">OB GYNE Old</option>
-                        <option value="">OB GYNE ROS</option>
-                        <option value="">Oncology</option>
-                        <option value="">Pediatric Cardiology</option>
-                        <option value="">Pediatric Clearance</option>
-                        <option value="">Pediatric General</option>
-                        <option value="">Psychiatry New</option>
-                        <option value="">Psychiatry Old</option>
-                        <option value="">Surgery</option>
-                        <option value="">Surgery ROS</option>
+                        <option value="1">ENT</option>
+                        <option value="2">Hematology</option>
+                        <option value="3">Internal Medicine</option>
+                        <option value="4">Internal Medicine Clearance</option>
+                        <option value="5">Nephrology</option>
+                        <option value="6">Neurology</option>
+                        <option value="7">OB GYNE New</option>
+                        <option value="8">OB GYNE Old</option>
+                        <option value="9">OB GYNE ROS</option>
+                        <option value="10">Oncology</option>
+                        <option value="11">Pediatric Cardiology</option>
+                        <option value="12">Pediatric Clearance</option>
+                        <option value="13">Pediatric General</option>
+                        <option value="14">Psychiatry New</option>
+                        <option value="15">Psychiatry Old</option>
+                        <option value="16">Surgery</option>
+                        <option value="17">Surgery ROS</option>
                     </select>
                 </div>
                 <div class="week-container">
                     <div id="monday" class="day">
                         <div class="day-header">Mon</div>
                         <div class="timeslot-container">
-                            <div class="block buffer">
-                                <div class="timeslot">
-                                    <div class="time">8:00 AM - 9:00 AM</div>
-                                    <div class="max">15</div>
-                                </div>
-                                <div class="button-container">
-                                    <button data-timeslotID="1" onclick="alert('labas modal')">Edit</button>
-                                    <button data-timeslotID="1" onclick="alert('labas modal')">Delete</button>
-                                </div>
-                            </div>
-                            <div class="block add">
-                                <button class="add-btn"><span class="material-icons-outlined">add</span></button>
-                            </div>
                         </div>
                     </div>
                     <div id="tuesday" class="day">
                         <div class="day-header">Tue</div>
                         <div class="timeslot-container">
-                            <div class="block buffer">
-                                <div class="timeslot">
-                                    <div class="time">8:00 AM - 9:00 AM</div>
-                                    <div class="max">15</div>
-                                </div>
-                                <div class="button-container">
-                                    <button data-timeslotID="1" onclick="alert('labas modal')">Edit</button>
-                                    <button data-timeslotID="1" onclick="alert('labas modal')">Delete</button>
-                                </div>
-                            </div>
-                            <div class="block">
-                                <div class="timeslot">
-                                    <div class="time">8:00 AM - 9:00 AM</div>
-                                    <div class="max">15</div>
-                                </div>
-                                <div class="button-container">
-                                    <button data-timeslotID="1" onclick="alert('labas modal')">Edit</button>
-                                    <button data-timeslotID="1" onclick="alert('labas modal')">Delete</button>
-                                </div>
-                            </div>
-                            <div class="block add">
-                                <button class="add-btn"><span class="material-icons-outlined">add</span></button>
-                            </div>
                         </div>
                     </div>
                     <div id="wednesday" class="day">
                         <div class="day-header">Wed</div>
                         <div class="timeslot-container">
-                            <div class="block buffer">
-                                <div class="timeslot">
-                                    <div class="time">8:00 AM - 9:00 AM</div>
-                                    <div class="max">15</div>
-                                </div>
-                                <div class="button-container">
-                                    <button data-timeslotID="1" onclick="alert('labas modal')">Edit</button>
-                                    <button data-timeslotID="1" onclick="alert('labas modal')">Delete</button>
-                                </div>
-                            </div>
-                            <div class="block">
-                                <div class="timeslot">
-                                    <div class="time">8:00 AM - 9:00 AM</div>
-                                    <div class="max">15</div>
-                                </div>
-                                <div class="button-container">
-                                    <button data-timeslotID="1" onclick="alert('labas modal')">Edit</button>
-                                    <button data-timeslotID="1" onclick="alert('labas modal')">Delete</button>
-                                </div>
-                            </div>
-                            <div class="block">
-                                <div class="timeslot">
-                                    <div class="time">8:00 AM - 9:00 AM</div>
-                                    <div class="max">15</div>
-                                </div>
-                                <div class="button-container">
-                                    <button data-timeslotID="1" onclick="alert('labas modal')">Edit</button>
-                                    <button data-timeslotID="1" onclick="alert('labas modal')">Delete</button>
-                                </div>
-                            </div>
-                            <div class="block">
-                                <div class="timeslot">
-                                    <div class="time">8:00 AM - 9:00 AM</div>
-                                    <div class="max">15</div>
-                                </div>
-                                <div class="button-container">
-                                    <button data-timeslotID="1" onclick="alert('labas modal')">Edit</button>
-                                    <button data-timeslotID="1" onclick="alert('labas modal')">Delete</button>
-                                </div>
-                            </div>
-                            <div class="block">
-                                <div class="timeslot">
-                                    <div class="time">8:00 AM - 9:00 AM</div>
-                                    <div class="max">15</div>
-                                </div>
-                                <div class="button-container">
-                                    <button data-timeslotID="1" onclick="alert('labas modal')">Edit</button>
-                                    <button data-timeslotID="1" onclick="alert('labas modal')">Delete</button>
-                                </div>
-                            </div>
-                            <div class="block">
-                                <div class="timeslot">
-                                    <div class="time">8:00 AM - 9:00 AM</div>
-                                    <div class="max">15</div>
-                                </div>
-                                <div class="button-container">
-                                    <button data-timeslotID="1" onclick="alert('labas modal')">Edit</button>
-                                    <button data-timeslotID="1" onclick="alert('labas modal')">Delete</button>
-                                </div>
-                            </div>
-                            <div class="block add">
-                                <button class="add-btn"><span class="material-icons-outlined">add</span></button>
-                            </div>
-                        </div>
+                        </div> 
                     </div>
                     <div id="thursday" class="day">
                         <div class="day-header">Thu</div>
                         <div class="timeslot-container">
-                            <div class="block buffer">
-                                <div class="timeslot">
-                                    <div class="time">8:00 AM - 9:00 AM</div>
-                                    <div class="max">15</div>
-                                </div>
-                                <div class="button-container">
-                                    <button data-timeslotID="1" onclick="alert('labas modal')">Edit</button>
-                                    <button data-timeslotID="1" onclick="alert('labas modal')">Delete</button>
-                                </div>
-                            </div>
-                            <div class="block">
-                                <div class="timeslot">
-                                    <div class="time">8:00 AM - 9:00 AM</div>
-                                    <div class="max">15</div>
-                                </div>
-                                <div class="button-container">
-                                    <button data-timeslotID="1" onclick="alert('labas modal')">Edit</button>
-                                    <button data-timeslotID="1" onclick="alert('labas modal')">Delete</button>
-                                </div>
-                            </div>
-                            <div class="block add">
-                                <button class="add-btn"><span class="material-icons-outlined">add</span></button>
-                            </div>
                         </div>
                     </div>
                     <div id="friday" class="day">
                         <div class="day-header">Fri</div>
                         <div class="timeslot-container">
-                            <div class="block buffer">
-                                <div class="timeslot">
-                                    <div class="time">8:00 AM - 9:00 AM</div>
-                                    <div class="max">15</div>
-                                </div>
-                                <div class="button-container">
-                                    <button data-timeslotID="1" onclick="alert('labas modal')">Edit</button>
-                                    <button data-timeslotID="1" onclick="alert('labas modal')">Delete</button>
-                                </div>
-                            </div>
-                            <div class="block">
-                                <div class="timeslot">
-                                    <div class="time">8:00 AM - 9:00 AM</div>
-                                    <div class="max">15</div>
-                                </div>
-                                <div class="button-container">
-                                    <button data-timeslotID="1" onclick="alert('labas modal')">Edit</button>
-                                    <button data-timeslotID="1" onclick="alert('labas modal')">Delete</button>
-                                </div>
-                            </div>
-                            <div class="block add">
-                                <button class="add-btn"><span class="material-icons-outlined">add</span></button>
-                            </div>
                         </div>
                     </div>
                     <div id="saturday" class="day">
                         <div class="day-header">Sat</div>
                         <div class="timeslot-container">
-                            <div class="block buffer">
-                                <div class="timeslot">
-                                    <div class="time">8:00 AM - 9:00 AM</div>
-                                    <div class="max">15</div>
-                                </div>
-                                <div class="button-container">
-                                    <button data-timeslotID="1" onclick="alert('labas modal')">Edit</button>
-                                    <button data-timeslotID="1" onclick="alert('labas modal')">Delete</button>
-                                </div>
-                            </div>
-                            <div class="block">
-                                <div class="timeslot">
-                                    <div class="time">8:00 AM - 9:00 AM</div>
-                                    <div class="max">15</div>
-                                </div>
-                                <div class="button-container">
-                                    <button data-timeslotID="1" onclick="alert('labas modal')">Edit</button>
-                                    <button data-timeslotID="1" onclick="alert('labas modal')">Delete</button>
-                                </div>
-                            </div>
-                            <div class="block">
-                                <div class="timeslot">
-                                    <div class="time">8:00 AM - 9:00 AM</div>
-                                    <div class="max">15</div>
-                                </div>
-                                <div class="button-container">
-                                    <button data-timeslotID="1" onclick="alert('labas modal')">Edit</button>
-                                    <button data-timeslotID="1" onclick="alert('labas modal')">Delete</button>
-                                </div>
-                            </div>
-                            <div class="block add">
-                                <button class="add-btn"><span class="material-icons-outlined">add</span></button>
-                            </div>
                         </div>
                     </div>
                 </div>

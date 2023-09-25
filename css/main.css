@@ -131,7 +131,8 @@ header .header__right {
   cursor: pointer;
 }
 .header__right .role {
-  width: 100%;
+  width: -moz-fit-content;
+  width: fit-content;
   color: rgb(88, 86, 86);
   font-size: 0.8rem;
   text-align: right;
