@@ -2339,7 +2339,7 @@ function generateDeptSched(dept){
     xhr.onreadystatechange = function(){
         if(xhr.readyState == 4){
             if(xhr.status = 200){
-                
+
                 let monContainer = document.querySelector('#monday .timeslot-container');
                 let tueContainer = document.querySelector('#tuesday .timeslot-container');
                 let wedContainer = document.querySelector('#wednesday .timeslot-container');
@@ -2398,7 +2398,7 @@ function generateDeptSched(dept){
                             mon.push(blockTemplate);
                             mon.push(`
                             <div class="block add">
-                                <button class="add-btn" data-day="mon"><span class="material-icons-outlined">add</span></button>
+                                <button class="add-btn" data-day="mon" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
                             </div>`);
                         }
                     }
@@ -2408,7 +2408,7 @@ function generateDeptSched(dept){
                             tue.push(blockTemplate);
                             tue.push(`
                             <div class="block add">
-                                <button class="add-btn" data-day="tue"><span class="material-icons-outlined">add</span></button>
+                                <button class="add-btn" data-day="tue" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
                             </div>`);
                         }
                     }
@@ -2418,7 +2418,7 @@ function generateDeptSched(dept){
                             wed.push(blockTemplate);
                             wed.push(`
                             <div class="block add">
-                                <button class="add-btn" data-day="wed"><span class="material-icons-outlined">add</span></button>
+                                <button class="add-btn" data-day="wed" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
                             </div>`);
                         }
                     }
@@ -2428,7 +2428,7 @@ function generateDeptSched(dept){
                             thu.push(blockTemplate);
                             thu.push(`
                             <div class="block add">
-                                <button class="add-btn" data-day="thu"><span class="material-icons-outlined">add</span></button>
+                                <button class="add-btn" data-day="thu" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
                             </div>`);
                         }
                     }
@@ -2438,7 +2438,7 @@ function generateDeptSched(dept){
                             fri.push(blockTemplate);
                             fri.push(`
                             <div class="block add">
-                                <button class="add-btn" data-day="fri"><span class="material-icons-outlined">add</span></button>
+                                <button class="add-btn" data-day="fri" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
                             </div>`);
                         }
                     }
@@ -2448,7 +2448,7 @@ function generateDeptSched(dept){
                             sat.push(blockTemplate);
                             sat.push(`
                             <div class="block add">
-                                <button class="add-btn" data-day="sat"><span class="material-icons-outlined">add</span></button>
+                                <button class="add-btn" data-day="sat" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
                             </div>`);
                         }
                     }
@@ -2486,4 +2486,8 @@ function editSched(schedID){
 
 function deleteSched(schedID){
     alert("Confirm Delete " + schedID);
+}
+
+function addSched(day){
+    alert("Add Details " + day);
 }

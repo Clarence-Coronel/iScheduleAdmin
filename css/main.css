@@ -2749,6 +2749,9 @@ table {
   border: unset;
   background-color: transparent;
   width: 100%;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 .scheduling .week-container .add:hover {
   cursor: pointer;

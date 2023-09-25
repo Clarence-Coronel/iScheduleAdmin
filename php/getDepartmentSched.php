@@ -7,7 +7,7 @@
         $dept = $temp;
     }
 
-    $query = "SELECT `scheduleID`, `day`, `startTime`, `stopTime`, `max`, `isBuffer` FROM `schedules` WHERE deptID = $dept AND isActive = true;";
+    $query = "SELECT `scheduleID`, `day`, `startTime`, `stopTime`, `max`, `isBuffer` FROM `schedules` WHERE deptID = $dept AND isActive = true ORDER BY `startTime` ASC;";
     $result = mysqli_query($conn,$query);
 	$count = mysqli_num_rows($result);
 
