@@ -2339,138 +2339,142 @@ function generateDeptSched(dept){
     xhr.onreadystatechange = function(){
         if(xhr.readyState == 4){
             if(xhr.status = 200){
-
-                let monContainer = document.querySelector('#monday .timeslot-container');
-                let tueContainer = document.querySelector('#tuesday .timeslot-container');
-                let wedContainer = document.querySelector('#wednesday .timeslot-container');
-                let thuContainer = document.querySelector('#thursday .timeslot-container');
-                let friContainer = document.querySelector('#friday .timeslot-container');
-                let satContainer = document.querySelector('#saturday .timeslot-container');
-
-                monContainer.innerHTML = "";
-                tueContainer.innerHTML = "";
-                wedContainer.innerHTML = "";
-                thuContainer.innerHTML = "";
-                friContainer.innerHTML = "";
-                satContainer.innerHTML = "";
-
-                const arrayOfObjects = JSON.parse(xhr.responseText);
-
-                const mon = [];
-                const tue = [];
-                const wed = [];
-                const thu = [];
-                const fri = [];
-                const sat = [];
-
-                arrayOfObjects.forEach(item=>{
-                    const id = item.scheduleID;
-                    const day = item.day;
-                    const startTime = item.startTime;
-                    const stopTime = item.stopTime;
-                    const max = item.max;
-                    let isBuffer = item.isBuffer;
-                    let clss;
-
-                    if(isBuffer == 1) isBuffer = true;
-                    else if(isBuffer == 0) isBuffer = false;
-
-                    if(isBuffer) clss = 'buffer';
-                    else clss = 'nope';
+                try {
                     
-                    let blockTemplate = 
-                    `
-                    <div class="block ${clss}">
-                        <div class="timeslot">
-                            <div class="time">${startTime} - ${stopTime}</div>
-                            <div class="max">${max}</div>
-                        </div>
-                        <div class="button-container">
-                            <button data-sched_id="${id}" onclick="editSched(this.dataset.sched_id)">Edit</button>
-                            <button data-sched_id="${id}" onclick="deleteSched(this.dataset.sched_id)">Delete</button>
-                        </div>
-                    </div>
-                    `;
+                    let monContainer = document.querySelector('#monday .timeslot-container');
+                    let tueContainer = document.querySelector('#tuesday .timeslot-container');
+                    let wedContainer = document.querySelector('#wednesday .timeslot-container');
+                    let thuContainer = document.querySelector('#thursday .timeslot-container');
+                    let friContainer = document.querySelector('#friday .timeslot-container');
+                    let satContainer = document.querySelector('#saturday .timeslot-container');
 
-                    if(day == 'mon'){
-                        if(isBuffer) mon.unshift(blockTemplate);
-                        else{
-                            mon.push(blockTemplate);
-                            mon.push(`
-                            <div class="block add">
-                                <button class="add-btn" data-day="mon" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
-                            </div>`);
+                    monContainer.innerHTML = "";
+                    tueContainer.innerHTML = "";
+                    wedContainer.innerHTML = "";
+                    thuContainer.innerHTML = "";
+                    friContainer.innerHTML = "";
+                    satContainer.innerHTML = "";
+
+                    const arrayOfObjects = JSON.parse(xhr.responseText);
+
+                    const mon = [];
+                    const tue = [];
+                    const wed = [];
+                    const thu = [];
+                    const fri = [];
+                    const sat = [];
+
+                    arrayOfObjects.forEach(item=>{
+                        const id = item.scheduleID;
+                        const day = item.day;
+                        const startTime = item.startTime;
+                        const stopTime = item.stopTime;
+                        const max = item.max;
+                        let isBuffer = item.isBuffer;
+                        let clss;
+
+                        if(isBuffer == 1) isBuffer = true;
+                        else if(isBuffer == 0) isBuffer = false;
+
+                        if(isBuffer) clss = 'buffer';
+                        else clss = 'nope';
+                        
+                        let blockTemplate = 
+                        `
+                        <div class="block ${clss}">
+                            <div class="timeslot">
+                                <div class="time">${startTime} - ${stopTime}</div>
+                                <div class="max">${max}</div>
+                            </div>
+                            <div class="button-container">
+                                <button data-sched_id="${id}" data-start="${startTime}" data-stop="${stopTime}" data-max="${max}" onclick="editSched(this.dataset.sched_id, this.dataset.start, this.dataset.stop, this.dataset.max)">Edit</button>
+                                <button data-sched_id="${id}" data-start="${startTime}" data-stop="${stopTime}" data-max="${max}"  onclick="deleteSched(this.dataset.sched_id, this.dataset.start, this.dataset.stop, this.dataset.max)">Delete</button>
+                            </div>
+                        </div>
+                        `;
+
+                        if(day == 'mon'){
+                            if(isBuffer) mon.unshift(blockTemplate);
+                            else{
+                                mon.push(blockTemplate);
+                                mon.push(`
+                                <div class="block add">
+                                    <button class="add-btn" data-day="mon" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                                </div>`);
+                            }
                         }
-                    }
-                    else if(day == 'tue'){
-                        if(isBuffer) tue.unshift(blockTemplate);
-                        else{
-                            tue.push(blockTemplate);
-                            tue.push(`
-                            <div class="block add">
-                                <button class="add-btn" data-day="tue" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
-                            </div>`);
+                        else if(day == 'tue'){
+                            if(isBuffer) tue.unshift(blockTemplate);
+                            else{
+                                tue.push(blockTemplate);
+                                tue.push(`
+                                <div class="block add">
+                                    <button class="add-btn" data-day="tue" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                                </div>`);
+                            }
                         }
-                    }
-                    else if(day == 'wed'){
-                        if(isBuffer) wed.unshift(blockTemplate);
-                        else{
-                            wed.push(blockTemplate);
-                            wed.push(`
-                            <div class="block add">
-                                <button class="add-btn" data-day="wed" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
-                            </div>`);
+                        else if(day == 'wed'){
+                            if(isBuffer) wed.unshift(blockTemplate);
+                            else{
+                                wed.push(blockTemplate);
+                                wed.push(`
+                                <div class="block add">
+                                    <button class="add-btn" data-day="wed" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                                </div>`);
+                            }
                         }
-                    }
-                    else if(day == 'thu'){
-                        if(isBuffer) thu.unshift(blockTemplate);
-                        else{
-                            thu.push(blockTemplate);
-                            thu.push(`
-                            <div class="block add">
-                                <button class="add-btn" data-day="thu" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
-                            </div>`);
+                        else if(day == 'thu'){
+                            if(isBuffer) thu.unshift(blockTemplate);
+                            else{
+                                thu.push(blockTemplate);
+                                thu.push(`
+                                <div class="block add">
+                                    <button class="add-btn" data-day="thu" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                                </div>`);
+                            }
                         }
-                    }
-                    else if(day == 'fri'){
-                        if(isBuffer) fri.unshift(blockTemplate);
-                        else{
-                            fri.push(blockTemplate);
-                            fri.push(`
-                            <div class="block add">
-                                <button class="add-btn" data-day="fri" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
-                            </div>`);
+                        else if(day == 'fri'){
+                            if(isBuffer) fri.unshift(blockTemplate);
+                            else{
+                                fri.push(blockTemplate);
+                                fri.push(`
+                                <div class="block add">
+                                    <button class="add-btn" data-day="fri" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                                </div>`);
+                            }
                         }
-                    }
-                    else if(day == 'sat'){
-                        if(isBuffer) sat.unshift(blockTemplate);
-                        else{
-                            sat.push(blockTemplate);
-                            sat.push(`
-                            <div class="block add">
-                                <button class="add-btn" data-day="sat" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
-                            </div>`);
+                        else if(day == 'sat'){
+                            if(isBuffer) sat.unshift(blockTemplate);
+                            else{
+                                sat.push(blockTemplate);
+                                sat.push(`
+                                <div class="block add">
+                                    <button class="add-btn" data-day="sat" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                                </div>`);
+                            }
                         }
-                    }
-                })
-                mon.forEach(item=>{
-                    monContainer.innerHTML += item; 
-                });
-                tue.forEach(item=>{
-                    tueContainer.innerHTML += item;
-                });
-                wed.forEach(item=>{
-                    wedContainer.innerHTML += item;
-                });
-                thu.forEach(item=>{
-                    thuContainer.innerHTML += item;
-                });
-                fri.forEach(item=>{
-                    friContainer.innerHTML += item;
-                });
-                sat.forEach(item=>{
-                    satContainer.innerHTML += item;
-                });
+                    })
+                    mon.forEach(item=>{
+                        monContainer.innerHTML += item; 
+                    });
+                    tue.forEach(item=>{
+                        tueContainer.innerHTML += item;
+                    });
+                    wed.forEach(item=>{
+                        wedContainer.innerHTML += item;
+                    });
+                    thu.forEach(item=>{
+                        thuContainer.innerHTML += item;
+                    });
+                    fri.forEach(item=>{
+                        friContainer.innerHTML += item;
+                    });
+                    sat.forEach(item=>{
+                        satContainer.innerHTML += item;
+                    });
+                } catch (error) {
+                    
+                }
             }
         }
     };
@@ -2480,8 +2484,133 @@ function generateDeptSched(dept){
     xhr.send("id="+dept);
 }
 
-function editSched(schedID){
-    alert("Confirm Edit " + schedID);
+function editSched(schedID, start, stop, max){
+    resetModal();
+
+    let modalTitle = document.querySelector('.modal-title');
+    let modalBody = document.querySelector('.modal-body');
+    let modalPositive = document.querySelector('.positive');
+    let modalNegative = document.querySelector('.negative');
+    let close = document.querySelector('.btn-close');
+    let modalHeader = document.querySelector('.modal-header');
+    let modalFooter = document.querySelector('.modal-footer');
+
+    modalTitle.innerText = 'Editing...';
+    modalBody.innerHTML = `
+    <div class="editSched-container">
+        <div class="time-container">
+            <div class="editTime-container start">
+                <select class="form-select" aria-label="Default select example" id="start-hour">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </select>
+                <span>:</span>
+                <select class="form-select" aria-label="Default select example" id="start-minuteA">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <select class="form-select" aria-label="Default select example" id="start-minuteB">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                </select>
+                <span>&nbsp;</span>
+                <select class="form-select" aria-label="Default select example" id="start-period">
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                </select>
+            </div>
+            <span class="divider">-</span>
+            <div class="editTime-container stop">
+                <select class="form-select" aria-label="Default select example" id="stop-hour">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </select>
+                <span>:</span>
+                <select class="form-select" aria-label="Default select example" id="stop-minuteA">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <select class="form-select" aria-label="Default select example" id="stop-minuteB">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2"">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                </select>
+                <span>&nbsp;</span>
+                <select class="form-select" aria-label="Default select example" id="stop-period">
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                </select>
+            </div>
+        </div>
+        <div class="max-container">
+            <label for="maxSlot">Slot: </label>
+            <input type="text" value="${max}" id="maxSlot">
+        </div>
+    </div>
+    `;
+
+    modalPositive.innerText = 'Apply'
+    modalPositive.setAttribute("onclick", "applyEditSched(schedID)")
+    modalLauncher();
+
+    startVal = splitTime(start);
+
+    document.querySelector(`#start-hour option[value="${startVal[0]}"]`).setAttribute('selected', 'selected');
+    document.querySelector(`#start-minuteA option[value="${startVal[1]}"]`).setAttribute('selected', 'selected');
+    document.querySelector(`#start-minuteB option[value="${startVal[2]}"]`).setAttribute('selected', 'selected');
+    document.querySelector(`#start-period option[value="${startVal[3]}"]`).setAttribute('selected', 'selected');
+
+    stopVal = splitTime(stop);
+
+    document.querySelector(`#stop-hour option[value="${stopVal[0]}"]`).setAttribute('selected', 'selected');
+    document.querySelector(`#stop-minuteA option[value="${stopVal[1]}"]`).setAttribute('selected', 'selected');
+    document.querySelector(`#stop-minuteB option[value="${stopVal[2]}"]`).setAttribute('selected', 'selected');
+    document.querySelector(`#stop-period option[value="${stopVal[3]}"]`).setAttribute('selected', 'selected');
+    
+
 }
 
 function deleteSched(schedID){
@@ -2490,4 +2619,23 @@ function deleteSched(schedID){
 
 function addSched(day){
     alert("Add Details " + day);
+}
+
+function applyEditSched(){
+}
+
+function splitTime(time){
+
+    let rawTime = time.split(' ')[0];
+    let period = time.split(' ')[1];
+
+    if(rawTime[0] == '0'){
+        rawTime = rawTime.substring(1);
+    }
+
+    let hour = rawTime.split(':')[0];
+    let minuteA = rawTime.split(':')[1][0];
+    let minuteB = rawTime.split(':')[1][1];
+
+    return [parseInt(hour), parseInt(minuteA), parseInt(minuteB), period];
 }

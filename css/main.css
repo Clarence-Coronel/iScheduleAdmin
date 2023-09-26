@@ -3092,4 +3092,63 @@ table {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+}
+
+.editSched-container {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2vh;
+}
+.editSched-container .time-container {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  border-bottom: 2px solid gray;
+  padding-bottom: 2vh;
+}
+.editSched-container .time-container .editTime-container {
+  width: 40%;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+}
+.editSched-container .time-container .editTime-container .form-select {
+  width: 20%;
+  height: 100%;
+  border-bottom: unset !important;
+  padding: unset !important;
+  background: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: none;
+  text-align: center;
+  font-size: 1rem;
+}
+.editSched-container .time-container .editTime-container .form-select:hover {
+  cursor: pointer;
+}
+.editSched-container .time-container .editTime-container .form-select:nth-child(6) {
+  font-weight: 700;
+}
+.editSched-container .time-container .editTime-container span {
+  height: 100%;
+}
+.editSched-container .max-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1vw;
+  font-size: 1.1rem;
+}
+.editSched-container .max-container input {
+  width: 10%;
+  border: unset;
+  text-align: right;
 }/*# sourceMappingURL=main.css.map */

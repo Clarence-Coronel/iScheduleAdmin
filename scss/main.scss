@@ -3782,5 +3782,76 @@ table{
     }
 }
 
+.editSched-container{
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2vh;
+
+    .time-container{
+        width: 100%;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-around;
+        border-bottom:2px solid gray;
+        padding-bottom: 2vh;
+
+        .editTime-container{
+            width: 40%;
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+            justify-content: center;
+    
+            .form-select{
+                width: 20%;
+                height: 100%;
+                border-bottom: unset !important;
+                padding: unset !important;
+                background: none;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                background-image: none;
+                text-align: center;
+                font-size: 1rem;
+            }
+
+            .form-select:hover{
+                cursor: pointer;
+            }
 
 
+            .form-select:nth-child(6){
+                font-weight: 700;
+            }
+    
+            span{
+                height: 100%;
+            }
+        }
+    }
+    .max-container{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1vw;
+        font-size: 1.1rem;
+
+
+        label{
+            // color: red;
+        }
+
+        input{
+            width: 10%;
+            border: unset;
+            // border-bottom: 1px solid $fontbase-color;
+            text-align: right;
+        }
+
+    }
+}
