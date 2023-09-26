@@ -3100,15 +3100,15 @@ table {
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  gap: 2vh;
 }
 .editSched-container .time-container {
   width: 100%;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-around;
-  border-bottom: 2px solid gray;
+  border-bottom: 1px solid gray;
   padding-bottom: 2vh;
+  margin-bottom: 2vh;
 }
 .editSched-container .time-container .editTime-container {
   width: 40%;
@@ -3150,5 +3150,5 @@ table {
 .editSched-container .max-container input {
   width: 10%;
   border: unset;
-  text-align: right;
+  text-align: center;
 }/*# sourceMappingURL=main.css.map */

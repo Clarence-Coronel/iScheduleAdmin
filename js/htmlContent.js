@@ -861,7 +861,7 @@ let scheduling = `
 <section class="scheduling">
             <div class="scheduling-content" data-aos="fade-right" data-aos-duration="500">
                 <div class="scheduling__dept-picker">
-                    <select class="form-select" aria-label="Default select example" onchange="generateDeptSched(this.value)">
+                    <select class="form-select" aria-label="Default select example" onchange="generateDeptSched(this.value)" id="deptSelect">
                         <option value="" selected hidden disabled>Select a Department</option>
                         <option value="1">ENT</option>
                         <option value="2">Hematology</option>

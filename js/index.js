@@ -363,7 +363,6 @@ function applyNewType(username, currentType){
         xhr.open("POST", "./php/changeAdminType.php", false);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send(`username=${username}&newType=${selected}`);
-
     }
 }
 
@@ -2366,6 +2365,7 @@ function generateDeptSched(dept){
 
                     arrayOfObjects.forEach(item=>{
                         const id = item.scheduleID;
+                        const deptID = item.deptID;
                         const day = item.day;
                         const startTime = item.startTime;
                         const stopTime = item.stopTime;
@@ -2387,8 +2387,8 @@ function generateDeptSched(dept){
                                 <div class="max">${max}</div>
                             </div>
                             <div class="button-container">
-                                <button data-sched_id="${id}" data-start="${startTime}" data-stop="${stopTime}" data-max="${max}" onclick="editSched(this.dataset.sched_id, this.dataset.start, this.dataset.stop, this.dataset.max)">Edit</button>
-                                <button data-sched_id="${id}" data-start="${startTime}" data-stop="${stopTime}" data-max="${max}"  onclick="deleteSched(this.dataset.sched_id, this.dataset.start, this.dataset.stop, this.dataset.max)">Delete</button>
+                                <button data-sched_id="${id}" data-start="${startTime}" data-stop="${stopTime}" data-max="${max}" data-dept="${deptID}" data-day="${day}" onclick="editSched(this.dataset.sched_id, this.dataset.start, this.dataset.stop, this.dataset.max, this.dataset.dept, this.dataset.day)">Edit</button>
+                                <button data-sched_id="${id}" data-start="${startTime}" data-stop="${stopTime}" data-max="${max}" data-dept="${deptID}" data-day="${day}" onclick="deleteSched(this.dataset.sched_id, this.dataset.start, this.dataset.stop, this.dataset.max this.dataset.dept, this.dataset.day)">Delete</button>
                             </div>
                         </div>
                         `;
@@ -2484,7 +2484,7 @@ function generateDeptSched(dept){
     xhr.send("id="+dept);
 }
 
-function editSched(schedID, start, stop, max){
+function editSched(schedID, start, stop, max, deptID, day){
     resetModal();
 
     let modalTitle = document.querySelector('.modal-title');
@@ -2587,14 +2587,19 @@ function editSched(schedID, start, stop, max){
         </div>
         <div class="max-container">
             <label for="maxSlot">Slot: </label>
-            <input type="text" value="${max}" id="maxSlot">
+            <input type="text" placeholder="0" value="${max}" id="maxSlot" oninput="filterPhoneInput(this.id); inputLimiter(this.id,2)" onblur="inputLimiterBlur(this.id, 2)">
+        </div>
+        <div class="error-container">
+            <span class="msg"></span>
         </div>
     </div>
     `;
 
-    modalPositive.innerText = 'Apply'
-    modalPositive.setAttribute("onclick", "applyEditSched(schedID)")
+    modalPositive.innerText = 'Apply';
+    modalPositive.setAttribute("onclick", `applyEditSched(${schedID}, ${deptID}, "${day}")`);
+    modalPositive.removeAttribute('data-bs-dismiss');
     modalLauncher();
+
 
     startVal = splitTime(start);
 
@@ -2610,7 +2615,7 @@ function editSched(schedID, start, stop, max){
     document.querySelector(`#stop-minuteB option[value="${stopVal[2]}"]`).setAttribute('selected', 'selected');
     document.querySelector(`#stop-period option[value="${stopVal[3]}"]`).setAttribute('selected', 'selected');
     
-
+    
 }
 
 function deleteSched(schedID){
@@ -2618,14 +2623,77 @@ function deleteSched(schedID){
 }
 
 function addSched(day){
-    alert("Add Details " + day);
 }
 
-function applyEditSched(){
+function applyEditSched(id, deptID, day){
+    let max = document.querySelector("#maxSlot").value;
+
+    let startHour = document.querySelector(`#start-hour`).value;
+    let startMinA = document.querySelector(`#start-minuteA`).value;
+    let startMinB = document.querySelector(`#start-minuteB`).value;
+    let startPeriod = document.querySelector(`#start-period`).value;
+
+    let stopHour = document.querySelector(`#stop-hour`).value;
+    let stopMinA = document.querySelector(`#stop-minuteA`).value;
+    let stopMinB = document.querySelector(`#stop-minuteB`).value;
+    let stopPeriod = document.querySelector(`#stop-period`).value;
+
+    const startTime = convertToMilitaryTime(`${startHour}:${startMinA}${startMinB} ${startPeriod}`);
+    const stopTime = convertToMilitaryTime(`${stopHour}:${stopMinA}${stopMinB} ${stopPeriod}`);
+
+    if(max == ""){
+        showError("Slot cannot be empty");
+        return;
+    }
+    else if(startTime >= stopTime){
+        showError("Starting time cannot be later than closing time");
+        return;
+    }
+    else{
+        document.querySelector('.positive').setAttribute('data-bs-dismiss', 'modal');
+        document.querySelector('.negative').click();
+    }
+
+    const xhr = new XMLHttpRequest();
+    const dept = ['ENT', 'Hematology', 'Internal Medicine', 'Internal Medicine Clearance', 'Nephrology', 'Neurology', 'OB GYNE New', 'OB GYNE Old', 'OB GYNE ROS', 'Oncology', 'Pediatric Cardiology', 'Pediatric Clearance', 'Pediatric General', 'Psychiatry New', 'Psychiatry Old', 'Surgery', 'Surgery ROS'];
+    
+    if(day == 'mon') day = 'monday';
+    else if(day == 'tue') day = 'tuesday';
+    else if(day == 'wed') day = 'wednesday';
+    else if(day == 'thu') day = 'thursday';
+    else if(day == 'fri') day = 'friday';
+    else if(day == 'sat') day = 'saturday';
+
+    const obj = {
+        schedID: id,
+        department:dept[deptID-1],
+        day: day,
+        startTime: startTime,
+        stopTime: stopTime,
+        max: max,
+    }
+
+    const toSend = JSON.stringify(obj);
+
+    xhr.onreadystatechange = function(){
+        if(this.readyState == 4){
+            if(this.status){
+                if(this.responseText == 1){
+                    setTimeout(()=>{
+                        showResModal("Schedule has been updated");
+                        generateDeptSched(document.querySelector('#deptSelect').value);
+                    }, 500)
+                }
+            }
+        }
+    }
+
+    xhr.open('POST', './php/changeDeptSched.php', false);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(toSend);
 }
 
 function splitTime(time){
-
     let rawTime = time.split(' ')[0];
     let period = time.split(' ')[1];
 
@@ -2638,4 +2706,29 @@ function splitTime(time){
     let minuteB = rawTime.split(':')[1][1];
 
     return [parseInt(hour), parseInt(minuteA), parseInt(minuteB), period];
+}
+
+function convertToMilitaryTime(time){
+    let rawTime = time.split(' ')[0];
+    let period = time.split(' ')[1];
+
+    let hour = parseInt(rawTime.split(':')[0]);
+    let minute = rawTime.split(':')[1];
+
+    if(period == 'PM'){
+        if(hour != 12){
+            hour += 12;
+        }
+    }
+    else if(period == 'AM'){
+        if(hour == 12){
+            hour = 0;
+        }
+    }
+
+    if(hour.toString().length == 1){
+        hour = '0'+hour;
+    }
+
+    return `${hour}:${minute}`;
 }

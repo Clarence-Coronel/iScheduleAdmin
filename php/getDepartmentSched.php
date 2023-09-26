@@ -7,12 +7,13 @@
         $dept = $temp;
     }
 
-    $query = "SELECT `scheduleID`, `day`, `startTime`, `stopTime`, `max`, `isBuffer` FROM `schedules` WHERE deptID = $dept AND isActive = true ORDER BY `startTime` ASC;";
+    $query = "SELECT `scheduleID`, `deptID`, `day`, `startTime`, `stopTime`, `max`, `isBuffer` FROM `schedules` WHERE deptID = $dept AND isActive = true ORDER BY `startTime` ASC;";
     $result = mysqli_query($conn,$query);
 	$count = mysqli_num_rows($result);
 
     class sched {
         public $scheduleID;
+        public $deptID;
         public $day;
         public $startTime;
         public $stopTime;
@@ -28,6 +29,7 @@
             $tempObj = new sched();
 
             $tempObj->scheduleID = $row['scheduleID'];
+            $tempObj->deptID = $row['deptID'];
             $tempObj->day = $row['day'];
             $tempObj->startTime = timeConverter($row['startTime']);
             $tempObj->stopTime = timeConverter($row['stopTime']);

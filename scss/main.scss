@@ -3788,15 +3788,15 @@ table{
     flex-flow: column;
     justify-content: center;
     align-items: center;
-    gap: 2vh;
 
     .time-container{
         width: 100%;
         display: flex;
         flex-flow: row nowrap;
         justify-content: space-around;
-        border-bottom:2px solid gray;
+        border-bottom:1px solid gray;
         padding-bottom: 2vh;
+        margin-bottom: 2vh;
 
         .editTime-container{
             width: 40%;
@@ -3841,6 +3841,7 @@ table{
         gap: 1vw;
         font-size: 1.1rem;
 
+        // border-bottom: 1px solid $fontbase-color;
 
         label{
             // color: red;
@@ -3849,8 +3850,7 @@ table{
         input{
             width: 10%;
             border: unset;
-            // border-bottom: 1px solid $fontbase-color;
-            text-align: right;
+            text-align: center;
         }
 
     }
