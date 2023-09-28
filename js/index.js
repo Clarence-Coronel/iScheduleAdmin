@@ -2388,7 +2388,7 @@ function generateDeptSched(dept){
                             </div>
                             <div class="button-container">
                                 <button data-sched_id="${id}" data-start="${startTime}" data-stop="${stopTime}" data-max="${max}" data-dept="${deptID}" data-day="${day}" onclick="editSched(this.dataset.sched_id, this.dataset.start, this.dataset.stop, this.dataset.max, this.dataset.dept, this.dataset.day)">Edit</button>
-                                <button data-sched_id="${id}" data-start="${startTime}" data-stop="${stopTime}" data-max="${max}" data-dept="${deptID}" data-day="${day}" onclick="deleteSched(this.dataset.sched_id, this.dataset.start, this.dataset.stop, this.dataset.max this.dataset.dept, this.dataset.day)">Delete</button>
+                                <button data-sched_id="${id}" data-dept="${deptID}" data-day="${day}" onclick="deleteSched(this.dataset.sched_id, this.dataset.dept, this.dataset.day)">Delete</button>
                             </div>
                         </div>
                         `;
@@ -2397,63 +2397,70 @@ function generateDeptSched(dept){
                             if(isBuffer) mon.unshift(blockTemplate);
                             else{
                                 mon.push(blockTemplate);
-                                mon.push(`
-                                <div class="block add">
-                                    <button class="add-btn" data-day="mon" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
-                                </div>`);
                             }
                         }
                         else if(day == 'tue'){
                             if(isBuffer) tue.unshift(blockTemplate);
                             else{
                                 tue.push(blockTemplate);
-                                tue.push(`
-                                <div class="block add">
-                                    <button class="add-btn" data-day="tue" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
-                                </div>`);
                             }
                         }
                         else if(day == 'wed'){
                             if(isBuffer) wed.unshift(blockTemplate);
                             else{
                                 wed.push(blockTemplate);
-                                wed.push(`
-                                <div class="block add">
-                                    <button class="add-btn" data-day="wed" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
-                                </div>`);
                             }
                         }
                         else if(day == 'thu'){
                             if(isBuffer) thu.unshift(blockTemplate);
                             else{
                                 thu.push(blockTemplate);
-                                thu.push(`
-                                <div class="block add">
-                                    <button class="add-btn" data-day="thu" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
-                                </div>`);
                             }
                         }
                         else if(day == 'fri'){
                             if(isBuffer) fri.unshift(blockTemplate);
                             else{
                                 fri.push(blockTemplate);
-                                fri.push(`
-                                <div class="block add">
-                                    <button class="add-btn" data-day="fri" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
-                                </div>`);
                             }
                         }
                         else if(day == 'sat'){
                             if(isBuffer) sat.unshift(blockTemplate);
                             else{
                                 sat.push(blockTemplate);
-                                sat.push(`
-                                <div class="block add">
-                                    <button class="add-btn" data-day="sat" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
-                                </div>`);
                             }
                         }
                     })
+
+                    mon.push(`
+                    <div class="block add">
+                        <button class="add-btn" data-day="mon" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                    </div>`);
+
+                    tue.push(`
+                    <div class="block add">
+                        <button class="add-btn" data-day="tue" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                    </div>`);
+
+                    wed.push(`
+                    <div class="block add">
+                        <button class="add-btn" data-day="wed" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                    </div>`);
+
+                    thu.push(`
+                    <div class="block add">
+                        <button class="add-btn" data-day="thu" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                    </div>`);
+
+                    fri.push(`
+                    <div class="block add">
+                        <button class="add-btn" data-day="fri" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                    </div>`);
+
+                    sat.push(`
+                    <div class="block add">
+                        <button class="add-btn" data-day="sat" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                    </div>`);
+
                     mon.forEach(item=>{
                         monContainer.innerHTML += item; 
                     });
@@ -2618,8 +2625,9 @@ function editSched(schedID, start, stop, max, deptID, day){
     
 }
 
-function deleteSched(schedID){
-    alert("Confirm Delete " + schedID);
+function deleteSched(schedID, deptID, day){
+    confirmModal("Deleting...", "Arer you sure?", `applyDeleteSched("${schedID}", "${deptID}", "${day}")`)
+
 }
 
 function addSched(day){
@@ -2691,6 +2699,39 @@ function applyEditSched(id, deptID, day){
     xhr.open('POST', './php/changeDeptSched.php', false);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(toSend);
+}
+
+function applyDeleteSched(schedID, deptID, day){
+
+    const xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function(){
+        if(this.readyState == 4){
+            if(this.status == 200){
+                if(this.responseText == 1){
+                    setTimeout(()=>{
+                        showResModal("Slot has been deleted")
+                        generateDeptSched(document.querySelector('#deptSelect').value);
+                    }, 500)
+                }
+            }
+        }
+    }
+
+    const dept = ['ENT', 'Hematology', 'Internal Medicine', 'Internal Medicine Clearance', 'Nephrology', 'Neurology', 'OB GYNE New', 'OB GYNE Old', 'OB GYNE ROS', 'Oncology', 'Pediatric Cardiology', 'Pediatric Clearance', 'Pediatric General', 'Psychiatry New', 'Psychiatry Old', 'Surgery', 'Surgery ROS'];
+    
+    if(day == 'mon') day = 'monday';
+    else if(day == 'tue') day = 'tuesday';
+    else if(day == 'wed') day = 'wednesday';
+    else if(day == 'thu') day = 'thursday';
+    else if(day == 'fri') day = 'friday';
+    else if(day == 'sat') day = 'saturday';
+
+    deptID = dept[deptID-1];
+
+    xhr.open("POST", "./php/deleteSched.php", false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send(`id=${schedID}&dept=${deptID}&day=${day}`);
 }
 
 function splitTime(time){

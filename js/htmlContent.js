@@ -937,7 +937,7 @@ let adminLogs = `
                             <input type="text" name="year" id="logYear" placeholder="YYYY" oninput="inputLimiterNum(this.id, 4)" onblur="inputLimiterBlur(this.id, 4)">
                         </div>
                         <select id="logActivity" class="form-select" aria-label="Default select example">
-                            <option hidden selected disabled value="">Activity</option>
+                            <option hidden selected disabled value="">Activity ayusin a-z</option>
                             <option value="Changed Password">Changed Password</option>
                             <option value="Changed Phone">Changed Phone</option>
                             <option value="Changed Mobile Video Tutorial">Changed Mobile Video Tutorial</option>
@@ -950,6 +950,8 @@ let adminLogs = `
                             <option value="Removed a blocked date">Unblocked a date</option>
                             <option value="Posted an announcement">Posted an Announcement</option>
                             <option value="Removed an announcement">Removed an Announcement</option>
+                            <option value="Changed a slot in ">Changed a slot in a department</option>
+                            <option value="Removed a slot in ">Removed a slot in a department</option>
                         </select>
                         <select id="logAdminType" class="form-select" aria-label="Default select example">
                             <option hidden selected disabled value="">Admin Type</option>
