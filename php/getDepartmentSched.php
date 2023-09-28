@@ -1,5 +1,6 @@
 <?php 
     require "connect.php";
+    require "functions.php";
 
     $dept = null;
 
@@ -46,21 +47,5 @@
     else{
         echo 0;
     }
-
-    // 13:00
-    function timeConverter($time){
-        $delimiter = ':';
-        $seperated = explode($delimiter, $time);
-
-        if((int)$seperated[0] >= 12){
-            if((int)$seperated[0] > 12){
-                $seperated[0] = (int)$seperated[0] - 12;
-            }
-            
-            return "{$seperated[0]}:{$seperated[1]} PM";
-        }
-        else{
-            return "{$seperated[0]}:{$seperated[1]} AM";
-        }  
-    }
+    
 ?>

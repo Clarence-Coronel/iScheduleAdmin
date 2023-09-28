@@ -2157,15 +2157,15 @@ function applyLogFilter(){
         fullDate = "";
     }
 
+    if(fullDate == "" && activity == "" && adminType == "" && sortBy == ""){
+        return;
+    }
+
     let obj = {
         date: fullDate,
         activity: activity,
         adminType: adminType,
         sortBy: sortBy
-    }
-
-    if(fulldate == "" && activity == "" && adminType == "" && sortBy == ""){
-        return;
     }
 
     let toSend = JSON.stringify(obj);
@@ -2175,7 +2175,6 @@ function applyLogFilter(){
         if(this.readyState == 4){
             if(this.status == 200){
                try {
-                console.log(xhr.responseText)
                     
                     let arrayOfObjects = JSON.parse(xhr.responseText);
                     table.innerHTML = "";
