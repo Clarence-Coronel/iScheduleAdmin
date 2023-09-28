@@ -2376,7 +2376,7 @@ function generateDeptSched(dept){
                         else if(isBuffer == 0) isBuffer = false;
 
                         if(isBuffer) clss = 'buffer';
-                        else clss = 'nope';
+                        else clss = '';
                         
                         let blockTemplate = 
                         `
@@ -2393,40 +2393,22 @@ function generateDeptSched(dept){
                         `;
 
                         if(day == 'mon'){
-                            if(isBuffer) mon.unshift(blockTemplate);
-                            else{
-                                mon.push(blockTemplate);
-                            }
+                            mon.push(blockTemplate);
                         }
                         else if(day == 'tue'){
-                            if(isBuffer) tue.unshift(blockTemplate);
-                            else{
-                                tue.push(blockTemplate);
-                            }
+                            tue.push(blockTemplate);
                         }
                         else if(day == 'wed'){
-                            if(isBuffer) wed.unshift(blockTemplate);
-                            else{
-                                wed.push(blockTemplate);
-                            }
+                            wed.push(blockTemplate);
                         }
                         else if(day == 'thu'){
-                            if(isBuffer) thu.unshift(blockTemplate);
-                            else{
-                                thu.push(blockTemplate);
-                            }
+                            thu.push(blockTemplate);
                         }
                         else if(day == 'fri'){
-                            if(isBuffer) fri.unshift(blockTemplate);
-                            else{
-                                fri.push(blockTemplate);
-                            }
+                            fri.push(blockTemplate);
                         }
                         else if(day == 'sat'){
-                            if(isBuffer) sat.unshift(blockTemplate);
-                            else{
-                                sat.push(blockTemplate);
-                            }
+                            sat.push(blockTemplate);
                         }
                     })
 
@@ -2479,7 +2461,68 @@ function generateDeptSched(dept){
                         satContainer.innerHTML += item;
                     });
                 } catch (error) {
-                    
+                    let monContainer = document.querySelector('#monday .timeslot-container');
+                    let tueContainer = document.querySelector('#tuesday .timeslot-container');
+                    let wedContainer = document.querySelector('#wednesday .timeslot-container');
+                    let thuContainer = document.querySelector('#thursday .timeslot-container');
+                    let friContainer = document.querySelector('#friday .timeslot-container');
+                    let satContainer = document.querySelector('#saturday .timeslot-container');
+
+                    const mon = [];
+                    const tue = [];
+                    const wed = [];
+                    const thu = [];
+                    const fri = [];
+                    const sat = [];
+
+                    mon.push(`
+                    <div class="block add">
+                        <button class="add-btn" data-day="mon" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                    </div>`);
+
+                    tue.push(`
+                    <div class="block add">
+                        <button class="add-btn" data-day="tue" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                    </div>`);
+
+                    wed.push(`
+                    <div class="block add">
+                        <button class="add-btn" data-day="wed" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                    </div>`);
+
+                    thu.push(`
+                    <div class="block add">
+                        <button class="add-btn" data-day="thu" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                    </div>`);
+
+                    fri.push(`
+                    <div class="block add">
+                        <button class="add-btn" data-day="fri" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                    </div>`);
+
+                    sat.push(`
+                    <div class="block add">
+                        <button class="add-btn" data-day="sat" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                    </div>`);
+
+                    mon.forEach((item)=>{
+                        monContainer.innerHTML += item;
+                    })
+                    tue.forEach((item)=>{
+                        tueContainer.innerHTML += item;
+                    })
+                    wed.forEach((item)=>{
+                        wedContainer.innerHTML += item;
+                    })
+                    thu.forEach((item)=>{
+                        thuContainer.innerHTML += item;
+                    })
+                    fri.forEach((item)=>{
+                        friContainer.innerHTML += item;
+                    })
+                    sat.forEach((item)=>{
+                        satContainer.innerHTML += item;
+                    })
                 }
             }
         }
@@ -2592,8 +2635,10 @@ function editSched(schedID, start, stop, max, deptID, day){
             </div>
         </div>
         <div class="max-container">
-            <label for="maxSlot">Slot: </label>
-            <input type="text" placeholder="0" value="${max}" id="maxSlot" oninput="filterPhoneInput(this.id); inputLimiter(this.id,2)" onblur="inputLimiterBlur(this.id, 2)">
+            <div class="slot-wrapper">
+                <label for="maxSlot">Slot: </label>
+                <input type="text" placeholder="0" value="${max}" id="maxSlot" oninput="filterPhoneInput(this.id); inputLimiter(this.id,2)" onblur="inputLimiterBlur(this.id, 2)">   
+            </div>
         </div>
         <div class="error-container">
             <span class="msg"></span>
@@ -2625,11 +2670,142 @@ function editSched(schedID, start, stop, max, deptID, day){
 }
 
 function deleteSched(schedID, deptID, day){
-    confirmModal("Deleting...", "Arer you sure?", `applyDeleteSched("${schedID}", "${deptID}", "${day}")`)
+    confirmModal("Deleting...", "Are you sure?", `applyDeleteSched("${schedID}", "${deptID}", "${day}")`)
 
 }
 
 function addSched(day){
+    resetModal();
+
+    let modalTitle = document.querySelector('.modal-title');
+    let modalBody = document.querySelector('.modal-body');
+    let modalPositive = document.querySelector('.positive');
+    let modalNegative = document.querySelector('.negative');
+    let close = document.querySelector('.btn-close');
+    let modalHeader = document.querySelector('.modal-header');
+    let modalFooter = document.querySelector('.modal-footer');
+
+    modalTitle.innerText = 'Creating...';
+    modalBody.innerHTML = `
+    <div class="editSched-container">
+        <div class="time-container">
+            <div class="editTime-container start">
+                <select class="form-select" aria-label="Default select example" id="start-hour">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </select>
+                <span>:</span>
+                <select class="form-select" aria-label="Default select example" id="start-minuteA">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <select class="form-select" aria-label="Default select example" id="start-minuteB">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                </select>
+                <span>&nbsp;</span>
+                <select class="form-select" aria-label="Default select example" id="start-period">
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                </select>
+            </div>
+            <span class="divider">-</span>
+            <div class="editTime-container stop">
+                <select class="form-select" aria-label="Default select example" id="stop-hour">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </select>
+                <span>:</span>
+                <select class="form-select" aria-label="Default select example" id="stop-minuteA">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <select class="form-select" aria-label="Default select example" id="stop-minuteB">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2"">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                </select>
+                <span>&nbsp;</span>
+                <select class="form-select" aria-label="Default select example" id="stop-period">
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                </select>
+            </div>
+        </div>
+        <div class="max-container alt">
+            <div class="slot-wrapper">
+                <label for="maxSlot">Slot: </label>
+                <input type="text" placeholder="0" value="" id="maxSlot" oninput="filterPhoneInput(this.id); inputLimiter(this.id,2)" onblur="inputLimiterBlur(this.id, 2)">
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input add-sched" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Buffer</label>
+            </div>
+        </div>
+        <div class="error-container">
+            <span class="msg"></span>
+        </div>
+    </div>
+    `;
+
+    modalPositive.innerText = 'Create';
+    modalPositive.setAttribute("onclick", `applyAddSched("${day}")`);
+    modalPositive.removeAttribute('data-bs-dismiss');
+    modalLauncher();
+
+
+    document.querySelector(`#start-hour option[value="7"]`).setAttribute('selected', 'selected');
+    document.querySelector(`#start-minuteA option[value="0"]`).setAttribute('selected', 'selected');
+    document.querySelector(`#start-minuteB option[value="0"]`).setAttribute('selected', 'selected');
+    document.querySelector(`#start-period option[value="AM"]`).setAttribute('selected', 'selected');
+
+    document.querySelector(`#stop-hour option[value="8"]`).setAttribute('selected', 'selected');
+    document.querySelector(`#stop-minuteA option[value="0"]`).setAttribute('selected', 'selected');
+    document.querySelector(`#stop-minuteB option[value="0"]`).setAttribute('selected', 'selected');
+    document.querySelector(`#stop-period option[value="AM"]`).setAttribute('selected', 'selected');
 }
 
 function applyEditSched(id, deptID, day){
@@ -2687,7 +2863,7 @@ function applyEditSched(id, deptID, day){
             if(this.status){
                 if(this.responseText == 1){
                     setTimeout(()=>{
-                        showResModal("Schedule has been updated");
+                        showResModal("Slot has been updated");
                         generateDeptSched(document.querySelector('#deptSelect').value);
                     }, 500)
                 }
@@ -2731,6 +2907,85 @@ function applyDeleteSched(schedID, deptID, day){
     xhr.open("POST", "./php/deleteSched.php", false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(`id=${schedID}&dept=${deptID}&day=${day}`);
+}
+
+function applyAddSched(day){
+    const deptVal = document.querySelector("#deptSelect").value;
+
+    // Start
+    const startHour = document.querySelector(`#start-hour`).value;
+    const startMinuteA = document.querySelector(`#start-minuteA`).value;
+    const startMinuteB = document.querySelector(`#start-minuteB`).value;
+    const startPeriod = document.querySelector(`#start-period`).value;
+
+    // Stop
+    const stopHour = document.querySelector(`#stop-hour`).value;
+    const stopMinuteA = document.querySelector(`#stop-minuteA`).value;
+    const stopMinuteB = document.querySelector(`#stop-minuteB`).value;
+    const stopPeriod = document.querySelector(`#stop-period`).value;
+
+    const maxSlot = document.querySelector('#maxSlot').value;
+
+    let isBuffer = document.querySelector('.add-sched').checked;
+
+    if(isBuffer) isBuffer = 1;
+    else isBuffer = 0;
+
+    const startTime =  convertToMilitaryTime(`${startHour}:${startMinuteA}${startMinuteB} ${startPeriod}`);
+    const stopTime = convertToMilitaryTime(`${stopHour}:${stopMinuteA}${stopMinuteB} ${stopPeriod}`);
+
+    if(maxSlot == ''){
+        showError("Slot cannot be empty");
+        return;
+    }
+    else{
+        document.querySelector('.positive').setAttribute('data-bs-dismiss', 'modal');
+        document.querySelector('.negative').click();
+    }
+
+    const dept = ['ENT', 'Hematology', 'Internal Medicine', 'Internal Medicine Clearance', 'Nephrology', 'Neurology', 'OB GYNE New', 'OB GYNE Old', 'OB GYNE ROS', 'Oncology', 'Pediatric Cardiology', 'Pediatric Clearance', 'Pediatric General', 'Psychiatry New', 'Psychiatry Old', 'Surgery', 'Surgery ROS'];
+    let dayName = "";
+
+    if(day == 'mon') dayName = 'monday';
+    else if(day == 'tue') dayName = 'tuesday';
+    else if(day == 'wed') dayName = 'wednesday';
+    else if(day == 'thu') dayName = 'thursday';
+    else if(day == 'fri') dayName = 'friday';
+    else if(day == 'sat') dayName = 'saturday';
+
+    deptName = dept[deptVal-1];
+
+    const obj = {
+        deptID: deptVal,
+        day: day,
+        startTime: startTime,
+        stopTime: stopTime,
+        max: maxSlot,
+        isBuffer: isBuffer,
+        dayName: dayName,
+        deptName: deptName,
+    };
+
+    const toSend = JSON.stringify(obj);
+
+    const xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function(){
+        if(this.readyState == 4){
+            if(this.status == 200){
+                if(this.responseText == 1){
+                    setTimeout(()=>{
+                        showResModal("New slot has been added");
+                        generateDeptSched(document.querySelector('#deptSelect').value);
+                    }, 500)
+                }
+            }
+        }
+    }
+
+    xhr.open("POST","./php/postDeptSched.php", false);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(toSend);
 }
 
 function splitTime(time){

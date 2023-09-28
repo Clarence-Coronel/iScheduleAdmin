@@ -3147,8 +3147,20 @@ table {
   gap: 1vw;
   font-size: 1.1rem;
 }
+.editSched-container .max-container .slot-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 1vw;
+  width: 50% !important;
+}
+.editSched-container .max-container .form-switch {
+  display: flex;
+  justify-content: center;
+  gap: 1vw;
+  width: 50% !important;
+}
 .editSched-container .max-container input {
-  width: 10%;
+  width: 15%;
   border: unset;
   text-align: center;
 }/*# sourceMappingURL=main.css.map */

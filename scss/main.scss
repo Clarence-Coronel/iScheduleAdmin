@@ -3841,17 +3841,28 @@ table{
         gap: 1vw;
         font-size: 1.1rem;
 
-        // border-bottom: 1px solid $fontbase-color;
+        .slot-wrapper{
+            display: flex;
+            justify-content: center;
+            gap: 1vw;
+            width: 50% !important;
+        }
+        
+        .form-switch{
+            display: flex;
+            justify-content: center;
+            gap: 1vw;
+            width: 50% !important;
+        }
 
         label{
             // color: red;
         }
 
         input{
-            width: 10%;
+            width: 15%;
             border: unset;
             text-align: center;
         }
-
     }
 }

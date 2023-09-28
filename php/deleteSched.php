@@ -20,7 +20,5 @@
         mysqli_query($conn, $adminStampQuery);
         echo 1;
     }
-    
-
 
 ?>
