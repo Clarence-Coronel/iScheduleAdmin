@@ -1186,7 +1186,7 @@ function resetModal(){
     positive.removeAttribute('onclick');
 }
 
-function capitalFirstLetter(str, isFullName = true){
+function capitalFirstLetter(str){
     str = str.split(' ');
     let newStr = [];
 
@@ -1195,7 +1195,6 @@ function capitalFirstLetter(str, isFullName = true){
     });
 
     return newStr.join(' ');
-    
 }
 
 function applyNewPhone(){

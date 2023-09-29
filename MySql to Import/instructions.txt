@@ -1,0 +1,4 @@
+*gumawa muna ng empty database with name "ischedule"
+*database
+*import tab
+*File to import
