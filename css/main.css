@@ -845,6 +845,7 @@ input:-webkit-autofill:focus {
   max-height: 40vh;
   overflow: auto !important;
   border: 1px solid rgb(226, 222, 222);
+  border-radius: 5px;
 }
 
 .logs-table {

@@ -12,7 +12,7 @@
     $dept = $arr[1];
     $day = $arr[2];
 
-    $query = "DELETE FROM `schedules` WHERE `scheduleID` = $schedID";
+    $query = "UPDATE `schedules` SET `isActive`= false WHERE `scheduleID` = $schedID";
 
     if(mysqli_query($conn, $query)){
         $username = $_SESSION['username'];
