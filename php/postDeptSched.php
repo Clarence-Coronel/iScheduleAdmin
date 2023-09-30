@@ -10,7 +10,7 @@
     if(mysqli_query($conn, $query)){
         session_start();
         $username = $_SESSION['username'];
-        $adminStampQuery = "INSERT INTO `admin_logs`(`username`, `activity`) VALUES ('$username','Added a slot in $object->deptName\'s $object->dayName schedule')";
+        $adminStampQuery = "INSERT INTO `admin_logs`(`username`, `activity`) VALUES ('$username','Inserted a new slot in $object->deptName\'s $object->dayName schedule')";
         mysqli_query($conn, $adminStampQuery);
         echo 1;
     }

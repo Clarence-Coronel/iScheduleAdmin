@@ -846,6 +846,7 @@ let adminLogs = `
                             <option value="Removed a blocked date">Unblocked a date</option>
                             <option value="Posted an announcement">Posted an Announcement</option>
                             <option value="Removed an announcement">Removed an Announcement</option>
+                            <option value="Inserted a new slot in ">Inserted a new slot in a department</option>
                             <option value="Changed a slot in ">Changed a slot in a department</option>
                             <option value="Removed a slot in ">Removed a slot in a department</option>
                         </select>
