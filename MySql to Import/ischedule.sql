@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 29, 2023 at 04:52 AM
+-- Generation Time: Sep 30, 2023 at 03:36 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -44,7 +44,7 @@ CREATE TABLE `admins` (
 
 INSERT INTO `admins` (`username`, `adminType`, `firstName`, `middleName`, `lastName`, `phone`, `password`, `isActive`) VALUES
 ('clarence-coronel1', 'super admin', 'clarence', 'reyes', 'coronel', '0967 599 8955', '$2y$10$hCCpnZ1vHQ2HSRNnGZING.ye1SUSTJG6x60gOuYZNrV/RmiGzKewW', 1),
-('test-admini2', 'admin i', 'test', 'test', 'admini', '0967 981 2341', '$2y$10$6ckYQ6MsxVD5q4oRoH1FiOXxu2Hh6MmfEnFSdC60IF9tGtHuvH0FK', 1),
+('test-admini2', 'Admin I', 'test', 'test', 'admini', '0967 981 2341', '$2y$10$6ckYQ6MsxVD5q4oRoH1FiOXxu2Hh6MmfEnFSdC60IF9tGtHuvH0FK', 1),
 ('test-adminii3', 'admin ii', 'test', 'test', 'adminii', '0986 123 3442', '$2y$10$04dLVovICNDlQXcDTQx7/uHZ/Ee0t8.csy3MDOAqSAm6ORmw0Qe42', 1),
 ('test-admins4', 'super admin', 'test', 'test', 'admins', '0962 259 9922', '$2y$10$qVNgfInvgxRUEOr3entVE.ym5chgBghGloImpIuO91odrPl9yCct6', 1),
 ('test-test5', 'admin ii', 'test', 'test', 'test', '0947 594 8455', '$2y$10$n76h.qZJ7LqMa2bmSfPo4OgRaHF.BWFcMIVIud9P5FP5RKlQGqsmW', 0);
@@ -184,7 +184,44 @@ INSERT INTO `admin_logs` (`adminLogsID`, `username`, `activity`, `logDateTime`) 
 (268, 'clarence-coronel1', 'Added a slot in ENT\'s thursday schedule', '2023-09-28 15:26:54'),
 (269, 'clarence-coronel1', 'Changed a slot in ENT\'s tuesday schedule', '2023-09-28 15:27:29'),
 (270, 'clarence-coronel1', 'Added a slot in Surgery ROS\'s monday schedule', '2023-09-28 15:31:45'),
-(271, 'clarence-coronel1', 'Added a slot in Surgery ROS\'s monday schedule', '2023-09-28 15:32:28');
+(271, 'clarence-coronel1', 'Added a slot in Surgery ROS\'s monday schedule', '2023-09-28 15:32:28'),
+(272, 'test-admins4', 'Blocked a new date: test', '2023-09-29 14:08:30'),
+(273, 'test-admins4', 'Blocked a new date: test', '2023-09-29 14:15:39'),
+(274, 'test-admins4', 'Removed a blocked date: ', '2023-09-29 14:37:35'),
+(275, 'test-admins4', 'Blocked a new date: testtesttesttesttesttesttestte', '2023-09-29 14:38:29'),
+(276, 'clarence-coronel1', 'Changed admin type of test-admini2', '2023-09-30 16:21:02'),
+(277, 'clarence-coronel1', 'Changed admin type of test-admini2', '2023-09-30 16:21:09'),
+(278, 'clarence-coronel1', 'Removed a blocked date: ', '2023-09-30 16:32:19'),
+(279, 'clarence-coronel1', 'Viewed feedback', '2023-09-30 16:32:29'),
+(280, 'clarence-coronel1', 'Viewed feedback', '2023-09-30 16:36:20'),
+(281, 'clarence-coronel1', 'Removed an announcement: ', '2023-09-30 16:51:08'),
+(282, 'clarence-coronel1', 'Viewed feedback', '2023-09-30 16:51:35'),
+(283, 'clarence-coronel1', 'Viewed feedback', '2023-09-30 17:00:42'),
+(284, 'clarence-coronel1', 'Viewed feedback', '2023-09-30 17:00:44'),
+(285, 'clarence-coronel1', 'Viewed feedback', '2023-09-30 17:01:19'),
+(286, 'clarence-coronel1', 'Added a slot in ENT\'s wednesday schedule', '2023-09-30 17:02:25'),
+(287, 'clarence-coronel1', 'Removed a slot in ENT\'s wednesday schedule', '2023-09-30 17:02:28'),
+(288, 'clarence-coronel1', 'Changed a slot in ENT\'s wednesday schedule', '2023-09-30 17:02:33'),
+(289, 'clarence-coronel1', 'Viewed feedback', '2023-09-30 17:04:59'),
+(290, 'clarence-coronel1', 'Viewed feedback', '2023-09-30 17:05:00'),
+(291, 'clarence-coronel1', 'Inserted a new slot in Surgery ROS\'s tuesday schedule', '2023-09-30 17:10:59'),
+(292, 'clarence-coronel1', 'Inserted a new slot in Neurology\'s monday schedule', '2023-09-30 10:22:23'),
+(293, 'clarence-coronel1', 'Removed a slot in ENT\'s monday schedule', '2023-09-30 10:53:34'),
+(294, 'clarence-coronel1', 'Inserted a new slot in ENT\'s monday schedule', '2023-09-30 10:53:42'),
+(295, 'clarence-coronel1', 'Removed a slot in ENT\'s monday schedule', '2023-09-30 10:53:52'),
+(296, 'clarence-coronel1', 'Inserted a new slot in ENT\'s monday schedule', '2023-09-30 10:55:56'),
+(297, 'clarence-coronel1', 'Inserted a new slot in ENT\'s monday schedule', '2023-09-30 11:01:07'),
+(298, 'clarence-coronel1', 'Removed a slot in ENT\'s monday schedule', '2023-09-30 11:20:45'),
+(299, 'clarence-coronel1', 'Removed a blocked date: ', '2023-09-30 11:48:20'),
+(300, 'clarence-coronel1', 'Changed a slot in ENT\'s tuesday schedule', '2023-09-30 13:13:09'),
+(301, 'clarence-coronel1', 'Inserted a new slot in ENT\'s monday schedule', '2023-09-30 17:58:45'),
+(302, 'clarence-coronel1', 'Inserted a new slot in ENT\'s monday schedule', '2023-09-30 18:32:47'),
+(303, 'clarence-coronel1', 'Removed a slot in ENT\'s monday schedule', '2023-09-30 18:33:04'),
+(304, 'clarence-coronel1', 'Inserted a new slot in ENT\'s monday schedule', '2023-09-30 18:33:21'),
+(305, 'clarence-coronel1', 'Removed a slot in ENT\'s monday schedule', '2023-09-30 18:33:28'),
+(306, 'clarence-coronel1', 'Inserted a new slot in ENT\'s monday schedule', '2023-09-30 18:33:40'),
+(307, 'clarence-coronel1', 'Inserted a new slot in ENT\'s monday schedule', '2023-09-30 18:36:51'),
+(308, 'clarence-coronel1', 'Removed a slot in ENT\'s monday schedule', '2023-09-30 18:38:20');
 
 -- --------------------------------------------------------
 
@@ -220,7 +257,6 @@ INSERT INTO `announcements` (`annID`, `annTitle`, `annBody`, `annDateTime`, `aut
 (13, 'test2', 'test2', '2023-09-18 18:01:57', 'clarence-coronel1'),
 (14, 'test', 'test', '2023-09-18 18:02:11', 'clarence-coronel1'),
 (15, 'testsetstes', 'testestset', '2023-09-18 18:10:50', 'clarence-coronel1'),
-(17, 'test', 'testetsetest', '2023-09-18 18:12:35', 'clarence-coronel1'),
 (18, 'test', 'test', '2023-09-18 18:20:10', 'clarence-coronel1'),
 (19, 'test', 'test', '2023-09-19 15:17:14', 'clarence-coronel1');
 
@@ -246,7 +282,6 @@ CREATE TABLE `appointments` (
   `appointmentType` varchar(30) NOT NULL,
   `scheduleID` int(11) NOT NULL,
   `appointmentDate` date DEFAULT NULL,
-  `day` varchar(3) NOT NULL,
   `caseNo` varchar(10) DEFAULT NULL,
   `appointmentStatus` varchar(30) NOT NULL,
   `isArchived` tinyint(1) NOT NULL,
@@ -255,6 +290,20 @@ CREATE TABLE `appointments` (
   `followUpImgLink` varchar(400) DEFAULT NULL,
   `followUpDateNote` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `appointments`
+--
+
+INSERT INTO `appointments` (`appointmentID`, `departmentID`, `firstName`, `middleName`, `lastName`, `sex`, `birthdate`, `phone`, `province`, `municipality`, `barangay`, `patientType`, `appointmentType`, `scheduleID`, `appointmentDate`, `caseNo`, `appointmentStatus`, `isArchived`, `cancelReason`, `dateSubmitted`, `followUpImgLink`, `followUpDateNote`) VALUES
+(1, 1, 'clarence', 'reyes', 'coronel', 'm', '2001-10-17', '0967 599 8955', 'bulacan', 'plaridel', 'banga ii', 'new', 'website', 30, '2023-10-02', NULL, 'active', 0, NULL, '2023-09-30', NULL, NULL),
+(2, 1, 'Juan', 'Cruz', 'Reyes', 'm', '2001-10-10', '0967 699 8966', 'bulacan', 'plaridel', 'banga ii', 'new', 'website', 8, '2023-10-03', NULL, 'active', 0, NULL, '2023-09-30', NULL, NULL),
+(3, 1, 'clarence', 'reyes', 'coronel', 'm', '2001-02-12', '0967 599 8955', 'bulacan', 'pandi', 'bagbaguin', 'new', 'website', 32, '2023-10-02', '', 'active', 0, NULL, '2023-09-30', NULL, NULL),
+(4, 1, 'clarence', 'eyes', 'coronel', 'f', '2001-03-12', '0967 599 8955', 'bulacan', 'plaridel', 'agnaya', 'old', 'website', 32, '2023-10-02', '', 'active', 0, NULL, '2023-09-30', NULL, NULL),
+(5, 1, 'clarence', 'reyes', 'coronel', 'm', '2001-02-12', '0967 599 8955', 'bulacan', 'plaridel', 'agnaya', 'new', 'website', 32, '2023-10-02', '', 'active', 0, NULL, '2023-09-30', NULL, NULL),
+(9, 1, 'clarence', 'reyes', 'coronel', 'm', '2001-03-12', '0967 599 8955', 'bulacan', 'pulilan', 'balatong A', 'new', 'website', 32, '2023-10-02', '', 'active', 0, NULL, '2023-09-30', NULL, NULL),
+(10, 1, 'clarence', 'eyes', 'coronel', 'm', '2020-03-12', '0967 599 8955', 'bulacan', 'pandi', 'bagbaguin', 'old', 'website', 32, '2023-10-02', '', 'active', 0, NULL, '2023-09-30', NULL, NULL),
+(11, 1, 'clarence', 'reyes', 'coronel', 'm', '2001-03-12', '0967 599 8955', 'bulacan', 'paombong', 'binakod', 'old', 'website', 35, '2023-10-02', '', 'active', 0, NULL, '2023-09-30', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -297,7 +346,9 @@ CREATE TABLE `block_dates` (
 INSERT INTO `block_dates` (`blockID`, `blockDate`, `blockName`, `isYearly`) VALUES
 (4, '2023-12-25', 'xmas', 1),
 (5, '2025-10-12', 'test', 1),
-(6, '2028-08-08', 'test', 0);
+(7, '2020-09-10', 'finisheddate', 0),
+(8, '2021-03-12', 'finisheddate2', 1),
+(9, '2023-10-01', 'test', 1);
 
 -- --------------------------------------------------------
 
@@ -385,19 +436,29 @@ CREATE TABLE `schedules` (
 
 INSERT INTO `schedules` (`scheduleID`, `deptID`, `day`, `startTime`, `stopTime`, `max`, `isActive`, `isBuffer`) VALUES
 (2, 1, 'tue', '10:00:00', '11:00:00', 10, 1, 1),
-(3, 1, 'wed', '08:00:00', '09:00:00', 10, 1, 1),
+(3, 1, 'wed', '08:50:00', '09:00:00', 10, 1, 1),
 (5, 1, 'fri', '08:00:00', '09:00:00', 10, 1, 1),
 (6, 1, 'sat', '08:00:00', '09:00:00', 10, 1, 1),
-(8, 1, 'tue', '09:00:00', '10:00:00', 15, 1, 0),
+(8, 1, 'tue', '09:00:00', '10:00:00', 1, 1, 0),
 (9, 1, 'wed', '09:00:00', '10:00:00', 15, 1, 0),
 (12, 1, 'sat', '09:00:00', '10:00:00', 15, 1, 0),
 (19, 1, 'tue', '07:40:00', '08:00:00', 1, 1, 1),
-(20, 1, 'mon', '07:00:00', '08:00:00', 1, 1, 0),
+(20, 1, 'mon', '07:00:00', '08:00:00', 1, 0, 0),
 (21, 1, 'mon', '07:00:00', '08:00:00', 1, 1, 1),
 (22, 1, 'thu', '07:00:00', '08:00:00', 1, 1, 0),
 (23, 1, 'thu', '07:00:00', '08:00:00', 1, 1, 0),
 (24, 17, 'mon', '07:00:00', '08:00:00', 19, 1, 0),
-(25, 17, 'mon', '10:00:00', '11:00:00', 10, 1, 1);
+(25, 17, 'mon', '10:00:00', '11:00:00', 10, 1, 1),
+(27, 17, 'tue', '07:00:00', '08:00:00', 10, 1, 0),
+(28, 6, 'mon', '07:00:00', '08:00:00', 1, 1, 0),
+(29, 1, 'mon', '07:00:00', '08:00:00', 1, 0, 0),
+(30, 1, 'mon', '07:00:00', '08:00:00', 1, 1, 0),
+(31, 1, 'mon', '09:00:00', '10:00:00', 1, 0, 0),
+(32, 1, 'mon', '08:00:00', '09:00:00', 5, 1, 0),
+(33, 1, 'mon', '11:00:00', '00:00:00', 10, 0, 0),
+(34, 1, 'mon', '11:00:00', '00:00:00', 1, 0, 0),
+(35, 1, 'mon', '11:00:00', '12:00:00', 10, 1, 0),
+(36, 1, 'mon', '11:00:00', '00:00:00', 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -474,7 +535,8 @@ ALTER TABLE `announcements`
 --
 ALTER TABLE `appointments`
   ADD PRIMARY KEY (`appointmentID`),
-  ADD KEY `appointment-departments` (`departmentID`);
+  ADD KEY `appointments-departments` (`departmentID`),
+  ADD KEY `appointments-schedules` (`scheduleID`);
 
 --
 -- Indexes for table `block_dates`
@@ -509,7 +571,7 @@ ALTER TABLE `schedules`
 -- AUTO_INCREMENT for table `admin_logs`
 --
 ALTER TABLE `admin_logs`
-  MODIFY `adminLogsID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=272;
+  MODIFY `adminLogsID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=309;
 
 --
 -- AUTO_INCREMENT for table `announcements`
@@ -521,13 +583,13 @@ ALTER TABLE `announcements`
 -- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `appointmentID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `appointmentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `block_dates`
 --
 ALTER TABLE `block_dates`
-  MODIFY `blockID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `blockID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `departments`
@@ -545,7 +607,7 @@ ALTER TABLE `feedbacks`
 -- AUTO_INCREMENT for table `schedules`
 --
 ALTER TABLE `schedules`
-  MODIFY `scheduleID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `scheduleID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- Constraints for dumped tables
@@ -561,7 +623,8 @@ ALTER TABLE `admin_logs`
 -- Constraints for table `appointments`
 --
 ALTER TABLE `appointments`
-  ADD CONSTRAINT `appointment-departments` FOREIGN KEY (`departmentID`) REFERENCES `departments` (`deptID`);
+  ADD CONSTRAINT `appointments-departments` FOREIGN KEY (`departmentID`) REFERENCES `departments` (`deptID`),
+  ADD CONSTRAINT `appointments-schedules` FOREIGN KEY (`scheduleID`) REFERENCES `schedules` (`scheduleID`);
 
 --
 -- Constraints for table `schedules`
