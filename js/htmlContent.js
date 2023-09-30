@@ -411,17 +411,18 @@ let viewSchedule = `
                         <tr>
                             <th>Full Name</th>
                             <th>Department</th>
-                            <th>Appointment Date</th>
-                            <th>Time Slot</th>
+                            <th>Appointment<br>Date</th>
+                            <th>Slot</th>
                             <th>Status</th>
                             <th>Sex</th>
                             <th>Birthdate</th>
                             <th>Phone #</th>
                             <th>Address</th>
-                            <th>Patient Type</th>
+                            <th>Patient<br>Type</th>
                             <th>Case #</th>
                             <th>Submitted On</th>
-                            <th>Reason Cancelled</th>
+                            <th>Reason<br>Cancelled</th>
+                            <th>&nbsp;</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -429,8 +430,8 @@ let viewSchedule = `
                             <td>Cruz, John Test</td>
                             <td>Oncology</td>
                             <td title="YYYY-MM-DD">2023-08-25</td>
-                            <td>1:00 PM - 2:00PM (0)</td>
-                            <td><button class="editBtn cancelled" onclick="alert('Change status')" data-id="12">Cancelled<span class="ico-list ico-edit">(edit)</span></button></td>
+                            <td>1:00 PM - 2:00PM</td>
+                            <td class="cancelled">Cancelled</td>
                             <td>Male</td>
                             <td title="YYYY-MM-DD">2001-10-21</td>
                             <td>0942 423 4277</td>
@@ -439,113 +440,8 @@ let viewSchedule = `
                             <td>123456</td>
                             <td title="YYYY-MM-DD">2023-06-27</td>
                             <td>TrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabaho</td>
+                            <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Edit</button></td>
                         </tr>
-                        <tr>
-                            <td>Cruz, John Test</td>
-                            <td>Oncology</td>
-                            <td title="YYYY-MM-DD">2023-08-25</td>
-                            <td>1:00 PM - 2:00PM (0)</td>
-                            <td><button class="editBtn cancelled" onclick="alert('Change status')" data-id="12">Cancelled<span class="ico-list ico-edit">(edit)</span></button></td>
-                            <td>Male</td>
-                            <td title="YYYY-MM-DD">2001-10-21</td>
-                            <td>0942 423 4277</td>
-                            <td>Banga II, Plaridel, Bulacan</td>
-                            <td>New Patient</td>
-                            <td>123456</td>
-                            <td title="YYYY-MM-DD">2023-06-27</td>
-                            <td>TrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabaho</td>
-                        </tr>
-                        <tr>
-                            <td>Cruz, John Test</td>
-                            <td>Oncology</td>
-                            <td title="YYYY-MM-DD">2023-08-25</td>
-                            <td>1:00 PM - 2:00PM (0)</td>
-                            <td><button class="editBtn cancelled" onclick="alert('Change status')" data-id="12">Cancelled<span class="ico-list ico-edit">(edit)</span></button></td>
-                            <td>Male</td>
-                            <td title="YYYY-MM-DD">2001-10-21</td>
-                            <td>0942 423 4277</td>
-                            <td>Banga II, Plaridel, Bulacan</td>
-                            <td>New Patient</td>
-                            <td>123456</td>
-                            <td title="YYYY-MM-DD">2023-06-27</td>
-                            <td>TrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabaho</td>
-                        </tr>
-                        <tr>
-                            <td>Cruz, John Test</td>
-                            <td>Oncology</td>
-                            <td title="YYYY-MM-DD">2023-08-25</td>
-                            <td>1:00 PM - 2:00PM (0)</td>
-                            <td><button class="editBtn cancelled" onclick="alert('Change status')" data-id="12">Cancelled<span class="ico-list ico-edit">(edit)</span></button></td>
-                            <td>Male</td>
-                            <td title="YYYY-MM-DD">2001-10-21</td>
-                            <td>0942 423 4277</td>
-                            <td>Banga II, Plaridel, Bulacan</td>
-                            <td>New Patient</td>
-                            <td>123456</td>
-                            <td title="YYYY-MM-DD">2023-06-27</td>
-                            <td>TrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabaho</td>
-                        </tr>
-                        <tr>
-                            <td>Cruz, John Test</td>
-                            <td>Oncology</td>
-                            <td title="YYYY-MM-DD">2023-08-25</td>
-                            <td>1:00 PM - 2:00PM (0)</td>
-                            <td><button class="editBtn active" onclick="alert('Change status')" data-id="12">Active<span class="ico-list ico-edit">(edit)</span></button></td>
-                            <td>Male</td>
-                            <td title="YYYY-MM-DD">2001-10-21</td>
-                            <td>0942 423 4277</td>
-                            <td>Banga II, Plaridel, Bulacan</td>
-                            <td>New Patient</td>
-                            <td>123456</td>
-                            <td title="YYYY-MM-DD">2023-06-27</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>Cruz, John Test</td>
-                            <td>Oncology</td>
-                            <td title="YYYY-MM-DD">2023-08-25</td>
-                            <td>1:00 PM - 2:00PM (0)</td>
-                            <td><button class="editBtn missed" onclick="alert('Change status')" data-id="12">Missed<span class="ico-list ico-edit">(edit)</span></button></td>
-                            <td>Male</td>
-                            <td title="YYYY-MM-DD">2001-10-21</td>
-                            <td>0942 423 4277</td>
-                            <td>Banga II, Plaridel, Bulacan</td>
-                            <td>New Patient</td>
-                            <td>123456</td>
-                            <td title="YYYY-MM-DD">2023-06-27</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>Cruz, John Test</td>
-                            <td>Oncology</td>
-                            <td title="YYYY-MM-DD">2023-08-25</td>
-                            <td>1:00 PM - 2:00PM (0)</td>
-                            <td><button class="editBtn completed" onclick="alert('Change status')" data-id="12">Completed<span class="ico-list ico-edit">(edit)</span></button></td>
-                            <td>Male</td>
-                            <td title="YYYY-MM-DD">2001-10-21</td>
-                            <td>0942 423 4277</td>
-                            <td>Banga II, Plaridel, Bulacan</td>
-                            <td>New Patient</td>
-                            <td>123456</td>
-                            <td title="YYYY-MM-DD">2023-06-27</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>Cruz, John Test</td>
-                            <td>Oncology</td>
-                            <td title="YYYY-MM-DD">2023-08-25</td>
-                            <td>1:00 PM - 2:00PM (0)</td>
-                            <td><button class="editBtn active" onclick="alert('Change status')" data-id="12">Active<span class="ico-list ico-edit">(edit)</span></button></td>
-                            <td>Male</td>
-                            <td title="YYYY-MM-DD">2001-10-21</td>
-                            <td>0942 423 4277</td>
-                            <td>Banga II, Plaridel, Bulacan</td>
-                            <td>New Patient</td>
-                            <td>123456</td>
-                            <td title="YYYY-MM-DD">2023-06-27</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        
                     </tbody>
                 </table>
             </div>

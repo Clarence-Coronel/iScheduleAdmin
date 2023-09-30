@@ -268,22 +268,22 @@ function showTableCell(){
             tableData.forEach((item)=>{
                 item.classList.remove('selected');
 
-                try {
-                    item.querySelector('.editBtn').style.color = 'rgb(80, 78, 78)';
-                } catch (error) {
+                // try {
+                //     item.querySelector('.editBtn').style.color = 'rgb(80, 78, 78)';
+                // } catch (error) {
                     
-                }
+                // }
             });
 
             item.querySelectorAll('td').forEach((item2)=>{
                 item2.classList.add('selected');
 
-                try {
-                    item2.querySelector('.editBtn').style.color = 'white';
-                    // item2.querySelector('.ico-edit').style.color = 'white';
-                } catch (error) {
+                // try {
+                //     item2.querySelector('.editBtn').style.color = 'white';
+                //     // item2.querySelector('.ico-edit').style.color = 'white';
+                // } catch (error) {
                     
-                }
+                // }
             });
         })
     })
@@ -1774,7 +1774,7 @@ function insertBlockDate(){
                             <td>${date}</td>
                             <td>${dateName}</td>
                             <td>${isYearly}</td>
-                            <td><button class="removeDate" id="blockDate-${id}" data-name="${dateName}" onclick="confirmBlockDateRemove(this.id)">Delete</button></td>
+                            <td><button class="removeBtn" id="blockDate-${id}" data-name="${dateName}" onclick="confirmBlockDateRemove(this.id)">Delete</button></td>
                         </tr>
                         `;
 
@@ -1905,7 +1905,7 @@ function insertPostedAnn(){
                             <td>${datePosted}</td>
                             <td>${timePosted}</td>
                             <td>${author}</td>
-                            <td><button id="ann-${id}" data-title="${title}" onclick="confirmAnnRemove(this.id)">Delete</button></td>
+                            <td><button class="removeBtn" id="ann-${id}" data-title="${title}" onclick="confirmAnnRemove(this.id)">Delete</button></td>
                         </tr>
                         `;
 
@@ -1984,8 +1984,11 @@ function insertAdmin(isInitial = true){
                             <td>${capitalFirstLetter(lastName)}, ${capitalFirstLetter(firstName)} ${capitalFirstLetter(middleName)}</td>
                             <td>${username}</td>
                             <td>${phone}</td>
-                            <td><button class="editBtn" id="${username}_${adminType}" onclick="editType(this.id)">${adminType}<span class="ico-list ico-edit">(edit)</span></button></td>
-                            <td><button class="removeAdmin" onclick="confirmAdminRemove(this.id)" id="${username}">delete</button></td>
+                            <td>${adminType}</td>
+                            <td>
+                                <button class="editBtn" id="${username}_${adminType}" onclick="editType(this.id)">Edit</button>
+                                <button class="removeBtn" onclick="confirmAdminRemove(this.id)" id="${username}">Delete</button>
+                            </td>
                         </tr>
                         `;
 
@@ -2664,7 +2667,6 @@ function editSched(schedID, start, stop, max, deptID, day){
     document.querySelector(`#stop-minuteA option[value="${stopVal[1]}"]`).setAttribute('selected', 'selected');
     document.querySelector(`#stop-minuteB option[value="${stopVal[2]}"]`).setAttribute('selected', 'selected');
     document.querySelector(`#stop-period option[value="${stopVal[3]}"]`).setAttribute('selected', 'selected');
-    
     
 }
 

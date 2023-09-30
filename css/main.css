@@ -652,7 +652,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
   border: unset;
   border-radius: max(10px, 0.5vw);
   width: 100%;
-  height: max(40px, 6vh);
+  height: max(25px, 6vh);
 }
 
 .btn--addAdmin:hover {
@@ -799,7 +799,7 @@ input:-webkit-autofill:focus {
   padding: max(5px, 0.4vw);
   min-width: 70px;
   width: 100%;
-  height: max(40px, 6vh);
+  height: max(25px, 6vh);
 }
 .admin-logs__body button:hover {
   background-color: #1e85fb;
@@ -862,9 +862,13 @@ tr {
   width: 100%;
 }
 
+tr:nth-child(2n) {
+  background-color: rgb(236, 235, 235) !important;
+}
+
 th {
   text-align: left;
-  padding: max(10px, 0.8vw);
+  padding: max(15px, 1vh) max(7px, 0.5vw);
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
@@ -873,7 +877,7 @@ th {
 }
 
 td {
-  padding: max(10px, 0.8vw);
+  padding: max(15px, 1vh) max(7px, 0.5vw);
   text-align: left;
   max-width: max(10vw, 100px);
   overflow: hidden;
@@ -884,6 +888,8 @@ td {
   font-size: 0.7rem;
   border-right: none;
   border-left: none;
+  overflow-wrap: break-word;
+  min-width: 150px;
 }
 td button {
   background-color: transparent;
@@ -924,23 +930,6 @@ td:hover {
   margin: unset;
   height: unset;
   font-size: 1rem;
-}
-.admin-table .ico-edit {
-  color: rgb(135, 176, 241);
-  border-radius: 50px;
-  padding: 4px;
-  font-size: 0.7rem;
-}
-.admin-table .editBtn:hover .ico-edit {
-  color: #9ebff4;
-  cursor: pointer;
-}
-.admin-table .removeAdmin {
-  color: red;
-}
-.admin-table .removeAdmin:hover {
-  cursor: pointer;
-  color: #cc0000;
 }
 
 .logs-table tr:nth-child(even), .admin-table tr:nth-child(even), .date-table tr:nth-child(even) {
@@ -1065,7 +1054,7 @@ td:hover {
   background-color: #0577fa;
   width: 100%;
   border-radius: max(7px, 0.5vw);
-  height: max(40px, 6vh);
+  height: max(25px, 6vh);
 }
 .block-date .btn-submitblock:hover {
   background-color: #1e85fb;
@@ -1190,7 +1179,7 @@ td:hover {
 .change-status button {
   background-color: #0577fa;
   color: white;
-  height: max(40px, 6vh);
+  height: max(25px, 6vh);
   border-radius: max(5px, 0.5vw);
   border: unset;
   width: 100%;
@@ -1250,7 +1239,7 @@ td:hover {
 }
 .manage-date__content .field__delete-btn {
   border: unset;
-  background-color: red;
+  background-color: rgb(239, 97, 97);
   color: white;
   border-radius: max(5px, 0.5vw);
   padding: max(5px, 0.2vw);
@@ -1307,7 +1296,7 @@ td:hover {
   color: white;
   border: unset;
   border-radius: max(5px, 0.5vw);
-  height: max(40px, 6vh);
+  height: max(25px, 6vh);
   width: 100%;
   max-width: 600px;
 }
@@ -1768,7 +1757,7 @@ td:hover {
   border-radius: max(10px, 0.5vw);
   font-size: 1rem;
   width: 100%;
-  height: max(40px, 6vh);
+  height: max(25px, 6vh);
 }
 .changeInfo .changeInfo__back {
   background-color: rgb(210, 208, 208);
@@ -1935,7 +1924,7 @@ td:hover {
 }
 .schedule__button-container .schedule__btn {
   width: 100%;
-  height: max(40px, 6vh);
+  height: max(25px, 6vh);
   border-radius: max(5px, 0.5vw);
   border: unset;
   color: white;
@@ -2404,7 +2393,7 @@ table {
   color: white;
   border: unset;
   border-radius: max(5px, 0.5vw);
-  height: max(40px, 6vh);
+  height: max(25px, 6vh);
   padding: 0.5%;
 }
 .quick-view-container .view-schedule__btn-group button:hover {
@@ -2436,7 +2425,7 @@ table {
   background-color: #0577fa;
   color: white;
   border: unset;
-  height: max(40px, 6vh);
+  height: max(25px, 6vh);
   border-radius: max(4px, 0.5vw);
   width: 100%;
   margin-bottom: max(15px, 1vw);
@@ -2610,12 +2599,18 @@ table {
 .request .request__table td:nth-child(1) span, .request .request__table td:nth-child(2) span {
   margin: unset;
 }
+.request .request__table td:nth-child(1) {
+  min-width: unset !important;
+}
 .request .request__table td:nth-child(1) button {
   justify-content: flex-end;
 }
 .request .request__table td:nth-child(1) span {
   color: rgb(6, 195, 6);
   font-size: 1rem;
+}
+.request .request__table td:nth-child(2) {
+  min-width: unset !important;
 }
 .request .request__table td:nth-child(2) button {
   justify-content: flex-start;
@@ -3072,12 +3067,6 @@ table {
   color: gray;
   font-size: 0.8rem;
 }
-.seeAnnouncements button {
-  color: red;
-}
-.seeAnnouncements button:hover {
-  color: #e60000;
-}
 
 .modal-body {
   overflow-wrap: break-word;
@@ -3163,4 +3152,51 @@ table {
   width: 15%;
   border: unset;
   text-align: center;
+}
+
+.editBtn {
+  color: white;
+  background-color: rgb(246, 177, 48);
+  border-radius: max(7px, 0.5vw);
+  padding: 4px;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+  width: 5vw;
+  min-width: 50px;
+  margin-left: auto;
+  margin-bottom: max(7px, 0.5vh);
+  border: unset;
+}
+
+.editBtn:hover {
+  background-color: #f7ba48;
+}
+
+.removeBtn {
+  color: white;
+  background-color: rgb(239, 97, 97);
+  border-radius: max(7px, 0.5vw);
+  padding: 4px;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+  width: 5vw;
+  min-width: 50px;
+  margin-left: auto;
+  border: unset;
+}
+
+.removeBtn:hover {
+  background-color: #f17878;
+}
+
+@media only screen and (max-width: 1200px) {
+  td {
+    min-width: unset !important;
+  }
 }/*# sourceMappingURL=main.css.map */
