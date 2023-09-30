@@ -27,13 +27,13 @@
                 $seperated[0] = (int)$seperated[0] - 12;
             }
             
-            return "{$seperated[0]}:{$seperated[1]} PM";
+            return ltrim("{$seperated[0]}:{$seperated[1]} PM", "0");
         }
         else{
             if((int)$seperated[0] == 0){
                 $seperated[0] = 1;
             }
-            return "{$seperated[0]}:{$seperated[1]} AM";
+            return ltrim("{$seperated[0]}:{$seperated[1]} AM", "0");
         }  
     }
 ?>

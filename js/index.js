@@ -934,6 +934,7 @@ function openModalOTP(){
     </div>
     `
     modalBody.innerHTML = htmlCode;
+    
     document.querySelector('.phoneDisplay').innerHTML = newAdmin['phone'];
     document.querySelector('.OTP-btn').addEventListener('click', ()=>{
         checkOTP();
@@ -2937,6 +2938,10 @@ function applyAddSched(day){
 
     if(maxSlot == ''){
         showError("Slot cannot be empty");
+        return;
+    }
+    else if(startTime >= stopTime){
+        showError("Starting time cannot be later than closing time");
         return;
     }
     else{
