@@ -8,6 +8,11 @@
     if(!isFull($object->scheduleDate, $object->timeSlot, getMax($object->timeSlot))){
         $query = "INSERT INTO `appointments`(`departmentID`, `firstName`, `middleName`, `lastName`, `sex`, `birthdate`, `phone`, `province`, `municipality`, `barangay`, `patientType`, `appointmentType`, `scheduleID`, `appointmentDate`, `caseNo`, `appointmentStatus`, `isArchived`) VALUES ('$object->department', '$object->firstName', '$object->middleName', '$object->lastName', '$object->sex', '$object->dateOfBirth', '$object->phone', '$object->province', '$object->municipality', '$object->barangay', '$object->typeOfPatient', 'admin', '$object->timeSlot', '$object->scheduleDate', '$object->caseNo', 'active', 0)";
         if(mysqli_query($conn, $query)){
+            session_start();
+            $username = $_SESSION['username'];
+            $adminStampQuery = "INSERT INTO `admin_logs`(`username`, `activity`) VALUES ('$username','Scheduled an appointment: $object->lastName, $object->firstName $object->middleName')";
+            mysqli_query($conn, $adminStampQuery);
+
             echo 1;
         }else{
             echo 0;

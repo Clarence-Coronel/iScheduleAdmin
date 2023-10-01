@@ -820,6 +820,8 @@ let adminLogs = `
                             <option value="Inserted a new slot in ">Inserted a new slot in a department</option>
                             <option value="Changed a slot in ">Changed a slot in a department</option>
                             <option value="Removed a slot in ">Removed a slot in a department</option>
+                            <option value="Scheduled an appointment">Scheduled an appointment</option>
+                            
                         </select>
                         <select id="logAdminType" class="form-select" aria-label="Default select example">
                             <option hidden selected disabled value="">Admin Type</option>
