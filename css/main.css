@@ -45,6 +45,10 @@ label:hover {
   border-bottom: 1px solid rgb(80, 78, 78) !important;
 }
 
+.form-select:disabled {
+  background-color: white !important;
+}
+
 .form-select:focus {
   border-color: unset !important;
   box-shadow: unset !important;
@@ -1895,9 +1899,16 @@ td:hover {
   display: flex;
   flex-flow: nowrap;
   gap: max(10px, 1vw);
+  justify-content: center;
+  align-items: flex-end;
 }
 .birth-container input {
   width: 33.33%;
+  text-align: center;
+}
+.birth-container span {
+  height: 100%;
+  font-size: 0.8rem;
 }
 
 .name-container {
@@ -1907,6 +1918,16 @@ td:hover {
   gap: max(10px, 1vw);
 }
 .name-container input {
+  width: 33.33%;
+}
+
+.location-container {
+  width: 100%;
+  display: flex;
+  flex-flow: nowrap;
+  gap: max(10px, 1vw);
+}
+.location-container input {
   width: 33.33%;
 }
 

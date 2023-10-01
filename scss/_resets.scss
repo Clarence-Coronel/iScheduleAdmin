@@ -61,6 +61,10 @@ label:hover{
   
 }
 
+.form-select:disabled{
+  background-color: white  !important;
+}
+
 .form-select:focus{
   border-color: unset !important;
   box-shadow: unset !important;

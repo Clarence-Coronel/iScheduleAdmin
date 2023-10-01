@@ -34,6 +34,23 @@ const newAdmin = {
     'adminType': '',
 }
 
+const patient = {
+    'department': '',
+    'scheduleDate': '',
+    'timeSlot': '',
+    'firstName': '',
+    'middleName': '',
+    'lastName': '',
+    'sex': '',
+    'dateOfBirth': '',
+    'phone': '',
+    'barangay': '',
+    'municipality': '',
+    'province': '',
+    'typeOfPatient': '',
+    'caseNo': '',
+}
+
 // if(window.innerWidth > window.innerHeight){
 //     alert('pasok');
 //     document.querySelector('.nav-links').style.minHeight = "500px";
@@ -593,6 +610,137 @@ function errorHandler(code){
         formErrorMessage = 'No admin type is selected.';
     }
 
+    // 
+    // SCHEDULE
+    // 
+    // 
+
+    // 
+    // DEPT *************************
+    // 
+    else if(code == "60"){
+        formErrorMessage = 'Department cannot be empty.';
+    }
+    // 
+    // First Name ********************
+    // 
+    else if(code == '70'){
+        formErrorMessage = 'First name cannot be empty.';
+    }
+    else if(code == '71'){
+        formErrorMessage = 'First name can only contain letters.';
+    }
+    else if(code == '72'){
+        formErrorMessage = 'First name can\'t only contain a letter or more than 30 letters.';
+    }
+    // 
+    // Middle Name *****************************
+    // 
+    else if(code == '80'){
+        formErrorMessage = 'Middle name cannot be empty.';
+    }
+    else if(code == '81'){
+        formErrorMessage = 'Middle name can only contain letters.';
+    }
+    else if(code == '82'){
+        formErrorMessage = 'Middle name can\'t only contain a letter or more than 30 letters.';
+    }
+    // 
+    // Last Name *****************************
+    // 
+    else if(code == '90'){
+        formErrorMessage = 'Last name cannot be empty.';
+    }
+    else if(code == '91'){
+        formErrorMessage = 'Last name can only contain letters.';
+    }
+    else if(code == '92'){
+        formErrorMessage = 'Last name can\'t only contain a letter or more than 30 letters.';
+    }
+    // 
+    // SEX *****************************
+    // 
+    else if(code == '100'){
+        formErrorMessage = 'Sex cannot be empty.';
+    }
+    // 
+    // BIRTHDATE *****************************
+    // 
+    else if(code == '110'){
+        formErrorMessage = 'Birthdate cannot be empty.';
+    }
+    else if(code == '111'){
+        formErrorMessage = 'Birthdate is incomplete.';
+    }
+    else if(code == '112'){
+        formErrorMessage = 'Birthdate is invalid.';
+    }
+    else if(code == '113'){
+        formErrorMessage = 'Birthdate cannot be an upcoming date.';
+    }
+    // 
+    // PHONE *****************************
+    // 
+    else if(code == '120'){
+        formErrorMessage = 'Phone # canoot be empty.';
+    }
+    else if(code == '121'){
+        formErrorMessage = 'Phone # must be contain 11 digits.';
+    }
+    else if(code == '122'){
+        formErrorMessage = 'Phone # must start with "09".';
+    }
+    // 
+    // MUNICIPALITY & BARANGAY *****************************
+    // 
+    else if(code == '130'){
+        formErrorMessage = 'Municipality cannot be empty.';
+    }
+    else if(code == '131'){
+        formErrorMessage = 'Barangay cannot be empty.';
+    }
+    // 
+    // PROVINCE-OTHER *****************************
+    // 
+    else if(code == '140'){
+        formErrorMessage = 'Province cannot be empty.';
+    }
+    else if(code == '141'){
+        formErrorMessage = 'Province cannot have more than 30 letters.';
+    }
+    else if(code == '142'){
+        formErrorMessage = 'Province cannot contain special characters.';
+    }
+    // 
+    // MUNICIPALITY-OTHER *****************************
+    // 
+    else if(code == '143'){
+        formErrorMessage = 'Municipality cannot be empty.';
+    }
+    else if(code == '144'){
+        formErrorMessage = 'Municipality cannot have more than 30 letters.';
+    }
+    else if(code == '145'){
+        formErrorMessage = 'Municipality cannot contain special characters.';
+    }
+    // 
+    // BARANGAY-OTHER *****************************
+    // 
+    else if(code == '146'){
+        formErrorMessage = 'Barangay cannot be empty.';
+    }
+    else if(code == '147'){
+        formErrorMessage = 'Barangay cannot have more than 30 letters.';
+    }
+    else if(code == '148'){
+        formErrorMessage = 'Barangay cannot contain special characters.';
+    }
+    // 
+    // PATIENT TYPE *****************************
+    // 
+    else if(code == '150'){
+        formErrorMessage = 'Patient type cannot be empty.';
+    }
     generateErrorModal();
 
 }
@@ -754,26 +902,28 @@ function changeBorderBlur(id){
 function nextForm(){
     const formParts = document.querySelectorAll('.schedule__form');
 
-    if(formState < 2){
+    if(formState <= 2){
         formState++;
         
-        formParts.forEach((form)=>{
-            form.style.display = 'none';
-        });
+        // formParts.forEach((form)=>{
+        //     form.style.display = 'none';
+        // });
 
         if(formState == 1){
-            formParts[formState].style.display = 'flex';
-
-            try {
-                document.querySelector('.followup-container').style.display = 'flex';
-            } catch (error) {
-                
+            if(checkFormA()){
+                formParts[formState-1].style.display = 'none';
+                formParts[formState].style.display = 'flex';
             }
-            
+            else{
+                formState--;
+                return;
+            }
         }
         else if(formState == 2){
             formParts[formState].style.display = 'flex';
-            document.querySelector('.followup-container').style.display = 'none';
+            // document.querySelector('.followup-container').style.display = 'none';
+        }
+        else{
         }
     }
 }
@@ -790,13 +940,227 @@ function backForm(){
 
         if(formState == 0){
             formParts[formState].style.display = 'grid';
-            document.querySelector('.followup-container').style.display = 'none';
+            // document.querySelector('.followup-container').style.display = 'none';
         }
         else if(formState == 1){
             formParts[formState].style.display = 'flex';
-            document.querySelector('.followup-container').style.display = 'flex';
+            // document.querySelector('.followup-container').style.display = 'flex';
         }
     }
+}
+
+function checkFormA(){
+    let dept = document.querySelector('#dept').value;
+    if(dept == ""){
+        errorHandler('60');
+        return false;
+    }
+    patient.department = dept;
+
+    // FIRST NAME
+    let firstName  = document.querySelector("#firstName").value.trim();
+    if(firstName == ""){
+        errorHandler("70");
+        return false;
+    }
+    if (!isLettersOnly(firstName)){
+        errorHandler("71");
+        return false;
+    }
+    if((firstName).length > 30 || firstName.length == 1){
+        errorHandler('72');
+        return false;
+    }
+    patient.firstName = firstName;
+    // MIDDLE NAME
+    let middleName  = document.querySelector("#middleName").value.trim();
+    if(middleName == ""){
+        errorHandler("80");
+        return false;
+    }
+    if (!isLettersOnly(middleName)){
+        errorHandler("81");
+        return false;
+    }
+    if(middleName.length > 30 || middleName.length == 1){
+        errorHandler('82');
+        return false;
+    }
+    patient.middleName = middleName;
+    // LAST NAME
+    let lastName  = document.querySelector("#lastName").value.trim();
+    if(lastName == ""){
+        errorHandler("90");
+        return false;
+    }
+    if (!isLettersOnly(lastName)){
+        errorHandler("91");
+        return false;
+    }
+    if(lastName.length > 30 || lastName.length == 1){
+        errorHandler('92');
+        return false;
+    }
+    patient.lastName = lastName;
+    // SEX
+    let sex = document.querySelector("#sex").value;
+    if(sex == ""){
+        errorHandler("100");
+        return false;
+    }
+    patient.sex = sex;
+    // BIRTHDATE
+    let month = document.querySelector("#month").value;
+    let day = document.querySelector("#day").value;
+    let year = document.querySelector("#year").value;
+    let birthdate = `${year}-${month}-${day}`;
+    let tempToday = new Date();
+    let tempBirth = new Date(birthdate);
+
+    if(month == "" && day == "" && year == ""){
+        errorHandler("110");
+        return false;
+    }
+    if(month == "" || day == "" || year == ""){
+        errorHandler("111");
+        return false;
+    }
+    if(!isDateValid(birthdate)){
+        errorHandler("112");
+        return false;
+    }
+    if(tempBirth.getTime() > tempToday.getTime()){
+        errorHandler("113");
+        return false;
+    }
+    patient.birthdate = birthdate;
+    // PHONE
+    let phone = document.querySelector('#phone').value.replaceAll(' ', '').trim();
+    if(phone == ""){
+        errorHandler("120");
+        return false;
+    }
+    if(phone.length != 11){
+        errorHandler("121");
+        return false;
+    }
+    else if(phone.slice(0, 2) != '09'){
+        errorHandler('122');
+        return false;
+    }
+    patient.phone = properPhoneNum(phone);
+
+    if(document.querySelector('#municipality').value != 'other'){
+        // 
+        // MUNICIPALITY **************************
+        // 
+        patient.municipality = document.querySelector('#municipality').value;
+        if(patient.municipality == ""){
+            errorHandler('130');
+            return false;
+        }
+        // 
+        // BARANGAY **************************
+        // 
+        patient.barangay = document.querySelector('#barangay').value;
+        if(patient.barangay == ""){
+            errorHandler('131');
+            return false;
+        }
+        // 
+        // PROVINCE **************************
+        // 
+        patient.province = 'bulacan';
+    }
+    else{
+        patient.province = "";
+        patient.municipality = "";
+        patient.barangay = "";
+        // 
+        // PROVINCE(OTHER) **************************
+        // 
+        let provinceOther = document.querySelector('#provinceOther').value.trim().toLowerCase();
+        if(provinceOther == ''){
+            errorHandler('140');
+            return false;
+        }
+        else if(provinceOther.length > 30){
+            errorHandler('141');
+            return false;
+        }
+        else if(!isLettersNumsOnly(provinceOther)){
+            errorHandler('142');
+            return false;
+        }
+        patient.province = provinceOther;
+        // 
+        // MUNICIPALITY(OTHER) **************************
+        // 
+        let municipalityOther = document.querySelector('#municipalityOther').value.trim().toLowerCase();
+        if(municipalityOther == ''){
+            alert("pasok 143")
+            errorHandler('143');
+            return false;
+        }
+        else if(municipalityOther.length > 30){
+            errorHandler('144');
+            return false;
+        }
+        else if(!isLettersNumsOnly(municipalityOther)){
+            errorHandler('145');
+            return false;
+        }
+        patient.municipality = municipalityOther;
+        // 
+        // BARANGAY(OTHER) **************************
+        // 
+        let barangayOther = document.querySelector('#barangayOther').value.trim().toLowerCase();
+        if(barangayOther == ''){
+            errorHandler('146');
+            return false;
+        }
+        else if(barangayOther.length > 30){
+            errorHandler('147');
+            return false;
+        }
+        else if(!isLettersNumsOnly(barangayOther)){
+            errorHandler('148');
+            return false;
+        }
+        patient.barangay = barangayOther;
+    }
+    // PATIENT TYPE
+    let type = document.querySelector('#patientType').value;
+    if(type == ""){
+        errorHandler('150');
+        return false;
+    }
+    patient.typeOfPatient = type;
+
+    patient.caseNo = document.querySelector('#caseNo').value;
+
+    return true;
+}
+
+function filterCaseNo(id){
+    let element = document.getElementById(id);
+    let newVal = "";
+
+    for(i =0; i< element.value.length; i++){
+
+        if(!isNaN(element.value[i]) || element.value[i] == '-'){
+            newVal+= element.value[i];
+        }
+    };
+    element.value = newVal.replaceAll(" ", "").trim();
+}
+
+function isLettersOnly(str) {
+	return /^[A-Za-z ]*$/.test(str);
+}
+
+function isLettersNumsOnly(str) {
+	return /^[A-Za-z 0-9]*$/.test(str);
 }
 
 function confirmSignOut(){
@@ -983,7 +1347,6 @@ function resetCD(){
 
 function checkOTP(){
     let OTPField = document.querySelector('#OTP').value;
-    let close = document.querySelector('.negative');
 
     let error = document.querySelector('.error-msg');
 
@@ -1025,7 +1388,6 @@ function checkOTP(){
     }
     error.innerHTML = 'Invalid OTP';
 }
-
 // Editing phone #
 function openModalOTP_Edit(){
     resetModal();
@@ -1447,7 +1809,6 @@ function changeAccess(){
         // commented for testing
     }
 }
-
 // For added security
 function checkPrivilege(type){
     allowAccess = false;

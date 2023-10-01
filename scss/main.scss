@@ -2234,13 +2234,32 @@ td:hover{
     display: flex;
     flex-flow: nowrap;
     gap: max(10px, 1vw);
+    justify-content: center;
+    align-items: flex-end;
+
+    input{
+        width: 33.33%;
+        text-align: center;
+    }
+
+    span{
+        height: 100%;
+        font-size: 0.8rem;
+    }
+}
+
+.name-container{
+    width: 100%;
+    display: flex;
+    flex-flow: nowrap;
+    gap: max(10px, 1vw);
 
     input{
         width: 33.33%;
     }
 }
 
-.name-container{
+.location-container{
     width: 100%;
     display: flex;
     flex-flow: nowrap;

@@ -45,6 +45,10 @@ label:hover {
   border-bottom: 1px solid rgb(80, 78, 78) !important;
 }
 
+.form-select:disabled {
+  background-color: white !important;
+}
+
 .form-select:focus {
   border-color: unset !important;
   box-shadow: unset !important;
