@@ -2750,7 +2750,7 @@ table {
 }
 .scheduling .week-container {
   width: 100%;
-  height: 99%;
+  height: 92%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
   gap: 1%;
@@ -2777,7 +2777,7 @@ table {
 .scheduling .week-container .block {
   margin-top: 2%;
   width: 100%;
-  padding: 5%;
+  padding: 10%;
   background-color: rgb(235, 235, 235);
   border-radius: max(0.1vw, 5px);
   display: flex;
@@ -2793,6 +2793,7 @@ table {
   content: " (Buffer)";
 }
 .scheduling .week-container .add {
+  padding: 5%;
   height: unset;
 }
 .scheduling .week-container .add .add-btn {
@@ -3150,40 +3151,45 @@ table {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-around;
-  border-bottom: 1px solid gray;
   padding-bottom: 2vh;
   margin-bottom: 2vh;
 }
 .editSched-container .time-container .editTime-container {
-  width: 40%;
+  width: 45%;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: center;
+  gap: 2%;
 }
-.editSched-container .time-container .editTime-container .form-select {
-  width: 20%;
+.editSched-container .time-container .editTime-container .timepart {
+  width: 10%;
   height: 100%;
-  border-bottom: unset !important;
+  border: unset;
   padding: unset !important;
   background: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  background-image: none;
   text-align: center;
   font-size: 1rem;
+  border-bottom: 1px solid gray;
 }
-.editSched-container .time-container .editTime-container .form-select:hover {
-  cursor: pointer;
-}
-.editSched-container .time-container .editTime-container .form-select:nth-child(6) {
+.editSched-container .time-container .editTime-container .timepart:nth-child(6) {
+  margin-left: 2%;
+  width: 20%;
   font-weight: 700;
+  border-bottom: unset;
+}
+.editSched-container .time-container .editTime-container .timepart:hover {
+  cursor: pointer;
 }
 .editSched-container .time-container .editTime-container span {
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 1vw;
 }
-.editSched-container .max-container {
+
+.max-container {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -3191,19 +3197,19 @@ table {
   gap: 1vw;
   font-size: 1.1rem;
 }
-.editSched-container .max-container .slot-wrapper {
+.max-container .slot-wrapper {
   display: flex;
   justify-content: center;
   gap: 1vw;
   width: 50% !important;
 }
-.editSched-container .max-container .form-switch {
+.max-container .form-switch {
   display: flex;
   justify-content: center;
   gap: 1vw;
   width: 50% !important;
 }
-.editSched-container .max-container input {
+.max-container input {
   width: 15%;
   border: unset;
   text-align: center;
@@ -3228,6 +3234,12 @@ table {
 
 .editBtn:hover {
   background-color: #f7ba48;
+}
+
+#startPeriod, #startPeriod {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 .removeBtn {
@@ -3258,4 +3270,8 @@ table {
 #full {
   background-color: rgb(233, 64, 64) !important;
   color: white;
+}
+
+#maxSlot {
+  border: unset;
 }/*# sourceMappingURL=main.css.map */

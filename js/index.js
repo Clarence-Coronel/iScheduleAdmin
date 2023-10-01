@@ -3008,89 +3008,21 @@ function editSched(schedID, start, stop, max, deptID, day){
     <div class="editSched-container">
         <div class="time-container">
             <div class="editTime-container start">
-                <select class="form-select" aria-label="Default select example" id="start-hour">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                </select>
+                <input onclick="this.select()" type="text" class="timepart time-hourA" id="startHourA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01'); checkHourB('start')">
+                <input onclick="this.select()" type="text" class="timepart time-hourB" id="startHourB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789'); checkHourA('start');">
                 <span>:</span>
-                <select class="form-select" aria-label="Default select example" id="start-minuteA">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
-                <select class="form-select" aria-label="Default select example" id="start-minuteB">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                </select>
-                <span>&nbsp;</span>
-                <select class="form-select" aria-label="Default select example" id="start-period">
-                    <option value="AM">AM</option>
-                    <option value="PM">PM</option>
-                </select>
+                <input onclick="this.select()" type="text" class="timepart time-minA" id="startMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01345');">
+                <input onclick="this.select()" type="text" class="timepart time-minB" id="startMinuteB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789');">
+                <input type="text" class="timepart time-minB" id="startPeriod" value="AM" readonly>
             </div>
             <span class="divider">-</span>
             <div class="editTime-container stop">
-                <select class="form-select" aria-label="Default select example" id="stop-hour">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                </select>
+                <input onclick="this.select()" type="text" class="timepart time-hourA" id="stopHourA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01'); checkHourB('stop')">
+                <input onclick="this.select()" type="text" class="timepart time-hourB" id="stopHourB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789'); checkHourA('stop');">
                 <span>:</span>
-                <select class="form-select" aria-label="Default select example" id="stop-minuteA">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
-                <select class="form-select" aria-label="Default select example" id="stop-minuteB">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2"">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                </select>
-                <span>&nbsp;</span>
-                <select class="form-select" aria-label="Default select example" id="stop-period">
-                    <option value="AM">AM</option>
-                    <option value="PM">PM</option>
-                </select>
+                <input onclick="this.select()" type="text" class="timepart time-minA" id="stopMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01345');">
+                <input onclick="this.select()" type="text" class="timepart time-minB" id="stopMinuteB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789');">
+                <input type="text" class="timepart time-minB" id="stopPeriod" value="AM" readonly>
             </div>
         </div>
         <div class="max-container">
@@ -3113,18 +3045,30 @@ function editSched(schedID, start, stop, max, deptID, day){
 
     startVal = splitTime(start);
 
-    document.querySelector(`#start-hour option[value="${startVal[0]}"]`).setAttribute('selected', 'selected');
-    document.querySelector(`#start-minuteA option[value="${startVal[1]}"]`).setAttribute('selected', 'selected');
-    document.querySelector(`#start-minuteB option[value="${startVal[2]}"]`).setAttribute('selected', 'selected');
-    document.querySelector(`#start-period option[value="${startVal[3]}"]`).setAttribute('selected', 'selected');
+    document.querySelector('#startHourA').value = startVal[0];
+    document.querySelector('#startHourB').value = startVal[1];
+    document.querySelector('#startMinuteA').value = startVal[2];
+    document.querySelector('#startMinuteB').value = startVal[3];
+    document.querySelector('#startPeriod').value = startVal[4];
 
-    stopVal = splitTime(stop);
 
-    document.querySelector(`#stop-hour option[value="${stopVal[0]}"]`).setAttribute('selected', 'selected');
-    document.querySelector(`#stop-minuteA option[value="${stopVal[1]}"]`).setAttribute('selected', 'selected');
-    document.querySelector(`#stop-minuteB option[value="${stopVal[2]}"]`).setAttribute('selected', 'selected');
-    document.querySelector(`#stop-period option[value="${stopVal[3]}"]`).setAttribute('selected', 'selected');
+    startVal = splitTime(stop);
+
+    document.querySelector('#stopHourA').value = startVal[0];
+    document.querySelector('#stopHourB').value = startVal[1];
+    document.querySelector('#stopMinuteA').value = startVal[2];
+    document.querySelector('#stopMinuteB').value = startVal[3];
+    document.querySelector('#stopPeriod').value = startVal[4];
+
+    document.querySelector('#startPeriod').setAttribute('onclick', 'periodToggle(this.id, this.value)')
+    document.querySelector('#stopPeriod').setAttribute('onclick', 'periodToggle(this.id, this.value)')
     
+}
+
+function periodToggle(id, val){
+    if (val == "AM") document.getElementById(id).value = "PM";
+    else document.getElementById(id).value = "AM";
+
 }
 
 function deleteSched(schedID, deptID, day){
@@ -3145,92 +3089,24 @@ function addSched(day){
 
     modalTitle.innerText = 'Creating...';
     modalBody.innerHTML = `
-    <div class="editSched-container">
+    <div class="editSched-container"> 
         <div class="time-container">
             <div class="editTime-container start">
-                <select class="form-select" aria-label="Default select example" id="start-hour">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                </select>
+                <input onclick="this.select()" type="text" class="timepart time-hourA" id="startHourA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01'); checkHourB('start')">
+                <input onclick="this.select()" type="text" class="timepart time-hourB" id="startHourB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789'); checkHourA('start');">
                 <span>:</span>
-                <select class="form-select" aria-label="Default select example" id="start-minuteA">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
-                <select class="form-select" aria-label="Default select example" id="start-minuteB">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                </select>
-                <span>&nbsp;</span>
-                <select class="form-select" aria-label="Default select example" id="start-period">
-                    <option value="AM">AM</option>
-                    <option value="PM">PM</option>
-                </select>
+                <input onclick="this.select()" type="text" class="timepart time-minA" id="startMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01345');">
+                <input onclick="this.select()" type="text" class="timepart time-minB" id="startMinuteB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789');">
+                <input type="text" class="timepart time-minB" id="startPeriod" value="AM" readonly>
             </div>
             <span class="divider">-</span>
             <div class="editTime-container stop">
-                <select class="form-select" aria-label="Default select example" id="stop-hour">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                </select>
+                <input onclick="this.select()" type="text" class="timepart time-hourA" id="stopHourA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01'); checkHourB('stop')">
+                <input onclick="this.select()" type="text" class="timepart time-hourB" id="stopHourB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789'); checkHourA('stop');">
                 <span>:</span>
-                <select class="form-select" aria-label="Default select example" id="stop-minuteA">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
-                <select class="form-select" aria-label="Default select example" id="stop-minuteB">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2"">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                </select>
-                <span>&nbsp;</span>
-                <select class="form-select" aria-label="Default select example" id="stop-period">
-                    <option value="AM">AM</option>
-                    <option value="PM">PM</option>
-                </select>
+                <input onclick="this.select()"  type="text" class="timepart time-minA" id="stopMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01345');">
+                <input onclick="this.select()" type="text" class="timepart time-minB" id="stopMinuteB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789');">
+                <input type="text" class="timepart time-minB" id="stopPeriod" value="AM" readonly>
             </div>
         </div>
         <div class="max-container alt">
@@ -3255,39 +3131,62 @@ function addSched(day){
     modalLauncher();
 
 
-    document.querySelector(`#start-hour option[value="7"]`).setAttribute('selected', 'selected');
-    document.querySelector(`#start-minuteA option[value="0"]`).setAttribute('selected', 'selected');
-    document.querySelector(`#start-minuteB option[value="0"]`).setAttribute('selected', 'selected');
-    document.querySelector(`#start-period option[value="AM"]`).setAttribute('selected', 'selected');
+    document.querySelector('#startHourA').value = 0;
+    document.querySelector('#startHourB').value = 0;
+    document.querySelector('#startMinuteA').value = 0;
+    document.querySelector('#startMinuteB').value = 0;
+    document.querySelector('#startPeriod').value = 'AM';
 
-    document.querySelector(`#stop-hour option[value="8"]`).setAttribute('selected', 'selected');
-    document.querySelector(`#stop-minuteA option[value="0"]`).setAttribute('selected', 'selected');
-    document.querySelector(`#stop-minuteB option[value="0"]`).setAttribute('selected', 'selected');
-    document.querySelector(`#stop-period option[value="AM"]`).setAttribute('selected', 'selected');
+    document.querySelector('#stopHourA').value = 0;
+    document.querySelector('#stopHourB').value = 0;
+    document.querySelector('#stopMinuteA').value = 0;
+    document.querySelector('#stopMinuteB').value = 0;
+    document.querySelector('#stopPeriod').value = 'AM'
+
+    document.querySelector('#startPeriod').setAttribute('onclick', 'periodToggle(this.id, this.value)')
+    document.querySelector('#stopPeriod').setAttribute('onclick', 'periodToggle(this.id, this.value)')
 }
 
 function applyEditSched(id, deptID, day){
-    let max = document.querySelector("#maxSlot").value;
+    let maxSlot = document.querySelector("#maxSlot").value;
 
-    let startHour = document.querySelector(`#start-hour`).value;
-    let startMinA = document.querySelector(`#start-minuteA`).value;
-    let startMinB = document.querySelector(`#start-minuteB`).value;
-    let startPeriod = document.querySelector(`#start-period`).value;
+    let startHourA = document.querySelector(`#startHourA`).value;
+    let startHourB = document.querySelector(`#startHourB`).value;
+    let startMinuteA = document.querySelector(`#startMinuteA`).value;
+    let startMinuteB = document.querySelector(`#startMinuteB`).value;
+    let startPeriod = document.querySelector(`#startPeriod`).value;
 
-    let stopHour = document.querySelector(`#stop-hour`).value;
-    let stopMinA = document.querySelector(`#stop-minuteA`).value;
-    let stopMinB = document.querySelector(`#stop-minuteB`).value;
-    let stopPeriod = document.querySelector(`#stop-period`).value;
+    let stopHourA = document.querySelector(`#stopHourA`).value;
+    let stopHourB = document.querySelector(`#stopHourB`).value;
+    let stopMinuteA = document.querySelector(`#stopMinuteA`).value;
+    let stopMinuteB = document.querySelector(`#stopMinuteB`).value;
+    let stopPeriod = document.querySelector(`#stopPeriod`).value;
 
-    const startTime = convertToMilitaryTime(`${startHour}:${startMinA}${startMinB} ${startPeriod}`);
-    const stopTime = convertToMilitaryTime(`${stopHour}:${stopMinA}${stopMinB} ${stopPeriod}`);
+    const startTime = convertToMilitaryTime(`${startHourA}${startHourB}:${startMinuteA}${startMinuteB} ${startPeriod}`);
+    const stopTime = convertToMilitaryTime(`${stopHourA}${stopHourB}:${stopMinuteA}${stopMinuteB} ${stopPeriod}`);
 
-    if(max == ""){
-        showError("Slot cannot be empty");
+    if(startHourA == "0" && startHourB == "0" && startMinuteA == "0" && startMinuteB == "0"){
+        showError("Starting time cannot be empty");
+        return;
+    }
+    else if(startHourA == "0" && startHourB == "0"){
+        showError("Invalid starting Time");
+        return;
+    }
+    else if(stopHourA == "0" && stopHourB == "0" && stopMinuteA == "0" && stopMinuteB == "0"){
+        showError("Closing time cannot be empty");
+        return;
+    }
+    else if(stopHourA == "0" && stopHourB == "0"){
+        showError("Invalid closing time");
         return;
     }
     else if(startTime >= stopTime){
         showError("Starting time cannot be later than closing time");
+        return;
+    }
+    else if(maxSlot == '' || maxSlot == '0'){
+        showError("Slot cannot be empty");
         return;
     }
     else{
@@ -3311,7 +3210,7 @@ function applyEditSched(id, deptID, day){
         day: day,
         startTime: startTime,
         stopTime: stopTime,
-        max: max,
+        max: maxSlot,
     }
 
     const toSend = JSON.stringify(obj);
@@ -3371,16 +3270,18 @@ function applyAddSched(day){
     const deptVal = document.querySelector("#deptSelect").value;
 
     // Start
-    const startHour = document.querySelector(`#start-hour`).value;
-    const startMinuteA = document.querySelector(`#start-minuteA`).value;
-    const startMinuteB = document.querySelector(`#start-minuteB`).value;
-    const startPeriod = document.querySelector(`#start-period`).value;
+    const startHourA = document.querySelector(`#startHourA`).value;
+    const startHourB = document.querySelector(`#startHourB`).value;
+    const startMinuteA = document.querySelector(`#startMinuteA`).value;
+    const startMinuteB = document.querySelector(`#startMinuteB`).value;
+    const startPeriod = document.querySelector(`#startPeriod`).value;
 
     // Stop
-    const stopHour = document.querySelector(`#stop-hour`).value;
-    const stopMinuteA = document.querySelector(`#stop-minuteA`).value;
-    const stopMinuteB = document.querySelector(`#stop-minuteB`).value;
-    const stopPeriod = document.querySelector(`#stop-period`).value;
+    const stopHourA = document.querySelector(`#stopHourA`).value;
+    const stopHourB = document.querySelector(`#stopHourB`).value;
+    const stopMinuteA = document.querySelector(`#stopMinuteA`).value;
+    const stopMinuteB = document.querySelector(`#stopMinuteB`).value;
+    const stopPeriod = document.querySelector(`#stopPeriod`).value;
 
     const maxSlot = document.querySelector('#maxSlot').value;
 
@@ -3389,15 +3290,31 @@ function applyAddSched(day){
     if(isBuffer) isBuffer = 1;
     else isBuffer = 0;
 
-    const startTime =  convertToMilitaryTime(`${startHour}:${startMinuteA}${startMinuteB} ${startPeriod}`);
-    const stopTime = convertToMilitaryTime(`${stopHour}:${stopMinuteA}${stopMinuteB} ${stopPeriod}`);
+    const startTime =  convertToMilitaryTime(`${startHourA}${startHourB}:${startMinuteA}${startMinuteB} ${startPeriod}`);
+    const stopTime = convertToMilitaryTime(`${stopHourA}${stopHourB}:${stopMinuteA}${stopMinuteB} ${stopPeriod}`);
 
-    if(maxSlot == ''){
-        showError("Slot cannot be empty");
+    if(startHourA == "0" && startHourB == "0" && startMinuteA == "0" && startMinuteB == "0"){
+        showError("Starting time cannot be empty");
+        return;
+    }
+    else if(startHourA == "0" && startHourB == "0"){
+        showError("Invalid starting Time");
+        return;
+    }
+    else if(stopHourA == "0" && stopHourB == "0" && stopMinuteA == "0" && stopMinuteB == "0"){
+        showError("Closing time cannot be empty");
+        return;
+    }
+    else if(stopHourA == "0" && stopHourB == "0"){
+        showError("Invalid closing time");
         return;
     }
     else if(startTime >= stopTime){
         showError("Starting time cannot be later than closing time");
+        return;
+    }
+    else if(maxSlot == '' || maxSlot == '0'){
+        showError("Slot cannot be empty");
         return;
     }
     else{
@@ -3458,11 +3375,22 @@ function splitTime(time){
         rawTime = rawTime.substring(1);
     }
 
-    let hour = rawTime.split(':')[0];
+    let hourA = null;
+    let hourB = null;
+
+    if(rawTime.split(':')[0].length == 2){
+        hourA = rawTime.split(':')[0][0];
+        hourB = rawTime.split(':')[0][1];
+    }
+    else{
+        hourA = 0;
+        hourB = rawTime.split(':')[0];
+    }
+
     let minuteA = rawTime.split(':')[1][0];
     let minuteB = rawTime.split(':')[1][1];
 
-    return [parseInt(hour), parseInt(minuteA), parseInt(minuteB), period];
+    return [parseInt(hourA), parseInt(hourB), parseInt(minuteA), parseInt(minuteB), period];
 }
 
 function convertToMilitaryTime(time){
@@ -3576,3 +3504,41 @@ function postAppointment(){
     xhr.setRequestHeader("Content-Type", "applicaition/json");
     xhr.send(toSend);
 }
+
+function limitNumbers(id, str){
+    let input = document.getElementById(id);
+    let newStr = "";
+
+    for(i = 0; i < input.value.length; i++){
+        for(j = 0; j < str.length; j++){
+            if(input.value[i] == str[j]){
+                console.log(str[j])
+                newStr += input.value[i];
+            }
+        }
+    }
+
+    input.value = newStr;
+}
+
+function checkHourA(str){
+    let hourA = document.querySelector(`#${str}HourA`);
+    let hourB = document.querySelector(`#${str}HourB`);
+
+    if(hourB.value == '3' || hourB.value == '4' || hourB.value == '5' || hourB.value == '6' || hourB.value == '7' || hourB.value == '8' || hourB.value == '9'){
+        hourA.value = '0';
+    }
+}
+
+function checkHourB(str){
+    let hourA = document.querySelector(`#${str}HourA`);
+    let hourB = document.querySelector(`#${str}HourB`);
+
+    if(hourA.value == 1){
+        if(hourB.value != '0' && hourB.value != '1' && hourB.value != '2'){
+            hourB.value = '0';
+        }
+    }
+
+}
+
