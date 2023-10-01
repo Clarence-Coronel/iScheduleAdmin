@@ -910,7 +910,7 @@ function nextForm(){
         // });
 
         if(formState == 1){
-            if(checkFormA()){
+            if(true){
                 formParts[formState-1].style.display = 'none';
                 formParts[formState].style.display = 'flex';
             }
@@ -3393,4 +3393,11 @@ function convertToMilitaryTime(time){
     }
 
     return `${hour}:${minute}`;
+}
+
+function generateSched(){
+    if(patient.department != document.querySelector('#dept').value){
+        patient['department'] = document.querySelector('#dept').value;
+        InitialSetup(true);
+    }
 }

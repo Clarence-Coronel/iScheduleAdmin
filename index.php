@@ -88,7 +88,7 @@
                 <div class="schedule__form schedule__partA">
                     <div class="schedule__input-container">
                         <label for="">Department</label>
-                        <select class="form-select" aria-label="Default select example"  id="dept" onchange="alert('generate calendar inisetup')">
+                        <select class="form-select" aria-label="Default select example"  id="dept" onchange="generateSched()">
                                 <option value="" selected hidden disabled>Select a Department</option>
                                 <option value="1">ENT</option>
                                 <option value="2">Hematology</option>
@@ -180,9 +180,9 @@
                         <input type="text" name="timeSlot" id="timeSlot" style="display: none;">
                         <div class="calendar-container">
                             <div class="calendar__header">
-                                <div class="calendar__btn" id="calendar__prev"><img draggable="false" class="calendar__arrow" src="./../imgs/arrow-back.png" alt="" srcset=""></div>
+                                <div class="calendar__btn" id="calendar__prev"><img draggable="false" class="calendar__arrow" src="./imgs/arrow-back.png" alt="" srcset=""></div>
                                 <div class="calendar__month"></div>
-                                <div class="calendar__btn" id="calendar__next"><img draggable="false" class="calendar__arrow" src="./../imgs/arrow-forward.png" alt="" srcset=""></div>
+                                <div class="calendar__btn" id="calendar__next"><img draggable="false" class="calendar__arrow" src="./imgs/arrow-forward.png" alt="" srcset=""></div>
                             </div>
                             <div class="calendar-row zeroRow">
                                 <div class="box day">Sun</div>
