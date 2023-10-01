@@ -3169,12 +3169,28 @@ function applyEditSched(id, deptID, day){
         showError("Starting time cannot be empty");
         return;
     }
+    else if(startHourA == "" && startHourB == "" && startMinuteA == "" && startMinuteB == ""){
+        showError("Starting time cannot be empty");
+        return;
+    }
+    else if(startHourA == "" || startHourB == "" || startMinuteA == "" || startMinuteB == ""){
+        showError("Invalid starting time");
+        return;
+    }
     else if(startHourA == "0" && startHourB == "0"){
-        showError("Invalid starting Time");
+        showError("Invalid starting time");
         return;
     }
     else if(stopHourA == "0" && stopHourB == "0" && stopMinuteA == "0" && stopMinuteB == "0"){
         showError("Closing time cannot be empty");
+        return;
+    }
+    else if(stopHourA == "" && stopHourB == "" && stopMinuteA == "" && stopMinuteB == ""){
+        showError("Closing time cannot be empty");
+        return;
+    }
+    else if(stopHourA == "" || stopHourB == "" || stopMinuteA == "" || stopMinuteB == ""){
+        showError("Invalid closing time");
         return;
     }
     else if(stopHourA == "0" && stopHourB == "0"){
@@ -3297,12 +3313,28 @@ function applyAddSched(day){
         showError("Starting time cannot be empty");
         return;
     }
+    else if(startHourA == "" && startHourB == "" && startMinuteA == "" && startMinuteB == ""){
+        showError("Starting time cannot be empty");
+        return;
+    }
+    else if(startHourA == "" || startHourB == "" || startMinuteA == "" || startMinuteB == ""){
+        showError("Invalid starting time");
+        return;
+    }
     else if(startHourA == "0" && startHourB == "0"){
-        showError("Invalid starting Time");
+        showError("Invalid starting time");
         return;
     }
     else if(stopHourA == "0" && stopHourB == "0" && stopMinuteA == "0" && stopMinuteB == "0"){
         showError("Closing time cannot be empty");
+        return;
+    }
+    else if(stopHourA == "" && stopHourB == "" && stopMinuteA == "" && stopMinuteB == ""){
+        showError("Closing time cannot be empty");
+        return;
+    }
+    else if(stopHourA == "" || stopHourB == "" || stopMinuteA == "" || stopMinuteB == ""){
+        showError("Invalid closing time");
         return;
     }
     else if(stopHourA == "0" && stopHourB == "0"){
