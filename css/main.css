@@ -1937,6 +1937,7 @@ td:hover {
   }
 }
 .schedule__button-container {
+  margin: 1vw 0;
   display: flex;
   flex-flow: column-reverse;
   width: 90%;
@@ -2178,6 +2179,12 @@ td:hover {
   cursor: pointer;
   background-color: rgb(246, 245, 245);
 }
+.slot-container .buffer {
+  background-color: rgb(245, 234, 170) !important;
+}
+.slot-container .buffer:hover {
+  background-color: #f8f0c1 !important;
+}
 .slot-container .slot-selected {
   background-color: #4e73df !important;
   color: white !important;
@@ -2188,12 +2195,16 @@ td:hover {
 .slot-container .slot-selected .time {
   font-weight: 700;
 }
+.slot-container .slot-selected:hover {
+  background-color: #4e73df !important;
+}
 .slot-container .slot-full {
   background-color: rgb(218, 213, 213) !important;
   color: rgb(148, 145, 145);
 }
 .slot-container .slot-full:hover {
   cursor: not-allowed;
+  background-color: rgb(218, 213, 213) !important;
 }
 .slot-container .slotAvail {
   text-align: right !important;
@@ -2726,7 +2737,6 @@ table {
   flex-flow: column;
   align-items: center;
   height: 90vh;
-  overflow: hidden;
 }
 .scheduling .scheduling-content {
   background-color: white;
@@ -2734,13 +2744,13 @@ table {
   box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
   padding: max(15px, 2vw);
   margin-top: max(15px, 1vw);
-  width: 95%;
-  height: 90%;
+  width: 98%;
+  height: 100%;
   overflow-y: auto;
 }
 .scheduling .week-container {
   width: 100%;
-  height: 90%;
+  height: 99%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
   gap: 1%;
@@ -2772,13 +2782,18 @@ table {
   border-radius: max(0.1vw, 5px);
   display: flex;
   flex-flow: column;
-  gap: 2vh;
+  justify-content: space-around;
+  align-items: center;
+  height: max(15vh, 100px);
 }
 .scheduling .week-container .buffer {
   background-color: rgb(245, 234, 170);
 }
 .scheduling .week-container .buffer .time::after {
   content: " (Buffer)";
+}
+.scheduling .week-container .add {
+  height: unset;
 }
 .scheduling .week-container .add .add-btn {
   border: unset;
@@ -2800,7 +2815,7 @@ table {
   width: 100%;
   text-align: center;
   font-weight: 700;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
 }
 .scheduling .week-container .max {
   color: red;
@@ -3242,5 +3257,5 @@ table {
 }
 #full {
   background-color: rgb(233, 64, 64) !important;
-  color: rgb(159, 59, 59);
+  color: white;
 }/*# sourceMappingURL=main.css.map */

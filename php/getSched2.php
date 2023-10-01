@@ -19,11 +19,12 @@
         public $max;
         public $startTime;
         public $stopTime;
+        public $isBuffer;
     }
 
     $allSched = array();
 
-    $query = "SELECT `scheduleID`, `max`, `startTime`, `stopTime` FROM `schedules` WHERE `isActive` = 1 AND `isBuffer` = 0 AND `day` = '$day' AND `deptID` = $deptID;";
+    $query = "SELECT `scheduleID`, `max`, `startTime`, `stopTime`, `isBuffer` FROM `schedules` WHERE `isActive` = 1 AND `day` = '$day' AND `deptID` = $deptID ORDER BY `startTime`;";
     $result = mysqli_query($conn,$query);
 	$count = mysqli_num_rows($result);
 
@@ -35,6 +36,7 @@
             $tempObj->max = $row['max'];
             $tempObj->startTime = timeConverter($row['startTime']);
             $tempObj->stopTime = timeConverter($row['stopTime']);
+            $tempObj->isBuffer = $row['isBuffer'];
 
             array_push($allSched, $tempObj);
         }

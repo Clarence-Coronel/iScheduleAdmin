@@ -57,7 +57,6 @@ const patient = {
 // }
 
 applyAdminInfo();
-
 setInterval(checkSession, 30000);
 setInterval(checkAdminPrivChange, 30000);
 
@@ -741,6 +740,18 @@ function errorHandler(code){
     else if(code == '150'){
         formErrorMessage = 'Patient type cannot be empty.';
     }
+    // 
+    // SCHEDULE DATE *****************************
+    // 
+    else if(code == '160'){
+        formErrorMessage = 'Choose a date for the appointment.';
+    }
+    // 
+    // TIME SLOT *****************************
+    // 
+    else if(code == '170'){
+        formErrorMessage = 'Choose a slot for the appointment';
+    }
     generateErrorModal();
 
 }
@@ -910,9 +921,11 @@ function nextForm(){
         // });
 
         if(formState == 1){
-            if(true){
+            if(checkFormA()){
                 formParts[formState-1].style.display = 'none';
                 formParts[formState].style.display = 'flex';
+                calendarNext.addEventListener('click', nextMonthBtn);
+                calendarPrev.addEventListener('click', prevMonthBtn);
             }
             else{
                 formState--;
@@ -920,10 +933,18 @@ function nextForm(){
             }
         }
         else if(formState == 2){
-            formParts[formState].style.display = 'flex';
-            // document.querySelector('.followup-container').style.display = 'none';
+            if(checkFormB()){
+                formParts[formState-1].style.display = 'none';
+                formParts[formState].style.display = 'flex';
+                grabPatient();
+            }
+            else{
+                formState--;
+                return;
+            }
         }
         else{
+            postAppointment();
         }
     }
 }
@@ -1033,7 +1054,7 @@ function checkFormA(){
         errorHandler("113");
         return false;
     }
-    patient.birthdate = birthdate;
+    patient.dateOfBirth = birthdate;
     // PHONE
     let phone = document.querySelector('#phone').value.replaceAll(' ', '').trim();
     if(phone == ""){
@@ -1098,7 +1119,6 @@ function checkFormA(){
         // 
         let municipalityOther = document.querySelector('#municipalityOther').value.trim().toLowerCase();
         if(municipalityOther == ''){
-            alert("pasok 143")
             errorHandler('143');
             return false;
         }
@@ -1140,6 +1160,81 @@ function checkFormA(){
     patient.caseNo = document.querySelector('#caseNo').value;
 
     return true;
+}
+
+function checkFormB(){
+    let date = document.querySelector('#scheduleDate').value;
+    let timeSlot = document.querySelector('#timeSlot').value;
+
+    if(date == ""){
+        errorHandler("160");
+        return false;
+    }
+    if(timeSlot == ""){
+        errorHandler("170");
+        return false;
+    }
+
+    patient.scheduleDate = htmlDateUnconvert(date);
+    patient.timeSlot = timeSlot;
+    return true;
+}
+
+function grabPatient(){
+    console.table(patient);
+    let reviewFields = document.querySelectorAll('.schedule__review-field');
+    reviewFields.forEach((item, index)=>{
+        switch(index){
+            case 0:
+                item.querySelector('.schedule__field-content').innerHTML = `${htmlDateConverter(patient.scheduleDate)} (${selectedSlot})`;
+                break;
+            case 1:
+                const dept = ['ENT', 'Hematology', 'Internal Medicine', 'Internal Medicine Clearance', 'Nephrology', 'Neurology', 'OB GYNE New', 'OB GYNE Old', 'OB GYNE ROS', 'Oncology', 'Pediatric Cardiology', 'Pediatric Clearance', 'Pediatric General', 'Psychiatry New', 'Psychiatry Old', 'Surgery', 'Surgery ROS'];
+                // Turn string to proper form then removed comma from function
+                let deptName = dept[patient['department']-1];
+                // let removedCommaDept = "";
+
+                // for(i = 0; i < dept.length; i++){
+                //     if(dept[i] != ',') removedCommaDept += dept[i];
+                // }
+
+                item.querySelector('.schedule__field-content').innerHTML = deptName;
+                break;
+            case 2:
+                // Turn string to proper form then removed comma from function
+                let fullName = capitalFirstLetter(`${patient['firstName']} ${patient['middleName']} ${patient['lastName']}`)
+
+                item.querySelector('.schedule__field-content').innerHTML = fullName;
+                break;
+            case 3:
+                if(patient.sex == 'm'){
+                    item.querySelector('.schedule__field-content').innerHTML = "Male";
+                }
+                else{
+                    item.querySelector('.schedule__field-content').innerHTML = "Female";
+                }
+                break;
+            case 4:
+                // inserts converted value to birthdateDisplay which is Month date, year
+                item.querySelector('.schedule__field-content').innerHTML = htmlDateConverter(patient.dateOfBirth);
+                break;   
+            case 5:
+                item.querySelector('.schedule__field-content').innerHTML = patient.phone;
+                break; 
+            case 6:
+                // Turn string to proper form
+                let tempAddress = capitalFirstLetter(`${patient.barangay}, ${patient.municipality}, ${patient.province}`)
+                item.querySelector('.schedule__field-content').innerHTML = tempAddress;
+                break;
+            case 7:
+                if(patient['typeOfPatient'] == 'old') item.querySelector('.schedule__field-content').innerHTML = 'Dating Pasyente';
+                else item.querySelector('.schedule__field-content').innerHTML = 'Bagong Pasyente';
+                break;
+            case 8:
+                item.querySelector('.schedule__field-content').innerHTML = patient['caseNo'];
+                break;
+        }
+    });
 }
 
 function filterCaseNo(id){
@@ -3400,4 +3495,84 @@ function generateSched(){
         patient['department'] = document.querySelector('#dept').value;
         InitialSetup(true);
     }
+}
+
+function htmlDateConverter(str){
+    str = str.split('-');
+    tempYear = str[0];
+    tempMonth = str[1];
+    tempDate = str[2]
+    
+    return `${months[tempMonth-1]} ${tempDate}, ${tempYear}`;
+}
+
+function htmlDateUnconvert(str){
+    try {
+        str = str.replaceAll(',', '').split(' ');
+        tempMonth = '';
+    
+        months.forEach((item, index)=>{
+            if(item == str[0]){
+                tempMonth = index+1;
+                tempMonth = tempMonth.toString();
+                if(tempMonth.length == 1) tempMonth = '0' + tempMonth;
+            }
+        });
+    
+        str[1] = str[1].toString();
+        str[2] = str[2].toString();
+        
+        if(str[1].length == 1) str[1] = '0'+str[1];
+        
+        return str[2] + '-' + tempMonth + '-' + str[1];
+    } catch (error) {
+        
+    }
+}
+
+function postAppointment(){
+    const xhr = new XMLHttpRequest();
+
+    const toSend = JSON.stringify(patient);
+
+    xhr.onreadystatechange = function(){
+        if(this.readyState == 4){
+            if(this.status == 200){
+                if(this.responseText == 1){
+                    // SUCCESS
+                    patient.department = null;
+                    patient.scheduleDate = null;
+                    patient.timeSlot = null;
+                    patient.firstName = null;
+                    patient.middleName = null;
+                    patient.lastName = null;
+                    patient.sex = null;
+                    patient.dateOfBirth = null;
+                    patient.phone = null;
+                    patient.barangay = null;
+                    patient.municipality = null;
+                    patient.province = null;
+                    patient.typeOfPatient = null;
+                    patient.caseNo = null;
+
+                    showResModal("Appointment is scheduled");
+                    generateSchedule();
+                }
+                else if (this.responseText == 0){
+                    formState = 0;
+                    const formParts = document.querySelectorAll('.schedule__form');
+                    formParts.forEach((form)=>{
+                         form.style.display = 'none';
+                    });
+                    document.querySelector('.schedule__next').click();
+                    InitialSetup(true);
+                    showResModal("The selected appointment schedule is full. Choose another schedule.", false, 'Failed');
+                }
+            }
+        }
+    }
+
+    xhr.open("POST", "./php/postAppointment.php", false);
+    xhr.setRequestHeader("Content-Type", "applicaition/json");
+    xhr.send(toSend);
 }

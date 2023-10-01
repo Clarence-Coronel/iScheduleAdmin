@@ -5,7 +5,7 @@
 // pagkanagpalit ng date iclear yung slots
 // If walang laman slots mag lagay text na select a date
 const container = document.querySelector('.calendar-container');
-const monthContainer = document.querySelector('.calendar__month');
+let monthContainer;
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 const calendarPrev = document.querySelector('#calendar__prev');
 const calendarNext = document.querySelector('#calendar__next');
@@ -25,8 +25,6 @@ let year = date.getFullYear();
 
 let isExecuted = false;
 
-calendarNext.addEventListener('click', nextMonthBtn);
-calendarPrev.addEventListener('click', prevMonthBtn);
 
 function loadSlots(date){
     let slotContainer = document.querySelector('.slot-container');
@@ -79,17 +77,28 @@ function loadSlots(date){
 
 
     slots.forEach((item)=>{
+        if(item.isBuffer == 1) item.isBuffer = true;
+        else item.isBuffer = false;
+
         let newSlot = document.createElement('div');
         newSlot.classList.add('slot');
         newSlot.setAttribute('data-schedid', item.schedID);
 
         let newInfo = document.createElement('div');
         newInfo.innerHTML = `${item.startTime} - ${item.stopTime}`;
+
+        if(item.isBuffer){
+            newSlot.classList.add('buffer');
+        }
+
         newInfo.classList.add('time');
         newSlot.appendChild(newInfo);
 
         let newSlotAvail = document.createElement('div');
         let slotsAvail;
+
+        
+
 
         const xhr2 = new XMLHttpRequest();
         xhr2.onreadystatechange = function(){
@@ -174,7 +183,6 @@ function selectDate(){
                 dateCells.forEach((date)=>{
                     date.classList.remove('date-selected');
                 });
-                item.setAttribute('data-test', 'etoyun');
                 item.classList.add('date-selected');
                 selectedDate = item.innerHTML;
                 document.getElementById('scheduleDate').value = `${selectedMonth} ${selectedDate}, ${selectedYear}`;
@@ -470,7 +478,7 @@ function generateDate(days, NameOfDay1st){
             if(availScheds.length == 0) {
                 calendarCell[i].classList.add('block');
                 calendarCell[i].setAttribute('id','full');
-                // calendarCell[i].innerText = 'Full';
+                calendarCell[i].innerText = 'Full';
             }
         }else{
             calendarCell[i].classList.add('block');

@@ -20,7 +20,7 @@
 
     $allSched = array();
 
-    $query = "SELECT `scheduleID`, `max` FROM `schedules` WHERE `isActive` = 1 AND `isBuffer` = 0 AND `day` = '$day' AND `deptID` = $deptID;";
+    $query = "SELECT `scheduleID`, `max` FROM `schedules` WHERE `isActive` = 1 AND `day` = '$day' AND `deptID` = $deptID;";
     $result = mysqli_query($conn,$query);
 	$count = mysqli_num_rows($result);
 

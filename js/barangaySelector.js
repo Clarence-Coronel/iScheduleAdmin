@@ -1,7 +1,5 @@
 // If other yung value ni barangay and municipality ang gawin sa back end is kunin lang directly yung address other wise pagdugtungin 
 // yung barangay municipality bulacan
-const municipality = document.querySelector('#municipality');
-const barangay = document.querySelector('#barangay');
 
 
 const municipalityList = ['angat', 'balagtas', 'baliwag', 'bocaue', 'bulakan', 'bustos', 'calumpit', 'doña remedios trinidad', 'guiguinto', 'hagonoy', 'malolos', 'marilao', 
@@ -170,7 +168,6 @@ const barangaylist = {
   };
 
 // Populate the municipalities dropdown select
-generateMunicipalities();
 
 
 function getBarangayList(municipality){
@@ -238,7 +235,6 @@ function generateBarangays(municipality){
 
 function generateMunicipalities(){
     municipalityList.forEach((item)=>{
-
         processedItem = item.substring(0, 1).toUpperCase() + item.substring(1);
     
         for(i = 0; i < item.length; i++){
