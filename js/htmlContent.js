@@ -402,7 +402,7 @@ let viewSchedule = `
                             <td>Oncology</td>
                             <td title="YYYY-MM-DD">2023-08-25</td>
                             <td>1:00 PM - 2:00PM</td>
-                            <td class="missed">Cancelled</td>
+                            <td class="cancelled">Cancelled</td>
                             <td>Male</td>
                             <td title="YYYY-MM-DD">2001-10-21</td>
                             <td>0942 423 4277</td>
