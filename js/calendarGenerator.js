@@ -441,9 +441,10 @@ function generateDate(days, NameOfDay1st){
                     try {
                         schedules = JSON.parse(this.responseText);
                         proceedChkFull = true;
-                    } catch (error) {
-                        // calendarCell[i].classList.add('block');
-                    }       
+                    }
+                    catch{
+                        calendarCell[i].classList.add('block');
+                    }    
                 }
             }
         }
@@ -480,8 +481,6 @@ function generateDate(days, NameOfDay1st){
                 calendarCell[i].setAttribute('id','full');
                 calendarCell[i].innerText = 'Full';
             }
-        }else{
-            calendarCell[i].classList.add('block');
         }
 
         calendarCell[i].setAttribute('data-date', checkDate);
@@ -501,7 +500,6 @@ function generateDate(days, NameOfDay1st){
                 item.classList.add('block');
             }
         }
-
         if(item.innerHTML == "") {
             item.classList.remove('date');
             item.classList.add('block');
