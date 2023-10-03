@@ -2717,7 +2717,7 @@ table {
 }
 
 .cancelled {
-  color: red !important;
+  color: orange !important;
 }
 
 .active {
@@ -2725,7 +2725,7 @@ table {
 }
 
 .missed {
-  color: gold !important;
+  color: rgb(183, 180, 180) !important;
 }
 
 .completed {

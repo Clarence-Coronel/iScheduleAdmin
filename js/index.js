@@ -2099,14 +2099,6 @@ function checkBlockDate(){
         showError("Fill in all fields");
         return;
     }
-    else if(parseInt(month) <= 0 || parseInt(month) > 12){
-        showError("Input between 1 - 12 in month field");
-        return;
-    }
-    else if(parseInt(day) <= 0 || parseInt(day) > 31){
-        showError("Input between 1 - 31 in date field");
-        return;
-    }
     else if(!isDateValid(tempDate)){
         showError("Input a valid date");
         return;

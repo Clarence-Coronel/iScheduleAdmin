@@ -2,7 +2,7 @@
     session_start();
 
     if(isset($_SESSION['authenticated'])){
-        header("Location: ../index.php");
+        header("Location: ../panel_index.php");
     }
 ?>
 

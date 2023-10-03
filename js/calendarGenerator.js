@@ -495,7 +495,7 @@ function generateDate(days, NameOfDay1st){
 
     }
     calendarCell.forEach((item)=>{
-        if(nextCounter <= 1){
+        if(nextCounter < 1){
             if(item.innerHTML <= date.getDate()){
                 item.classList.remove('date');
                 item.classList.add('block');

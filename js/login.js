@@ -152,7 +152,7 @@ function validateLogin(){
             if(xhr.status == 200){
                 let result = parseInt(xhr.responseText);
                 if(result == 1){
-                    window.location.href="../index.php";
+                    window.location.href="../panel_index.php";
                 }
                 else{
                     showError("Incorrect username or password");
