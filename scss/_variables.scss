@@ -1,6 +1,6 @@
 $primary-color: #4e73df;
 $btn-color: #0577fa;
-$btn-height: max(40px, 3vw);
+$btn-height: max(25px, 6vh);
 $fontbase-color:rgb(80, 78, 78);
 $fontOnPrimary-color: white;
 $gray: rgb(210, 208, 208);
@@ -12,6 +12,8 @@ $box-margin-top: max(15px, 1vw);
 $box-border-radius: max(7px, 1vw);
 $background-color: whitesmoke;
 $margin-top-span: max(5px, 1vw);
+$edit-btn-color: rgb(246, 177, 48);
+$delete-btn-color: rgb(239, 97, 97);
 // rgb(225, 233, 241) bg color old val
 
 $primary-alt: rgb(1, 81, 221);

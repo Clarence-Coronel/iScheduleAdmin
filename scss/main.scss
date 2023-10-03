@@ -9,7 +9,7 @@ html{
 
 body{
     width: 100vw;
-    height: fit-content;
+    height: 100vh;
     min-height: 100vh;
     display: flex;
     flex-flow: column;
@@ -24,7 +24,8 @@ main{
     width: 100%;
     height: 100%;
     // background-color: red;
-    // overflow-y: auto;
+    overflow-y: auto;
+    // overflow: hidden;
 }
 
 .wrapper{
@@ -90,7 +91,7 @@ header{
         }
     }
     .role{
-        width: 100%;
+        width: fit-content;
         color: rgb(88, 86, 86);
         font-size: 0.8rem;
         // position: relative;
@@ -212,17 +213,6 @@ header{
     transition-duration: 500ms;
     z-index: 998;
 }
-.nav-item-wrapper{
-    width: 100%;
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-    align-items: flex-start;
-    // gap: max(10px, 1vw);
-    // max-height: 1200px;
-    height: 95vh;
-    // overflow: auto;
-}
 
 .nav-links{
     background-color: $primary-color;
@@ -235,8 +225,18 @@ header{
     z-index: 999;
     padding: max(5px, 0.5vw);
     // min-height: 900px;
-    // overflow-x: auto;
-    // overflow-y: auto;
+    
+    .nav-item-wrapper{
+        width: 100%;
+        // gap: max(10px, 1vw);
+        // max-height: 1200px;
+        height: 95vh;
+        // overflow-y: auto;
+        display: flex;
+        flex-flow: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
 
 
     .ico-nav, .ico-nav--sub{
@@ -262,11 +262,17 @@ header{
     }
 }
 
+.nav-item-wrapper{
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+}
+
 .nav-links__item{
     height: max(35px, 15%);
     border: unset;
     display: flex;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     justify-content: flex-start;
     align-items: center;
     color: $gray;
@@ -277,6 +283,12 @@ header{
     width: 100%;
     user-select: none;
     background-color: transparent;
+    max-height: 70px;
+}
+
+.nav-links__item:nth-child(1){
+    max-height: unset;
+
 }
 
 .manage-admins{
@@ -351,7 +363,7 @@ header{
     width: 100%;
     user-select: none;
     background-color: transparent;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     // border-bottom: 1px solid rgba(255, 255, 255, 0.27);
 }
 
@@ -486,6 +498,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
 .add-admin{
     width: 100%;
     height: 100%;
+    overflow:hidden;
 }
 
 .form-container{
@@ -494,20 +507,21 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    overflow: hidden;
+    overflow: auto;
 }
 
 .form{
     box-shadow: $box-shadow;
     background-color: white;
-    width: max(280px, 40%);
+    width: max(300px, 30%);
     height: fit-content;
+    // min-height: 350px;
     border-radius: max(7px, 1vw);
-    margin: max(10px, 1.5vw) 0;
-    padding: max(10px, 1vw) max(20px, 5vw);
+    margin-top: $box-margin-top;
+    padding: $box-padding;
     overflow: hidden;
     border-bottom: min(10px,5vw) solid lighten($primary-color, 10);
-
+    min-width: 310px;
     // display: flex;
     // flex-flow: column;
     // justify-content: flex-start;
@@ -516,11 +530,10 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
     // gap: max(20px, 2vw);
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100%,1fr));
-    gap: max(15px, 1.5vw);
+    gap: max(10px, 1vw);
     justify-items: center;
     position: relative;
-    transition-duration: 500ms;
-    
+    transition-duration: 500ms;    
 
     input{
         outline: none;
@@ -557,6 +570,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
         color: white;
         border: 5px solid white;
     }
+
 }
 
 .custom-shape-divider-top-1689432371 {
@@ -643,6 +657,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
         background-color: white;
         transition-duration: 200ms;
         font-size: 0.8rem;
+        user-select: none;
     }
 
     label:hover{
@@ -695,21 +710,13 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
         label{
             color: $primary-color;
             font-weight: 700;
+            user-select: none;
         }
     }
 }
 
-@media only screen and (min-width: 450px ){
-    .form{
-        width: 90%;
-    }
-}
-
 @media only screen and (min-width:1200px){
-    .form{
-        width: max(300px, 40%);
-        // box-shadow: 10px 10px rgba(114, 114, 114, 0.472);
-    }
+
 
     // .form:hover{
     //     transform: translate(-5px,-10px);
@@ -749,7 +756,7 @@ input:-webkit-autofill:focus{
     flex-flow: column;
     justify-content: flex-start;
     align-items: center;
-    max-height:80vh;
+    max-height:85vh;
 }
 
 .admin-logs, .admin-list{
@@ -769,7 +776,6 @@ input:-webkit-autofill:focus{
         align-items: center;
         width: 100%;
         border-radius: max(7px, 1vw);
-        
     }
 
     h2{
@@ -791,16 +797,17 @@ input:-webkit-autofill:focus{
         display: flex;
         flex-flow: row nowrap;
         align-items: flex-start;
-        height:max(30px, 3vw);
-        margin: max(10px, 1vw);
+        height:max(20px, 2vw);
+        margin-bottom: $box-margin-top;
 
         input{
             width: 100%;
             border: 2px solid $fontbase-color;
-            border-radius: max(10px, 1vw) 0 0 max(10px, 1vw);
+            // border-radius: max(10px, 1vw) 0 0 max(10px, 1vw);
             height: 100%;
-            border-right: unset;
-            padding: 0 max(10px, 1vw);
+            border: unset;
+            border-bottom: 1px solid $fontbase-color;
+            // padding: 0 max(10px, 1vw);
         }
     
         input:focus{
@@ -810,17 +817,22 @@ input:-webkit-autofill:focus{
         button{
             background-color: white;
             border: 1px solid $fontbase-color;
-            border-left: unset;
-            width: max(30px, 3vw);
-            border-radius: 0 max(10px, 1vw) max(10px, 1vw) 0;
+            border: unset;
+            border-bottom: 1px solid $fontbase-color;
+            // width: max(30px, 3vw);
+            border-radius: unset;
+            padding: unset;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-end;
             height: 100%;
+            width: fit-content !important;
+            min-width: fit-content !important
         }
 
         button:hover{
             background-color: white;
+            cursor:pointer;
         }
 
         .ico-search{
@@ -833,6 +845,10 @@ input:-webkit-autofill:focus{
         }
     }
 
+    .error-container{
+        margin-top: 1vh;
+    }
+
     button{
         background-color: $btn-color;
         border: unset;
@@ -843,11 +859,16 @@ input:-webkit-autofill:focus{
         // margin-left: auto;
         min-width: 70px;
         width: 100%;
-        height: 100%;
+        height: $btn-height;
+        // 
     }
 
     button:hover{
         background-color: lighten($btn-color, 5);
+    }
+
+    .apply-logfilter{
+        margin-top: 3vh;
     }
 }
 
@@ -871,30 +892,51 @@ input:-webkit-autofill:focus{
     grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
     gap: max(10px, 1vw);
     justify-items: flex-start;
-    margin-bottom: $box-margin-top;
+    // margin-bottom: $box-margin-top;
 
-    input[type="date"]{
+    // input[type="date"]{
+    //     width: 100%;
+    //     height: 100%;
+    //     position: relative;
+    //     border-radius: 0.375rem;
+    //     padding: 0.375rem 2.25rem 0.375rem 0.75rem;   
+    //     text-align: left;
+    //     background-color: white;
+    //     // appearance: none;
+    // }
+
+    // input[type="date"]::-webkit-calendar-picker-indicator {
+    //     position: absolute;
+    //     width: 100%;
+    //     opacity: 0;
+    //     // appearance: none;
+    // }
+
+    // .DatePickerInput::-webkit-inner-spin-button,
+    // .DatePickerInput::-webkit-calendar-picker-indicator {
+    //     opacity:0 !important;   
+    //     -webkit-appearance: none !important;
+    // }
+    .date-picker{
+        display: flex;
+        flex-flow: row nowrap;
         width: 100%;
         height: 100%;
-        position: relative;
-        border-radius: 0.375rem;
-        padding: 0.375rem 2.25rem 0.375rem 0.75rem;   
-        text-align: left;
-        background-color: white;
-        // appearance: none;
-    }
+        align-items: flex-end;
 
-    input[type="date"]::-webkit-calendar-picker-indicator {
-        position: absolute;
-        width: 100%;
-        opacity: 0;
-        // appearance: none;
-    }
+        input{
+            height: 100%;
+            width: 32%;
+            text-align: center;
+            border: unset;
+            border-bottom: 1px solid $fontbase-color;
+        }
 
-    .DatePickerInput::-webkit-inner-spin-button,
-    .DatePickerInput::-webkit-calendar-picker-indicator {
-        opacity:0 !important;   
-        -webkit-appearance: none !important;
+        span{
+            width: 2%;
+            color: $fontbase-color;
+            text-align: center;
+        }
     }
 
     .form-select{
@@ -912,6 +954,7 @@ input:-webkit-autofill:focus{
     
     overflow:auto !important;
     border: 1px solid rgb(226, 222, 222);
+    border-radius: 5px;
     // border-radius: max(7px, 0.5vw);
 }
 
@@ -932,13 +975,18 @@ tr{
     width: 100%;
     // display: flex;
     // flex-flow: row nowrap;
+    // background-color: red;
+}
+
+tr:nth-child(2n){
+    background-color: rgb(236, 235, 235) !important;
 }
 
 
 th{
     // flex: 2;
     text-align: left;
-    padding: max(10px,0.8vw);
+    padding: max(15px,1vh) max(7px,0.5vw);
     user-select: none;
     font-size: 0.7rem;
     max-width: max(10vw, 100px);
@@ -950,7 +998,7 @@ th{
 td{
     // min-width: 150px;
     // flex: 2;
-    padding: max(10px,0.8vw);
+    padding: max(15px,1vh) max(7px,0.5vw);
     text-align: left;
     max-width: max(10vw, 100px);
     overflow: hidden;
@@ -961,6 +1009,8 @@ td{
     font-size: 0.7rem;
     border-right: none;
     border-left: none;
+    overflow-wrap: break-word;
+    min-width: 150px;
 
 
 
@@ -1022,36 +1072,7 @@ td:hover{
         font-size: 1rem;
     }
 
-    .ico-edit{
-        color: rgb(135, 176, 241);
-        // border-color: rgb(12, 100, 232);
-        border-radius: 50px;
-        padding: 4px;
-        // text-decoration: underline;
-        font-size: 0.7rem;
-    }
-
-    .editBtn:hover .ico-edit{
-        color:lighten($color: rgb(135, 176, 241), $amount: 5);
-        cursor: pointer;
-    }
-
-    // .ico-remove{
-    //     color: white;
-    //     background-color: red;
-    //     border-radius: 50px;
-    //     padding: 4px;
-    //     text-align: center;
-    // }
-
-    .removeAdmin{
-        color: red;
-    }
-
-    .removeAdmin:hover{
-        cursor: pointer;
-        color: darken(red, 10);
-    }
+    
 }
 
 .logs-table tr:nth-child(even), .admin-table tr:nth-child(even), .date-table tr:nth-child(even){
@@ -1068,7 +1089,8 @@ td:hover{
         display: flex;
         flex-flow: row nowrap;
         align-items: flex-start;
-        height:max(30px, 3vw);
+        height:max(20px, 2vw);
+        margin-bottom: $box-margin-top;
     }
 
     .ico-search{
@@ -1083,10 +1105,11 @@ td:hover{
     input{
         width: 100%;
         border: 2px solid $fontbase-color;
-        border-radius: max(10px, 1vw) 0 0 max(10px, 1vw);
+        // border-radius: max(10px, 1vw) 0 0 max(10px, 1vw);
         height: 100%;
-        border-right: unset;
-        padding: 0 max(10px, 1vw);
+        border: unset;
+        border-bottom: 1px solid $fontbase-color;
+        // padding: 0 max(10px, 1vw);
     }
 
     input:focus{
@@ -1096,13 +1119,17 @@ td:hover{
     button{
         background-color: white;
         border: 1px solid $fontbase-color;
-        border-left: unset;
-        width: max(30px, 3vw);
-        border-radius: 0 max(10px, 1vw) max(10px, 1vw) 0;
+        border: unset;
+        border-bottom: 1px solid $fontbase-color;
+        // width: max(30px, 3vw);
+        // border-radius: 0 max(10px, 1vw) max(10px, 1vw) 0;
         display: flex;
         align-items: center;
         justify-content: center;
         height: 100%;
+    }
+    button:hover{
+        cursor:pointer;
     }
 }
 
@@ -1304,6 +1331,10 @@ td:hover{
             font-size: 3rem;
             background-color: white;
         }
+
+        .status-name{
+            color: inherit;
+        }
     }
 
     .status__msg{
@@ -1364,6 +1395,7 @@ td:hover{
         width: 30%;
         min-width: 150px;
     }
+    
 
     button{
         background-color: $btn-color;
@@ -1409,10 +1441,10 @@ td:hover{
 
     .manage-date__content{
         width: 80%;
-        margin-top: max(20px, 1.5vw);
         background-color: white;
         border-radius: $box-border-radius;
         box-shadow: $box-shadow;
+        margin-top: $box-margin-top;
         padding: max(20px, 2vw);
         display: flex;
         flex-flow: column;
@@ -1440,7 +1472,7 @@ td:hover{
 
     .field__delete-btn{
         border: unset;
-        background-color: red;
+        background-color: $delete-btn-color;
         color: white;
         border-radius: max(5px, 0.5vw);
         padding: max(5px, 0.2vw);
@@ -1516,24 +1548,45 @@ td:hover{
     button:hover{
         background-color: lighten($btn-color, 5);
     }
+
+    #announcementSee{
+        background-color: transparent;
+        border: unset;
+        color: $btn-color;
+        border-radius:  unset;
+        padding: 0;
+        height: fit-content;
+        width: fit-content;
+        font-size: 0.8rem;
+        text-decoration: underline;
+        min-width: fit-content;
+    }
+
+    #announcementSee:hover{
+        color: lighten($btn-color, 5);
+    }
 }
 
 .dashboard{
     width: 100%;
-    height: 100%;
+    height: 90vh;
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
-    align-items: center;
-    overflow: hidden;
-
+    align-items: flex-start;
+    // overflow-x: hidden;
+    // overflow-y: auto;
+    // padding: 0.5vh 0;
+    
     .dashboard__left{
         flex: 1 0 auto;
         margin-top: $box-margin-top;
         width: 50%;
         min-width: 320px;
         max-width: 960px;
-        height: 80vh;
+        height: 90%;
+        overflow: hidden;
+        padding-top: 0.5vh;
     }
 
     .dashboard__right{
@@ -1542,7 +1595,9 @@ td:hover{
         width: 50%;
         min-width: 320px;
         max-width: 960px;
-        height: 80vh;
+        height: 90%;
+        overflow: hidden;
+        padding: 0.5vh 0;
     }
 }
 
@@ -1556,7 +1611,7 @@ td:hover{
 
     .dashboard__stats{
         width: 90%;
-        height: 47%;
+        height: 45%;
         background-color: white;
         box-shadow: $box-shadow;
         border-radius: max(10px, 1.2vw);
@@ -1621,7 +1676,7 @@ td:hover{
 
     .dashboard__per-dept{
         width: 90%;
-        height: 47%;
+        height: 45%;
         background-color: white;
         box-shadow: $box-shadow;
         border-radius: max(10px, 1.2vw);
@@ -1647,12 +1702,13 @@ td:hover{
     // padding: max(10px, 1vw);
 
     .dashboard__all-patients{
-        height: 100%;
+        height: 98%;
         width: 90%;
         background-color: white;
-        max-height: 60vh;
+        // max-height: 60vh;
         border-radius: max(10px, 1.2vw);
         overflow-y: auto;
+        overflow-x: hidden;
         box-shadow: $box-shadow;
     }
 }
@@ -1663,7 +1719,7 @@ td:hover{
     display: grid;
     grid-template-columns: repeat( auto-fit, minmax(45%, 1fr) );
     // grid-template-rows: repeat( auto-fit, minmax(15%, 1fr) );
-    gap: max(30px, 1.5vw);
+    gap: max(10px, 1vw);
     padding: max(10px, 0.5vw);
 
     .data{
@@ -1681,25 +1737,30 @@ td:hover{
     flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
-    margin-bottom: max(10px, 1.5vw);
+    // margin-bottom: max(10px, 1.5vw);
     gap: max(5px, 0.5vw);
-    padding: max(7px, 1vw);
+    padding: 0 max(7px, 1vw);
+    height: 15%;
     
+    span{
+        font-size: 0.9rem;
+    }
+
     select{
         width: fit-content;
         min-width: 40%;
+        font-size: 0.9rem;
     }
 }
 
 .dept-bargraph{
     display: flex;
     width: 100%;
-    // height: 100%;
+    height: 85%;
     flex-flow: column;
     overflow-y: auto;
     align-items: flex-start;
     gap: max(5px, 0.2vw);
-    overflow: hidden;
 
     .dept{
         color: $fontbase-color;
@@ -1712,8 +1773,8 @@ td:hover{
         padding-left: max(10px, 1vw);
         transition-duration: 500ms;
         user-select: none;
-        font-size: 0.8rem;
-        height: 3vh;
+        font-size: 0.7rem;
+        height: 3.3vh;
     } 
 
     .dept:hover{
@@ -1793,11 +1854,11 @@ td:hover{
         display: flex;
         flex-flow: column;
         align-items: center;
-        width: 40%;
-        max-width: 400px;
-        min-width: 280px;
+        width: max(300px, 30%);
+        // max-width: 400px;
+        min-width: 310px;
         height: fit-content;
-        min-height: 400px;
+        // min-height: 700px;
         background-color: white;
         box-shadow: $box-shadow;
         border-radius: max(10px, 1.2vw);
@@ -1872,6 +1933,7 @@ td:hover{
                 user-select: none;
                 font-weight: 700;
                 height: 100%;
+                overflow-wrap: break-word;
             }
 
             .account-field:hover{
@@ -1886,6 +1948,7 @@ td:hover{
                 color: $primary-color;
                 font-size: 0.9rem;
                 transform: translate(0, -110%);
+                user-select: none;
             }
 
             label:hover{
@@ -1903,6 +1966,35 @@ td:hover{
     transform: rotate(360deg);
     cursor: pointer;
 }
+
+
+@media only screen and (min-width: 450px ){
+    .form{
+        width: 90%;
+    }
+
+    .account-settings{
+        .account-settings__content{
+            width: 90%;
+        }
+    }
+}
+
+@media only screen and (min-width: 600px){
+    .form{
+        width: max(300px, 50%) !important;
+        max-width: 600px !important;
+        // box-shadow: 10px 10px rgba(114, 114, 114, 0.472);
+    }
+
+    .account-settings{
+        .account-settings__content{
+            width: max(300px, 50%) !important;
+            max-width: 600px !important;
+        }
+    }
+}
+
 
 .acc-edit-container{
     display: flex;
@@ -1952,8 +2044,9 @@ td:hover{
         background-color: white;
         display: flex;
         flex-flow: column;
-        gap: max(15px, 2vw);
-
+        // justify-content: center;
+        // align-items: center;
+        gap: max(17px, 1.7vw);
     }
 
     .changeInfo__btn-container{
@@ -1985,11 +2078,29 @@ td:hover{
         background-color: lighten($color: $gray, $amount: 5);
     }
 
+    .error-container{
+        width: 100%;
+        height: 3vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+    
+    .msg{
+        width: 100%;
+        text-align: center;
+        font-size: 0.9rem;
+        color: red;
+        transition-duration: 500ms;
+        position: absolute;
+        left: 0;
+    }
+
     
 }
 
 .changeInfo__input-container{
-
     border: 2px solid $fontbase-color;
     height: min(50px, 10vw);
     display: flex;
@@ -2001,6 +2112,7 @@ td:hover{
     max-width: 500px;
     position: relative;
     padding: 2px;
+    margin: 0 auto;
 
     label{
         color: $fontbase-color;
@@ -2012,6 +2124,7 @@ td:hover{
         // z-index: 2;
         left: 0;
         bottom: 27%;
+        user-select: none;
     }
     
     input{
@@ -2121,13 +2234,32 @@ td:hover{
     display: flex;
     flex-flow: nowrap;
     gap: max(10px, 1vw);
+    justify-content: center;
+    align-items: flex-end;
+
+    input{
+        width: 33.33%;
+        text-align: center;
+    }
+
+    span{
+        height: 100%;
+        font-size: 0.8rem;
+    }
+}
+
+.name-container{
+    width: 100%;
+    display: flex;
+    flex-flow: nowrap;
+    gap: max(10px, 1vw);
 
     input{
         width: 33.33%;
     }
 }
 
-.name-container{
+.location-container{
     width: 100%;
     display: flex;
     flex-flow: nowrap;
@@ -2147,6 +2279,7 @@ td:hover{
 }
 
 .schedule__button-container{
+    margin: 1vw 0;
     display: flex;
     flex-flow: column-reverse;
     width: 90%;
@@ -2259,7 +2392,8 @@ td:hover{
     overflow-y: auto;
     padding:2vw;
     gap: 2vw;
-
+    overflow-x: hidden;
+    font-size: 1rem;
     .calendar-container{
         width: fit-content;
         height: fit-content;
@@ -2424,6 +2558,8 @@ td:hover{
     display: flex;
     justify-content: center;
     align-items: center;
+    max-height: 50vh;
+    overflow-y: auto;
 
     .slot{
         padding: 1vw;
@@ -2432,24 +2568,54 @@ td:hover{
         flex-flow: row nowrap;
         justify-content: space-between;
         border-bottom: 1px solid $fontbase-color;
+        transition-duration: 50ms;
     }
 
     .slot:hover{
         cursor: pointer;
-        background-color: rgb(235, 233, 233);
+        background-color: rgb(246, 245, 245);
+    }
+
+    .buffer{
+        background-color: rgb(245, 234, 170) !important;
+    }
+
+    .buffer:hover{
+        background-color: lighten(rgb(245, 234, 170), 5) !important;
     }
 
     .slot-selected{
         background-color: $primary-color !important;
         color: white !important;
+
+        div{
+            color: white !important;
+        }
+
+        .time{
+            font-weight: 700;
+        }
     }
 
-    .time{
-        font-style: italic;
+    .slot-selected:hover{
+        background-color: $primary-color !important;
     }
+
+    .slot-full{
+        background-color: rgb(218, 213, 213) !important;
+        color: rgb(148, 145, 145);
+    }
+
+    .slot-full:hover{
+        cursor:not-allowed;
+        background-color: rgb(218, 213, 213) !important;
+    }
+
+    
 
     .slotAvail{
-        font-weight: 700;
+        text-align: right !important;
+        font-style: italic;
     }
 
     .calendar__instruction{
@@ -2505,10 +2671,11 @@ td:hover{
     
 }
 
-@media only screen and (min-width: 1600px){
+@media only screen and (min-width: 1400px){
     .third{
         flex-flow: row nowrap;
         justify-content: center;
+        font-size: 0.8rem;
 
         .calendar__info{
             justify-content: center;
@@ -2531,11 +2698,13 @@ td:hover{
 
         .slot-container{
             width: 100%;
-            height: 30vh;
             border: 3px solid $fontbase-color;
             box-shadow: 10px 10px rgba(110, 109, 109, 0.446);
             border-radius: 5px;
             transition-duration: 500ms;
+            min-height: 30vh;
+            max-height: 50vh;
+            // font-size: 0.1rem !important;
         }
 
         .slot-container:hover{
@@ -2552,7 +2721,7 @@ td:hover{
 
     .slot{
         .time{
-            width: 100px;
+            width: 150px !important;
         }
     }
 }
@@ -2569,7 +2738,7 @@ td:hover{
 
     .calendar__btn:hover{
         cursor: pointer;
-        scale: 1.5;
+        scale: 1.4;
     }
     
     .slot{
@@ -3083,7 +3252,7 @@ table{
         }
 
         td:nth-child(1){
-
+            min-width: unset !important;
             button{
                 justify-content: flex-end;
             }
@@ -3095,7 +3264,7 @@ table{
         }
 
         td:nth-child(2){
-
+            min-width: unset !important;
             button{
                 justify-content: flex-start;
             }
@@ -3182,7 +3351,7 @@ table{
     flex-flow: column;
     align-items: center;
     height: 90vh;
-    overflow: hidden;
+    // overflow: hidden;
 
     .scheduling-content{
         background-color: white;
@@ -3190,8 +3359,8 @@ table{
         box-shadow: $box-shadow;
         padding: $box-padding;
         margin-top: $box-margin-top;
-        width: 95%;
-        height: 90%;
+        width: 98%;
+        height: 100%;
         overflow-y: auto;
     }
 
@@ -3201,7 +3370,7 @@ table{
 
     .week-container{
         width: 100%;
-        height: 90%;
+        height: 92%;
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
         gap: 1%;
@@ -3230,12 +3399,15 @@ table{
         .block{
             margin-top: 2%;
             width: 100%;
-            padding: 5%;
+            padding: 10%;
             background-color: rgb(235, 235, 235);
             border-radius: max(0.1vw, 5px);
             display: flex;
             flex-flow: column;
-            gap: 2vh;
+            justify-content: space-around;
+            align-items: center;
+            height: max(15vh, 100px);
+            
         }
 
         .buffer{
@@ -3244,6 +3416,23 @@ table{
             .time::after{
                 content: ' (Buffer)';
             }
+        }
+
+        .add{
+            padding: 5%;
+            height: unset;
+            // transition-duration: 500ms;
+            .add-btn{
+                border: unset;
+                background-color: transparent;
+                width: 100%;
+                user-select: none;
+            }
+        }
+        
+        .add:hover{
+            cursor: pointer;
+            background-color: darken(rgb(235, 235, 235), 5);
         }
 
         .timeslot-container{
@@ -3255,7 +3444,7 @@ table{
             width: 100%;
             text-align: center;
             font-weight: 700;
-            font-size: 0.7rem;
+            font-size: 0.8rem;
         }
 
         .max{
@@ -3316,8 +3505,12 @@ table{
     justify-content: center;
     align-items: flex-start;
     width: 100%;
-    height: 85vh;
+    height: fit-content;
     overflow: hidden;
+
+    .error-container{
+        margin-top: 5vh;
+    }
 
     .edit-tutorial-content{
         width: 50%;
@@ -3404,4 +3597,390 @@ table{
         //border: 3px solid $primary-color;
         box-shadow: 5px 5px 15px rgb(186, 185, 185);
     }
+}
+
+.ico-pass{
+    user-select: none !important;
+}
+
+.OTP-container{
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    gap: 3vh;
+    padding: 0 5vw;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}
+
+.textInfo-container{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5vw;
+
+    .mainText{
+        font-weight: 1000;
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    .subText{
+        text-align: center;
+        font-size: 1rem;
+    }
+
+    .phoneDisplay{
+        color: $primary-alt;
+        font-weight: 500;
+    }
+}
+
+.OTP-body{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-between;
+
+    .OTP-field{
+        display: flex;
+        flex-flow: row nowrap;
+        width: 90%;
+        max-width: 350px;
+        height: 50px;
+        justify-content: center;
+    }
+    .error-msg{
+        font-size: 1rem;
+        color: red;
+        transition-duration: 500;
+    }
+}
+
+@keyframes horizontal-shaking {
+    0% { transform: translateX(0) }
+    25% { transform: translateX(2px) }
+    50% { transform: translateX(-2px) }
+    75% { transform: translateX(2px) }
+    100% { transform: translateX(0) }
+}   
+
+.error-animate{
+    animation: horizontal-shaking 0.35s infinite;
+}
+
+.OTP-field{
+    input{
+        width: 60%;
+        border-radius: 10px 0 0 10px;
+        border-right: none;
+        text-align: center;
+        border: 1px solid $fontbase-color;
+        border-right: unset;
+    }
+
+    input:focus{
+        outline: unset;
+    }
+
+    button{
+        font-size: 1rem;
+        width: 120px;
+        background-color: $primary-alt;
+        color: white;
+        border: unset;
+        border-radius: 0 10px 10px 0;
+    }
+
+    button:hover{
+        background-color: darken($primary-alt, 5);
+    }
+
+    .cd{
+        background-color: #878787;
+    }
+
+    .cd:hover{
+        background-color: #7e7d7d;
+    }
+}
+
+.OTP-btn{
+    background-color: $primary-alt;
+    color: white;
+    border: unset;
+    border-radius: 10px;
+    height: 50px;
+    width: 100%;
+    max-width: 400px;
+    min-height: 50px;
+}
+
+.OTP-btn:hover{
+    background-color: darken($primary-alt, 5);
+}
+@media only screen and (min-width: 1000px ){
+
+    .OTP-container{
+        padding: 1vw 2vw;
+    }
+
+    .textInfo-container{
+        gap: 1vw;
+
+        .mainText{
+            font-size: 1.2rem;
+        }
+
+        .subText{
+            font-size: 1rem;
+        }
+    }
+
+    .OTP-btn{
+        width: 25%;
+        height: 55px;
+    }
+}
+
+.username-highlight{
+    font-weight: 700;
+}
+
+.error-container{
+    width: 100% !important;
+    height: 3vh !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    position: relative !important;
+}
+
+.msg{
+    width: 100% !important;
+    text-align: center !important;
+    font-size: 0.9rem !important;
+    color: red !important;
+    transition-duration: 500ms !important;
+    position: absolute !important;
+    left: 0 !important;
+}
+
+.seeAnnouncements{
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    .seeAnnouncements__content{
+        width: 90%;
+        background-color: white;
+        border-radius: $box-border-radius;
+        box-shadow: $box-shadow;
+        padding: $box-padding;
+        margin-top: $box-margin-top;
+    }
+
+    .table-container{
+        max-height: 70vh;
+    }
+
+    span{
+        display: block;
+        margin: 0 auto;
+        width: fit-content;
+        margin-top: max(5px, 1vw);
+        color: gray;
+        font-size: 0.8rem;
+    }
+}
+
+.modal-body{
+    overflow-wrap: break-word;
+
+    .radio-container{
+        width: 100%;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        // background-color: red;
+
+        label{
+            user-select: none;
+        }
+    }
+}
+
+.editSched-container{
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    
+
+    .time-container{
+        width: 100%;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-around;
+        // border-bottom:1px solid gray;
+        padding-bottom: 2vh;
+        margin-bottom: 2vh;
+
+        .editTime-container{
+            width: 45%;
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+            justify-content: center;
+            gap: 2%;
+    
+            .timepart{
+                width: 10%;
+                height: 100%;
+                border: unset;
+                padding: unset !important;
+                background: none;
+                text-align: center;
+                font-size: 1rem;
+                border-bottom: 1px solid gray;
+            }
+
+            .timepart:nth-child(6){
+                margin-left:2%;
+                width: 20%;
+                font-weight: 700;
+                border-bottom: unset;
+            }
+
+            .timepart:hover{
+                cursor: pointer;
+            }
+
+
+            // .form-select:nth-child(6){
+            //     font-weight: 700;
+            // }
+    
+            span{
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 0 1vw;
+            }
+
+        }
+    }
+}
+
+.max-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1vw;
+    font-size: 1.1rem;
+
+    .slot-wrapper{
+        display: flex;
+        justify-content: center;
+        gap: 1vw;
+        width: 50% !important;
+
+    }
+    
+    .form-switch{
+        display: flex;
+        justify-content: center;
+        gap: 1vw;
+        width: 50% !important;
+    }
+
+    label{
+        // color: red;
+    }
+
+    input{
+        width: 15%;
+        border: unset;
+        text-align: center;
+
+    }
+}
+
+.editBtn{
+    color: white;
+    background-color: $edit-btn-color;
+    // border-color: rgb(12, 100, 232);
+    border-radius: max(7px, 0.5vw);
+    padding: 4px;
+    // text-decoration: underline;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    width: 5vw;
+    min-width: 50px;
+    margin-left: auto;
+    margin-bottom: max(7px, 0.5vh);
+    border: unset;
+}
+
+.editBtn:hover{
+    background-color: lighten($color: $edit-btn-color, $amount: 5);
+}
+
+// .ico-remove{
+//     color: white;
+//     background-color: red;
+//     border-radius: 50px;
+//     padding: 4px;
+//     text-align: center;
+// }
+
+#startPeriod, #startPeriod{
+    user-select: none;
+}
+.removeBtn{
+    color: white;
+    background-color: $delete-btn-color;
+    // border-color: rgb(12, 100, 232);
+    border-radius: max(7px, 0.5vw);
+    padding: 4px;
+    // text-decoration: underline;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    width: 5vw;
+    min-width: 50px;
+    margin-left: auto;
+    border: unset;
+}
+
+.removeBtn:hover{
+    background-color: lighten($color: $delete-btn-color, $amount: 5);
+}
+
+@media only screen and (max-width:1200px){
+    td{
+        min-width: unset !important;
+    }
+}
+
+#full{
+    background-color: rgb(233, 64, 64) !important;
+    // color: rgb(159 59 59);
+    color: white;
+}
+
+#maxSlot{
+    border: unset;
 }

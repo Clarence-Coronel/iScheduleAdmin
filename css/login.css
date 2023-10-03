@@ -38,8 +38,15 @@ label:hover {
 }
 
 .form-select {
-  border: 1px solid rgb(80, 78, 78) !important;
-  border-width: 1px !important;
+  padding-left: 0.2rem !important;
+  padding-right: 0.2rem !important;
+  border: unset !important;
+  border-radius: unset !important;
+  border-bottom: 1px solid rgb(80, 78, 78) !important;
+}
+
+.form-select:disabled {
+  background-color: white !important;
 }
 
 .form-select:focus {
@@ -76,7 +83,7 @@ main {
   gap: max(15px, 1vw);
 }
 
-h1 {
+.ischedule-header {
   margin-top: max(30px, 5vw);
   display: flex;
   flex-flow: column;
@@ -90,7 +97,7 @@ h1 {
      -moz-user-select: none;
           user-select: none;
 }
-h1 span {
+.ischedule-header span {
   font-size: 6rem !important;
   color: white;
   font-weight: 100;
@@ -103,8 +110,8 @@ h1 span {
   box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
   width: max(300px, 70vw);
   max-width: 600px;
-  height: 40%;
-  min-height: 300px;
+  height: -moz-fit-content;
+  height: fit-content;
   background-color: white;
   display: flex;
   flex-flow: column;
@@ -116,7 +123,7 @@ h1 span {
   display: flex;
   flex-flow: column;
   justify-content: center;
-  gap: max(25px, 1vw);
+  gap: max(15px, 0.3vw);
 }
 .login-form .button-field {
   height: 30%;
@@ -125,27 +132,29 @@ h1 span {
   align-items: center;
   gap: max(5px, 0.2vw);
 }
-.login-form .button-field button {
+.login-form .button-field .login-btn {
   width: 100%;
   color: white;
   background-color: #0577fa;
   border: unset;
-  height: max(40px, 3vw);
+  height: max(25px, 6vh);
   font-size: 1.2rem;
   font-weight: 500;
   border-radius: max(5px, 0.5vw);
 }
-.login-form .button-field button:hover {
+.login-form .button-field .login-btn:hover {
   background-color: #1e85fb;
   cursor: pointer;
 }
-.login-form .button-field a {
-  text-decoration: none;
-  color: #4e73df;
+.login-form .button-field .forgot-btn {
+  color: #0577fa;
+  background-color: transparent;
+  border: unset;
 }
-.login-form .button-field a:hover {
-  color: #6484e3;
+.login-form .button-field .forgot-btn:hover {
+  color: #1e85fb;
   cursor: pointer;
+  background-color: transparent;
 }
 .login-form .input-field {
   border: 2px solid rgb(80, 78, 78);
@@ -196,7 +205,7 @@ h1 span {
   font-size: 1rem;
   transform: translate(5%, -120%);
 }
-.login-form .input-field #seePassword {
+.login-form .input-field #seePassword, .login-form .input-field #seeConfirmPassword {
   margin-right: max(5px, 1vw);
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -208,15 +217,6 @@ h1 span {
   box-shadow: 0 0 5px white;
 }
 
-@media only screen and (max-width: 500px) {
-  :root {
-    font-size: 10px;
-  }
-  .login-form {
-    width: 90%;
-    min-width: 300px;
-  }
-}
 .wave-svg {
   display: none;
 }
@@ -256,4 +256,314 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+.error-container {
+  width: 100%;
+  height: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.login-msg, .forgot-msg {
+  width: 100%;
+  text-align: center;
+  font-size: 1rem;
+  color: red;
+  transition-duration: 500ms;
+  position: absolute;
+  left: 0;
+}
+
+@keyframes horizontal-shaking {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(2px);
+  }
+  50% {
+    transform: translateX(-2px);
+  }
+  75% {
+    transform: translateX(2px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.error-animate {
+  animation: horizontal-shaking 0.35s infinite;
+}
+
+.forgot-form {
+  z-index: 1;
+  border-radius: max(7px, 1vw);
+  padding: max(15px, 2vw);
+  box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
+  width: max(300px, 70vw);
+  max-width: 600px;
+  height: -moz-fit-content;
+  height: fit-content;
+  background-color: white;
+}
+.forgot-form .input-container {
+  width: 100%;
+  height: 70%;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  gap: max(15px, 0.3vw);
+}
+.forgot-form .input-field {
+  border: 2px solid rgb(80, 78, 78);
+  height: min(50px, 10vw);
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: max(5px, 0.5vw);
+  padding: 2px;
+  width: 100%;
+  position: relative;
+}
+.forgot-form .input-field input {
+  border: unset;
+  border-radius: max(10px, 1vw);
+  padding: 0 max(5px, 1vw);
+  min-height: 20px;
+  font-weight: 500;
+  width: 100%;
+  font-size: 1.2rem;
+}
+.forgot-form .input-field input {
+  outline: none;
+}
+.forgot-form .input-field input:hover {
+  border: unset;
+}
+.forgot-form .input-field input:focus {
+  outline: unset;
+}
+.forgot-form .input-field label {
+  color: rgb(80, 78, 78);
+  position: absolute;
+  background-color: whitesmoke;
+  padding: 0 max(3px, 0.2vw);
+  background-color: white;
+  transition-duration: 200ms;
+  left: 2.5%;
+  font-size: 1.2rem;
+}
+.forgot-form .input-field label:hover {
+  cursor: text;
+}
+.forgot-form .input-field input:focus ~ label,
+.forgot-form .input-field input:valid ~ label {
+  color: #4e73df;
+  font-size: 1rem;
+  transform: translate(5%, -120%);
+}
+.forgot-form .input-field #seePassword, .forgot-form .input-field #seeConfirmPassword {
+  margin-right: max(5px, 1vw);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  cursor: pointer;
+}
+.forgot-form .button-field {
+  height: 30%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  gap: max(5px, 0.2vw);
+}
+.forgot-form .button-field .next-btn {
+  width: 100%;
+  color: white;
+  background-color: #0577fa;
+  border: unset;
+  height: max(25px, 6vh);
+  font-size: 1.2rem;
+  font-weight: 500;
+  border-radius: max(5px, 0.5vw);
+}
+.forgot-form .button-field .next-btn:hover {
+  background-color: #1e85fb;
+  cursor: pointer;
+}
+.forgot-form .button-field .forgot-btn {
+  color: #0577fa;
+  background-color: transparent;
+  border: unset;
+}
+.forgot-form .button-field .forgot-btn:hover {
+  color: #1e85fb;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.forgot-form:hover {
+  box-shadow: 0 0 5px white;
+}
+
+@media only screen and (max-width: 500px) {
+  :root {
+    font-size: 10px;
+  }
+  .login-form, .forgot-form {
+    width: 90%;
+    min-width: 300px;
+  }
+}
+.ico-pass {
+  -webkit-user-select: none !important;
+     -moz-user-select: none !important;
+          user-select: none !important;
+}
+
+.OTP-container {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  gap: 3vh;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+}
+
+.textInfo-container {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5vw;
+}
+.textInfo-container .mainText {
+  font-weight: 1000;
+  font-size: 1.2rem;
+  text-align: center;
+}
+.textInfo-container .subText {
+  text-align: center;
+  font-size: 1rem;
+}
+.textInfo-container .phoneDisplay {
+  color: rgb(1, 81, 221);
+  font-weight: 500;
+}
+
+.OTP-body {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.OTP-body .OTP-field {
+  display: flex;
+  flex-flow: row nowrap;
+  width: 90%;
+  max-width: 350px;
+  height: 50px;
+  justify-content: center;
+}
+.OTP-body .error-msg {
+  font-size: 1rem;
+  color: red;
+  transition-duration: 500;
+}
+
+@keyframes horizontal-shaking {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(2px);
+  }
+  50% {
+    transform: translateX(-2px);
+  }
+  75% {
+    transform: translateX(2px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.error-animate {
+  animation: horizontal-shaking 0.35s infinite;
+}
+
+.OTP-field input {
+  width: 60%;
+  border-radius: 10px 0 0 10px;
+  border-right: none;
+  text-align: center;
+  border: 1px solid rgb(80, 78, 78);
+  border-right: unset;
+}
+.OTP-field input:focus {
+  outline: unset;
+}
+.OTP-field button {
+  font-size: 1rem;
+  width: 120px;
+  background-color: #0577fa;
+  color: white;
+  border: unset;
+  border-radius: 0 10px 10px 0;
+}
+.OTP-field button:hover {
+  background-color: #1e85fb;
+}
+.OTP-field .cd {
+  background-color: #878787;
+}
+.OTP-field .cd:hover {
+  background-color: #7e7d7d;
+}
+
+.OTP-btn {
+  background-color: #4e73df;
+  color: white;
+  border: unset;
+  border-radius: 10px;
+  height: 50px;
+  width: 100%;
+  max-width: 400px;
+  min-height: 50px;
+}
+
+.OTP-btn:hover {
+  background-color: #3862db;
+}
+
+@media only screen and (min-width: 1000px) {
+  .textInfo-container {
+    gap: 1vw;
+  }
+  .textInfo-container .mainText {
+    font-size: 1.2rem;
+  }
+  .textInfo-container .subText {
+    font-size: 1rem;
+  }
+  .OTP-btn {
+    width: 25%;
+    height: 55px;
+  }
+}
+h3 {
+  text-align: center;
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin-bottom: 2vh;
+}
+
+.modal-title {
+  font-weight: 1000 !important;
+  font-size: 1.3rem !important;
+  color: rgb(10, 204, 10) !important;
 }/*# sourceMappingURL=login.css.map */

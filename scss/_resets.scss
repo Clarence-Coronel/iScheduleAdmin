@@ -18,6 +18,10 @@ input, select, textarea, input:focus, select:focus, textarea:focus{
 //   appearance:none;
 // }
 
+// button{
+//   outline: unset !important;
+// }
+
 *::-webkit-scrollbar {
   height: 0.8rem;
   width: 0.8rem;
@@ -44,10 +48,21 @@ label:hover{
 }
 
 .form-select{
-  border: 1px solid $fontbase-color !important;
-  border-width: 1px !important;
+  // border: 1px solid $fontbase-color !important;
+  // border-width: 1px !important;
   // min-width: 120px;
   // font-size: 1rem;
+  
+  padding-left: 0.2rem !important;
+  padding-right: 0.2rem !important;
+  border: unset !important;
+  border-radius: unset !important;
+  border-bottom: 1px solid $fontbase-color !important;
+  
+}
+
+.form-select:disabled{
+  background-color: white  !important;
 }
 
 .form-select:focus{
