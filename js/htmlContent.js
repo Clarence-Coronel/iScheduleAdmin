@@ -402,6 +402,22 @@ let viewSchedule = `
                             <td>Oncology</td>
                             <td title="YYYY-MM-DD">2023-08-25</td>
                             <td>1:00 PM - 2:00PM</td>
+                            <td class="active">Active</td>
+                            <td>Male</td>
+                            <td title="YYYY-MM-DD">2001-10-21</td>
+                            <td>0942 423 4277</td>
+                            <td>Banga II, Plaridel, Bulacan</td>
+                            <td>New Patient</td>
+                            <td>123456</td>
+                            <td title="YYYY-MM-DD">2023-06-27</td>
+                            <td></td>
+                            <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Edit</button></td>
+                        </tr>
+                        <tr>
+                            <td>Cruz, John Test</td>
+                            <td>Oncology</td>
+                            <td title="YYYY-MM-DD">2023-08-25</td>
+                            <td>1:00 PM - 2:00PM</td>
                             <td class="cancelled">Cancelled</td>
                             <td>Male</td>
                             <td title="YYYY-MM-DD">2001-10-21</td>
@@ -411,6 +427,54 @@ let viewSchedule = `
                             <td>123456</td>
                             <td title="YYYY-MM-DD">2023-06-27</td>
                             <td>TrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabaho</td>
+                            <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Edit</button></td>
+                        </tr>
+                        <tr>
+                            <td>Cruz, John Test</td>
+                            <td>Oncology</td>
+                            <td title="YYYY-MM-DD">2023-08-25</td>
+                            <td>1:00 PM - 2:00PM</td>
+                            <td class="missed">Missed</td>
+                            <td>Male</td>
+                            <td title="YYYY-MM-DD">2001-10-21</td>
+                            <td>0942 423 4277</td>
+                            <td>Banga II, Plaridel, Bulacan</td>
+                            <td>New Patient</td>
+                            <td>123456</td>
+                            <td title="YYYY-MM-DD">2023-06-27</td>
+                            <td></td>
+                            <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Edit</button></td>
+                        </tr>
+                        <tr>
+                            <td>Cruz, John Test</td>
+                            <td>Oncology</td>
+                            <td title="YYYY-MM-DD">2023-08-25</td>
+                            <td>1:00 PM - 2:00PM</td>
+                            <td class="completed">Completed</td>
+                            <td>Male</td>
+                            <td title="YYYY-MM-DD">2001-10-21</td>
+                            <td>0942 423 4277</td>
+                            <td>Banga II, Plaridel, Bulacan</td>
+                            <td>New Patient</td>
+                            <td>123456</td>
+                            <td title="YYYY-MM-DD">2023-06-27</td>
+                            <td></td>
+                            <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Edit</button></td>
+                        </tr>
+                        <tr>
+                            <td>Cruz, John Test</td>
+                            <td>Oncology</td>
+                            <td title="YYYY-MM-DD">2023-08-25</td>
+                            <td>1:00 PM - 2:00PM</td>
+                            <td class="pending">Pending</td>
+                            <td>Male</td>
+                            <td title="YYYY-MM-DD">2001-10-21</td>
+                            <td>0942 423 4277</td>
+                            <td>Banga II, Plaridel, Bulacan</td>
+                            <td>New Patient</td>
+                            <td>123456</td>
+                            <td title="YYYY-MM-DD">2023-06-27</td>
+                            <td></td>
                             <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Edit</button></td>
                         </tr>
                     </tbody>

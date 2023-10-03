@@ -3331,7 +3331,7 @@ table{
 }
 
 .cancelled{
-    color: gold !important;
+    color: red !important;
 }
 
 .active{
@@ -3344,6 +3344,10 @@ table{
 
 .completed{
     color: #9014f6 !important;
+}
+
+.pending{
+    color: orange !important;
 }
 
 .scheduling{
