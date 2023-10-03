@@ -1496,34 +1496,39 @@ function openModalOTP_Edit(){
     let modalItself = document.querySelector('.modal');
     let modalHeader = document.querySelector('.modal-header');
     let modalFooter = document.querySelector('.modal-footer');
-    
+    let main = document.querySelector("main");
+
     modalHeader.style.display = 'none';
     modalFooter.style.display = 'none';
     modalTitle.style.color = 'unset';
 
 
     let htmlCode = `
-    <div class="OTP-container">
-        <div class="textInfo-container">
-            <span class="mainText">Input One-Time Password</span>
-            <span class="subText">One-Time Password has been sent to <span class="phoneDisplay">09XX XXX XXXX</span></span>
-        </div>
-        <div class="OTP-body">
-            <div class="OTP-field">
-                <input type="text" name="OTP" id="OTP" oninput="inputLimiterNum(this.id, 5)" onblur="inputLimiterNum(this.id, 5)" oninput="inputLimiter(this.id, 5)" onblur="inputLimiterBlur(this.id, 5)">
-                <button class="resend-btn">Re-Send</button>
+    <div class="editPhone-outer">
+        <div class="editPhone-container">
+            <div class="OTP-container">
+                <div class="textInfo-container">
+                    <span class="mainText">Input One-Time Password</span>
+                    <span class="subText">One-Time Password has been sent to <span class="phoneDisplay">09XX XXX XXXX</span></span>
+                </div>
+                <div class="OTP-body">
+                    <div class="OTP-field">
+                        <input type="text" name="OTP" id="OTP" oninput="inputLimiterNum(this.id, 5)" onblur="inputLimiterNum(this.id, 5)" oninput="inputLimiter(this.id, 5)" onblur="inputLimiterBlur(this.id, 5)">
+                        <button class="resend-btn">Re-Send</button>
+                    </div>
+                    <div class="error-msg"></div>
+                </div>
+                <button class="OTP-btn">Submit</button>
             </div>
-            <div class="error-msg"></div>
         </div>
-        <button class="OTP-btn">Submit</button>
     </div>
     `
-    modalBody.innerHTML = htmlCode;
+    main.innerHTML = htmlCode;
     document.querySelector('.phoneDisplay').innerHTML = newInsertedPhone;
     document.querySelector('.OTP-btn').addEventListener('click', ()=>{
         checkOTP_Edit();
     });
-    modalLauncher();
+    // modalLauncher();
     resetCD();
 
     document.querySelector('.resend-btn').addEventListener('click', ()=>{
@@ -1563,7 +1568,7 @@ function checkOTP_Edit(){
             if(xhr.readyState == 4){
                 if(xhr.status == 200){
                     if(xhr.responseText == 1){
-                         showResModal('Phone has been updated', true);
+                         showResModal('Phone has been updated');
                          signedInAdmin.phone = newInsertedPhone;
                          generateAccountSettings();
                          insertAccInfo();

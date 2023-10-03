@@ -3278,4 +3278,23 @@ table {
 
 #maxSlot {
   border: unset;
+}
+
+.editPhone-outer {
+  width: 100%;
+  height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.editPhone-outer .editPhone-container {
+  width: 40%;
+}
+.editPhone-outer .editPhone-container .OTP-container {
+  width: 100%;
+  height: unset;
+  min-height: 300px;
+  border-radius: max(7px, 1vw);
+  box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
+  padding: max(15px, 2vw);
 }/*# sourceMappingURL=main.css.map */

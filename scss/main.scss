@@ -3988,3 +3988,26 @@ table{
 #maxSlot{
     border: unset;
 }
+
+.editPhone-outer{
+    width: 100%;
+    height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .editPhone-container{
+        width: 40%;
+        
+
+        .OTP-container{
+            width: 100%;
+            height: unset;
+            min-height: 300px;
+            border-radius: $box-border-radius;
+            box-shadow: $box-shadow;
+            padding: $box-padding;
+            
+        }
+    }
+}
