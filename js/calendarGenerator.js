@@ -442,6 +442,7 @@ function generateDate(days, NameOfDay1st){
                     }
                     catch{
                         calendarCell[i].classList.add('block');
+                        calendarCell[i].classList.remove('date');
                     }    
                 }
             }
