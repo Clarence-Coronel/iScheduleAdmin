@@ -7,8 +7,6 @@
 const container = document.querySelector('.calendar-container');
 let monthContainer;
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-const calendarPrev = document.querySelector('#calendar__prev');
-const calendarNext = document.querySelector('#calendar__next');
 const blockedDates = [];
 let nextCounter = 0;
 

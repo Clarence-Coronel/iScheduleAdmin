@@ -922,6 +922,9 @@ function nextForm(){
 
         if(formState == 1){
             if(checkFormA()){
+                const calendarPrev = document.querySelector('#calendar__prev');
+                const calendarNext = document.querySelector('#calendar__next');
+
                 formParts[formState-1].style.display = 'none';
                 formParts[formState].style.display = 'flex';
                 calendarNext.addEventListener('click', nextMonthBtn);
