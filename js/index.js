@@ -2354,7 +2354,7 @@ function insertPostedAnn(){
 
                         const template = 
                         `
-                        <tr>
+                        <tr class="table-row">
                             <td>${title}</td>
                             <td>${datePosted}</td>
                             <td>${timePosted}</td>
@@ -2368,7 +2368,7 @@ function insertPostedAnn(){
                 } catch (error) {
                     
                 }
-                
+                setupTablePagination('ann-table', 'prevButton', 'nextButton', 10);                
             }
         }
     }

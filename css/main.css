@@ -1263,7 +1263,7 @@ td:hover {
   align-items: center;
 }
 .postAnnouncement .postAnnouncement__content {
-  margin-top: max(15px, 1vw);
+  margin: max(15px, 1vw) 0;
   background-color: white;
   width: 80%;
   border-radius: max(7px, 1vw);
@@ -1319,12 +1319,12 @@ td:hover {
   width: -moz-fit-content;
   width: fit-content;
   font-size: 0.8rem;
-  text-decoration: underline;
   min-width: -moz-fit-content;
   min-width: fit-content;
 }
 .postAnnouncement__content #announcementSee:hover {
   color: #1e85fb;
+  text-decoration: underline;
 }
 
 .dashboard {
@@ -3098,12 +3098,18 @@ table {
 }
 
 .seeAnnouncements {
-  height: -moz-fit-content;
-  height: fit-content;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: flex-start;
+}
+.seeAnnouncements .cmds-container {
+  justify-content: flex-end;
+}
+.seeAnnouncements h2 {
+  font-size: 1.1rem;
+  width: 100%;
+  text-align: center;
 }
 .seeAnnouncements .seeAnnouncements__content {
   width: 90%;
@@ -3111,10 +3117,7 @@ table {
   border-radius: max(7px, 1vw);
   box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
   padding: max(15px, 2vw);
-  margin-top: max(15px, 1vw);
-}
-.seeAnnouncements .table-container {
-  max-height: 70vh;
+  margin: max(15px, 1vw) 0;
 }
 .seeAnnouncements span {
   display: block;

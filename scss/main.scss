@@ -1507,7 +1507,7 @@ td:hover{
     align-items: center;
 
     .postAnnouncement__content{
-        margin-top: $box-margin-top;
+        margin: $box-margin-top 0;
         background-color: white;
         width: 80%;
         border-radius: $box-border-radius;
@@ -1571,12 +1571,12 @@ td:hover{
         height: fit-content;
         width: fit-content;
         font-size: 0.8rem;
-        text-decoration: underline;
         min-width: fit-content;
     }
 
     #announcementSee:hover{
         color: lighten($btn-color, 5);
+        text-decoration: underline;
     }
 }
 
@@ -3787,11 +3787,20 @@ table{
 }
 
 .seeAnnouncements{
-    height: fit-content;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: flex-start;
+
+    .cmds-container{
+        justify-content: flex-end;
+    }
+
+    h2{
+        font-size: 1.1rem;
+        width: 100%;
+        text-align: center;
+    }
 
     .seeAnnouncements__content{
         width: 90%;
@@ -3799,11 +3808,7 @@ table{
         border-radius: $box-border-radius;
         box-shadow: $box-shadow;
         padding: $box-padding;
-        margin-top: $box-margin-top;
-    }
-
-    .table-container{
-        max-height: 70vh;
+        margin: $box-margin-top 0;
     }
 
     span{

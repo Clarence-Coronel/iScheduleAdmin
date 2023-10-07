@@ -1112,9 +1112,10 @@ let postAnnouncement = `
 let seePostedAnn =`
 <section class="seeAnnouncements">
     <div class="seeAnnouncements__content" data-aos="fade-right" data-aos-duration="500">
+        <h2>Users would only be able to see the latest 20 announcements.</h2>
         <span>Click the row to highlight/see more.</span>
         <div class="table-container">
-            <table class="ann-table">
+            <table class="ann-table" id="ann-table">
                 <thead>
                     <tr>
                         <th>Title</th>
@@ -1127,6 +1128,13 @@ let seePostedAnn =`
                 <tbody>
                 </tbody>
             </table>
+        </div>
+        <div class="cmds-container">
+            <div class="table-nav">
+                <button id="prevButton"><< Previous</button>
+                <span id="pageNum">1</span>
+                <button id="nextButton">Next >></button>
+            </div>
         </div>
     </div>
 </section>
