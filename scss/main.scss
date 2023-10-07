@@ -242,12 +242,13 @@ header{
         // gap: max(10px, 1vw);
         // max-height: 1200px;
         height: 100%;
-        min-height: 95vh;
+        min-height: 98vh;
         // overflow-y: auto;
         display: flex;
         flex-flow: column;
-        justify-content: space-around;
+        justify-content: space-evenly;
         align-items: flex-start;
+        // gap: 2vh;
     }
 
 
@@ -270,7 +271,7 @@ header{
     }
     .ico-admin{
         color:$fontOnPrimary-color;
-        font-size: 4rem;
+        font-size: 3.5rem;
     }
 }
 
@@ -289,7 +290,7 @@ header{
     align-items: center;
     color: $gray;
     font-weight: 200;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.27);
+    // border-bottom: 1px solid rgba(255, 255, 255, 0.27);
     gap: max(5px, 0.5vw);
     text-align: left;
     width: 100%;
@@ -310,7 +311,7 @@ header{
     // gap: max(5px, 5vw);
     justify-content: center;
     align-items: flex-start;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.27);
+    // border-bottom: 1px solid rgba(255, 255, 255, 0.27);
     position: relative;
 
     @keyframes appear {
