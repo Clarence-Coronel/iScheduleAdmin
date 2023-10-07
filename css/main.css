@@ -74,7 +74,7 @@ body {
   flex-flow: column;
   overflow-x: hidden;
   overflow-y: hidden;
-  background-color: whitesmoke;
+  background-color: rgb(236, 235, 251);
   position: relative;
 }
 
@@ -631,7 +631,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
 .input-container label {
   color: rgb(80, 78, 78);
   position: absolute;
-  background-color: whitesmoke;
+  background-color: rgb(236, 235, 251);
   padding: 0 max(3px, 0.2vw);
   background-color: white;
   transition-duration: 200ms;
@@ -1086,7 +1086,7 @@ td:hover {
 }
 
 .website-status {
-  background-color: whitesmoke;
+  background-color: rgb(236, 235, 251);
   width: 100%;
   display: flex;
   justify-content: center;
