@@ -1291,7 +1291,14 @@ function viewRequestApprove(id){
                     <input type="text" name="year" id="" placeholder="YYYY">
                 </div>
             </div>
-            <span>4 Buffer Slot Remaining</span>
+            <select class="form-select" aria-label="Default select example" onchange="" id="timeSelect">
+                <option value="" selected hidden disabled>Choose Time Slot</option>
+                <option value="id">8:00 AM - 9:00 AM</option>
+                <option value="id">8:00 AM - 9:00 AM</option>
+            </select>
+            <div class="error-container">
+                <span class="msg"></span>
+            </div>
         </div>
     `;
 
@@ -1300,6 +1307,7 @@ function viewRequestApprove(id){
     negative.innerText = 'Cancel';
     body.innerHTML = html;
 
+    positive.setAttribute("onclick", "")
     modalLauncher();
 }
 

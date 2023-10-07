@@ -600,194 +600,24 @@ let request = `
                                     <th>&nbsp;</th>
                                     <th>Full Name</th>
                                     <th>Department</th>
-                                    <th>Scheduled Follow-Up Date</th>
                                     <th>Phone #</th>
                                     <th>Follow-Up Slip</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="table-row">
-                                    <td>
-                                        <button data-appID="1" id="1" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
-                                    </td>
-                                    <td>
-                                        <button data-appID="1" id="1" onclick="viewRequestReject(this.id)"><span class="material-icons-outlined">close</span></button>
-                                    </td>
-                                    <td>Coronel, Clarence Reyes</td>
-                                    <td>Oncology</td>
-                                    <td>2023-12-30</td>
-                                    <td>09XX XXX XXXX</td>
-                                    <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
-                                    <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
-                                </tr>
-                                <tr class="table-row">
-                                    <td>
-                                        <button data-appID="2" id="2" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
-                                    </td>
-                                    <td>
-                                        <button data-appID="2" id="2" onclick="viewRequestReject(this.id)"><span class="material-icons-outlined">close</span></button>
-                                    </td>
-                                    <td>Coronel, Clarence Reyes</td>
-                                    <td>Oncology</td>
-                                    <td>2023-12-30</td>
-                                    <td>09XX XXX XXXX</td>
-                                    <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
-                                    <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
-                                </tr>
-                                <tr class="table-row">
-                                    <td>
-                                        <button data-appID="3" id="3" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
-                                    </td>
-                                    <td>
-                                        <button data-appID="3" id="3" onclick="viewRequestReject(this.id)"><span class="material-icons-outlined">close</span></button>
-                                    </td>
-                                    <td>Coronel, Clarence Reyes</td>
-                                    <td>Oncology</td>
-                                    <td>2023-12-30</td>
-                                    <td>09XX XXX XXXX</td>
-                                    <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
-                                    <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
-                                </tr>
-                                <tr class="table-row">
-                                    <td>
-                                        <button data-appID="3" id="3" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
-                                    </td>
-                                    <td>
-                                        <button data-appID="3" id="3" onclick="viewRequestReject(this.id)"><span class="material-icons-outlined">close</span></button>
-                                    </td>
-                                    <td>Coronel, Clarence Reyes</td>
-                                    <td>Oncology</td>
-                                    <td>2023-12-30</td>
-                                    <td>09XX XXX XXXX</td>
-                                    <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
-                                    <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
-                                </tr>
-                                <tr class="table-row">
-                                    <td>
-                                        <button data-appID="3" id="3" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
-                                    </td>
-                                    <td>
-                                        <button data-appID="3" id="3" onclick="viewRequestReject(this.id)"><span class="material-icons-outlined">close</span></button>
-                                    </td>
-                                    <td>Coronel, Clarence Reyes</td>
-                                    <td>Oncology</td>
-                                    <td>2023-12-30</td>
-                                    <td>09XX XXX XXXX</td>
-                                    <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
-                                    <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
-                                </tr>
-                                <tr class="table-row">
-                                    <td>
-                                        <button data-appID="3" id="3" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
-                                    </td>
-                                    <td>
-                                        <button data-appID="3" id="3" onclick="viewRequestReject(this.id)"><span class="material-icons-outlined">close</span></button>
-                                    </td>
-                                    <td>Coronel, Clarence Reyes</td>
-                                    <td>Oncology</td>
-                                    <td>2023-12-30</td>
-                                    <td>09XX XXX XXXX</td>
-                                    <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
-                                    <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
-                                </tr>
-                                <tr class="table-row">
-                                    <td>
-                                        <button data-appID="3" id="3" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
-                                    </td>
-                                    <td>
-                                        <button data-appID="3" id="3" onclick="viewRequestReject(this.id)"><span class="material-icons-outlined">close</span></button>
-                                    </td>
-                                    <td>Coronel, Clarence Reyes</td>
-                                    <td>Oncology</td>
-                                    <td>2023-12-30</td>
-                                    <td>09XX XXX XXXX</td>
-                                    <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
-                                    <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
-                                </tr>
-                                <tr class="table-row">
-                                    <td>
-                                        <button data-appID="3" id="3" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
-                                    </td>
-                                    <td>
-                                        <button data-appID="3" id="3" onclick="viewRequestReject(this.id)"><span class="material-icons-outlined">close</span></button>
-                                    </td>
-                                    <td>Coronel, Clarence Reyes</td>
-                                    <td>Oncology</td>
-                                    <td>2023-12-30</td>
-                                    <td>09XX XXX XXXX</td>
-                                    <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
-                                    <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
-                                </tr>
-                                <tr class="table-row">
-                                    <td>
-                                        <button data-appID="3" id="3" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
-                                    </td>
-                                    <td>
-                                        <button data-appID="3" id="3" onclick="viewRequestReject(this.id)"><span class="material-icons-outlined">close</span></button>
-                                    </td>
-                                    <td>Coronel, Clarence Rey21321wsdwdwedrqes</td>
-                                    <td>Oncology</td>
-                                    <td>2023-12-30</td>
-                                    <td>09XX XXX XXXX</td>
-                                    <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
-                                    <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
-                                </tr>
-                                <tr class="table-row">
-                                    <td>
-                                        <button data-appID="3" id="3" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
-                                    </td>
-                                    <td>
-                                        <button data-appID="3" id="3" onclick="viewRequestReject(this.id)"><span class="material-icons-outlined">close</span></button>
-                                    </td>
-                                    <td>Coronel, Clarence Reyes</td>
-                                    <td>Oncology</td>
-                                    <td>2023-12-30</td>
-                                    <td>09XX XXX XXXX</td>
-                                    <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
-                                    <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
-                                </tr>
-                                <tr class="table-row">
-                                    <td>
-                                        <button data-appID="3" id="3" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
-                                    </td>
-                                    <td>
-                                        <button data-appID="3" id="3" onclick="viewRequestReject(this.id)"><span class="material-icons-outlined">close</span></button>
-                                    </td>
-                                    <td>Coronel, Clarence Reyes</td>
-                                    <td>Oncology</td>
-                                    <td>2023-12-30</td>
-                                    <td>09XX XXX XXXX</td>
-                                    <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
-                                    <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
-                                </tr>
-                                <tr class="table-row">
-                                    <td>
-                                        <button data-appID="3" id="3" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
-                                    </td>
-                                    <td>
-                                        <button data-appID="3" id="3" onclick="viewRequestReject(this.id)"><span class="material-icons-outlined">close</span></button>
-                                    </td>
-                                    <td>Coronel, Clarence Reyes</td>
-                                    <td>Oncology</td>
-                                    <td>2023-12-30</td>
-                                    <td>09XX XXX XXXX</td>
-                                    <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
-                                    <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
-                                </tr>
-                                <tr class="table-row">
-                                    <td>
-                                        <button data-appID="3" id="3" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
-                                    </td>
-                                    <td>
-                                        <button data-appID="3" id="3" onclick="viewRequestReject(this.id)"><span class="material-icons-outlined">close</span></button>
-                                    </td>
-                                    <td>Coronel, Clarence Reyes</td>
-                                    <td>Oncology</td>
-                                    <td>2023-12-30</td>
-                                    <td>09XX XXX XXXX</td>
-                                    <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
-                                    <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
-                                </tr>
+                            <tr class="table-row">
+                                <td>
+                                    <button data-appID="1" id="1" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
+                                </td>
+                                <td>
+                                    <button data-appID="1" id="1" onclick="viewRequestReject(this.id)"><span class="material-icons-outlined">close</span></button>
+                                </td>
+                                <td>Coronel, Clarence Reyes</td>
+                                <td>Oncology</td>
+                                <td>09XX XXX XXXX</td>
+                                <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
+                                <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
+                            </tr>
                             </tbody>
                         </table>
                     </div>
