@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 03, 2023 at 04:15 PM
+-- Generation Time: Oct 07, 2023 at 11:12 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -263,7 +263,86 @@ INSERT INTO `admin_logs` (`adminLogsID`, `username`, `activity`, `logDateTime`) 
 (347, 'clarence-coronel1', 'Changed phone', '2023-10-03 14:20:16'),
 (348, 'clarence-coronel1', 'Changed phone', '2023-10-03 18:31:55'),
 (349, 'clarence-coronel1', 'Changed password', '2023-10-03 18:32:15'),
-(350, 'clarence-coronel1', 'Changed phone', '2023-10-03 18:32:52');
+(350, 'clarence-coronel1', 'Changed phone', '2023-10-03 18:32:52'),
+(351, 'clarence-coronel1', 'Scheduled an appointment: Coronel, Clarence Reyes', '2023-10-04 05:43:57'),
+(352, 'clarence-coronel1', 'Viewed feedback', '2023-10-04 18:28:01'),
+(353, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 12:26:29'),
+(354, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 12:26:38'),
+(355, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 12:27:32'),
+(356, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 12:27:40'),
+(357, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 12:28:24'),
+(358, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 12:28:38'),
+(359, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 12:28:48'),
+(360, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 12:29:08'),
+(361, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 12:29:29'),
+(362, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 12:29:42'),
+(363, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 12:30:03'),
+(364, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 12:30:46'),
+(365, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 12:31:03'),
+(366, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 12:31:46'),
+(367, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 12:32:49'),
+(368, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 12:34:10'),
+(369, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 12:34:35'),
+(370, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 12:35:14'),
+(371, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 12:37:10'),
+(372, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 12:37:35'),
+(373, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 12:37:44'),
+(374, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 12:38:28'),
+(375, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 12:38:44'),
+(376, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 12:39:09'),
+(377, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 12:39:27'),
+(378, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 12:39:32'),
+(379, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 12:40:02'),
+(380, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 12:40:12'),
+(381, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 12:41:14'),
+(382, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 12:41:43'),
+(383, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 12:41:56'),
+(384, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 12:42:05'),
+(385, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 12:42:19'),
+(386, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 12:42:37'),
+(387, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 12:42:57'),
+(388, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 12:43:04'),
+(389, 'clarence-coronel1', 'Blocked a new date: test', '2023-10-07 12:49:46'),
+(390, 'clarence-coronel1', 'Blocked a new date: test', '2023-10-07 12:49:56'),
+(391, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 12:58:36'),
+(392, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 12:58:42'),
+(393, 'clarence-coronel1', 'Blocked a new date: test', '2023-10-07 12:59:31'),
+(394, 'clarence-coronel1', 'Blocked a new date: test', '2023-10-07 12:59:45'),
+(395, 'clarence-coronel1', 'Blocked a new date: test', '2023-10-07 12:59:52'),
+(396, 'clarence-coronel1', 'Blocked a new date: new year', '2023-10-07 13:00:43'),
+(397, 'clarence-coronel1', 'Blocked a new date: valentines', '2023-10-07 13:00:53'),
+(398, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 13:00:57'),
+(399, 'clarence-coronel1', 'Blocked a new date: test', '2023-10-07 13:02:02'),
+(400, 'clarence-coronel1', 'Removed a blocked date: ', '2023-10-07 13:02:18'),
+(401, 'clarence-coronel1', 'Blocked a new date: test', '2023-10-07 13:02:45'),
+(402, 'clarence-coronel1', 'Removed a blocked date: ', '2023-10-07 13:03:49'),
+(403, 'clarence-coronel1', 'Blocked a new date: test', '2023-10-07 13:04:00'),
+(404, 'clarence-coronel1', 'Removed a blocked date: ', '2023-10-07 13:04:37'),
+(405, 'clarence-coronel1', 'Blocked a new date: test', '2023-10-07 13:04:46'),
+(406, 'clarence-coronel1', 'Removed a blocked date: ', '2023-10-07 13:05:09'),
+(407, 'clarence-coronel1', 'Blocked a new date: test', '2023-10-07 13:05:37'),
+(408, 'clarence-coronel1', 'Removed a blocked date: ', '2023-10-07 13:05:53'),
+(409, 'clarence-coronel1', 'Blocked a new date: test', '2023-10-07 13:06:03'),
+(410, 'clarence-coronel1', 'Blocked a new date: test', '2023-10-07 13:06:28'),
+(411, 'clarence-coronel1', 'Removed a blocked date: ', '2023-10-07 13:07:08'),
+(412, 'clarence-coronel1', 'Blocked a new date: test', '2023-10-07 13:07:13'),
+(413, 'clarence-coronel1', 'Removed a blocked date: ', '2023-10-07 13:07:29'),
+(414, 'clarence-coronel1', 'Removed a blocked date: ', '2023-10-07 13:07:34'),
+(415, 'clarence-coronel1', 'Blocked a new date: test', '2023-10-07 13:07:40'),
+(416, 'clarence-coronel1', 'Blocked a new date: test', '2023-10-07 13:07:55'),
+(417, 'clarence-coronel1', 'Removed a blocked date: ', '2023-10-07 13:09:43'),
+(418, 'clarence-coronel1', 'Removed a blocked date: ', '2023-10-07 13:09:53'),
+(419, 'clarence-coronel1', 'Blocked a new date: test', '2023-10-07 13:09:57'),
+(420, 'clarence-coronel1', 'Removed a blocked date: ', '2023-10-07 13:10:23'),
+(421, 'clarence-coronel1', 'Blocked a new date: test', '2023-10-07 13:10:33'),
+(422, 'clarence-coronel1', 'Blocked a new date: test', '2023-10-07 13:12:06'),
+(423, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 13:16:51'),
+(424, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 13:34:10'),
+(425, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 13:37:06'),
+(426, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 13:50:10'),
+(427, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 13:54:51'),
+(428, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 14:06:52'),
+(429, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 14:18:14');
 
 -- --------------------------------------------------------
 
@@ -322,14 +401,13 @@ CREATE TABLE `appointments` (
   `barangay` varchar(60) NOT NULL,
   `patientType` varchar(3) NOT NULL,
   `appointmentType` varchar(30) NOT NULL,
-  `scheduleID` int(11) NOT NULL,
+  `scheduleID` int(11) DEFAULT NULL,
   `appointmentDate` date DEFAULT NULL,
   `caseNo` varchar(10) DEFAULT NULL,
   `appointmentStatus` varchar(30) NOT NULL,
   `cancelReason` varchar(200) DEFAULT NULL,
   `dateSubmitted` date NOT NULL DEFAULT current_timestamp(),
   `followUpImgLink` varchar(400) DEFAULT NULL,
-  `followUpDateNote` date DEFAULT NULL,
   `isArchived` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -337,13 +415,25 @@ CREATE TABLE `appointments` (
 -- Dumping data for table `appointments`
 --
 
-INSERT INTO `appointments` (`appointmentID`, `departmentID`, `firstName`, `middleName`, `lastName`, `sex`, `birthdate`, `phone`, `province`, `municipality`, `barangay`, `patientType`, `appointmentType`, `scheduleID`, `appointmentDate`, `caseNo`, `appointmentStatus`, `cancelReason`, `dateSubmitted`, `followUpImgLink`, `followUpDateNote`, `isArchived`) VALUES
-(12, 1, 'clarence', 'reyes', 'coronel', 'm', '2001-02-12', '0967 599 8955', 'bulacan', 'norzagaray', 'bangkal', 'old', 'website', 8, '2023-10-03', '', 'Active', '', '2023-10-01', NULL, NULL, 0),
-(13, 1, 'clarence', 'reyes', 'coronel', 'm', '2023-02-12', '0967 599 8955', 'bulacan', 'obando', 'binuangan', 'new', 'website', 30, '2023-10-02', '', 'Active', '', '2023-10-01', NULL, NULL, 0),
-(14, 1, 'clarence', 'reyes', 'coronel', 'm', '2020-03-12', '0967 599 8955', 'bulacan', 'norzagaray', 'bangkal', 'new', 'website', 32, '2023-10-02', '', 'Active', '', '2023-10-01', NULL, NULL, 0),
-(15, 1, 'Clarence', 'Reyes', 'Coronel', 'm', '2020-12-12', '0967 599 8955', 'bulacan', 'norzagaray', 'bangkal', 'old', 'admin', 19, '2023-10-03', '', 'Active', '', '2023-10-01', NULL, NULL, 0),
-(16, 1, 'Clarence', 'Reyes', 'Coronel', 'm', '2020-12-12', '0967 599 8955', 'bulacan', 'pandi', 'bagbaguin', 'old', 'admin', 21, '2023-10-02', '1234', 'Active', '', '2023-10-01', NULL, NULL, 0),
-(17, 1, 'Clarence', 'Reyes', 'Coronel', 'm', '2001-12-12', '0967 599 8955', 'bulacan', 'pandi', 'bagbaguin', 'old', 'admin', 40, '2023-10-02', '', 'Active', '', '2023-10-01', NULL, NULL, 0);
+INSERT INTO `appointments` (`appointmentID`, `departmentID`, `firstName`, `middleName`, `lastName`, `sex`, `birthdate`, `phone`, `province`, `municipality`, `barangay`, `patientType`, `appointmentType`, `scheduleID`, `appointmentDate`, `caseNo`, `appointmentStatus`, `cancelReason`, `dateSubmitted`, `followUpImgLink`, `isArchived`) VALUES
+(12, 1, 'clarence', 'reyes', 'coronel', 'm', '2001-02-12', '0967 599 8955', 'bulacan', 'norzagaray', 'bangkal', 'old', 'website', 8, '2023-10-03', '', 'Active', '', '2023-10-01', NULL, 0),
+(13, 1, 'clarence', 'reyes', 'coronel', 'm', '2023-02-12', '0967 599 8955', 'bulacan', 'obando', 'binuangan', 'new', 'website', 30, '2023-10-02', '', 'Active', '', '2023-10-01', NULL, 0),
+(14, 1, 'clarence', 'reyes', 'coronel', 'm', '2020-03-12', '0967 599 8955', 'bulacan', 'norzagaray', 'bangkal', 'new', 'website', 32, '2023-10-02', '', 'Active', '', '2023-10-01', NULL, 0),
+(15, 1, 'Clarence', 'Reyes', 'Coronel', 'm', '2020-12-12', '0967 599 8955', 'bulacan', 'norzagaray', 'bangkal', 'old', 'admin', 19, '2023-10-03', '', 'Active', '', '2023-10-01', NULL, 0),
+(16, 1, 'Clarence', 'Reyes', 'Coronel', 'm', '2020-12-12', '0967 599 8955', 'bulacan', 'pandi', 'bagbaguin', 'old', 'admin', 21, '2023-10-02', '1234', 'Active', '', '2023-10-01', NULL, 0),
+(17, 1, 'Clarence', 'Reyes', 'Coronel', 'm', '2001-12-12', '0967 599 8955', 'bulacan', 'pandi', 'bagbaguin', 'old', 'admin', 40, '2023-10-02', '', 'Active', '', '2023-10-01', NULL, 0),
+(18, 2, 'clarence', 'reyes', 'coronel', 'm', '2001-03-12', '0967 599 8955', 'bulacan', 'meycauayan', 'bagbaguin', 'old', 'website', 42, '2023-11-08', '', 'active', NULL, '2023-10-04', NULL, 0),
+(19, 6, 'Clarence', 'Reyes', 'Coronel', 'm', '2002-02-28', '0967 599 8955', 'bulacan', 'obando', 'binuangan', 'old', 'admin', 28, '2023-10-16', '12-313-123', 'active', NULL, '2023-10-04', NULL, 0),
+(20, 1, 'test', 'test', 'test', 'm', '2001-03-12', '0967 599 8955', 'bulacan', 'pulilan', 'balatong A', 'old', 'website', 8, '2023-10-17', '', 'active', NULL, '2023-10-05', NULL, 0),
+(27, 1, 'test', 'test', 'test', 'm', '2001-02-12', '0967 599 8955', 'bulacan', 'pandi', 'bagbaguin', 'old', 'website', NULL, NULL, '', 'pending', NULL, '2023-10-05', '', 0),
+(28, 1, 'clarence', 'eyes', 'coronel', 'm', '2001-02-12', '0967 599 8955', 'bulacan', 'pandi', 'bagbaguin', 'old', 'website', NULL, NULL, '', 'pending', NULL, '2023-10-05', '', 0),
+(29, 1, 'clarence', 'reyes', 'coronel', 'm', '2001-05-12', '0967 599 8955', 'bulacan', 'pulilan', 'balatong A', 'old', 'website', NULL, NULL, '', 'pending', NULL, '2023-10-05', '', 0),
+(30, 1, 'clarence', 'reyes', 'coronel', 'm', '2001-03-12', '0967 599 8955', 'bulacan', 'plaridel', 'agnaya', 'old', 'website', 8, '2023-10-24', '', 'active', NULL, '2023-10-05', NULL, 0),
+(31, 1, 'clarence', 'eyes', 'coronel', 'm', '2001-03-12', '0967 599 8955', 'bulacan', 'paombong', 'binakod', 'old', 'website', NULL, NULL, '', 'pending', NULL, '2023-10-05', 'https://firebasestorage.googleapis.com/v0/b/imgsample-86e3a.appspot.com/o/Images1%2F1694613420601.png?alt=media&token=1a9fe31d-6ecc-4261-aeca-ef654aa9efde', 0),
+(46, 1, 'clarence', 'reyes', 'coronel', 'm', '2001-03-12', '0967 599 8955', 'bulacan', 'plaridel', 'agnaya', 'old', 'website', NULL, NULL, '', 'pending', NULL, '2023-10-05', 'https://firebasestorage.googleapis.com/v0/b/imgsample-86e3a.appspot.com/o/Images1%2Fmedicine.png?alt=media&token=15963b3e-577b-4717-b913-181c708cfc34', 0),
+(47, 1, 'clarence', 'reyes', 'coronel', 'm', '2001-04-12', '0967 599 8955', 'bulacan', 'pulilan', 'balatong A', 'new', 'website', 47, '2023-10-30', '', 'active', NULL, '2023-10-08', NULL, 0),
+(48, 1, 'clarence', 'reyes', 'coronel', 'm', '2001-04-12', '0967 599 8955', 'bulacan', 'pandi', 'bagbaguin', 'old', 'website', 47, '2023-10-16', '', 'active', NULL, '2023-10-08', NULL, 0),
+(49, 1, 'clarence', 'reyes', 'coronel', 'm', '2005-01-14', '0967 599 8955', 'bulacan', 'pulilan', 'balatong A', 'old', 'website', 43, '2023-10-16', '', 'active', NULL, '2023-10-08', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -384,9 +474,18 @@ CREATE TABLE `block_dates` (
 --
 
 INSERT INTO `block_dates` (`blockID`, `blockDate`, `blockName`, `isYearly`) VALUES
-(12, '2023-12-25', 'Xmas', 1),
-(13, '2024-10-17', 'testtest', 1),
-(14, '2023-10-20', 'test', 0);
+(14, '2023-10-20', 'test', 0),
+(16, '2024-09-12', 'test', 1),
+(19, '2024-05-05', 'test', 0),
+(20, '2024-01-01', 'new year', 1),
+(22, '2023-12-28', 'test', 1),
+(23, '2024-02-02', 'test', 0),
+(28, '2027-10-28', 'test', 0),
+(30, '2024-01-04', 'test', 0),
+(31, '2024-02-03', 'test', 0),
+(32, '2024-12-01', 'test', 0),
+(33, '2027-12-14', 'test', 0),
+(34, '2029-12-13', 'test', 0);
 
 -- --------------------------------------------------------
 
@@ -450,7 +549,8 @@ INSERT INTO `feedbacks` (`feedbackID`, `rate`, `feedbackContent`, `dateTimeSubmi
 (18, 5, 'TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST', '2023-09-20 06:29:42'),
 (19, 4, 'test', '2023-09-23 10:42:29'),
 (20, 4, 'test', '2023-09-23 11:46:37'),
-(21, 5, 'test', '2023-10-03 18:14:01');
+(21, 5, 'test', '2023-10-03 18:14:01'),
+(22, 4, 'None', '2023-10-07 12:40:45');
 
 -- --------------------------------------------------------
 
@@ -628,7 +728,7 @@ ALTER TABLE `schedules`
 -- AUTO_INCREMENT for table `admin_logs`
 --
 ALTER TABLE `admin_logs`
-  MODIFY `adminLogsID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=351;
+  MODIFY `adminLogsID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=430;
 
 --
 -- AUTO_INCREMENT for table `announcements`
@@ -640,13 +740,13 @@ ALTER TABLE `announcements`
 -- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `appointmentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `appointmentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `block_dates`
 --
 ALTER TABLE `block_dates`
-  MODIFY `blockID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `blockID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `departments`
@@ -658,7 +758,7 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `feedbacks`
 --
 ALTER TABLE `feedbacks`
-  MODIFY `feedbackID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `feedbackID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `schedules`
