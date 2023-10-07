@@ -43,6 +43,7 @@
     <script defer src="./js/htmlContent.js"></script>
     <script defer src="./js/index.js"></script>
     <script defer src="./js/calendarGenerator.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.3.0/exceljs.min.js"></script>
     <title>iSchedule Admin</title>
 </head>
 <body>

@@ -377,108 +377,116 @@ let viewSchedule = `
         <span>Click the row to highlight/see more.</span>
         <div class="view-schedule__table">
             <div class="table-container">
-                <table class="schedule-table">
+                <table class="schedule-table" id="schedule-table">
                     <thead>
-                        <tr>
+                        <tr style="background-color: rgb(67, 67, 67); color: white;">
                             <th>Full Name</th>
                             <th>Department</th>
-                            <th>Appointment<br>Date</th>
+                            <th>Appointment <br>Date</th>
                             <th>Slot</th>
                             <th>Status</th>
                             <th>Sex</th>
                             <th>Birthdate</th>
                             <th>Phone #</th>
                             <th>Address</th>
-                            <th>Patient<br>Type</th>
+                            <th>Patient <br>Type</th>
                             <th>Case #</th>
                             <th>Submitted On</th>
-                            <th>Reason<br>Cancelled</th>
+                            <th>Reason <br>Cancelled</th>
                             <th>&nbsp;</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr class="table-row">
                             <td>Cruz, John Test</td>
                             <td>Oncology</td>
-                            <td title="YYYY-MM-DD">2023-08-25</td>
+                            <td>August 25, 2023</td>
                             <td>1:00 PM - 2:00PM</td>
                             <td class="active">Active</td>
                             <td>Male</td>
-                            <td title="YYYY-MM-DD">2001-10-21</td>
+                            <td>October 20, 2001</td>
                             <td>0942 423 4277</td>
                             <td>Banga II, Plaridel, Bulacan</td>
                             <td>New Patient</td>
                             <td>123456</td>
-                            <td title="YYYY-MM-DD">2023-06-27</td>
+                            <td>June 27, 2023</td>
                             <td></td>
                             <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Edit</button></td>
                         </tr>
-                        <tr>
+                        <tr class="table-row">
                             <td>Cruz, John Test</td>
                             <td>Oncology</td>
-                            <td title="YYYY-MM-DD">2023-08-25</td>
+                            <td>August 25, 2023</td>
                             <td>1:00 PM - 2:00PM</td>
                             <td class="cancelled">Cancelled</td>
                             <td>Male</td>
-                            <td title="YYYY-MM-DD">2001-10-21</td>
+                            <td>October 20, 2001</td>
                             <td>0942 423 4277</td>
                             <td>Banga II, Plaridel, Bulacan</td>
                             <td>New Patient</td>
                             <td>123456</td>
-                            <td title="YYYY-MM-DD">2023-06-27</td>
+                            <td>June 27, 2023</td>
                             <td>TrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabaho</td>
                             <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Edit</button></td>
                         </tr>
-                        <tr>
+                        <tr class="table-row">
                             <td>Cruz, John Test</td>
                             <td>Oncology</td>
-                            <td title="YYYY-MM-DD">2023-08-25</td>
+                            <td>August 25, 2023</td>
                             <td>1:00 PM - 2:00PM</td>
                             <td class="missed">Missed</td>
                             <td>Male</td>
-                            <td title="YYYY-MM-DD">2001-10-21</td>
+                            <td>October 20, 2001</td>
                             <td>0942 423 4277</td>
                             <td>Banga II, Plaridel, Bulacan</td>
                             <td>New Patient</td>
                             <td>123456</td>
-                            <td title="YYYY-MM-DD">2023-06-27</td>
+                            <td>June 27, 2023</td>
                             <td></td>
                             <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Edit</button></td>
                         </tr>
-                        <tr>
+                        <tr class="table-row">
                             <td>Cruz, John Test</td>
                             <td>Oncology</td>
-                            <td title="YYYY-MM-DD">2023-08-25</td>
+                            <td>August 25, 2023</td>
                             <td>1:00 PM - 2:00PM</td>
                             <td class="completed">Completed</td>
                             <td>Male</td>
-                            <td title="YYYY-MM-DD">2001-10-21</td>
+                            <td>October 20, 2001</td>
                             <td>0942 423 4277</td>
                             <td>Banga II, Plaridel, Bulacan</td>
                             <td>New Patient</td>
                             <td>123456</td>
-                            <td title="YYYY-MM-DD">2023-06-27</td>
+                            <td>June 27, 2023</td>
                             <td></td>
                             <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Edit</button></td>
                         </tr>
-                        <tr>
+                        <tr class="table-row">
                             <td>Cruz, John Test</td>
                             <td>Oncology</td>
-                            <td title="YYYY-MM-DD">2023-08-25</td>
+                            <td>August 25, 2023</td>
                             <td>1:00 PM - 2:00PM</td>
                             <td class="pending">Pending</td>
                             <td>Male</td>
-                            <td title="YYYY-MM-DD">2001-10-21</td>
+                            <td>October 20, 2001</td>
                             <td>0942 423 4277</td>
                             <td>Banga II, Plaridel, Bulacan</td>
                             <td>New Patient</td>
                             <td>123456</td>
-                            <td title="YYYY-MM-DD">2023-06-27</td>
+                            <td>June 27, 2023</td>
                             <td></td>
                             <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Edit</button></td>
                         </tr>
                     </tbody>
                 </table>
+            </div>
+        </div>
+        <div class="cmds-container">
+            <button type="button" class="export" data-table="schedule-table">Export Table</button>
+            <div class="table-nav">
+                <button id="prevButton"><< Previous</button>
+                <span id="pageNum">1</span>
+                <button id="nextButton">Next >></button>
             </div>
         </div>
     </div>
@@ -585,7 +593,7 @@ let request = `
                 <div class="request__table">
                     <span>Click the row to highlight/see more.</span>
                     <div class="table-container">
-                        <table>
+                        <table class="request-table" id="request-table">
                             <thead>
                                 <tr>
                                     <th>&nbsp;</th>
@@ -598,7 +606,7 @@ let request = `
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr class="table-row">
                                     <td>
                                         <button data-appID="1" id="1" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
                                     </td>
@@ -612,7 +620,7 @@ let request = `
                                     <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
                                     <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
                                 </tr>
-                                <tr>
+                                <tr class="table-row">
                                     <td>
                                         <button data-appID="2" id="2" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
                                     </td>
@@ -626,7 +634,7 @@ let request = `
                                     <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
                                     <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
                                 </tr>
-                                <tr>
+                                <tr class="table-row">
                                     <td>
                                         <button data-appID="3" id="3" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
                                     </td>
@@ -640,7 +648,7 @@ let request = `
                                     <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
                                     <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
                                 </tr>
-                                <tr>
+                                <tr class="table-row">
                                     <td>
                                         <button data-appID="3" id="3" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
                                     </td>
@@ -654,7 +662,7 @@ let request = `
                                     <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
                                     <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
                                 </tr>
-                                <tr>
+                                <tr class="table-row">
                                     <td>
                                         <button data-appID="3" id="3" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
                                     </td>
@@ -668,7 +676,7 @@ let request = `
                                     <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
                                     <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
                                 </tr>
-                                <tr>
+                                <tr class="table-row">
                                     <td>
                                         <button data-appID="3" id="3" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
                                     </td>
@@ -682,7 +690,7 @@ let request = `
                                     <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
                                     <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
                                 </tr>
-                                <tr>
+                                <tr class="table-row">
                                     <td>
                                         <button data-appID="3" id="3" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
                                     </td>
@@ -696,7 +704,7 @@ let request = `
                                     <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
                                     <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
                                 </tr>
-                                <tr>
+                                <tr class="table-row">
                                     <td>
                                         <button data-appID="3" id="3" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
                                     </td>
@@ -710,7 +718,7 @@ let request = `
                                     <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
                                     <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
                                 </tr>
-                                <tr>
+                                <tr class="table-row">
                                     <td>
                                         <button data-appID="3" id="3" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
                                     </td>
@@ -724,7 +732,7 @@ let request = `
                                     <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
                                     <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
                                 </tr>
-                                <tr>
+                                <tr class="table-row">
                                     <td>
                                         <button data-appID="3" id="3" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
                                     </td>
@@ -738,7 +746,7 @@ let request = `
                                     <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
                                     <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
                                 </tr>
-                                <tr>
+                                <tr class="table-row">
                                     <td>
                                         <button data-appID="3" id="3" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
                                     </td>
@@ -752,7 +760,7 @@ let request = `
                                     <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
                                     <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
                                 </tr>
-                                <tr>
+                                <tr class="table-row">
                                     <td>
                                         <button data-appID="3" id="3" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
                                     </td>
@@ -766,7 +774,7 @@ let request = `
                                     <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
                                     <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
                                 </tr>
-                                <tr>
+                                <tr class="table-row">
                                     <td>
                                         <button data-appID="3" id="3" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
                                     </td>
@@ -782,6 +790,13 @@ let request = `
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+                <div class="cmds-container">
+                    <div class="table-nav">
+                        <button id="prevButton"><< Previous</button>
+                        <span id="pageNum">1</span>
+                        <button id="nextButton">Next >></button>
                     </div>
                 </div>
             </div>
@@ -910,7 +925,7 @@ let adminLogs = `
                 </div>
                 <span>Click the row to highlight/see more.</span>
                 <div class="table-container">
-                    <table class="logs-table">
+                    <table class="logs-table" id="logs-table">
                         <thead>
                             <tr>
                                 <th>Username</th>
@@ -923,6 +938,14 @@ let adminLogs = `
                         <tbody>
                         </tbody>
                     </table>
+                </div>
+                <div class="cmds-container">
+                    <button type="button" class="export" data-table="logs-table">Export Table</button>
+                    <div class="table-nav">
+                        <button id="prevButton"><< Previous</button>
+                        <span id="pageNum">1</span>
+                        <button id="nextButton">Next >></button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -939,7 +962,7 @@ let adminList = `
     </div>
     <span>Click the row to highlight/see more.</span>
     <div class="table-container">
-        <table class="admin-table">
+        <table class="admin-table" id="admin-table">
             <thead>
                 <tr>
                     <th>Full Name</th>
@@ -952,6 +975,14 @@ let adminList = `
             <tbody>
             </tbody>
         </table>
+    </div>
+    <div class="cmds-container">
+        <button type="button" class="export" data-table="admin-table">Export Table</button>
+        <div class="table-nav">
+            <button id="prevButton"><< Previous</button>
+            <span id="pageNum">1</span>
+            <button id="nextButton">Next >></button>
+        </div>
     </div>
 </section>`;
 
@@ -1126,21 +1157,6 @@ let manageData = `
 let blockDates = `
 <section class="block-date">
             <div class="add-date" data-aos="fade-right" data-aos-duration="500">
-                <span>Click the row to highlight/see more.</span>
-                <div class="table-container">
-                    <table class="date-table">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Name</th>
-                                <th>Repeats</th>
-                                <th>&nbsp</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
                 <div class="date-picker">
                     <input type="text" name="month" id="block-month" placeholder="MM" oninput="inputLimiterNum(this.id, 2)" onblur="inputLimiterBlur(this.id, 2)">
                     <span>/</span>
@@ -1159,6 +1175,28 @@ let blockDates = `
                     <span class="msg"></span>
                 </div>
                 <button class="btn-submitblock" onclick="checkBlockDate();">Add</button>
+                <span>Click the row to highlight/see more.</span>
+                <div class="table-container">
+                    <table class="date-table" id="date-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Name</th>
+                                <th>Repeats</th>
+                                <th>&nbsp</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="cmds-container">
+                    <div class="table-nav">
+                        <button id="prevButton"><< Previous</button>
+                        <span id="pageNum">1</span>
+                        <button id="nextButton">Next >></button>
+                    </div>
+                </div>
             </div>
 </section>`;
 
@@ -1175,7 +1213,7 @@ let feedback = `
                 <div class="feedback__table">
                     <span>Click the row to highlight/see more.</span>
                     <div class="table-container">
-                        <table>
+                        <table class="feedback-table" id="feedback-table">
                             <thead>
                                 <tr>
                                     <th>Rating</th>
@@ -1187,6 +1225,14 @@ let feedback = `
                                 
                             </tbody>
                         </table>
+                    </div>
+                    <div class="cmds-container">
+                        <button type="button" class="export" data-table="feedback-table">Export Table</button>
+                        <div class="table-nav">
+                            <button id="prevButton"><< Previous</button>
+                            <span id="pageNum">1</span>
+                            <button id="nextButton">Next >></button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1256,6 +1302,7 @@ function generateDashboard(){
         determineDeviceDB();
     }
 }
+
 function generateSchedule(){
     if(checkPrivilege('admin ii') || checkPrivilege('super admin')){
         main.innerHTML = schedule;
@@ -1266,11 +1313,20 @@ function generateSchedule(){
         formState = 0;
     }   
 }
+
 function generateViewSchedule(){
     if(checkPrivilege('admin i') || checkPrivilege('admin ii') || checkPrivilege('super admin')){
         main.innerHTML = viewSchedule;
         document.querySelector('.view-schedule__field').innerHTML = quickView;
         showTableCell();
+        
+        document.querySelector(".export").addEventListener('click', (e)=>{
+            let tableClass = e.target.dataset.table;
+            let table = document.querySelector(`.${tableClass}`);
+            exportTableToExcel(table, "iSchedule_Appointments", [13]);
+        });
+
+        setupTablePagination('schedule-table', 'prevButton', 'nextButton', 10);
     }
 }
 
@@ -1278,6 +1334,7 @@ function generateRequest(){
     if(checkPrivilege('admin ii') || checkPrivilege('super admin')){
         main.innerHTML = request;
         showTableCell();
+        setupTablePagination('request-table', 'prevButton', 'nextButton', 10);
     }
 }
 
@@ -1292,6 +1349,11 @@ function generateAdminLogs(){
     if(checkPrivilege('super admin')){
         main.innerHTML = adminLogs;
         insertAdminLogs();
+        document.querySelector(".export").addEventListener('click', (e)=>{
+            let tableClass = e.target.dataset.table;
+            let table = document.querySelector(`.${tableClass}`);
+            exportTableToExcel(table, "iSchedule_AdminLogs", []);
+        });
     }
 }
 
@@ -1300,6 +1362,11 @@ function generateAdminList(){
     if(checkPrivilege('super admin')){
         main.innerHTML = adminList;
         insertAdmin();
+        document.querySelector(".export").addEventListener('click', (e)=>{
+            let tableClass = e.target.dataset.table;
+            let table = document.querySelector(`.${tableClass}`);
+            exportTableToExcel(table, "iSchedule_AdminList", [4]);
+        });
     }
 }
 
@@ -1372,6 +1439,11 @@ function generateFeedback(){
     if(checkPrivilege('admin ii') || checkPrivilege('super admin')){
         main.innerHTML = feedback;
         getFeedback();
+        document.querySelector(".export").addEventListener('click', (e)=>{
+            let tableClass = e.target.dataset.table;
+            let table = document.querySelector(`.${tableClass}`);
+            exportTableToExcel(table, "iSchedule_Feedback", []);
+        });
     }
 }
 

@@ -831,7 +831,7 @@ function containsLetterNumSpeChar(pass){
 }
 
 function onlyLettersAndNumbers(str) {
-    return /^[A-Za-z0-9]*$/.test(str);
+    return /^[A-Za-z0-9 ]*$/.test(str);
 }
 
 // gets the value of given sa id param and then ilimit siya gamit yung max
@@ -1988,7 +1988,7 @@ function getFeedback(sortBy = 1){
                     arrayOfObjects.forEach(item=>{
                         let rowTemplate =
                         `
-                        <tr>
+                        <tr class="table-row">
                             <td>${item.rate}</td>
                             <td>${item.content}</td>
                             <td title="YYYY-MM-DD">${convertRetrievedDate(item.dateSubmitted)}</td>
@@ -1998,6 +1998,7 @@ function getFeedback(sortBy = 1){
                         feedbackTable.innerHTML += rowTemplate;
                         
                     });
+                    setupTablePagination('feedback-table', 'prevButton', 'nextButton', 10);
                 }
             }
         }
@@ -2209,7 +2210,6 @@ function insertBlockDate(){
             if(xhr.status == 200){
                 try {
                     let arrayOfObjects = JSON.parse(xhr.responseText);
-
                     arrayOfObjects.forEach((item)=>{
                         let id = item.id;
                         let date = convertRetrievedDate(item.date);
@@ -2223,11 +2223,9 @@ function insertBlockDate(){
                             isYearly = false;
                         }
 
-                        
-
                         const template = 
                         `
-                        <tr>
+                        <tr class="table-row">
                             <td>${date}</td>
                             <td>${dateName}</td>
                             <td>${isYearly}</td>
@@ -2240,11 +2238,10 @@ function insertBlockDate(){
                 } catch (error) {
                     
                 }
-                
+                setupTablePagination('date-table', 'prevButton', 'nextButton', 10);
             }
         }
     }
-
 
     xhr.open("GET", "./php/getBlockDate.php", false);
     xhr.send();
@@ -2437,7 +2434,7 @@ function insertAdmin(isInitial = true){
 
                         const template = 
                         `
-                        <tr>
+                        <tr class="table-row">
                             <td>${capitalFirstLetter(lastName)}, ${capitalFirstLetter(firstName)} ${capitalFirstLetter(middleName)}</td>
                             <td>${username}</td>
                             <td>${phone}</td>
@@ -2456,7 +2453,7 @@ function insertAdmin(isInitial = true){
                 } catch (error) {
                     
                 }
-                
+                setupTablePagination('admin-table', 'prevButton', 'nextButton', 10);
             }
         }
     }
@@ -2556,7 +2553,7 @@ function insertAdminLogs(isInitial = true){
 
                         const template = 
                         `
-                        <tr>
+                        <tr class="table-row">
                             <td>${username}</td>
                             <td>${activity}</td>
                             <td>${adminType}</td>
@@ -2567,7 +2564,7 @@ function insertAdminLogs(isInitial = true){
 
                         table.innerHTML += template;
                     })
-
+                    setupTablePagination('logs-table', 'prevButton', 'nextButton', 10);
                     showTableCell();
                 } catch (error) {
                     
@@ -3574,3 +3571,144 @@ function checkHourB(str){
 
 }
 
+// function exportTableToExcel(tableId, fileName, excludeColumns = []) {
+//     var workbook = new ExcelJS.Workbook();
+//     var worksheet = workbook.addWorksheet('Sheet 1', { properties: { defaultColWidth: 20 } });
+//     var table = document.getElementById(tableId);
+
+//     // Set header row style with background color
+//     var headerRow = worksheet.getRow(1);
+//     headerRow.eachCell(function(cell) {
+//         cell.fill = {
+//             type: 'pattern',
+//             pattern: 'solid',
+//             fgColor: { argb: 'FF434343' }, // RGB(67, 67, 67)
+//         };
+//         cell.font = { color: { argb: 'FFFFFF' } }; // White text color
+//     });
+
+//     Array.from(table.rows).forEach(function(row) {
+//         var excelRow = worksheet.addRow([]);
+//         Array.from(row.cells).forEach(function(cell, index) {
+//             if (!excludeColumns.includes(index)) {
+//                 var cellValue = cell.textContent.trim();
+//                 var cell = excelRow.getCell(index + 1);
+//                 cell.value = cellValue;
+//                 cell.alignment = { wrapText: true, horizontal: 'left', vertical: 'middle' };
+//             }
+//         });
+//     });
+
+//     workbook.xlsx.writeBuffer().then(function(buffer) {
+//         var blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+//         var link = document.createElement('a');
+//         link.href = window.URL.createObjectURL(blob);
+//         link.download = fileName;
+//         link.click();
+//     });
+// }
+
+
+function exportTableToExcel(table, fileName, excludeColumns = []) {
+    var workbook = new ExcelJS.Workbook();
+    var worksheet = workbook.addWorksheet('Sheet 1', { properties: { defaultColWidth: 20 } });
+
+    Array.from(table.rows).forEach(function(row) {
+        var excelRow = worksheet.addRow([]);
+        Array.from(row.cells).forEach(function(cell, index) {
+            if (!excludeColumns.includes(index)) {
+                var cellValue = cell.textContent.trim();
+                var cell = excelRow.getCell(index + 1);
+                cell.value = cellValue;
+                cell.alignment = { wrapText: true, horizontal: 'left', vertical: 'middle' };
+            }
+        });
+    });
+
+    // Apply background color to header cells
+    var headerRow = worksheet.getRow(1); // Assuming the first row is the header row
+    headerRow.eachCell(function(cell) {
+        cell.fill = {
+            type: 'pattern',
+            pattern: 'solid',
+            fgColor: { argb: 'FF434343' } // rgb(67, 67, 67)
+        };
+        cell.font = { color: { argb: 'FFFFFF' } }; // White text color
+    });
+
+    workbook.xlsx.writeBuffer().then(function(buffer) {
+        var blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+        var link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.download = fileName;
+        link.click();
+    });
+}
+
+function setupTablePagination(tableId, prevButtonId, nextButtonId, rowsPerPage) {
+    const table = document.getElementById(tableId);
+    const prevButton = document.getElementById(prevButtonId);
+    const nextButton = document.getElementById(nextButtonId);
+    let currentPage = 1;
+    let pageNum = document.querySelector("#pageNum");
+
+    const tableRows = table.querySelectorAll('.table-row');
+    const totalPages = Math.ceil(tableRows.length / rowsPerPage);
+    
+    pageNum.innerText = '1';
+
+    function showRows(page) {
+        const startIndex = (page - 1) * rowsPerPage;
+        const endIndex = startIndex + rowsPerPage;
+
+        tableRows.forEach((row, index) => {
+            if (index >= startIndex && index < endIndex) {
+                row.style.display = 'table-row';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    }
+
+    if(totalPages <= 1){
+        prevButton.style.display = 'none';
+        nextButton.style.display = 'none';
+        pageNum.style.display = 'none';
+    }else{
+        prevButton.style.display = 'unset';
+        nextButton.style.display = 'unset';
+        pageNum.style.display = 'flex';
+    }
+   
+    showRows(currentPage);
+
+    nextButton.addEventListener('click', () => {
+        if (currentPage < totalPages) {
+            currentPage++;
+            pageNum.innerText = currentPage;
+            showRows(currentPage);
+        } else {
+            pageNum.classList.add('error-animate');
+            pageNum.style.color = 'red';
+            setTimeout(()=>{
+                pageNum.classList.remove('error-animate');
+                pageNum.style.color = 'rgb(80, 78, 78)';
+            },500)
+        }
+    });
+
+    prevButton.addEventListener('click', () => {
+        if (currentPage > 1) {
+            currentPage--;
+            pageNum.innerText = currentPage;
+            showRows(currentPage);
+        } else {
+            pageNum.classList.add('error-animate');
+            pageNum.style.color = 'red';
+            setTimeout(()=>{
+                pageNum.classList.remove('error-animate');
+                pageNum.style.color = 'rgb(80, 78, 78)';
+            },500)
+        }
+    });
+}

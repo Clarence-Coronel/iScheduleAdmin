@@ -768,14 +768,14 @@ input:-webkit-autofill:focus{
     flex-flow: column;
     justify-content: flex-start;
     align-items: center;
-    max-height:85vh;
+    // max-height:85vh;
 }
 
 .admin-logs, .admin-list{
-    margin-top: $box-margin-top;
+    margin: $box-margin-top 0;
     display: flex;
     width: 100%;
-    height: 80vh;
+    // height: 80vh;
     flex-flow: column;
     justify-content: flex-start;
     align-items: center;
@@ -961,7 +961,6 @@ input:-webkit-autofill:focus{
 //Logs Table
 .table-container{
     width: 100%;
-    max-height: 40vh;
     // max-width: 90vw;
     
     overflow:auto !important;
@@ -1148,7 +1147,6 @@ td:hover{
 
 .block-date{
     width: 100%;
-    height: fit-content;
     display: flex;
     flex-flow: row-reverse wrap;
     justify-content: center;
@@ -1156,10 +1154,13 @@ td:hover{
     gap: max(10px, 2vw);
     // padding: max(10px, 2vw);
     overflow: hidden;
+
+    .cmds-container{
+        justify-content: flex-end;
+    }
     
     .add-date{
         margin: $box-margin-top 0;
-        height: fit-content;
         width: 95%;
         // min-width: 300px;
         background-color: white;
@@ -1167,13 +1168,12 @@ td:hover{
         display: flex;
         flex-flow: column;
         align-items: center;
-        gap: max(10px, 1vw);
+        gap: max(7px, 0.3vh);
         border-radius: max(10px, 1.2vw);
         box-shadow: $box-shadow;
         // height: fit-content;
 
         span{
-            
             position: relative;
             top: 10px;
             color: gray;
@@ -1252,6 +1252,7 @@ td:hover{
 
 .date-table{
     width: 100%;
+    
     thead{
         width: 100%;
     }
@@ -2785,13 +2786,12 @@ table{
 
 .view-schedule{
     width: 100%;
-    height: 85vh;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     
     .view-schedule__content{
-        margin-top: $box-margin-top;
+        margin: $box-margin-top 0;
         width: 95%;
         background-color: white;
         display: flex;
@@ -2802,7 +2802,6 @@ table{
         padding: $box-padding;
         border-radius: $box-border-radius;
         overflow-y: auto;
-        height: 100%;
 
         scrollbar-gutter: stable;
     }
@@ -2835,7 +2834,7 @@ table{
             background-color: white;
             height: 100%;
             width: 100%;
-            max-height: 45vh;
+            
         }
 
         td,th{
@@ -3171,7 +3170,6 @@ table{
 
 .feedback{
     width: 100%;
-    height: 90vh;
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -3180,14 +3178,13 @@ table{
     padding-top: unset;
     
     .feedback-content{
-        height: 90%;
         background-color: white;
         padding: $box-padding;
         border-radius: $box-border-radius;
         box-shadow: $box-shadow;
         // overflow: auto;
         width: max(80%, 300px);
-        margin-top: $box-margin-top;
+        margin: $box-margin-top 0;
 
         select{
             margin: auto;
@@ -3221,23 +3218,28 @@ table{
 
 .request{
     width: 100%;
-    height: 90vh;
+    // height: fit-content;
     // background-color: rgb(230, 151, 151);
     display: flex;
     justify-content: center;
     align-items: flex-start;
 
     .request-content{
-        margin-top: $box-margin-top;
+        margin: $box-margin-top 0;
         background-color: white;
         width: 90%;
-        height: 90%;
         border-radius: $box-border-radius;
         box-shadow: $box-shadow;
         padding: $box-padding;
         display: flex;
+        flex-flow: column;
         justify-content: center;
         align-items: center;
+
+        .cmds-container{
+            justify-content: flex-end;
+        }
+
     }
 
     .request__table{
@@ -4020,6 +4022,85 @@ table{
             box-shadow: $box-shadow;
             padding: $box-padding;
             
+        }
+    }
+}
+
+.table-row:not(:first-child) {
+    display: none;
+}
+
+.cmds-container{
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin: 1vh 0;
+
+    .export{
+        border: unset;
+        background-color: transparent;
+        // text-decoration: underline;
+        color: $btn-color;
+        font-size: 0.8rem;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+    }
+
+    .export:hover{
+        color: lighten($color: $btn-color, $amount: 5);
+        text-decoration: underline;
+    }
+
+    .table-nav{
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        gap: max(1vw, 10px);
+
+        button{
+            width: fit-content !important;
+            min-width: max(7vw, 80px) !important;
+            height: 100%;
+            border: unset;
+            color: white;
+            padding: 5px;
+            border-radius: max(5px, 0.2rem);
+            font-size: 0.8rem;
+        }
+
+        #prevButton{
+            background-color: rgb(240, 239, 239);
+            color: $fontbase-color;
+        }
+
+        #prevButton:hover{
+            background-color: darken($color: rgb(240, 239, 239), $amount:5);
+        }
+
+        #nextButton{
+            background-color: #4caf50;
+        }
+
+        #nextButton:hover{
+            background-color: lighten($color: #4caf50, $amount:5);
+        }
+
+
+        #pageNum{
+            position: static;
+            margin-top: unset;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: $fontbase-color;
+            font-size: 0.9rem;
+            text-align: center;
         }
     }
 }
