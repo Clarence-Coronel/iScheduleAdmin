@@ -515,7 +515,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
 }
 
 .form {
-  box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
+  box-shadow: 0 0 10px rgba(161, 159, 159, 0.558);
   background-color: white;
   width: max(300px, 30%);
   height: -moz-fit-content;
@@ -711,8 +711,8 @@ input:-webkit-autofill:focus {
   width: 95%;
   background-color: white;
   padding: max(10px, 2vw);
-  box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
-  border-radius: max(10px, 1.2vw);
+  box-shadow: 0 0 10px rgba(161, 159, 159, 0.558);
+  border-radius: max(5px, 0.5vw);
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
@@ -1006,8 +1006,8 @@ td:hover {
   flex-flow: column;
   align-items: center;
   gap: max(7px, 0.3vh);
-  border-radius: max(10px, 1.2vw);
-  box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
+  border-radius: max(5px, 0.5vw);
+  box-shadow: 0 0 10px rgba(161, 159, 159, 0.558);
 }
 .block-date .add-date span {
   position: relative;
@@ -1099,11 +1099,11 @@ td:hover {
   height: -moz-fit-content;
   height: fit-content;
   margin-top: max(15px, 1vw);
-  border-radius: max(7px, 1vw);
+  border-radius: max(5px, 0.5vw);
   display: flex;
   flex-flow: column;
   align-items: center;
-  box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
+  box-shadow: 0 0 10px rgba(161, 159, 159, 0.558);
   overflow: hidden;
 }
 
@@ -1218,8 +1218,8 @@ td:hover {
 .manage-data .manage-date__content {
   width: 80%;
   background-color: white;
-  border-radius: max(7px, 1vw);
-  box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
+  border-radius: max(5px, 0.5vw);
+  box-shadow: 0 0 10px rgba(161, 159, 159, 0.558);
   margin-top: max(15px, 1vw);
   padding: max(20px, 2vw);
   display: flex;
@@ -1264,14 +1264,14 @@ td:hover {
   margin: max(15px, 1vw) 0;
   background-color: white;
   width: 80%;
-  border-radius: max(7px, 1vw);
+  border-radius: max(5px, 0.5vw);
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
   align-items: center;
   padding: max(15px, 2vw);
   gap: max(10px, 1vw);
-  box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
+  box-shadow: 0 0 10px rgba(161, 159, 159, 0.558);
 }
 
 .postAnnouncement__content .announcement__input-container {
@@ -1366,8 +1366,8 @@ td:hover {
   width: 90%;
   height: 45%;
   background-color: white;
-  box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
-  border-radius: max(10px, 1.2vw);
+  box-shadow: 0 0 10px rgba(161, 159, 159, 0.558);
+  border-radius: max(5px, 0.5vw);
   display: flex;
   flex-flow: row wrap;
   overflow: hidden;
@@ -1420,8 +1420,8 @@ td:hover {
   width: 90%;
   height: 45%;
   background-color: white;
-  box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
-  border-radius: max(10px, 1.2vw);
+  box-shadow: 0 0 10px rgba(161, 159, 159, 0.558);
+  border-radius: max(5px, 0.5vw);
   padding: max(10px, 2vw);
   overflow-y: auto;
 }
@@ -1442,10 +1442,10 @@ td:hover {
   height: 98%;
   width: 90%;
   background-color: white;
-  border-radius: max(10px, 1.2vw);
+  border-radius: max(5px, 0.5vw);
   overflow-y: auto;
   overflow-x: hidden;
-  box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
+  box-shadow: 0 0 10px rgba(161, 159, 159, 0.558);
 }
 
 .data-wrapper {
@@ -1582,7 +1582,7 @@ td:hover {
   height: -moz-fit-content;
   height: fit-content;
   background-color: white;
-  box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
+  box-shadow: 0 0 10px rgba(161, 159, 159, 0.558);
   border-radius: max(10px, 1.2vw);
   margin-top: max(15px, 1vw);
   padding: max(15px, 2vw);
@@ -1741,8 +1741,8 @@ td:hover {
   width: 40%;
   min-width: 300px;
   padding: max(15px, 2vw);
-  border-radius: max(7px, 1vw);
-  box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
+  border-radius: max(5px, 0.5vw);
+  box-shadow: 0 0 10px rgba(161, 159, 159, 0.558);
   background-color: white;
   display: flex;
   flex-flow: column;
@@ -1861,8 +1861,8 @@ td:hover {
   background-color: white;
   margin-top: max(15px, 1vw);
   padding: max(15px, 2vw);
-  border-radius: max(7px, 1vw);
-  box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
+  border-radius: max(5px, 0.5vw);
+  box-shadow: 0 0 10px rgba(161, 159, 159, 0.558);
   overflow-y: auto;
   min-height: 70vh;
 }
@@ -2334,9 +2334,9 @@ table {
   flex-flow: column;
   justify-content: flex-start;
   align-items: center;
-  box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
+  box-shadow: 0 0 10px rgba(161, 159, 159, 0.558);
   padding: max(15px, 2vw);
-  border-radius: max(7px, 1vw);
+  border-radius: max(5px, 0.5vw);
   overflow-y: auto;
   scrollbar-gutter: stable;
 }
@@ -2579,8 +2579,8 @@ table {
 .feedback .feedback-content {
   background-color: white;
   padding: max(15px, 2vw);
-  border-radius: max(7px, 1vw);
-  box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
+  border-radius: max(5px, 0.5vw);
+  box-shadow: 0 0 10px rgba(161, 159, 159, 0.558);
   width: max(80%, 300px);
   margin: max(15px, 1vw) 0;
 }
@@ -2616,8 +2616,8 @@ table {
   margin: max(15px, 1vw) 0;
   background-color: white;
   width: 90%;
-  border-radius: max(7px, 1vw);
-  box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
+  border-radius: max(5px, 0.5vw);
+  box-shadow: 0 0 10px rgba(161, 159, 159, 0.558);
   padding: max(15px, 2vw);
   display: flex;
   flex-flow: column;
@@ -2739,8 +2739,8 @@ table {
 }
 .scheduling .scheduling-content {
   background-color: white;
-  border-radius: max(7px, 1vw);
-  box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
+  border-radius: max(5px, 0.5vw);
+  box-shadow: 0 0 10px rgba(161, 159, 159, 0.558);
   padding: max(15px, 2vw);
   margin-top: max(15px, 1vw);
   width: 98%;
@@ -2870,8 +2870,8 @@ table {
   background-color: white;
   padding: max(15px, 2vw);
   margin: max(15px, 1vw);
-  box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
-  border-radius: max(7px, 1vw);
+  box-shadow: 0 0 10px rgba(161, 159, 159, 0.558);
+  border-radius: max(5px, 0.5vw);
   overflow: auto;
 }
 .edit-tutorial .edit-tutorial__instruction .edit-tutorial__header {
@@ -3112,8 +3112,8 @@ table {
 .seeAnnouncements .seeAnnouncements__content {
   width: 90%;
   background-color: white;
-  border-radius: max(7px, 1vw);
-  box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
+  border-radius: max(5px, 0.5vw);
+  box-shadow: 0 0 10px rgba(161, 159, 159, 0.558);
   padding: max(15px, 2vw);
   margin: max(15px, 1vw) 0;
 }
@@ -3293,8 +3293,8 @@ table {
   width: 100%;
   height: unset;
   min-height: 300px;
-  border-radius: max(7px, 1vw);
-  box-shadow: 0 0 10px rgba(110, 110, 110, 0.558);
+  border-radius: max(5px, 0.5vw);
+  box-shadow: 0 0 10px rgba(161, 159, 159, 0.558);
   padding: max(15px, 2vw);
 }
 
@@ -3374,4 +3374,8 @@ table {
   font-size: 1rem;
   font-weight: 700;
   color: rgb(191, 190, 190);
+}
+
+#timeSelect {
+  text-align: center;
 }/*# sourceMappingURL=main.css.map */

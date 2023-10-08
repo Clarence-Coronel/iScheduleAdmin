@@ -764,7 +764,7 @@ input:-webkit-autofill:focus{
     background-color: white;
     padding: max(10px, 2vw);
     box-shadow: $box-shadow;
-    border-radius: max(10px, 1.2vw);
+    border-radius: $box-border-radius;
     display: flex;
     flex-flow: column;
     justify-content: flex-start;
@@ -1170,7 +1170,7 @@ td:hover{
         flex-flow: column;
         align-items: center;
         gap: max(7px, 0.3vh);
-        border-radius: max(10px, 1.2vw);
+        border-radius: $box-border-radius;
         box-shadow: $box-shadow;
         // height: fit-content;
 
@@ -1628,7 +1628,7 @@ td:hover{
         height: 45%;
         background-color: white;
         box-shadow: $box-shadow;
-        border-radius: max(10px, 1.2vw);
+        border-radius: $box-border-radius;
         display: flex;
         flex-flow: row wrap;
         overflow: hidden;
@@ -1693,7 +1693,7 @@ td:hover{
         height: 45%;
         background-color: white;
         box-shadow: $box-shadow;
-        border-radius: max(10px, 1.2vw);
+        border-radius: $box-border-radius;
         padding: max(10px, 2vw);
         overflow-y: auto;
 
@@ -1720,7 +1720,7 @@ td:hover{
         width: 90%;
         background-color: white;
         // max-height: 60vh;
-        border-radius: max(10px, 1.2vw);
+        border-radius: $box-border-radius;
         overflow-y: auto;
         overflow-x: hidden;
         box-shadow: $box-shadow;
@@ -4118,4 +4118,8 @@ table{
     font-size: 1rem;
     font-weight: 700;
     color: rgb(191, 190, 190);
+}
+
+#timeSelect{
+    text-align: center;
 }

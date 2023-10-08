@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 07, 2023 at 11:12 PM
+-- Generation Time: Oct 08, 2023 at 11:17 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -342,7 +342,16 @@ INSERT INTO `admin_logs` (`adminLogsID`, `username`, `activity`, `logDateTime`) 
 (426, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 13:50:10'),
 (427, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 13:54:51'),
 (428, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 14:06:52'),
-(429, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 14:18:14');
+(429, 'clarence-coronel1', 'Viewed feedback', '2023-10-07 14:18:14'),
+(430, 'clarence-coronel1', 'Viewed feedback', '2023-10-08 09:51:53'),
+(431, 'clarence-coronel1', 'Viewed feedback', '2023-10-08 09:54:14'),
+(432, 'clarence-coronel1', 'Viewed feedback', '2023-10-08 09:55:23'),
+(433, 'clarence-coronel1', 'Viewed feedback', '2023-10-08 09:55:47'),
+(434, 'clarence-coronel1', 'Viewed feedback', '2023-10-08 09:56:11'),
+(435, 'clarence-coronel1', 'Blocked a new date: hey ye', '2023-10-08 10:00:57'),
+(436, 'clarence-coronel1', 'Viewed feedback', '2023-10-08 13:19:54'),
+(437, 'clarence-coronel1', 'Inserted a new slot in ENT\'s wednesday schedule', '2023-10-08 17:01:40'),
+(438, 'clarence-coronel1', 'Inserted a new slot in ENT\'s thursday schedule', '2023-10-08 17:01:57');
 
 -- --------------------------------------------------------
 
@@ -407,33 +416,29 @@ CREATE TABLE `appointments` (
   `appointmentStatus` varchar(30) NOT NULL,
   `cancelReason` varchar(200) DEFAULT NULL,
   `dateSubmitted` date NOT NULL DEFAULT current_timestamp(),
-  `followUpImgLink` varchar(400) DEFAULT NULL,
-  `isArchived` tinyint(1) NOT NULL
+  `followUpImgLink` varchar(400) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `appointments`
 --
 
-INSERT INTO `appointments` (`appointmentID`, `departmentID`, `firstName`, `middleName`, `lastName`, `sex`, `birthdate`, `phone`, `province`, `municipality`, `barangay`, `patientType`, `appointmentType`, `scheduleID`, `appointmentDate`, `caseNo`, `appointmentStatus`, `cancelReason`, `dateSubmitted`, `followUpImgLink`, `isArchived`) VALUES
-(12, 1, 'clarence', 'reyes', 'coronel', 'm', '2001-02-12', '0967 599 8955', 'bulacan', 'norzagaray', 'bangkal', 'old', 'website', 8, '2023-10-03', '', 'Active', '', '2023-10-01', NULL, 0),
-(13, 1, 'clarence', 'reyes', 'coronel', 'm', '2023-02-12', '0967 599 8955', 'bulacan', 'obando', 'binuangan', 'new', 'website', 30, '2023-10-02', '', 'Active', '', '2023-10-01', NULL, 0),
-(14, 1, 'clarence', 'reyes', 'coronel', 'm', '2020-03-12', '0967 599 8955', 'bulacan', 'norzagaray', 'bangkal', 'new', 'website', 32, '2023-10-02', '', 'Active', '', '2023-10-01', NULL, 0),
-(15, 1, 'Clarence', 'Reyes', 'Coronel', 'm', '2020-12-12', '0967 599 8955', 'bulacan', 'norzagaray', 'bangkal', 'old', 'admin', 19, '2023-10-03', '', 'Active', '', '2023-10-01', NULL, 0),
-(16, 1, 'Clarence', 'Reyes', 'Coronel', 'm', '2020-12-12', '0967 599 8955', 'bulacan', 'pandi', 'bagbaguin', 'old', 'admin', 21, '2023-10-02', '1234', 'Active', '', '2023-10-01', NULL, 0),
-(17, 1, 'Clarence', 'Reyes', 'Coronel', 'm', '2001-12-12', '0967 599 8955', 'bulacan', 'pandi', 'bagbaguin', 'old', 'admin', 40, '2023-10-02', '', 'Active', '', '2023-10-01', NULL, 0),
-(18, 2, 'clarence', 'reyes', 'coronel', 'm', '2001-03-12', '0967 599 8955', 'bulacan', 'meycauayan', 'bagbaguin', 'old', 'website', 42, '2023-11-08', '', 'active', NULL, '2023-10-04', NULL, 0),
-(19, 6, 'Clarence', 'Reyes', 'Coronel', 'm', '2002-02-28', '0967 599 8955', 'bulacan', 'obando', 'binuangan', 'old', 'admin', 28, '2023-10-16', '12-313-123', 'active', NULL, '2023-10-04', NULL, 0),
-(20, 1, 'test', 'test', 'test', 'm', '2001-03-12', '0967 599 8955', 'bulacan', 'pulilan', 'balatong A', 'old', 'website', 8, '2023-10-17', '', 'active', NULL, '2023-10-05', NULL, 0),
-(27, 1, 'test', 'test', 'test', 'm', '2001-02-12', '0967 599 8955', 'bulacan', 'pandi', 'bagbaguin', 'old', 'website', NULL, NULL, '', 'pending', NULL, '2023-10-05', '', 0),
-(28, 1, 'clarence', 'eyes', 'coronel', 'm', '2001-02-12', '0967 599 8955', 'bulacan', 'pandi', 'bagbaguin', 'old', 'website', NULL, NULL, '', 'pending', NULL, '2023-10-05', '', 0),
-(29, 1, 'clarence', 'reyes', 'coronel', 'm', '2001-05-12', '0967 599 8955', 'bulacan', 'pulilan', 'balatong A', 'old', 'website', NULL, NULL, '', 'pending', NULL, '2023-10-05', '', 0),
-(30, 1, 'clarence', 'reyes', 'coronel', 'm', '2001-03-12', '0967 599 8955', 'bulacan', 'plaridel', 'agnaya', 'old', 'website', 8, '2023-10-24', '', 'active', NULL, '2023-10-05', NULL, 0),
-(31, 1, 'clarence', 'eyes', 'coronel', 'm', '2001-03-12', '0967 599 8955', 'bulacan', 'paombong', 'binakod', 'old', 'website', NULL, NULL, '', 'pending', NULL, '2023-10-05', 'https://firebasestorage.googleapis.com/v0/b/imgsample-86e3a.appspot.com/o/Images1%2F1694613420601.png?alt=media&token=1a9fe31d-6ecc-4261-aeca-ef654aa9efde', 0),
-(46, 1, 'clarence', 'reyes', 'coronel', 'm', '2001-03-12', '0967 599 8955', 'bulacan', 'plaridel', 'agnaya', 'old', 'website', NULL, NULL, '', 'pending', NULL, '2023-10-05', 'https://firebasestorage.googleapis.com/v0/b/imgsample-86e3a.appspot.com/o/Images1%2Fmedicine.png?alt=media&token=15963b3e-577b-4717-b913-181c708cfc34', 0),
-(47, 1, 'clarence', 'reyes', 'coronel', 'm', '2001-04-12', '0967 599 8955', 'bulacan', 'pulilan', 'balatong A', 'new', 'website', 47, '2023-10-30', '', 'active', NULL, '2023-10-08', NULL, 0),
-(48, 1, 'clarence', 'reyes', 'coronel', 'm', '2001-04-12', '0967 599 8955', 'bulacan', 'pandi', 'bagbaguin', 'old', 'website', 47, '2023-10-16', '', 'active', NULL, '2023-10-08', NULL, 0),
-(49, 1, 'clarence', 'reyes', 'coronel', 'm', '2005-01-14', '0967 599 8955', 'bulacan', 'pulilan', 'balatong A', 'old', 'website', 43, '2023-10-16', '', 'active', NULL, '2023-10-08', NULL, 0);
+INSERT INTO `appointments` (`appointmentID`, `departmentID`, `firstName`, `middleName`, `lastName`, `sex`, `birthdate`, `phone`, `province`, `municipality`, `barangay`, `patientType`, `appointmentType`, `scheduleID`, `appointmentDate`, `caseNo`, `appointmentStatus`, `cancelReason`, `dateSubmitted`, `followUpImgLink`) VALUES
+(12, 1, 'clarence', 'reyes', 'coronel', 'm', '2001-02-12', '0967 599 8955', 'bulacan', 'norzagaray', 'bangkal', 'old', 'website', 8, '2023-10-03', '', 'Active', '', '2023-10-01', NULL),
+(13, 1, 'clarence', 'reyes', 'coronel', 'm', '2023-02-12', '0967 599 8955', 'bulacan', 'obando', 'binuangan', 'new', 'website', 30, '2023-10-02', '', 'Active', '', '2023-10-01', NULL),
+(14, 1, 'clarence', 'reyes', 'coronel', 'm', '2020-03-12', '0967 599 8955', 'bulacan', 'norzagaray', 'bangkal', 'new', 'website', 32, '2023-10-02', '', 'Active', '', '2023-10-01', NULL),
+(15, 1, 'Clarence', 'Reyes', 'Coronel', 'm', '2020-12-12', '0967 599 8955', 'bulacan', 'norzagaray', 'bangkal', 'old', 'admin', 19, '2023-10-03', '', 'Active', '', '2023-10-01', NULL),
+(16, 1, 'Clarence', 'Reyes', 'Coronel', 'm', '2020-12-12', '0967 599 8955', 'bulacan', 'pandi', 'bagbaguin', 'old', 'admin', 21, '2023-10-02', '1234', 'Active', '', '2023-10-01', NULL),
+(17, 1, 'Clarence', 'Reyes', 'Coronel', 'm', '2001-12-12', '0967 599 8955', 'bulacan', 'pandi', 'bagbaguin', 'old', 'admin', 40, '2023-10-02', '', 'Active', '', '2023-10-01', NULL),
+(18, 2, 'clarence', 'reyes', 'coronel', 'm', '2001-03-12', '0967 599 8955', 'bulacan', 'meycauayan', 'bagbaguin', 'old', 'website', 42, '2023-11-08', '', 'cancelled', 'test', '2023-10-04', NULL),
+(19, 6, 'Clarence', 'Reyes', 'Coronel', 'm', '2002-02-28', '0967 599 8955', 'bulacan', 'obando', 'binuangan', 'old', 'admin', 28, '2023-10-16', '12-313-123', 'active', NULL, '2023-10-04', NULL),
+(20, 1, 'test', 'test', 'test', 'm', '2001-03-12', '0967 599 8955', 'bulacan', 'pulilan', 'balatong A', 'old', 'website', 8, '2023-10-17', '', 'active', NULL, '2023-10-05', NULL),
+(30, 1, 'clarence', 'reyes', 'coronel', 'm', '2001-03-12', '0967 599 8955', 'bulacan', 'plaridel', 'agnaya', 'old', 'website', 8, '2023-10-24', '', 'active', NULL, '2023-10-05', NULL),
+(31, 1, 'clarence', 'eyes', 'coronel', 'm', '2001-03-12', '0967 599 8955', 'bulacan', 'paombong', 'binakod', 'old', 'website', NULL, NULL, '', 'pending', NULL, '2023-10-05', 'https://firebasestorage.googleapis.com/v0/b/imgsample-86e3a.appspot.com/o/Images1%2F1694613420601.png?alt=media&token=1a9fe31d-6ecc-4261-aeca-ef654aa9efde'),
+(46, 1, 'clarence', 'reyes', 'coronel', 'm', '2001-03-12', '0967 599 8955', 'bulacan', 'plaridel', 'agnaya', 'old', 'website', NULL, NULL, '', 'pending', NULL, '2023-10-05', 'https://firebasestorage.googleapis.com/v0/b/imgsample-86e3a.appspot.com/o/Images1%2Fmedicine.png?alt=media&token=15963b3e-577b-4717-b913-181c708cfc34'),
+(47, 1, 'clarence', 'reyes', 'coronel', 'm', '2001-04-12', '0967 599 8955', 'bulacan', 'pulilan', 'balatong A', 'new', 'website', 47, '2023-10-30', '', 'cancelled', 'test', '2023-10-08', NULL),
+(48, 1, 'clarence', 'reyes', 'coronel', 'm', '2001-04-12', '0967 599 8955', 'bulacan', 'pandi', 'bagbaguin', 'old', 'website', 47, '2023-10-16', '', 'active', NULL, '2023-10-08', NULL),
+(49, 1, 'clarence', 'reyes', 'coronel', 'm', '2005-01-14', '0967 599 8955', 'bulacan', 'pulilan', 'balatong A', 'old', 'website', 43, '2023-10-16', '', 'active', NULL, '2023-10-08', NULL);
 
 -- --------------------------------------------------------
 
@@ -485,7 +490,8 @@ INSERT INTO `block_dates` (`blockID`, `blockDate`, `blockName`, `isYearly`) VALU
 (31, '2024-02-03', 'test', 0),
 (32, '2024-12-01', 'test', 0),
 (33, '2027-12-14', 'test', 0),
-(34, '2029-12-13', 'test', 0);
+(34, '2029-12-13', 'test', 0),
+(35, '2024-05-06', 'hey ye', 1);
 
 -- --------------------------------------------------------
 
@@ -608,7 +614,9 @@ INSERT INTO `schedules` (`scheduleID`, `deptID`, `day`, `startTime`, `stopTime`,
 (44, 1, 'mon', '10:10:00', '14:10:00', 0, 0, 0),
 (45, 1, 'mon', '10:00:00', '17:00:00', 1, 0, 0),
 (46, 1, 'mon', '11:02:00', '12:00:00', 1, 0, 0),
-(47, 1, 'mon', '10:00:00', '00:00:00', 1, 1, 0);
+(47, 1, 'mon', '10:00:00', '00:00:00', 1, 1, 0),
+(48, 1, 'wed', '10:00:00', '11:00:00', 5, 1, 1),
+(49, 1, 'thu', '14:00:00', '15:00:00', 2, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -728,7 +736,7 @@ ALTER TABLE `schedules`
 -- AUTO_INCREMENT for table `admin_logs`
 --
 ALTER TABLE `admin_logs`
-  MODIFY `adminLogsID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=430;
+  MODIFY `adminLogsID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=439;
 
 --
 -- AUTO_INCREMENT for table `announcements`
@@ -740,13 +748,13 @@ ALTER TABLE `announcements`
 -- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `appointmentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `appointmentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `block_dates`
 --
 ALTER TABLE `block_dates`
-  MODIFY `blockID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `blockID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `departments`
@@ -764,7 +772,7 @@ ALTER TABLE `feedbacks`
 -- AUTO_INCREMENT for table `schedules`
 --
 ALTER TABLE `schedules`
-  MODIFY `scheduleID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `scheduleID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- Constraints for dumped tables

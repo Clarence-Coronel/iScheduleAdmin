@@ -1162,7 +1162,6 @@ function generateRequest(){
     if(checkPrivilege('admin ii') || checkPrivilege('super admin')){
         main.innerHTML = request;
         insertReq();
-        setupTablePagination('request-table', 'prevButton', 'nextButton', 10);
     }
 }
 

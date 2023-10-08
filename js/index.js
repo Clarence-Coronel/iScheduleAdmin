@@ -1266,7 +1266,7 @@ function confirmSignOut(){
     confirmModal("Signing out...", "Are you sure?", "signOut()");
 }
 
-function viewRequestApprove(appID){
+function viewRequestApprove(appID, deptID){
     resetModal();
 
     let title = document.querySelector('.modal-title');
@@ -1284,15 +1284,13 @@ function viewRequestApprove(appID){
         <div class="view-container">
             <div class="viewinput-container">
                 <div class="date-container">
-                    <input type="text" name="day" id="" placeholder="DD">
-                    <input type="text" name="month" id="" placeholder="MM">
-                    <input type="text" name="year" id="" placeholder="YYYY">
+                    <input type="text" name="month" id="schedMonth" placeholder="MM" oninput="inputLimiterNum(this.id, 2); generateTimeSlotBuffer(${deptID})" onblur="inputLimiterBlur(this.id, 2)">
+                    <input type="text" name="day" id="schedDay" placeholder="DD" oninput="inputLimiterNum(this.id, 2); generateTimeSlotBuffer(${deptID})" onblur="inputLimiterBlur(this.id, 2)">
+                    <input type="text" name="year" id="schedYear" placeholder="YYYY" oninput="inputLimiterNum(this.id, 4); generateTimeSlotBuffer(${deptID})" onblur="inputLimiterBlur(this.id, 4)">
                 </div>
             </div>
-            <select class="form-select" aria-label="Default select example" onchange="" id="timeSelect">
+            <select class="form-select" aria-label="Default select example" onchange="" id="timeSelect" disabled>
                 <option value="" selected hidden disabled>Choose Time Slot</option>
-                <option value="id">8:00 AM - 9:00 AM</option>
-                <option value="id">8:00 AM - 9:00 AM</option>
             </select>
             <div class="error-container">
                 <span class="msg"></span>
@@ -1305,11 +1303,137 @@ function viewRequestApprove(appID){
     negative.innerText = 'Cancel';
     body.innerHTML = html;
 
-    positive.setAttribute("onclick", "")
+    positive.setAttribute("onclick", `applyApproveReq(${appID})`);
+    positive.removeAttribute("data-bs-dismiss");
     modalLauncher();
 }
 
-function viewRequestReject(appID){
+function generateTimeSlotBuffer(deptID){
+    let month = document.querySelector("#schedMonth").value;
+    let day = document.querySelector("#schedDay").value;
+    let year = document.querySelector("#schedYear").value;
+    let select = document.querySelector("#timeSelect");
+
+    select.innerHTML = '';
+    select.innerHTML += `<option value="" selected hidden disabled>Choose Time Slot</option>`;
+    select.setAttribute("disabled", "disabled");
+
+    if(month != "" && day != "" && year != "" && year.length == 4){
+        if(!isDateValid(`${year}-${month}-${day}`)){
+            showError("Invalid date");
+            return;
+        }
+        else{
+            let temp = new Date(`${year}-${month}-${day}`);
+            let dayNames = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+            let dayName = dayNames[temp.getDay()];
+            
+            if(dayName == 'sun'){
+                showError("There are no schedules in sunday");
+                return;
+            }else{
+                showError("");
+            }
+
+            const xhr = new XMLHttpRequest();
+
+            xhr.onreadystatechange = function(){
+                if(this.readyState == 4){
+                    if(this.status == 200){
+                        try {
+                            console.table(this.responseText)
+                            const arrOfObj = JSON.parse(this.responseText);
+
+                            if(arrOfObj.length != 0){
+                                select.innerHTML = '';
+                                select.innerHTML += `<option value="" selected hidden disabled>Choose Time Slot</option>`;
+                                arrOfObj.forEach(item=>{
+                                    let template = '';
+    
+                                    if(item.openSlots <= 0){
+                                        template = 
+                                        `
+                                        <option value="" disabled>${item.startTime} - ${item.stopTime} (Full)</option>
+                                        `;
+                                    }else{
+                                        template = 
+                                        `
+                                        <option value="${item.schedID}_${item.max}">${item.startTime} - ${item.stopTime} (${item.openSlots} Slot/s)</option>
+                                        `;
+                                    }
+    
+                                    select.innerHTML += template;
+                                })
+                                select.removeAttribute("disabled");
+                            }
+                            else{
+                                select.innerHTML = '';
+                                select.innerHTML += `<option value="" selected hidden disabled>No Existing Schedule</option>`;
+                            }
+                            
+                            
+                            
+                        } catch (error) {
+                            alert("CATCH")
+                        }
+                         
+                    }
+                }
+            }
+            
+            xhr.open("POST", "./php/getTimeSlot.php", false);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.send(`date=${year}-${month}-${day}&dept=${deptID}&day=${dayName}`);
+        }
+    }
+}
+
+function applyApproveReq(appID){
+    let month = document.querySelector("#schedMonth").value;
+    let day = document.querySelector("#schedDay").value;
+    let year = document.querySelector("#schedYear").value;
+    let time = document.querySelector("#timeSelect").value.split("_")[0];
+    let max = document.querySelector("#timeSelect").value.split("_")[1];
+
+    if(month == "" || day == "" || year ==""){
+        showError("Invalid date");
+        return;
+    }
+    else if(time == ""){
+        showError("Select a time slot");
+        return;
+    }
+    else{
+        document.querySelector('.positive').setAttribute('data-bs-dismiss', 'modal');
+        document.querySelector('.positive').click();
+    }
+
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+        if(this.readyState == 4){
+            if(this.status == 200){
+                if(this.responseText == 1){
+                    setTimeout(()=>{
+                        showResModal("Request has been approved");
+                        insertReq();
+                    }, 500);
+                    alert("ilapag yung code ni brix dito sa line 1420 para madelete img sa firebase")
+                }
+                else{
+                    setTimeout(()=>{
+                        showResModal("Selected slot is now full", false, "Failed");
+                    }, 500);
+                }
+            }
+        }
+    }
+    
+    xhr.open("POST", "./php/updateAppointment.php", false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send(`appID=${appID}&schedDate=${year}-${month}-${day}&schedID=${time}&max=${max}`);
+}
+
+function viewRequestReject(appID, deptID){
     resetModal();
     
     let title = document.querySelector('.modal-title');
@@ -3852,10 +3976,10 @@ function insertReq(){
                         `
                         <tr class="table-row">
                             <td>
-                                <button data-appID="${item.appID}" onclick="viewRequestApprove(this.dataset.appid)"><span class="material-icons-outlined">done</span></button>
+                                <button data-appID="${item.appID}" data-deptID="${item.deptID}" onclick="viewRequestApprove(this.dataset.appid, this.dataset.deptid)"><span class="material-icons-outlined">done</span></button>
                             </td>
                             <td>
-                                <button data-appID="${item.appID}" onclick="viewRequestReject(this.dataset.appid)"><span class="material-icons-outlined">close</span></button>
+                                <button data-appID="${item.appID}" data-deptID="${item.deptID}" onclick="viewRequestReject(this.dataset.appid, this.dataset.deptid)"><span class="material-icons-outlined">close</span></button>
                             </td>
                             <td>${capitalFirstLetter(item.lastName)}, ${capitalFirstLetter(item.firstName)} ${capitalFirstLetter(item.middleName)}</td>
                             <td>${deptName}</td>
@@ -3863,7 +3987,7 @@ function insertReq(){
                             <td><a href="${item.imgLink}" target="_blank" class="viewBtn">View Image</a></td>
                         </tr>
                         `;
-    
+                        
                         table.innerHTML += template;
                     });
                 } catch (error) {
@@ -3876,7 +4000,7 @@ function insertReq(){
                 }
                 
                 showTableCell();
-               
+                setupTablePagination('request-table', 'prevButton', 'nextButton', 10);
             }
         }
         else{

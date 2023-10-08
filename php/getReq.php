@@ -1,7 +1,5 @@
 <?php
-
     require 'connect.php';
-    session_start();
 
     class req {
         public $appID;
