@@ -1266,12 +1266,9 @@ function confirmSignOut(){
     confirmModal("Signing out...", "Are you sure?", "signOut()");
 }
 
-function viewRequestApprove(id){
+function viewRequestApprove(appID){
     resetModal();
 
-    let requestTarget = document.getElementById(id);
-    let appID = requestTarget.getAttribute('data-appID');
-    
     let title = document.querySelector('.modal-title');
     let body = document.querySelector('.modal-body');
     let positive = document.querySelector('.positive');
@@ -1312,11 +1309,8 @@ function viewRequestApprove(id){
     modalLauncher();
 }
 
-function viewRequestReject(id){
+function viewRequestReject(appID){
     resetModal();
-
-    let requestTarget = document.getElementById(id);
-    let appID = requestTarget.getAttribute('data-appID');
     
     let title = document.querySelector('.modal-title');
     let body = document.querySelector('.modal-body');
@@ -3806,7 +3800,6 @@ function insertReq(){
     xhr.onreadystatechange = function(){
         if(this.readyState == 4){
             if(this.status == 200){
-                console.log(this.responseText)
                 try {
                     const arrOfObj = JSON.parse(this.responseText);
                     arrOfObj.forEach(item=>{
