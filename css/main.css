@@ -3366,4 +3366,12 @@ table {
   font-size: 0.9rem;
   text-align: center;
   width: 10px;
+}
+
+.empty {
+  text-align: center;
+  height: 10vh;
+  font-size: 1rem;
+  font-weight: 700;
+  color: rgb(191, 190, 190);
 }/*# sourceMappingURL=main.css.map */

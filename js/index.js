@@ -13,6 +13,7 @@ let generatedUsername = '';
 let newInsertedPhone = "";
 let isResendAvail = false;
 let currentWebStatus = null;
+let eventListenerAdded = false;
 
 // If want natin ireset auto increment
 // ALTER TABLE tableName AUTO_INCREMENT = 1
@@ -2459,10 +2460,33 @@ function insertAdmin(isInitial = true){
 
                     showTableCell();
                 } catch (error) {
-                    
+                    if(isInitial){
+                        table.innerHTML = 
+                        `
+                        <tr>
+                            <td colspan="5" class="empty">There are currently no other admin</td>
+                        </tr>
+                        `;
+                    }
+                    else{
+                        table.innerHTML = 
+                        `
+                        <tr>
+                            <td colspan="5" class="empty">No result</td>
+                        </tr>
+                        `;
+                    }
                 }
                 setupTablePagination('admin-table', 'prevButton', 'nextButton', 10);
             }
+        }
+        else{
+            table.innerHTML = 
+            `
+            <tr>
+                <td colspan="5" class="empty">Loading Table...</td>
+            </tr>
+            `;
         }
     }
 
@@ -2572,13 +2596,35 @@ function insertAdminLogs(isInitial = true){
 
                         table.innerHTML += template;
                     })
-                    setupTablePagination('logs-table', 'prevButton', 'nextButton', 10);
                     showTableCell();
                 } catch (error) {
-                    
+                    if(isInitial){
+                        table.innerHTML = 
+                        `
+                        <tr>
+                            <td colspan="5" class="empty">There are currently no admin activitiy</td>
+                        </tr>
+                        `;
+                    }
+                    else{
+                        table.innerHTML = 
+                        `
+                        <tr>
+                            <td colspan="5" class="empty">No Result</td>
+                        </tr>
+                        `;
+                    }
                 }
-                
+                setupTablePagination('logs-table', 'prevButton', 'nextButton', 10);                
             }
+        }
+        else{
+            table.innerHTML = 
+            `
+            <tr>
+                <td colspan="5" class="empty">Loading Table...</td>
+            </tr>
+            `;
         }
     }
 
@@ -2656,7 +2702,7 @@ function applyLogFilter(){
 
                         const template = 
                         `
-                        <tr>
+                        <tr class="table-row">
                             <td>${username}</td>
                             <td>${activity}</td>
                             <td>${adminType}</td>
@@ -2670,9 +2716,23 @@ function applyLogFilter(){
 
                     showTableCell();
                 } catch (error) {
-                    
+                    table.innerHTML = 
+                    `
+                    <tr>
+                        <td colspan="6" class="empty">No Result</td>
+                    </tr>
+                    `;
                 }
+                setupTablePagination('logs-table', 'prevButton', 'nextButton', 10);     
             }
+        }
+        else{
+            table.innerHTML = 
+            `
+            <tr>
+                <td colspan="5" class="empty">Loading Table...</td>
+            </tr>
+            `;
         }
     }
 
@@ -3655,15 +3715,14 @@ function exportTableToExcel(table, fileName, excludeColumns = []) {
 
 function setupTablePagination(tableId, prevButtonId, nextButtonId, rowsPerPage) {
     const table = document.getElementById(tableId);
-    const prevButton = document.getElementById(prevButtonId);
-    const nextButton = document.getElementById(nextButtonId);
+    let prevButton = document.getElementById(prevButtonId);
+    let nextButton = document.getElementById(nextButtonId);
     let currentPage = 1;
     let pageNum = document.querySelector("#pageNum");
-
+    pageNum.innerHTML = currentPage;
     const tableRows = table.querySelectorAll('.table-row');
     const totalPages = Math.ceil(tableRows.length / rowsPerPage);
-    
-    pageNum.innerText = '1';
+
 
     function showRows(page) {
         const startIndex = (page - 1) * rowsPerPage;
@@ -3678,6 +3737,41 @@ function setupTablePagination(tableId, prevButtonId, nextButtonId, rowsPerPage) 
         });
     }
 
+    function nextTable(){
+        if (currentPage < totalPages) {
+            currentPage++;
+            pageNum.innerText = currentPage;
+            showRows(currentPage);
+        }
+        else{
+            pageNum.classList.add('error-animate');
+            pageNum.style.color = 'red';
+            setTimeout(()=>{
+                pageNum.classList.remove('error-animate');
+                pageNum.style.color = 'rgb(80, 78, 78)';
+            },500)
+        }
+        console.log(currentPage)
+    }
+
+    function prevTable(){
+        if (currentPage > 1) {
+            currentPage--;
+            pageNum.innerText = currentPage;
+            showRows(currentPage);
+        }
+        else{
+            pageNum.classList.add('error-animate');
+            pageNum.style.color = 'red';
+            setTimeout(()=>{
+                pageNum.classList.remove('error-animate');
+                pageNum.style.color = 'rgb(80, 78, 78)';
+            },500)
+        }
+        console.log(currentPage)
+    }
+
+
     if(totalPages <= 1){
         prevButton.style.display = 'none';
         nextButton.style.display = 'none';
@@ -3690,33 +3784,69 @@ function setupTablePagination(tableId, prevButtonId, nextButtonId, rowsPerPage) 
    
     showRows(currentPage);
 
-    nextButton.addEventListener('click', () => {
-        if (currentPage < totalPages) {
-            currentPage++;
-            pageNum.innerText = currentPage;
-            showRows(currentPage);
-        } else {
-            pageNum.classList.add('error-animate');
-            pageNum.style.color = 'red';
-            setTimeout(()=>{
-                pageNum.classList.remove('error-animate');
-                pageNum.style.color = 'rgb(80, 78, 78)';
-            },500)
-        }
-    });
+    nextButton = removeAllEventListeners(nextButton);
+    prevButton = removeAllEventListeners(prevButton);
 
-    prevButton.addEventListener('click', () => {
-        if (currentPage > 1) {
-            currentPage--;
-            pageNum.innerText = currentPage;
-            showRows(currentPage);
-        } else {
-            pageNum.classList.add('error-animate');
-            pageNum.style.color = 'red';
-            setTimeout(()=>{
-                pageNum.classList.remove('error-animate');
-                pageNum.style.color = 'rgb(80, 78, 78)';
-            },500)
+    nextButton.addEventListener('click', nextTable);
+    prevButton.addEventListener('click', prevTable);
+    
+}
+
+function removeAllEventListeners(element) {
+    const clone = element.cloneNode(true);
+    element.parentNode.replaceChild(clone, element);
+    return clone;
+  }
+
+function insertReq(){
+    let table = document.querySelector('.request-table tbody');
+    table.innerHTML = "";
+    let xhr = new XMLHttpRequest();
+    
+    xhr.onreadystatechange = function(){
+        if(this.readyState == 4){
+            if(this.status == 200){
+                console.log(this.responseText)
+                try {
+                    const arrOfObj = JSON.parse(this.responseText);
+                    arrOfObj.forEach(item=>{
+                        const dept = ['ENT', 'Hematology', 'Internal Medicine', 'Internal Medicine Clearance', 'Nephrology', 'Neurology', 'OB GYNE New', 'OB GYNE Old', 'OB GYNE ROS', 'Oncology', 'Pediatric Cardiology', 'Pediatric Clearance', 'Pediatric General', 'Psychiatry New', 'Psychiatry Old', 'Surgery', 'Surgery ROS'];
+    
+                        let deptName = dept[item.deptID-1];
+    
+                        let template = 
+                        `
+                        <tr class="table-row">
+                            <td>
+                                <button data-appID="${item.appID}" onclick="viewRequestApprove(this.dataset.appid)"><span class="material-icons-outlined">done</span></button>
+                            </td>
+                            <td>
+                                <button data-appID="${item.appID}" onclick="viewRequestReject(this.dataset.appid)"><span class="material-icons-outlined">close</span></button>
+                            </td>
+                            <td>${capitalFirstLetter(item.lastName)}, ${capitalFirstLetter(item.firstName)} ${capitalFirstLetter(item.middleName)}</td>
+                            <td>${deptName}</td>
+                            <td>${item.phone}</td>
+                            <td><a href="${item.imgLink}" target="_blank" class="viewBtn">View Image</a></td>
+                        </tr>
+                        `;
+    
+                        table.innerHTML += template;
+                    });
+                } catch (error) {
+                    table.innerHTML = 
+                    `
+                    <tr>
+                        <td colspan="6" class="empty">No Pending Follow-Up Request</td>
+                    </tr>
+                    `;
+                }
+                
+                showTableCell();
+               
+            }
         }
-    });
+    };
+
+    xhr.open("GET", "./php/getReq.php", false);
+    xhr.send();
 }

@@ -482,7 +482,7 @@ let viewSchedule = `
             </div>
         </div>
         <div class="cmds-container">
-            <button type="button" class="export" data-table="schedule-table">Export Table</button>
+            <button type="button" class="export" data-table="schedule-table">Export Table(s)</button>
             <div class="table-nav">
                 <button id="prevButton"><< Previous</button>
                 <span id="pageNum">1</span>
@@ -605,19 +605,7 @@ let request = `
                                 </tr>
                             </thead>
                             <tbody>
-                            <tr class="table-row">
-                                <td>
-                                    <button data-appID="1" id="1" onclick="viewRequestApprove(this.id)"><span class="material-icons-outlined">done</span></button>
-                                </td>
-                                <td>
-                                    <button data-appID="1" id="1" onclick="viewRequestReject(this.id)"><span class="material-icons-outlined">close</span></button>
-                                </td>
-                                <td>Coronel, Clarence Reyes</td>
-                                <td>Oncology</td>
-                                <td>09XX XXX XXXX</td>
-                                <td><a href="https://i.pinimg.com/736x/2f/49/a6/2f49a6565c3fef9db078f6543dcc4a97--vendor-events--party.jpg" target="_blank" class="viewBtn">View Image</a></td>
-                                <!-- <td><button class="request-view--btn" id="viewBtn" data-appID="2" onclick="viewRequest(this.id)" >View</button></td> -->
-                            </tr>
+                            
                             </tbody>
                         </table>
                     </div>
@@ -714,6 +702,7 @@ let adminLogs = `
                         </div>
                         <select id="logActivity" class="form-select" aria-label="Default select example">
                             <option hidden selected disabled value="">Activity ayusin a-z</option>
+                            <option value="">None</option>
                             <option value="Changed Password">Changed Password</option>
                             <option value="Changed Phone">Changed Phone</option>
                             <option value="Changed Mobile Video Tutorial">Changed Mobile Video Tutorial</option>
@@ -734,17 +723,18 @@ let adminLogs = `
                         </select>
                         <select id="logAdminType" class="form-select" aria-label="Default select example">
                             <option hidden selected disabled value="">Admin Type</option>
+                            <option value="">None</option>
                             <option value="admin i">Admin I</option>
                             <option value="admin ii">Admin II</option>
                             <option value="super admin">Admin Super</option>
                         </select>
                         <select id="logSortBy" class="form-select" aria-label="Default select example">
-                            <option hidden selected disabled value="">Sort By</option>
+                            <option hidden disabled value="">Sort By</option>
                             <option value="0">Username (A-Z)</option>
                             <option value="1">Username (Z-A)</option>
                             <option value="2">Activity</option>
                             <option value="3">Admin Type</option>
-                            <option value="4">Latest - Oldest</option>
+                            <option value="4" selected >Latest - Oldest</option>
                             <option value="5">Oldest - Latest</option>
                         </select>
                     </div>
@@ -770,7 +760,7 @@ let adminLogs = `
                     </table>
                 </div>
                 <div class="cmds-container">
-                    <button type="button" class="export" data-table="logs-table">Export Table</button>
+                    <button type="button" class="export" data-table="logs-table">Export Table(s)</button>
                     <div class="table-nav">
                         <button id="prevButton"><< Previous</button>
                         <span id="pageNum">1</span>
@@ -807,7 +797,7 @@ let adminList = `
         </table>
     </div>
     <div class="cmds-container">
-        <button type="button" class="export" data-table="admin-table">Export Table</button>
+        <button type="button" class="export" data-table="admin-table">Export Table(s)</button>
         <div class="table-nav">
             <button id="prevButton"><< Previous</button>
             <span id="pageNum">1</span>
@@ -1065,7 +1055,7 @@ let feedback = `
                         </table>
                     </div>
                     <div class="cmds-container">
-                        <button type="button" class="export" data-table="feedback-table">Export Table</button>
+                        <button type="button" class="export" data-table="feedback-table">Export Table(s)</button>
                         <div class="table-nav">
                             <button id="prevButton"><< Previous</button>
                             <span id="pageNum">1</span>
@@ -1171,7 +1161,7 @@ function generateViewSchedule(){
 function generateRequest(){
     if(checkPrivilege('admin ii') || checkPrivilege('super admin')){
         main.innerHTML = request;
-        showTableCell();
+        insertReq();
         setupTablePagination('request-table', 'prevButton', 'nextButton', 10);
     }
 }
