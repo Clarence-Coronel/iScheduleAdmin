@@ -129,7 +129,7 @@ function seePassword(fieldID, iconID){
 
 function changeBorderFocus(id){
     let field = document.getElementById(id);
-    field.parentElement.style.borderColor = '#4e73df';
+    field.parentElement.style.borderColor = '#0577fa';
 }
 
 function changeBorderBlur(id){

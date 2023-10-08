@@ -36,7 +36,8 @@
     
     <!-- GOOGLE API -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <link rel="stylesheet" href="./css/main.css">
 
     <script defer src="./js/barangaySelector.js"></script> 
@@ -66,8 +67,8 @@
                         <span class="material-icons-outlined ico-acc">manage_accounts</span>
                         Account Settings
                     </button>
-                    <button class="account-setting__content account-setting__btn--logout" style="color:red;" onclick="confirmSignOut()">
-                        <span class="material-icons-outlined ico-acc" style="color:red;">logout</span>
+                    <button class="account-setting__content account-setting__btn--logout" onclick="confirmSignOut()">
+                        <span class="material-icons-outlined ico-acc">logout</span>
                         Sign Out
                     </button> 
                 </div>
@@ -77,7 +78,7 @@
     <div class="nav-links" data-click="doNothing">
         <div class="nav-item-wrapper">
             <div class="nav-links__item nav-links__title" data-click="doNothing">
-                <h1 data-click="doNothing"><span class="material-icons-outlined ico-admin"data-click="doNothing">admin_panel_settings</span>iSchedule <br> Admin Panel</h1>
+                <h1 data-click="doNothing"><span class="material-icons ico-admin"data-click="doNothing">admin_panel_settings</span>iSchedule <br> Admin Panel</h1>
             </div>
         </div>
     </div>

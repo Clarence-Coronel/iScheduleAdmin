@@ -154,7 +154,7 @@ function createAccInputBorderStyle(){
     inputContainer.forEach((item)=>{
             item.querySelector('input').addEventListener('focusin',()=>{
                 
-                item.style.borderColor = '#4e73df'; //primary-color
+                item.style.borderColor = '#0577fa'; //primary-color
             })
         
             item.querySelector('input').addEventListener('focusout',()=>{
@@ -899,7 +899,7 @@ function changeBorderFocus(id){
     let field = document.getElementById(id);
 
     try {
-        field.parentElement.style.borderColor = '#4e73df';
+        field.parentElement.style.borderColor = '#0577fa';
     } catch (error) {
         
     }
@@ -3798,44 +3798,6 @@ function checkHourB(str){
 
 }
 
-// function exportTableToExcel(tableId, fileName, excludeColumns = []) {
-//     var workbook = new ExcelJS.Workbook();
-//     var worksheet = workbook.addWorksheet('Sheet 1', { properties: { defaultColWidth: 20 } });
-//     var table = document.getElementById(tableId);
-
-//     // Set header row style with background color
-//     var headerRow = worksheet.getRow(1);
-//     headerRow.eachCell(function(cell) {
-//         cell.fill = {
-//             type: 'pattern',
-//             pattern: 'solid',
-//             fgColor: { argb: 'FF434343' }, // RGB(67, 67, 67)
-//         };
-//         cell.font = { color: { argb: 'FFFFFF' } }; // White text color
-//     });
-
-//     Array.from(table.rows).forEach(function(row) {
-//         var excelRow = worksheet.addRow([]);
-//         Array.from(row.cells).forEach(function(cell, index) {
-//             if (!excludeColumns.includes(index)) {
-//                 var cellValue = cell.textContent.trim();
-//                 var cell = excelRow.getCell(index + 1);
-//                 cell.value = cellValue;
-//                 cell.alignment = { wrapText: true, horizontal: 'left', vertical: 'middle' };
-//             }
-//         });
-//     });
-
-//     workbook.xlsx.writeBuffer().then(function(buffer) {
-//         var blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-//         var link = document.createElement('a');
-//         link.href = window.URL.createObjectURL(blob);
-//         link.download = fileName;
-//         link.click();
-//     });
-// }
-
-
 function exportTableToExcel(table, fileName, excludeColumns = []) {
     var workbook = new ExcelJS.Workbook();
     var worksheet = workbook.addWorksheet('Sheet 1', { properties: { defaultColWidth: 20 } });
@@ -3858,7 +3820,7 @@ function exportTableToExcel(table, fileName, excludeColumns = []) {
         cell.fill = {
             type: 'pattern',
             pattern: 'solid',
-            fgColor: { argb: 'FF434343' } // rgb(67, 67, 67)
+            fgColor: { argb: '504e4e' } // rgb(67, 67, 67)
         };
         cell.font = { color: { argb: 'FFFFFF' } }; // White text color
     });

@@ -102,7 +102,7 @@ main {
 header {
   width: 100%;
   background-color: white;
-  box-shadow: 0px 1px 2px rgba(73, 73, 73, 0.633);
+  box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   padding: 0 3vw;
   z-index: 9;
 }
@@ -130,6 +130,7 @@ header .header__right {
   font-size: 1rem;
 }
 .header__right .greeting .account-name {
+  color: #0577fa;
   font-weight: 700;
 }
 .header__right .greeting .welcome:hover, .header__right .greeting .account-name:hover {
@@ -138,7 +139,6 @@ header .header__right {
 .header__right .role {
   width: -moz-fit-content;
   width: fit-content;
-  color: rgb(88, 86, 86);
   font-size: 0.8rem;
   text-align: right;
 }
@@ -172,8 +172,8 @@ header .header__right {
   height: -moz-fit-content;
   height: fit-content;
   background-color: white;
-  border-radius: 5px;
-  box-shadow: inset 0px 0px 2px rgba(20, 20, 20, 0.589);
+  border-radius: max(5px, 0.5vw);
+  box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   flex-flow: column;
   justify-content: center;
   align-items: center;
@@ -198,9 +198,16 @@ header .header__right {
   font-size: 1rem;
   padding: max(13px, 0.7vw);
 }
-.header__right .account-setting .account-setting__content:hover {
-  background-color: rgb(208, 206, 206);
+.header__right .account-setting .account-setting__btn--logout, .header__right .account-setting .account-setting__btn--logout .ico-acc {
+  color: rgb(239, 97, 97);
 }
+.header__right .account-setting .account-setting__content:hover, .header__right .account-setting .account-setting__content:hover .ico-acc {
+  color: #848080;
+}
+.header__right .account-setting .account-setting__btn--logout:hover, .header__right .account-setting .account-setting__btn--logout:hover .ico-acc {
+  color: #f17878;
+}
+
 .header-btn {
   display: flex;
   align-items: center;
@@ -252,7 +259,7 @@ header .header__right {
 }
 
 .nav-links {
-  background-color: #4e73df;
+  background-color: white;
   width: 50vw;
   position: absolute;
   height: -moz-fit-content;
@@ -263,6 +270,7 @@ header .header__right {
   max-width: 300px;
   z-index: 999;
   padding: max(5px, 0.5vw);
+  box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
 }
 .nav-links .nav-item-wrapper {
   width: 100%;
@@ -274,12 +282,12 @@ header .header__right {
   align-items: flex-start;
 }
 .nav-links .ico-nav, .nav-links .ico-nav--sub {
-  color: rgb(210, 208, 208);
+  color: rgb(80, 78, 78);
   font-size: 1.5rem;
 }
 .nav-links h1 {
   width: 100%;
-  color: white;
+  color: rgb(80, 78, 78);
   font-size: 1.2rem;
   display: flex;
   flex-flow: column;
@@ -290,7 +298,7 @@ header .header__right {
   font-weight: 1000;
 }
 .nav-links .ico-admin {
-  color: white;
+  color: rgb(80, 78, 78);
   font-size: 3.5rem;
 }
 
@@ -304,11 +312,11 @@ header .header__right {
   height: max(35px, 15%);
   border: unset;
   display: flex;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   justify-content: flex-start;
   align-items: center;
-  color: rgb(210, 208, 208);
-  font-weight: 200;
+  color: rgb(80, 78, 78);
+  font-weight: 700;
   gap: max(5px, 0.5vw);
   text-align: left;
   width: 100%;
@@ -350,23 +358,25 @@ header .header__right {
 }
 .manage-admins .manage-admins__sub-container {
   position: absolute;
-  background-color: #4e73df;
+  background-color: white;
   top: 0;
   left: 105%;
   transition-duration: 1s;
   width: 100%;
   padding: 0 max(10px, 0.5vw);
+  box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   animation-name: appear;
+  border-radius: max(5px, 0.5vw);
   animation-duration: 200ms;
   animation-iteration-count: 1;
   animation-timing-function: ease-in-out;
 }
 .manage-admins .manage-admins__sub {
   margin: 20px 0;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
 }
 .manage-admins .manage-admins__sub:hover, .manage-admins .manage-admins__sub:hover .ico-nav--sub {
-  color: white;
+  color: #848080;
 }
 
 .manage-admins__sub:hover .ico-nav--sub {
@@ -376,7 +386,7 @@ header .header__right {
 
 .manage-admins:hover .ico-nav, .manage-admins:hover #btn--manage-admins {
   cursor: pointer !important;
-  color: white;
+  color: #848080;
 }
 
 .btn-content {
@@ -387,8 +397,8 @@ header .header__right {
   border: unset;
   justify-content: flex-start;
   align-items: center;
-  color: rgb(210, 208, 208);
-  font-weight: 200;
+  color: rgb(80, 78, 78);
+  font-weight: 700;
   gap: max(5px, 0.5vw);
   text-align: left;
   width: 100%;
@@ -396,11 +406,11 @@ header .header__right {
      -moz-user-select: none;
           user-select: none;
   background-color: transparent;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
 }
 
 button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
-  color: white;
+  color: #848080;
   cursor: pointer;
 }
 
@@ -414,6 +424,12 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+  display: flex;
+  flex-flow: column;
+}
+.nav-links__title h2 {
+  font-size: 0.8rem;
+  color: rgb(247, 235, 0);
 }
 
 .nav-links__title:hover {
@@ -515,20 +531,20 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
 }
 
 .form {
-  box-shadow: 0 0 10px rgba(161, 159, 159, 0.558);
+  box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   background-color: white;
   width: max(300px, 30%);
   height: -moz-fit-content;
   height: fit-content;
   border-radius: max(7px, 1vw);
-  margin-top: max(15px, 1vw);
+  margin: max(15px, 1vw) 0;
   padding: max(15px, 2vw);
   overflow: hidden;
-  border-bottom: min(10px, 5vw) solid #7995e7;
+  border-bottom: min(10px, 5vw) solid #0577fa;
   min-width: 310px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
-  gap: max(10px, 1vw);
+  gap: max(10px, 3vh);
   justify-items: center;
   position: relative;
   transition-duration: 500ms;
@@ -548,7 +564,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
   flex-flow: column;
   gap: max(5px, 0.5vw);
   font-size: 1.3rem;
-  color: #4e73df;
+  color: #0577fa;
   font-weight: 700;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -563,7 +579,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
           user-select: none;
   transition-duration: 500ms;
   z-index: 1;
-  background-color: #4e73df;
+  background-color: #0577fa;
   color: white;
   border: 5px solid white;
 }
@@ -585,7 +601,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
 }
 
 .custom-shape-divider-top-1689432371 .shape-fill {
-  fill: #4e73df;
+  fill: #0577fa;
 }
 
 /** For tablet devices **/
@@ -603,7 +619,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
   }
 }
 .input-container {
-  border: 2px solid rgb(80, 78, 78);
+  border: 1px solid rgb(80, 78, 78);
   height: min(50px, 10vw);
   display: flex;
   flex-flow: row nowrap;
@@ -624,7 +640,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
 }
 .input-container input:focus ~ label,
 .input-container input:valid ~ label {
-  color: #4e73df;
+  color: #0577fa;
   font-size: 0.9rem;
   transform: translate(5%, -110%);
 }
@@ -682,7 +698,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
   gap: max(3px, 0.3vw);
 }
 .radio-container .radiobtn-container label {
-  color: #4e73df;
+  color: rgb(80, 78, 78);
   font-weight: 700;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -692,8 +708,8 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
 @media only screen and (min-width: 1200px) {
   .form:hover .ico-nav {
     background-color: white;
-    color: #4e73df;
-    border: 5px solid #4e73df;
+    color: #0577fa;
+    border: 5px solid #0577fa;
     transform: rotate(360deg);
     cursor: pointer;
   }
@@ -711,7 +727,7 @@ input:-webkit-autofill:focus {
   width: 95%;
   background-color: white;
   padding: max(10px, 2vw);
-  box-shadow: 0 0 10px rgba(161, 159, 159, 0.558);
+  box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   border-radius: max(5px, 0.5vw);
   display: flex;
   flex-flow: column;
@@ -856,7 +872,7 @@ input:-webkit-autofill:focus {
 }
 
 thead tr th {
-  background-color: rgb(67, 67, 67);
+  background-color: rgb(80, 78, 78);
   color: white;
   position: sticky;
   top: 0;
@@ -1007,7 +1023,7 @@ td:hover {
   align-items: center;
   gap: max(7px, 0.3vh);
   border-radius: max(5px, 0.5vw);
-  box-shadow: 0 0 10px rgba(161, 159, 159, 0.558);
+  box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
 }
 .block-date .add-date span {
   position: relative;
@@ -1103,7 +1119,7 @@ td:hover {
   display: flex;
   flex-flow: column;
   align-items: center;
-  box-shadow: 0 0 10px rgba(161, 159, 159, 0.558);
+  box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   overflow: hidden;
 }
 
@@ -1219,7 +1235,7 @@ td:hover {
   width: 80%;
   background-color: white;
   border-radius: max(5px, 0.5vw);
-  box-shadow: 0 0 10px rgba(161, 159, 159, 0.558);
+  box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   margin-top: max(15px, 1vw);
   padding: max(20px, 2vw);
   display: flex;
@@ -1271,7 +1287,7 @@ td:hover {
   align-items: center;
   padding: max(15px, 2vw);
   gap: max(10px, 1vw);
-  box-shadow: 0 0 10px rgba(161, 159, 159, 0.558);
+  box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
 }
 
 .postAnnouncement__content .announcement__input-container {
@@ -1366,7 +1382,7 @@ td:hover {
   width: 90%;
   height: 45%;
   background-color: white;
-  box-shadow: 0 0 10px rgba(161, 159, 159, 0.558);
+  box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   border-radius: max(5px, 0.5vw);
   display: flex;
   flex-flow: row wrap;
@@ -1420,7 +1436,7 @@ td:hover {
   width: 90%;
   height: 45%;
   background-color: white;
-  box-shadow: 0 0 10px rgba(161, 159, 159, 0.558);
+  box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   border-radius: max(5px, 0.5vw);
   padding: max(10px, 2vw);
   overflow-y: auto;
@@ -1445,7 +1461,7 @@ td:hover {
   border-radius: max(5px, 0.5vw);
   overflow-y: auto;
   overflow-x: hidden;
-  box-shadow: 0 0 10px rgba(161, 159, 159, 0.558);
+  box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
 }
 
 .data-wrapper {
@@ -1582,14 +1598,14 @@ td:hover {
   height: -moz-fit-content;
   height: fit-content;
   background-color: white;
-  box-shadow: 0 0 10px rgba(161, 159, 159, 0.558);
+  box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   border-radius: max(10px, 1.2vw);
   margin-top: max(15px, 1vw);
   padding: max(15px, 2vw);
   gap: max(20px, 2.5vw);
   overflow: hidden;
   padding-bottom: max(70px, 5%);
-  border-bottom: min(10px, 5vw) solid #7995e7;
+  border-bottom: min(10px, 5vw) solid #0577fa;
   /** For tablet devices **/
   /** For mobile devices **/
 }
@@ -1608,7 +1624,7 @@ td:hover {
   height: 70px !important;
 }
 .account-settings .account-settings__content .custom-shape-divider-top-1689432371 .shape-fill {
-  fill: #4e73df;
+  fill: #0577fa;
 }
 @media (min-width: 768px) and (max-width: 1023px) {
   .account-settings .account-settings__content .custom-shape-divider-top-1689432371 svg {
@@ -1631,7 +1647,7 @@ td:hover {
           user-select: none;
   transition-duration: 500ms;
   z-index: 1;
-  background-color: #4e73df;
+  background-color: #0577fa;
   color: white;
   border: 5px solid white;
 }
@@ -1640,7 +1656,7 @@ td:hover {
   display: flex;
   flex-flow: column;
   border: unset;
-  border: 2px solid #4e73df;
+  border: 1px solid #0577fa;
   border-radius: max(5px, 0.5vw);
   padding: max(7px, 0.5vw);
   -webkit-user-select: none;
@@ -1665,7 +1681,7 @@ td:hover {
   padding: 0 max(3px, 0.2vw);
   background-color: white;
   transition-duration: 200ms;
-  color: #4e73df;
+  color: #0577fa;
   font-size: 0.9rem;
   transform: translate(0, -110%);
   -webkit-user-select: none;
@@ -1678,8 +1694,8 @@ td:hover {
 
 .account-settings__content:hover .ico-acc {
   background-color: white;
-  color: #4e73df;
-  border: 5px solid #4e73df;
+  color: #0577fa;
+  border: 5px solid #0577fa;
   transform: rotate(360deg);
   cursor: pointer;
 }
@@ -1718,12 +1734,12 @@ td:hover {
   position: absolute;
   right: 2%;
   top: 20%;
-  color: rgb(9, 129, 235);
+  color: #0577fa;
 }
 
 .acc-edit-container:hover .ico--acc-edit {
   cursor: pointer !important;
-  color: #0a58ca;
+  color: #1e85fb;
 }
 
 .acc-edit-container:hover .account-field {
@@ -1742,7 +1758,7 @@ td:hover {
   min-width: 300px;
   padding: max(15px, 2vw);
   border-radius: max(5px, 0.5vw);
-  box-shadow: 0 0 10px rgba(161, 159, 159, 0.558);
+  box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   background-color: white;
   display: flex;
   flex-flow: column;
@@ -1790,7 +1806,7 @@ td:hover {
 }
 
 .changeInfo__input-container {
-  border: 2px solid rgb(80, 78, 78);
+  border: 1px solid rgb(80, 78, 78);
   height: min(50px, 10vw);
   display: flex;
   flex-flow: row nowrap;
@@ -1837,7 +1853,7 @@ td:hover {
 }
 .changeInfo__input-container input:focus ~ label,
 .changeInfo__input-container input:valid ~ label {
-  color: #4e73df;
+  color: #0577fa;
   font-size: 0.9rem;
   transform: translate(5%, -110%);
 }
@@ -1862,7 +1878,7 @@ td:hover {
   margin-top: max(15px, 1vw);
   padding: max(15px, 2vw);
   border-radius: max(5px, 0.5vw);
-  box-shadow: 0 0 10px rgba(161, 159, 159, 0.558);
+  box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   overflow-y: auto;
   min-height: 70vh;
 }
@@ -2134,8 +2150,8 @@ td:hover {
   cursor: unset !important;
 }
 .calendar-container .date-selected {
-  background-color: #4e73df !important;
-  border-color: #4e73df;
+  background-color: rgb(80, 78, 78) !important;
+  border-color: rgb(80, 78, 78);
   color: white !important;
 }
 .calendar-container .day {
@@ -2184,7 +2200,7 @@ td:hover {
   background-color: #f8f0c1 !important;
 }
 .slot-container .slot-selected {
-  background-color: #4e73df !important;
+  background-color: rgb(80, 78, 78) !important;
   color: white !important;
 }
 .slot-container .slot-selected div {
@@ -2194,7 +2210,7 @@ td:hover {
   font-weight: 700;
 }
 .slot-container .slot-selected:hover {
-  background-color: #4e73df !important;
+  background-color: rgb(80, 78, 78) !important;
 }
 .slot-container .slot-full {
   background-color: rgb(218, 213, 213) !important;
@@ -2262,7 +2278,7 @@ td:hover {
     transition-duration: 500ms;
   }
   .third .calendar-container .date:hover {
-    border: 5px solid #4e73df;
+    border: 5px solid rgb(80, 78, 78);
     cursor: pointer;
   }
   .third .calendar-container:hover {
@@ -2334,7 +2350,7 @@ table {
   flex-flow: column;
   justify-content: flex-start;
   align-items: center;
-  box-shadow: 0 0 10px rgba(161, 159, 159, 0.558);
+  box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   padding: max(15px, 2vw);
   border-radius: max(5px, 0.5vw);
   overflow-y: auto;
@@ -2580,7 +2596,7 @@ table {
   background-color: white;
   padding: max(15px, 2vw);
   border-radius: max(5px, 0.5vw);
-  box-shadow: 0 0 10px rgba(161, 159, 159, 0.558);
+  box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   width: max(80%, 300px);
   margin: max(15px, 1vw) 0;
 }
@@ -2617,7 +2633,7 @@ table {
   background-color: white;
   width: 90%;
   border-radius: max(5px, 0.5vw);
-  box-shadow: 0 0 10px rgba(161, 159, 159, 0.558);
+  box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   padding: max(15px, 2vw);
   display: flex;
   flex-flow: column;
@@ -2735,17 +2751,19 @@ table {
   display: flex;
   flex-flow: column;
   align-items: center;
-  height: 90vh;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 .scheduling .scheduling-content {
   background-color: white;
   border-radius: max(5px, 0.5vw);
-  box-shadow: 0 0 10px rgba(161, 159, 159, 0.558);
+  box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   padding: max(15px, 2vw);
-  margin-top: max(15px, 1vw);
+  margin: max(15px, 1vw) 0;
   width: 98%;
-  height: 100%;
-  overflow-y: auto;
+  min-height: 20vh;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 .scheduling .week-container {
   width: 100%;
@@ -2870,7 +2888,7 @@ table {
   background-color: white;
   padding: max(15px, 2vw);
   margin: max(15px, 1vw);
-  box-shadow: 0 0 10px rgba(161, 159, 159, 0.558);
+  box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   border-radius: max(5px, 0.5vw);
   overflow: auto;
 }
@@ -3113,7 +3131,7 @@ table {
   width: 90%;
   background-color: white;
   border-radius: max(5px, 0.5vw);
-  box-shadow: 0 0 10px rgba(161, 159, 159, 0.558);
+  box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   padding: max(15px, 2vw);
   margin: max(15px, 1vw) 0;
 }
@@ -3294,7 +3312,7 @@ table {
   height: unset;
   min-height: 300px;
   border-radius: max(5px, 0.5vw);
-  box-shadow: 0 0 10px rgba(161, 159, 159, 0.558);
+  box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   padding: max(15px, 2vw);
 }
 

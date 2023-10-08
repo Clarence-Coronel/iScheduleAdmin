@@ -53,7 +53,7 @@ main{
 header{
     width: 100%;
     background-color: white;
-    box-shadow:0px 1px 2px $boxShadowPrimary-color;
+    box-shadow: $box-shadow;
     padding: 0 3vw;
     z-index: 9;
 
@@ -93,6 +93,7 @@ header{
         }
 
         .account-name{
+            color: $btn-color;
             font-weight: 700;
         }
 
@@ -102,7 +103,6 @@ header{
     }
     .role{
         width: fit-content;
-        color: rgb(88, 86, 86);
         font-size: 0.8rem;
         // position: relative;
         // bottom: 5px;
@@ -128,8 +128,8 @@ header{
         max-width: 150px;
         height: fit-content;
         background-color: white;
-        border-radius: 5px;
-        box-shadow: inset 0px 0px 2px rgba(20, 20, 20, 0.589);
+        border-radius: $box-border-radius;
+        box-shadow: $box-shadow;
         flex-flow: column;
         justify-content: center;
         align-items: center;
@@ -161,12 +161,18 @@ header{
             padding: max(13px, 0.7vw);
         }
 
-        .account-setting__content:hover{
-            background-color: rgb(208, 206, 206);
+        .account-setting__btn--logout, .account-setting__btn--logout .ico-acc{
+            color: $delete-btn-color;
         }
 
-        .account-setting__btn--logout{
-            
+        .account-setting__content:hover,  .account-setting__content:hover .ico-acc{
+            // background-color: rgb(208, 206, 206);
+            color: lighten($fontbase-color, 20)
+        }
+
+        .account-setting__btn--logout:hover,  .account-setting__btn--logout:hover .ico-acc{
+            // background-color: rgb(208, 206, 206);
+            color: lighten($delete-btn-color, 5)
         }
     }
 }
@@ -225,8 +231,9 @@ header{
 }
 
 .nav-links{
-    background-color: $primary-color;
+    background-color: white;
     width: 50vw;
+    // border-radius: 0 50px 50px 0;
     position: absolute;
     height: fit-content;
     min-height: 100vh;
@@ -235,6 +242,7 @@ header{
     max-width: 300px;
     z-index: 999;
     padding: max(5px, 0.5vw);
+    box-shadow: $box-shadow;
     // min-height: 900px;
     
     .nav-item-wrapper{
@@ -253,13 +261,13 @@ header{
 
 
     .ico-nav, .ico-nav--sub{
-        color: $gray;
+        color: $fontbase-color;
         font-size: 1.5rem;
     }
 
     h1{
         width: 100%;
-        color: $fontOnPrimary-color;
+        color: $fontbase-color;
         font-size: 1.2rem;
         display: flex;
         flex-flow: column;
@@ -270,7 +278,7 @@ header{
         font-weight: 1000;
     }
     .ico-admin{
-        color:$fontOnPrimary-color;
+        color: $fontbase-color;
         font-size: 3.5rem;
     }
 }
@@ -285,11 +293,11 @@ header{
     height: max(35px, 15%);
     border: unset;
     display: flex;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     justify-content: flex-start;
     align-items: center;
-    color: $gray;
-    font-weight: 200;
+    color: $fontbase-color;
+    font-weight: 700;
     // border-bottom: 1px solid rgba(255, 255, 255, 0.27);
     gap: max(5px, 0.5vw);
     text-align: left;
@@ -324,14 +332,15 @@ header{
 
     .manage-admins__sub-container{
         position: absolute;
-        background-color: $primary-color;
+        background-color: white;
         top: 0;
         left: 105%;
         transition-duration: 1s;
         width: 100%;
         padding: 0 max(10px, 0.5vw);
-
+        box-shadow: $box-shadow;
         animation-name: appear;
+        border-radius: $box-border-radius;
         animation-duration: 200ms;
         animation-iteration-count: 1;
         animation-timing-function: ease-in-out;
@@ -339,12 +348,12 @@ header{
 
     .manage-admins__sub{
         margin: 20px 0;
-        font-size: 0.8rem;
+        font-size: 0.7rem;
         // border-bottom: 1px solid rgba(255, 255, 255, 0.27);
     }
 
     .manage-admins__sub:hover, .manage-admins__sub:hover .ico-nav--sub{
-        color: white;
+        color: lighten($fontbase-color, 20);
     }
 }
 
@@ -355,7 +364,7 @@ header{
 
 .manage-admins:hover .ico-nav, .manage-admins:hover #btn--manage-admins{
     cursor: pointer !important;
-    color: white;
+    color: lighten($fontbase-color, 20);
 }
 
 // .manage-admins:hover > button.btn-content, .manage-admins:hover > .ico-nav{
@@ -369,19 +378,19 @@ header{
     border: unset;
     justify-content: flex-start;
     align-items: center;
-    color: $gray;
-    font-weight: 200;
+    color: $fontbase-color;
+    font-weight: 700;
     gap: max(5px, 0.5vw);
     text-align: left;
     width: 100%;
     user-select: none;
     background-color: transparent;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     // border-bottom: 1px solid rgba(255, 255, 255, 0.27);
 }
 
 button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
-    color: $fontOnPrimary-color;
+    color: lighten($fontbase-color, 20);
     cursor: pointer;
 }
 
@@ -392,6 +401,13 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
     margin-bottom: max(10px, 1vw);
     border-bottom: unset;
     user-select: none;
+    display: flex;
+    flex-flow: column;
+
+    h2{
+        font-size: 0.8rem;
+        color: $sub-color;
+    }
 }
 
 .nav-links__title:hover{
@@ -530,10 +546,10 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
     height: fit-content;
     // min-height: 350px;
     border-radius: max(7px, 1vw);
-    margin-top: $box-margin-top;
+    margin: $box-margin-top 0;
     padding: $box-padding;
     overflow: hidden;
-    border-bottom: min(10px,5vw) solid lighten($primary-color, 10);
+    border-bottom: min(10px,5vw) solid $btn-color;
     min-width: 310px;
     // display: flex;
     // flex-flow: column;
@@ -543,7 +559,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
     // gap: max(20px, 2vw);
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100%,1fr));
-    gap: max(10px, 1vw);
+    gap: max(10px, 3vh);
     justify-items: center;
     position: relative;
     transition-duration: 500ms;    
@@ -566,7 +582,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
         flex-flow: column;
         gap: max(5px, 0.5vw);
         font-size: 1.3rem;
-        color: $primary-color;
+        color: $btn-color;
         font-weight: 700;
         user-select: none;
     }
@@ -579,7 +595,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
         transition-duration: 500ms;
         z-index: 1;
         
-        background-color: $primary-color;
+        background-color: $btn-color;
         color: white;
         border: 5px solid white;
     }
@@ -603,7 +619,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
 }
 
 .custom-shape-divider-top-1689432371 .shape-fill {
-    fill: $primary-color;
+    fill: $btn-color;
 }
 
 /** For tablet devices **/
@@ -634,7 +650,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
 // }
 
 .input-container{
-    border: 2px solid $fontbase-color;
+    border: 1px solid $fontbase-color;
     height: min(50px, 10vw);
     display: flex;
     flex-flow: row nowrap;
@@ -657,7 +673,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
 
     input:focus~label,
     input:valid~label{
-        color: $primary-color;
+        color: $btn-color;
         font-size: 0.9rem;
         transform: translate(5%, -110%);
     }
@@ -721,7 +737,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
         gap: max(3px, 0.3vw);
 
         label{
-            color: $primary-color;
+            color: $fontbase-color;
             font-weight: 700;
             user-select: none;
         }
@@ -738,8 +754,8 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
 
     .form:hover .ico-nav{
         background-color: white;
-        color: $primary-color;
-        border: 5px solid $primary-color;
+        color: $btn-color;
+        border: 5px solid $btn-color;
         transform: rotate(360deg);
         cursor: pointer;
     }
@@ -976,7 +992,7 @@ input:-webkit-autofill:focus{
 }
 
 thead tr th{
-    background-color: rgb(67, 67, 67);
+    background-color: $fontbase-color;
     // background-color: gray;
     color: white;
     position: sticky;
@@ -1684,7 +1700,7 @@ td:hover{
         }
 
         // .dashboard__block:hover{
-        //     background-color: $primary-color;
+        //     background-color: $fontbase-color;
         // }
     }
 
@@ -1881,7 +1897,7 @@ td:hover{
         gap: max(20px, 2.5vw);
         overflow: hidden;
         padding-bottom: max(70px, 5%);
-        border-bottom: min(10px,5vw) solid lighten($primary-color, 10);
+        border-bottom: min(10px,5vw) solid $btn-color;
 
         .custom-shape-divider-top-1689432371 {
             position: absolute;
@@ -1900,7 +1916,7 @@ td:hover{
         }
         
         .custom-shape-divider-top-1689432371 .shape-fill {
-            fill: $primary-color;
+            fill: $btn-color;
         }
         
         /** For tablet devices **/
@@ -1926,7 +1942,7 @@ td:hover{
             user-select: none;
             transition-duration: 500ms;
             z-index: 1;
-            background-color: #4e73df;
+            background-color: $btn-color;
             color: white;
             border: 5px solid white;
         }
@@ -1936,7 +1952,7 @@ td:hover{
             display: flex;
             flex-flow: column;
             border: unset;
-            border: 2px solid $primary-color;
+            border: 1px solid $btn-color;
             border-radius: max(5px, 0.5vw);
             padding: max(7px, 0.5vw);
             user-select: none;
@@ -1959,7 +1975,7 @@ td:hover{
                 padding: 0 max(3px, 0.2vw);
                 background-color: white;
                 transition-duration: 200ms;
-                color: $primary-color;
+                color: $btn-color;
                 font-size: 0.9rem;
                 transform: translate(0, -110%);
                 user-select: none;
@@ -1975,8 +1991,8 @@ td:hover{
 
 .account-settings__content:hover .ico-acc{
     background-color: white;
-    color: $primary-color;
-    border: 5px solid $primary-color;
+    color: $btn-color;
+    border: 5px solid $btn-color;
     transform: rotate(360deg);
     cursor: pointer;
 }
@@ -2028,13 +2044,13 @@ td:hover{
         position: absolute;
         right: 2%;
         top:20%;
-        color: rgb(9, 129, 235);
+        color: $btn-color;
     }
 }
 
 .acc-edit-container:hover .ico--acc-edit{
     cursor: pointer !important;
-    color: #0a58ca;
+    color: lighten($color: $btn-color, $amount: 5);
 }
 
 .acc-edit-container:hover .account-field{
@@ -2115,7 +2131,7 @@ td:hover{
 }
 
 .changeInfo__input-container{
-    border: 2px solid $fontbase-color;
+    border: 1px solid $fontbase-color;
     height: min(50px, 10vw);
     display: flex;
     flex-flow: row nowrap;
@@ -2170,7 +2186,7 @@ td:hover{
 
     input:focus~label,
     input:valid~label{
-        color: $primary-color;
+        color: $btn-color;
         font-size: 0.9rem;
         transform: translate(5%, -110%);
     }
@@ -2542,8 +2558,8 @@ td:hover{
     }
 
     .date-selected{
-        background-color: $primary-color !important;
-        border-color: $primary-color;
+        background-color: $fontbase-color !important;
+        border-color: $fontbase-color;
         color: white !important;
     }
     
@@ -2599,7 +2615,7 @@ td:hover{
     }
 
     .slot-selected{
-        background-color: $primary-color !important;
+        background-color: $fontbase-color !important;
         color: white !important;
 
         div{
@@ -2612,7 +2628,7 @@ td:hover{
     }
 
     .slot-selected:hover{
-        background-color: $primary-color !important;
+        background-color: $fontbase-color !important;
     }
 
     .slot-full{
@@ -2700,7 +2716,7 @@ td:hover{
             transition-duration: 500ms;
 
             .date:hover{
-                border: 5px solid $primary-color;
+                border: 5px solid $fontbase-color;
                 cursor: pointer;
             }
         }
@@ -3369,7 +3385,7 @@ table{
     display: flex;
     flex-flow: column;
     align-items: center;
-    height: 90vh;
+    height: fit-content;
     // overflow: hidden;
 
     .scheduling-content{
@@ -3377,10 +3393,11 @@ table{
         border-radius: $box-border-radius;
         box-shadow: $box-shadow;
         padding: $box-padding;
-        margin-top: $box-margin-top;
+        margin: $box-margin-top 0;
         width: 98%;
-        height: 100%;
-        overflow-y: auto;
+        min-height: 20vh;
+        height: fit-content;
+        
     }
 
     .scheduling__dept-picker{
@@ -3613,7 +3630,7 @@ table{
 
     iframe{
         border-radius: 20px;
-        //border: 3px solid $primary-color;
+        //border: 3px solid $fontbase-color;
         box-shadow: 5px 5px 15px rgb(186, 185, 185);
     }
 }
