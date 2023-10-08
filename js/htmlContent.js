@@ -482,7 +482,7 @@ let viewSchedule = `
             </div>
         </div>
         <div class="cmds-container">
-            <button type="button" class="export" data-table="schedule-table">Export Table(s)</button>
+            <button type="button" class="export" data-table="schedule-table">Export Table</button>
             <div class="table-nav">
                 <button id="prevButton"><< Previous</button>
                 <span id="pageNum">1</span>
@@ -760,7 +760,7 @@ let adminLogs = `
                     </table>
                 </div>
                 <div class="cmds-container">
-                    <button type="button" class="export" data-table="logs-table">Export Table(s)</button>
+                    <button type="button" class="export" data-table="logs-table">Export Table</button>
                     <div class="table-nav">
                         <button id="prevButton"><< Previous</button>
                         <span id="pageNum">1</span>
@@ -797,7 +797,7 @@ let adminList = `
         </table>
     </div>
     <div class="cmds-container">
-        <button type="button" class="export" data-table="admin-table">Export Table(s)</button>
+        <button type="button" class="export" data-table="admin-table">Export Table</button>
         <div class="table-nav">
             <button id="prevButton"><< Previous</button>
             <span id="pageNum">1</span>
@@ -1055,7 +1055,7 @@ let feedback = `
                         </table>
                     </div>
                     <div class="cmds-container">
-                        <button type="button" class="export" data-table="feedback-table">Export Table(s)</button>
+                        <button type="button" class="export" data-table="feedback-table">Export Table</button>
                         <div class="table-nav">
                             <button id="prevButton"><< Previous</button>
                             <span id="pageNum">1</span>
