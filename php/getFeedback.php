@@ -8,16 +8,16 @@
     }
 
     if($sortBy == 0){
-        $query = "SELECT * FROM `feedbacks` ORDER BY dateTimeSubmitted ASC";
+        $query = "SELECT * FROM `feedbacks` ORDER BY dateTimeSubmitted ASC LIMIT 200";
     }
     elseif($sortBy == 1){
-        $query = "SELECT * FROM `feedbacks` ORDER BY dateTimeSubmitted DESC";
+        $query = "SELECT * FROM `feedbacks` ORDER BY dateTimeSubmitted DESC LIMIT 200";
     }
     elseif($sortBy == 2){
-        $query = "SELECT * FROM `feedbacks` ORDER BY rate ASC LIMIT";
+        $query = "SELECT * FROM `feedbacks` ORDER BY rate ASC LIMIT 200";
     }
     elseif($sortBy == 3){
-        $query = "SELECT * FROM `feedbacks` ORDER BY rate DESC LIMIT";
+        $query = "SELECT * FROM `feedbacks` ORDER BY rate DESC LIMIT 200";
     }
 
     $result = mysqli_query($conn,$query);

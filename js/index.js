@@ -1978,8 +1978,8 @@ function insertAnnouncement(){
 }
 
 function getFeedback(sortBy = 1){
-    const feedbackTable = document.querySelector('.feedback__table tbody');
-    feedbackTable.innerHTML = "";
+    const table = document.querySelector('.feedback__table tbody');
+
 
     const xhr = new XMLHttpRequest();
     
@@ -1987,23 +1987,40 @@ function getFeedback(sortBy = 1){
         if(xhr.readyState == 4){
             if(xhr.status == 200){
                 if(xhr.responseText != 0){
-                    let arrayOfObjects = JSON.parse(xhr.responseText);
-                    arrayOfObjects.forEach(item=>{
-                        let rowTemplate =
-                        `
-                        <tr class="table-row">
-                            <td>${item.rate}</td>
-                            <td>${item.content}</td>
-                            <td title="YYYY-MM-DD">${convertRetrievedDate(item.dateSubmitted)}</td>
+                    try {
+                        table.innerHTML = ""
+                        let arrayOfObjects = JSON.parse(xhr.responseText);
+                        arrayOfObjects.forEach(item=>{
+                            let rowTemplate =
+                            `
+                            <tr class="table-row">
+                                <td>${item.rate}</td>
+                                <td>${item.content}</td>
+                                <td title="YYYY-MM-DD">${convertRetrievedDate(item.dateSubmitted)}</td>
+                            </tr>
+                            `;
+        
+                            table.innerHTML += rowTemplate;
+                            
+                        });
+                        setupTablePagination('feedback-table', 'prevButton', 'nextButton', 10);
+                    } catch (error) {
+                        table.innerHTML = `
+                        <tr>
+                            <td colspan="3" class="empty">There is currently no feedback</td>
                         </tr>
-                        `;
-    
-                        feedbackTable.innerHTML += rowTemplate;
-                        
-                    });
-                    setupTablePagination('feedback-table', 'prevButton', 'nextButton', 10);
+                        `
+                    }
+                    
                 }
             }
+        }
+        else{
+            table.innerHTML = `
+                <tr>
+                    <td colspan="3" class="empty">Loading...</td>
+                </tr>
+            `
         }
     }
 
@@ -2205,13 +2222,13 @@ function isDateValid(dateString) {
 
 function insertBlockDate(){
     const table = document.querySelector(".date-table tbody");
-    table.innerHTML = "";
 
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function(){
         if(xhr.readyState == 4){
             if(xhr.status == 200){
                 try {
+                    table.innerHTML = "";
                     let arrayOfObjects = JSON.parse(xhr.responseText);
                     arrayOfObjects.forEach((item)=>{
                         let id = item.id;
@@ -2239,10 +2256,21 @@ function insertBlockDate(){
                         table.innerHTML += template;
                     })
                 } catch (error) {
-                    
+                    table.innerHTML = `
+                    <tr>
+                        <td colspan="4" class="empty">There is currently no blocked date</td>
+                    </tr>
+                    `
                 }
                 setupTablePagination('date-table', 'prevButton', 'nextButton', 10);
             }
+        }
+        else{
+            table.innerHTML = `
+            <tr>
+                <td colspan="4" class="empty">Loading...</td>
+            </tr>
+            `
         }
     }
 
@@ -2335,7 +2363,6 @@ function convertRetrievedDate(date){
 
 function insertPostedAnn(){
     const table = document.querySelector(".ann-table tbody");
-    table.innerHTML = "";
     
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function(){
@@ -2343,6 +2370,7 @@ function insertPostedAnn(){
             if(xhr.status == 200){
                 
                 try {
+                    table.innerHTML = "";
                     let arrayOfObjects = JSON.parse(xhr.responseText);
                     
                     arrayOfObjects.forEach((item)=>{
@@ -2369,10 +2397,23 @@ function insertPostedAnn(){
                         table.innerHTML += template;
                     })
                 } catch (error) {
-                    
+                    table.innerHTML = 
+                    `
+                    <tr>
+                        <td colspan="5" class="empty">There is currently no announcement</td>
+                    </tr>
+                    `;
                 }
                 setupTablePagination('ann-table', 'prevButton', 'nextButton', 10);                
             }
+        }
+        else{
+            table.innerHTML = 
+            `
+            <tr>
+                <td colspan="5" class="empty">Loading...</td>
+            </tr>
+            `;
         }
     }
 
@@ -2458,7 +2499,7 @@ function insertAdmin(isInitial = true){
                         table.innerHTML = 
                         `
                         <tr>
-                            <td colspan="5" class="empty">There are currently no other admin</td>
+                            <td colspan="5" class="empty">There is currently no other admin</td>
                         </tr>
                         `;
                     }
@@ -2596,7 +2637,7 @@ function insertAdminLogs(isInitial = true){
                         table.innerHTML = 
                         `
                         <tr>
-                            <td colspan="5" class="empty">There are currently no admin activitiy</td>
+                            <td colspan="5" class="empty">There is currently no admin activitiy</td>
                         </tr>
                         `;
                     }
@@ -2604,7 +2645,7 @@ function insertAdminLogs(isInitial = true){
                         table.innerHTML = 
                         `
                         <tr>
-                            <td colspan="5" class="empty">No Result</td>
+                            <td colspan="5" class="empty">No result</td>
                         </tr>
                         `;
                     }
@@ -2713,7 +2754,7 @@ function applyLogFilter(){
                     table.innerHTML = 
                     `
                     <tr>
-                        <td colspan="6" class="empty">No Result</td>
+                        <td colspan="6" class="empty">No result</td>
                     </tr>
                     `;
                 }
@@ -3794,13 +3835,13 @@ function removeAllEventListeners(element) {
 
 function insertReq(){
     let table = document.querySelector('.request-table tbody');
-    table.innerHTML = "";
     let xhr = new XMLHttpRequest();
     
     xhr.onreadystatechange = function(){
         if(this.readyState == 4){
             if(this.status == 200){
                 try {
+                    table.innerHTML = "";
                     const arrOfObj = JSON.parse(this.responseText);
                     arrOfObj.forEach(item=>{
                         const dept = ['ENT', 'Hematology', 'Internal Medicine', 'Internal Medicine Clearance', 'Nephrology', 'Neurology', 'OB GYNE New', 'OB GYNE Old', 'OB GYNE ROS', 'Oncology', 'Pediatric Cardiology', 'Pediatric Clearance', 'Pediatric General', 'Psychiatry New', 'Psychiatry Old', 'Surgery', 'Surgery ROS'];
@@ -3837,6 +3878,14 @@ function insertReq(){
                 showTableCell();
                
             }
+        }
+        else{
+            table.innerHTML = 
+            `
+            <tr>
+                <td colspan="6" class="empty">Loading...</td>
+            </tr>
+            `;
         }
     };
 
