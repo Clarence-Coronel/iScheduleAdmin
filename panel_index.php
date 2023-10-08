@@ -78,7 +78,13 @@
     <div class="nav-links" data-click="doNothing">
         <div class="nav-item-wrapper">
             <div class="nav-links__item nav-links__title" data-click="doNothing">
-                <h1 data-click="doNothing"><span class="material-icons ico-admin"data-click="doNothing">admin_panel_settings</span>iSchedule <br> Admin Panel</h1>
+                <h1 data-click="doNothing">
+                    <span class="material-icons ico-admin"data-click="doNothing">admin_panel_settings</span>
+                    <div class="txt-container">
+                        <span class="main-txt">iSchedule</span>
+                        <span class="sub-txt">Admin Panel</span> 
+                    </div>
+                </h1>
             </div>
         </div>
     </div>

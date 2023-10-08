@@ -130,7 +130,6 @@ header .header__right {
   font-size: 1rem;
 }
 .header__right .greeting .account-name {
-  color: #0577fa;
   font-weight: 700;
 }
 .header__right .greeting .welcome:hover, .header__right .greeting .account-name:hover {
@@ -140,6 +139,7 @@ header .header__right {
   width: -moz-fit-content;
   width: fit-content;
   font-size: 0.8rem;
+  color: #4caf50;
   text-align: right;
 }
 .header__right .role:hover {
@@ -202,7 +202,7 @@ header .header__right {
   color: rgb(239, 97, 97);
 }
 .header__right .account-setting .account-setting__content:hover, .header__right .account-setting .account-setting__content:hover .ico-acc {
-  color: #848080;
+  color: #0577fa;
 }
 .header__right .account-setting .account-setting__btn--logout:hover, .header__right .account-setting .account-setting__btn--logout:hover .ico-acc {
   color: #f17878;
@@ -279,10 +279,10 @@ header .header__right {
   display: flex;
   flex-flow: column;
   justify-content: space-evenly;
-  align-items: flex-start;
+  align-items: center;
 }
 .nav-links .ico-nav, .nav-links .ico-nav--sub {
-  color: rgb(80, 78, 78);
+  color: rgb(189, 187, 187);
   font-size: 1.5rem;
 }
 .nav-links h1 {
@@ -302,12 +302,6 @@ header .header__right {
   font-size: 3.5rem;
 }
 
-.nav-item-wrapper {
-  display: flex;
-  flex-flow: column;
-  justify-content: flex-start;
-}
-
 .nav-links__item {
   height: max(35px, 15%);
   border: unset;
@@ -319,7 +313,7 @@ header .header__right {
   font-weight: 700;
   gap: max(5px, 0.5vw);
   text-align: left;
-  width: 100%;
+  width: 90%;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
@@ -360,7 +354,7 @@ header .header__right {
   position: absolute;
   background-color: white;
   top: 0;
-  left: 105%;
+  left: 112%;
   transition-duration: 1s;
   width: 100%;
   padding: 0 max(10px, 0.5vw);
@@ -376,7 +370,7 @@ header .header__right {
   font-size: 0.7rem;
 }
 .manage-admins .manage-admins__sub:hover, .manage-admins .manage-admins__sub:hover .ico-nav--sub {
-  color: #848080;
+  color: #0577fa;
 }
 
 .manage-admins__sub:hover .ico-nav--sub {
@@ -386,7 +380,7 @@ header .header__right {
 
 .manage-admins:hover .ico-nav, .manage-admins:hover #btn--manage-admins {
   cursor: pointer !important;
-  color: #848080;
+  color: #0577fa;
 }
 
 .btn-content {
@@ -410,7 +404,7 @@ header .header__right {
 }
 
 button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
-  color: #848080;
+  color: #0577fa;
   cursor: pointer;
 }
 
@@ -425,11 +419,33 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
      -moz-user-select: none;
           user-select: none;
   display: flex;
-  flex-flow: column;
 }
-.nav-links__title h2 {
+.nav-links__title h1 {
   font-size: 0.8rem;
-  color: rgb(247, 235, 0);
+  color: #0577fa;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  border-bottom: 2px solid rgb(230, 228, 228);
+  padding-bottom: 5vh;
+}
+.nav-links__title .ico-admin {
+  color: inherit;
+  font-size: 4rem;
+}
+.nav-links__title .txt-container {
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+}
+.nav-links__title .main-txt {
+  font-size: 1.2rem;
+  color: #0577fa;
+}
+.nav-links__title .sub-txt {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #0577fa;
 }
 
 .nav-links__title:hover {

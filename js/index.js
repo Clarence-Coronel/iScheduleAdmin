@@ -2788,7 +2788,7 @@ function insertAdminLogs(isInitial = true){
     }
 
     if(isInitial){
-        xhr.open("GET", "./php/getAdminLogs.php", true);
+        xhr.open("GET", "./php/getAdminLogs.php", false);
         xhr.send();
     }
     else{
@@ -2796,7 +2796,7 @@ function insertAdminLogs(isInitial = true){
 
         if(input == "") return;
 
-        xhr.open("POST", "./php/searchAdminLogs.php", true);
+        xhr.open("POST", "./php/searchAdminLogs.php", false);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send("input="+input);
     }
