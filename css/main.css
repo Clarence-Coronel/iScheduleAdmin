@@ -172,7 +172,7 @@ header .header__right {
   height: -moz-fit-content;
   height: fit-content;
   background-color: white;
-  border-radius: max(5px, 0.5vw);
+  border-radius: max(5px, 0.4vw);
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   flex-flow: column;
   justify-content: center;
@@ -364,7 +364,7 @@ header .header__right {
   padding: 0 max(10px, 0.5vw);
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   animation-name: appear;
-  border-radius: max(5px, 0.5vw);
+  border-radius: max(5px, 0.4vw);
   animation-duration: 200ms;
   animation-iteration-count: 1;
   animation-timing-function: ease-in-out;
@@ -753,7 +753,7 @@ input:-webkit-autofill:focus {
   background-color: white;
   padding: max(10px, 2vw);
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
-  border-radius: max(5px, 0.5vw);
+  border-radius: max(5px, 0.4vw);
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
@@ -1047,7 +1047,7 @@ td:hover {
   flex-flow: column;
   align-items: center;
   gap: max(7px, 0.3vh);
-  border-radius: max(5px, 0.5vw);
+  border-radius: max(5px, 0.4vw);
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
 }
 .block-date .add-date span {
@@ -1140,7 +1140,7 @@ td:hover {
   height: -moz-fit-content;
   height: fit-content;
   margin-top: max(15px, 1vw);
-  border-radius: max(5px, 0.5vw);
+  border-radius: max(5px, 0.4vw);
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -1259,7 +1259,7 @@ td:hover {
 .manage-data .manage-date__content {
   width: 80%;
   background-color: white;
-  border-radius: max(5px, 0.5vw);
+  border-radius: max(5px, 0.4vw);
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   margin-top: max(15px, 1vw);
   padding: max(20px, 2vw);
@@ -1305,7 +1305,7 @@ td:hover {
   margin: max(15px, 1vw) 0;
   background-color: white;
   width: 80%;
-  border-radius: max(5px, 0.5vw);
+  border-radius: max(5px, 0.4vw);
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
@@ -1408,7 +1408,7 @@ td:hover {
   height: 45%;
   background-color: white;
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
-  border-radius: max(5px, 0.5vw);
+  border-radius: max(5px, 0.4vw);
   display: flex;
   flex-flow: row wrap;
   overflow: hidden;
@@ -1462,7 +1462,7 @@ td:hover {
   height: 45%;
   background-color: white;
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
-  border-radius: max(5px, 0.5vw);
+  border-radius: max(5px, 0.4vw);
   padding: max(10px, 2vw);
   overflow-y: auto;
 }
@@ -1483,7 +1483,7 @@ td:hover {
   height: 98%;
   width: 90%;
   background-color: white;
-  border-radius: max(5px, 0.5vw);
+  border-radius: max(5px, 0.4vw);
   overflow-y: auto;
   overflow-x: hidden;
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
@@ -1547,10 +1547,6 @@ td:hover {
           user-select: none;
   font-size: 0.7rem;
   height: 3.3vh;
-}
-.dept-bargraph .dept:hover {
-  cursor: pointer;
-  background-color: rgb(21, 247, 138);
 }
 .dept-bargraph .dept:nth-child(1) {
   width: 80.88%;
@@ -1782,7 +1778,7 @@ td:hover {
   width: 40%;
   min-width: 300px;
   padding: max(15px, 2vw);
-  border-radius: max(5px, 0.5vw);
+  border-radius: max(5px, 0.4vw);
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   background-color: white;
   display: flex;
@@ -1902,7 +1898,7 @@ td:hover {
   background-color: white;
   margin-top: max(15px, 1vw);
   padding: max(15px, 2vw);
-  border-radius: max(5px, 0.5vw);
+  border-radius: max(5px, 0.4vw);
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   overflow-y: auto;
   min-height: 70vh;
@@ -2377,7 +2373,7 @@ table {
   align-items: center;
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   padding: max(15px, 2vw);
-  border-radius: max(5px, 0.5vw);
+  border-radius: max(5px, 0.4vw);
   overflow-y: auto;
   scrollbar-gutter: stable;
 }
@@ -2620,7 +2616,7 @@ table {
 .feedback .feedback-content {
   background-color: white;
   padding: max(15px, 2vw);
-  border-radius: max(5px, 0.5vw);
+  border-radius: max(5px, 0.4vw);
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   width: max(80%, 300px);
   margin: max(15px, 1vw) 0;
@@ -2657,7 +2653,7 @@ table {
   margin: max(15px, 1vw) 0;
   background-color: white;
   width: 90%;
-  border-radius: max(5px, 0.5vw);
+  border-radius: max(5px, 0.4vw);
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   padding: max(15px, 2vw);
   display: flex;
@@ -2781,7 +2777,7 @@ table {
 }
 .scheduling .scheduling-content {
   background-color: white;
-  border-radius: max(5px, 0.5vw);
+  border-radius: max(5px, 0.4vw);
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   padding: max(15px, 2vw);
   margin: max(15px, 1vw) 0;
@@ -2914,7 +2910,7 @@ table {
   padding: max(15px, 2vw);
   margin: max(15px, 1vw);
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
-  border-radius: max(5px, 0.5vw);
+  border-radius: max(5px, 0.4vw);
   overflow: auto;
 }
 .edit-tutorial .edit-tutorial__instruction .edit-tutorial__header {
@@ -3155,7 +3151,7 @@ table {
 .seeAnnouncements .seeAnnouncements__content {
   width: 90%;
   background-color: white;
-  border-radius: max(5px, 0.5vw);
+  border-radius: max(5px, 0.4vw);
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   padding: max(15px, 2vw);
   margin: max(15px, 1vw) 0;
@@ -3336,7 +3332,7 @@ table {
   width: 100%;
   height: unset;
   min-height: 300px;
-  border-radius: max(5px, 0.5vw);
+  border-radius: max(5px, 0.4vw);
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   padding: max(15px, 2vw);
 }

@@ -106,7 +106,7 @@ main {
 
 .login-form {
   z-index: 1;
-  border-radius: max(5px, 0.5vw);
+  border-radius: max(5px, 0.4vw);
   padding: max(15px, 2vw);
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   width: max(300px, 70vw);
@@ -297,7 +297,7 @@ input:-webkit-autofill:focus {
 
 .forgot-form {
   z-index: 1;
-  border-radius: max(5px, 0.5vw);
+  border-radius: max(5px, 0.4vw);
   padding: max(15px, 2vw);
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   width: max(300px, 70vw);
