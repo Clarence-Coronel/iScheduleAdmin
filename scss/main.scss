@@ -259,7 +259,6 @@ header{
         // gap: 2vh;
     }
 
-
     .ico-nav, .ico-nav--sub{
         color: rgb(189, 187, 187);
         font-size: 1.5rem;
@@ -280,6 +279,11 @@ header{
     .ico-admin{
         color: $fontbase-color;
         font-size: 3.5rem;
+    }
+
+    .change{
+        color: $fontbase-color;
+        font-size: 1.2rem;
     }
 }
 
@@ -1540,7 +1544,7 @@ td:hover{
     }
 
     .field__delete-btn:hover{
-        background-color: darken(red, 10);
+        background-color: lighten($delete-btn-color, 5);
     }
 }
 

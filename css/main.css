@@ -301,6 +301,10 @@ header .header__right {
   color: rgb(80, 78, 78);
   font-size: 3.5rem;
 }
+.nav-links .change {
+  color: rgb(80, 78, 78);
+  font-size: 1.2rem;
+}
 
 .nav-links__item {
   height: max(35px, 15%);
@@ -1288,7 +1292,7 @@ td:hover {
   max-width: 120px;
 }
 .manage-date__content .field__delete-btn:hover {
-  background-color: #cc0000;
+  background-color: #f17878;
 }
 
 .postAnnouncement {
