@@ -34,7 +34,7 @@
             </svg>
         </div>
         <h1 class="ischedule-header">
-            <span class="material-icons">account_circle</span>
+            <span class="material-icons ico-admin"data-click="doNothing">admin_panel_settings</span>
             iSchedule Admin Panel
         </h1>
         <div class="form-container">

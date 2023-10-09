@@ -91,7 +91,7 @@ main {
   font-weight: 200;
   align-items: center;
   text-align: center;
-  letter-spacing: 1px;
+  font-weight: 700;
   line-height: 2.2rem;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -99,7 +99,7 @@ main {
   gap: 1vh;
 }
 .ischedule-header span {
-  font-size: 6rem !important;
+  font-size: 8rem !important;
   color: #0577fa;
   font-weight: 100;
 }

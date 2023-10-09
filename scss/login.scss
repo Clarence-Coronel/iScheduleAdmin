@@ -32,13 +32,14 @@ main{
     font-weight: 200;
     align-items: center;
     text-align: center;
-    letter-spacing: 1px;
+    // letter-spacing: 1px;
+    font-weight: 700;
     line-height: 2.2rem;
     user-select: none;
     gap: 1vh;
 
     span{
-        font-size: 6rem !important;
+        font-size: 8rem !important;
         color: $btn-color;
         font-weight: 100;
     }
