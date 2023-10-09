@@ -87,6 +87,7 @@ function initial(){
         item.addEventListener('click', ()=>{
             navLinks.style.left = "0";
             screenDarken.style.display = 'block';
+            navLinks.style.transitionDuration = '500ms';
         });
     });
     
@@ -100,8 +101,10 @@ function initial(){
         // console.log(e.target.getAttribute('data-click'));
 
         if(e.target.getAttribute('data-click') != 'doNothing'){
-            
+
+            navLinks.style.transitionDuration = 'unset';
             navLinks.style.left = "-300px"
+
             screenDarken.style.display = 'none';
             accountSetting.style.display = 'none';
             document.querySelector('.manage-admins__sub-container').style.display = 'none';
@@ -2788,7 +2791,7 @@ function insertAdminLogs(isInitial = true){
     }
 
     if(isInitial){
-        xhr.open("GET", "./php/getAdminLogs.php", false);
+        xhr.open("GET", "./php/getAdminLogs.php", true);
         xhr.send();
     }
     else{
@@ -2796,7 +2799,7 @@ function insertAdminLogs(isInitial = true){
 
         if(input == "") return;
 
-        xhr.open("POST", "./php/searchAdminLogs.php", false);
+        xhr.open("POST", "./php/searchAdminLogs.php", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send("input="+input);
     }

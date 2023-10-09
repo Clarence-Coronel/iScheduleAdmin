@@ -238,7 +238,7 @@ header{
     height: fit-content;
     min-height: 100vh;
     left: -300px;
-    transition-duration: 400ms;
+    transition-duration: 500ms;
     max-width: 300px;
     z-index: 999;
     padding: max(5px, 0.5vw);
@@ -341,7 +341,7 @@ header{
         display: flex;
         flex-flow: column;
         justify-content: flex-start;
-        padding: 0 7%;
+        padding: 0 3%;
 
     }
 
@@ -2991,7 +2991,7 @@ table{
         margin: max(10px, 1vw) 0;
 
         button{
-            font-size: 1rem;
+            font-size: 0.8rem;
             width: 100%;
             background-color: $btn-color;
             color: white;
@@ -3025,7 +3025,7 @@ table{
     
             button{
                 min-height: 55px;
-                font-size: 1rem;
+                font-size: 0.8rem;
                 width: 33.33%;
                 line-height: 20px;
             }
