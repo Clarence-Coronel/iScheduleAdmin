@@ -364,9 +364,14 @@ header .header__right {
   animation-duration: 200ms;
   animation-iteration-count: 1;
   animation-timing-function: ease-in-out;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  padding: 0 7%;
 }
 .manage-admins .manage-admins__sub {
-  margin: 20px 0;
+  margin: 15px;
+  width: 100%;
   font-size: 0.7rem;
 }
 .manage-admins .manage-admins__sub:hover, .manage-admins .manage-admins__sub:hover .ico-nav--sub {
@@ -426,7 +431,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
-  border-bottom: 2px solid rgb(230, 228, 228);
+  border-bottom: 2px solid rgb(224, 225, 225);
   padding-bottom: 5vh;
 }
 .nav-links__title .ico-admin {

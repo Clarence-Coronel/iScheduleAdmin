@@ -338,10 +338,16 @@ header{
         animation-duration: 200ms;
         animation-iteration-count: 1;
         animation-timing-function: ease-in-out;
+        display: flex;
+        flex-flow: column;
+        justify-content: flex-start;
+        padding: 0 7%;
+
     }
 
     .manage-admins__sub{
-        margin: 20px 0;
+        margin:15px;
+        width: 100%;
         font-size: 0.7rem;
         // border-bottom: 1px solid rgba(255, 255, 255, 0.27);
     }
@@ -404,7 +410,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
         display: flex;
         flex-flow: row nowrap;
         justify-content: center;
-        border-bottom: 2px solid rgb(230, 228, 228);
+        border-bottom: 2px solid rgb(224, 225, 225);
         padding-bottom: 5vh;
     }
 
