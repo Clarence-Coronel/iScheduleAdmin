@@ -3608,9 +3608,8 @@ table{
     }
 
     .edit-tutorial-content{
-        width: 50%;
+        width: max(300px, 70%);
         // height: 90%;
-        min-width: 300px;
         background-color: white;
         padding: $box-padding;
         margin: $box-margin-top;

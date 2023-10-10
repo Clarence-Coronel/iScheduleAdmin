@@ -2906,8 +2906,7 @@ table {
   margin-top: 5vh;
 }
 .edit-tutorial .edit-tutorial-content {
-  width: 50%;
-  min-width: 300px;
+  width: max(300px, 70%);
   background-color: white;
   padding: max(15px, 2vw);
   margin: max(15px, 1vw);
