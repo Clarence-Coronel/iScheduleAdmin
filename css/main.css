@@ -437,13 +437,13 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
   color: #0577fa;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: flex-start;
+  justify-content: center;
   border-bottom: 2px solid rgb(224, 225, 225);
   padding-bottom: 2vh;
 }
 .nav-links__title .ico-admin {
   color: inherit;
-  font-size: 4rem;
+  font-size: 4.5rem;
 }
 .nav-links__title .txt-container {
   display: flex;
