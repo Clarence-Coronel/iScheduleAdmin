@@ -1994,11 +1994,45 @@ function changeAccess(){
     if(signedInAdmin.adminType == 'admin i'){
         adminI.forEach(item=>{
             nav.innerHTML += navBtns[item];
+            window.addEventListener('click', (e)=>{
+                // console.log(e.target.getAttribute('data-click'));
+        
+                if(e.target.getAttribute('data-click') != 'doNothing'){
+        
+                    navLinks.style.transitionDuration = 'unset';
+                    navLinks.style.left = "-300px"
+        
+                    screenDarken.style.display = 'none';
+                    // accountSetting.style.display = 'none';
+        
+                }
+
+                if(e.target.getAttribute('data-click') != 'doNothingAcc'){
+                    accountSetting.style.display = 'none';
+                }
+            });
         });
     }
     else if(signedInAdmin.adminType == 'admin ii'){
         adminII.forEach(item=>{
             nav.innerHTML += navBtns[item];
+            window.addEventListener('click', (e)=>{
+                // console.log(e.target.getAttribute('data-click'));
+        
+                if(e.target.getAttribute('data-click') != 'doNothing'){
+        
+                    navLinks.style.transitionDuration = 'unset';
+                    navLinks.style.left = "-300px"
+        
+                    screenDarken.style.display = 'none';
+                    // accountSetting.style.display = 'none';
+        
+                }
+
+                if(e.target.getAttribute('data-click') != 'doNothingAcc'){
+                    accountSetting.style.display = 'none';
+                }
+            });
         });
     }
     else if(signedInAdmin.adminType == 'super admin'){
@@ -2013,7 +2047,6 @@ function changeAccess(){
                     navLinks.style.left = "-300px"
         
                     screenDarken.style.display = 'none';
-                    accountSetting.style.display = 'none';
                     document.querySelector('.manage-admins__sub-container').style.display = 'none';
         
                     if(document.querySelector('.manage-admins__sub-container').style.display == 'none'){
@@ -2021,6 +2054,10 @@ function changeAccess(){
                         document.querySelector('.change').innerHTML = newIco;
                     }
         
+                }
+
+                if(e.target.getAttribute('data-click') != 'doNothingAcc'){
+                    accountSetting.style.display = 'none';
                 }
             });
         });

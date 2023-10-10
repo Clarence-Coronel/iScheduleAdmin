@@ -52,16 +52,16 @@
     <header>
         <div class="wrapper">
             <div class="header__left">
-                <button class="header-btn" data-click="doNothing">
+                <button class="header-btn">
                     <div class="header-btn burger-ico" data-click="doNothing"></div>
                 </button>
             </div>
             <div class="header__right">
-                <div class="greeting" data-click="doNothing">
-                    <span class="welcome accBtn" data-click="doNothing">Welcome,&nbsp</span>
-                    <span class="account-name accBtn"data-click="doNothing">Juan Reyes Dela Cruz</span>
+                <div class="greeting">
+                    <span class="welcome accBtn" data-click="doNothingAcc">Welcome,&nbsp</span>
+                    <span class="account-name accBtn"data-click="doNothingAcc">Juan Reyes Dela Cruz</span>
                 </div>
-                <div class="role accBtn" data-click="doNothing">Super Admin</div>
+                <div class="role accBtn" data-click="doNothingAcc">Super Admin</div>
                 <div class="account-setting">
                     <button class="account-setting__content account-setting__link--myAcc" onclick="generateAccountSettings()">
                         <span class="material-icons-outlined ico-acc">manage_accounts</span>
@@ -76,7 +76,7 @@
         </div>
     </header>
     <div class="nav-links" data-click="doNothing">
-        <div class="nav-item-wrapper">
+        <div class="nav-item-wrapper" data-click="doNothing">
             <div class="nav-links__item nav-links__title" data-click="doNothing">
                 <h1 data-click="doNothing">
                     <span class="material-icons ico-admin"data-click="doNothing">admin_panel_settings</span>

@@ -188,15 +188,14 @@ header .header__right {
   color: rgb(80, 78, 78);
   font-weight: 700;
   width: 100%;
-  height: -moz-fit-content;
-  height: fit-content;
+  height: max(50px, 6vh);
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: flex-start;
   gap: 5px;
   font-size: 1rem;
-  padding: max(13px, 0.7vw);
+  padding: 0 4%;
 }
 .header__right .account-setting .account-setting__btn--logout, .header__right .account-setting .account-setting__btn--logout .ico-acc {
   color: rgb(239, 97, 97);
@@ -1604,7 +1603,6 @@ td:hover {
 
 .account-settings {
   width: 100%;
-  height: 85vh;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
@@ -1623,9 +1621,9 @@ td:hover {
   background-color: white;
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   border-radius: max(5px, 0.4vw);
-  margin-top: max(15px, 1vw);
+  margin: max(15px, 1vw) 0;
   padding: max(15px, 2vw);
-  gap: max(20px, 2.5vw);
+  gap: max(10px, 3vh);
   overflow: hidden;
   padding-bottom: max(70px, 5%);
   border-bottom: min(10px, 5vw) solid #0577fa;
@@ -1723,7 +1721,7 @@ td:hover {
   cursor: pointer;
 }
 
-@media only screen and (min-width: 90px) {
+@media only screen and (min-width: 900px) {
   .form {
     min-width: 450px;
   }
