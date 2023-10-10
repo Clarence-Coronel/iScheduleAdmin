@@ -1301,10 +1301,13 @@ function generateTimeSlotBuffer(deptID){
     select.innerHTML = '';
     select.innerHTML += `<option value="" selected hidden disabled>Choose Time Slot</option>`;
     select.setAttribute("disabled", "disabled");
-
     if(month != "" && day != "" && year != "" && year.length == 4){
         if(!isDateValid(`${year}-${month}-${day}`)){
             showError("Invalid date");
+            return;
+        }
+        else if(!isInFuture(`${year}-${month}-${day}`)){
+            showError("Only future dates are valid");
             return;
         }
         else{
@@ -1325,7 +1328,6 @@ function generateTimeSlotBuffer(deptID){
                 if(this.readyState == 4){
                     if(this.status == 200){
                         try {
-                            console.table(this.responseText)
                             const arrOfObj = JSON.parse(this.responseText);
 
                             if(arrOfObj.length != 0){
@@ -1388,6 +1390,7 @@ function applyApproveReq(appID){
         return;
     }
     else{
+        document.querySelector('.positive').removeAttribute('onclick');
         document.querySelector('.positive').setAttribute('data-bs-dismiss', 'modal');
         document.querySelector('.positive').click();
     }
@@ -1396,14 +1399,15 @@ function applyApproveReq(appID){
     xhr.onreadystatechange = function(){
         if(this.readyState == 4){
             if(this.status == 200){
-                if(this.responseText == 1){
+                if(this.responseText != 0){
+                    document.querySelector('#linkToDelete').value = this.responseText;
+                    document.querySelector('#deleteImg-btn').click();
                     setTimeout(()=>{
                         showResModal("Request has been approved");
                         insertReq();
                     }, 500);
-                    alert("ilapag yung code ni brix dito sa line 1420 para madelete img sa firebase")
                 }
-                else{
+                else if (this.responseText == 0){
                     setTimeout(()=>{
                         showResModal("Selected slot is now full", false, "Failed");
                     }, 500);
@@ -2162,6 +2166,7 @@ function getFeedback(sortBy = 1){
                             table.innerHTML += rowTemplate;
                             
                         });
+                        showTableCell();
                         setupTablePagination('feedback-table', 'prevButton', 'nextButton', 10);
                     } catch (error) {
                         table.innerHTML = `
@@ -2186,7 +2191,6 @@ function getFeedback(sortBy = 1){
     xhr.open("POST", "./php/getFeedback.php", false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(`sortBy=`+sortBy);
-    showTableCell();
 }
 
 function confirmModal(title, content, posBtnFunction){
@@ -2317,7 +2321,6 @@ function checkBlockDate(){
             if(this.status == 200){
                 if(this.responseText == 1){
                     insertBlockDate();
-                    showTableCell();
                     showResModal("Date has been blocked");
                     document.querySelector("#block-month").value = "";
                     document.querySelector("#block-day").value = "";
@@ -2414,6 +2417,8 @@ function insertBlockDate(){
 
                         table.innerHTML += template;
                     })
+                    showTableCell();
+                    setupTablePagination('date-table', 'prevButton', 'nextButton', 10);
                 } catch (error) {
                     table.innerHTML = `
                     <tr>
@@ -2421,7 +2426,6 @@ function insertBlockDate(){
                     </tr>
                     `
                 }
-                setupTablePagination('date-table', 'prevButton', 'nextButton', 10);
             }
         }
         else{
@@ -2651,8 +2655,8 @@ function insertAdmin(isInitial = true){
 
                         table.innerHTML += template;
                     })
-
                     showTableCell();
+                    setupTablePagination('admin-table', 'prevButton', 'nextButton', 10);
                 } catch (error) {
                     if(isInitial){
                         table.innerHTML = 
@@ -2671,7 +2675,7 @@ function insertAdmin(isInitial = true){
                         `;
                     }
                 }
-                setupTablePagination('admin-table', 'prevButton', 'nextButton', 10);
+                
             }
         }
         else{
@@ -2791,6 +2795,7 @@ function insertAdminLogs(isInitial = true){
                         table.innerHTML += template;
                     })
                     showTableCell();
+                    setupTablePagination('logs-table', 'prevButton', 'nextButton', 10);                
                 } catch (error) {
                     if(isInitial){
                         table.innerHTML = 
@@ -2809,7 +2814,6 @@ function insertAdminLogs(isInitial = true){
                         `;
                     }
                 }
-                setupTablePagination('logs-table', 'prevButton', 'nextButton', 10);                
             }
         }
         else{
@@ -2909,6 +2913,7 @@ function applyLogFilter(){
                     })
 
                     showTableCell();
+                    setupTablePagination('logs-table', 'prevButton', 'nextButton', 10);     
                 } catch (error) {
                     table.innerHTML = 
                     `
@@ -2917,7 +2922,6 @@ function applyLogFilter(){
                     </tr>
                     `;
                 }
-                setupTablePagination('logs-table', 'prevButton', 'nextButton', 10);     
             }
         }
         else{
@@ -3869,6 +3873,20 @@ function exportTableToExcel(table, fileName, excludeColumns = []) {
     });
 }
 
+function isInFuture(date){
+    let present = new Date();
+    let input = new Date(date);
+
+    if(present < input){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+isInFuture("2001-10-10")
+
 function setupTablePagination(tableId, prevButtonId, nextButtonId, rowsPerPage) {
     const table = document.getElementById(tableId);
     let prevButton = document.getElementById(prevButtonId);
@@ -3968,7 +3986,6 @@ function insertReq(){
                         const dept = ['ENT', 'Hematology', 'Internal Medicine', 'Internal Medicine Clearance', 'Nephrology', 'Neurology', 'OB GYNE New', 'OB GYNE Old', 'OB GYNE ROS', 'Oncology', 'Pediatric Cardiology', 'Pediatric Clearance', 'Pediatric General', 'Psychiatry New', 'Psychiatry Old', 'Surgery', 'Surgery ROS'];
     
                         let deptName = dept[item.deptID-1];
-    
                         let template = 
                         `
                         <tr class="table-row">
@@ -3987,6 +4004,8 @@ function insertReq(){
                         
                         table.innerHTML += template;
                     });
+                    showTableCell();
+                    setupTablePagination('request-table', 'prevButton', 'nextButton', 10);
                 } catch (error) {
                     table.innerHTML = 
                     `
@@ -3995,9 +4014,6 @@ function insertReq(){
                     </tr>
                     `;
                 }
-                
-                showTableCell();
-                setupTablePagination('request-table', 'prevButton', 'nextButton', 10);
             }
         }
         else{
