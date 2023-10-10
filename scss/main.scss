@@ -1976,7 +1976,7 @@ td:hover{
             position: relative;
             display: block;
             width: calc(133% + 1.3px);
-            height: 70px !important;
+            height: 80px !important;
         }
         
         .custom-shape-divider-top-1689432371 .shape-fill {
@@ -2127,6 +2127,27 @@ td:hover{
     justify-content: center;
     align-items: flex-start;
 
+    .ico-acc{
+        font-size: 3rem;
+        border-radius: 100px;
+        padding: max(15px, 1.2vw);
+        user-select: none;
+        transition-duration: 500ms;
+        z-index: 1;
+        background-color: $btn-color;
+        color: white;
+        border: 5px solid white;
+        width: fit-content;
+        margin: 0 auto;
+    }
+    .changeInfo__content:hover .ico-acc{
+        background-color: white;
+        color: $btn-color;
+        border: 5px solid $btn-color;
+        transform: rotate(360deg);
+        cursor: pointer;
+    }
+
     .changeInfo__content{
         max-width: 600px;
         width: 40%;
@@ -2144,8 +2165,7 @@ td:hover{
         position: relative;
         // justify-content: center;
         // align-items: center;
-        gap: max(17px, 1.7vw);
-        padding-top: 8%;
+        gap: max(10px, 3vh);
         border-bottom: min(10px,5vw) solid $btn-color;
     }
 
@@ -4213,3 +4233,4 @@ table{
 #timeSelect{
     text-align: center;
 }
+

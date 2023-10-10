@@ -12,10 +12,6 @@ let accountSettings = `
             </svg>
         </div>
         <span class="material-icons-outlined ico-acc">manage_accounts</span>
-        <!-- <div class="account-settings__input-container">
-            <label for="">Account ID</label>
-            <span type="text" id="accountID" class="account-field">1</span>
-        </div> -->
         <div class="account-settings__input-container">
             <label for="">Username</label>
             <span type="text" id="accountUsername" class="account-field">juan-delacruz1</span>
@@ -51,6 +47,7 @@ let editPhone = `
                 <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
             </svg>
         </div>
+        <span class="material-icons-outlined ico-acc">phone</span>
         <div class="changeInfo__input-container">
             <input type="text" id="newPhone" oninput="filterPhoneInput(this.id)" required onfocus="changeBorderFocus(this.id)" onblur="changeBorderBlur(this.id)">
             <label for="newPhone">New Phone #</label>
@@ -80,6 +77,7 @@ let editPassword = `
                 <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
             </svg>
         </div>
+        <span class="material-icons-outlined ico-acc">lock</span>
         <div class="changeInfo__input-container">
             <input type="password" id="currentPassword" onpaste="return false;" ondrop="return false;" required oninput="inputLimiter(this.id, 64)" onfocus="changeBorderFocus(this.id)" onblur="changeBorderBlur(this.id); inputLimiterBlur(this.id, 64)">
             <label for="currentPassword">Current Password</label>
