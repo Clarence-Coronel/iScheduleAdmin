@@ -73,9 +73,8 @@ body {
   display: flex;
   flex-flow: column;
   overflow-x: hidden;
-  overflow-y: hidden;
+  overflow-y: auto;
   background-color: rgb(242, 241, 249);
-  position: relative;
 }
 
 main {
@@ -83,6 +82,7 @@ main {
   width: 100%;
   height: 100%;
   overflow-y: auto;
+  position: relative;
 }
 
 .wrapper {
@@ -258,6 +258,14 @@ header .header__right {
   z-index: 998;
 }
 
+.btns-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  gap: 0.4vh;
+}
+
 .nav-links {
   background-color: white;
   width: 50vw;
@@ -275,7 +283,7 @@ header .header__right {
 .nav-links .nav-item-wrapper {
   width: 100%;
   height: 100%;
-  min-height: 98vh;
+  overflow-y: visible;
   display: flex;
   flex-flow: column;
   justify-content: space-evenly;
@@ -283,7 +291,7 @@ header .header__right {
 }
 .nav-links .ico-nav, .nav-links .ico-nav--sub {
   color: rgb(189, 187, 187);
-  font-size: 1.5rem;
+  font-size: 1.1rem;
 }
 .nav-links h1 {
   width: 100%;
@@ -307,7 +315,7 @@ header .header__right {
 }
 
 .nav-links__item {
-  height: max(35px, 15%);
+  height: 6vh;
   border: unset;
   display: flex;
   font-size: 0.7rem;
@@ -317,12 +325,13 @@ header .header__right {
   font-weight: 700;
   gap: max(5px, 0.5vw);
   text-align: left;
-  width: 90%;
+  width: 100%;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
   background-color: transparent;
-  max-height: 70px;
+  border-radius: max(5px, 0.4vw);
+  padding: 0 2%;
 }
 
 .nav-links__item:nth-child(1) {
@@ -330,72 +339,63 @@ header .header__right {
 }
 
 .manage-admins {
-  height: max(35px, 15%);
+  padding: 0 2%;
+  height: 6vh;
+  min-height: 30px;
+  width: 100%;
   display: flex;
   flex-flow: column;
   justify-content: center;
+  border-radius: max(5px, 0.4vw);
   align-items: flex-start;
   position: relative;
-}
-@keyframes appear {
-  0% {
-    transform: translate(-200px, 0px);
-  }
-  25% {
-    transform: translate(-150px, 0px);
-  }
-  50% {
-    transform: translate(-100px, 0px);
-  }
-  75% {
-    transform: translate(-50px, 0px);
-  }
-  100% {
-    transform: translate(0, 0px);
-  }
 }
 .manage-admins .manage-admins__sub-container {
   position: absolute;
   background-color: white;
   top: 0;
-  left: 112%;
+  left: 105%;
   transition-duration: 1s;
-  width: 100%;
+  width: 90%;
   padding: 0 max(10px, 0.5vw);
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   animation-name: appear;
   border-radius: max(5px, 0.4vw);
-  animation-duration: 200ms;
-  animation-iteration-count: 1;
-  animation-timing-function: ease-in-out;
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
-  padding: 0 3%;
+  padding: 2%;
+  z-index: 99;
 }
 .manage-admins .manage-admins__sub {
-  margin: 15px;
+  height: 5vh;
+  min-height: 30px;
+  margin: 2% 0;
   width: 100%;
   font-size: 0.7rem;
 }
-.manage-admins .manage-admins__sub:hover, .manage-admins .manage-admins__sub:hover .ico-nav--sub {
-  color: #0577fa;
+.manage-admins .btn-content:hover .ico-nav--sub {
+  color: #0577fa !important;
 }
-
-.manage-admins__sub:hover .ico-nav--sub {
+.manage-admins .btn-content:hover {
   cursor: pointer !important;
-  color: white;
+  color: #0577fa !important;
+  background-color: #ecf3fb !important;
 }
 
-.manage-admins:hover .ico-nav, .manage-admins:hover #btn--manage-admins {
+.manage-admins:hover .ico-nav, .manage-admins:hover {
   cursor: pointer !important;
-  color: #0577fa;
+  color: #0577fa !important;
+  background-color: #ecf3fb !important;
 }
 
-.btn-content {
-  min-height: max(35px, 15%);
-  height: -moz-fit-content;
-  height: fit-content;
+.manage-admins:hover .master-btn-content {
+  color: #0577fa !important;
+}
+
+.master-btn-content, .btn-content {
+  border-radius: max(5px, 0.4vw);
+  height: 100%;
   display: flex;
   border: unset;
   justify-content: flex-start;
@@ -412,9 +412,14 @@ header .header__right {
   font-size: 0.7rem;
 }
 
+.btn-content {
+  padding: 0 2%;
+}
+
 button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
-  color: #0577fa;
+  color: #0577fa !important;
   cursor: pointer;
+  background-color: #ecf3fb !important;
 }
 
 .nav-links__title {
@@ -422,7 +427,6 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
   padding-top: max(10px, 1vw);
   height: -moz-fit-content;
   height: fit-content;
-  margin-bottom: max(10px, 1vw);
   border-bottom: unset;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -436,7 +440,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
   flex-flow: row nowrap;
   justify-content: center;
   border-bottom: 2px solid rgb(224, 225, 225);
-  padding-bottom: 5vh;
+  padding-bottom: 2vh;
 }
 .nav-links__title .ico-admin {
   color: inherit;
@@ -543,30 +547,27 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
 .add-admin {
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 .form-container {
   width: 100%;
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  overflow: auto;
 }
 
 .form {
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   background-color: white;
-  width: max(300px, 30%);
+  width: max(290px, 30%);
   height: -moz-fit-content;
   height: fit-content;
-  border-radius: max(7px, 1vw);
+  border-radius: max(5px, 0.4vw);
   margin: max(15px, 1vw) 0;
   padding: max(15px, 2vw);
   overflow: hidden;
   border-bottom: min(10px, 5vw) solid #0577fa;
-  min-width: 310px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
   gap: max(10px, 3vh);
@@ -594,6 +595,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+  margin: unset;
 }
 .form .ico-nav {
   font-size: 3rem;
@@ -645,7 +647,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
 }
 .input-container {
   border: 1px solid rgb(80, 78, 78);
-  height: min(50px, 10vw);
+  height: min(50px, 5vh);
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;
@@ -699,7 +701,8 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
   border: unset;
   border-radius: max(10px, 0.5vw);
   width: 100%;
-  height: max(40px, 6vh);
+  height: max(50px, 6vh);
+  font-size: 0.8rem;
 }
 
 .btn--addAdmin:hover {
@@ -739,7 +742,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
     cursor: pointer;
   }
   .btn--addAdmin {
-    width: 60%;
+    width: 50%;
   }
 }
 input:-webkit-autofill,
@@ -844,7 +847,7 @@ input:-webkit-autofill:focus {
   padding: max(5px, 0.4vw);
   min-width: 70px;
   width: 100%;
-  height: max(40px, 6vh);
+  height: max(50px, 6vh);
 }
 .admin-logs__body button:hover {
   background-color: #1e85fb;
@@ -1098,7 +1101,7 @@ td:hover {
   background-color: #0577fa;
   width: 100%;
   border-radius: max(7px, 0.5vw);
-  height: max(40px, 6vh);
+  height: max(50px, 6vh);
 }
 .block-date .btn-submitblock:hover {
   background-color: #1e85fb;
@@ -1223,7 +1226,7 @@ td:hover {
 .change-status button {
   background-color: #0577fa;
   color: white;
-  height: max(40px, 6vh);
+  height: max(50px, 6vh);
   border-radius: max(5px, 0.5vw);
   border: unset;
   width: 100%;
@@ -1340,7 +1343,7 @@ td:hover {
   color: white;
   border: unset;
   border-radius: max(5px, 0.5vw);
-  height: max(40px, 6vh);
+  height: max(50px, 6vh);
   width: 100%;
   max-width: 600px;
 }
@@ -1614,13 +1617,13 @@ td:hover {
   display: flex;
   flex-flow: column;
   align-items: center;
-  width: max(300px, 30%);
+  width: max(290px, 30%);
   min-width: 310px;
   height: -moz-fit-content;
   height: fit-content;
   background-color: white;
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
-  border-radius: max(10px, 1.2vw);
+  border-radius: max(5px, 0.4vw);
   margin-top: max(15px, 1vw);
   padding: max(15px, 2vw);
   gap: max(20px, 2.5vw);
@@ -1721,12 +1724,12 @@ td:hover {
   cursor: pointer;
 }
 
-@media only screen and (min-width: 450px) {
+@media only screen and (min-width: 90px) {
   .form {
-    width: 90%;
+    min-width: 450px;
   }
   .account-settings .account-settings__content {
-    width: 90%;
+    min-width: 450px;
   }
 }
 @media only screen and (min-width: 600px) {
@@ -1797,7 +1800,7 @@ td:hover {
   border-radius: max(10px, 0.5vw);
   font-size: 1rem;
   width: 100%;
-  height: max(40px, 6vh);
+  height: max(50px, 6vh);
 }
 .changeInfo .changeInfo__back {
   background-color: rgb(210, 208, 208);
@@ -1983,7 +1986,7 @@ td:hover {
 }
 .schedule__button-container .schedule__btn {
   width: 100%;
-  height: max(40px, 6vh);
+  height: max(50px, 6vh);
   border-radius: max(5px, 0.5vw);
   border: unset;
   color: white;
@@ -2476,7 +2479,7 @@ table {
   color: white;
   border: unset;
   border-radius: max(5px, 0.5vw);
-  height: max(40px, 6vh);
+  height: max(50px, 6vh);
   padding: 0.5%;
 }
 .quick-view-container .view-schedule__btn-group button:hover {
@@ -2508,7 +2511,7 @@ table {
   background-color: #0577fa;
   color: white;
   border: unset;
-  height: max(40px, 6vh);
+  height: max(50px, 6vh);
   border-radius: max(4px, 0.5vw);
   width: 100%;
   margin-bottom: max(15px, 1vw);

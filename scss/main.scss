@@ -14,9 +14,8 @@ body{
     display: flex;
     flex-flow: column;
     overflow-x: hidden;
-    overflow-y: hidden;
+    overflow-y: auto;
     background-color: $background-color;
-    position: relative;
 }
 
 // body {
@@ -34,6 +33,7 @@ main{
     height: 100%;
     // background-color: red;
     overflow-y: auto;
+    position: relative;
     // overflow: hidden;
     // min-height: 90vh;
 }
@@ -230,6 +230,14 @@ header{
     z-index: 998;
 }
 
+.btns-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    gap: 0.4vh;
+}
+
 .nav-links{
     background-color: white;
     width: 50vw;
@@ -243,6 +251,7 @@ header{
     z-index: 999;
     padding: max(5px, 0.5vw);
     box-shadow: $box-shadow;
+
     // min-height: 900px;
     
     .nav-item-wrapper{
@@ -250,18 +259,19 @@ header{
         // gap: max(10px, 1vw);
         // max-height: 1200px;
         height: 100%;
-        min-height: 98vh;
-        // overflow-y: auto;
+        // min-height: 98vh;
+
+        overflow-y:visible;
         display: flex;
         flex-flow: column;
         justify-content: space-evenly;
         align-items: center;
-        // gap: 2vh;
     }
 
     .ico-nav, .ico-nav--sub{
         color: rgb(189, 187, 187);
-        font-size: 1.5rem;
+        font-size: 1.1rem;
+        // transition-duration: 100ms;
     }
 
     h1{
@@ -288,7 +298,8 @@ header{
 }
 
 .nav-links__item{
-    height: max(35px, 15%);
+    height: 6vh;
+    // min-height: 30px;
     border: unset;
     display: flex;
     font-size: 0.7rem;
@@ -299,10 +310,12 @@ header{
     // border-bottom: 1px solid rgba(255, 255, 255, 0.27);
     gap: max(5px, 0.5vw);
     text-align: left;
-    width: 90%;
+    width: 100%;
     user-select: none;
     background-color: transparent;
-    max-height: 70px;
+    border-radius: $box-border-radius;
+    // transition-duration: 100ms;
+    padding: 0 2%;
 }
 
 .nav-links__item:nth-child(1){
@@ -311,73 +324,82 @@ header{
 }
 
 .manage-admins{
-    height: max(35px, 15%);
+    padding: 0 2%;
+    height: 6vh;
+    min-height: 30px;
+    width: 100%;
     display: flex;
     flex-flow: column;
     // gap: max(5px, 5vw);
     justify-content: center;
+    border-radius: $box-border-radius;
     align-items: flex-start;
     // border-bottom: 1px solid rgba(255, 255, 255, 0.27);
     position: relative;
-
-    @keyframes appear {
-        0% { transform: translate(-200px,  0px); }
-        25%  { transform: translate(-150px, 0px); }
-        50%  { transform: translate(-100px, 0px); }
-        75%  { transform: translate(-50px, 0px); }
-        100%   { transform: translate(0, 0px); }   
-    }
 
     .manage-admins__sub-container{
         position: absolute;
         background-color: white;
         top: 0;
-        left: 112%;
+        left: 105%;
         transition-duration: 1s;
-        width: 100%;
+        width: 90%;
         padding: 0 max(10px, 0.5vw);
         box-shadow: $box-shadow;
         animation-name: appear;
         border-radius: $box-border-radius;
-        animation-duration: 200ms;
-        animation-iteration-count: 1;
-        animation-timing-function: ease-in-out;
         display: flex;
         flex-flow: column;
         justify-content: flex-start;
-        padding: 0 3%;
+        padding: 2%;
+        z-index: 99;
 
     }
 
     .manage-admins__sub{
-        margin:15px;
+        height: 5vh;
+        min-height: 30px;
+        margin:2% 0;
         width: 100%;
         font-size: 0.7rem;
+        // transition-duration: 100ms;
         // border-bottom: 1px solid rgba(255, 255, 255, 0.27);
     }
 
-    .manage-admins__sub:hover, .manage-admins__sub:hover .ico-nav--sub{
-        color: $btn-color;
+    .btn-content:hover .ico-nav--sub{
+        color: $btn-color !important;
+    }
+    .btn-content:hover{
+        cursor: pointer !important;
+        color: $btn-color !important;
+        background-color: #ecf3fb !important;
     }
 }
 
-.manage-admins__sub:hover .ico-nav--sub{
+
+// .manage-admins__sub:hover .ico-nav--sub{
+//     cursor: pointer !important;
+//     color: white;
+// }
+
+.manage-admins:hover .ico-nav, .manage-admins:hover{
     cursor: pointer !important;
-    color: white;
+    color: $btn-color !important;
+    background-color: #ecf3fb !important;
 }
 
-.manage-admins:hover .ico-nav, .manage-admins:hover #btn--manage-admins{
-    cursor: pointer !important;
-    color: $btn-color;
+.manage-admins:hover .master-btn-content{
+    color: $btn-color !important;
 }
 
 // .manage-admins:hover > button.btn-content, .manage-admins:hover > .ico-nav{
 //     color: white;
 // }
 
-.btn-content{
-    min-height: max(35px, 15%);
-    height: fit-content;
+.master-btn-content, .btn-content{
+    border-radius: $box-border-radius;
+    // padding: 0 2%;
+    height: 100%;
     display: flex;
     border: unset;
     justify-content: flex-start;
@@ -393,16 +415,20 @@ header{
     // border-bottom: 1px solid rgba(255, 255, 255, 0.27);
 }
 
+.btn-content{
+    padding: 0 2%;
+}
 button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
-    color: $btn-color;
+    color: $btn-color !important;
     cursor: pointer;
+    background-color: #ecf3fb !important;
 }
 
 .nav-links__title{
     width: 100%;
     padding-top: max(10px ,1vw);
     height: fit-content;
-    margin-bottom: max(10px, 1vw);
+    // margin-bottom: max(10px, 1vw);
     border-bottom: unset;
     user-select: none;
     display: flex;
@@ -415,7 +441,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
         flex-flow: row nowrap;
         justify-content: center;
         border-bottom: 2px solid rgb(224, 225, 225);
-        padding-bottom: 5vh;
+        padding-bottom: 2vh;
     }
 
     .ico-admin{
@@ -559,30 +585,27 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
 .add-admin{
     width: 100%;
     height: 100%;
-    overflow:hidden;
+    overflow-y:auto;
 }
 
 .form-container{
     width: 100%;
-    height: 100%;
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    overflow: auto;
 }
 
 .form{
     box-shadow: $box-shadow;
     background-color: white;
-    width: max(300px, 30%);
+    width: max(290px, 30%);
     height: fit-content;
     // min-height: 350px;
-    border-radius: max(7px, 1vw);
+    border-radius: $box-border-radius;
     margin: $box-margin-top 0;
     padding: $box-padding;
     overflow: hidden;
     border-bottom: min(10px,5vw) solid $btn-color;
-    min-width: 310px;
     // display: flex;
     // flex-flow: column;
     // justify-content: flex-start;
@@ -594,7 +617,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
     gap: max(10px, 3vh);
     justify-items: center;
     position: relative;
-    transition-duration: 500ms;    
+    transition-duration: 500ms;
 
     input{
         outline: none;
@@ -617,6 +640,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
         color: $btn-color;
         font-weight: 700;
         user-select: none;
+        margin: unset;
     }
 
     .ico-nav{    
@@ -683,7 +707,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
 
 .input-container{
     border: 1px solid $fontbase-color;
-    height: min(50px, 10vw);
+    height: min(50px, 5vh);
     display: flex;
     flex-flow: row nowrap;
     justify-content: flex-start;
@@ -745,6 +769,8 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
     border-radius: max(10px, 0.5vw);
     width: 100%;
     height: $btn-height;
+    font-size: 0.8rem;
+    // min-height: 40px;
 }
 
 .btn--addAdmin:hover{
@@ -793,7 +819,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
     }
 
     .btn--addAdmin{
-        width: 60%;
+        width: 50%;
     }
 }
 
@@ -1916,14 +1942,14 @@ td:hover{
         display: flex;
         flex-flow: column;
         align-items: center;
-        width: max(300px, 30%);
+        width: max(290px, 30%);
         // max-width: 400px;
         min-width: 310px;
         height: fit-content;
         // min-height: 700px;
         background-color: white;
         box-shadow: $box-shadow;
-        border-radius: max(10px, 1.2vw);
+        border-radius:$box-border-radius;
         margin-top: $box-margin-top;
         padding: $box-padding;
         gap: max(20px, 2.5vw);
@@ -2030,14 +2056,14 @@ td:hover{
 }
 
 
-@media only screen and (min-width: 450px ){
+@media only screen and (min-width: 90px ){
     .form{
-        width: 90%;
+        min-width:450px;
     }
 
     .account-settings{
         .account-settings__content{
-            width: 90%;
+            min-width:450px;
         }
     }
 }

@@ -269,9 +269,9 @@ function showManageAdmins(){
 
     manageAdmin.style.display = newDisplay;
 
-    // if(!contentIsOpen) manageAdmin.style.display = newDisplay;
+    if(!contentIsOpen) manageAdmin.style.display = newDisplay;
 
-    // contentIsOpen = false;
+    contentIsOpen = false;
 }
 
 function changeArrow(){
@@ -1913,7 +1913,7 @@ function applyNewPass(){
 }
 
 function changeAccess(){
-    const nav = document.querySelector('.nav-item-wrapper');
+    const nav = document.querySelector('.btns-container');
 
     const navBtns = [
         `
@@ -1948,7 +1948,7 @@ function changeAccess(){
         `,
         `
         <div class="nav-links__item manage-admins" data-click="doNothing" onclick="showManageAdmins();">
-            <button class="btn-content" id="btn--manage-admins" data-click="doNothing">
+            <button class="master-btn-content" id="btn--manage-admins" data-click="doNothing">
                 <span class="material-icons-outlined ico-nav" data-click="doNothing">groups</span>
                 Manage Admins
                 <span class="material-icons-outlined ico-nav change" data-click="doNothing">chevron_right</span>
@@ -1966,10 +1966,6 @@ function changeAccess(){
                     <span class="material-icons-outlined ico-nav--sub">person_add_alt</span>
                     Create New Admin
                 </button>
-                <!-- <button class="btn-content manage-admins__sub" onclick="generateDisableAcc()">
-                    <span class="material-icons-outlined ico-nav--sub">person_remove_alt_1</span>
-                    Remove Admin
-                </button> -->
             </div>
         </div>
         `,

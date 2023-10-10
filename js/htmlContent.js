@@ -1128,6 +1128,7 @@ function generateDashboard(){
     if(checkPrivilege('super admin')){
         main.innerHTML = dashboard;
         determineDeviceDB();
+        highlightActive(1);
     }
 }
 
@@ -1139,6 +1140,7 @@ function generateSchedule(){
         generateMunicipalities();
         monthContainer = document.querySelector('.calendar__month');
         formState = 0;
+        highlightActive(2);
     }   
 }
 
@@ -1155,6 +1157,7 @@ function generateViewSchedule(){
         });
 
         setupTablePagination('schedule-table', 'prevButton', 'nextButton', 10);
+        highlightActive(3);
     }
 }
 
@@ -1162,12 +1165,14 @@ function generateRequest(){
     if(checkPrivilege('admin ii') || checkPrivilege('super admin')){
         main.innerHTML = request;
         insertReq();
+        highlightActive(4);
     }
 }
 
 function generateScheduling(){
     if(checkPrivilege('super admin')){
         main.innerHTML = scheduling;
+        highlightActive(5);
     }
 }
 
@@ -1181,6 +1186,7 @@ function generateAdminLogs(){
             let table = document.querySelector(`.${tableClass}`);
             exportTableToExcel(table, "iSchedule_AdminLogs", []);
         });
+        highlightActiveManage(0);
     }
 }
 
@@ -1194,6 +1200,7 @@ function generateAdminList(){
             let table = document.querySelector(`.${tableClass}`);
             exportTableToExcel(table, "iSchedule_AdminList", [4]);
         });
+        highlightActiveManage(1);
     }
 }
 
@@ -1205,24 +1212,7 @@ function generateCreateAcc(){
         // contentIsOpen = true;
         createAccInputBorderStyle();
     
-        // iconPassword.forEach((item)=>{
-        //     item.addEventListener('click', ()=>{
-        //         if(item.innerHTML == 'visibility_off'){
-        //             iconPassword.forEach((item2)=>{
-        //                 item2.innerHTML = 'visibility'
-        //             })
-        //             document.querySelector('#password').setAttribute('type', 'text');
-        //             document.querySelector('#confirmPassword').setAttribute('type', 'text');
-        //         }
-        //         else{
-        //             iconPassword.forEach((item)=>{
-        //                 item.innerHTML = 'visibility_off'
-        //             })
-        //             document.querySelector('#password').setAttribute('type', 'password');
-        //             document.querySelector('#confirmPassword').setAttribute('type', 'password');
-        //         }
-        //     })
-        // });
+        highlightActiveManage(2);
     }
 }
 
@@ -1230,6 +1220,7 @@ function generateWebsiteStatus(){
     if(checkPrivilege('super admin')){
         main.innerHTML = websiteStatus;
         insertWebsiteStatus();
+        highlightActive(7);
     }
 }
 
@@ -1237,6 +1228,7 @@ function generatePostAnnouncement(){
     if(checkPrivilege('admin ii') || checkPrivilege('super admin')){
         main.innerHTML = postAnnouncement;
         insertAnnouncement();
+        highlightActive(8);
     }
 }
 
@@ -1251,6 +1243,7 @@ function generateSeePostedAnn(){
 function generateManageData(){
     if(checkPrivilege('super admin')){
         main.innerHTML = manageData;
+        highlightActive(9);
     }
 }
 
@@ -1259,6 +1252,7 @@ function generateBlockDates(){
         main.innerHTML = blockDates;
         insertBlockDate();
         showTableCell();
+        highlightActive(10);
     }
 }
 
@@ -1271,11 +1265,70 @@ function generateFeedback(){
             let table = document.querySelector(`.${tableClass}`);
             exportTableToExcel(table, "iSchedule_Feedback", []);
         });
+        highlightActive(11);
     }
 }
 
 function generateEditTutorial(){
     if(checkPrivilege('super admin')){
         main.innerHTML = editTutorial;
+        highlightActive(12);
     }
+}
+
+function highlightActive(index){
+    let navLinks = document.querySelectorAll('.nav-links__item');
+
+    navLinks.forEach(item=>{
+        item.style.backgroundColor = 'unset';
+        item.style.color = 'rgb(80, 78, 78)';
+        try {
+            item.querySelector('.ico-nav').style.color = 'rgb(189, 187, 187)';
+            item.querySelector('.change').style.color = 'rgb(80, 78, 78)';
+            item.querySelector('.master-btn-content').style.color = 'rgb(80, 78, 78)';
+
+            let btns = document.querySelectorAll('.btn-content');
+            btns.forEach(item=>{
+                item.style.backgroundColor = 'unset';
+                item.style.color = 'rgb(80, 78, 78)';
+                item.querySelector('.ico-nav--sub').style.color = 'rgb(189, 187, 187)';
+            })
+        } catch (error) {
+            
+        }  
+    })
+    navLinks[index].style.backgroundColor = '#ecf3fb';
+    navLinks[index].style.color = '#0577fa';
+    navLinks[index].querySelector('.ico-nav').style.color = '#0577fa';
+
+}
+
+function highlightActiveManage(index){
+    let navLinks = document.querySelectorAll('.nav-links__item');
+
+        navLinks.forEach(item=>{
+            item.style.backgroundColor = 'unset';
+            item.style.color = 'rgb(80, 78, 78)';
+            try {
+                item.querySelector('.ico-nav').style.color = 'rgb(189, 187, 187)';
+            } catch (error) {
+                
+            }  
+        })
+    
+    let btns = document.querySelectorAll('.btn-content');
+    btns.forEach(item=>{
+        item.style.backgroundColor = 'unset';
+        item.style.color = 'rgb(80, 78, 78)';
+        item.querySelector('.ico-nav--sub').style.color = 'rgb(189, 187, 187)';
+    })
+
+    navLinks[6].style.backgroundColor = '#ecf3fb';
+    navLinks[6].querySelector('.change').style.color = '#0577fa';
+    navLinks[6].querySelector('.master-btn-content').style.color = '#0577fa';
+    navLinks[6].querySelector('.ico-nav').style.color = '#0577fa';
+
+    btns[index].style.backgroundColor = '#ecf3fb';
+    btns[index].style.color = '#0577fa';
+    btns[index].querySelector('.ico-nav--sub').style.color = '#0577fa';
 }
