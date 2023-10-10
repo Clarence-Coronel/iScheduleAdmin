@@ -610,7 +610,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
   border: 5px solid white;
 }
 
-.custom-shape-divider-top-1689432371 {
+.topcloud {
   position: absolute;
   top: 0;
   left: 0;
@@ -619,27 +619,27 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
   line-height: 0;
 }
 
-.custom-shape-divider-top-1689432371 svg {
+.topcloud svg {
   position: relative;
   display: block;
   width: calc(133% + 1.3px);
   height: 100px !important;
 }
 
-.custom-shape-divider-top-1689432371 .shape-fill {
+.topcloud .shape-fill {
   fill: #0577fa;
 }
 
 /** For tablet devices **/
 @media (min-width: 768px) and (max-width: 1023px) {
-  .custom-shape-divider-top-1689432371 svg {
+  .topcloud svg {
     width: calc(140% + 1.3px);
     height: 201px;
   }
 }
 /** For mobile devices **/
 @media (max-width: 767px) {
-  .custom-shape-divider-top-1689432371 svg {
+  .topcloud svg {
     width: calc(142% + 1.3px);
     height: 85px;
   }
@@ -1636,7 +1636,7 @@ td:hover {
   /** For tablet devices **/
   /** For mobile devices **/
 }
-.account-settings .account-settings__content .custom-shape-divider-top-1689432371 {
+.account-settings .account-settings__content .topcloud {
   position: absolute;
   top: 0;
   left: 0;
@@ -1644,23 +1644,23 @@ td:hover {
   overflow: hidden;
   line-height: 0;
 }
-.account-settings .account-settings__content .custom-shape-divider-top-1689432371 svg {
+.account-settings .account-settings__content .topcloud svg {
   position: relative;
   display: block;
   width: calc(133% + 1.3px);
   height: 80px !important;
 }
-.account-settings .account-settings__content .custom-shape-divider-top-1689432371 .shape-fill {
+.account-settings .account-settings__content .topcloud .shape-fill {
   fill: #0577fa;
 }
 @media (min-width: 768px) and (max-width: 1023px) {
-  .account-settings .account-settings__content .custom-shape-divider-top-1689432371 svg {
+  .account-settings .account-settings__content .topcloud svg {
     width: calc(140% + 1.3px);
     height: 201px;
   }
 }
 @media (max-width: 767px) {
-  .account-settings .account-settings__content .custom-shape-divider-top-1689432371 svg {
+  .account-settings .account-settings__content .topcloud svg {
     width: calc(142% + 1.3px);
     height: 85px;
   }

@@ -660,7 +660,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
 
 }
 
-.custom-shape-divider-top-1689432371 {
+.topcloud {
     position: absolute;
     top: 0;
     left: 0;
@@ -669,20 +669,20 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
     line-height: 0;
 }
 
-.custom-shape-divider-top-1689432371 svg {
+.topcloud svg {
     position: relative;
     display: block;
     width: calc(133% + 1.3px);
     height: 100px !important;
 }
 
-.custom-shape-divider-top-1689432371 .shape-fill {
+.topcloud .shape-fill {
     fill: $btn-color;
 }
 
 /** For tablet devices **/
 @media (min-width: 768px) and (max-width: 1023px) {
-    .custom-shape-divider-top-1689432371 svg {
+    .topcloud svg {
         width: calc(140% + 1.3px);
         height: 201px;
     }
@@ -690,7 +690,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
 
 /** For mobile devices **/
 @media (max-width: 767px) {
-    .custom-shape-divider-top-1689432371 svg {
+    .topcloud svg {
         width: calc(142% + 1.3px);
         height: 85px;
     }
@@ -1963,7 +1963,7 @@ td:hover{
         padding-bottom: max(70px, 5%);
         border-bottom: min(10px,5vw) solid $btn-color;
 
-        .custom-shape-divider-top-1689432371 {
+        .topcloud {
             position: absolute;
             top: 0;
             left: 0;
@@ -1972,20 +1972,20 @@ td:hover{
             line-height: 0;
         }
         
-        .custom-shape-divider-top-1689432371 svg {
+        .topcloud svg {
             position: relative;
             display: block;
             width: calc(133% + 1.3px);
             height: 80px !important;
         }
         
-        .custom-shape-divider-top-1689432371 .shape-fill {
+        .topcloud .shape-fill {
             fill: $btn-color;
         }
         
         /** For tablet devices **/
         @media (min-width: 768px) and (max-width: 1023px) {
-            .custom-shape-divider-top-1689432371 svg {
+            .topcloud svg {
                 width: calc(140% + 1.3px);
                 height: 201px;
             }
@@ -1993,7 +1993,7 @@ td:hover{
         
         /** For mobile devices **/
         @media (max-width: 767px) {
-            .custom-shape-divider-top-1689432371 svg {
+            .topcloud svg {
                 width: calc(142% + 1.3px);
                 height: 85px;
             }
