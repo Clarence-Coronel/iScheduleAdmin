@@ -97,25 +97,6 @@ function initial(){
         });
     });
     
-    window.addEventListener('click', (e)=>{
-        // console.log(e.target.getAttribute('data-click'));
-
-        if(e.target.getAttribute('data-click') != 'doNothing'){
-
-            navLinks.style.transitionDuration = 'unset';
-            navLinks.style.left = "-300px"
-
-            screenDarken.style.display = 'none';
-            accountSetting.style.display = 'none';
-            document.querySelector('.manage-admins__sub-container').style.display = 'none';
-
-            if(document.querySelector('.manage-admins__sub-container').style.display == 'none'){
-                let newIco = document.querySelector('.change').innerHTML ='chevron_right';
-                document.querySelector('.change').innerHTML = newIco;
-            }
-
-        }
-    });
 }
 
 function determineDeviceDB(){
@@ -1917,37 +1898,37 @@ function changeAccess(){
 
     const navBtns = [
         `
-        <button class="nav-links__item" onclick="generateDashboard();">
+        <button id="1" class="nav-links__item" onclick="generateDashboard();">
             <span class="material-icons-outlined ico-nav">dashboard</span>
             Dashboard
         </button>
         `,
         `
-        <button class="nav-links__item" onclick="generateSchedule();">
+        <button id="2" class="nav-links__item" onclick="generateSchedule();">
             <span class="material-icons-outlined ico-nav">calendar_month</span>
             Schedule An Appointment
         </button>
         `,
         `
-        <button class="nav-links__item" onclick="generateViewSchedule();">
+        <button id="3" class="nav-links__item" onclick="generateViewSchedule();">
             <span class="material-icons-outlined ico-nav">book</span>
             View Appointments
         </button>
         `,
         `
-        <button class="nav-links__item" onclick="generateRequest();">
+        <button id="4" class="nav-links__item" onclick="generateRequest();">
             <span class="material-icons-outlined ico-nav">pending_actions</span>
             Follow-Up Requests
         </button>
         `,
         `
-        <button class="nav-links__item" onclick="generateScheduling()">
+        <button id="5" class="nav-links__item" onclick="generateScheduling()">
             <span class="material-icons-outlined ico-nav">edit_calendar</span>
             Edit Department Schedules
         </button>
         `,
         `
-        <div class="nav-links__item manage-admins" data-click="doNothing" onclick="showManageAdmins();">
+        <div id="6" class="nav-links__item manage-admins" data-click="doNothing" onclick="showManageAdmins();">
             <button class="master-btn-content" id="btn--manage-admins" data-click="doNothing">
                 <span class="material-icons-outlined ico-nav" data-click="doNothing">groups</span>
                 Manage Admins
@@ -1970,37 +1951,37 @@ function changeAccess(){
         </div>
         `,
         `
-        <button class="nav-links__item" onclick="generateWebsiteStatus()">
+        <button id="7" class="nav-links__item" onclick="generateWebsiteStatus()">
             <span class="material-icons-outlined ico-nav">medical_services</span>
             Manage Website Status
         </button>
         `,
         `
-        <button class="nav-links__item" onclick="generatePostAnnouncement()">
+        <button id="8" class="nav-links__item" onclick="generatePostAnnouncement()">
             <span class="material-icons-outlined ico-nav">campaign</span>
             Post An Announcement
         </button>
         `,
         `
-        <button class="nav-links__item" onclick="generateManageData()">
+        <button id="9" class="nav-links__item" onclick="generateManageData()">
             <span class="material-icons-outlined ico-nav">storage</span>
             Manage Data
         </button>
         `,
         `
-        <button class="nav-links__item" onclick="generateBlockDates()">
+        <button id="10" class="nav-links__item" onclick="generateBlockDates()">
             <span class="material-icons-outlined ico-nav">block</span>
             Block Dates
         </button>
         `,
         `
-        <button class="nav-links__item" onclick="generateFeedback()">
+        <button id="11" class="nav-links__item" onclick="generateFeedback()">
             <span class="material-icons-outlined ico-nav">chat</span>
             Feedback
         </button>
         `,
         `
-        <button class="nav-links__item" onclick="generateEditTutorial()">
+        <button id="12" class="nav-links__item" onclick="generateEditTutorial()">
             <span class="material-icons-outlined ico-nav">videocam</span>
             Manage Video Tutorial
         </button>
@@ -2010,7 +1991,6 @@ function changeAccess(){
     const adminI = [2];
     const adminII = [1, 2, 3, 7, 10];
     const adminS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-
     if(signedInAdmin.adminType == 'admin i'){
         adminI.forEach(item=>{
             nav.innerHTML += navBtns[item];
@@ -2024,6 +2004,25 @@ function changeAccess(){
     else if(signedInAdmin.adminType == 'super admin'){
         adminS.forEach(item=>{
             nav.innerHTML += navBtns[item];
+            window.addEventListener('click', (e)=>{
+                // console.log(e.target.getAttribute('data-click'));
+        
+                if(e.target.getAttribute('data-click') != 'doNothing'){
+        
+                    navLinks.style.transitionDuration = 'unset';
+                    navLinks.style.left = "-300px"
+        
+                    screenDarken.style.display = 'none';
+                    accountSetting.style.display = 'none';
+                    document.querySelector('.manage-admins__sub-container').style.display = 'none';
+        
+                    if(document.querySelector('.manage-admins__sub-container').style.display == 'none'){
+                        let newIco = document.querySelector('.change').innerHTML ='chevron_right';
+                        document.querySelector('.change').innerHTML = newIco;
+                    }
+        
+                }
+            });
         });
     }
 

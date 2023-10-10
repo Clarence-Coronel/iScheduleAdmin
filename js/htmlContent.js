@@ -1113,6 +1113,7 @@ let editTutorial = `
 
 function generateAccountSettings(){
     main.innerHTML = accountSettings;
+    highlightActive(0, true);
     insertAccInfo();
 }
 
@@ -1128,6 +1129,7 @@ function generateDashboard(){
     if(checkPrivilege('super admin')){
         main.innerHTML = dashboard;
         determineDeviceDB();
+        let navLinks = document.querySelectorAll('.nav-links__item');
         highlightActive(1);
     }
 }
@@ -1276,31 +1278,56 @@ function generateEditTutorial(){
     }
 }
 
-function highlightActive(index){
-    let navLinks = document.querySelectorAll('.nav-links__item');
+function highlightActive(index, clear = false){
+    if(!clear){
+        let navLinks = document.querySelectorAll('.nav-links__item');
 
-    navLinks.forEach(item=>{
-        item.style.backgroundColor = 'unset';
-        item.style.color = 'rgb(80, 78, 78)';
-        try {
-            item.querySelector('.ico-nav').style.color = 'rgb(189, 187, 187)';
-            item.querySelector('.change').style.color = 'rgb(80, 78, 78)';
-            item.querySelector('.master-btn-content').style.color = 'rgb(80, 78, 78)';
+        navLinks.forEach(item=>{
+            item.style.backgroundColor = 'unset';
+            item.style.color = 'rgb(80, 78, 78)';
+            try {
+                item.querySelector('.ico-nav').style.color = 'rgb(189, 187, 187)';
+                item.querySelector('.change').style.color = 'rgb(80, 78, 78)';
+                item.querySelector('.master-btn-content').style.color = 'rgb(80, 78, 78)';
+    
+                let btns = document.querySelectorAll('.btn-content');
+                btns.forEach(item=>{
+                    item.style.backgroundColor = 'unset';
+                    item.style.color = 'rgb(80, 78, 78)';
+                    item.querySelector('.ico-nav--sub').style.color = 'rgb(189, 187, 187)';
+                })
+            } catch (error) {
+                
+            }  
+        })
 
-            let btns = document.querySelectorAll('.btn-content');
-            btns.forEach(item=>{
-                item.style.backgroundColor = 'unset';
-                item.style.color = 'rgb(80, 78, 78)';
-                item.querySelector('.ico-nav--sub').style.color = 'rgb(189, 187, 187)';
-            })
-        } catch (error) {
-            
-        }  
-    })
-    navLinks[index].style.backgroundColor = '#ecf3fb';
-    navLinks[index].style.color = '#0577fa';
-    navLinks[index].querySelector('.ico-nav').style.color = '#0577fa';
+        document.getElementById(index).style.backgroundColor = '#ecf3fb';
+        document.getElementById(index).style.color = '#0577fa';
+        document.getElementById(index).querySelector('.ico-nav').style.color = '#0577fa';
+    
+    }
+    else{
+        let navLinks = document.querySelectorAll('.nav-links__item');
 
+        navLinks.forEach(item=>{
+            item.style.backgroundColor = 'unset';
+            item.style.color = 'rgb(80, 78, 78)';
+            try {
+                item.querySelector('.ico-nav').style.color = 'rgb(189, 187, 187)';
+                item.querySelector('.change').style.color = 'rgb(80, 78, 78)';
+                item.querySelector('.master-btn-content').style.color = 'rgb(80, 78, 78)';
+
+                let btns = document.querySelectorAll('.btn-content');
+                btns.forEach(item=>{
+                    item.style.backgroundColor = 'unset';
+                    item.style.color = 'rgb(80, 78, 78)';
+                    item.querySelector('.ico-nav--sub').style.color = 'rgb(189, 187, 187)';
+                })
+            } catch (error) {
+                
+            }  
+        })
+    }
 }
 
 function highlightActiveManage(index){

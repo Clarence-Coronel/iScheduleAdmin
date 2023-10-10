@@ -139,7 +139,7 @@ header .header__right {
   width: -moz-fit-content;
   width: fit-content;
   font-size: 0.8rem;
-  color: #4caf50;
+  color: rgb(253, 51, 220);
   text-align: right;
 }
 .header__right .role:hover {
