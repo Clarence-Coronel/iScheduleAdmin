@@ -81,6 +81,7 @@ main{
             color: white;
             background-color: $btn-color;
             border: unset;
+            max-height: $btn-max-height;
             height: $btn-height;
             font-size: 1.2rem;
             font-weight: 500;
@@ -340,6 +341,7 @@ input:-webkit-autofill:focus{
             background-color: $btn-color;
             border: unset;
             height: $btn-height;
+            max-height: $btn-max-height;
             font-size: 1.2rem;
             font-weight: 500;
             border-radius: max(5px, 0.5vw);

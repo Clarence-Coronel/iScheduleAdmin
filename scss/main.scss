@@ -153,6 +153,7 @@ header{
             font-weight: 700;
             width: 100%;
             height: $btn-height;
+            max-height: $btn-max-height;
             display: flex;
             flex-flow: row nowrap;
             align-items: center;
@@ -770,6 +771,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
     border-radius: max(10px, 0.5vw);
     width: 100%;
     height: $btn-height;
+    max-height: $btn-max-height;
     font-size: 0.8rem;
     // min-height: 40px;
 }
@@ -948,6 +950,7 @@ input:-webkit-autofill:focus{
         min-width: 70px;
         width: 100%;
         height: $btn-height;
+        max-height: $btn-max-height;
         // 
     }
 
@@ -1314,6 +1317,7 @@ td:hover{
         width: 100%;
         border-radius: max(7px, 0.5vw);
         height: $btn-height;
+        max-height: $btn-max-height;
     }
 
     .btn-submitblock:hover{
@@ -1490,6 +1494,7 @@ td:hover{
         background-color: $btn-color;
         color: white;
         height: $btn-height;
+        max-height: $btn-max-height;
         border-radius: max(5px, 0.5vw);
         border: unset;
         width: 100%;
@@ -1630,6 +1635,7 @@ td:hover{
         border: unset;
         border-radius: max(5px, 0.5vw);
         height: $btn-height;
+        max-height: $btn-max-height;
         width: 100%;
         max-width: 600px;
     }
@@ -2152,6 +2158,7 @@ td:hover{
         font-size: 1rem;
         width: 100%;
         height: $btn-height;
+        max-height: $btn-max-height;
     }
 
     .changeInfo__back{
@@ -2379,6 +2386,7 @@ td:hover{
     .schedule__btn{
         width: 100%;
         height: $btn-height;
+        max-height: $btn-max-height;
         // padding: max(10px, 0.5vw);
         border-radius: max(5px, 0.5vw);
         border: unset;
@@ -3030,6 +3038,7 @@ table{
             // height: fit-content;
             // min-height: 35px;
             height: $btn-height;
+            max-height: $btn-max-height;
             padding: 0.5%;
         }
 
@@ -3078,6 +3087,7 @@ table{
         color: white;
         border: unset;
         height: $btn-height;
+        max-height: $btn-max-height;
         border-radius: max(4px, 0.5vw);
         width: 100%;
         margin-bottom: $box-margin-top;

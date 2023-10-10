@@ -138,6 +138,7 @@ main {
   color: white;
   background-color: #0577fa;
   border: unset;
+  max-height: 60px;
   height: max(50px, 6vh);
   font-size: 1.2rem;
   font-weight: 500;
@@ -383,6 +384,7 @@ input:-webkit-autofill:focus {
   background-color: #0577fa;
   border: unset;
   height: max(50px, 6vh);
+  max-height: 60px;
   font-size: 1.2rem;
   font-weight: 500;
   border-radius: max(5px, 0.5vw);
