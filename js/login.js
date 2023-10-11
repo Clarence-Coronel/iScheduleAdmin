@@ -1,5 +1,5 @@
 let formContainer = document.querySelector('.form-container');
-
+let posting = false
 let isResendAvail = false;
 const loginHTML = 
 `
@@ -138,6 +138,12 @@ function changeBorderBlur(id){
 }
 
 function validateLogin(){
+    if(posting){
+        return;
+    }
+
+    posting = true;
+    
     const xhr = new XMLHttpRequest();
     let username = document.querySelector('#username').value;
     let password = document.querySelector('#password').value;
@@ -150,13 +156,13 @@ function validateLogin(){
     xhr.onload = function(){
         if(xhr.readyState == 4){
             if(xhr.status == 200){
-                let result = parseInt(xhr.responseText);
-                if(result == 1){
+                if(this.responseText == 1){
                     window.location.href="../panel_index.php";
                 }
                 else{
                     showError("Incorrect username or password");
                 }
+                posting = false;
             }
         }
     }
@@ -177,8 +183,6 @@ function showError(str = ""){
     } 
     msg.innerText = str;
 }
-
-
 
 function sendOTPtoPhone(){
     // magsend otp

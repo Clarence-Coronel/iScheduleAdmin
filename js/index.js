@@ -14,6 +14,7 @@ let newInsertedPhone = "";
 let isResendAvail = false;
 let currentWebStatus = null;
 let eventListenerAdded = false;
+let posting = false;
 
 // If want natin ireset auto increment
 // ALTER TABLE tableName AUTO_INCREMENT = 1
@@ -441,26 +442,26 @@ function createAccountValidator(){
     // 
     // PHONE NUMBER **************************
     // 
-    newAdmin['phone'] = document.querySelector('#phone').value.replaceAll(' ', '').trim();
-    if(newAdmin["phone"] == ""){
-        errorHandler('30');
-        return false;
-    }
-    else if(newAdmin["phone"].length != 11){
-        errorHandler('31');
-        return false;
-    }
-    else if(isNaN(newAdmin["phone"])){
-        errorHandler('32');
-        return false;
-    }
-    else if((newAdmin["phone"]).slice(0, 2) != '09'){
-        errorHandler('33');
-        return false;
-    }
+    // newAdmin['phone'] = document.querySelector('#phone').value.replaceAll(' ', '').trim();
+    // if(newAdmin["phone"] == ""){
+    //     errorHandler('30');
+    //     return false;
+    // }
+    // else if(newAdmin["phone"].length != 11){
+    //     errorHandler('31');
+    //     return false;
+    // }
+    // else if(isNaN(newAdmin["phone"])){
+    //     errorHandler('32');
+    //     return false;
+    // }
+    // else if((newAdmin["phone"]).slice(0, 2) != '09'){
+    //     errorHandler('33');
+    //     return false;
+    // }
 
-    // Inserts spaces to phone num
-    newAdmin['phone'] = properPhoneNum(newAdmin['phone']);
+    // // Inserts spaces to phone num
+    // newAdmin['phone'] = properPhoneNum(newAdmin['phone']);
     
     if(document.querySelector('#password').value == ''){
         errorHandler('40')
@@ -509,9 +510,8 @@ function createAccountValidator(){
         errorHandler('50');
         return false;
     }
-    
-    console.table(newAdmin);
-    openModalOTP();
+
+    postNewAcc();
 }
 
 function errorHandler(code){
@@ -763,6 +763,7 @@ function newAdminSuccessConfirmationModal(){
     let negative = document.querySelector('.negative');
 
     title.innerText = 'Success';
+    title.style.color = 'rgb(10, 204, 10)';
     positive.style.display = 'none';
     negative.innerText = 'Close';
     console.log('customized display');
@@ -771,6 +772,8 @@ function newAdminSuccessConfirmationModal(){
         <span class="newAdmin-username">Admin Username: <span class="username-highlight">${generatedUsername}</span></span>
     `
     body.innerHTML = html;
+
+    modalLauncher();
 }
 
 function filterPhoneInput(id){
@@ -1375,6 +1378,12 @@ function generateTimeSlotBuffer(deptID){
 }
 
 function applyApproveReq(appID){
+    if(posting){
+        return;
+    }
+
+    posting = true;
+    
     let month = document.querySelector("#schedMonth").value;
     let day = document.querySelector("#schedDay").value;
     let year = document.querySelector("#schedYear").value;
@@ -1412,6 +1421,7 @@ function applyApproveReq(appID){
                         showResModal("Selected slot is now full", false, "Failed");
                     }, 500);
                 }
+                posting = false;
             }
         }
     }
@@ -1473,133 +1483,120 @@ function insertAccInfo(){
 
     username.innerText = signedInAdmin.username;
     name.innerText = `${capitalFirstLetter(signedInAdmin.firstName)} ${capitalFirstLetter(signedInAdmin.middleName)} ${capitalFirstLetter(signedInAdmin.lastName)}`;
-    phone.innerText = signedInAdmin.phone;
-}
-
-function openModalOTP(){
-    resetModal();
-
-    let modalTitle = document.querySelector('.modal-title');
-    let modalBody = document.querySelector('.modal-body');
-    let modalCloseBtn = document.querySelector('.btn-close');
-    let negativeBtn = document.querySelector('.negative');
-    let positiveBtn = document.querySelector('.positive');
-    let modal = document.querySelector('.modal-dialog');
-    let modalItself = document.querySelector('.modal');
-    let modalHeader = document.querySelector('.modal-header');
-    let modalFooter = document.querySelector('.modal-footer');
     
-    modalHeader.style.display = 'none';
-    modalFooter.style.display = 'none';
-    modalTitle.style.color = 'unset';
+    if(signedInAdmin.phone != "") phone.innerText = signedInAdmin.phone;
+    else phone.innerText = "Insert phone #"
+}
 
+// function openModalOTP(){
+//     resetModal();
 
-    let htmlCode = `
-    <div class="OTP-container">
-        <div class="textInfo-container">
-            <span class="mainText">Input One-Time Password</span>
-            <span class="subText">One-Time Password has been sent to <span class="phoneDisplay">09XX XXX XXXX</span></span>
-        </div>
-        <div class="OTP-body">
-            <div class="OTP-field">
-                <input type="text" name="OTP" id="OTP" oninput="inputLimiterNum(this.id, 5)" onblur="inputLimiterNum(this.id, 5)" oninput="inputLimiter(this.id, 5)" onblur="inputLimiterBlur(this.id, 5)">
-                <button class="resend-btn">Re-Send</button>
-            </div>
-            <div class="error-msg"></div>
-        </div>
-        <button class="OTP-btn">Submit</button>
-    </div>
-    `
-    modalBody.innerHTML = htmlCode;
+//     let modalTitle = document.querySelector('.modal-title');
+//     let modalBody = document.querySelector('.modal-body');
+//     let modalCloseBtn = document.querySelector('.btn-close');
+//     let negativeBtn = document.querySelector('.negative');
+//     let positiveBtn = document.querySelector('.positive');
+//     let modal = document.querySelector('.modal-dialog');
+//     let modalItself = document.querySelector('.modal');
+//     let modalHeader = document.querySelector('.modal-header');
+//     let modalFooter = document.querySelector('.modal-footer');
     
-    document.querySelector('.phoneDisplay').innerHTML = newAdmin['phone'];
-    document.querySelector('.OTP-btn').addEventListener('click', ()=>{
-        checkOTP();
-    });
-    modalLauncher();
-    resetCD();
+//     modalHeader.style.display = 'none';
+//     modalFooter.style.display = 'none';
+//     modalTitle.style.color = 'unset';
 
-    document.querySelector('.resend-btn').addEventListener('click', ()=>{
-        if(isResendAvail){
-            resendOTP();
-            resetCD();
-            isResendAvail = false;
-        } 
-    });
-}
 
-function sendOTP(){
-    // magsend otp
+//     let htmlCode = `
+//     <div class="OTP-container">
+//         <div class="textInfo-container">
+//             <span class="mainText">Input One-Time Password</span>
+//             <span class="subText">One-Time Password has been sent to <span class="phoneDisplay">09XX XXX XXXX</span></span>
+//         </div>
+//         <div class="OTP-body">
+//             <div class="OTP-field">
+//                 <input type="text" name="OTP" id="OTP" oninput="inputLimiterNum(this.id, 5)" onblur="inputLimiterNum(this.id, 5)" oninput="inputLimiter(this.id, 5)" onblur="inputLimiterBlur(this.id, 5)">
+//                 <button class="resend-btn">Re-Send</button>
+//             </div>
+//             <div class="error-msg"></div>
+//         </div>
+//         <button class="OTP-btn">Submit</button>
+//     </div>
+//     `
+//     modalBody.innerHTML = htmlCode;
+    
+//     document.querySelector('.phoneDisplay').innerHTML = newAdmin['phone'];
+//     document.querySelector('.OTP-btn').addEventListener('click', ()=>{
+//         checkOTP();
+//     });
+//     modalLauncher();
+//     resetCD();
 
-    openModalOTP();
-}
+//     document.querySelector('.resend-btn').addEventListener('click', ()=>{
+//         if(isResendAvail){
+//             resendOTP();
+//             resetCD();
+//             isResendAvail = false;
+//         } 
+//     });
+// }
 
-function resendOTP(){
-    // di na magopen panibago modal kaya nakahiwalay tong function na to
-}
+// function sendOTP(){
+//     // magsend otp
 
-function resetCD(){
-    let time = 30;
-    let resend = document.querySelector('.resend-btn');
-    resend.classList.add('cd');
-    resend.innerHTML = time + 's';
+//     openModalOTP();
+// }
 
-    let timer = setInterval(()=>{
-        time--;
-        resend.innerHTML = time + 's';
+// function resendOTP(){
+//     // di na magopen panibago modal kaya nakahiwalay tong function na to
+// }
+
+// function resetCD(){
+//     let time = 30;
+//     let resend = document.querySelector('.resend-btn');
+//     resend.classList.add('cd');
+//     resend.innerHTML = time + 's';
+
+//     let timer = setInterval(()=>{
+//         time--;
+//         resend.innerHTML = time + 's';
         
-        if(time == 0){
-            time = 30;
-            clearInterval(timer);
-            resend.innerHTML = 'Re-send';
-            isResendAvail = true;
-            resend.classList.remove('cd');
-        }
-    },1000);
-}
+//         if(time == 0){
+//             time = 30;
+//             clearInterval(timer);
+//             resend.innerHTML = 'Re-send';
+//             isResendAvail = true;
+//             resend.classList.remove('cd');
+//         }
+//     },1000);
+// }
 
-function checkOTP(){
-    let OTPField = document.querySelector('#OTP').value;
+function postNewAcc(){
+    if(posting){
+        return;
+    }
 
-    let error = document.querySelector('.error-msg');
+    posting = true;
 
-    // Kunin yung OTP sa database pero sa ngayon konwari na get na tapos yun yung fakeOTP
+    const jsonString = JSON.stringify(newAdmin);
+    const xhr = new XMLHttpRequest();
 
-    // Check if magkamuka input
-    if(OTPField == fakeOTP){
-
-        const jsonString = JSON.stringify(newAdmin);
-        const xhr = new XMLHttpRequest();
-
-        xhr.onreadystatechange = function(){
-            if(xhr.readyState == 4){
-                if(xhr.status == 200){
-                    if(xhr.responseText != 0){
-                        generatedUsername = xhr.responseText;
-                        createAdminSuccess();
-                        isResendAvail = true;
-                    }
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4){
+            if(xhr.status == 200){
+                if(xhr.responseText != 0){
+                    generatedUsername = xhr.responseText;
+                    createAdminSuccess();
+                    isResendAvail = true;
+                    posting = false;
                 }
             }
         }
-
-        xhr.open("POST", "./php/createNewAdmin.php");
-        xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.send(jsonString);
-        return;
     }
-    // If Tama
-    // 
 
-    // Pag mali input ni user ere labas
-    // second time na mali mag shake si error msg
-    if(error.innerHTML != ""){
-        error.classList.add('error-animate');
-        setTimeout(()=>{
-            error.classList.remove('error-animate');
-        },500);
-    }
-    error.innerHTML = 'Invalid OTP';
+    xhr.open("POST", "./php/createNewAdmin.php");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(jsonString);
+    return;
 }
 // Editing phone #
 function openModalOTP_Edit(){
@@ -1779,6 +1776,16 @@ function capitalFirstLetter(str){
 }
 
 function applyNewPhone(){
+    
+    if(signedInAdmin.phone == ""){
+        applyNewPhoneEmpty();
+        return;
+    }
+
+    if(posting) return;
+
+    posting = true;
+
     const newPhone = properPhoneNum(document.querySelector('#newPhone').value.replaceAll(' ', '').trim());
     const pass = document.querySelector('#confirmation').value;
 
@@ -1807,6 +1814,7 @@ function applyNewPhone(){
                     else{
                         showError("Password is incorrect");
                     }
+                    posting = false;
                 }
             }
         }
@@ -1815,6 +1823,76 @@ function applyNewPhone(){
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send(`password=${pass}`);
     }
+}
+
+function applyNewPhoneEmpty(){
+
+    if(posting) return;
+
+    posting = true;
+
+    const newPhone = properPhoneNum(document.querySelector('#newPhone').value.replaceAll(' ', '').trim());
+    const pass = document.querySelector('#confirmation').value;
+
+    if(newPhone == "" || pass == ""){
+        showError("Please fill in both fields");
+        return;
+    }
+    else if(newPhone.slice(0, 2) != '09'){
+        showError("Phone # must start with 09");
+        return;
+    }
+    else if(newPhone.length != 13){
+        showError("Invalid phone #");
+        return;
+    }
+    else{
+        const xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4){
+                if(xhr.status == 200){
+                    if(xhr.responseText == 1){
+                        newInsertedPhone = newPhone
+                        insertNewPhone();
+                    }
+                    else{
+                        showError("Password is incorrect");
+                    }
+                    posting = false;
+                }
+            }
+        }
+
+        xhr.open("POST", "./php/testPassword.php");
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send(`password=${pass}`);
+    }
+}
+
+function insertNewPhone(){
+    const xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4){
+            if(xhr.status == 200){
+                if(xhr.responseText == 1){
+                        showResModal('Phone has been updated');
+                        signedInAdmin.phone = newInsertedPhone;
+                        generateAccountSettings();
+                        insertAccInfo();
+                }
+                else{
+                    showResModal('Something went wrong',"Failed", true);
+                }
+            }
+        }
+    }
+
+    xhr.open("POST", "./php/changePhone.php");
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("newPhone="+newInsertedPhone);
+    return;
 }
 
 // Exclusive use for editPhone and editPass
@@ -1831,6 +1909,9 @@ function showError(str = ""){
 }
 
 function applyNewPass(){
+    if(posting) return;
+    posting = true;
+
     const currentPass = document.querySelector('#currentPassword').value;
     const newPass = document.querySelector('#newPassword').value;
     const confirmNewPass = document.querySelector('#confirmNewPassword').value;
@@ -1856,7 +1937,7 @@ function applyNewPass(){
         return;
     }
     
-        const xhr = new XMLHttpRequest();
+    const xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = function (){
         if(xhr.readyState == 4){
@@ -1887,6 +1968,7 @@ function applyNewPass(){
                     showError("Current password is incorrect");
                     return;
                 }
+                posting = false;
             }
         }
     }
@@ -2100,6 +2182,11 @@ function checkPrivilege(type){
 }
 
 function insertAnnouncement(){
+    if(posting){
+        return;
+    }
+
+    posting = true;
     const submitBtn = document.querySelector('#announcementSubmit');
 
     submitBtn.addEventListener('click', ()=>{
@@ -2130,6 +2217,7 @@ function insertAnnouncement(){
                     else{
                         showResModal("Something went wrong.", "Failed");
                     }
+                    posting = false;
                 }
             }
         }
@@ -2167,7 +2255,6 @@ function getFeedback(sortBy = 1){
                             
                         });
                         showTableCell();
-                        setupTablePagination('feedback-table', 'prevButton', 'nextButton', 10);
                     } catch (error) {
                         table.innerHTML = `
                         <tr>
@@ -2186,6 +2273,7 @@ function getFeedback(sortBy = 1){
                 </tr>
             `
         }
+        setupTablePagination('feedback-table', 'prevButton', 'nextButton', 10);
     }
 
     xhr.open("POST", "./php/getFeedback.php", false);
@@ -2226,6 +2314,12 @@ function confirmDesktopTutorial(){
 }
 
 function applyPhoneTutorial(){
+    if(posting){
+        return;
+    }
+
+    posting = true;
+
     const mobileInput = document.querySelector("#mobile").value;
     
     const xhr = new XMLHttpRequest();
@@ -2241,6 +2335,7 @@ function applyPhoneTutorial(){
                 else{
                     alert("Something went wrong...");
                 }
+                posting = false;
             }
         }
     }
@@ -2251,6 +2346,11 @@ function applyPhoneTutorial(){
 }
 
 function applyDesktopTutorial(){
+    if(posting){
+        return;
+    }
+
+    posting = true;
     const desktopInput = document.querySelector("#desktop").value;
     
     const xhr = new XMLHttpRequest();
@@ -2267,6 +2367,7 @@ function applyDesktopTutorial(){
                 else{
                     alert("Something went wrong...");
                 }
+                posting = false;
             }
         }
     }
@@ -2277,6 +2378,12 @@ function applyDesktopTutorial(){
 }
 
 function checkBlockDate(){
+    if(posting){
+        return;
+    }
+
+    posting = true;
+
     const month = document.querySelector("#block-month").value;
     const day = document.querySelector("#block-day").value;
     const year = document.querySelector("#block-year").value;
@@ -2331,6 +2438,7 @@ function checkBlockDate(){
                 }else{
                     alert("Something went wrong...")
                 }
+                posting = false;
             }
         }
     }
@@ -2418,7 +2526,6 @@ function insertBlockDate(){
                         table.innerHTML += template;
                     })
                     showTableCell();
-                    setupTablePagination('date-table', 'prevButton', 'nextButton', 10);
                 } catch (error) {
                     table.innerHTML = `
                     <tr>
@@ -2435,6 +2542,7 @@ function insertBlockDate(){
             </tr>
             `
         }
+        setupTablePagination('date-table', 'prevButton', 'nextButton', 10);
     }
 
     xhr.open("GET", "./php/getBlockDate.php", false);
@@ -2566,8 +2674,7 @@ function insertPostedAnn(){
                         <td colspan="5" class="empty">There is currently no announcement</td>
                     </tr>
                     `;
-                }
-                setupTablePagination('ann-table', 'prevButton', 'nextButton', 10);                
+                }               
             }
         }
         else{
@@ -2578,6 +2685,7 @@ function insertPostedAnn(){
             </tr>
             `;
         }
+        setupTablePagination('ann-table', 'prevButton', 'nextButton', 10); 
     }
 
 
@@ -2656,7 +2764,6 @@ function insertAdmin(isInitial = true){
                         table.innerHTML += template;
                     })
                     showTableCell();
-                    setupTablePagination('admin-table', 'prevButton', 'nextButton', 10);
                 } catch (error) {
                     if(isInitial){
                         table.innerHTML = 
@@ -2675,7 +2782,8 @@ function insertAdmin(isInitial = true){
                         `;
                     }
                 }
-                
+
+                setupTablePagination('admin-table', 'prevButton', 'nextButton', 10);                
             }
         }
         else{
@@ -2794,8 +2902,7 @@ function insertAdminLogs(isInitial = true){
 
                         table.innerHTML += template;
                     })
-                    showTableCell();
-                    setupTablePagination('logs-table', 'prevButton', 'nextButton', 10);                
+                    showTableCell();              
                 } catch (error) {
                     if(isInitial){
                         table.innerHTML = 
@@ -2824,6 +2931,7 @@ function insertAdminLogs(isInitial = true){
             </tr>
             `;
         }
+        setupTablePagination('logs-table', 'prevButton', 'nextButton', 10);  
     }
 
     if(isInitial){
@@ -2913,7 +3021,6 @@ function applyLogFilter(){
                     })
 
                     showTableCell();
-                    setupTablePagination('logs-table', 'prevButton', 'nextButton', 10);     
                 } catch (error) {
                     table.innerHTML = 
                     `
@@ -2932,6 +3039,7 @@ function applyLogFilter(){
             </tr>
             `;
         }
+        setupTablePagination('logs-table', 'prevButton', 'nextButton', 10);     
     }
 
     xhr.open("OPEN", "./php/filterAdminLog.php", true);
@@ -3022,6 +3130,12 @@ function closeMsg(){
 }
 
 function applyNewWebStatus(){
+    if(posting){
+        return;
+    }
+
+    posting = true;
+
     let select = document.querySelector('.selectStatus').value;
     let msg = document.querySelector('#statusMsg').value;
 
@@ -3043,6 +3157,7 @@ function applyNewWebStatus(){
                         showResModal("Website status has been updated");
                     }, 500)
                     generateWebsiteStatus();
+                    posting = false;
                 }
             }
         }
@@ -3340,6 +3455,7 @@ function deleteSched(schedID, deptID, day){
 }
 
 function addSched(day){
+
     resetModal();
 
     let modalTitle = document.querySelector('.modal-title');
@@ -3411,6 +3527,12 @@ function addSched(day){
 }
 
 function applyEditSched(id, deptID, day){
+    if(posting){
+        return;
+    }
+
+    posting = true;
+
     let maxSlot = document.querySelector("#maxSlot").value;
 
     let startHourA = document.querySelector(`#startHourA`).value;
@@ -3501,6 +3623,7 @@ function applyEditSched(id, deptID, day){
                     setTimeout(()=>{
                         showResModal("Slot has been updated");
                         generateDeptSched(document.querySelector('#deptSelect').value);
+                        posting = false;
                     }, 500)
                 }
             }
@@ -3514,6 +3637,12 @@ function applyEditSched(id, deptID, day){
 
 function applyDeleteSched(schedID, deptID, day){
 
+    if(posting){
+        return;
+    }
+
+    posting = true;
+
     const xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = function(){
@@ -3524,6 +3653,7 @@ function applyDeleteSched(schedID, deptID, day){
                         showResModal("Slot has been deleted")
                         generateDeptSched(document.querySelector('#deptSelect').value);
                     }, 500)
+                    posting = false;
                 }
             }
         }
@@ -3546,6 +3676,12 @@ function applyDeleteSched(schedID, deptID, day){
 }
 
 function applyAddSched(day){
+    if(posting){
+        return;
+    }
+
+    posting = true;
+
     const deptVal = document.querySelector("#deptSelect").value;
 
     // Start
@@ -3652,6 +3788,7 @@ function applyAddSched(day){
                         showResModal("New slot has been added");
                         generateDeptSched(document.querySelector('#deptSelect').value);
                     }, 500)
+                    posting = false;
                 }
             }
         }
@@ -3754,6 +3891,12 @@ function htmlDateUnconvert(str){
 }
 
 function postAppointment(){
+    if(posting){
+        return;
+    }
+
+    posting = true;
+
     const xhr = new XMLHttpRequest();
 
     const toSend = JSON.stringify(patient);
@@ -3777,7 +3920,6 @@ function postAppointment(){
                     patient.province = null;
                     patient.typeOfPatient = null;
                     patient.caseNo = null;
-
                     showResModal("Appointment is scheduled");
                     generateSchedule();
                 }
@@ -3791,6 +3933,7 @@ function postAppointment(){
                     InitialSetup(true);
                     showResModal("The selected appointment schedule is full. Choose another schedule.", false, 'Failed');
                 }
+                posting = false;
             }
         }
     }
@@ -3885,8 +4028,6 @@ function isInFuture(date){
     }
 }
 
-isInFuture("2001-10-10")
-
 function setupTablePagination(tableId, prevButtonId, nextButtonId, rowsPerPage) {
     const table = document.getElementById(tableId);
     let prevButton = document.getElementById(prevButtonId);
@@ -3896,7 +4037,7 @@ function setupTablePagination(tableId, prevButtonId, nextButtonId, rowsPerPage) 
     pageNum.innerHTML = currentPage;
     const tableRows = table.querySelectorAll('.table-row');
     const totalPages = Math.ceil(tableRows.length / rowsPerPage);
-
+    
 
     function showRows(page) {
         const startIndex = (page - 1) * rowsPerPage;
@@ -3945,8 +4086,9 @@ function setupTablePagination(tableId, prevButtonId, nextButtonId, rowsPerPage) 
         console.log(currentPage)
     }
 
-
+    
     if(totalPages <= 1){
+        
         prevButton.style.display = 'none';
         nextButton.style.display = 'none';
         pageNum.style.display = 'none';
@@ -4005,7 +4147,6 @@ function insertReq(){
                         table.innerHTML += template;
                     });
                     showTableCell();
-                    setupTablePagination('request-table', 'prevButton', 'nextButton', 10);
                 } catch (error) {
                     table.innerHTML = 
                     `
@@ -4024,6 +4165,7 @@ function insertReq(){
             </tr>
             `;
         }
+        setupTablePagination('request-table', 'prevButton', 'nextButton', 10);
     };
 
     xhr.open("GET", "./php/getReq.php", false);

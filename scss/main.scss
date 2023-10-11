@@ -435,7 +435,6 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
     user-select: none;
     display: flex;
 
-
     h1{
         font-size: 0.8rem;
         color: $btn-color;
@@ -3741,6 +3740,7 @@ table{
     width: 100%;
     height: 100%;
     align-items: center;
+    background-color: white;
 }
 
 .textInfo-container{

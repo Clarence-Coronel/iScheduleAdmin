@@ -847,10 +847,6 @@ let createAccount = `
                 <label for="lastName">Last Name</label>
             </div>
             <div class="input-container">
-                <input type="text" name="phone" id="phone" required oninput="filterPhoneInput(this.id)">
-                <label for="phone">Phone #</label>
-            </div>
-            <div class="input-container">
                 <input type="password" name="password" id="password" required onpaste="return false;" ondrop="return false;" >
                 <span class="material-icons-outlined ico-pass" id="passwordLabel" onclick="seePassword('password', this.id); seePassword('confirmPassword', 'confirmPasswordLabel')">visibility_off</span>
                 <label for="password">Password</label>
