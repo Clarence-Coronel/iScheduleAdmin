@@ -1413,6 +1413,7 @@ function applyApproveReq(appID){
                     document.querySelector('#deleteImg-btn').click();
                     setTimeout(()=>{
                         showResModal("Request has been approved");
+                        alert("itext and sched kay patient. with added message kung hindi mo nakuha yung desired na araw ito ay dahil puno na or something");
                         insertReq();
                     }, 500);
                 }
@@ -1431,7 +1432,7 @@ function applyApproveReq(appID){
     xhr.send(`appID=${appID}&schedDate=${year}-${month}-${day}&schedID=${time}&max=${max}`);
 }
 
-function viewRequestReject(appID, deptID){
+function viewRequestReject(appID){
     resetModal();
     
     let title = document.querySelector('.modal-title');
@@ -1444,10 +1445,35 @@ function viewRequestReject(appID, deptID){
     positive.innerText = 'Confirm';
     negative.innerText = 'Cancel';
 
-    // positive.setAttribute('onclick', 'alert("test")');
-    // positive.removeAttribute('onclick');
-
+    positive.setAttribute('onclick', `applyRequestReject(${appID})`);
     modalLauncher();
+}
+
+function applyRequestReject(appID){
+    if (posting) return;
+    posting = true;
+
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+        if(this.readyState == 4){
+            if(this.status == 200){
+                if(this.responseText != 0){
+                    document.querySelector('#linkToDelete').value = this.responseText;
+                    document.querySelector('#deleteImg-btn').click();
+                    setTimeout(()=>{
+                        showResModal("Request has been rejected");
+                        alert("itext na rejected kay patient");
+                        insertReq();
+                    }, 500);
+                }
+                posting = false;
+            }
+        }
+    }
+    
+    xhr.open("POST", "./php/updateAppointment2.php", false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send(`appID=${appID}`);
 }
 
 function signOut(){
@@ -4135,7 +4161,7 @@ function insertReq(){
                                 <button data-appID="${item.appID}" data-deptID="${item.deptID}" onclick="viewRequestApprove(this.dataset.appid, this.dataset.deptid)"><span class="material-icons-outlined">done</span></button>
                             </td>
                             <td>
-                                <button data-appID="${item.appID}" data-deptID="${item.deptID}" onclick="viewRequestReject(this.dataset.appid, this.dataset.deptid)"><span class="material-icons-outlined">close</span></button>
+                                <button data-appID="${item.appID}" data-deptID="${item.deptID}" onclick="viewRequestReject(this.dataset.appid)"><span class="material-icons-outlined">close</span></button>
                             </td>
                             <td>${capitalFirstLetter(item.lastName)}, ${capitalFirstLetter(item.firstName)} ${capitalFirstLetter(item.middleName)}</td>
                             <td>${deptName}</td>
