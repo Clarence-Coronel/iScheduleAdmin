@@ -391,12 +391,13 @@ let viewSchedule = `
             <div class="table-container">
                 <table class="schedule-table" id="schedule-table">
                     <thead>
-                        <tr style="background-color: rgb(67, 67, 67); color: white;">
+                        <tr>
                             <th>Full Name</th>
                             <th>Department</th>
                             <th>Appointment <br>Date</th>
                             <th>Slot</th>
                             <th>Status</th>
+                            <th>Scheduled Through</th>
                             <th>Sex</th>
                             <th>Birthdate</th>
                             <th>Phone #</th>
@@ -409,86 +410,9 @@ let viewSchedule = `
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="table-row">
-                            <td>Cruz, John Test</td>
-                            <td>Oncology</td>
-                            <td>August 25, 2023</td>
-                            <td>1:00 PM - 2:00PM</td>
-                            <td class="active">Active</td>
-                            <td>Male</td>
-                            <td>October 20, 2001</td>
-                            <td>0942 423 4277</td>
-                            <td>Banga II, Plaridel, Bulacan</td>
-                            <td>New Patient</td>
-                            <td>123456</td>
-                            <td>June 27, 2023</td>
-                            <td></td>
-                            <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Edit</button></td>
-                        </tr>
-                        <tr class="table-row">
-                            <td>Cruz, John Test</td>
-                            <td>Oncology</td>
-                            <td>August 25, 2023</td>
-                            <td>1:00 PM - 2:00PM</td>
-                            <td class="cancelled">Cancelled</td>
-                            <td>Male</td>
-                            <td>October 20, 2001</td>
-                            <td>0942 423 4277</td>
-                            <td>Banga II, Plaridel, Bulacan</td>
-                            <td>New Patient</td>
-                            <td>123456</td>
-                            <td>June 27, 2023</td>
-                            <td>TrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabahoTrabaho</td>
-                            <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Edit</button></td>
-                        </tr>
-                        <tr class="table-row">
-                            <td>Cruz, John Test</td>
-                            <td>Oncology</td>
-                            <td>August 25, 2023</td>
-                            <td>1:00 PM - 2:00PM</td>
-                            <td class="missed">Missed</td>
-                            <td>Male</td>
-                            <td>October 20, 2001</td>
-                            <td>0942 423 4277</td>
-                            <td>Banga II, Plaridel, Bulacan</td>
-                            <td>New Patient</td>
-                            <td>123456</td>
-                            <td>June 27, 2023</td>
-                            <td></td>
-                            <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Edit</button></td>
-                        </tr>
-                        <tr class="table-row">
-                            <td>Cruz, John Test</td>
-                            <td>Oncology</td>
-                            <td>August 25, 2023</td>
-                            <td>1:00 PM - 2:00PM</td>
-                            <td class="completed">Completed</td>
-                            <td>Male</td>
-                            <td>October 20, 2001</td>
-                            <td>0942 423 4277</td>
-                            <td>Banga II, Plaridel, Bulacan</td>
-                            <td>New Patient</td>
-                            <td>123456</td>
-                            <td>June 27, 2023</td>
-                            <td></td>
-                            <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Edit</button></td>
-                        </tr>
-                        <tr class="table-row">
-                            <td>Cruz, John Test</td>
-                            <td>Oncology</td>
-                            <td>August 25, 2023</td>
-                            <td>1:00 PM - 2:00PM</td>
-                            <td class="pending">Pending</td>
-                            <td>Male</td>
-                            <td>October 20, 2001</td>
-                            <td>0942 423 4277</td>
-                            <td>Banga II, Plaridel, Bulacan</td>
-                            <td>New Patient</td>
-                            <td>123456</td>
-                            <td>June 27, 2023</td>
-                            <td></td>
-                            <td><button class="editBtn" onclick="alert('Change status')" data-id="12">Edit</button></td>
-                        </tr>
+                    <tr>
+                        <td colspan="15" class="empty">No Department Selected</td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
@@ -506,31 +430,31 @@ let viewSchedule = `
 
 let quickView = `
 <div class="quick-view-container">
-    <select class="form-select" aria-label="Default select example">
+    <select class="form-select" onchange="insertAppQuick(this.value)" aria-label="Default select example">
         <option value="" selected hidden disabled>Select a Department</option>
-        <option value="">ENT</option>
-        <option value="">Hematology</option>
-        <option value="">Internal Medicine</option>
-        <option value="">Internal Medicine Clearance</option>
-        <option value="">Nephrology</option>
-        <option value="">Neurology</option>
-        <option value="">OB GYNE New</option>
-        <option value="">OB GYNE Old</option>
-        <option value="">OB GYNE ROS</option>
-        <option value="">Oncology</option>
-        <option value="">Pediatric Cardiology</option>
-        <option value="">Pediatric Clearance</option>
-        <option value="">Pediatric General</option>
-        <option value="">Psychiatry New</option>
-        <option value="">Psychiatry Old</option>
-        <option value="">Surgery</option>
-        <option value="">Surgery ROS</option>
+        <option value="1">ENT</option>
+        <option value="2">Hematology</option>
+        <option value="3">Internal Medicine</option>
+        <option value="4">Internal Medicine Clearance</option>
+        <option value="5">Nephrology</option>
+        <option value="6">Neurology</option>
+        <option value="7">OB GYNE New</option>
+        <option value="8">OB GYNE Old</option>
+        <option value="9">OB GYNE ROS</option>
+        <option value="10">Oncology</option>
+        <option value="11">Pediatric Cardiology</option>
+        <option value="12">Pediatric Clearance</option>
+        <option value="13">Pediatric General</option>
+        <option value="14">Psychiatry New</option>
+        <option value="15">Psychiatry Old</option>
+        <option value="16">Surgery</option>
+        <option value="17">Surgery ROS</option>
     </select>
     <div class="view-schedule__btn-group">
-        <button>View Today's Appointments</button>
-        <button>View All Active Appointments</button>
-        <button>View All Completed Appointments</button>
-        <button>View All Cancelled Appointments</button>   
+        <button class="view-schedule__btn view-disabled">View Today's Appointments</button>
+        <button class="view-schedule__btn view-disabled">View All Active Appointments</button>
+        <button class="view-schedule__btn view-disabled">View All Completed Appointments</button>
+        <button class="view-schedule__btn view-disabled">View All Cancelled Appointments</button>   
     </div>
 </div>`;
 
@@ -1158,15 +1082,13 @@ function generateViewSchedule(){
     if(checkPrivilege('admin i') || checkPrivilege('admin ii') || checkPrivilege('super admin')){
         main.innerHTML = viewSchedule;
         document.querySelector('.view-schedule__field').innerHTML = quickView;
-        showTableCell();
         
         document.querySelector(".export").addEventListener('click', (e)=>{
             let tableClass = e.target.dataset.table;
             let table = document.querySelector(`.${tableClass}`);
             exportTableToExcel(table, "iSchedule_Appointments", [13]);
         });
-
-        setupTablePagination('schedule-table', 'prevButton', 'nextButton', 10);
+        // insertApp();
         highlightActive(3);
     }
 }

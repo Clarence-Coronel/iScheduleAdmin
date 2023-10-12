@@ -3454,7 +3454,7 @@ table{
     }
 }
 
-.cancelled{
+.rejected, .cancelled{
     color: red !important;
 }
 
@@ -3467,7 +3467,7 @@ table{
 }
 
 .completed{
-    color: #9014f6 !important;
+    color: rgb(226, 23, 226);
 }
 
 .pending{
@@ -4218,6 +4218,7 @@ table{
             font-size: 0.9rem;
             text-align: center;
             width: 10px;
+            display: none;
         }
     }
 }
@@ -4234,3 +4235,14 @@ table{
     text-align: center;
 }
 
+#prevButton, #nextButton{
+    display: none;
+}
+
+.view-disabled{
+    background-color: #7e7d7d !important;
+}
+
+.view-disabled:hover{
+    cursor:not-allowed;
+}
