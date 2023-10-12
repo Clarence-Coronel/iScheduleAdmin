@@ -2649,8 +2649,8 @@ td:hover{
     }
 
     .date-selected{
-        background-color: $fontbase-color !important;
-        border-color: $fontbase-color;
+        background-color: $btn-color !important;
+        border-color: $btn-color;
         color: white !important;
     }
     
@@ -2706,7 +2706,7 @@ td:hover{
     }
 
     .slot-selected{
-        background-color: $fontbase-color !important;
+        background-color: $btn-color !important;
         color: white !important;
 
         div{
@@ -2719,7 +2719,7 @@ td:hover{
     }
 
     .slot-selected:hover{
-        background-color: $fontbase-color !important;
+        background-color: $btn-color !important;
     }
 
     .slot-full{
@@ -2807,7 +2807,7 @@ td:hover{
             transition-duration: 500ms;
 
             .date:hover{
-                border: 5px solid $fontbase-color;
+                border: 5px solid $btn-color;
                 cursor: pointer;
             }
         }

@@ -2208,8 +2208,8 @@ td:hover {
   cursor: unset !important;
 }
 .calendar-container .date-selected {
-  background-color: rgb(80, 78, 78) !important;
-  border-color: rgb(80, 78, 78);
+  background-color: #0577fa !important;
+  border-color: #0577fa;
   color: white !important;
 }
 .calendar-container .day {
@@ -2258,7 +2258,7 @@ td:hover {
   background-color: #f8f0c1 !important;
 }
 .slot-container .slot-selected {
-  background-color: rgb(80, 78, 78) !important;
+  background-color: #0577fa !important;
   color: white !important;
 }
 .slot-container .slot-selected div {
@@ -2268,7 +2268,7 @@ td:hover {
   font-weight: 700;
 }
 .slot-container .slot-selected:hover {
-  background-color: rgb(80, 78, 78) !important;
+  background-color: #0577fa !important;
 }
 .slot-container .slot-full {
   background-color: rgb(218, 213, 213) !important;
@@ -2336,7 +2336,7 @@ td:hover {
     transition-duration: 500ms;
   }
   .third .calendar-container .date:hover {
-    border: 5px solid rgb(80, 78, 78);
+    border: 5px solid #0577fa;
     cursor: pointer;
   }
   .third .calendar-container:hover {
