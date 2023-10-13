@@ -395,7 +395,7 @@ let viewSchedule = `
                             <th>ID</th>
                             <th>Full Name</th>
                             <th>Department</th>
-                            <th>Appointment <br>Date</th>
+                            <th>Appointment Date</th>
                             <th>Slot</th>
                             <th>Status</th>
                             <th>Scheduled Through</th>
@@ -403,10 +403,10 @@ let viewSchedule = `
                             <th>Birthdate</th>
                             <th>Phone #</th>
                             <th>Address</th>
-                            <th>Patient <br>Type</th>
+                            <th>Patient Type</th>
                             <th>Case #</th>
                             <th>Submitted On</th>
-                            <th>Reason <br>Cancelled</th>
+                            <th>Reason Cancelled</th>
                             <th>&nbsp;</th>
                         </tr>
                     </thead>
