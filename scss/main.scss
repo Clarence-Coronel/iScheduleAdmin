@@ -3305,6 +3305,10 @@ table{
             color: gray;
         }
 
+        #pageNum{
+            margin: unset;
+        }
+
         
         th:nth-child(1), td:nth-child(1), th:nth-child(3), td:nth-child(3){
             width: 10%;
