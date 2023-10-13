@@ -839,9 +839,6 @@ input:-webkit-autofill:focus {
   align-items: center;
   justify-content: center;
 }
-.admin-logs__body .error-container {
-  margin-top: 1vh;
-}
 .admin-logs__body button {
   background-color: #0577fa;
   border: unset;
@@ -1049,12 +1046,18 @@ td:hover {
   gap: max(7px, 0.3vh);
   border-radius: max(5px, 0.4vw);
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
+  height: -moz-fit-content;
+  height: fit-content;
 }
 .block-date .add-date span {
   position: relative;
   top: 5px;
   color: gray;
   font-size: 0.8rem;
+  margin: max(5px, 1vw) 0;
+}
+.block-date .add-date #pageNum {
+  margin: unset;
 }
 .block-date .add-date .date-picker {
   width: 100%;
@@ -1839,23 +1842,6 @@ td:hover {
 }
 .changeInfo .changeInfo__back:hover {
   background-color: #dedddd;
-}
-.changeInfo .error-container {
-  width: 100%;
-  height: 3vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-.changeInfo .msg {
-  width: 100%;
-  text-align: center;
-  font-size: 0.9rem;
-  color: red;
-  transition-duration: 500ms;
-  position: absolute;
-  left: 0;
 }
 
 .changeInfo__input-container {
@@ -2927,9 +2913,6 @@ table {
   height: fit-content;
   overflow: hidden;
 }
-.edit-tutorial .error-container {
-  margin-top: 5vh;
-}
 .edit-tutorial .edit-tutorial-content {
   width: max(300px, 70%);
   background-color: white;
@@ -3142,25 +3125,6 @@ table {
   font-weight: 700;
 }
 
-.error-container {
-  width: 100% !important;
-  height: 3vh !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  position: relative !important;
-}
-
-.msg {
-  width: 100% !important;
-  text-align: center !important;
-  font-size: 0.9rem !important;
-  color: red !important;
-  transition-duration: 500ms !important;
-  position: absolute !important;
-  left: 0 !important;
-}
-
 .seeAnnouncements {
   width: 100%;
   display: flex;
@@ -3171,10 +3135,10 @@ table {
   justify-content: flex-end;
 }
 .seeAnnouncements h2 {
-  font-size: 1.1rem;
+  font-size: 0.8rem;
+  color: orange;
   width: 100%;
   text-align: center;
-  font-weight: 700;
 }
 .seeAnnouncements .seeAnnouncements__content {
   width: 90%;
@@ -3191,6 +3155,9 @@ table {
   width: fit-content;
   color: gray;
   font-size: 0.8rem;
+}
+.seeAnnouncements #pageNum {
+  margin: unset;
 }
 
 .modal-body {
@@ -3479,4 +3446,25 @@ table {
 .edit-disabled:hover {
   cursor: not-allowed;
   background-color: #8b8a8a;
+}
+
+.error-container {
+  width: 100% !important;
+  height: -moz-fit-content !important;
+  height: fit-content !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin-top: max(5px, 1vw);
+}
+
+.msg {
+  width: 100% !important;
+  height: -moz-fit-content !important;
+  height: fit-content !important;
+  text-align: center !important;
+  font-size: 0.9rem !important;
+  color: red !important;
+  transition-duration: 500ms !important;
+  left: 0 !important;
 }/*# sourceMappingURL=main.css.map */

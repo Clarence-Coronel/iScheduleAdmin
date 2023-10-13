@@ -938,10 +938,6 @@ input:-webkit-autofill:focus{
         }
     }
 
-    .error-container{
-        margin-top: 1vh;
-    }
-
     button{
         background-color: $btn-color;
         border: unset;
@@ -1257,13 +1253,18 @@ td:hover{
         gap: max(7px, 0.3vh);
         border-radius: $box-border-radius;
         box-shadow: $box-shadow;
-        // height: fit-content;
+        height: fit-content;
 
         span{
             position: relative;
             top: 5px;
             color: gray;
             font-size: 0.8rem;
+            margin: $margin-top-span 0;
+        }
+
+        #pageNum{
+            margin: unset;
         }
 
         .date-picker{
@@ -2204,25 +2205,6 @@ td:hover{
 
     .changeInfo__back:hover{
         background-color: lighten($color: $gray, $amount: 5);
-    }
-
-    .error-container{
-        width: 100%;
-        height: 3vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-    }
-    
-    .msg{
-        width: 100%;
-        text-align: center;
-        font-size: 0.9rem;
-        color: red;
-        transition-duration: 500ms;
-        position: absolute;
-        left: 0;
     }
 
     
@@ -3641,10 +3623,6 @@ table{
     height: fit-content;
     overflow: hidden;
 
-    .error-container{
-        margin-top: 5vh;
-    }
-
     .edit-tutorial-content{
         width: max(300px, 70%);
         // height: 90%;
@@ -3882,25 +3860,6 @@ table{
     font-weight: 700;
 }
 
-.error-container{
-    width: 100% !important;
-    height: 3vh !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    position: relative !important;
-}
-
-.msg{
-    width: 100% !important;
-    text-align: center !important;
-    font-size: 0.9rem !important;
-    color: red !important;
-    transition-duration: 500ms !important;
-    position: absolute !important;
-    left: 0 !important;
-}
-
 .seeAnnouncements{
     width: 100%;
     display: flex;
@@ -3912,10 +3871,11 @@ table{
     }
 
     h2{
-        font-size: 1.1rem;
+        font-size: 0.8rem;
+        color: orange;
         width: 100%;
         text-align: center;
-        font-weight: 700;
+        // font-weight: 700;
     }
 
     .seeAnnouncements__content{
@@ -3933,6 +3893,10 @@ table{
         width: fit-content;
         color: gray;
         font-size: 0.8rem;
+    }
+
+    #pageNum{
+        margin: unset;
     }
 }
 
@@ -4273,4 +4237,23 @@ table{
 .edit-disabled:hover{
     cursor:not-allowed;
     background-color: lighten($color: #7e7d7d, $amount: 5);
+}
+
+.error-container{
+    width: 100% !important;
+    height: fit-content !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-top: $margin-top-span;
+}
+
+.msg{
+    width: 100% !important;
+    height: fit-content !important;
+    text-align: center !important;
+    font-size: 0.9rem !important;
+    color: red !important;
+    transition-duration: 500ms !important;
+    left: 0 !important;
 }

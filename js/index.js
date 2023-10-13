@@ -1392,10 +1392,12 @@ function applyApproveReq(appID){
 
     if(month == "" || day == "" || year ==""){
         showError("Invalid date");
+        posting = false;
         return;
     }
     else if(time == ""){
         showError("Select a time slot");
+        posting = false;
         return;
     }
     else{
@@ -1422,7 +1424,6 @@ function applyApproveReq(appID){
                         showResModal("Selected slot is now full", false, "Failed");
                     }, 500);
                 }
-                posting = false;
             }
         }
     }
@@ -1430,6 +1431,7 @@ function applyApproveReq(appID){
     xhr.open("POST", "./php/updateAppointment.php", false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(`appID=${appID}&schedDate=${year}-${month}-${day}&schedID=${time}&max=${max}`);
+    posting = false;
 }
 
 function viewRequestReject(appID){
@@ -1466,7 +1468,7 @@ function applyRequestReject(appID){
                         insertReq();
                     }, 500);
                 }
-                posting = false;
+                
             }
         }
     }
@@ -1474,6 +1476,7 @@ function applyRequestReject(appID){
     xhr.open("POST", "./php/updateAppointment2.php", false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(`appID=${appID}`);
+    posting = false;
 }
 
 function signOut(){
@@ -1613,7 +1616,7 @@ function postNewAcc(){
                     generatedUsername = xhr.responseText;
                     createAdminSuccess();
                     isResendAvail = true;
-                    posting = false;
+                    
                 }
             }
         }
@@ -1622,6 +1625,7 @@ function postNewAcc(){
     xhr.open("POST", "./php/createNewAdmin.php");
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(jsonString);
+    posting = false;
     return;
 }
 // Editing phone #
@@ -1809,7 +1813,6 @@ function applyNewPhone(){
     }
 
     if(posting) return;
-
     posting = true;
 
     const newPhone = properPhoneNum(document.querySelector('#newPhone').value.replaceAll(' ', '').trim());
@@ -1817,14 +1820,17 @@ function applyNewPhone(){
 
     if(newPhone == "" || pass == ""){
         showError("Please fill in both fields");
+        posting = false;
         return;
     }
     else if(newPhone.slice(0, 2) != '09'){
         showError("Phone # must start with 09");
+        posting = false;
         return;
     }
     else if(newPhone.length != 13){
         showError("Invalid phone #");
+        posting = false;
         return;
     }
     else{
@@ -1840,7 +1846,7 @@ function applyNewPhone(){
                     else{
                         showError("Password is incorrect");
                     }
-                    posting = false;
+                    
                 }
             }
         }
@@ -1849,6 +1855,7 @@ function applyNewPhone(){
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send(`password=${pass}`);
     }
+    posting = false;
 }
 
 function applyNewPhoneEmpty(){
@@ -1885,7 +1892,7 @@ function applyNewPhoneEmpty(){
                     else{
                         showError("Password is incorrect");
                     }
-                    posting = false;
+                    
                 }
             }
         }
@@ -1893,7 +1900,9 @@ function applyNewPhoneEmpty(){
         xhr.open("POST", "./php/testPassword.php");
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send(`password=${pass}`);
+        
     }
+    posting = false;
 }
 
 function insertNewPhone(){
@@ -1944,22 +1953,27 @@ function applyNewPass(){
 
     if(currentPass == "" || newPass == "" || confirmNewPass == ""){
         showError("Please fill in all fields");
+        posting = false;
         return;
     }
     else if(newPass != confirmNewPass){
         showError("Password do not match");
+        posting = false;
         return;
     }
     else if(newPass > 64){
         showError("Password must be equal or less than 64 characters");
+        posting = false;
         return;
     }
     else if(newPass < 8){
         showError("Password must at least be 8 characters");
+        posting = false;
         return;
     }
     else if(!containsLetterNumSpeChar(newPass)){
         showError("Password must contain an upper & lower case letter, a number, and a special character");
+        posting = false;
         return;
     }
     
@@ -1994,7 +2008,7 @@ function applyNewPass(){
                     showError("Current password is incorrect");
                     return;
                 }
-                posting = false;
+                
             }
         }
     }
@@ -2002,7 +2016,7 @@ function applyNewPass(){
     xhr.open("POST", "./php/testPassword.php");
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send("pass="+ currentPass);
-
+    posting = false;
 }
 
 function changeAccess(){
@@ -2243,7 +2257,7 @@ function insertAnnouncement(){
                     else{
                         showResModal("Something went wrong.", "Failed");
                     }
-                    posting = false;
+                    
                 }
             }
         }
@@ -2252,6 +2266,7 @@ function insertAnnouncement(){
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(jsonString);
     })
+    posting = false;
 }
 
 function getFeedback(sortBy = 1){
@@ -2361,7 +2376,7 @@ function applyPhoneTutorial(){
                 else{
                     alert("Something went wrong...");
                 }
-                posting = false;
+                
             }
         }
     }
@@ -2369,6 +2384,7 @@ function applyPhoneTutorial(){
     xhr.open("POST", "./php/changeVid.php", false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send('type=mobile&link=' + mobileInput);
+    posting = false;
 }
 
 function applyDesktopTutorial(){
@@ -2393,7 +2409,7 @@ function applyDesktopTutorial(){
                 else{
                     alert("Something went wrong...");
                 }
-                posting = false;
+                
             }
         }
     }
@@ -2401,6 +2417,7 @@ function applyDesktopTutorial(){
     xhr.open("POST", "./php/changeVid.php", false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send('type=desktop&link=' + desktopInput);
+    posting = false;
 }
 
 function checkBlockDate(){
@@ -2422,22 +2439,27 @@ function checkBlockDate(){
 
     if(month == "" || day == "" || year == "" || name == ""){
         showError("Fill in all fields");
+        posting = false;
         return;
     }
     else if(!isDateValid(tempDate)){
         showError("Input a valid date");
+        posting = false;
         return;
     }
     else if(tempObj >= tempObj2){
-        showError("Input am upcoming date");
+        showError("Input an upcoming date");
+        posting = false;
         return;
     }
     else if(!onlyLettersAndNumbers(name)){
         showError("Name can only contain letters and numbers");
+        posting = false;
         return;
     }
     else if(checkDateExist(tempDate)){
         showError("Date already exist");
+        posting = false;
         return;
     }
     
@@ -2464,7 +2486,7 @@ function checkBlockDate(){
                 }else{
                     alert("Something went wrong...")
                 }
-                posting = false;
+                
             }
         }
     }
@@ -2472,6 +2494,7 @@ function checkBlockDate(){
     xhr.open("OPEN", "./php/postBlockDate.php", true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(jsonString);
+    posting = false;
 }
 
 function checkDateExist(date){
@@ -3183,7 +3206,7 @@ function applyNewWebStatus(){
                         showResModal("Website status has been updated");
                     }, 500)
                     generateWebsiteStatus();
-                    posting = false;
+                    
                 }
             }
         }
@@ -3192,6 +3215,7 @@ function applyNewWebStatus(){
     xhr.open("POST", "./php/changeWebsiteStatus.php", false);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(toSend)
+    posting = false;
 }
 
 function generateDeptSched(dept){
@@ -3649,7 +3673,7 @@ function applyEditSched(id, deptID, day){
                     setTimeout(()=>{
                         showResModal("Slot has been updated");
                         generateDeptSched(document.querySelector('#deptSelect').value);
-                        posting = false;
+                        
                     }, 500)
                 }
             }
@@ -3659,6 +3683,7 @@ function applyEditSched(id, deptID, day){
     xhr.open('POST', './php/changeDeptSched.php', false);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(toSend);
+    posting = false;
 }
 
 function applyDeleteSched(schedID, deptID, day){
@@ -3679,7 +3704,7 @@ function applyDeleteSched(schedID, deptID, day){
                         showResModal("Slot has been deleted")
                         generateDeptSched(document.querySelector('#deptSelect').value);
                     }, 500)
-                    posting = false;
+                    
                 }
             }
         }
@@ -3699,6 +3724,7 @@ function applyDeleteSched(schedID, deptID, day){
     xhr.open("POST", "./php/deleteSched.php", false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(`id=${schedID}&dept=${deptID}&day=${day}`);
+    posting = false;
 }
 
 function applyAddSched(day){
@@ -3736,42 +3762,52 @@ function applyAddSched(day){
 
     if(startHourA == "0" && startHourB == "0" && startMinuteA == "0" && startMinuteB == "0"){
         showError("Starting time cannot be empty");
+        posting = false;
         return;
     }
     else if(startHourA == "" && startHourB == "" && startMinuteA == "" && startMinuteB == ""){
         showError("Starting time cannot be empty");
+        posting = false;
         return;
     }
     else if(startHourA == "" || startHourB == "" || startMinuteA == "" || startMinuteB == ""){
         showError("Invalid starting time");
+        posting = false;
         return;
     }
     else if(startHourA == "0" && startHourB == "0"){
         showError("Invalid starting time");
+        posting = false;
         return;
     }
     else if(stopHourA == "0" && stopHourB == "0" && stopMinuteA == "0" && stopMinuteB == "0"){
         showError("Closing time cannot be empty");
+        posting = false;
         return;
     }
     else if(stopHourA == "" && stopHourB == "" && stopMinuteA == "" && stopMinuteB == ""){
         showError("Closing time cannot be empty");
+        posting = false;
         return;
     }
     else if(stopHourA == "" || stopHourB == "" || stopMinuteA == "" || stopMinuteB == ""){
         showError("Invalid closing time");
+        posting = false;
         return;
     }
     else if(stopHourA == "0" && stopHourB == "0"){
         showError("Invalid closing time");
+        posting = false;
         return;
     }
     else if(startTime >= stopTime){
         showError("Starting time cannot be later than closing time");
+        posting = false;
         return;
     }
     else if(maxSlot == '' || maxSlot == '0'){
         showError("Slot cannot be empty");
+        posting = false;
         return;
     }
     else{
@@ -3814,7 +3850,7 @@ function applyAddSched(day){
                         showResModal("New slot has been added");
                         generateDeptSched(document.querySelector('#deptSelect').value);
                     }, 500)
-                    posting = false;
+                    
                 }
             }
         }
@@ -3823,6 +3859,7 @@ function applyAddSched(day){
     xhr.open("POST","./php/postDeptSched.php", false);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(toSend);
+    posting = false;
 }
 
 function splitTime(time){
@@ -3959,7 +3996,7 @@ function postAppointment(){
                     InitialSetup(true);
                     showResModal("The selected appointment schedule is full. Choose another schedule.", false, 'Failed');
                 }
-                posting = false;
+                
             }
         }
     }
@@ -3967,6 +4004,7 @@ function postAppointment(){
     xhr.open("POST", "./php/postAppointment.php", false);
     xhr.setRequestHeader("Content-Type", "applicaition/json");
     xhr.send(toSend);
+    posting = false;
 }
 
 function limitNumbers(id, str){
@@ -4404,6 +4442,7 @@ function applyEditStatus(ID, status){
 
     if(newStatus == ""){
         showError("Select a new status");
+        posting = false;
         return;
     }
     else{
@@ -4425,7 +4464,7 @@ function applyEditStatus(ID, status){
                 else{
                     showResModal("Something went wrong...", false, "Failed");
                 }
-                posting = false;
+                
             }
         }
     }
@@ -4433,6 +4472,6 @@ function applyEditStatus(ID, status){
     xhr.open("POST", "./php/changeStatus.php", false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(`id=${ID}&newStatus=${newStatus}`);
-
+    posting = false;
 
 }
