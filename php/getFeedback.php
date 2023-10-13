@@ -43,11 +43,6 @@
             array_push($allFeedback, $tempObj); 
         }
 
-        session_start();
-        $username = $_SESSION['username'];
-        $adminStampQuery = "INSERT INTO `admin_logs`(`username`, `activity`) VALUES ('$username','Viewed feedback')";
-        mysqli_query($conn, $adminStampQuery);
-
         echo json_encode($allFeedback);
     }
     else{
