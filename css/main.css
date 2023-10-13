@@ -2398,6 +2398,9 @@ table {
   font-size: 0.8rem;
   color: gray;
 }
+.view-schedule__content #pageNum {
+  margin: unset;
+}
 .view-schedule__content .view-schedule__header {
   width: 100%;
   height: -moz-fit-content;
