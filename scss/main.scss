@@ -4246,3 +4246,25 @@ table{
 .view-disabled:hover{
     cursor:not-allowed;
 }
+
+.change-warning{
+    margin: 2vh 0 1vh 0;
+    width: 100%;
+    // font-weight: 700;
+    color: red;
+    text-align: center;
+}
+
+.change-warning::before{
+    content: 'WARNING: ';
+    font-weight: 700;
+}
+
+.edit-disabled{
+    background-color: #7e7d7d;
+}
+
+.edit-disabled:hover{
+    cursor:not-allowed;
+    background-color: lighten($color: #7e7d7d, $amount: 5);
+}

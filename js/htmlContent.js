@@ -392,6 +392,7 @@ let viewSchedule = `
                 <table class="schedule-table" id="schedule-table">
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Full Name</th>
                             <th>Department</th>
                             <th>Appointment <br>Date</th>
@@ -654,7 +655,9 @@ let adminLogs = `
                             <option value="Changed a slot in ">Changed a slot in a department</option>
                             <option value="Removed a slot in ">Removed a slot in a department</option>
                             <option value="Scheduled an appointment">Scheduled an appointment</option>
-                            
+                            <option value="appointment status">Changed an appointment's status</option>
+                            <option value="Approved">Approved a follow up request</option>
+                            <option value="Rejected">Rejected a follow up request</option>                            
                         </select>
                         <select id="logAdminType" class="form-select" aria-label="Default select example">
                             <option hidden selected disabled value="">Admin Type</option>

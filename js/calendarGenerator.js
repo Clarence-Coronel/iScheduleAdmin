@@ -476,6 +476,7 @@ function generateDate(days, NameOfDay1st){
 
 
             if(availScheds.length == 0) {
+                calendarCell[i].classList.remove('date');
                 calendarCell[i].classList.add('block');
                 calendarCell[i].setAttribute('id','full');
                 calendarCell[i].innerText = 'Full';

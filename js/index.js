@@ -4092,7 +4092,6 @@ function setupTablePagination(tableId, prevButtonId, nextButtonId, rowsPerPage) 
                 pageNum.style.color = 'rgb(80, 78, 78)';
             },500)
         }
-        console.log(currentPage)
     }
 
     function prevTable(){
@@ -4109,7 +4108,6 @@ function setupTablePagination(tableId, prevButtonId, nextButtonId, rowsPerPage) 
                 pageNum.style.color = 'rgb(80, 78, 78)';
             },500)
         }
-        console.log(currentPage)
     }
 
     
@@ -4298,11 +4296,12 @@ function insertAppBtn(query){
                         let template = 
                         `
                         <tr class="table-row">
+                            <td>${item.appointmentID}</td>
                             <td>${capitalFirstLetter(item.lastName)}, ${capitalFirstLetter(item.firstName)} ${capitalFirstLetter(item.middleName)}</td>
                             <td>${deptName}</td>
                             <td>${item.appointmentDate}</td>
                             <td>${time}</td>
-                            <td class="${item.appointmentStatus}">${capitalFirstLetter(item.appointmentStatus)}</td>
+                            <td class="${item.appointmentStatus}" id="status_${item.appointmentID}">${capitalFirstLetter(item.appointmentStatus)}</td>
                             <td>${capitalFirstLetter(item.appointmentType)}</td>
                             <td>${sex}</td>
                             <td>${item.birthdate}</td>
@@ -4312,7 +4311,7 @@ function insertAppBtn(query){
                             <td>${item.caseNo}</td>
                             <td>${item.dateSubmitted}</td>
                             <td>${item.cancelReason}</td>
-                            <td><button class="editBtn" data-appid="${item.appointmentID}" onclick="editStatus(this.dataset.appid)" >Edit</button></td>
+                            <td><button class="editBtn ${item.appointmentStatus != 'active' ? 'edit-disabled' : ''}" ${item.appointmentStatus != 'active' ? 'disabled="disabled"' : ""} data-appid="${item.appointmentID}" data-status="${item.appointmentStatus}" onclick="editStatus(this.dataset.appid, this.dataset.status)" >Edit</button></td>
                         </tr>
                         `;
                         
@@ -4324,7 +4323,7 @@ function insertAppBtn(query){
                         table.innerHTML = 
                         `
                         <tr>
-                            <td colspan="15" class="empty">No Appointments Today</td>
+                            <td colspan="16" class="empty">No Appointments Today</td>
                         </tr>
                         `;
                     }
@@ -4332,7 +4331,7 @@ function insertAppBtn(query){
                         table.innerHTML = 
                         `
                         <tr>
-                            <td colspan="15" class="empty">No Recent Completed Appointments</td>
+                            <td colspan="16" class="empty">No Recent Completed Appointments</td>
                         </tr>
                         `;
                     }
@@ -4340,7 +4339,7 @@ function insertAppBtn(query){
                         table.innerHTML = 
                         `
                         <tr>
-                        <td colspan="15" class="empty">No Recent Cancelled Appointments</td>
+                        <td colspan="16" class="empty">No Recent Cancelled Appointments</td>
                         </tr>
                         `;
                     }
@@ -4352,7 +4351,7 @@ function insertAppBtn(query){
             table.innerHTML = 
             `
             <tr>
-                <td colspan="15" class="empty">Loading...</td>
+                <td colspan="16" class="empty">Loading...</td>
             </tr>
             `;
         }
@@ -4362,5 +4361,78 @@ function insertAppBtn(query){
     xhr.open("POST", "./php/getApp.php", false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(`deptID=${dept}&query=${query}`);
+
+}
+
+function editStatus(ID, status){
+    resetModal();
+
+    let modalTitle = document.querySelector('.modal-title');
+    let modalBody = document.querySelector('.modal-body');
+    let modalPositive = document.querySelector('.positive');
+    let modalNegative = document.querySelector('.negative');
+    let close = document.querySelector('.btn-close');
+    let modalHeader = document.querySelector('.modal-header');
+    let modalFooter = document.querySelector('.modal-footer');
+
+    modalTitle.innerText = "Changing Status..."
+    modalBody.innerHTML = `
+        <select class="form-select" aria-label="Default select example" id="newStatus">
+            <option value="" selected hidden disabled>Select Status</option>
+            <option value="completed">Completed</option>
+            <option value="cancelled">Cancelled</option>
+        </select>
+        <div class="change-warning">This cannot be undone.</div>
+        <div class="error-container">
+            <span class="msg"></span>
+        </div>
+    `;
+
+    modalNegative.innerText = "Cancel";
+    modalPositive.innerText = "Apply";
+    modalPositive.setAttribute("onclick", `applyEditStatus("${ID}", "${status}")`)
+    modalPositive.removeAttribute("data-bs-dismiss");
+
+    modalLauncher();
+}
+
+function applyEditStatus(ID, status){
+    if(posting) return;
+    posting = true;
+
+    let newStatus = document.querySelector("#newStatus").value;
+
+    if(newStatus == ""){
+        showError("Select a new status");
+        return;
+    }
+    else{
+        document.querySelector('.positive').setAttribute("data-bs-dismiss", "modal");
+        document.querySelector('.positive').click();
+    }
+
+    const xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function(){
+        if(this.readyState == 4){
+            if(this.status == 200){
+                if(this.responseText == 1){
+                    showResModal("Status has been changed");
+                    document.querySelector(`#status_${ID}`).classList.remove(status);
+                    document.querySelector(`#status_${ID}`).innerText = capitalFirstLetter(newStatus);
+                    document.querySelector(`#status_${ID}`).classList.add(newStatus)
+                }
+                else{
+                    showResModal("Something went wrong...", false, "Failed");
+                }
+                posting = false;
+            }
+        }
+    }
+
+    xhr.open("POST", "./php/changeStatus.php", false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send(`id=${ID}&newStatus=${newStatus}`);
+
 
 }

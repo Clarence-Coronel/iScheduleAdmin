@@ -14,10 +14,10 @@
     $query = "UPDATE `video_tutorials` SET `link`='$link' WHERE `vidType` = '$type'";
 
     if(mysqli_query($conn, $query)){
-        echo 1;
         $username = $_SESSION['username'];
         $adminStampQuery = "INSERT INTO `admin_logs`(`username`, `activity`) VALUES ('$username','Changed $type video tutorial')";
         mysqli_query($conn, $adminStampQuery);
+        echo 1;
     }
     else{
         echo 0;

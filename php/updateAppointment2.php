@@ -10,9 +10,9 @@
 
 
     $query = "UPDATE `appointments` SET `appointmentStatus`='rejected' WHERE `appointmentID` = '$appID';";
-    if(mysqli_query($conn, $query)){
-        $username = $_SESSION['username'];
-        $adminStampQuery = "INSERT INTO `admin_logs`(`username`, `activity`) VALUES ('$username','Rejected a follow-up request')";
+    if(mysqli_query($conn, $query)){        
+        $username = $_SESSION['username'];                                                          
+        $adminStampQuery = "INSERT INTO `admin_logs`(`username`, `activity`) VALUES ('$username','Rejected ID=\"$appID\" follow-up request')";
         mysqli_query($conn, $adminStampQuery);
 
         echo getLink($appID);

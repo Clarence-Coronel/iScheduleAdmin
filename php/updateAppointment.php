@@ -32,7 +32,7 @@
         $query = "UPDATE `appointments` SET `scheduleID`='$schedID',`appointmentDate`='$schedDate', `appointmentStatus`='active' WHERE `appointmentID` = '$appID';";
         if(mysqli_query($conn, $query)){
             $username = $_SESSION['username'];
-            $adminStampQuery = "INSERT INTO `admin_logs`(`username`, `activity`) VALUES ('$username','Approved a follow-up request')";
+            $adminStampQuery = "INSERT INTO `admin_logs`(`username`, `activity`) VALUES ('$username','Approved ID=\"$appID\" follow-up request')";
             mysqli_query($conn, $adminStampQuery);
 
             echo getLink($appID);

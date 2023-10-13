@@ -34,8 +34,8 @@
         else $queryType = $temp;
     }
 
-    $currentDate = date("Y-m-d");
-    // $currentDate = "2023-12-12";
+    // $currentDate = date("Y-m-d");
+    $currentDate = "2023-12-13";
     $allApp = array();
 
     if($queryType == 'today') $query = "SELECT appointments.*, schedules.startTime, schedules.stopTime FROM appointments INNER JOIN schedules ON appointments.scheduleID = schedules.scheduleID WHERE appointments.appointmentStatus = 'active' AND appointments.appointmentDate = '$currentDate' AND appointments.departmentID = '$selectedDept' ORDER BY schedules.startTime ASC;";
