@@ -430,7 +430,7 @@ let viewSchedule = `
 
 let quickView = `
 <div class="quick-view-container">
-    <select class="form-select" onchange="insertAppQuick(this.value)" aria-label="Default select example">
+    <select class="form-select" onchange="insertAppBtn('today')" aria-label="Default select example" id="deptSelect">
         <option value="" selected hidden disabled>Select a Department</option>
         <option value="1">ENT</option>
         <option value="2">Hematology</option>
@@ -451,10 +451,9 @@ let quickView = `
         <option value="17">Surgery ROS</option>
     </select>
     <div class="view-schedule__btn-group">
-        <button class="view-schedule__btn view-disabled">View Today's Appointments</button>
-        <button class="view-schedule__btn view-disabled">View All Active Appointments</button>
-        <button class="view-schedule__btn view-disabled">View All Completed Appointments</button>
-        <button class="view-schedule__btn view-disabled">View All Cancelled Appointments</button>   
+        <button class="view-schedule__btn view-disabled" disabled="disabled" onclick="insertAppBtn('today')">View Today's Appointments</button>
+        <button class="view-schedule__btn view-disabled" disabled="disabled" title="Last 30 days" onclick="insertAppBtn('completed')">View Recent Completed Appointments</button>
+        <button class="view-schedule__btn view-disabled" disabled="disabled" title="Last 30 days" onclick="insertAppBtn('cancelled')">View Recent Cancelled Appointments</button>   
     </div>
 </div>`;
 

@@ -4198,13 +4198,86 @@ function insertReq(){
     xhr.send();
 }
 
-function insertAppQuick(deptID){
+// function insertAppQuick(deptID){
+//     let table = document.querySelector('.schedule-table tbody');
+//     let quickBtns = document.querySelectorAll('.view-schedule__btn');
+//     let xhr = new XMLHttpRequest();
+    
+//     quickBtns.forEach(btn=>{
+//         btn.classList.remove('view-disabled')
+//     })
+    
+//     xhr.onreadystatechange = function(){
+//         if(this.readyState == 4){
+//             if(this.status == 200){
+//                 try {
+//                     table.innerHTML = "";
+//                     const arrOfObj = JSON.parse(this.responseText);
+//                     arrOfObj.forEach(item=>{
+//                         const dept = ['ENT', 'Hematology', 'Internal Medicine', 'Internal Medicine Clearance', 'Nephrology', 'Neurology', 'OB GYNE New', 'OB GYNE Old', 'OB GYNE ROS', 'Oncology', 'Pediatric Cardiology', 'Pediatric Clearance', 'Pediatric General', 'Psychiatry New', 'Psychiatry Old', 'Surgery', 'Surgery ROS'];
+//                         let deptName = dept[item.departmentID-1];
+//                         let sex = item.sex == 'm' ? 'Male' : 'Female';
+
+
+//                         let template = 
+//                         `
+//                         <tr class="table-row">
+//                             <td>${capitalFirstLetter(item.lastName)}, ${capitalFirstLetter(item.firstName)} ${capitalFirstLetter(item.middleName)}</td>
+//                             <td>${deptName}</td>
+//                             <td>${item.appointmentDate}</td>
+//                             <td>${item.startTime} - ${item.stopTime}</td>
+//                             <td class="${item.appointmentStatus}">${capitalFirstLetter(item.appointmentStatus)}</td>
+//                             <td>${capitalFirstLetter(item.appointmentType)}</td>
+//                             <td>${sex}</td>
+//                             <td>${item.birthdate}</td>
+//                             <td>${item.phone}</td>
+//                             <td>${capitalFirstLetter(item.barangay)}, ${capitalFirstLetter(item.municipality)}, ${capitalFirstLetter(item.province)}</td>
+//                             <td>${capitalFirstLetter(item.patientType)}</td>
+//                             <td>${item.caseNo}</td>
+//                             <td>${item.dateSubmitted}</td>
+//                             <td>${item.cancelReason}</td>
+//                             <td><button class="editBtn" data-appid="${item.appointmentID}" onclick="editStatus(this.dataset.appid)" >Edit</button></td>
+//                         </tr>
+//                         `;
+                        
+//                         table.innerHTML += template;
+//                     });
+//                     showTableCell();
+//                 } catch (error) {
+//                     table.innerHTML = 
+//                     `
+//                     <tr>
+//                         <td colspan="15" class="empty">No Appointments Today</td>
+//                     </tr>
+//                     `;
+//                 }
+//             }
+//         }
+//         else{
+//             table.innerHTML = 
+//             `
+//             <tr>
+//                 <td colspan="15" class="empty">Loading...</td>
+//             </tr>
+//             `;
+//         }
+//         setupTablePagination('schedule-table', 'prevButton', 'nextButton', 10);
+//     };
+
+//     xhr.open("POST", "./php/getApp.php", false);
+//     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+//     xhr.send("deptID=" + deptID);
+// }
+
+function insertAppBtn(query){
+    let dept = document.querySelector("#deptSelect").value;
     let table = document.querySelector('.schedule-table tbody');
     let quickBtns = document.querySelectorAll('.view-schedule__btn');
     let xhr = new XMLHttpRequest();
     
     quickBtns.forEach(btn=>{
-        btn.classList.remove('view-disabled')
+        btn.classList.remove('view-disabled');
+        btn.removeAttribute("disabled");
     })
     
     xhr.onreadystatechange = function(){
@@ -4213,11 +4286,14 @@ function insertAppQuick(deptID){
                 try {
                     table.innerHTML = "";
                     const arrOfObj = JSON.parse(this.responseText);
+
                     arrOfObj.forEach(item=>{
                         const dept = ['ENT', 'Hematology', 'Internal Medicine', 'Internal Medicine Clearance', 'Nephrology', 'Neurology', 'OB GYNE New', 'OB GYNE Old', 'OB GYNE ROS', 'Oncology', 'Pediatric Cardiology', 'Pediatric Clearance', 'Pediatric General', 'Psychiatry New', 'Psychiatry Old', 'Surgery', 'Surgery ROS'];
                         let deptName = dept[item.departmentID-1];
                         let sex = item.sex == 'm' ? 'Male' : 'Female';
-
+                        let time = "";
+                        if(item.startTime != "" && item.stopTime != "") time = `${item.startTime} - ${item.stopTime}`;
+                        if (item.cancelReason == null) item.cancelReason = "";
 
                         let template = 
                         `
@@ -4225,7 +4301,7 @@ function insertAppQuick(deptID){
                             <td>${capitalFirstLetter(item.lastName)}, ${capitalFirstLetter(item.firstName)} ${capitalFirstLetter(item.middleName)}</td>
                             <td>${deptName}</td>
                             <td>${item.appointmentDate}</td>
-                            <td>${item.startTime} - ${item.stopTime}</td>
+                            <td>${time}</td>
                             <td class="${item.appointmentStatus}">${capitalFirstLetter(item.appointmentStatus)}</td>
                             <td>${capitalFirstLetter(item.appointmentType)}</td>
                             <td>${sex}</td>
@@ -4244,12 +4320,31 @@ function insertAppQuick(deptID){
                     });
                     showTableCell();
                 } catch (error) {
-                    table.innerHTML = 
-                    `
-                    <tr>
-                        <td colspan="15" class="empty">No Appointments Today</td>
-                    </tr>
-                    `;
+                    if(query == 'today'){
+                        table.innerHTML = 
+                        `
+                        <tr>
+                            <td colspan="15" class="empty">No Appointments Today</td>
+                        </tr>
+                        `;
+                    }
+                    else if(query == 'completed'){
+                        table.innerHTML = 
+                        `
+                        <tr>
+                            <td colspan="15" class="empty">No Recent Completed Appointments</td>
+                        </tr>
+                        `;
+                    }
+                    else if(query == 'cancelled'){
+                        table.innerHTML = 
+                        `
+                        <tr>
+                        <td colspan="15" class="empty">No Recent Cancelled Appointments</td>
+                        </tr>
+                        `;
+                    }
+
                 }
             }
         }
@@ -4266,5 +4361,6 @@ function insertAppQuick(deptID){
 
     xhr.open("POST", "./php/getApp.php", false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("deptID=" + deptID);
+    xhr.send(`deptID=${dept}&query=${query}`);
+
 }

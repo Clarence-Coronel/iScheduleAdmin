@@ -26,16 +26,22 @@
     }
 
     $selectedDept = null;
+    $queryType = null;
+    $query = null;
 
     foreach($_POST as $temp){
-        $selectedDept = $temp;
+        if(!isset($selectedDept)) $selectedDept = $temp;
+        else $queryType = $temp;
     }
 
     $currentDate = date("Y-m-d");
     // $currentDate = "2023-12-12";
     $allApp = array();
 
-    $query = "SELECT *, schedules.startTime, schedules.stopTime FROM appointments INNER JOIN schedules ON appointments.scheduleID = schedules.scheduleID WHERE appointments.appointmentDate = '$currentDate' AND appointments.departmentID = '$selectedDept' ORDER BY schedules.startTime ASC;";
+    if($queryType == 'today') $query = "SELECT appointments.*, schedules.startTime, schedules.stopTime FROM appointments INNER JOIN schedules ON appointments.scheduleID = schedules.scheduleID WHERE appointments.appointmentStatus = 'active' AND appointments.appointmentDate = '$currentDate' AND appointments.departmentID = '$selectedDept' ORDER BY schedules.startTime ASC;";
+    else if ($queryType == 'completed') $query = "SELECT appointments.*, schedules.startTime, schedules.stopTime FROM appointments INNER JOIN schedules ON appointments.scheduleID = schedules.scheduleID  WHERE appointments.appointmentStatus = 'completed' AND appointments.departmentID = '$selectedDept' AND `appointmentDate` BETWEEN (CURDATE() - INTERVAL 30 DAY) AND CURDATE() ORDER BY `appointmentDate` DESC, schedules.startTime ASC;";
+    else if ($queryType == 'cancelled') $query = "SELECT appointments.*, schedules.startTime, schedules.stopTime FROM appointments LEFT JOIN schedules ON appointments.scheduleID = schedules.scheduleID  WHERE appointments.appointmentStatus = 'cancelled' AND appointments.departmentID = '$selectedDept' AND appointments.dateSubmitted BETWEEN (CURDATE() - INTERVAL 30 DAY) AND CURDATE() ORDER BY appointments.dateSubmitted DESC, schedules.startTime ASC;";
+
     $result = mysqli_query($conn,$query);
 	$count = mysqli_num_rows($result);
 
@@ -56,12 +62,21 @@
             $tempObj->barangay = $row['barangay'];
             $tempObj->patientType = $row['patientType'];
             $tempObj->appointmentType = $row['appointmentType'];
-            $tempObj->startTime = timeConverter($row['startTime']);
-            $tempObj->stopTime = timeConverter($row['stopTime']);
-            $tempObj->appointmentDate = dateConverter($row['appointmentDate']);
+            
+            try {
+                $tempObj->startTime = timeConverter($row['startTime']);
+                $tempObj->stopTime = timeConverter($row['stopTime']);
+                $tempObj->appointmentDate = dateConverter($row['appointmentDate']);
+            } catch (\Throwable $th) {
+                $tempObj->startTime = "";
+                $tempObj->stopTime = "";
+                $tempObj->appointmentDate = "";
+            }
+
+            $tempObj->cancelReason = $row['cancelReason'];
             $tempObj->caseNo = $row['caseNo'];
             $tempObj->appointmentStatus = $row['appointmentStatus'];
-            $tempObj->cancelReason = $row['cancelReason'];
+
             $tempObj->dateSubmitted = dateConverter($row['dateSubmitted']);
             
             array_push($allApp, $tempObj);
