@@ -1,6 +1,19 @@
 <?php
-    require 'connect.php';
-    require 'functions.php';
+    require "connect.php";
+    require "functions.php";
+
+    session_start();
+    $username = $_SESSION['username'];
+
+    $input = null;
+
+    foreach($_POST as $temp){
+        $input = htmlspecialchars($temp);
+    }
+
+    $query = "SELECT appointments.*, schedules.startTime, schedules.stopTime FROM appointments INNER JOIN schedules ON appointments.scheduleID = schedules.scheduleID WHERE CONCAT(lastName, ', ', firstName, ' ', middleName, phone, province, municipality, barangay, patientType, appointmentType, caseNo, appointmentStatus, schedules.startTime, schedules.stopTime) LIKE '%clarence%' ORDER BY lastName ASC;";
+    $result = mysqli_query($conn,$query);
+	$count = mysqli_num_rows($result);
 
     class appointment {
         public $appointmentID;
@@ -25,22 +38,7 @@
         public $dateSubmitted;
     }
 
-    $selectedDept = null;
-    $queryType = null;
-    $query = null;
-
-    foreach($_POST as $temp){
-        if(!isset($selectedDept)) $selectedDept = $temp;
-        else $queryType = $temp;
-    }
-
-    $currentDate = date("Y-m-d");
-    // $currentDate = "2023-12-12";
     $allApp = array();
-
-    if($queryType == 'today') $query = "SELECT appointments.*, schedules.startTime, schedules.stopTime FROM appointments INNER JOIN schedules ON appointments.scheduleID = schedules.scheduleID WHERE appointments.appointmentStatus = 'active' AND appointments.appointmentDate = '$currentDate' AND appointments.departmentID = '$selectedDept' ORDER BY schedules.startTime ASC;";
-    else if ($queryType == 'completed') $query = "SELECT appointments.*, schedules.startTime, schedules.stopTime FROM appointments INNER JOIN schedules ON appointments.scheduleID = schedules.scheduleID  WHERE appointments.appointmentStatus = 'completed' AND appointments.departmentID = '$selectedDept' AND `appointmentDate` BETWEEN (CURDATE() - INTERVAL 30 DAY) AND CURDATE() ORDER BY `appointmentDate` DESC, schedules.startTime ASC;";
-    else if ($queryType == 'cancelled') $query = "SELECT appointments.*, schedules.startTime, schedules.stopTime FROM appointments LEFT JOIN schedules ON appointments.scheduleID = schedules.scheduleID  WHERE appointments.appointmentStatus = 'cancelled' AND appointments.departmentID = '$selectedDept' AND appointments.dateSubmitted BETWEEN (CURDATE() - INTERVAL 30 DAY) AND CURDATE() ORDER BY appointments.dateSubmitted DESC, schedules.startTime ASC;";
 
     $result = mysqli_query($conn,$query);
 	$count = mysqli_num_rows($result);
@@ -86,4 +84,5 @@
     else {
         echo 0;
     }
+
 ?>

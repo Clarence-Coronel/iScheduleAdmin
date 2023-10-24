@@ -4524,6 +4524,7 @@ function generateSlots(){
                         console.table(arrOfObj)
                         timeSlot.innerHTML = "";
                         timeSlot.innerHTML += `<option value="" selected hidden disabled>Time Slot</option>`;
+                        timeSlot.removeAttribute("disabled");
 
                         arrOfObj.forEach(item => {
                             let template = `
@@ -4548,7 +4549,85 @@ function generateSlots(){
     else{
         timeSlot.innerHTML = "";
         timeSlot.innerHTML += `<option value="" selected hidden disabled>Time Slot</option>`;
+        timeSlot.setAttribute("disabled", "disabled");
     }
 
 
+}
+
+function searchAppointment(){
+    let input = document.querySelector("#appointmentSearch").value;
+    let table = document.querySelector('.schedule-table tbody');
+
+    if(input.value != ""){
+        let xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function(){
+            if(this.readyState == 4){
+                if(this.status == 200){
+                    // console.log(this.responseText)
+                    try {
+                        table.innerHTML = "";
+                        const arrOfObj = JSON.parse(this.responseText);
+                        console.table(arrOfObj)
+    
+                        arrOfObj.forEach(item=>{
+                            const dept = ['ENT', 'Hematology', 'Internal Medicine', 'Internal Medicine Clearance', 'Nephrology', 'Neurology', 'OB GYNE New', 'OB GYNE Old', 'OB GYNE ROS', 'Oncology', 'Pediatric Cardiology', 'Pediatric Clearance', 'Pediatric General', 'Psychiatry New', 'Psychiatry Old', 'Surgery', 'Surgery ROS'];
+                            let deptName = dept[item.departmentID-1];
+                            let sex = item.sex == 'm' ? 'Male' : 'Female';
+                            let time = "";
+                            if(item.startTime != "" && item.stopTime != "") time = `${item.startTime} - ${item.stopTime}`;
+                            if (item.cancelReason == null) item.cancelReason = "";
+    
+                            let template = 
+                            `
+                            <tr class="table-row">
+                                <td>${item.appointmentID}</td>
+                                <td class="always-visible">${capitalFirstLetter(item.lastName)}, ${capitalFirstLetter(item.firstName)} ${capitalFirstLetter(item.middleName)}</td>
+                                <td>${deptName}</td>
+                                <td>${item.appointmentDate}</td>
+                                <td>${time}</td>
+                                <td class="${item.appointmentStatus}" id="status_${item.appointmentID}">${capitalFirstLetter(item.appointmentStatus)}</td>
+                                <td>${capitalFirstLetter(item.appointmentType)}</td>
+                                <td>${sex}</td>
+                                <td>${item.birthdate}</td>
+                                <td>${item.phone}</td>
+                                <td>${capitalFirstLetter(item.barangay)}, ${capitalFirstLetter(item.municipality)}, ${capitalFirstLetter(item.province)}</td>
+                                <td>${capitalFirstLetter(item.patientType)}</td>
+                                <td>${item.caseNo}</td>
+                                <td>${item.dateSubmitted}</td>
+                                <td>${item.cancelReason}</td>
+                                <td><button class="editBtn ${item.appointmentStatus != 'active' ? 'edit-disabled' : ''}" ${item.appointmentStatus != 'active' ? 'disabled="disabled"' : ""} data-appid="${item.appointmentID}" data-status="${item.appointmentStatus}" onclick="editStatus(this.dataset.appid, this.dataset.status)" >Edit</button></td>
+                            </tr>
+                            `;
+                            
+                            table.innerHTML += template;
+                        });
+                        showTableCell();
+                    } catch (error) {
+                        table.innerHTML = 
+                        `
+                        <tr>
+                            <td colspan="16" class="empty">No Result</td>
+                        </tr>
+                        `;
+                        
+                    }
+                }
+            }
+            else{
+                table.innerHTML = 
+                `
+                <tr>
+                    <td colspan="16" class="empty">Loading...</td>
+                </tr>
+                `;
+            }
+            setupTablePagination('schedule-table', 'prevButton', 'nextButton', 10);
+        };
+
+        xhr.open("POST", "./php/searchApp.php", false);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send("search=" + input);
+    }
 }
