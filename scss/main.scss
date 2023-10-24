@@ -885,13 +885,14 @@ input:-webkit-autofill:focus{
 
 .admin-logs__body{
     .search-container{
-        width: 40%;
+        width: 35%;
         min-width: 250px;
         display: flex;
         flex-flow: row nowrap;
         align-items: flex-start;
         height:max(20px, 2vw);
-        margin-bottom: $box-margin-top;
+        margin: 0 auto;
+        margin-bottom: 50px;
 
         input{
             width: 100%;
@@ -1080,7 +1081,7 @@ tr:nth-child(2n){
 th{
     // flex: 2;
     text-align: left;
-    padding: max(15px,1vh) max(7px,0.5vw);
+    padding: max(15px,1vh) max(10px,0.8vw);
     user-select: none;
     font-size: 0.7rem;
     max-width: max(10vw, 100px);
@@ -1092,7 +1093,7 @@ th{
 td{
     // min-width: 150px;
     // flex: 2;
-    padding: max(15px,1vh) max(7px,0.5vw);
+    padding: max(15px,1vh) max(10px,0.8vw);
     text-align: left;
     max-width: max(10vw, 100px);
     overflow: hidden;
@@ -1126,6 +1127,12 @@ td{
 
 td:hover{
     cursor: pointer;
+}
+
+.always-visible{
+    overflow: unset;
+    text-overflow: unset;
+    white-space: unset;
 }
 // Added class to selected row
 .selected{
@@ -3100,7 +3107,7 @@ table{
     flex-flow: column;
     justify-content: flex-start;
     align-items: center;
-    gap: max(10px, 1vw);
+    gap: max(7px, 0.4vh);
 
     button{
         background-color: $btn-color;
@@ -3118,21 +3125,22 @@ table{
     }
 
     .search-container{
-        width: 40%;
+        width: 35%;
         min-width: 250px;
         display: flex;
         flex-flow: row nowrap;
+        justify-content: space-between;
         align-items: flex-start;
         height:max(30px, 3vw);
+        margin-bottom: 50px;
         // margin: max(10px, 1vw);
 
         input{
             width: 100%;
-            border: 2px solid $fontbase-color;
-            border-radius: max(10px, 1vw) 0 0 max(10px, 1vw);
+            border: unset;
+            border-bottom: 1px solid $fontbase-color;
             height: 100%;
-            border-right: unset;
-            padding: 0 max(10px, 1vw);
+            // padding: 0 max(10px, 1vw);
         }
     
         input:focus{
@@ -3140,11 +3148,11 @@ table{
         }
     
         button{
+            border: unset;
+            border-radius: unset;
             background-color: white;
-            border: 1px solid $fontbase-color;
-            border-left: unset;
+            border-bottom: 1px solid $fontbase-color;
             width: max(30px, 3vw);
-            border-radius: 0 max(10px, 1vw) max(10px, 1vw) 0;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -3191,11 +3199,13 @@ table{
         appearance: none;
     }
 
-    .DatePickerInput::-webkit-inner-spin-button,
-    .DatePickerInput::-webkit-calendar-picker-indicator {
-        opacity:0 !important;   
-        // -webkit-appearance: none !important;
-        // appearance: none;
+    .date-picker{
+        display: flex;
+        flex-flow: row nowrap;
+        
+        input{
+            text-align: center;
+        }
     }
 
     // .filter-fields__address{
@@ -4240,7 +4250,7 @@ table{
 }
 
 .edit-disabled{
-    background-color: #7e7d7d;
+    background-color: #999898;
 }
 
 .edit-disabled:hover{

@@ -1496,12 +1496,26 @@ function viewScheduleNav(id){
         quickViewBtn.classList.remove('view-schedule__selected');
         filterBtn.classList.add('view-schedule__selected');
         field.innerHTML = filter;
+
+        document.querySelector('.view-schedule__table tbody').innerHTML = 
+        `
+        <tr>
+            <td colspan="16" class="empty">No Result</td>
+        </tr>
+        `;
     }
     else if(id == 'quickViewBtn'){
         quickViewIsActive = true;
         quickViewBtn.classList.add('view-schedule__selected');
         filterBtn.classList.remove('view-schedule__selected');
         field.innerHTML = quickView;
+
+        document.querySelector('.view-schedule__table tbody').innerHTML = 
+        `
+        <tr>
+            <td colspan="16" class="empty">No Department Selected</td>
+        </tr>
+        `;
     }
 }
 
@@ -2706,7 +2720,7 @@ function insertPostedAnn(){
                         const template = 
                         `
                         <tr class="table-row">
-                            <td>${title}</td>
+                            <td class="always-visible">${title}</td>
                             <td>${datePosted}</td>
                             <td>${timePosted}</td>
                             <td>${author}</td>
@@ -2799,8 +2813,8 @@ function insertAdmin(isInitial = true){
                         const template = 
                         `
                         <tr class="table-row">
-                            <td>${capitalFirstLetter(lastName)}, ${capitalFirstLetter(firstName)} ${capitalFirstLetter(middleName)}</td>
-                            <td>${username}</td>
+                            <td class="always-visible">${capitalFirstLetter(lastName)}, ${capitalFirstLetter(firstName)} ${capitalFirstLetter(middleName)}</td>
+                            <td class="always-visible">${username}</td>
                             <td>${phone}</td>
                             <td>${adminType}</td>
                             <td>
@@ -2941,8 +2955,8 @@ function insertAdminLogs(isInitial = true){
                         const template = 
                         `
                         <tr class="table-row">
-                            <td>${username}</td>
-                            <td>${activity}</td>
+                            <td class="always-visible">${username}</td>
+                            <td class="always-visible">${activity}</td>
                             <td>${adminType}</td>
                             <td>${logDate}</td>
                             <td>${logTime}</td>
@@ -3017,6 +3031,10 @@ function applyLogFilter(){
             showError("Invalid Date")
             return;
         }
+        else if(year.length != 4){
+            showError("Invalid Date")
+            return;
+        }
     }
     else{
         fullDate = "";
@@ -3025,6 +3043,8 @@ function applyLogFilter(){
     if(fullDate == "" && activity == "" && adminType == "" && sortBy == ""){
         return;
     }
+
+    showError("");
 
     let obj = {
         date: fullDate,
@@ -4199,7 +4219,7 @@ function insertReq(){
                             <td>
                                 <button data-appID="${item.appID}" data-deptID="${item.deptID}" onclick="viewRequestReject(this.dataset.appid)"><span class="material-icons-outlined">close</span></button>
                             </td>
-                            <td>${capitalFirstLetter(item.lastName)}, ${capitalFirstLetter(item.firstName)} ${capitalFirstLetter(item.middleName)}</td>
+                            <td class="always-visible">${capitalFirstLetter(item.lastName)}, ${capitalFirstLetter(item.firstName)} ${capitalFirstLetter(item.middleName)}</td>
                             <td>${deptName}</td>
                             <td>${item.phone}</td>
                             <td><a href="${item.imgLink}" target="_blank" class="viewBtn">View Image</a></td>
@@ -4335,7 +4355,7 @@ function insertAppBtn(query){
                         `
                         <tr class="table-row">
                             <td>${item.appointmentID}</td>
-                            <td>${capitalFirstLetter(item.lastName)}, ${capitalFirstLetter(item.firstName)} ${capitalFirstLetter(item.middleName)}</td>
+                            <td class="always-visible">${capitalFirstLetter(item.lastName)}, ${capitalFirstLetter(item.firstName)} ${capitalFirstLetter(item.middleName)}</td>
                             <td>${deptName}</td>
                             <td>${item.appointmentDate}</td>
                             <td>${time}</td>
@@ -4473,5 +4493,62 @@ function applyEditStatus(ID, status){
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(`id=${ID}&newStatus=${newStatus}`);
     posting = false;
+
+}
+
+function generateSlots(){
+    let dept = document.querySelector('#dept').value;
+
+    let month = document.querySelector('#appMonth').value;
+    let day = document.querySelector('#appDay').value;
+    let year = document.querySelector('#appYear').value;
+
+    let date = `${year}-${month}-${day}`;
+    let dayOfWeek = null;
+
+    const timeSlot = document.querySelector('#timeSlot');
+
+    if(dept != "" && isDateValid(date) && year.length == 4){
+
+        let tempDate = new Date(date);
+
+        const daysOfWeek = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+        dayOfWeek =  daysOfWeek[tempDate.getDay()];
+
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function(){
+            if(this.readyState == 4){
+                if(this.status == 200){
+                    try {
+                        let arrOfObj = JSON.parse(this.responseText);
+                        console.table(arrOfObj)
+                        timeSlot.innerHTML = "";
+                        timeSlot.innerHTML += `<option value="" selected hidden disabled>Time Slot</option>`;
+
+                        arrOfObj.forEach(item => {
+                            let template = `
+                            <option value="${item.scheduleID}">${item.startTime} - ${item.stopTime}</option>
+                            `;
+
+                            timeSlot.innerHTML += template;
+                        })
+                    } catch (error) {
+                        
+                    }
+                }
+            }
+        }
+        
+
+        xhr.open("POST", "./php/getTimeSlotApp.php", false);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        xhr.send(`dept=${dept}&day=${dayOfWeek}`);
+    }
+    else{
+        timeSlot.innerHTML = "";
+        timeSlot.innerHTML += `<option value="" selected hidden disabled>Time Slot</option>`;
+    }
+
 
 }

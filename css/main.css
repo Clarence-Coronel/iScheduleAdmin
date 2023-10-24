@@ -793,13 +793,14 @@ input:-webkit-autofill:focus {
 }
 
 .admin-logs__body .search-container {
-  width: 40%;
+  width: 35%;
   min-width: 250px;
   display: flex;
   flex-flow: row nowrap;
   align-items: flex-start;
   height: max(20px, 2vw);
-  margin-bottom: max(15px, 1vw);
+  margin: 0 auto;
+  margin-bottom: 50px;
 }
 .admin-logs__body .search-container input {
   width: 100%;
@@ -914,7 +915,7 @@ tr {
 
 th {
   text-align: left;
-  padding: max(15px, 1vh) max(7px, 0.5vw);
+  padding: max(15px, 1vh) max(10px, 0.8vw);
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
@@ -923,7 +924,7 @@ th {
 }
 
 td {
-  padding: max(15px, 1vh) max(7px, 0.5vw);
+  padding: max(15px, 1vh) max(10px, 0.8vw);
   text-align: left;
   max-width: max(10vw, 100px);
   overflow: hidden;
@@ -953,6 +954,12 @@ td button {
 
 td:hover {
   cursor: pointer;
+}
+
+.always-visible {
+  overflow: unset;
+  text-overflow: unset;
+  white-space: unset;
 }
 
 .selected {
@@ -2518,7 +2525,7 @@ table {
   flex-flow: column;
   justify-content: flex-start;
   align-items: center;
-  gap: max(10px, 1vw);
+  gap: max(7px, 0.4vh);
 }
 .filter-container button {
   background-color: #0577fa;
@@ -2534,30 +2541,30 @@ table {
   background-color: #1e85fb;
 }
 .filter-container .search-container {
-  width: 40%;
+  width: 35%;
   min-width: 250px;
   display: flex;
   flex-flow: row nowrap;
+  justify-content: space-between;
   align-items: flex-start;
   height: max(30px, 3vw);
+  margin-bottom: 50px;
 }
 .filter-container .search-container input {
   width: 100%;
-  border: 2px solid rgb(80, 78, 78);
-  border-radius: max(10px, 1vw) 0 0 max(10px, 1vw);
+  border: unset;
+  border-bottom: 1px solid rgb(80, 78, 78);
   height: 100%;
-  border-right: unset;
-  padding: 0 max(10px, 1vw);
 }
 .filter-container .search-container input:focus {
   outline: unset;
 }
 .filter-container .search-container button {
+  border: unset;
+  border-radius: unset;
   background-color: white;
-  border: 1px solid rgb(80, 78, 78);
-  border-left: unset;
+  border-bottom: 1px solid rgb(80, 78, 78);
   width: max(30px, 3vw);
-  border-radius: 0 max(10px, 1vw) max(10px, 1vw) 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2599,9 +2606,12 @@ table {
   -webkit-appearance: none;
           appearance: none;
 }
-.filter-fields .DatePickerInput::-webkit-inner-spin-button,
-.filter-fields .DatePickerInput::-webkit-calendar-picker-indicator {
-  opacity: 0 !important;
+.filter-fields .date-picker {
+  display: flex;
+  flex-flow: row nowrap;
+}
+.filter-fields .date-picker input {
+  text-align: center;
 }
 .filter-fields #barangay, .filter-fields #municipality, .filter-fields #province {
   padding: 0.375rem 2.25rem 0.375rem 0.75rem;
@@ -3446,7 +3456,7 @@ table {
 }
 
 .edit-disabled {
-  background-color: #7e7d7d;
+  background-color: #999898;
 }
 
 .edit-disabled:hover {

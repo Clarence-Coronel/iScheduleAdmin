@@ -380,7 +380,7 @@ let viewSchedule = `
         <div class="view-schedule__header">
             <div class="view-schedule__nav">
                 <div class="btn--quick-view view-schedule__selected" onclick="viewScheduleNav(this.id)" id="quickViewBtn">Quick View</div>
-                <div class="btn--filter" onclick="viewScheduleNav(this.id)" id="filterBtn">Filter</div>
+                <div class="btn--filter" onclick="viewScheduleNav(this.id)" id="filterBtn">Search & Filter</div>
             </div>
             <div class="view-schedule__field">
                 
@@ -466,32 +466,35 @@ let filter = `
     </div>
     <h2>Filter</h2>
     <div class="filter-fields">
-        <select class="form-select" aria-label="Default select example">
+        <select class="form-select" id="dept" aria-label="Default select example" onchange="generateSlots()">
             <option value="" selected hidden disabled>Select a Department</option>
-            <option value="">ENT</option>
-            <option value="">Hematology</option>
-            <option value="">Internal Medicine</option>
-            <option value="">Internal Medicine Clearance</option>
-            <option value="">Nephrology</option>
-            <option value="">Neurology</option>
-            <option value="">OB GYNE New</option>
-            <option value="">OB GYNE Old</option>
-            <option value="">OB GYNE ROS</option>
-            <option value="">Oncology</option>
-            <option value="">Pediatric Cardiology</option>
-            <option value="">Pediatric Clearance</option>
-            <option value="">Pediatric General</option>
-            <option value="">Psychiatry New</option>
-            <option value="">Psychiatry Old</option>
-            <option value="">Surgery</option>
-            <option value="">Surgery ROS</option>
+            <option value="1">ENT</option>
+            <option value="2">Hematology</option>
+            <option value="3">Internal Medicine</option>
+            <option value="4">Internal Medicine Clearance</option>
+            <option value="5">Nephrology</option>
+            <option value="6">Neurology</option>
+            <option value="7">OB GYNE New</option>
+            <option value="8">OB GYNE Old</option>
+            <option value="9">OB GYNE ROS</option>
+            <option value="10">Oncology</option>
+            <option value="11">Pediatric Cardiology</option>
+            <option value="12">Pediatric Clearance</option>
+            <option value="13">Pediatric General</option>
+            <option value="14">Psychiatry New</option>
+            <option value="15">Psychiatry Old</option>
+            <option value="16">Surgery</option>
+            <option value="17">Surgery ROS</option>
         </select>
-        <input type="date" name="" id="" placeholder="Date">
-        <select class="form-select" aria-label="Default select example">
+        <div class="date-picker">
+            <input oninput="generateSlots()" type="text" name="month" id="appMonth" placeholder="MM" oninput="inputLimiterNum(this.id, 2)" onblur="inputLimiterBlur(this.id, 2)">
+            <span>/</span>
+            <input oninput="generateSlots()" type="text" name="day" id="appDay" placeholder="DD" oninput="inputLimiterNum(this.id, 2)" onblur="inputLimiterBlur(this.id, 2)">
+            <span>/</span>
+            <input oninput="generateSlots()" type="text" name="year" id="appYear" placeholder="YYYY" oninput="inputLimiterNum(this.id, 4)" onblur="inputLimiterBlur(this.id, 4)">
+        </div>
+        <select id="timeSlot" class="form-select" aria-label="Default select example">
             <option value="" selected hidden disabled>Time Slot</option>
-            <option value="">8:00 AM - 9:00 AM</option>
-            <option value="">8:00 AM - 9:00 AM</option>
-            <option value="">8:00 AM - 9:00 AM</option>
         </select>
         <select class="form-select" aria-label="Default select example">
             <option value="" selected hidden disabled>Sex</option>
@@ -519,6 +522,9 @@ let filter = `
             <option value="">Completed</option>
             <option value="">Cancelled</option>
         </select>
+    </div>
+    <div class="error-container">
+        <span class="msg"></span>
     </div>
     <button type="button">Apply</button>
 </div>`;
