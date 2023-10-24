@@ -666,7 +666,7 @@ function errorHandler(code){
     // PHONE *****************************
     // 
     else if(code == '120'){
-        formErrorMessage = 'Phone # canoot be empty.';
+        formErrorMessage = 'Phone # cannot be empty.';
     }
     else if(code == '121'){
         formErrorMessage = 'Phone # must be contain 11 digits.';
@@ -1500,9 +1500,10 @@ function viewScheduleNav(id){
         document.querySelector('.view-schedule__table tbody').innerHTML = 
         `
         <tr>
-            <td colspan="16" class="empty">No Result</td>
+            <td colspan="16" class="empty">Empty</td>
         </tr>
         `;
+        setupTablePagination('schedule-table', 'prevButton', 'nextButton', 10);
     }
     else if(id == 'quickViewBtn'){
         quickViewIsActive = true;
@@ -1516,6 +1517,7 @@ function viewScheduleNav(id){
             <td colspan="16" class="empty">No Department Selected</td>
         </tr>
         `;
+        setupTablePagination('schedule-table', 'prevButton', 'nextButton', 10);
     }
 }
 
@@ -3111,7 +3113,7 @@ function applyLogFilter(){
         setupTablePagination('logs-table', 'prevButton', 'nextButton', 10);     
     }
 
-    xhr.open("OPEN", "./php/filterAdminLog.php", true);
+    xhr.open("OPEN", "./php/filterAdminLog.php", false);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(toSend);
 }
@@ -4556,10 +4558,10 @@ function generateSlots(){
 }
 
 function searchAppointment(){
-    let input = document.querySelector("#appointmentSearch").value;
+    let input = document.querySelector("#appointmentSearch").value.trim();
     let table = document.querySelector('.schedule-table tbody');
 
-    if(input.value != ""){
+    if(input != ""){
         let xhr = new XMLHttpRequest();
 
         xhr.onreadystatechange = function(){
@@ -4630,4 +4632,130 @@ function searchAppointment(){
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send("search=" + input);
     }
+}
+
+function filterAppointment(){
+    let dept = document.querySelector('#dept').value;
+
+    let month = document.querySelector('#appMonth').value;
+    let year = document.querySelector('#appYear').value;
+    let day = document.querySelector('#appDay').value;
+    let date = `${year}-${month}-${day}`;
+
+    let timeSlotID = document.querySelector('#timeSlot').value;
+
+    let sex = document.querySelector('#sex').value;
+    
+    let barangay = document.querySelector('#barangay').value;
+    let municipality = document.querySelector('#municipality').value;
+    let province = document.querySelector('#province').value;
+
+    let patientType = document.querySelector('#patientType').value;
+
+    let status = document.querySelector('#status').value;
+
+    let sortBy = document.querySelector('#sortBy').value;
+
+    if(month != "" || day != "" || year != ""){
+        if(month == "" || day == "" || year == ""){
+            showError("Date is incomplete");
+            return;
+        }
+        else if(!isDateValid(date)){
+            showError("Invalid Date")
+            return;
+        }
+        else if(year.length != 4){
+            showError("Invalid Date")
+            return;
+        }
+    }
+    else{
+        date = "";
+    }
+    showError("");
+
+    let obj = {
+        dept: dept,
+        appointmentDate: date,
+        scheduleID: timeSlotID,
+        sex: sex,
+        barangay: barangay,
+        municipality: municipality,
+        province: province,
+        patientType: patientType,
+        status: status,
+        sortBy: sortBy,
+    }
+
+    let toSend = JSON.stringify(obj);
+    let table = document.querySelector('.schedule-table tbody');
+
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+        if(this.readyState == 4){
+            if(this.status == 200){
+                try {
+                    table.innerHTML = "";
+                    const arrOfObj = JSON.parse(this.responseText);
+                    console.table(arrOfObj)
+
+                    arrOfObj.forEach(item=>{
+                        const dept = ['ENT', 'Hematology', 'Internal Medicine', 'Internal Medicine Clearance', 'Nephrology', 'Neurology', 'OB GYNE New', 'OB GYNE Old', 'OB GYNE ROS', 'Oncology', 'Pediatric Cardiology', 'Pediatric Clearance', 'Pediatric General', 'Psychiatry New', 'Psychiatry Old', 'Surgery', 'Surgery ROS'];
+                        let deptName = dept[item.departmentID-1];
+                        let sex = item.sex == 'm' ? 'Male' : 'Female';
+                        let time = "";
+                        if(item.startTime != "" && item.stopTime != "") time = `${item.startTime} - ${item.stopTime}`;
+                        if (item.cancelReason == null) item.cancelReason = "";
+
+                        let template = 
+                        `
+                        <tr class="table-row">
+                            <td>${item.appointmentID}</td>
+                            <td class="always-visible">${capitalFirstLetter(item.lastName)}, ${capitalFirstLetter(item.firstName)} ${capitalFirstLetter(item.middleName)}</td>
+                            <td>${deptName}</td>
+                            <td>${item.appointmentDate}</td>
+                            <td>${time}</td>
+                            <td class="${item.appointmentStatus}" id="status_${item.appointmentID}">${capitalFirstLetter(item.appointmentStatus)}</td>
+                            <td>${capitalFirstLetter(item.appointmentType)}</td>
+                            <td>${sex}</td>
+                            <td>${item.birthdate}</td>
+                            <td>${item.phone}</td>
+                            <td>${capitalFirstLetter(item.barangay)}, ${capitalFirstLetter(item.municipality)}, ${capitalFirstLetter(item.province)}</td>
+                            <td>${capitalFirstLetter(item.patientType)}</td>
+                            <td>${item.caseNo}</td>
+                            <td>${item.dateSubmitted}</td>
+                            <td>${item.cancelReason}</td>
+                            <td><button class="editBtn ${item.appointmentStatus != 'active' ? 'edit-disabled' : ''}" ${item.appointmentStatus != 'active' ? 'disabled="disabled"' : ""} data-appid="${item.appointmentID}" data-status="${item.appointmentStatus}" onclick="editStatus(this.dataset.appid, this.dataset.status)" >Edit</button></td>
+                        </tr>
+                        `;
+                        
+                        table.innerHTML += template;
+                    });
+                    showTableCell();
+                } catch (error) {
+                    table.innerHTML = 
+                    `
+                    <tr>
+                        <td colspan="16" class="empty">No Result</td>
+                    </tr>
+                    `;
+                    
+                }
+            }
+        }
+        else{
+            table.innerHTML = 
+            `
+            <tr>
+                <td colspan="15" class="empty">Loading Table...</td>
+            </tr>
+            `;
+        }
+        setupTablePagination('schedule-table', 'prevButton', 'nextButton', 10);
+    }
+
+    xhr.open("OPEN", "./php/filterApp.php", false);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(toSend);
 }

@@ -432,7 +432,7 @@ let viewSchedule = `
 let quickView = `
 <div class="quick-view-container">
     <select class="form-select" onchange="insertAppBtn('today')" aria-label="Default select example" id="deptSelect">
-        <option value="" selected hidden disabled>Select a Department</option>
+        <option value="" selected hidden disabled>Department</option>
         <option value="1">ENT</option>
         <option value="2">Hematology</option>
         <option value="3">Internal Medicine</option>
@@ -467,7 +467,7 @@ let filter = `
     <h2>Filter</h2>
     <div class="filter-fields">
         <select class="form-select" id="dept" aria-label="Default select example" onchange="generateSlots()">
-            <option value="" selected hidden disabled>Select a Department</option>
+            <option value="" selected hidden disabled>Department</option>
             <option value="1">ENT</option>
             <option value="2">Hematology</option>
             <option value="3">Internal Medicine</option>
@@ -496,7 +496,7 @@ let filter = `
         <select disabled="disabled" id="timeSlot" class="form-select" aria-label="Default select example">
             <option value="" selected hidden disabled>Time Slot</option>
         </select>
-        <select class="form-select" aria-label="Default select example">
+        <select class="form-select" id="sex" aria-label="Default select example">
             <option value="" selected hidden disabled>Sex</option>
             <option value="m">Male</option>
             <option value="f">Female</option>
@@ -504,21 +504,12 @@ let filter = `
         <input type="text" name="barangay" id="barangay" placeholder="Barangay" oninput="inputLimiter(this.id, 60)" onblur="inputLimiterBlur(this.id, 60)">
         <input type="text" name="municipality" id="municipality" placeholder="Municipality" oninput="inputLimiter(this.id, 60) onblur="inputLimiterBlur(this.id, 60)">
         <input type="text" name="province" id="province" placeholder="Province" oninput="inputLimiter(this.id, 60) onblur="inputLimiterBlur(this.id, 60)">
-        <select class="form-select" aria-label="Default select example">
-            <option value="" selected hidden disabled>Sort By</option>
-            <option value="">Name (A-Z)</option>
-            <option value="1">Name (Z-A)</option>
-            <option value="2">Appointment Date (Latest-Oldest)</option>
-            <option value="3">Appointment Date (Oldest-Latest)</option>
-            <option value="4">Date Submitted (Latest-Oldest)</option>
-            <option value="5">Date Submitted (Oldest-Latest)</option>
-        </select>
-        <select class="form-select" aria-label="Default select example">
+        <select class="form-select" id="patientType" aria-label="Default select example">
             <option value="" selected hidden disabled>Patient Type</option>
             <option value="new">New</option>
             <option value="old">Old</option>
         </select>
-        <select class="form-select" aria-label="Default select example">
+        <select class="form-select" id="status" aria-label="Default select example">
             <option value="" selected hidden disabled>Status</option>
             <option value="active">Active</option>
             <option value="cancelled">Cancelled</option>
@@ -527,11 +518,20 @@ let filter = `
             <option value="pending">Pending</option>
             <option value="rejected">Rejected</option>
         </select>
+        <select class="form-select" id="sortBy" aria-label="Default select example">
+            <option value="" selected hidden disabled>Sort By</option>
+            <option value="0">Name (A-Z)</option>
+            <option value="1">Name (Z-A)</option>
+            <option value="2">Appointment Date (Latest-Oldest)</option>
+            <option value="3">Appointment Date (Oldest-Latest)</option>
+            <option value="4">Date Submitted (Latest-Oldest)</option>
+            <option value="5">Date Submitted (Oldest-Latest)</option>
+        </select>
     </div>
     <div class="error-container">
         <span class="msg"></span>
     </div>
-    <button type="button">Apply</button>
+    <button type="button" onclick="filterAppointment()">Apply</button>
 </div>`;
 
 let request = `
