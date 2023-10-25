@@ -3868,6 +3868,7 @@ function applyAddSched(day){
         if(this.readyState == 4){
             if(this.status == 200){
                 if(this.responseText == 1){
+                    posting = false;
                     setTimeout(()=>{
                         showResModal("New slot has been added");
                         generateDeptSched(document.querySelector('#deptSelect').value);
@@ -3881,7 +3882,6 @@ function applyAddSched(day){
     xhr.open("POST","./php/postDeptSched.php", false);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(toSend);
-    posting = false;
 }
 
 function splitTime(time){
@@ -4758,4 +4758,47 @@ function filterAppointment(){
     xhr.open("OPEN", "./php/filterApp.php", false);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(toSend);
+}
+
+function generateDeptStats(days){
+    let xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function(){
+        if(this.readyState == 4){
+            if(this.status == 200){
+                let arrOfObj = JSON.parse(this.responseText);
+                let deptBars = document.querySelectorAll('.dept');
+                let highest = 0;
+
+                arrOfObj.forEach(item=>{
+                    if(item.count > highest){
+                        highest = item.count;
+                    }
+                })
+
+                deptBars.forEach((item, index) =>{
+                    let dept = index+1;
+                    let count = null;
+
+                    arrOfObj.forEach(item=>{
+                        if(item.deptID == dept){
+                            count = item.count;
+                        }
+                    })
+
+                    if(count == null){
+                        count = 0;
+                    }
+
+                    item.innerHTML = `${item.dataset.dept} (${count})`;
+                    item.style.width = `${(count/highest)*90}%`;
+                })
+                
+            }
+        }
+    }
+
+    xhr.open("POST", "./php/getDeptStats.php", true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.send("days=" + days);
 }

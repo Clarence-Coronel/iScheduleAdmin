@@ -151,31 +151,31 @@ let dashboard = `
     <div class="dashboard__right">
         <div class="dashboard__all-patients" data-aos="fade-left" data-aos-duration="500" data-aos-anchor=".dashboard">
             <div class="dashboard__header">
-                <span class="title">Distribution Of Appointments By</span>
-                <select class="form-select" aria-label="Default select example">
-                    <option value="">Week</option>
-                    <option value="" selected>Month</option>
-                    <option value="">Year</option>
+                <span class="title">Appointment Distribution: </span>
+                <select class="form-select" aria-label="Default select example" onchange="generateDeptStats(this.value)">
+                    <option value="7">Last 7 Days</option>
+                    <option value="30" selected>Last 30 Days</option>
+                    <option value="365">Last 365 Days</option>
                 </select>
             </div>
             <div class="dept-bargraph">
-                <div class="dept">ENT (58)</div>
-                <div class="dept">Hematology (10)</div>
-                <div class="dept">Internal Medicine (32)</div>
-                <div class="dept">Internal Medicine Clearance (11)</div>
-                <div class="dept">Nephrology (11)</div>
-                <div class="dept">Neurology (23)</div>
-                <div class="dept">OB GYNE New (11)</div>
-                <div class="dept">OB GYNE Old (10)</div>
-                <div class="dept">OB GYNE ROS (3)</div>
-                <div class="dept">Oncology (35)</div>
-                <div class="dept">Pediatric Cardiology (41)</div>
-                <div class="dept">Pediatric Clearance (34)</div>
-                <div class="dept">Pediatric General (11)</div>
-                <div class="dept">Psychiatry New (44)</div>
-                <div class="dept">Psychiatry Old (43)</div>
-                <div class="dept">Surgery (32)</div>
-                <div class="dept">Surgery ROS (12)</div>
+                <div class="dept" data-dept="ENT"></div>
+                <div class="dept" data-dept="Hematology"></div>
+                <div class="dept" data-dept="Internal Medicine"></div>
+                <div class="dept" data-dept="Internal Medicine Clearance"></div>
+                <div class="dept" data-dept="Nephrology"></div>
+                <div class="dept" data-dept="Neurology"></div>
+                <div class="dept" data-dept="OB GYNE New"></div>
+                <div class="dept" data-dept="OB GYNE Old"></div>
+                <div class="dept" data-dept="OB GYNE ROS"></div>
+                <div class="dept" data-dept="Oncology"></div>
+                <div class="dept" data-dept="Pediatric Cardiology"></div>
+                <div class="dept" data-dept="Pediatric Clearance"></div>
+                <div class="dept" data-dept="Pediatric General"></div>
+                <div class="dept" data-dept="Psychiatry New"></div>
+                <div class="dept" data-dept="Psychiatry Old"></div>
+                <div class="dept" data-dept="Surgery"></div>
+                <div class="dept" data-dept="Surgery ROS"></div>
             </div>
         </div>
     </div>
@@ -1076,6 +1076,7 @@ function generateDashboard(){
         determineDeviceDB();
         let navLinks = document.querySelectorAll('.nav-links__item');
         highlightActive(1);
+        generateDeptStats(30);
     }
 }
 
