@@ -1429,22 +1429,23 @@ td:hover {
 .dashboard__left .dashboard__stats .dashboard__block {
   flex: 1 0 30%;
   max-width: 33.333%;
-  height: 50%;
+  height: 50% !important;
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
   font-weight: 600;
   text-align: center;
-  font-size: 0.6rem;
+  font-size: 0.8rem;
   flex-flow: column;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
   padding: max(5px, 0.5vw);
+  overflow: hidden;
 }
 .dashboard__left .dashboard__stats .dashboard__block span {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   font-weight: 1000;
   color: white;
   width: 100%;
@@ -1453,10 +1454,10 @@ td:hover {
   text-overflow: ellipsis;
 }
 .dashboard__left .dashboard__stats .dashboard__block:nth-child(1) {
-  background-color: rgb(239, 63, 63);
+  background-color: rgb(113, 93, 226);
 }
 .dashboard__left .dashboard__stats .dashboard__block:nth-child(2) {
-  background-color: rgb(57, 206, 149);
+  background-color: rgb(239, 63, 63);
 }
 .dashboard__left .dashboard__stats .dashboard__block:nth-child(3) {
   background-color: rgb(181, 77, 229);
@@ -1468,7 +1469,7 @@ td:hover {
   background-color: rgb(239, 157, 63);
 }
 .dashboard__left .dashboard__stats .dashboard__block:nth-child(6) {
-  background-color: rgb(113, 93, 226);
+  background-color: rgb(129, 220, 135);
 }
 .dashboard__left .dashboard__per-dept {
   width: 90%;

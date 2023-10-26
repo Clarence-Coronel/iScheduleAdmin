@@ -140,12 +140,12 @@ let dashboard = `
             </div>
         </div>
         <div class="dashboard__stats" data-aos="fade-right" data-aos-duration="500">
-            <div class="dashboard__block" title="Recent appointments from the last 30 days.">Recent Appointments<span>1134</span></div>
-            <div class="dashboard__block" title="Recent complete appointments from the last 30 days.">Recent Completed Appointments<span> 1112</span></div>
-            <div class="dashboard__block" title="Recent cancelled appointments from the last 30 days.">Recent Cancelled Appointments<span> 22</span></div>
-            <div class="dashboard__block" title="Recent website rating from the last 30 days.">Recent Website Rating<span>2123</span></div>
-            <div class="dashboard__block" title="Recent admin activities from the last 30 days.">Recent Admin Activities<span> 752</span></div>
-            <div class="dashboard__block" title="Recent website visits from the last 30 days.">Recent Website Visits<span> 1421</span></div>
+            <div class="dashboard__block" title="Recent appointments across all departments from the last 30 days.">Appointments<span>Loading...</span></div>
+            <div class="dashboard__block" title="Recent complete appointments across all departments from the last 30 days.">Completed Appointments<span>Loading...</span></div>
+            <div class="dashboard__block" title="Recent cancelled appointments across all departments from the last 30 days.">Cancelled Appointments<span>Loading...</span></div>
+            <div class="dashboard__block" title="Recent missed appointments across all departments from the last 30 days.">Missed Appointments<span>Loading...</span></div>
+            <div class="dashboard__block" title="Recent average from the last 30 days.">Average Website Rating<span>Loading...</span></div>
+            <div class="dashboard__block" title="Recent admin activities from the last 30 days.">Admin Activities<span>Loading...</span></div>
         </div>
     </div>
     <div class="dashboard__right">
@@ -1077,6 +1077,7 @@ function generateDashboard(){
         let navLinks = document.querySelectorAll('.nav-links__item');
         highlightActive(1);
         generateDeptStats(30);
+        insertQuickStats();
     }
 }
 
