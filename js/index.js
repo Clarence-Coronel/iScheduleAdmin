@@ -4458,7 +4458,17 @@ function generateSlots(){
                         console.table(arrOfObj)
                         timeSlot.innerHTML = "";
                         timeSlot.innerHTML += `<option value="" selected hidden disabled>Time Slot</option>`;
-                        timeSlot.removeAttribute("disabled");
+
+                        if(arrOfObj.length != 0){
+                            timeSlot.removeAttribute("disabled");
+                        }else{
+                            let template = `
+                            <option value="">No Time Slot</option>
+                            `;
+
+                            timeSlot.innerHTML += template;
+                        }
+                        
 
                         arrOfObj.forEach(item => {
                             let template = `
@@ -4468,7 +4478,6 @@ function generateSlots(){
                             timeSlot.innerHTML += template;
                         })
                     } catch (error) {
-                        
                     }
                 }
             }
@@ -4786,4 +4795,33 @@ function selectDeptStat(dept){
     xhr.open("POST", "./php/getPerDeptStats.php", true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.send('dept='+ dept);
+}
+
+function deleteData(code){
+    confirmModal("Are you sure?", "Data will be permanently deleted.", `applyDeleteData(${code})`);
+}
+
+function applyDeleteData(code){
+    let xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function(){
+        if(this.readyState == 4){
+            if(this.status == 200){
+                if(this.responseText == 1){
+                    setTimeout(()=>{
+                        showResModal("Data has been permanently deleted.");
+                    }, 500)
+                }
+                else{
+                    setTimeout(()=>{
+                        showResModal("Process Unsuccessful", false, "Failed");
+                    }, 500)
+                }
+            }
+        }
+    };
+
+    xhr.open("POST", "./php/deleteData.php", false);
+    xhr.setRequestHeader('Content-Type', "application/x-www-form-urlencoded");
+    xhr.send('code=' + code);
 }

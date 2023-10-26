@@ -188,9 +188,14 @@
             $tempObj->appointmentStatus = $row['appointmentStatus'];
 
             $tempObj->dateSubmitted = dateConverter($row['dateSubmitted']);
-            
+
             array_push($allApp, $tempObj);
         }
+        
+        $username = $_SESSION['username'];
+        $adminStampQuery = "INSERT INTO `admin_logs`(`username`, `activity`) VALUES ('$username','Viewed appointments')";
+        mysqli_query($conn, $adminStampQuery);
+
         echo json_encode($allApp);
     }
     else {

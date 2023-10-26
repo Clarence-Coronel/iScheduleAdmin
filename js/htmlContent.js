@@ -493,6 +493,7 @@ let filter = `
         </select>
         <select class="form-select" id="sex" aria-label="Default select example">
             <option value="" selected hidden disabled>Sex</option>
+            <option value="">None</option>
             <option value="m">Male</option>
             <option value="f">Female</option>
         </select>
@@ -501,11 +502,13 @@ let filter = `
         <input type="text" name="province" id="province" placeholder="Province" oninput="inputLimiter(this.id, 60) onblur="inputLimiterBlur(this.id, 60)">
         <select class="form-select" id="patientType" aria-label="Default select example">
             <option value="" selected hidden disabled>Patient Type</option>
+            <option value="">None</option>
             <option value="new">New</option>
             <option value="old">Old</option>
         </select>
         <select class="form-select" id="status" aria-label="Default select example">
             <option value="" selected hidden disabled>Status</option>
+            <option value="">None</option>
             <option value="active">Active</option>
             <option value="cancelled">Cancelled</option>
             <option value="completed">Completed</option>
@@ -643,27 +646,28 @@ let adminLogs = `
                             <input type="text" name="year" id="logYear" placeholder="YYYY" oninput="inputLimiterNum(this.id, 4)" onblur="inputLimiterBlur(this.id, 4)">
                         </div>
                         <select id="logActivity" class="form-select" aria-label="Default select example">
-                            <option hidden selected disabled value="">Activity ayusin a-z</option>
+                            <option hidden selected disabled value="">Activity</option>
                             <option value="">None</option>
-                            <option value="Changed Password">Changed Password</option>
-                            <option value="Changed Phone">Changed Phone</option>
-                            <option value="Changed Mobile Video Tutorial">Changed Mobile Video Tutorial</option>
-                            <option value="Changed Desktop Video Tutorial">Changed Desktop Video Tutorial</option>
-                            <option value="Changed admin type of">Changed an admin's type</option>
-                            <option value="Created a new admin">Created a New Admin</option>
-                            <option value="Changed website status">Changed website status</option>
-                            <option value="Removed an admin">Removed an Admin</option>
-                            <option value="Blocked a new date">Blocked a date</option>
-                            <option value="Removed a blocked date">Unblocked a date</option>
-                            <option value="Posted an announcement">Posted an Announcement</option>
-                            <option value="Removed an announcement">Removed an Announcement</option>
-                            <option value="Inserted a new slot in ">Inserted a new slot in a department</option>
-                            <option value="Changed a slot in ">Changed a slot in a department</option>
-                            <option value="Removed a slot in ">Removed a slot in a department</option>
-                            <option value="Scheduled an appointment">Scheduled an appointment</option>
-                            <option value="appointment status">Changed an appointment's status</option>
                             <option value="Approved">Approved a follow up request</option>
-                            <option value="Rejected">Rejected a follow up request</option>                            
+                            <option value="Blocked a new date">Blocked a date</option>
+                            <option value="Changed a slot in ">Changed a slot in a department</option>
+                            <option value="Changed admin type of">Changed an admin's type</option>
+                            <option value="appointment status">Changed an appointment's status</option>
+                            <option value="Changed Desktop Video Tutorial">Changed desktop video tutorial</option>
+                            <option value="Changed Mobile Video Tutorial">Changed mobile video tutorial</option>
+                            <option value="Changed Password">Changed password</option>
+                            <option value="Changed Phone">Changed phone</option>
+                            <option value="Changed website status">Changed website status</option>
+                            <option value="Created a new admin">Created a new admin</option>
+                            <option value="Inserted a new slot in ">Inserted a new slot in a department</option>
+                            <option value="Posted an announcement">Posted an announcement</option>
+                            <option value="Rejected">Rejected a follow up request</option>
+                            <option value="Removed a slot in ">Removed a slot in a department</option>
+                            <option value="Removed an admin">Removed an admin</option>
+                            <option value="Removed an announcement">Removed an announcement</option>
+                            <option value="Scheduled an appointment">Scheduled an appointment</option>
+                            <option value="Removed a blocked date">Unblocked a date</option>
+                            <option value="Viewed appointments">Viewed appointments</option> 
                         </select>
                         <select id="logAdminType" class="form-select" aria-label="Default select example">
                             <option hidden selected disabled value="">Admin Type</option>
@@ -904,19 +908,24 @@ let manageData = `
 <section class="manage-data">
     <div class="manage-date__content" data-aos="fade-right" data-aos-duration="500">
         <div class="field">
-            <span class="field__name">Archived Admin Logs</span>
-            <p class="field__desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam quidem mollitia numquam pariatur autem.</p>
-            <button class="field__delete-btn">Delete</button>
+            <span class="field__name">Admin Logs</span>
+            <p class="field__desc">Permanently delete all existing admin logs from the database. This action is irreversible.</p>
+            <button class="field__delete-btn" data-dltdata="0" onclick="deleteData(this.dataset.dltdata)">Delete</button>
         </div>
         <div class="field">
-            <span class="field__name">Archived Appointments</span>
-            <p class="field__desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam quidem mollitia numquam pariatur autem.</p>
-            <button class="field__delete-btn">Delete</button>
+            <span class="field__name">Appointments</span>
+            <p class="field__desc">Permanently delete all existing appointments from the database. This action is irreversible.</p>
+            <button class="field__delete-btn" data-dltdata="1" onclick="deleteData(this.dataset.dltdata)">Delete</button>
         </div>
         <div class="field">
-            <span class="field__name">Active Appointments</span>
-            <p class="field__desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam quidem mollitia numquam pariatur autem.</p>
-            <button class="field__delete-btn">Delete</button>
+            <span class="field__name">Feedback</span>
+            <p class="field__desc">Permanently delete all existing feedbacks from the database. This action is irreversible.</p>
+            <button class="field__delete-btn" data-dltdata="2" onclick="deleteData(this.dataset.dltdata)">Delete</button>
+        </div>
+        <div class="field">
+            <span class="field__name">Announcements</span>
+            <p class="field__desc">Permanently delete all existing announcements from the database. This action is irreversible.</p>
+            <button class="field__delete-btn" data-dltdata="3" onclick="deleteData(this.dataset.dltdata)">Delete</button>
         </div>
     </div>
 </section>`;
