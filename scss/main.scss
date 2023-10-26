@@ -1831,16 +1831,21 @@ td:hover{
     display: grid;
     grid-template-columns: repeat( auto-fit, minmax(45%, 1fr) );
     // grid-template-rows: repeat( auto-fit, minmax(15%, 1fr) );
-    gap: max(10px, 1vw);
+    justify-items: left;
+    justify-content: center;
+    gap: max(10px, 3vw);
     padding: max(10px, 0.5vw);
+    margin-top: 1vh;
 
     .data{
         // flex: 1 1 30%;
         // border: 1px solid black;
         font-size: 0.9rem;
         display: flex;
-        justify-content: center;
-        align-items: center;        
+        justify-content: flex-start;
+        align-items: flex-start;  
+        overflow-wrap: break-word;
+        // overflow: hidden;
     }
 }
 
@@ -1883,10 +1888,11 @@ td:hover{
         background-color: rgb(95, 205, 124);
         white-space: nowrap;
         padding-left: max(10px, 1vw);
-        transition-duration: 500ms;
+        transition-duration: 1000ms;
         user-select: none;
         font-size: 0.7rem;
         height: 3.3vh;
+        width: 0%;
     } 
 
     // .dept:hover{
@@ -1898,57 +1904,6 @@ td:hover{
     
     // 100% is equal to the largest amount
     // Do the math
-    .dept:nth-child(1){
-        width: 80.88%;
-    }
-    .dept:nth-child(2){
-        width: 40.88%;
-    }
-    .dept:nth-child(3){
-        width: 12.88%;
-    }
-    .dept:nth-child(4){
-        width: 10.88%;
-    }
-    .dept:nth-child(5){
-        width: 34.88%;
-    }
-    .dept:nth-child(6){
-        width: 35.88%;
-    }
-    .dept:nth-child(7){
-        width: 74.88%;
-    }
-    .dept:nth-child(8){
-        width: 42.88%;
-    }
-    .dept:nth-child(9){
-        width: 53.88%;
-    }
-    .dept:nth-child(10){
-        width: 11.88%;
-    }
-    .dept:nth-child(11){
-        width: 36.88%;
-    }
-    .dept:nth-child(12){
-        width: 15.88%;
-    }
-    .dept:nth-child(13){
-        width: 17.88%;
-    }
-    .dept:nth-child(14){
-        width: 41.88%;
-    }
-    .dept:nth-child(15){
-        width: 12.8%;
-    }
-    .dept:nth-child(16){
-        width: 15.88%;
-    }
-    .dept:nth-child(17){
-        width: 30.88%;
-    }
 }
 
 // walang s yung sa header tapos yung sa form may s

@@ -129,14 +129,11 @@ let dashboard = `
             </select>
 
             <div class="data-wrapper">
-                <span class="data" title="Testing Tooltip...">Appointment Rate: 22%</span>
-                <span class="data" title="Testing Tooltip...">Appointment Rate: 22%</span>
-                <span class="data" title="Testing Tooltip...">Appointment Rate: 22%</span>
-                <span class="data" title="Testing Tooltip...">Appointment Rate: 22%</span>
-                <span class="data" title="Testing Tooltip...">Appointment Rate: 22%</span>
-                <span class="data" title="Testing Tooltip...">Appointment Rate: 22%</span>
-                <span class="data" title="Testing Tooltip...">Appointment Rate: 22%</span>
-                <span class="data" title="Testing Tooltip...">Appointment Rate: 22%</span>
+                <div class="data" title="Appointment percentage relative to other departments.">Appointment Rate: &nbsp;<span>22%</span></div>
+                <div class="data" title="Completion percentage.">Completion Rate: &nbsp;<span>22%</span></div>
+                <div class="data" title="Patient no-show percentage.">Patient No-Show Rate: &nbsp;<span>22%</span></div>
+                <div class="data" title="Cancel percentage">Cancel Rate: &nbsp;<span>22%</span></div>
+                <div class="data" title="Taken slots percentage">Capacity: &nbsp;<span>12%</span></div>
             </div>
         </div>
         <div class="dashboard__stats" data-aos="fade-right" data-aos-duration="500">
@@ -144,7 +141,7 @@ let dashboard = `
             <div class="dashboard__block" title="Recent complete appointments across all departments from the last 30 days.">Completed Appointments<span>Loading...</span></div>
             <div class="dashboard__block" title="Recent cancelled appointments across all departments from the last 30 days.">Cancelled Appointments<span>Loading...</span></div>
             <div class="dashboard__block" title="Recent missed appointments across all departments from the last 30 days.">Missed Appointments<span>Loading...</span></div>
-            <div class="dashboard__block" title="Recent average from the last 30 days.">Average Website Rating<span>Loading...</span></div>
+            <div class="dashboard__block" title="Recent average from the last 30 days.">Average Rating<span>Loading...</span></div>
             <div class="dashboard__block" title="Recent admin activities from the last 30 days.">Admin Activities<span>Loading...</span></div>
         </div>
     </div>
