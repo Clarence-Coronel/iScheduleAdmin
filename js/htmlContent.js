@@ -107,33 +107,31 @@ let dashboard = `
 <section class="dashboard">
     <div class="dashboard__left">
         <div class="dashboard__per-dept" data-aos="fade-right" data-aos-duration="500">
-            <select class="form-select" aria-label="Default select example">
-                <option value="" selected hidden disabled>Select a Department</option>
-                <option value="">ENT</option>
-                <option value="">Hematology</option>
-                <option value="">Internal Medicine</option>
-                <option value="">Internal Medicine Clearance</option>
-                <option value="">Nephrology</option>
-                <option value="">Neurology</option>
-                <option value="">OB GYNE New</option>
-                <option value="">OB GYNE Old</option>
-                <option value="">OB GYNE ROS</option>
-                <option value="">Oncology</option>
-                <option value="">Pediatric Cardiology</option>
-                <option value="">Pediatric Clearance</option>
-                <option value="">Pediatric General</option>
-                <option value="">Psychiatry New</option>
-                <option value="">Psychiatry Old</option>
-                <option value="">Surgery</option>
-                <option value="">Surgery ROS</option>
+            <select class="form-select" aria-label="Default select example" onchange="selectDeptStat(this.value)">
+                <option value="1" selected>ENT</option>
+                <option value="2">Hematology</option>
+                <option value="3">Internal Medicine</option>
+                <option value="4">Internal Medicine Clearance</option>
+                <option value="5">Nephrology</option>
+                <option value="6">Neurology</option>
+                <option value="7">OB GYNE New</option>
+                <option value="8">OB GYNE Old</option>
+                <option value="9">OB GYNE ROS</option>
+                <option value="10">Oncology</option>
+                <option value="11">Pediatric Cardiology</option>
+                <option value="12">Pediatric Clearance</option>
+                <option value="13">Pediatric General</option>
+                <option value="14">Psychiatry New</option>
+                <option value="15">Psychiatry Old</option>
+                <option value="16">Surgery</option>
+                <option value="17">Surgery ROS</option>
             </select>
 
             <div class="data-wrapper">
-                <div class="data" title="Appointment percentage relative to other departments.">Appointment Rate: &nbsp;<span>22%</span></div>
-                <div class="data" title="Completion percentage.">Completion Rate: &nbsp;<span>22%</span></div>
-                <div class="data" title="Patient no-show percentage.">Patient No-Show Rate: &nbsp;<span>22%</span></div>
-                <div class="data" title="Cancel percentage">Cancel Rate: &nbsp;<span>22%</span></div>
-                <div class="data" title="Taken slots percentage">Capacity: &nbsp;<span>12%</span></div>
+                <div class="data" title="Appointment percentage relative to other departments.">Appointment Percentage: &nbsp;<span>Loading...</span></div>
+                <div class="data" title="Completed appointments percentage.">Completed Percentage: &nbsp;<span>Loading...</span></div>
+                <div class="data" title="Patient no-show percentage.">No-Show Percentage: &nbsp;<span>Loading...</span></div>
+                <div class="data" title="Cancel percentage">Cancel Percentage: &nbsp;<span>Loading...</span></div>
             </div>
         </div>
         <div class="dashboard__stats" data-aos="fade-right" data-aos-duration="500">
@@ -1075,6 +1073,7 @@ function generateDashboard(){
         highlightActive(1);
         generateDeptStats(30);
         insertQuickStats();
+        selectDeptStat(1);
     }
 }
 

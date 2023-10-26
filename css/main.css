@@ -1477,7 +1477,7 @@ td:hover {
   background-color: white;
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   border-radius: max(5px, 0.4vw);
-  padding: max(10px, 2vw);
+  padding: max(10px, 1.5vw);
   overflow-y: auto;
 }
 .dashboard__left .dashboard__per-dept select {
@@ -1506,20 +1506,24 @@ td:hover {
 .data-wrapper {
   width: 100%;
   height: 80%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(45%, 1fr));
-  justify-items: left;
-  justify-content: center;
-  gap: max(10px, 3vw);
-  padding: max(10px, 0.5vw);
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: max(7px, 0.3vw);
   margin-top: 1vh;
 }
 .data-wrapper .data {
-  font-size: 0.9rem;
+  width: 100%;
+  font-size: 0.7rem;
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
+  flex-flow: row nowrap;
+  justify-content: space-between;
   overflow-wrap: break-word;
+  font-weight: 700;
+}
+.data-wrapper .data span {
+  font-size: 0.9rem;
 }
 
 .dashboard__header {

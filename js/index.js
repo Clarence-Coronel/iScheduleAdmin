@@ -4759,3 +4759,31 @@ function insertQuickStats(){
     xhr.open("GET", "./php/getQuickStats.php", true);
     xhr.send();
 }
+
+function selectDeptStat(dept){
+    let xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function(){
+        if(this.readyState == 4){
+            if(this.status == 200){
+                try {
+                    let arr = JSON.parse(this.responseText);
+                    let stats = document.querySelectorAll('.data span');
+
+                    stats.forEach((item, index)=>{
+                        let stat = arr[index].toFixed(2);
+
+                        item.innerText = stat + '%';
+                    })
+
+                } catch (error) {
+                    
+                }
+            }
+        }
+    }
+
+    xhr.open("POST", "./php/getPerDeptStats.php", true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.send('dept='+ dept);
+}
