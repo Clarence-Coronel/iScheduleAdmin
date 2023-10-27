@@ -4811,7 +4811,7 @@ function applyDeleteData(code){
             if(this.status == 200){
                 if(this.responseText == 1){
                     setTimeout(()=>{
-                        showResModal("Data has been permanently deleted.");
+                        showResModal("Data has been permanently deleted");
                     }, 500)
                 }
                 else{
