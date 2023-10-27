@@ -63,13 +63,22 @@
             $tempObj->patientType = $row['patientType'];
             $tempObj->appointmentType = $row['appointmentType'];
             
-            try {
+            if($row['startTime'] != null){
                 $tempObj->startTime = timeConverter($row['startTime']);
-                $tempObj->stopTime = timeConverter($row['stopTime']);
-                $tempObj->appointmentDate = dateConverter($row['appointmentDate']);
-            } catch (\Throwable $th) {
+            }
+            else{
                 $tempObj->startTime = "";
+            }
+            if($row['stopTime'] != null){
+                $tempObj->stopTime = timeConverter($row['stopTime']);
+            }
+            else{
                 $tempObj->stopTime = "";
+            }
+            if($row['appointmentDate'] != null){
+                $tempObj->appointmentDate = dateConverter($row['appointmentDate']);
+            }
+            else{
                 $tempObj->appointmentDate = "";
             }
 
@@ -82,6 +91,7 @@
             array_push($allApp, $tempObj);
         }
         
+        session_start();
         $username = $_SESSION['username'];
         $adminStampQuery = "INSERT INTO `admin_logs`(`username`, `activity`) VALUES ('$username','Viewed appointments')";
         mysqli_query($conn, $adminStampQuery);

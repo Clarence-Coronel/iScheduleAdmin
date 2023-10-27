@@ -6,7 +6,7 @@
     $requestPayload = file_get_contents("php://input");
     $object = json_decode($requestPayload);
 
-    $query = "SELECT appointments.*, schedules.startTime, schedules.stopTime FROM `appointments` INNER JOIN `schedules` ON appointments.scheduleID = schedules.scheduleID";
+    $query = "SELECT appointments.*, schedules.startTime, schedules.stopTime FROM `appointments` LEFT JOIN `schedules` ON appointments.scheduleID = schedules.scheduleID";
     $firstConditionDone = false;
     
     if($object->dept != ""){
@@ -173,15 +173,31 @@
             $tempObj->patientType = $row['patientType'];
             $tempObj->appointmentType = $row['appointmentType'];
             
-            try {
+            if($row['startTime'] != null){
                 $tempObj->startTime = timeConverter($row['startTime']);
-                $tempObj->stopTime = timeConverter($row['stopTime']);
-                $tempObj->appointmentDate = dateConverter($row['appointmentDate']);
-            } catch (\Throwable $th) {
+            }
+            else{
                 $tempObj->startTime = "";
+            }
+            if($row['stopTime'] != null){
+                $tempObj->stopTime = timeConverter($row['stopTime']);
+            }
+            else{
                 $tempObj->stopTime = "";
+            }
+            if($row['appointmentDate'] != null){
+                $tempObj->appointmentDate = dateConverter($row['appointmentDate']);
+            }
+            else{
                 $tempObj->appointmentDate = "";
             }
+            // try {
+            //     $tempObj->startTime = timeConverter($row['startTime']);  
+            // } catch (\Throwable $th) {
+            //     $tempObj->startTime = "";
+            //     $tempObj->stopTime = "";
+            //     $tempObj->appointmentDate = "";
+            // }
 
             $tempObj->cancelReason = $row['cancelReason'];
             $tempObj->caseNo = $row['caseNo'];

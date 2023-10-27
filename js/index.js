@@ -4270,6 +4270,7 @@ function insertAppBtn(query){
     xhr.onreadystatechange = function(){
         if(this.readyState == 4){
             if(this.status == 200){
+                console.log(this.responseText)
                 try {
                     table.innerHTML = "";
                     const arrOfObj = JSON.parse(this.responseText);
@@ -4637,6 +4638,7 @@ function filterAppointment(){
         if(this.readyState == 4){
             if(this.status == 200){
                 try {
+                    console.log(this.responseText)
                     table.innerHTML = "";
                     const arrOfObj = JSON.parse(this.responseText);
                     console.table(arrOfObj)
