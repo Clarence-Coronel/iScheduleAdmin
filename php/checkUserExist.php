@@ -13,8 +13,13 @@
         $count = mysqli_num_rows($result);
         $row = mysqli_fetch_array($result);
 
-        if($count == 1){           
-            echo $row['phone'];                   
+        if($count == 1){     
+            if($row['phone'] == ""){
+                echo 1;
+            }
+            else{
+                echo $row['phone'];  
+            }                    
         }
         else{
             echo 0;

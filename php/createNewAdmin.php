@@ -11,7 +11,7 @@
 	$count = mysqli_num_rows($result);
 
     if(isset($object)){
-        $generatedUsername = $object->firstName . "-" . $object->lastName . $count+1;
+        $generatedUsername = str_replace(" ", "", $object->firstName) . "-" . str_replace(" ", "", $object->lastName) . $count+1;
         $hashedPassword = password_hash($object->password, PASSWORD_BCRYPT);
 
         $sql_query = "INSERT INTO admins (username, adminType, firstName, middleName, lastName, phone, password, isActive) 

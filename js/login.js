@@ -306,7 +306,13 @@ function forgotNext(){
             xhr.onreadystatechange = function(){
                 if(xhr.readyState == 4){
                     if(xhr.status == 200){
-                        if(xhr.responseText != 0){
+                        if(this.responseText == 1){
+                            showErrorForgot("Your phone # is empty. Contact a super admin for assistance");
+                        }
+                        else if(this.responseText == 0){
+                            showErrorForgot("Username not found");
+                        }
+                        else{
                             forgotPassPhone = xhr.responseText;
                             partA.style.display = 'none';
                             partB.style.display = 'block';
@@ -320,10 +326,7 @@ function forgotNext(){
                             // dito dapat tawagin yung function na mag send ng otp;
                             // gamit yung num sa forgotPassPhone na variable
                             alert("sending fake OTP");
-                            resetCD()
-                        }
-                        else{
-                            showErrorForgot("Username not found")
+                            resetCD();   
                         }
                     }
                 }
