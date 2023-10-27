@@ -6,7 +6,7 @@
 
     require 'connect.php';
 
-    $object->dateName = htmlspecialchars($object->dateName);
+    $object->dateName = htmlspecialchars($object->dateName, ENT_QUOTES);
 
     $query = "INSERT INTO `block_dates`(`blockDate`, `blockName`, `isYearly`) VALUES ('$object->date','$object->dateName','$object->isYearly')";
 

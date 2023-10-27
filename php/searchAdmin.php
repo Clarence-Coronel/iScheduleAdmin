@@ -7,7 +7,7 @@
     $input = null;
 
     foreach($_POST as $temp){
-        $input = htmlspecialchars($temp);
+        $input = htmlspecialchars($temp, ENT_QUOTES);
     }
 
     $query = "SELECT * FROM admins WHERE isActive = true AND username != '$username' AND CONCAT(username, lastName, ', ', firstName, ' ', middleName, adminType, phone) LIKE '%$input%' ORDER BY lastName ASC;";

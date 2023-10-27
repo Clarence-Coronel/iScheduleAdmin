@@ -9,7 +9,7 @@
     }
 
     $type = $arr[0];
-    $link = htmlspecialchars($arr[1]);
+    $link = htmlspecialchars($arr[1], ENT_QUOTES);
 
     $query = "UPDATE `video_tutorials` SET `link`='$link' WHERE `vidType` = '$type'";
 

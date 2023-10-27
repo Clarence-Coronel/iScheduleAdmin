@@ -2266,12 +2266,13 @@ function insertAnnouncement(){
         xhr.onreadystatechange = function(){
             if(xhr.readyState == 4){
                 if(xhr.status == 200){
+                    console.log(this.responseText)
                     if(xhr.responseText == 1){
                         showResModal("Announcement has been posted");
                         generatePostAnnouncement();
                     }
                     else{
-                        showResModal("Something went wrong.", "Failed");
+                        showResModal("Something went wrong", false, "Failed");
                     }
                     
                 }

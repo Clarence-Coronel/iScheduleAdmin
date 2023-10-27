@@ -7,10 +7,11 @@
     $object = json_decode($requestPayload);
     $username = $_SESSION['username'];
 
-    $object->title = htmlspecialchars($object->title);
-    $object->body = htmlspecialchars($object->body);
+    $object->title = htmlspecialchars($object->title, ENT_QUOTES);
+    $object->body = htmlspecialchars($object->body, ENT_QUOTES);
 
     $query = "INSERT INTO `announcements`(`annTitle`, `annBody`, `author`) VALUES ('$object->title','$object->body','$username')";
+
 
     if (mysqli_query($conn, $query)){
         // session_start();

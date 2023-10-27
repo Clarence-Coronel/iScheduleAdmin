@@ -21,7 +21,7 @@
         array_push($arr, $input);
     }
 
-    $convertedUsername = htmlspecialchars($arr[0]);
+    $convertedUsername = htmlspecialchars($arr[0], ENT_QUOTES);
 
     $query = "SELECT * FROM `admins` WHERE username='$convertedUsername' AND isActive = true";
     $result = mysqli_query($conn,$query);

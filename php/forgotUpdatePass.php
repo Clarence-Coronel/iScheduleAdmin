@@ -9,7 +9,7 @@
 
     $hashedPassword = password_hash($arr[1], PASSWORD_BCRYPT);
 
-    $convertedSpeChar = htmlspecialchars($arr[0]);
+    $convertedSpeChar = htmlspecialchars($arr[0], ENT_QUOTES);
 
     if(isset($arr)){
         $query = "UPDATE `admins` SET `password`='$hashedPassword' WHERE `username` = '$convertedSpeChar'";
