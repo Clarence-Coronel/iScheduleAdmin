@@ -6,12 +6,12 @@ import { getStorage, ref, deleteObject } from "https://www.gstatic.com/firebasej
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyBeB5jNRs-uxuc7pfhP64uZVipC1Wit0TQ",
-    authDomain: "john-wick-41c8d.firebaseapp.com",
-    projectId: "john-wick-41c8d",
-    storageBucket: "john-wick-41c8d.appspot.com",
-    messagingSenderId: "891193894294",
-    appId: "1:891193894294:web:2c0bc91aa768f1e88aa9b7"
+    apiKey: "AIzaSyCXmC44-WDAXrfOMpSHqIxWEcXpmJF0d-k",
+    authDomain: "ischedule-c11a3.firebaseapp.com",
+    projectId: "ischedule-c11a3",
+    storageBucket: "ischedule-c11a3.appspot.com",
+    messagingSenderId: "691704229688",
+    appId: "1:691704229688:web:503a06fdba540c54821bcd"
 };
 
 // Initialize Firebase
