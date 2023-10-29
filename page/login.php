@@ -2,7 +2,7 @@
     session_start();
 
     if(isset($_SESSION['authenticated'])){
-        header("Location: ../panel_index.php");
+        header("Location: ../index.php");
     }
 ?>
 
@@ -12,6 +12,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <link rel="icon" type="image/x-icon" href="./../imgs/mediclogo.png">
+
     <!-- GOOGLE API -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
     

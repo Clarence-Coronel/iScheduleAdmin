@@ -766,7 +766,6 @@ function newAdminSuccessConfirmationModal(){
     title.style.color = 'rgb(10, 204, 10)';
     positive.style.display = 'none';
     negative.innerText = 'Close';
-    console.log('customized display');
 
     let html = `
         <span class="newAdmin-username">Admin Username: <span class="username-highlight">${generatedUsername}</span></span>
@@ -809,11 +808,6 @@ function containsLetterNumSpeChar(pass){
     let checkUpper = /[A-Z]/.test(pass);
     let checkLower = /[a-z]/.test(pass);
     let checkNum = /[0-9]/.test(pass);
-
-    console.log(checkSpeChar);
-    console.log(checkUpper);
-    console.log(checkLower);
-    console.log(checkNum);
 
     return checkSpeChar && checkUpper && checkLower && checkNum;
 }
@@ -1172,7 +1166,6 @@ function checkFormB(){
 }
 
 function grabPatient(){
-    console.table(patient);
     let reviewFields = document.querySelectorAll('.schedule__review-field');
     reviewFields.forEach((item, index)=>{
         switch(index){
@@ -2137,8 +2130,6 @@ function changeAccess(){
         adminI.forEach(item=>{
             nav.innerHTML += navBtns[item];
             window.addEventListener('click', (e)=>{
-                // console.log(e.target.getAttribute('data-click'));
-        
                 if(e.target.getAttribute('data-click') != 'doNothing'){
         
                     navLinks.style.transitionDuration = 'unset';
@@ -2159,7 +2150,6 @@ function changeAccess(){
         adminII.forEach(item=>{
             nav.innerHTML += navBtns[item];
             window.addEventListener('click', (e)=>{
-                // console.log(e.target.getAttribute('data-click'));
         
                 if(e.target.getAttribute('data-click') != 'doNothing'){
         
@@ -2181,7 +2171,6 @@ function changeAccess(){
         adminS.forEach(item=>{
             nav.innerHTML += navBtns[item];
             window.addEventListener('click', (e)=>{
-                // console.log(e.target.getAttribute('data-click'));
         
                 if(e.target.getAttribute('data-click') != 'doNothing'){
         
@@ -2266,7 +2255,6 @@ function insertAnnouncement(){
         xhr.onreadystatechange = function(){
             if(xhr.readyState == 4){
                 if(xhr.status == 200){
-                    console.log(this.responseText)
                     if(xhr.responseText == 1){
                         showResModal("Announcement has been posted");
                         generatePostAnnouncement();
@@ -2623,7 +2611,6 @@ function confirmBlockDateRemove(id){
 
 function removeBlockDate(id, dateName){
     // let dateID = id.split('-');
-    // console.table(dateID);
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function(){
         if(xhr.readyState == 4){
@@ -3043,10 +3030,6 @@ function applyLogFilter(){
         fullDate = "";
     }
 
-    if(fullDate == "" && activity == "" && adminType == "" && sortBy == ""){
-        return;
-    }
-
     showError("");
 
     let obj = {
@@ -3056,7 +3039,7 @@ function applyLogFilter(){
         sortBy: sortBy
     }
 
-    let toSend = JSON.stringify(obj);
+    const toSend = JSON.stringify(obj);
 
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function(){
@@ -3114,7 +3097,7 @@ function applyLogFilter(){
         setupTablePagination('logs-table', 'prevButton', 'nextButton', 10);     
     }
 
-    xhr.open("OPEN", "./php/filterAdminLog.php", false);
+    xhr.open("POST", "./php/filterAdminLog.php", true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(toSend);
 }
@@ -4037,7 +4020,6 @@ function limitNumbers(id, str){
     for(i = 0; i < input.value.length; i++){
         for(j = 0; j < str.length; j++){
             if(input.value[i] == str[j]){
-                console.log(str[j])
                 newStr += input.value[i];
             }
         }
@@ -4271,7 +4253,6 @@ function insertAppBtn(query){
     xhr.onreadystatechange = function(){
         if(this.readyState == 4){
             if(this.status == 200){
-                console.log(this.responseText)
                 try {
                     table.innerHTML = "";
                     const arrOfObj = JSON.parse(this.responseText);
@@ -4457,7 +4438,6 @@ function generateSlots(){
                 if(this.status == 200){
                     try {
                         let arrOfObj = JSON.parse(this.responseText);
-                        console.table(arrOfObj)
                         timeSlot.innerHTML = "";
                         timeSlot.innerHTML += `<option value="" selected hidden disabled>Time Slot</option>`;
 
@@ -4510,11 +4490,9 @@ function searchAppointment(){
         xhr.onreadystatechange = function(){
             if(this.readyState == 4){
                 if(this.status == 200){
-                    // console.log(this.responseText)
                     try {
                         table.innerHTML = "";
                         const arrOfObj = JSON.parse(this.responseText);
-                        console.table(arrOfObj)
     
                         arrOfObj.forEach(item=>{
                             const dept = ['ENT', 'Hematology', 'Internal Medicine', 'Internal Medicine Clearance', 'Nephrology', 'Neurology', 'OB GYNE New', 'OB GYNE Old', 'OB GYNE ROS', 'Oncology', 'Pediatric Cardiology', 'Pediatric Clearance', 'Pediatric General', 'Psychiatry New', 'Psychiatry Old', 'Surgery', 'Surgery ROS'];
@@ -4639,10 +4617,8 @@ function filterAppointment(){
         if(this.readyState == 4){
             if(this.status == 200){
                 try {
-                    console.log(this.responseText)
                     table.innerHTML = "";
                     const arrOfObj = JSON.parse(this.responseText);
-                    console.table(arrOfObj)
 
                     arrOfObj.forEach(item=>{
                         const dept = ['ENT', 'Hematology', 'Internal Medicine', 'Internal Medicine Clearance', 'Nephrology', 'Neurology', 'OB GYNE New', 'OB GYNE Old', 'OB GYNE ROS', 'Oncology', 'Pediatric Cardiology', 'Pediatric Clearance', 'Pediatric General', 'Psychiatry New', 'Psychiatry Old', 'Surgery', 'Surgery ROS'];
@@ -4699,7 +4675,7 @@ function filterAppointment(){
         setupTablePagination('schedule-table', 'prevButton', 'nextButton', 10);
     }
 
-    xhr.open("OPEN", "./php/filterApp.php", false);
+    xhr.open("POST", "./php/filterApp.php", false);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(toSend);
 }

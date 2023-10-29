@@ -7,19 +7,19 @@
     $object = json_decode($requestPayload);
 
     $query = "SELECT admin_logs.username, admin_logs.activity, admin_logs.logDateTime, admins.adminType FROM `admin_logs` INNER JOIN `admins` ON admin_logs.username = admins.username";
-    $date = null;
-    $activity = null;
-    $adminType = null;
-    $sortBy = null;
+    $date = NULL;
+    $activity = NULL;
+    $adminType = NULL;
+    $sortBy = NULL;
     $firstConditionDone = false;
     
-    if($object->date != ""){
+    if($object->date != NULL){
         $date = $object->date;
         $Q_date = " WHERE DATE(admin_logs.logDateTime) = '$date' ";
         $query .= $Q_date;
         $firstConditionDone = true;
     }
-    if($object->activity != ""){
+    if($object->activity != NULL){
         if($firstConditionDone){
             $query .= " AND ";
         }
@@ -31,7 +31,7 @@
         $query .= $Q_activity;
         $firstConditionDone = true;
     }
-    if($object->adminType != ""){
+    if($object->adminType != NULL){
         if($firstConditionDone){
             $query .= " AND ";
         }
@@ -43,7 +43,7 @@
         $query .= $Q_adminType;
         $firstConditionDone = true;
     }
-    if($object->sortBy != ""){
+    if($object->sortBy != NULL){
         if($object->sortBy == "0"){
             $sortBy = " admin_logs.username ASC";
         }

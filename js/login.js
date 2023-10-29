@@ -157,7 +157,7 @@ function validateLogin(){
         if(xhr.readyState == 4){
             if(xhr.status == 200){
                 if(this.responseText == 1){
-                    window.location.href="../panel_index.php";
+                    window.location.href="../index.php";
                 }
                 else{
                     showError("Incorrect username or password");

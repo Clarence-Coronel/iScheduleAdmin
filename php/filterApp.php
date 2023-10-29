@@ -9,12 +9,12 @@
     $query = "SELECT appointments.*, schedules.startTime, schedules.stopTime FROM `appointments` LEFT JOIN `schedules` ON appointments.scheduleID = schedules.scheduleID";
     $firstConditionDone = false;
     
-    if($object->dept != ""){
+    if($object->dept != NULL){
         $Q_dept = " WHERE appointments.departmentID = '$object->dept' ";
         $query .= $Q_dept;
         $firstConditionDone = true;
     }
-    if($object->appointmentDate != ""){
+    if($object->appointmentDate != NULL){
         if($firstConditionDone){
             $query .= " AND ";
         }
@@ -25,7 +25,7 @@
         $query .= $Q_appDate;
         $firstConditionDone = true;
     }
-    if($object->scheduleID != ""){
+    if($object->scheduleID != NULL){
         if($firstConditionDone){
             $query .= " AND ";
         }
@@ -36,7 +36,7 @@
         $query .= $Q_scheduleID;
         $firstConditionDone = true;
     }
-    if($object->sex != ""){
+    if($object->sex != NULL){
         if($firstConditionDone){
             $query .= " AND ";
         }
@@ -47,7 +47,7 @@
         $query .= $Q_sex;
         $firstConditionDone = true;
     }
-    if($object->barangay != ""){
+    if($object->barangay != NULL){
         if($firstConditionDone){
             $query .= " AND ";
         }
@@ -58,7 +58,7 @@
         $query .= $Q_barangay;
         $firstConditionDone = true;
     }
-    if($object->municipality != ""){
+    if($object->municipality != NULL){
         if($firstConditionDone){
             $query .= " AND ";
         }
@@ -69,7 +69,7 @@
         $query .= $Q_municipality;
         $firstConditionDone = true;
     }
-    if($object->province != ""){
+    if($object->province != NULL){
         if($firstConditionDone){
             $query .= " AND ";
         }
@@ -80,7 +80,7 @@
         $query .= $Q_province;
         $firstConditionDone = true;
     }
-    if($object->patientType != ""){
+    if($object->patientType != NULL){
         if($firstConditionDone){
             $query .= " AND ";
         }
@@ -91,7 +91,7 @@
         $query .= $Q_patientType;
         $firstConditionDone = true;
     }
-    if($object->status != ""){
+    if($object->status != NULL){
         if($firstConditionDone){
             $query .= " AND ";
         }
@@ -102,7 +102,7 @@
         $query .= $Q_status;
         $firstConditionDone = true;
     }
-    if($object->sortBy != ""){
+    if($object->sortBy != NULL){
         if($object->sortBy == "0"){
             $sortBy = " appointments.lastName ASC";
         }
@@ -191,13 +191,6 @@
             else{
                 $tempObj->appointmentDate = "";
             }
-            // try {
-            //     $tempObj->startTime = timeConverter($row['startTime']);  
-            // } catch (\Throwable $th) {
-            //     $tempObj->startTime = "";
-            //     $tempObj->stopTime = "";
-            //     $tempObj->appointmentDate = "";
-            // }
 
             $tempObj->cancelReason = $row['cancelReason'];
             $tempObj->caseNo = $row['caseNo'];
