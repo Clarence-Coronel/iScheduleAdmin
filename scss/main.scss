@@ -3458,12 +3458,11 @@ table{
         background-color: white;
         border-radius: $box-border-radius;
         box-shadow: $box-shadow;
-        padding: $box-padding;
+        padding: $box-padding $box-padding 4vh $box-padding;
         margin: $box-margin-top 0;
         width: 98%;
         min-height: 20vh;
-        height: fit-content;
-        
+        height: fit-content;        
     }
 
     .scheduling__dept-picker{

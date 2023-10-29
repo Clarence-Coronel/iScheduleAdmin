@@ -55,7 +55,7 @@
     <header>
         <div class="wrapper">
             <div class="header__left">
-                <button class="header-btn">
+                <button class="header-btn" data-click="doNothing">
                     <div class="header-btn burger-ico" data-click="doNothing"></div>
                 </button>
             </div>

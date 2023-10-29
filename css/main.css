@@ -2771,7 +2771,7 @@ table {
   background-color: white;
   border-radius: max(5px, 0.4vw);
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
-  padding: max(15px, 2vw);
+  padding: max(15px, 2vw) max(15px, 2vw) 4vh max(15px, 2vw);
   margin: max(15px, 1vw) 0;
   width: 98%;
   min-height: 20vh;

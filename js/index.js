@@ -2133,8 +2133,7 @@ function changeAccess(){
                 if(e.target.getAttribute('data-click') != 'doNothing'){
         
                     navLinks.style.transitionDuration = 'unset';
-                    navLinks.style.left = "-300px"
-        
+                    navLinks.style.left = "-300px";
                     screenDarken.style.display = 'none';
                     // accountSetting.style.display = 'none';
         
