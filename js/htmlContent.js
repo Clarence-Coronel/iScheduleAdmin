@@ -128,10 +128,10 @@ let dashboard = `
             </select>
 
             <div class="data-wrapper">
-                <div class="data" title="Appointment percentage relative to other departments.">Appointment Percentage: &nbsp;<span>Loading...</span></div>
-                <div class="data" title="Completed appointments percentage.">Completed Percentage: &nbsp;<span>Loading...</span></div>
-                <div class="data" title="Patient no-show percentage.">No-Show Percentage: &nbsp;<span>Loading...</span></div>
-                <div class="data" title="Cancel percentage">Cancel Percentage: &nbsp;<span>Loading...</span></div>
+                <div class="data" title="Appointment percentage relative to other departments from the past 30 days.">Appointment Percentage: &nbsp;<span>Loading...</span></div>
+                <div class="data" title="Completed appointments percentage from the past 30 days.">Completed Percentage: &nbsp;<span>Loading...</span></div>
+                <div class="data" title="Patient no-show percentage from the past 30 days.">No-Show Percentage: &nbsp;<span>Loading...</span></div>
+                <div class="data" title="Cancel percentage from the past 30 days.">Cancel Percentage: &nbsp;<span>Loading...</span></div>
             </div>
         </div>
         <div class="dashboard__stats" data-aos="fade-right" data-aos-duration="500">

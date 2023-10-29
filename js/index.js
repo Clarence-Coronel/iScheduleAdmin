@@ -4686,9 +4686,11 @@ function generateDeptStats(days){
     xhr.onreadystatechange = function(){
         if(this.readyState == 4){
             if(this.status == 200){
-                let arrOfObj = JSON.parse(this.responseText);
-                let deptBars = document.querySelectorAll('.dept');
-                let highest = 0;
+
+                try {
+                    let arrOfObj = JSON.parse(this.responseText);
+                    let deptBars = document.querySelectorAll('.dept');
+                    let highest = 0;
 
                 arrOfObj.forEach(item=>{
                     if(item.count > highest){
@@ -4713,7 +4715,9 @@ function generateDeptStats(days){
                     item.innerHTML = `${item.dataset.dept} (${count})`;
                     item.style.width = `${(count/highest)*95}%`;
                 })
-                
+                } catch (error) {
+                    
+                }
             }
         }
     }
