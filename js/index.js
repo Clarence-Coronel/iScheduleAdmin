@@ -2496,7 +2496,7 @@ function checkBlockDate(){
         }
     }
 
-    xhr.open("OPEN", "./php/postBlockDate.php", true);
+    xhr.open("POST", "./php/postBlockDate.php", true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(jsonString);
     posting = false;
