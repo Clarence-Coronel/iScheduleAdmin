@@ -564,7 +564,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
   height: fit-content;
   border-radius: max(5px, 0.4vw);
   margin: max(15px, 1vw) 0;
-  padding: max(15px, 2vw);
+  padding: max(18px, 3vw);
   overflow: hidden;
   border-bottom: min(10px, 5vw) solid #0577fa;
   display: grid;
@@ -754,7 +754,7 @@ input:-webkit-autofill:focus {
 .admin-logs-wrapper, .admin-list-wrapper {
   width: 95%;
   background-color: white;
-  padding: max(10px, 2vw);
+  padding: max(18px, 3vw);
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   border-radius: max(5px, 0.4vw);
   display: flex;
@@ -1206,7 +1206,7 @@ td:hover {
   width: 100%;
   display: flex;
   flex-flow: column;
-  padding: max(15px, 2vw);
+  padding: max(18px, 3vw);
   align-items: center;
   gap: max(10px, 1vw);
   border-radius: 20px;
@@ -1322,7 +1322,7 @@ td:hover {
   flex-flow: column;
   justify-content: flex-start;
   align-items: center;
-  padding: max(15px, 2vw);
+  padding: max(18px, 3vw);
   gap: max(10px, 1vw);
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
 }
@@ -1593,7 +1593,7 @@ td:hover {
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   border-radius: max(5px, 0.4vw);
   margin: max(15px, 1vw) 0;
-  padding: max(15px, 2vw);
+  padding: max(18px, 3vw);
   gap: max(10px, 3vh);
   overflow: hidden;
   padding-bottom: max(70px, 5%);
@@ -1773,7 +1773,7 @@ td:hover {
   min-width: 300px;
   height: -moz-fit-content;
   height: fit-content;
-  padding: max(15px, 2vw);
+  padding: max(18px, 3vw);
   margin: max(15px, 1vw) 0;
   overflow: hidden;
   border-radius: max(5px, 0.4vw);
@@ -1881,7 +1881,7 @@ td:hover {
   height: 80%;
   background-color: white;
   margin-top: max(15px, 1vw);
-  padding: max(15px, 2vw);
+  padding: max(18px, 3vw);
   border-radius: max(5px, 0.4vw);
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   overflow-y: auto;
@@ -2357,7 +2357,7 @@ table {
   justify-content: flex-start;
   align-items: center;
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
-  padding: max(15px, 2vw);
+  padding: max(18px, 3vw);
   border-radius: max(5px, 0.4vw);
   overflow-y: auto;
   scrollbar-gutter: stable;
@@ -2599,12 +2599,12 @@ table {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: max(15px, 2vw);
+  padding: max(18px, 3vw);
   padding-top: unset;
 }
 .feedback .feedback-content {
   background-color: white;
-  padding: max(15px, 2vw);
+  padding: max(18px, 3vw);
   border-radius: max(5px, 0.4vw);
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   width: max(80%, 300px);
@@ -2647,7 +2647,7 @@ table {
   width: 90%;
   border-radius: max(5px, 0.4vw);
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
-  padding: max(15px, 2vw);
+  padding: max(18px, 3vw);
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -2771,7 +2771,7 @@ table {
   background-color: white;
   border-radius: max(5px, 0.4vw);
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
-  padding: max(15px, 2vw) max(15px, 2vw) 4vh max(15px, 2vw);
+  padding: max(18px, 3vw) max(18px, 3vw) 4vh max(18px, 3vw);
   margin: max(15px, 1vw) 0;
   width: 98%;
   min-height: 20vh;
@@ -2895,7 +2895,7 @@ table {
 .edit-tutorial .edit-tutorial-content {
   width: max(300px, 70%);
   background-color: white;
-  padding: max(15px, 2vw);
+  padding: max(18px, 3vw);
   margin: max(15px, 1vw);
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   border-radius: max(5px, 0.4vw);
@@ -3124,7 +3124,7 @@ table {
   background-color: white;
   border-radius: max(5px, 0.4vw);
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
-  padding: max(15px, 2vw);
+  padding: max(18px, 3vw);
   margin: max(15px, 1vw) 0;
 }
 .seeAnnouncements span {
@@ -3307,7 +3307,7 @@ table {
   min-height: 300px;
   border-radius: max(5px, 0.4vw);
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
-  padding: max(15px, 2vw);
+  padding: max(18px, 3vw);
 }
 
 .table-row:not(:first-child) {

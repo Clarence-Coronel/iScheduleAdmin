@@ -838,7 +838,7 @@ input:-webkit-autofill:focus{
 .admin-logs-wrapper, .admin-list-wrapper{
     width:95%;
     background-color: white;
-    padding: max(10px, 2vw);
+    padding: $box-padding;
     box-shadow: $box-shadow;
     border-radius: $box-border-radius;
     display: flex;
