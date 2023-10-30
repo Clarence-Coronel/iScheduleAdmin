@@ -63,73 +63,60 @@ function loadSlots(date){
         if(this.readyState == 4){
             if(this.status == 200){
                 slots = JSON.parse(this.responseText);
+
+                slots.forEach((item)=>{
+                    let newSlot = document.createElement('div');
+                    newSlot.classList.add('slot');
+                    newSlot.setAttribute('data-schedid', item.schedID);
+            
+                    let newInfo = document.createElement('div');
+                    newInfo.innerHTML = `${item.startTime} - ${item.stopTime}`;
+                    newInfo.classList.add('time');
+                    newSlot.appendChild(newInfo);
+            
+                    let newSlotAvail = document.createElement('div');
+                    let slotsAvail;
+            
+                    const xhr2 = new XMLHttpRequest();
+                    xhr2.onreadystatechange = function(){
+                        if(this.readyState == 4){
+                            if(this.status == 200){
+                                slotsAvail = item.max - this.responseText;
+                                if(slotsAvail == 0) {
+                                    newSlot.setAttribute('data-full', 'true');
+                                }
+                                else{
+                                    newSlot.setAttribute('data-full', 'false');
+                                }
+                            }
+                        }
+                    }
+            
+                    xhr2.open("POST", "./../php/getNumPatient.php", false);
+                    xhr2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    xhr2.send(`date=${date}&schedID=${item.schedID}`);
+            
+                    newSlotAvail.innerHTML = slotsAvail + ' Slot(s) Available';
+                    newInfo.classList.add('slotAvail');
+                    newSlot.appendChild(newSlotAvail);
+            
+                    slotContainer.appendChild(newSlot);
+                });
+            
+                // after iload yung bagong slot lagyan listener
+                selectSlot();
             }
         }
     }
 
-    xhr.open("POST", "./php/getSched2.php", false);
+    xhr.open("POST", "./../php/getSched2.php", false);
     xhr.setRequestHeader("Content-Type", 'application/x-www-form-urlencoded');
     xhr.send(`deptID=${patient['department']}&day=${day}`);
 
     console.table(slots)
 
 
-    slots.forEach((item)=>{
-        if(item.isBuffer == 1) item.isBuffer = true;
-        else item.isBuffer = false;
-
-        let newSlot = document.createElement('div');
-        newSlot.classList.add('slot');
-        newSlot.setAttribute('data-schedid', item.schedID);
-
-        let newInfo = document.createElement('div');
-        newInfo.innerHTML = `${item.startTime} - ${item.stopTime}`;
-
-        if(item.isBuffer){
-            newSlot.classList.add('buffer');
-        }
-
-        newInfo.classList.add('time');
-        newSlot.appendChild(newInfo);
-
-        let newSlotAvail = document.createElement('div');
-        let slotsAvail;
-
-        
-
-
-        const xhr2 = new XMLHttpRequest();
-        xhr2.onreadystatechange = function(){
-            if(this.readyState == 4){
-                if(this.status == 200){
-                    slotsAvail = item.max - this.responseText;
-                    if(slotsAvail == 0) {
-                        newSlot.setAttribute('data-full', 'true');
-                    }
-                    else{
-                        newSlot.setAttribute('data-full', 'false');
-                    }
-                }
-            }
-        }
-
-
-        
-
-        xhr2.open("POST", "./php/getNumPatient.php", false);
-        xhr2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr2.send(`date=${date}&schedID=${item.schedID}`);
-
-        newSlotAvail.innerHTML = slotsAvail + ' Slot(s) Available';
-        newSlotAvail.classList.add("slotAvail")
-
-        newSlot.appendChild(newSlotAvail);
-
-        slotContainer.appendChild(newSlot);
-    });
-
-    // after iload yung bagong slot lagyan listener
-    selectSlot();
+    
 }
 
 function resetCalData(){
@@ -140,10 +127,6 @@ function resetCalData(){
     slotContainer.style.justifyContent = 'center';
 
     slotContainer.innerHTML = `<div class="calendar__instruction">Pumili ng Petsa</div>`;
-}
-
-function changeSlotContent(){
-    alert('function na walang laman');
 }
 
 function selectSlot(){
@@ -172,30 +155,27 @@ function selectSlot(){
     });
 }
 
-function selectDate(){
+function selectDate(element){
     let dateCells = document.querySelectorAll('.date');
-    dateCells.forEach((item)=>{
-
-        item.addEventListener('click', () =>{
-            if(!item.classList.contains('block') && item.classList.contains('date') && !item.classList.contains('full')){
-                dateCells.forEach((date)=>{
-                    date.classList.remove('date-selected');
-                });
-                item.classList.add('date-selected');
-                selectedDate = item.innerHTML;
-                document.getElementById('scheduleDate').value = `${selectedMonth} ${selectedDate}, ${selectedYear}`;
-                document.querySelector('#timeSlot').value = '';
-                loadSlots(item.dataset.date);
-            }
-        });
+    
+    element.addEventListener('click', () =>{
+        if(!element.classList.contains('block') && element.classList.contains('date') && !element.classList.contains('full')){
+            dateCells.forEach((date)=>{
+                date.classList.remove('date-selected');
+            });
+            element.classList.add('date-selected');
+            selectedDate = element.innerHTML;
+            document.getElementById('scheduleDate').value = `${selectedMonth} ${selectedDate}, ${selectedYear}`;
+            document.querySelector('#timeSlot').value = '';
+            loadSlots(element.dataset.date);
+        }
     });
 }
 
 function nextMonthBtn(){
     document.querySelector('.calendar__month').innerText = "Loading...";
 
-    setTimeout(()=>{
-        resetCalData();
+    resetCalData();
     let calendarCell = document.querySelectorAll('.key');
     // Clears selected border
     calendarCell.forEach((item)=>{
@@ -232,17 +212,12 @@ function nextMonthBtn(){
     else{
         openModalUserError("Warning","Scheduling is restricted to a maximum window of 12 months");
     }
-
-    console.log(currentMonth);
-    console.log(year);
-    }, 100)
 }
 
 function prevMonthBtn(){
     document.querySelector('.calendar__month').innerText = "Loading...";
 
-    setTimeout(()=>{
-        resetCalData()
+    resetCalData()
     let calendarCell = document.querySelectorAll('.key');
 
     // Clears selected border
@@ -297,8 +272,6 @@ function prevMonthBtn(){
 
     console.log(currentMonth);
     console.log(year);
-    }, 100)
-    
 }
 
 function openModalUserError(title, body){
@@ -342,7 +315,7 @@ function InitialSetup(initial = false){
 
     generateDate(numOfDays, firstDayOfMonth);
 
-    selectDate();
+    // selectDate();
     // selectSlot();
     // getDaysOfMonth(date.getFullYear(), date.getMonth())
 
@@ -353,7 +326,6 @@ function InitialSetup(initial = false){
             isExecuted = true;
         }
     }
-    document.querySelector('.schedule__input-container label').innerText = 'Department';
 }
 
 function checkDateValid(date){
@@ -440,57 +412,6 @@ function generateDate(days, NameOfDay1st){
 
         day = daysOfWeek[dateObj.getDay()];
 
-        const xhr = new XMLHttpRequest();
-
-        xhr.onreadystatechange = function(){
-            if(this.readyState == 4){
-                if(this.status == 200){
-                    try {
-                        schedules = JSON.parse(this.responseText);
-                        proceedChkFull = true;
-                    }
-                    catch{
-                        calendarCell[i].classList.add('block');
-                        calendarCell[i].classList.remove('date');
-                    }    
-                }
-            }
-        }
-
-        xhr.open("POST", "./php/getSched.php", false);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.send(`deptID=${patient['department']}&day=${day}`);
-        
-        if(proceedChkFull){
-            schedules.forEach(item=>{
-
-                const xhr2 = new XMLHttpRequest();
-
-                xhr2.onreadystatechange = function(){
-                    if(this.readyState == 4){
-                        if(this.status == 200){
-                            if(this.response == 1){
-                                availScheds.push(item);
-                            }
-                        }
-                    }
-                }
-
-                xhr2.open("POST", "./php/checkSchedFull.php", false);
-                xhr2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                xhr2.send(`date=${checkDate}&schedID=${item.schedID}&max=${item.max}`);
-            })
-
-            // console.table(availScheds);
-
-
-            if(availScheds.length == 0) {
-                calendarCell[i].classList.remove('date');
-                calendarCell[i].classList.add('block');
-                calendarCell[i].setAttribute('id','full');
-                calendarCell[i].innerText = 'Full';
-            }
-        }
 
         calendarCell[i].setAttribute('data-date', checkDate);
         dateCounter++;
@@ -499,7 +420,15 @@ function generateDate(days, NameOfDay1st){
             calendarCell[i].classList.add('block');
         }
 
+        if(!checkDateValid(checkDate)){
+            calendarCell[i].classList.add('block');
+            calendarCell[i].classList.remove('date');
+        }
 
+        if(dateObj.getDay() == 0){
+            calendarCell[i].classList.add('block');
+            calendarCell[i].classList.remove('date');
+        }
 
     }
     calendarCell.forEach((item)=>{
@@ -527,6 +456,7 @@ function generateDate(days, NameOfDay1st){
         if(counterOfEmpty == 7) sixthRow.style.display = 'none';
         
     });
+    loadSched();
 
 }
 
@@ -604,4 +534,82 @@ function getBlockedDates(){
 
     xhr.open("GET", "./php/getBlockedDates.php", false);
     xhr.send();
+}
+
+function loadSched(){
+    let dates = document.querySelectorAll('.date');
+    let thisMonth = currentMonth+1;
+    let thisYear = year;
+    
+    let proceedChkFull = false;
+    let schedules = [];
+    let availScheds = [];
+
+    dates.forEach((item)=>{
+        let curDate = `${thisYear}-${thisMonth}-${item.innerText}`;
+        let dateObj = new Date(curDate);
+        const daysOfWeek = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+        let day = daysOfWeek[dateObj.getDay()];
+
+        let xhr = new XMLHttpRequest();
+
+        // console.log("Day: " + day)
+        // console.log("Dept ID: " + patient.department)
+
+        xhr.onreadystatechange = function(){
+            if(this.readyState == 4){
+                if(this.status == 200){
+                    try {
+                        schedules = JSON.parse(this.responseText);
+                        proceedChkFull = true;
+
+                        if(proceedChkFull){
+                            schedules.forEach(sched=>{
+                        
+                                const xhr2 = new XMLHttpRequest();
+                        
+                                xhr2.onreadystatechange = function(){
+                                    if(this.readyState == 4){
+                                        if(this.status == 200){
+                                            if(this.response == 1){
+                                                availScheds.push(item);
+                                            }
+                                        }
+                                    }
+                                    else{
+                                    }
+                                }
+                        
+                                xhr2.open("POST", "./../php/checkSchedFull.php", false);
+                                xhr2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                                xhr2.send(`date=${curDate}&schedID=${sched.schedID}&max=${sched.max}`);
+                            })
+                        
+                            // console.table(availScheds);
+                        
+                            if(availScheds.length == 0) {
+                                item.classList.add('block');
+                                item.classList.remove('date');
+                                if(!(parseInt(item.innerText) <= date.getDate())){
+                                    item.setAttribute('id','full');
+                                    item.innerText = 'Full';
+                                }
+                            }
+                            else{
+                                selectDate(item);
+                            }
+                        }
+
+                    } catch (error) {
+                        item.classList.add('block');
+                        item.classList.remove('date');
+                    }    
+                }
+            }
+        }
+        
+        xhr.open("POST", "./../php/getSched.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send(`deptID=${patient['department']}&day=${day}`);
+    });
 }

@@ -3928,9 +3928,8 @@ function convertToMilitaryTime(time){
 
 function generateSched(){
     if(patient.department != document.querySelector('#dept').value){
-        document.querySelector('.schedule__input-container label').innerText = 'Department (Please Wait...)'
         patient['department'] = document.querySelector('#dept').value;
-        setTimeout(()=>{InitialSetup(true);}, 100)
+        InitialSetup(true);
     }
 }
 

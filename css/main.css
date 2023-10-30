@@ -2195,6 +2195,9 @@ td:hover {
   border-bottom: 1px solid rgb(80, 78, 78);
   transition-duration: 50ms;
 }
+.slot-container .slot div:nth-child(2) {
+  text-align: right !important;
+}
 .slot-container .slot:hover {
   cursor: pointer;
   background-color: rgb(246, 245, 245);
@@ -2227,7 +2230,7 @@ td:hover {
   background-color: rgb(218, 213, 213) !important;
 }
 .slot-container .slotAvail {
-  text-align: right !important;
+  text-align: left !important;
   font-style: italic;
 }
 .slot-container .calendar__instruction {

@@ -2656,6 +2656,10 @@ td:hover{
         justify-content: space-between;
         border-bottom: 1px solid $fontbase-color;
         transition-duration: 50ms;
+
+        div:nth-child(2){
+            text-align: right !important;
+        }
     }
 
     .slot:hover{
@@ -2701,7 +2705,7 @@ td:hover{
     
 
     .slotAvail{
-        text-align: right !important;
+        text-align: left !important;
         font-style: italic;
     }
 
