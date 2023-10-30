@@ -192,7 +192,10 @@ function selectDate(){
 }
 
 function nextMonthBtn(){
-    resetCalData();
+    document.querySelector('.calendar__month').innerText = "Loading...";
+
+    setTimeout(()=>{
+        resetCalData();
     let calendarCell = document.querySelectorAll('.key');
     // Clears selected border
     calendarCell.forEach((item)=>{
@@ -232,10 +235,14 @@ function nextMonthBtn(){
 
     console.log(currentMonth);
     console.log(year);
+    }, 100)
 }
 
 function prevMonthBtn(){
-    resetCalData()
+    document.querySelector('.calendar__month').innerText = "Loading...";
+
+    setTimeout(()=>{
+        resetCalData()
     let calendarCell = document.querySelectorAll('.key');
 
     // Clears selected border
@@ -290,6 +297,8 @@ function prevMonthBtn(){
 
     console.log(currentMonth);
     console.log(year);
+    }, 100)
+    
 }
 
 function openModalUserError(title, body){
@@ -319,7 +328,6 @@ function openModalUserError(title, body){
 }
 
 function InitialSetup(initial = false){
-
     if(initial){
         resetCalData();
     }
@@ -345,6 +353,7 @@ function InitialSetup(initial = false){
             isExecuted = true;
         }
     }
+    document.querySelector('.schedule__input-container label').innerText = 'Department';
 }
 
 function checkDateValid(date){

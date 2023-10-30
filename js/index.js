@@ -3928,8 +3928,9 @@ function convertToMilitaryTime(time){
 
 function generateSched(){
     if(patient.department != document.querySelector('#dept').value){
+        document.querySelector('.schedule__input-container label').innerText = 'Department (Please Wait...)'
         patient['department'] = document.querySelector('#dept').value;
-        InitialSetup(true);
+        setTimeout(()=>{InitialSetup(true);}, 100)
     }
 }
 
@@ -4828,4 +4829,12 @@ function generateOTP(){
 
 function getRandomInt() {
     return Math.floor(Math.random() * 9).toString();
+}
+
+function loading(){
+    document.body.classList.add("loading-cursor");
+}
+
+function removeLoading(){
+    document.body.classList.remove("loading-cursor");
 }
