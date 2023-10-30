@@ -25,6 +25,7 @@ initial();
 
 // DAPAT NAKA BCRYPT DIN YUNG OTP(LAHAT) AND CHAKA NATIN ICOMPARE SA DATABASE
 const fakeOTP = '12345';
+let OTP = "";
 
 // DI KASAMA YUNG USERNAME KASI SA BACKEND NATIN SIYA IGENERATE FIRSTNAME-LASTNAME#kung pangilan siya ex.clarence-coronel2
 const newAdmin = {
@@ -1695,13 +1696,20 @@ function openModalOTP_Edit(){
 }
 
 function sendOTP_Edit(){
-    // magsend otp
+    openModalOTP_Edit()
 
-    openModalOTP();
+    OTP = generateOTP();
+    console.log(OTP)
+
+    // magsend otp through sms
 }
 
 function resendOTP_Edit(){
-    // di na magopen panibago modal kaya nakahiwalay tong function na to
+    OTP = generateOTP();
+    console.log(OTP)
+
+    // send SMS
+    resetCD();
 }
 
 function checkOTP_Edit(){
@@ -1850,7 +1858,7 @@ function applyNewPhone(){
                 if(xhr.status == 200){
                     if(xhr.responseText == 1){
                         newInsertedPhone = newPhone
-                        openModalOTP_Edit();
+                        sendOTP_Edit();
                     }
                     else{
                         showError("Password is incorrect");
@@ -4806,4 +4814,18 @@ function applyDeleteData(code){
     xhr.open("POST", "./php/deleteData.php", false);
     xhr.setRequestHeader('Content-Type', "application/x-www-form-urlencoded");
     xhr.send('code=' + code);
+}
+
+function generateOTP(){
+    let OTP = "";
+
+    for(i = 0; i < 5; i++){
+        OTP += getRandomInt();
+    }
+
+    return OTP;
+}
+
+function getRandomInt() {
+    return Math.floor(Math.random() * 9).toString();
 }

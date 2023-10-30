@@ -1,4 +1,5 @@
 let formContainer = document.querySelector('.form-container');
+let OTP = "";
 let posting = false
 let isResendAvail = false;
 const loginHTML = 
@@ -185,7 +186,9 @@ function showError(str = ""){
 }
 
 function sendOTPtoPhone(){
-    // magsend otp
+    OTP = generateOTP();
+    console.log(OTP)
+       // send generated otp sa sms
 }
 
 function resendOTPtoPhone(){
@@ -228,7 +231,6 @@ function checkOTP(){
 
     // Check if magkamuka input
     if(OTPField == fakeOTP){
-
         const jsonString = JSON.stringify(newAdmin);
         const xhr = new XMLHttpRequest();
 
@@ -248,18 +250,49 @@ function checkOTP(){
         xhr.send(jsonString);
         return;
     }
-    // If Tama
-    // 
-
-    // Pag mali input ni user ere labas
-    // second time na mali mag shake si error msg
-    if(error.innerHTML != ""){
-        error.classList.add('error-animate');
-        setTimeout(()=>{
-            error.classList.remove('error-animate');
-        },500);
+    else{
+        if(error.innerHTML != ""){
+            error.classList.add('error-animate');
+            setTimeout(()=>{
+                error.classList.remove('error-animate');
+            },500);
+        }
+        error.innerHTML = 'Mali ang iyong ibinigay na OTP.';
+        return;
     }
-    error.innerHTML = 'Invalid OTP';
+
+    // PAG MAY NAG SESEND NA OTP ETO NA GAMITIN HINDI YUNG NASA TAAS
+    // if(otpInput != OTP){
+    //     if(error.innerHTML != ""){
+    //         error.classList.add('error-animate');
+    //         setTimeout(()=>{
+    //             error.classList.remove('error-animate');
+    //         },500);
+    //     }
+    //     error.innerHTML = 'Mali ang iyong ibinigay na OTP.';
+    //     return;
+    // }
+    // else{
+    //     const jsonString = JSON.stringify(newAdmin);
+    //     const xhr = new XMLHttpRequest();
+
+    //     xhr.onreadystatechange = function(){
+    //         if(xhr.readyState == 4){
+    //             if(xhr.status == 200){
+    //                 if(xhr.responseText != 0){
+    //                     generatedUsername = xhr.responseText;
+    //                     createAdminSuccess();
+    //                 }
+    //             }
+    //         }
+    //     }
+
+    //     xhr.open("POST", "./php/createNewAdmin.php");
+    //     xhr.setRequestHeader("Content-Type", "application/json");
+    //     xhr.send(jsonString);
+    //     return;
+    // }
+
 }
 
 function resetModal(){
@@ -325,8 +358,7 @@ function forgotNext(){
 
                             // dito dapat tawagin yung function na mag send ng otp;
                             // gamit yung num sa forgotPassPhone na variable
-                            alert("sending fake OTP");
-                            resetCD();   
+                            sendOTPtoPhone();  
                         }
                     }
                 }
@@ -447,4 +479,18 @@ function modalLauncher(){
     // positive.removeAttribute('onclick');
     let modalLauncher = document.querySelector('.modal-launcher');
     modalLauncher.click();
+}
+
+function generateOTP(){
+    let OTP = "";
+
+    for(i = 0; i < 5; i++){
+        OTP += getRandomInt();
+    }
+
+    return OTP;
+}
+
+function getRandomInt() {
+    return Math.floor(Math.random() * 9).toString();
 }
