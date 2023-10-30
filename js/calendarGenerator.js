@@ -173,8 +173,6 @@ function selectDate(element){
 }
 
 function nextMonthBtn(){
-    document.querySelector('.calendar__month').innerText = "Loading...";
-
     resetCalData();
     let calendarCell = document.querySelectorAll('.key');
     // Clears selected border
@@ -215,7 +213,6 @@ function nextMonthBtn(){
 }
 
 function prevMonthBtn(){
-    document.querySelector('.calendar__month').innerText = "Loading...";
 
     resetCalData()
     let calendarCell = document.querySelectorAll('.key');
