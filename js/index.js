@@ -15,6 +15,7 @@ let isResendAvail = false;
 let currentWebStatus = null;
 let eventListenerAdded = false;
 let posting = false;
+let processingCal = false;
 
 // If want natin ireset auto increment
 // ALTER TABLE tableName AUTO_INCREMENT = 1
@@ -905,6 +906,7 @@ function nextForm(){
 
         if(formState == 1){
             if(checkFormA()){
+                generateSched();
                 const calendarPrev = document.querySelector('#calendar__prev');
                 const calendarNext = document.querySelector('#calendar__next');
 
@@ -962,7 +964,7 @@ function checkFormA(){
         errorHandler('60');
         return false;
     }
-    patient.department = dept;
+    // patient.department = dept;
 
     // FIRST NAME
     let firstName  = document.querySelector("#firstName").value.trim();
@@ -3927,6 +3929,8 @@ function convertToMilitaryTime(time){
 }
 
 function generateSched(){
+    // console.log("Patient Val: "+patient.department)
+    // console.log("Select Val: "+document.querySelector('#dept').value)
     if(patient.department != document.querySelector('#dept').value){
         patient['department'] = document.querySelector('#dept').value;
         InitialSetup(true);

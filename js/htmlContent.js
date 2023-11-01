@@ -182,7 +182,7 @@ let schedule = `
         <div class="schedule__form schedule__partA">
             <div class="schedule__input-container">
                 <label for="">Department</label>
-                <select class="form-select" aria-label="Default select example"  id="dept" onchange="generateSched()">
+                <select class="form-select" aria-label="Default select example"  id="dept"">
                         <option value="" selected hidden disabled>Select a Department</option>
                         <option value="1">ENT</option>
                         <option value="2">Hematology</option>

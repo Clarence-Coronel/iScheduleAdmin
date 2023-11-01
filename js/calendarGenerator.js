@@ -23,6 +23,8 @@ let year = date.getFullYear();
 
 let isExecuted = false;
 
+let monthNav = true;
+
 
 function loadSlots(date){
     let slotContainer = document.querySelector('.slot-container');
@@ -92,7 +94,7 @@ function loadSlots(date){
                         }
                     }
             
-                    xhr2.open("POST", "./../php/getNumPatient.php", false);
+                    xhr2.open("POST", "./php/getNumPatient.php", false);
                     xhr2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                     xhr2.send(`date=${date}&schedID=${item.schedID}`);
             
@@ -109,7 +111,7 @@ function loadSlots(date){
         }
     }
 
-    xhr.open("POST", "./../php/getSched2.php", false);
+    xhr.open("POST", "./php/getSched2.php", false);
     xhr.setRequestHeader("Content-Type", 'application/x-www-form-urlencoded');
     xhr.send(`deptID=${patient['department']}&day=${day}`);
 
@@ -173,7 +175,8 @@ function selectDate(element){
 }
 
 function nextMonthBtn(){
-    resetCalData();
+    if(!monthNav) return;
+    
     let calendarCell = document.querySelectorAll('.key');
     // Clears selected border
     calendarCell.forEach((item)=>{
@@ -181,6 +184,7 @@ function nextMonthBtn(){
     });
 
     if(nextCounter < 11 && nextCounter >= 0){
+        resetCalData();
         // Clears scheduleDate content para pag nag next or prev burado yung salected
         document.getElementById('scheduleDate').value = "";
         let nextMonth = months[date.getMonth()+1];
@@ -213,8 +217,8 @@ function nextMonthBtn(){
 }
 
 function prevMonthBtn(){
+    if(!monthNav) return;
 
-    resetCalData()
     let calendarCell = document.querySelectorAll('.key');
 
     // Clears selected border
@@ -223,6 +227,7 @@ function prevMonthBtn(){
     });
 
     if(nextCounter <= 11 && nextCounter > 0){
+        resetCalData()
         // Clears scheduleDate content para pag nag next or prev burado yung salected
         document.getElementById('scheduleDate').value = "";
         let temp = new Date();
@@ -298,6 +303,7 @@ function openModalUserError(title, body){
 }
 
 function InitialSetup(initial = false){
+
     if(initial){
         resetCalData();
     }
@@ -323,6 +329,8 @@ function InitialSetup(initial = false){
             isExecuted = true;
         }
     }
+
+    loadSched();
 }
 
 function checkDateValid(date){
@@ -454,7 +462,6 @@ function generateDate(days, NameOfDay1st){
         
     });
     loadSched();
-
 }
 
 function getDaysOfMonth(year, month){
@@ -507,34 +514,43 @@ function getBlockedDates(){
     xhr.onreadystatechange = function(){
         if(xhr.readyState == 4){
             if(xhr.status == 200){
-                arrayOfObjects = JSON.parse(xhr.responseText);
-                const currentDate = new Date();
-
-                arrayOfObjects.forEach(item =>{
-                    let skip = false;
-
-                    let tempDate = new Date(item.date);
+                try {
+                    arrayOfObjects = JSON.parse(xhr.responseText);
+                    const currentDate = new Date();
+    
+                    arrayOfObjects.forEach(item =>{
+                        let skip = false;
+    
+                        let tempDate = new Date(item.date);
+                        
+                        if(item.isYearly == 1) item.isYearly = true;
+                        else item.isYearly = false;
+    
+                        if(currentDate > tempDate &&  !item.isYearly) skip = true;
+    
+                        if(!skip){
+                            blockedDates.push(item);
+                        }
+                    })
+                } catch (error) {
                     
-                    if(item.isYearly == 1) item.isYearly = true;
-                    else item.isYearly = false;
+                }
 
-                    if(currentDate > tempDate &&  !item.isYearly) skip = true;
-
-                    if(!skip){
-                        blockedDates.push(item);
-                    }
-                })
-                
             }
         }
     }
 
-    xhr.open("GET", "./php/getBlockedDates.php", false);
+    xhr.open("GET", "./php/getBlockedDates.php", true);
     xhr.send();
 }
 
 function loadSched(){
-    let dates = document.querySelectorAll('.date');
+    const dates = document.querySelectorAll('.date');
+
+    if(dates.length == 0) return;
+
+    monthNav = false;
+
     let thisMonth = currentMonth+1;
     let thisYear = year;
     
@@ -542,7 +558,14 @@ function loadSched(){
     let schedules = [];
     let availScheds = [];
 
-    dates.forEach((item)=>{
+    let counter = 0;
+
+    let calendarTitle = document.querySelector('.calendar__month');
+    let content = months[currentMonth] + " " + thisYear;
+
+    calendarTitle.innerText = "Generating Schedule...";
+
+    dates.forEach((item, index)=>{
         let curDate = `${thisYear}-${thisMonth}-${item.innerText}`;
         let dateObj = new Date(curDate);
         const daysOfWeek = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
@@ -556,6 +579,7 @@ function loadSched(){
         xhr.onreadystatechange = function(){
             if(this.readyState == 4){
                 if(this.status == 200){
+                    counter++;
                     try {
                         schedules = JSON.parse(this.responseText);
                         proceedChkFull = true;
@@ -577,7 +601,7 @@ function loadSched(){
                                     }
                                 }
                         
-                                xhr2.open("POST", "./../php/checkSchedFull.php", false);
+                                xhr2.open("POST", "./php/checkSchedFull.php", false);
                                 xhr2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                                 xhr2.send(`date=${curDate}&schedID=${sched.schedID}&max=${sched.max}`);
                             })
@@ -600,12 +624,17 @@ function loadSched(){
                     } catch (error) {
                         item.classList.add('block');
                         item.classList.remove('date');
-                    }    
+                    }
+
+                    if(counter == dates.length) {
+                        calendarTitle.innerText = content;
+                        monthNav = true;
+                    }
                 }
             }
         }
         
-        xhr.open("POST", "./../php/getSched.php", true);
+        xhr.open("POST", "./php/getSched.php", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send(`deptID=${patient['department']}&day=${day}`);
     });
