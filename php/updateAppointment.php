@@ -20,6 +20,7 @@
             $max = $temp;
         }
     }
+
     $queryTotal = "SELECT COUNT(`appointmentID`) AS 'total' FROM `appointments` WHERE `appointmentStatus` = 'active' AND `appointmentDate` = '$schedDate' AND `scheduleID` = $schedID;";
 
     $result = mysqli_query($conn,$queryTotal);
@@ -34,6 +35,8 @@
             $username = $_SESSION['username'];
             $adminStampQuery = "INSERT INTO `admin_logs`(`username`, `activity`) VALUES ('$username','Approved ID=\"$appID\" follow-up request')";
             mysqli_query($conn, $adminStampQuery);
+
+            echo sendResult();
 
             echo getLink($appID);
         }
@@ -59,5 +62,67 @@
         mysqli_query($conn, $subQuery);
 
         return $link;
+    }
+
+    function sendResult(){
+        require 'connect.php';
+        require 'functions.php';
+
+        $depts = [
+            'ENT',
+            'Hematology',
+            'Internal Medicine',
+            'Internal Medicine Clearance',
+            'Nephrology',
+            'Neurology',
+            'OB GYNE New',
+            'OB GYNE Old',
+            'OB GYNE ROS',
+            'Oncology',
+            'Pediatric Cardiology',
+            'Pediatric Clearance',
+            'Pediatric General',
+            'Psychiatry New',
+            'Psychiatry Old',
+            'Surgery',
+            'Surgery ROS'
+        ];
+
+        global $schedID;
+        global $appID;
+        $startTime = null;
+        $stopTime = null;
+
+        $firstName = null;
+        $middleName = null;
+        $lastName = null;
+        $phone = null;
+        $deptID = null;
+        $appointmentDate = null;
+
+        $query = "SELECT appointments.*, schedules.startTime, schedules.stopTime FROM `appointments` LEFT JOIN `schedules` ON appointments.scheduleID = schedules.scheduleID WHERE appointmentID = $appID;";
+        $result = mysqli_query($conn,$query);
+
+        while($row = mysqli_fetch_array($result)){
+            $startTime = $row['startTime'];
+            $stopTime = $row['stopTime'];
+            $firstName = $row['firstName'];
+            $middleName = $row['middleName'];
+            $lastName = $row['lastName'];
+            $phone = $row['phone'];
+            $deptID = $row['departmentID'];
+            $appointmentDate = $row['appointmentDate'];
+        }
+
+
+        $unconvertedName = $lastName . ', ' . $firstName . ' ' . $middleName;
+        $name = ucwords(strtolower($unconvertedName));
+        $dept = $depts[$deptID-1];
+        $time = timeConverter($startTime) . ' - ' . timeConverter($stopTime);
+        $date = dateConverter($appointmentDate);
+
+        $msg = "$name ang iyong scheduled follow-up appointment sa $dept department ng Bulacan Medical Center ay na-aprubahan. Ikaw ay naka schedule sa $date sa oras na $time.";
+
+        sendSMS($phone, $msg);
     }
 ?>

@@ -540,7 +540,7 @@ function getBlockedDates(){
         }
     }
 
-    xhr.open("GET", "./php/getBlockedDates.php", true);
+    xhr.open("POST", "./php/getBlockedDates.php", true);
     xhr.send();
 }
 

@@ -64,6 +64,7 @@ applyAdminInfo();
 setInterval(checkSession, 30000);
 setInterval(checkAdminPrivChange, 30000);
 
+
 function checkSession(){
     const xhr = new XMLHttpRequest();
 
@@ -78,7 +79,7 @@ function checkSession(){
         }
     }
 
-    xhr.open('GET', './php/testSession.php', true);
+    xhr.open("POST", './php/testSession.php', true);
     xhr.send();
 }
 
@@ -368,11 +369,6 @@ function applyNewType(username, currentType){
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send(`username=${username}&newType=${selected}`);
     }
-}
-
-function removeAdmin(element){
-    alert("labas modal");
-    alert(element.getAttribute('data-username'));
 }
 
 function createAccountValidator(){
@@ -1328,7 +1324,7 @@ function generateTimeSlotBuffer(deptID){
                     if(this.status == 200){
                         try {
                             const arrOfObj = JSON.parse(this.responseText);
-
+                            
                             if(arrOfObj.length != 0){
                                 select.innerHTML = '';
                                 select.innerHTML += `<option value="" selected hidden disabled>Choose Time Slot</option>`;
@@ -1359,7 +1355,7 @@ function generateTimeSlotBuffer(deptID){
                             
                             
                         } catch (error) {
-                            alert("CATCH")
+                            // alert("Something went wrong...")
                         }
                          
                     }
@@ -1406,12 +1402,12 @@ function applyApproveReq(appID){
     xhr.onreadystatechange = function(){
         if(this.readyState == 4){
             if(this.status == 200){
+                console.log(this.responseText);
                 if(this.responseText != 0){
                     document.querySelector('#linkToDelete').value = this.responseText;
                     document.querySelector('#deleteImg-btn').click();
                     setTimeout(()=>{
                         showResModal("Request has been approved");
-                        alert("itext and sched kay patient. with added message kung hindi mo nakuha yung desired na araw ito ay dahil puno na or something");
                         insertReq();
                     }, 500);
                 }
@@ -1424,7 +1420,7 @@ function applyApproveReq(appID){
         }
     }
     
-    xhr.open("POST", "./php/updateAppointment.php", false);
+    xhr.open("POST", "./php/updateAppointment.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(`appID=${appID}&schedDate=${year}-${month}-${day}&schedID=${time}&max=${max}`);
     posting = false;
@@ -1460,7 +1456,6 @@ function applyRequestReject(appID){
                     document.querySelector('#deleteImg-btn').click();
                     setTimeout(()=>{
                         showResModal("Request has been rejected");
-                        alert("itext na rejected kay patient");
                         insertReq();
                     }, 500);
                 }
@@ -1469,7 +1464,7 @@ function applyRequestReject(appID){
         }
     }
     
-    xhr.open("POST", "./php/updateAppointment2.php", false);
+    xhr.open("POST", "./php/updateAppointment2.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(`appID=${appID}`);
     posting = false;
@@ -2229,7 +2224,7 @@ function checkPrivilege(type){
         }
     }
 
-    xhr.open('GET', './php/getAdminPrivilege.php', false);
+    xhr.open("POST", './php/getAdminPrivilege.php', false);
     xhr.send();
 
     return allowAccess;
@@ -2608,7 +2603,7 @@ function insertBlockDate(){
         setupTablePagination('date-table', 'prevButton', 'nextButton', 10);
     }
 
-    xhr.open("GET", "./php/getBlockDate.php", false);
+    xhr.open("POST", "./php/getBlockDate.php", false);
     xhr.send();
 }
 
@@ -2751,7 +2746,7 @@ function insertPostedAnn(){
     }
 
 
-    xhr.open("GET", "./php/getAnnouncement.php", false);
+    xhr.open("POST", "./php/getAnnouncement.php", false);
     xhr.send();
 }
 
@@ -2859,7 +2854,7 @@ function insertAdmin(isInitial = true){
     }
 
     if(isInitial){
-        xhr.open("GET", "./php/getAdmin.php", true);
+        xhr.open("POST", "./php/getAdmin.php", true);
         xhr.send();
     }
     else{
@@ -2897,7 +2892,7 @@ function checkAdminPrivChange(){
         }
     }
 
-    xhr.open("GET", "./php/checkAdminPrivChange.php", true);
+    xhr.open("POST", "./php/checkAdminPrivChange.php", true);
     xhr.send();
 }
 
@@ -2997,7 +2992,7 @@ function insertAdminLogs(isInitial = true){
     }
 
     if(isInitial){
-        xhr.open("GET", "./php/getAdminLogs.php", true);
+        xhr.open("POST", "./php/getAdminLogs.php", true);
         xhr.send();
     }
     else{
@@ -3159,7 +3154,7 @@ function insertWebsiteStatus(){
         }
     }
 
-    xhr.open("GET", "./php/getCurrentWebStatus.php", false);
+    xhr.open("POST", "./php/getCurrentWebStatus.php", false);
     xhr.send();
 }
 
@@ -4246,7 +4241,7 @@ function insertReq(){
         setupTablePagination('request-table', 'prevButton', 'nextButton', 10);
     };
 
-    xhr.open("GET", "./php/getReq.php", false);
+    xhr.open("POST", "./php/getReq.php", false);
     xhr.send();
 }
 
@@ -4759,7 +4754,7 @@ function insertQuickStats(){
         }
     };
 
-    xhr.open("GET", "./php/getQuickStats.php", true);
+    xhr.open("POST", "./php/getQuickStats.php", true);
     xhr.send();
 }
 

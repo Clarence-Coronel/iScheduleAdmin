@@ -1,5 +1,9 @@
 <?php
-
+    if ($_SERVER['REQUEST_METHOD']  != 'POST'){
+        header("HTTP/1.0 403 Forbidden");
+        echo "Access Denied.";
+        exit;
+    }
     // $server_name="localhost";
     // $username="u232670259_root";
     // $password="@BX|^PMLy9";

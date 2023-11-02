@@ -31,7 +31,7 @@
 
     $schedules = array();
 
-    $query = "SELECT `scheduleID`, `startTime`, `stopTime`, `max` FROM schedules WHERE `isBuffer` = '1' AND `day` = '$day' AND `isActive` = '1' AND `deptID` = '$deptID' ORDER BY `startTime` ASC;";
+    $query = "SELECT `scheduleID`, `startTime`, `stopTime`, `max` FROM schedules WHERE `day` = '$day' AND `isActive` = '1' AND `deptID` = '$deptID' ORDER BY `startTime` ASC;";
 
     $result = mysqli_query($conn,$query);
 
