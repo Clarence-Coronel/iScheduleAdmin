@@ -123,6 +123,6 @@
 
         $msg = "$name ang iyong scheduled follow-up appointment sa $dept department ng Bulacan Medical Center ay na-aprubahan. Ikaw ay naka schedule sa $date sa oras na $time.";
 
-        sendSMS($phone, $msg);
+        // sendSMS($phone, $msg);
     }
 ?>

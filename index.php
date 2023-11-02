@@ -103,7 +103,7 @@
     <button type="button" class="btn btn-primary modal-launcher" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="display:none">
         Launch static backdrop modal
     </button>
-    <input type="text" id="linkToDelete" style="display: none;">
+    <input type="text" id="linkToDelete" style="display: none;" value="">
     <button id="deleteImg-btn" style="display: none;"></button>
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">

@@ -20,7 +20,6 @@ const storage = getStorage(app);
 var del = document.getElementById('deleteImg-btn'); 
 
 
-
 del.addEventListener("click", ()=>{
     let link = document.querySelector('#linkToDelete').value;
     const desertRef = ref(storage, link);
@@ -36,5 +35,6 @@ del.addEventListener("click", ()=>{
     
     });
 })
+
 
 

@@ -1402,7 +1402,6 @@ function applyApproveReq(appID){
     xhr.onreadystatechange = function(){
         if(this.readyState == 4){
             if(this.status == 200){
-                console.log(this.responseText);
                 if(this.responseText != 0){
                     document.querySelector('#linkToDelete').value = this.responseText;
                     document.querySelector('#deleteImg-btn').click();
@@ -1454,6 +1453,7 @@ function applyRequestReject(appID){
                 if(this.responseText != 0){
                     document.querySelector('#linkToDelete').value = this.responseText;
                     document.querySelector('#deleteImg-btn').click();
+                    console.log(document.querySelector('#linkToDelete').value);
                     setTimeout(()=>{
                         showResModal("Request has been rejected");
                         insertReq();
