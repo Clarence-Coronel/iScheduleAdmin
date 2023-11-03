@@ -58,7 +58,7 @@
         // To set up environmental variables, see http://twil.io/secure
         $account_sid = 'AC58b1ba1d4370b882b85c87cc51438d65';
         
-        $auth_token = "ae71e169f43ff4c42cf699ef804cce87";
+        $auth_token = "9bee169410af5d13c5090535f9b58979";
         // In production, these should be environment variables. E.g.:
         // $auth_token = $_ENV["TWILIO_AUTH_TOKEN"]
     

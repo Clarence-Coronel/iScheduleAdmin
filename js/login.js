@@ -187,7 +187,21 @@ function showError(str = ""){
 
 function sendOTPtoPhone(){
     OTP = generateOTP();
-    console.log(OTP)
+    const xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4){
+            if(this.status == 200){
+            }
+            else{
+                alert('Something went wrong...');
+            }
+        }
+    }
+
+    xhr.open("POST", "./../php/sendOTP.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send(`phone=${forgotPassPhone}&otp=${OTP}`);
        // send generated otp sa sms
 }
 
@@ -372,7 +386,7 @@ function forgotNext(){
     else if(ctr == 2){
         const OTPInput = document.querySelector('#OTP').value;
 
-        if(OTPInput == fakeOTP){
+        if(OTPInput == OTP){
             partB.style.display = 'none';
             partC.style.display = 'block';
             clearErrorForgot();

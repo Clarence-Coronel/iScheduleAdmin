@@ -1701,20 +1701,44 @@ function openModalOTP_Edit(){
 }
 
 function sendOTP_Edit(){
-    openModalOTP_Edit()
-
     OTP = generateOTP();
-    console.log(OTP)
 
-    // magsend otp through sms
+    const xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4){
+            if(this.status == 200){
+                openModalOTP_Edit()
+            }
+            else{
+                alert('Something went wrong...');
+            }
+        }
+    }
+
+    xhr.open("POST", "./php/sendOTP.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send(`phone=${newInsertedPhone}&otp=${OTP}`);
 }
 
 function resendOTP_Edit(){
     OTP = generateOTP();
-    console.log(OTP)
+    const xhr = new XMLHttpRequest();
 
-    // send SMS
-    resetCD();
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4){
+            if(this.status == 200){
+                
+            }
+            else{
+                alert('Something went wrong...');
+            }
+        }
+    }
+
+    xhr.open("POST", "./php/sendOTP.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send(`phone=${newInsertedPhone}&otp=${OTP}`);
 }
 
 function checkOTP_Edit(){
@@ -1728,7 +1752,7 @@ function checkOTP_Edit(){
     // Kunin yung OTP sa database pero sa ngayon konwari na get na tapos yun yung fakeOTP
 
     // Check if magkamuka input
-    if(OTPField == fakeOTP){
+    if(OTPField == OTP){
         const xhr = new XMLHttpRequest();
 
         xhr.onreadystatechange = function(){
@@ -4700,7 +4724,6 @@ function generateDeptStats(days){
     xhr.onreadystatechange = function(){
         if(this.readyState == 4){
             if(this.status == 200){
-                console.log(this.responseText)
                 try {
                     let arrOfObj = JSON.parse(this.responseText);
                     let deptBars = document.querySelectorAll('.dept');
@@ -4725,8 +4748,6 @@ function generateDeptStats(days){
                     if(count == null){
                         count = 0;
                     }
-                    console.log("Count: " + count);
-                    console.log("Highest: " + highest);
                     item.innerHTML = `${item.dataset.dept} (${count})`;
                     item.style.width = `${(count/highest)*95}%`;
                 })
