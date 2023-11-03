@@ -125,9 +125,9 @@ header .header__right {
 .header__right .greeting {
   width: 100%;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   justify-content: flex-end;
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 .header__right .greeting .account-name {
   font-weight: 700;
@@ -222,23 +222,23 @@ header .header__right {
 }
 .header-btn .burger-ico {
   background-color: transparent;
-  border: 2px solid rgb(80, 78, 78);
+  border: 1px solid rgb(80, 78, 78);
   max-width: 40px;
   min-width: 30px;
-  width: 5vw;
+  width: 25px;
   position: relative;
-  height: 3px;
+  height: 1px;
   border-radius: 5px;
 }
 .header-btn .burger-ico::before, .header-btn .burger-ico::after {
   content: "";
-  border: 2px solid rgb(80, 78, 78);
+  border: 1px solid rgb(80, 78, 78);
   max-width: 40px;
   min-width: 30px;
-  width: 5vw;
+  width: 25px;
   position: absolute;
-  height: 3px;
-  left: -2px;
+  height: 1px;
+  left: -1px;
   bottom: 7px;
   border-radius: 5px;
 }
@@ -494,7 +494,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
 
 @media only screen and (min-width: 400px) {
   html {
-    font-size: 15px;
+    font-size: 13px;
   }
   .wrapper {
     height: 60px;
@@ -559,7 +559,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
 .form {
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   background-color: white;
-  width: max(290px, 30%);
+  width: max(290px, 90%);
   height: -moz-fit-content;
   height: fit-content;
   border-radius: max(5px, 0.4vw);
@@ -569,7 +569,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
   border-bottom: min(10px, 5vw) solid #0577fa;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
-  gap: max(10px, 3vh);
+  gap: max(12px, 3vh);
   justify-items: center;
   position: relative;
   transition-duration: 500ms;
@@ -1508,14 +1508,12 @@ td:hover {
   height: 80%;
   display: flex;
   flex-flow: column;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: flex-start;
-  padding: max(7px, 0.3vw);
-  margin-top: 1vh;
 }
 .data-wrapper .data {
   width: 100%;
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
@@ -1585,7 +1583,8 @@ td:hover {
   display: flex;
   flex-flow: column;
   align-items: center;
-  width: max(290px, 30%);
+  width: max(290px, 90%);
+  gap: max(12px, 3vh);
   min-width: 310px;
   height: -moz-fit-content;
   height: fit-content;
@@ -1594,7 +1593,6 @@ td:hover {
   border-radius: max(5px, 0.4vw);
   margin: max(15px, 1vw) 0;
   padding: max(18px, 3vw);
-  gap: max(10px, 3vh);
   overflow: hidden;
   padding-bottom: max(70px, 5%);
   border-bottom: min(10px, 5vw) solid #0577fa;
