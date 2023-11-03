@@ -92,8 +92,7 @@ function inputLimiter(id, max){
         // alert('test');
     }
 
-    // if want natin numbers lang meron pede isama yung asa baba
-    // element.value = element.value.replace(/\D+/g, '');
+  
 }
 
 // cuts content if after blur
