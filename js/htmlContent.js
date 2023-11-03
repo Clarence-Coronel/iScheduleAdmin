@@ -776,7 +776,7 @@ let createAccount = `
             </div>
             <div class="input-container">
                 <input type="text" name="middleName" id="middleName" required>
-                <label for="middleName">Middle Name</label>
+                <label for="middleName">Middle Name (Optional)</label>
             </div>
             <div class="input-container">
                 <input type="text" name="lastName" id="lastName" required>

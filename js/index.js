@@ -397,10 +397,10 @@ function createAccountValidator(){
     // 
     newAdmin["middleName"] = document.querySelector('#middleName').value.trim().toLowerCase();
     // Check if middleName is Empty
-    if(newAdmin['middleName'] == ""){
-        errorHandler('10');
-        return false;
-    } 
+    // if(newAdmin['middleName'] == ""){
+    //     errorHandler('10');
+    //     return false;
+    // } 
     // Check if may numero or special character si middleName
     if(!isLettersOnly(newAdmin['middleName'])){
         errorHandler('11');
@@ -416,6 +416,9 @@ function createAccountValidator(){
         errorHandler('13');
         return false;
     }
+    if(newAdmin['middleName'] == ""){
+        newAdmin['middleName'] = null;
+    } 
 
     // 
     // LAST NAME **************************
@@ -979,10 +982,10 @@ function checkFormA(){
     patient.firstName = firstName;
     // MIDDLE NAME
     let middleName  = document.querySelector("#middleName").value.trim();
-    if(middleName == ""){
-        errorHandler("80");
-        return false;
-    }
+    // if(middleName == ""){
+    //     errorHandler("80");
+    //     return false;
+    // }
     if (!isLettersOnly(middleName)){
         errorHandler("81");
         return false;
@@ -991,6 +994,10 @@ function checkFormA(){
         errorHandler('82');
         return false;
     }
+    if(middleName == ""){
+        middleName = null;
+    }
+
     patient.middleName = middleName;
     // LAST NAME
     let lastName  = document.querySelector("#lastName").value.trim();
@@ -1006,6 +1013,7 @@ function checkFormA(){
         errorHandler('92');
         return false;
     }
+
     patient.lastName = lastName;
     // SEX
     let sex = document.querySelector("#sex").value;
@@ -4692,14 +4700,14 @@ function generateDeptStats(days){
     xhr.onreadystatechange = function(){
         if(this.readyState == 4){
             if(this.status == 200){
-
+                console.log(this.responseText)
                 try {
                     let arrOfObj = JSON.parse(this.responseText);
                     let deptBars = document.querySelectorAll('.dept');
                     let highest = 0;
 
                 arrOfObj.forEach(item=>{
-                    if(item.count > highest){
+                    if(parseInt(item.count)> highest){
                         highest = item.count;
                     }
                 })
@@ -4717,7 +4725,8 @@ function generateDeptStats(days){
                     if(count == null){
                         count = 0;
                     }
-
+                    console.log("Count: " + count);
+                    console.log("Highest: " + highest);
                     item.innerHTML = `${item.dataset.dept} (${count})`;
                     item.style.width = `${(count/highest)*95}%`;
                 })
