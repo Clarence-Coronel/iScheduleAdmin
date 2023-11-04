@@ -101,7 +101,10 @@ function loadSlots(date){
                     newSlotAvail.innerHTML = slotsAvail + ' Slot(s) Available';
                     newInfo.classList.add('slotAvail');
                     newSlot.appendChild(newSlotAvail);
-            
+
+                    if(item.isBuffer == 1){
+                        newSlot.classList.add('buffer');
+                    }
                     slotContainer.appendChild(newSlot);
                 });
             
