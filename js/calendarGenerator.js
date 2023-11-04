@@ -26,7 +26,7 @@ let isExecuted = false;
 let monthNav = true;
 
 
-function loadSlots(date){
+function loadSlots(date, element){
     let slotContainer = document.querySelector('.slot-container');
     // retrieve dapat yung mga slots nung selectedDate from db pero for now eto hardcoded
     // let tempSlotId = ['a', 'b', 'c', 'd'];
@@ -118,9 +118,17 @@ function loadSlots(date){
     xhr.setRequestHeader("Content-Type", 'application/x-www-form-urlencoded');
     xhr.send(`deptID=${patient['department']}&day=${day}`);
 
-    console.table(slots)
+    let allSlot = document.querySelectorAll('.slot');
+    let fullSlot = document.querySelectorAll('.slot-full');
 
-
+    console.log("All Slot: " + allSlot.length);
+    console.log("Full Slot: " + fullSlot.length);
+    if(allSlot.length == fullSlot.length){
+        element.classList.add('block');
+        element.classList.remove('date');
+        element.setAttribute('id','full');
+        element.innerText = 'Full';
+    }
     
 }
 
@@ -172,7 +180,7 @@ function selectDate(element){
             selectedDate = element.innerHTML;
             document.getElementById('scheduleDate').value = `${selectedMonth} ${selectedDate}, ${selectedYear}`;
             document.querySelector('#timeSlot').value = '';
-            loadSlots(element.dataset.date);
+            loadSlots(element.dataset.date, element);
         }
     });
 }
@@ -695,9 +703,6 @@ function loadSched(){
                                                 availScheds.length = 0;
                                                 availScheds.push(item);
                                             }
-                                            else{
-                                                availScheds.length = 0;
-                                            }
                                         }
                                     }
                                     else{
@@ -712,26 +717,26 @@ function loadSched(){
                                 //     console.log(item.innerText);
                                 //     console.table(availScheds);
                                 // }
-                                
-                                if(availScheds.length == 0) {
-                                    if(parseInt(item.innerText) <= date.getDate()){
-                                        item.classList.add('block');
-                                        item.classList.remove('date');
-                                    }
-                                    else{
-                                        item.classList.add('block');
-                                        item.classList.remove('date');
-                                        item.setAttribute('id','full');
-                                        item.innerText = 'Full';
-                                    }
-                                }
-                                else{
-                                    selectDate(item);
-                                }
                             })
                         
                             // console.table(availScheds);
 
+                        }
+
+                        if(availScheds.length == 0) {
+                            if(parseInt(item.innerText) <= date.getDate()){
+                                item.classList.add('block');
+                                item.classList.remove('date');
+                            }
+                            else{
+                                item.classList.add('block');
+                                item.classList.remove('date');
+                                item.setAttribute('id','full');
+                                item.innerText = 'Full';
+                            }
+                        }
+                        else{
+                            selectDate(item);
                         }
 
                     } catch (error) {
@@ -742,6 +747,7 @@ function loadSched(){
                         calendarTitle.innerText = content;
                         monthNav = true;
                     }
+                    availScheds.length = 0;
                 }
             }
         }
