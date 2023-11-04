@@ -306,9 +306,9 @@ function InitialSetup(initial = false){
 
     if(initial){
         resetCalData();
+        getBlockedDates();
     }
 
-    getBlockedDates();
     selectedMonth = months[date.getMonth()];
     selectedYear = date.getFullYear();
 
@@ -540,9 +540,105 @@ function getBlockedDates(){
         }
     }
 
-    xhr.open("POST", "./php/getBlockedDates.php", true);
+    xhr.open("POST", "./php/getBlockedDates.php", false);
     xhr.send();
 }
+
+// function loadSched(){
+//     const dates = document.querySelectorAll('.date');
+
+//     if(dates.length == 0) return;
+
+//     monthNav = false;
+
+//     let thisMonth = currentMonth+1;
+//     let thisYear = year;
+    
+//     let proceedChkFull = false;
+//     let schedules = [];
+//     let availScheds = [];
+
+//     let counter = 0;
+
+//     let calendarTitle = document.querySelector('.calendar__month');
+//     let content = months[currentMonth] + " " + thisYear;
+
+//     calendarTitle.innerText = "Generating Schedule...";
+
+//     dates.forEach((item, index)=>{
+//         let curDate = `${thisYear}-${thisMonth}-${item.innerText}`;
+//         let dateObj = new Date(curDate);
+//         const daysOfWeek = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+//         let day = daysOfWeek[dateObj.getDay()];
+
+//         let xhr = new XMLHttpRequest();
+
+//         // console.log("Day: " + day)
+//         // console.log("Dept ID: " + patient.department)
+
+//         xhr.onreadystatechange = function(){
+//             if(this.readyState == 4){
+//                 if(this.status == 200){
+//                     counter++;
+//                     try {
+//                         schedules = JSON.parse(this.responseText);
+//                         proceedChkFull = true;
+
+//                         if(proceedChkFull){
+//                             schedules.forEach(sched=>{
+                        
+//                                 const xhr2 = new XMLHttpRequest();
+                        
+//                                 xhr2.onreadystatechange = function(){
+//                                     if(this.readyState == 4){
+//                                         if(this.status == 200){
+//                                             if(this.response == 1){
+//                                                 availScheds.push(item);
+//                                             }
+//                                         }
+//                                     }
+//                                     else{
+//                                     }
+//                                 }
+                        
+//                                 xhr2.open("POST", "./php/checkSchedFull.php", false);
+//                                 xhr2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+//                                 xhr2.send(`date=${curDate}&schedID=${sched.schedID}&max=${sched.max}`);
+//                             })
+                        
+//                             // console.table(availScheds);
+                        
+//                             if(availScheds.length == 0) {
+//                                 item.classList.add('block');
+//                                 item.classList.remove('date');
+//                                 if(!(parseInt(item.innerText) <= date.getDate())){
+//                                     item.setAttribute('id','full');
+//                                     item.innerText = 'Full';
+//                                 }
+//                             }
+//                             else{
+//                                 selectDate(item);
+//                             }
+//                         }
+
+//                     } catch (error) {
+//                         item.classList.add('block');
+//                         item.classList.remove('date');
+//                     }
+
+//                     if(counter == dates.length) {
+//                         calendarTitle.innerText = content;
+//                         monthNav = true;
+//                     }
+//                 }
+//             }
+//         }
+        
+//         xhr.open("POST", "./php/getSched.php", true);
+//         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+//         xhr.send(`deptID=${patient['department']}&day=${day}`);
+//     });
+// }
 
 function loadSched(){
     const dates = document.querySelectorAll('.date');
@@ -592,8 +688,12 @@ function loadSched(){
                                 xhr2.onreadystatechange = function(){
                                     if(this.readyState == 4){
                                         if(this.status == 200){
-                                            if(this.response == 1){
+                                            if(this.responseText == 1){
+                                                availScheds.length = 0;
                                                 availScheds.push(item);
+                                            }
+                                            else{
+                                                availScheds.length = 0;
                                             }
                                         }
                                     }
@@ -604,28 +704,37 @@ function loadSched(){
                                 xhr2.open("POST", "./php/checkSchedFull.php", false);
                                 xhr2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                                 xhr2.send(`date=${curDate}&schedID=${sched.schedID}&max=${sched.max}`);
+
+                                // if(item.innerText == "16"){
+                                //     console.log(item.innerText);
+                                //     console.table(availScheds);
+                                // }
+                                
+                                if(availScheds.length == 0) {
+                                    if(parseInt(item.innerText) <= date.getDate()){
+                                        item.classList.add('block');
+                                        item.classList.remove('date');
+                                    }
+                                    else{
+                                        item.classList.add('block');
+                                        item.classList.remove('date');
+                                        item.setAttribute('id','full');
+                                        item.innerText = 'Full';
+                                    }
+                                }
+                                else{
+                                    selectDate(item);
+                                }
                             })
                         
                             // console.table(availScheds);
-                        
-                            if(availScheds.length == 0) {
-                                item.classList.add('block');
-                                item.classList.remove('date');
-                                if(!(parseInt(item.innerText) <= date.getDate())){
-                                    item.setAttribute('id','full');
-                                    item.innerText = 'Full';
-                                }
-                            }
-                            else{
-                                selectDate(item);
-                            }
+
                         }
 
                     } catch (error) {
                         item.classList.add('block');
                         item.classList.remove('date');
                     }
-
                     if(counter == dates.length) {
                         calendarTitle.innerText = content;
                         monthNav = true;
