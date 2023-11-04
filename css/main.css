@@ -3451,4 +3451,9 @@ table {
 
 .loading-cursor {
   cursor: wait !important;
+}
+
+.slotLoading {
+  font-weight: 700;
+  margin: 1vw;
 }/*# sourceMappingURL=main.css.map */

@@ -64,6 +64,7 @@ function loadSlots(date, element){
     xhr.onreadystatechange = function (){
         if(this.readyState == 4){
             if(this.status == 200){
+                slotContainer.innerHTML = "";
                 slots = JSON.parse(this.responseText);
 
                 slots.forEach((item)=>{
