@@ -86,8 +86,8 @@
         $name = ucwords(strtolower($unconvertedName));
         $dept = $depts[$deptID-1];
 
-        $msg = "$name kinakalungkot naming sabihing ang iyong scheduled follow-up appointment request sa $dept department ng Bulacan Medical Center ay hindi na-aprubahan. Posibleng ito ay dahil sa malabong picture ng iyong follow-up slip o puno na ang mga slot.";
+        $msg = "$name kinakalungkot naming sabihing ang iyong scheduled follow-up appointment request sa $dept department ng Bulacan Medical Center ay hindi na-aprubahan. Posibleng ito ay dahil sa malabong picture ng iyong follow-up slip o puno na ang mga slot. ";
 
-        sendSMS($phone, $msg);
+        // sendSMS($phone, $msg);
     }
 ?>

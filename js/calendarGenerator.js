@@ -109,27 +109,17 @@ function loadSlots(date, element){
                 });
             
                 // after iload yung bagong slot lagyan listener
-                selectSlot();
+                selectSlot(element);
             }
+        }
+        else{
+            slotContainer.innerHTML = `<div class="slotLoading">Loading...</div>`
         }
     }
 
-    xhr.open("POST", "./php/getSched2.php", false);
+    xhr.open("POST", "./php/getSched2.php", true);
     xhr.setRequestHeader("Content-Type", 'application/x-www-form-urlencoded');
-    xhr.send(`deptID=${patient['department']}&day=${day}`);
-
-    let allSlot = document.querySelectorAll('.slot');
-    let fullSlot = document.querySelectorAll('.slot-full');
-
-    console.log("All Slot: " + allSlot.length);
-    console.log("Full Slot: " + fullSlot.length);
-    if(allSlot.length == fullSlot.length){
-        element.classList.add('block');
-        element.classList.remove('date');
-        element.setAttribute('id','full');
-        element.innerText = 'Full';
-    }
-    
+    xhr.send(`deptID=${patient['department']}&day=${day}`);   
 }
 
 function resetCalData(){
@@ -142,7 +132,7 @@ function resetCalData(){
     slotContainer.innerHTML = `<div class="calendar__instruction">Pumili ng Petsa</div>`;
 }
 
-function selectSlot(){
+function selectSlot(element){
     let timeSlots = document.querySelectorAll('.slot');
     
     timeSlots.forEach((item)=>{
@@ -166,6 +156,16 @@ function selectSlot(){
             item.classList.add('slot-full');
         }
     });
+
+    let allSlot = document.querySelectorAll('.slot');
+    let fullSlot = document.querySelectorAll('.slot-full');
+
+    if(allSlot.length == fullSlot.length){
+        element.classList.add('block');
+        element.classList.remove('date');
+        element.setAttribute('id','full');
+        element.innerText = 'Full';
+    }
 }
 
 function selectDate(element){
@@ -689,39 +689,33 @@ function loadSched(){
                     counter++;
                     try {
                         schedules = JSON.parse(this.responseText);
-                        proceedChkFull = true;
 
-                        if(proceedChkFull){
-                            schedules.forEach(sched=>{
-                        
-                                const xhr2 = new XMLHttpRequest();
-                        
-                                xhr2.onreadystatechange = function(){
-                                    if(this.readyState == 4){
-                                        if(this.status == 200){
-                                            if(this.responseText == 1){
-                                                availScheds.length = 0;
-                                                availScheds.push(item);
-                                            }
+                        schedules.forEach(sched=>{
+                    
+                            const xhr2 = new XMLHttpRequest();
+                    
+                            xhr2.onreadystatechange = function(){
+                                if(this.readyState == 4){
+                                    if(this.status == 200){
+                                        if(this.responseText == 1){
+                                            availScheds.length = 0;
+                                            availScheds.push(item);
                                         }
                                     }
-                                    else{
-                                    }
                                 }
-                        
-                                xhr2.open("POST", "./php/checkSchedFull.php", false);
-                                xhr2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                                xhr2.send(`date=${curDate}&schedID=${sched.schedID}&max=${sched.max}`);
+                                else{
+                                }
+                            }
+                    
+                            xhr2.open("POST", "./php/checkSchedFull.php", false);
+                            xhr2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                            xhr2.send(`date=${curDate}&schedID=${sched.schedID}&max=${sched.max}`);
 
-                                // if(item.innerText == "16"){
-                                //     console.log(item.innerText);
-                                //     console.table(availScheds);
-                                // }
-                            })
-                        
-                            // console.table(availScheds);
-
-                        }
+                            // if(item.innerText == "16"){
+                            //     console.log(item.innerText);
+                            //     console.table(availScheds);
+                            // }
+                        })
 
                         if(availScheds.length == 0) {
                             if(parseInt(item.innerText) <= date.getDate()){
