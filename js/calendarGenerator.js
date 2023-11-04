@@ -669,7 +669,6 @@ function loadSched(){
     let counter = 0;
 
     let calendarTitle = document.querySelector('.calendar__month');
-    let content = months[currentMonth] + " " + thisYear;
 
     calendarTitle.innerText = "Generating Schedule...";
 
@@ -739,7 +738,7 @@ function loadSched(){
                         item.classList.remove('date');
                     }
                     if(counter == dates.length) {
-                        calendarTitle.innerText = content;
+                        calendarTitle.innerText = months[currentMonth] + " " + year;
                         monthNav = true;
                     }
                     availScheds.length = 0;
