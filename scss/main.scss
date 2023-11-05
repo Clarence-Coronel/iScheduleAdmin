@@ -1400,16 +1400,17 @@ td:hover{
     align-items: center;
     padding: max(10px, 2vw);
     // box-shadow: $box-shadow;
-    border-bottom: 2px solid rgba(112, 109, 109, 0.177);
+    color: rgb(10, 204, 10);
+    border-bottom: 1px solid rgb(208, 206, 206);
     background-color: white;
 
     .status__header{
         width: 100%;
         display: flex;
-        flex-flow: row nowrap;
+        flex-flow: column;
         justify-content: center;
         align-items: center;
-        color: rgb(10, 204, 10);
+        // color: rgb(10, 204, 10);
         font-size: 2rem;
         font-weight: 700;
         user-select: none;
@@ -1421,7 +1422,7 @@ td:hover{
         }
 
         .status-name{
-            color: inherit;
+            color: $fontbase-color;
         }
     }
 
@@ -1446,7 +1447,7 @@ td:hover{
     flex-flow: column;
     padding: $box-padding;
     align-items: center;
-    gap: max(10px, 1vw);
+    gap: max(15px, 5vh);
     border-radius: 20px;
     overflow: hidden;
     // border: 2px solid black;

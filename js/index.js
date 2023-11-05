@@ -2331,7 +2331,7 @@ function getFeedback(sortBy = 1){
                             <tr class="table-row">
                                 <td>${item.rate}</td>
                                 <td>${item.content}</td>
-                                <td title="YYYY-MM-DD">${convertRetrievedDate(item.dateSubmitted)}</td>
+                                <td class="always-visible">${convertRetrievedDate(item.dateSubmitted)}</td>
                             </tr>
                             `;
         
@@ -3248,9 +3248,9 @@ function applyNewWebStatus(){
                 if(this.responseText == 1){
                     setTimeout(()=>{
                         showResModal("Website status has been updated");
-                    }, 500)
-                    generateWebsiteStatus();
-                    
+                        generateWebsiteStatus();
+                        posting = false;   
+                    }, 500)               
                 }
             }
         }
@@ -3259,7 +3259,6 @@ function applyNewWebStatus(){
     xhr.open("POST", "./php/changeWebsiteStatus.php", false);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(toSend)
-    posting = false;
 }
 
 function generateDeptSched(dept){

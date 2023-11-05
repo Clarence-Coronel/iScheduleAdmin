@@ -1172,16 +1172,16 @@ td:hover {
   flex-flow: column;
   align-items: center;
   padding: max(10px, 2vw);
-  border-bottom: 2px solid rgba(112, 109, 109, 0.177);
+  color: rgb(10, 204, 10);
+  border-bottom: 1px solid rgb(208, 206, 206);
   background-color: white;
 }
 .status .status__header {
   width: 100%;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column;
   justify-content: center;
   align-items: center;
-  color: rgb(10, 204, 10);
   font-size: 2rem;
   font-weight: 700;
   -webkit-user-select: none;
@@ -1194,7 +1194,7 @@ td:hover {
   background-color: white;
 }
 .status .status__header .status-name {
-  color: inherit;
+  color: rgb(80, 78, 78);
 }
 .status .status__msg {
   max-width: 100%;
@@ -1215,7 +1215,7 @@ td:hover {
   flex-flow: column;
   padding: max(18px, 3vw);
   align-items: center;
-  gap: max(10px, 1vw);
+  gap: max(15px, 5vh);
   border-radius: 20px;
   overflow: hidden;
 }
