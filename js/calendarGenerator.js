@@ -36,7 +36,7 @@ function loadSlots(date, element){
     slotContainer.style.justifyContent = 'flex-start';
     slotContainer.innerHTML = "";
 
-    let temp = new Date(date);
+    let temp = new Date(convertProperDate(date));
     let day = '';
     switch (temp.getDay()){
         case 1:
@@ -409,7 +409,13 @@ function generateDate(days, NameOfDay1st){
     for(i = startingPoint; i < numOfIteration; i++ ){
         //gives value of date then increment, di kasama increment sa ibibigay
         // DITO BINIBIGYAN NG NUMBER
-        calendarCell[i].innerHTML = dateCounter;
+        if(dateCounter.toString().length == 1){
+            calendarCell[i].innerHTML = "0" +dateCounter.toString();
+        }
+        else{
+            calendarCell[i].innerHTML = dateCounter;
+        }
+        
         calendarCell[i].classList.add('date');
         calendarCell[i].classList.remove('block');
 
@@ -573,7 +579,6 @@ function getBlockedDates(){
 //     let counter = 0;
 
 //     let calendarTitle = document.querySelector('.calendar__month');
-//     let content = months[currentMonth] + " " + thisYear;
 
 //     calendarTitle.innerText = "Generating Schedule...";
 
@@ -594,54 +599,58 @@ function getBlockedDates(){
 //                     counter++;
 //                     try {
 //                         schedules = JSON.parse(this.responseText);
-//                         proceedChkFull = true;
 
-//                         if(proceedChkFull){
-//                             schedules.forEach(sched=>{
-                        
-//                                 const xhr2 = new XMLHttpRequest();
-                        
-//                                 xhr2.onreadystatechange = function(){
-//                                     if(this.readyState == 4){
-//                                         if(this.status == 200){
-//                                             if(this.response == 1){
-//                                                 availScheds.push(item);
-//                                             }
+//                         schedules.forEach(sched=>{
+                    
+//                             const xhr2 = new XMLHttpRequest();
+                    
+//                             xhr2.onreadystatechange = function(){
+//                                 if(this.readyState == 4){
+//                                     if(this.status == 200){
+//                                         if(this.responseText == 1){
+//                                             availScheds.push(sched);
 //                                         }
 //                                     }
-//                                     else{
-//                                     }
 //                                 }
-                        
-//                                 xhr2.open("POST", "./php/checkSchedFull.php", false);
-//                                 xhr2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-//                                 xhr2.send(`date=${curDate}&schedID=${sched.schedID}&max=${sched.max}`);
-//                             })
-                        
-//                             // console.table(availScheds);
-                        
-//                             if(availScheds.length == 0) {
+//                                 else{
+//                                 }
+//                             }
+                    
+//                             xhr2.open("POST", "./php/checkSchedFull.php", false);
+//                             xhr2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+//                             xhr2.send(`date=${curDate}&schedID=${sched.schedID}&max=${sched.max}`);
+
+//                             // if(item.innerText == "16"){
+//                             //     console.log(item.innerText);
+//                             //     console.table(availScheds);
+//                             // }
+//                         })
+
+//                         if(availScheds.length == 0) {
+//                             if(parseInt(item.innerText) <= date.getDate()){
 //                                 item.classList.add('block');
 //                                 item.classList.remove('date');
-//                                 if(!(parseInt(item.innerText) <= date.getDate())){
-//                                     item.setAttribute('id','full');
-//                                     item.innerText = 'Full';
-//                                 }
 //                             }
 //                             else{
-//                                 selectDate(item);
+//                                 item.classList.add('block');
+//                                 item.classList.remove('date');
+//                                 item.setAttribute('id','full');
+//                                 item.innerText = 'Full';
 //                             }
+//                         }
+//                         else{
+//                             selectDate(item);
 //                         }
 
 //                     } catch (error) {
 //                         item.classList.add('block');
 //                         item.classList.remove('date');
 //                     }
-
 //                     if(counter == dates.length) {
-//                         calendarTitle.innerText = content;
+//                         calendarTitle.innerText = months[currentMonth] + " " + year;
 //                         monthNav = true;
 //                     }
+//                     availScheds.length = 0;
 //                 }
 //             }
 //         }
@@ -654,7 +663,6 @@ function getBlockedDates(){
 
 function loadSched(){
     const dates = document.querySelectorAll('.date');
-
     if(dates.length == 0) return;
 
     monthNav = false;
@@ -663,18 +671,15 @@ function loadSched(){
     let thisYear = year;
     
     let proceedChkFull = false;
-    let schedules = [];
-    let availScheds = [];
-
     let counter = 0;
-
     let calendarTitle = document.querySelector('.calendar__month');
+    let availScheds = [];
 
     calendarTitle.innerText = "Generating Schedule...";
 
-    dates.forEach((item, index)=>{
-        let curDate = `${thisYear}-${thisMonth}-${item.innerText}`;
-        let dateObj = new Date(curDate);
+    dates.forEach((item)=>{
+        let curDate = convertProperDate(`${thisYear}-${thisMonth}-${item.innerText}`);
+        const dateObj = new Date(curDate);
         const daysOfWeek = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
         let day = daysOfWeek[dateObj.getDay()];
 
@@ -688,37 +693,29 @@ function loadSched(){
                 if(this.status == 200){
                     counter++;
                     try {
-                        schedules = JSON.parse(this.responseText);
+                        let schedules = JSON.parse(this.responseText);
+                        proceedChkFull = true;
 
                         schedules.forEach(sched=>{
-                    
                             const xhr2 = new XMLHttpRequest();
                     
                             xhr2.onreadystatechange = function(){
                                 if(this.readyState == 4){
                                     if(this.status == 200){
                                         if(this.responseText == 1){
-                                            availScheds.length = 0;
-                                            availScheds.push(item);
+                                            availScheds.push(sched)
                                         }
                                     }
                                 }
-                                else{
-                                }
                             }
-                    
+                            
                             xhr2.open("POST", "./php/checkSchedFull.php", false);
                             xhr2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                             xhr2.send(`date=${curDate}&schedID=${sched.schedID}&max=${sched.max}`);
-
-                            // if(item.innerText == "16"){
-                            //     console.log(item.innerText);
-                            //     console.table(availScheds);
-                            // }
-                        })
-
+                        })       
+                                                                 
                         if(availScheds.length == 0) {
-                            if(parseInt(item.innerText) <= date.getDate()){
+                            if(parseInt(item.innerText) <= parseInt(date.getDate())){
                                 item.classList.add('block');
                                 item.classList.remove('date');
                             }
@@ -730,17 +727,20 @@ function loadSched(){
                             }
                         }
                         else{
+                            item.classList.remove('block');
+                            item.classList.add('date');
                             selectDate(item);
                         }
-
                     } catch (error) {
                         item.classList.add('block');
                         item.classList.remove('date');
                     }
+                    // selectDate(item);
                     if(counter == dates.length) {
                         calendarTitle.innerText = months[currentMonth] + " " + year;
                         monthNav = true;
                     }
+
                     availScheds.length = 0;
                 }
             }
