@@ -805,6 +805,7 @@ input:-webkit-autofill:focus {
 .admin-logs__body .search-container input {
   width: 100%;
   border: 2px solid rgb(80, 78, 78);
+  border-radius: unset;
   height: 100%;
   border: unset;
   border-bottom: 1px solid rgb(80, 78, 78);
@@ -860,22 +861,27 @@ input:-webkit-autofill:focus {
 
 .admin-logs__filters {
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
-  gap: max(10px, 1vw);
-  justify-items: flex-start;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: flex;
+  flex-flow: row wrap;
+  gap: max(10px, 2vw);
+  justify-content: center;
+  align-items: center;
 }
 .admin-logs__filters .date-picker {
   display: flex;
   flex-flow: row nowrap;
-  width: 100%;
-  height: 100%;
+  width: 47%;
+  height: 50px;
   align-items: flex-end;
+  justify-content: center;
 }
 .admin-logs__filters .date-picker input {
   height: 100%;
   width: 32%;
   text-align: center;
+  border-radius: unset;
   border: unset;
   border-bottom: 1px solid rgb(80, 78, 78);
 }
@@ -885,9 +891,10 @@ input:-webkit-autofill:focus {
   text-align: center;
 }
 .admin-logs__filters .form-select {
-  width: 100%;
-  height: 100%;
+  width: 47%;
+  height: 50px;
   min-width: unset !important;
+  margin: unset;
 }
 
 .table-container {
@@ -3456,4 +3463,25 @@ table {
 .slotLoading {
   font-weight: 700;
   margin: 1vw;
+}
+
+@media only screen and (max-width: 600px) {
+  .admin-logs__filters {
+    width: 100%;
+    height: -moz-fit-content;
+    height: fit-content;
+    display: flex;
+    flex-flow: row wrap;
+    gap: max(10px, 2vw);
+    justify-content: center;
+    align-items: center;
+  }
+  .admin-logs__filters .date-picker {
+    width: 100%;
+    height: 100%;
+  }
+  .admin-logs__filters .form-select {
+    width: 100%;
+    height: 100%;
+  }
 }/*# sourceMappingURL=main.css.map */
