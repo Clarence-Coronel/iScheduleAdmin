@@ -188,7 +188,7 @@ header .header__right {
   color: rgb(80, 78, 78);
   font-weight: 700;
   width: 100%;
-  height: max(50px, 6vh);
+  height: max(40px, 6vh);
   max-height: 60px;
   display: flex;
   flex-flow: row nowrap;
@@ -700,7 +700,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
   border: unset;
   border-radius: max(10px, 0.5vw);
   width: 100%;
-  height: max(50px, 6vh);
+  height: max(40px, 6vh);
   max-height: 60px;
   font-size: 0.8rem;
 }
@@ -849,7 +849,7 @@ input:-webkit-autofill:focus {
   padding: max(5px, 0.4vw);
   min-width: 70px;
   width: 100%;
-  height: max(50px, 6vh);
+  height: max(40px, 6vh);
   max-height: 60px;
 }
 .admin-logs__body button:hover {
@@ -1115,7 +1115,7 @@ td:hover {
   background-color: #0577fa;
   width: 100%;
   border-radius: max(7px, 0.5vw);
-  height: max(50px, 6vh);
+  height: max(40px, 6vh);
   max-height: 60px;
 }
 .block-date .btn-submitblock:hover {
@@ -1235,13 +1235,13 @@ td:hover {
   outline: none;
 }
 .change-status .form-select {
-  width: 30%;
+  width: 100%;
   min-width: 150px;
 }
 .change-status button {
   background-color: #0577fa;
   color: white;
-  height: max(50px, 6vh);
+  height: max(40px, 6vh);
   max-height: 60px;
   border-radius: max(5px, 0.5vw);
   border: unset;
@@ -1359,7 +1359,7 @@ td:hover {
   color: white;
   border: unset;
   border-radius: max(5px, 0.5vw);
-  height: max(50px, 6vh);
+  height: max(40px, 6vh);
   max-height: 60px;
   width: 100%;
   max-width: 600px;
@@ -1698,6 +1698,9 @@ td:hover {
 }
 
 @media only screen and (min-width: 900px) {
+  .change-status .form-select {
+    width: 40%;
+  }
   .form {
     min-width: 450px;
   }
@@ -1802,7 +1805,7 @@ td:hover {
   border-radius: max(10px, 0.5vw);
   font-size: 1rem;
   width: 100%;
-  height: max(50px, 6vh);
+  height: max(40px, 6vh);
   max-height: 60px;
 }
 .changeInfo .changeInfo__back {
@@ -1972,7 +1975,7 @@ td:hover {
 }
 .schedule__button-container .schedule__btn {
   width: 100%;
-  height: max(50px, 6vh);
+  height: max(40px, 6vh);
   max-height: 60px;
   border-radius: max(5px, 0.5vw);
   border: unset;
@@ -2469,7 +2472,7 @@ table {
   color: white;
   border: unset;
   border-radius: max(5px, 0.5vw);
-  height: max(50px, 6vh);
+  height: max(40px, 6vh);
   max-height: 60px;
   padding: 0.5%;
 }
@@ -2502,7 +2505,7 @@ table {
   background-color: #0577fa;
   color: white;
   border: unset;
-  height: max(50px, 6vh);
+  height: max(40px, 6vh);
   max-height: 60px;
   border-radius: max(4px, 0.5vw);
   width: 100%;
