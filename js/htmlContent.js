@@ -845,9 +845,6 @@ let websiteStatus = `
                 <textarea name="text" id="statusMsg" cols="30" rows="2" onblur="inputLimiterBlur(this.id, 240); statusMsgCounter(this.id, 'textAreaCounter', 240);" oninput="inputLimiter(this.id, 240); statusMsgCounter(this.id, 'textAreaCounter', 240);"></textarea>
                 <div id="textAreaCounter">240</div>
             </div>
-            <div class="error-container">
-                <span class="msg"></span>
-            </div>
             <button class="changeStatus" onclick="confirmStatusChange()">Apply</button>
         </div>
     </div>

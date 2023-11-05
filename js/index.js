@@ -3200,12 +3200,12 @@ function confirmStatusChange(){
     else if(select == 2) warning = "Patients will not be able to access website and schedule appointments. ";
     else if(select == 3) warning = "Patients will be able to access the website but not schedule appointments. ";
 
-    if(select == 2 || select == 3){
-        if(document.querySelector('#statusMsg').value == "") {
-            showError("Fill in message");
-            return;
-        }
-    }
+    // if(select == 2 || select == 3){
+    //     if(document.querySelector('#statusMsg').value == "") {
+    //         showError("Fill in message");
+    //         return;
+    //     }
+    // }
     confirmModal("Applying...", warning + "Are you sure?", "applyNewWebStatus()");
     showError("");
 }
