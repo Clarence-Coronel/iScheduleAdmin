@@ -1178,6 +1178,7 @@ function generatePostAnnouncement(){
         main.innerHTML = postAnnouncement;
         insertAnnouncement();
         highlightActive(8);
+        showTableCell();
     }
 }
 
