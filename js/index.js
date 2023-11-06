@@ -365,7 +365,7 @@ function applyNewType(username, currentType){
             }
         }
 
-        xhr.open("POST", "./php/changeAdminType.php", false);
+        xhr.open("POST", "./php/changeAdminType.php", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send(`username=${username}&newType=${selected}`);
     }
@@ -1637,7 +1637,7 @@ function postNewAcc(){
         }
     }
 
-    xhr.open("POST", "./php/createNewAdmin.php");
+    xhr.open("POST", "./php/createNewAdmin.php", true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(jsonString);
     posting = false;
@@ -1773,7 +1773,7 @@ function checkOTP_Edit(){
             }
         }
 
-        xhr.open("POST", "./php/changePhone.php");
+        xhr.open("POST", "./php/changePhone.php", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send("newPhone="+newInsertedPhone);
         return;
@@ -1871,6 +1871,11 @@ function applyNewPhone(){
         posting = false;
         return;
     }
+    else if(newPhone == signedInAdmin.phone){
+        showError("New phone # must differ from the previous one");
+        posting = false;
+        return;
+    }
     else if(newPhone.slice(0, 2) != '09'){
         showError("Phone # must start with 09");
         posting = false;
@@ -1894,12 +1899,11 @@ function applyNewPhone(){
                     else{
                         showError("Password is incorrect");
                     }
-                    
                 }
             }
         }
 
-        xhr.open("POST", "./php/testPassword.php");
+        xhr.open("POST", "./php/testPassword.php", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send(`password=${pass}`);
     }
@@ -1945,7 +1949,7 @@ function applyNewPhoneEmpty(){
             }
         }
 
-        xhr.open("POST", "./php/testPassword.php");
+        xhr.open("POST", "./php/testPassword.php", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send(`password=${pass}`);
         
@@ -1972,7 +1976,7 @@ function insertNewPhone(){
         }
     }
 
-    xhr.open("POST", "./php/changePhone.php");
+    xhr.open("POST", "./php/changePhone.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send("newPhone="+newInsertedPhone);
     return;
@@ -2006,6 +2010,11 @@ function applyNewPass(){
     }
     else if(newPass != confirmNewPass){
         showError("Password do not match");
+        posting = false;
+        return;
+    }
+    else if(currentPass == confirmNewPass){
+        showError("New password must differ from the previous one");
         posting = false;
         return;
     }
@@ -2048,7 +2057,7 @@ function applyNewPass(){
                         }
                     }
 
-                    xhr2.open("POST", "./php/changePassword.php");
+                    xhr2.open("POST", "./php/changePassword.php", true);
                     xhr2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                     xhr2.send("pass="+ newPass);
                 }
@@ -2061,7 +2070,7 @@ function applyNewPass(){
         }
     }
 
-    xhr.open("POST", "./php/testPassword.php");
+    xhr.open("POST", "./php/testPassword.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send("pass="+ currentPass);
     posting = false;
@@ -2278,6 +2287,7 @@ function insertAnnouncement(){
 
         if(title == "" || body == ""){
             showError("Fill in all fields");
+            posting = false;
             return;
         }
 
@@ -2296,6 +2306,7 @@ function insertAnnouncement(){
                     if(xhr.responseText == 1){
                         showResModal("Announcement has been posted");
                         generatePostAnnouncement();
+                        posting = false;
                     }
                     else{
                         showResModal("Something went wrong", false, "Failed");
@@ -2305,11 +2316,10 @@ function insertAnnouncement(){
             }
         }
 
-        xhr.open("POST", "./php/postAnnouncement.php");
+        xhr.open("POST", "./php/postAnnouncement.php", true);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(jsonString);
     })
-    posting = false;
 }
 
 function getFeedback(sortBy = 1){
@@ -2360,7 +2370,7 @@ function getFeedback(sortBy = 1){
         setupTablePagination('feedback-table', 'prevButton', 'nextButton', 10);
     }
 
-    xhr.open("POST", "./php/getFeedback.php", false);
+    xhr.open("POST", "./php/getFeedback.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(`sortBy=`+sortBy);
 }
@@ -2415,6 +2425,7 @@ function applyPhoneTutorial(){
                     setTimeout(()=>{
                         showResModal("New video tutorial applied");
                     }, 500);
+                    document.querySelector('#mobile').value = "";
                 }
                 else{
                     alert("Something went wrong...");
@@ -2424,7 +2435,7 @@ function applyPhoneTutorial(){
         }
     }
 
-    xhr.open("POST", "./php/changeVid.php", false);
+    xhr.open("POST", "./php/changeVid.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send('type=mobile&link=' + mobileInput);
     posting = false;
@@ -2447,7 +2458,7 @@ function applyDesktopTutorial(){
                     setTimeout(()=>{
                         showResModal("New video tutorial applied");
                     }, 500);
-                    generateEditTutorial();
+                    document.querySelector('#desktop').value = "";
                 }
                 else{
                     alert("Something went wrong...");
@@ -2457,7 +2468,7 @@ function applyDesktopTutorial(){
         }
     }
 
-    xhr.open("POST", "./php/changeVid.php", false);
+    xhr.open("POST", "./php/changeVid.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send('type=desktop&link=' + desktopInput);
     posting = false;
@@ -2637,7 +2648,7 @@ function insertBlockDate(){
         setupTablePagination('date-table', 'prevButton', 'nextButton', 10);
     }
 
-    xhr.open("POST", "./php/getBlockDate.php", false);
+    xhr.open("POST", "./php/getBlockDate.php", true);
     xhr.send();
 }
 
@@ -2668,7 +2679,7 @@ function removeBlockDate(id, dateName){
         }
     }
 
-    xhr.open("POST", "./php/deleteBlockDate.php", false);
+    xhr.open("POST", "./php/deleteBlockDate.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(`id=${id}&${dateName}`);
 }
@@ -2748,7 +2759,7 @@ function insertPostedAnn(){
                         const template = 
                         `
                         <tr class="table-row">
-                            <td class="always-visible">${title}</td>
+                            <td>${title}</td>
                             <td>${datePosted}</td>
                             <td>${timePosted}</td>
                             <td>${author}</td>
@@ -2780,7 +2791,7 @@ function insertPostedAnn(){
     }
 
 
-    xhr.open("POST", "./php/getAnnouncement.php", false);
+    xhr.open("POST", "./php/getAnnouncement.php", true);
     xhr.send();
 }
 
@@ -2809,7 +2820,7 @@ function removeAnn(id, title){
         }
     }
 
-    xhr.open("POST", "./php/deletePostedAnn.php", false);
+    xhr.open("POST", "./php/deletePostedAnn.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(`id=${id}&${title}`);
 }
@@ -2952,7 +2963,7 @@ function removeAdmin(username){
         }
     }
     
-    xhr.open("POST", "./php/deleteAdmin.php", false);
+    xhr.open("POST", "./php/deleteAdmin.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send("username="+username);
 }
@@ -3256,7 +3267,7 @@ function applyNewWebStatus(){
         }
     }
 
-    xhr.open("POST", "./php/changeWebsiteStatus.php", false);
+    xhr.open("POST", "./php/changeWebsiteStatus.php", true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(toSend)
 }
@@ -3458,7 +3469,7 @@ function generateDeptSched(dept){
         }
     };
 
-    xhr.open("POST", "./php/getDepartmentSched.php", false);
+    xhr.open("POST", "./php/getDepartmentSched.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send("id="+dept);
 }
@@ -3723,7 +3734,7 @@ function applyEditSched(id, deptID, day){
         }
     }
 
-    xhr.open('POST', './php/changeDeptSched.php', false);
+    xhr.open('POST', './php/changeDeptSched.php', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(toSend);
     posting = false;
@@ -3764,7 +3775,7 @@ function applyDeleteSched(schedID, deptID, day){
 
     deptID = dept[deptID-1];
 
-    xhr.open("POST", "./php/deleteSched.php", false);
+    xhr.open("POST", "./php/deleteSched.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(`id=${schedID}&dept=${deptID}&day=${day}`);
     posting = false;
@@ -3900,7 +3911,7 @@ function applyAddSched(day){
         }
     }
 
-    xhr.open("POST","./php/postDeptSched.php", false);
+    xhr.open("POST","./php/postDeptSched.php", true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(toSend);
 }
@@ -4046,7 +4057,7 @@ function postAppointment(){
         }
     }
 
-    xhr.open("POST", "./php/postAppointment.php", false);
+    xhr.open("POST", "./php/postAppointment.php", true);
     xhr.setRequestHeader("Content-Type", "applicaition/json");
     xhr.send(toSend);
     posting = false;
@@ -4274,7 +4285,7 @@ function insertReq(){
         setupTablePagination('request-table', 'prevButton', 'nextButton', 10);
     };
 
-    xhr.open("POST", "./php/getReq.php", false);
+    xhr.open("POST", "./php/getReq.php", true);
     xhr.send();
 }
 
@@ -4369,7 +4380,7 @@ function insertAppBtn(query){
         setupTablePagination('schedule-table', 'prevButton', 'nextButton', 10);
     };
 
-    xhr.open("POST", "./php/getApp.php", false);
+    xhr.open("POST", "./php/getApp.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(`deptID=${dept}&query=${query}`);
 
@@ -4445,7 +4456,7 @@ function applyEditStatus(ID, status){
         }
     }
 
-    xhr.open("POST", "./php/changeStatus.php", false);
+    xhr.open("POST", "./php/changeStatus.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(`id=${ID}&newStatus=${newStatus}`);
     posting = false;
@@ -4505,7 +4516,7 @@ function generateSlots(){
         }
         
 
-        xhr.open("POST", "./php/getTimeSlotApp.php", false);
+        xhr.open("POST", "./php/getTimeSlotApp.php", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
         xhr.send(`dept=${dept}&day=${dayOfWeek}`);
@@ -4588,7 +4599,7 @@ function searchAppointment(){
             setupTablePagination('schedule-table', 'prevButton', 'nextButton', 10);
         };
 
-        xhr.open("POST", "./php/searchApp.php", false);
+        xhr.open("POST", "./php/searchApp.php", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send("search=" + input);
     }
@@ -4714,7 +4725,7 @@ function filterAppointment(){
         setupTablePagination('schedule-table', 'prevButton', 'nextButton', 10);
     }
 
-    xhr.open("POST", "./php/filterApp.php", false);
+    xhr.open("POST", "./php/filterApp.php", true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(toSend);
 }
@@ -4841,7 +4852,7 @@ function applyDeleteData(code){
         }
     };
 
-    xhr.open("POST", "./php/deleteData.php", false);
+    xhr.open("POST", "./php/deleteData.php", true);
     xhr.setRequestHeader('Content-Type', "application/x-www-form-urlencoded");
     xhr.send('code=' + code);
 }

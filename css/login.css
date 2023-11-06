@@ -83,6 +83,12 @@ main {
   gap: max(15px, 1vw);
 }
 
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .ischedule-header {
   margin-top: max(30px, 5vw);
   display: flex;
@@ -124,7 +130,7 @@ main {
   display: flex;
   flex-flow: column;
   justify-content: center;
-  gap: max(15px, 2vh);
+  gap: max(20px, 3vh);
 }
 .login-form .button-field {
   height: 30%;
@@ -160,7 +166,7 @@ main {
 }
 .login-form .input-field {
   border: 1px solid rgb(80, 78, 78);
-  height: min(50px, 10vw);
+  height: max(40px, 6vh);
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;
@@ -316,7 +322,7 @@ input:-webkit-autofill:focus {
   gap: max(15px, 0.3vw);
 }
 .forgot-form .input-field {
-  border: 2px solid rgb(80, 78, 78);
+  border: 1px solid rgb(80, 78, 78);
   height: min(50px, 10vw);
   display: flex;
   flex-flow: row nowrap;
@@ -461,7 +467,7 @@ input:-webkit-autofill:focus {
   flex-flow: row nowrap;
   width: 90%;
   max-width: 350px;
-  height: 50px;
+  height: max(40px, 6vh);
   justify-content: center;
 }
 .OTP-body .error-msg {

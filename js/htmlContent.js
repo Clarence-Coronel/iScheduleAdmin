@@ -1017,14 +1017,14 @@ let editTutorial = `
 <section class="edit-tutorial">
             <div class="edit-tutorial-content" data-aos="fade-right" data-aos-duration="500"z>
                 <div class="edit-tutorial__instruction">
-                    <span class="edit-tutorial__header">How to get embedded youtube link</span>
-                    <ol>
-                        <li>Video must be set to either public/unlisted and in landscape</li>
-                        <li>Go to the video and click "share"</li>
-                        <li>Choose "Embed" option</li>
-                        <li>Find the src, example: src="<span>https://www.youtube.com/embed/a3ICNMQW7Ok?si=IWnYUlj7YutcHo1O</span>"</li>
-                        <li>Copy the link inside the src of the video you want to use and paste it to either phone or desktop field</li>
-                    </ol>
+                    <span class="edit-tutorial__header">How to integrate YouTube video on iSchedule website</span>
+                    <div class="edit-tutorial__step-container">
+                        <span>1. Video must be set to either public/unlisted and in landscape</span>
+                        <span>2. Go to the video and click "share"</span>
+                        <span>3. Choose "Embed" option</span>
+                        <span>4. Find the src, example: src="<span class="step-link">https://www.youtube.com/embed/a3ICNMQW7Ok?si=IWnYUlj7YutcHo1O</span>"</span>
+                        <span>5. Copy the link inside the src of the video you want to use and paste it to either phone or desktop field</span>           
+                    </div>
                 </div>
                 <div class="embed-input">
                     <!-- <div class="tutorial__video-container">
