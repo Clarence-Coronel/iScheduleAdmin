@@ -894,7 +894,7 @@ input:-webkit-autofill:focus{
         align-items: flex-start;
         height:max(20px, 2vw);
         margin: 0 auto;
-        margin-bottom: 50px;
+        margin-bottom: 30px;
 
         input{
             width: 100%;
@@ -3452,7 +3452,7 @@ table{
         background-color: white;
         border-radius: $box-border-radius;
         box-shadow: $box-shadow;
-        padding: $box-padding $box-padding 8vh $box-padding;
+        padding: $box-padding $box-padding 6vh $box-padding;
         margin: $box-margin-top 0;
         width: 98%;
         min-height: 20vh;

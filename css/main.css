@@ -803,7 +803,7 @@ input:-webkit-autofill:focus {
   align-items: flex-start;
   height: max(20px, 2vw);
   margin: 0 auto;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 .admin-logs__body .search-container input {
   width: 100%;
@@ -2790,7 +2790,7 @@ table {
   background-color: white;
   border-radius: max(5px, 0.4vw);
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
-  padding: max(18px, 3vw) max(18px, 3vw) 4vh max(18px, 3vw);
+  padding: max(18px, 3vw) max(18px, 3vw) 6vh max(18px, 3vw);
   margin: max(15px, 1vw) 0;
   width: 98%;
   min-height: 20vh;
