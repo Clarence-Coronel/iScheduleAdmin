@@ -1178,7 +1178,6 @@ function generatePostAnnouncement(){
         main.innerHTML = postAnnouncement;
         insertAnnouncement();
         highlightActive(8);
-        showTableCell();
     }
 }
 
@@ -1186,7 +1185,6 @@ function generateSeePostedAnn(){
     if(checkPrivilege('admin ii') || checkPrivilege('super admin')){
         main.innerHTML = seePostedAnn;
         insertPostedAnn();
-        showTableCell();
     }
 }
 

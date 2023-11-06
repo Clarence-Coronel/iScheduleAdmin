@@ -2787,6 +2787,7 @@ function insertPostedAnn(){
             </tr>
             `;
         }
+        showTableCell();
         setupTablePagination('ann-table', 'prevButton', 'nextButton', 10); 
     }
 
