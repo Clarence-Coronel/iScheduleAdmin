@@ -389,7 +389,9 @@ let viewSchedule = `
                         <tr>
                             <th>ID</th>
                             <th>Full Name</th>
+                            <th>Reference #</th>
                             <th>Department</th>
+                            <th>Consultation</th>
                             <th>Appointment Date</th>
                             <th>Slot</th>
                             <th>Status</th>
@@ -481,7 +483,7 @@ let filter = `
             <option value="16">Surgery</option>
             <option value="17">Surgery ROS</option>
         </select>
-        <div class="date-picker">
+        <div class="date-picker" title="Appointment Date">
             <input oninput="generateSlots()" type="text" name="month" id="appMonth" placeholder="MM" oninput="inputLimiterNum(this.id, 2)" onblur="inputLimiterBlur(this.id, 2)">
             <span>/</span>
             <input oninput="generateSlots()" type="text" name="day" id="appDay" placeholder="DD" oninput="inputLimiterNum(this.id, 2)" onblur="inputLimiterBlur(this.id, 2)">

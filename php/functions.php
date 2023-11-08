@@ -51,6 +51,32 @@
         return $phone;
     }
 
+    function addDashEvery4Characters($input) {
+        $output = [];
+        for ($i = 0; $i < strlen($input); $i++) {
+            $output[] = $input[$i];
+            if (($i + 1) % 4 === 0 && $i < strlen($input) - 1) {
+                $output[] = '-';
+            }
+        }
+        return implode('', $output);
+    }
+    
+    function generateCode($date, $deptID, $schedID, $appID) {
+        $date = strval($date);
+        $deptID = strval($deptID);
+        $schedID = strval($schedID);
+        $appID = strval($appID);
+    
+        if (empty($date) || empty($deptID) || empty($schedID) || empty($appID)) {
+            return "Invalid";
+        }
+    
+        $date = str_replace('-', '', $date);
+    
+        return addDashEvery4Characters("{$date}{$deptID}{$schedID}{$appID}");
+    }    
+
     function sendSMS($phone, $msg){
 
         $properPhone = sanitizePhoneNumber($phone);

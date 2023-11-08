@@ -3,12 +3,18 @@
     session_start();
 
     $appID = null;
+    $note = null;
 
     foreach($_POST as $temp){
-        $appID = $temp;
+        if(!isset($appID)){
+            $appID = $temp;
+        }
+        else{
+            $note = $temp;
+        } 
     }
 
-    $query = "UPDATE `appointments` SET `appointmentStatus`='rejected' WHERE `appointmentID` = '$appID';";
+    $query = "UPDATE `appointments` SET `appointmentStatus`='rejected', `cancelReason`='$note' WHERE `appointmentID` = '$appID';";
     if(mysqli_query($conn, $query)){        
         $username = $_SESSION['username'];                                                          
         $adminStampQuery = "INSERT INTO `admin_logs`(`username`, `activity`) VALUES ('$username','Rejected ID=\"$appID\" follow-up request')";
@@ -39,6 +45,7 @@
     }
 
     function sendResult(){
+        global $note;
         require 'connect.php';
         require 'functions.php';
 
@@ -86,7 +93,7 @@
         $name = ucwords(strtolower($unconvertedName));
         $dept = $depts[$deptID-1];
 
-        $msg = "$name kinakalungkot naming sabihing ang iyong scheduled follow-up appointment request sa $dept department ng Bulacan Medical Center ay hindi na-aprubahan. Posibleng ito ay dahil sa malabong picture ng iyong follow-up slip o puno na ang mga slot. ";
+        $msg = "$name kinakalungkot naming sabihing ang iyong scheduled follow-up appointment request sa $dept department ng Bulacan Medical Center ay hindi na-aprubahan. \n \nNote: $note";
 
         // sendSMS($phone, $msg);
     }

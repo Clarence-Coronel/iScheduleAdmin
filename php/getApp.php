@@ -23,6 +23,9 @@
         public $appointmentStatus;
         public $cancelReason;
         public $dateSubmitted;
+        public $scheduleID;
+        public $rawAppDate;
+        public $consultation;
     }
 
     $selectedDept = null;
@@ -38,9 +41,9 @@
     // $currentDate = "2023-12-12";
     $allApp = array();
 
-    if($queryType == 'today') $query = "SELECT appointments.*, schedules.startTime, schedules.stopTime FROM appointments INNER JOIN schedules ON appointments.scheduleID = schedules.scheduleID WHERE appointments.appointmentStatus = 'active' AND appointments.appointmentDate = '$currentDate' AND appointments.departmentID = '$selectedDept' ORDER BY schedules.startTime ASC;";
-    else if ($queryType == 'completed') $query = "SELECT appointments.*, schedules.startTime, schedules.stopTime FROM appointments INNER JOIN schedules ON appointments.scheduleID = schedules.scheduleID  WHERE appointments.appointmentStatus = 'completed' AND appointments.departmentID = '$selectedDept' AND `appointmentDate` BETWEEN (CURDATE() - INTERVAL 30 DAY) AND CURDATE() ORDER BY `appointmentDate` DESC, schedules.startTime ASC;";
-    else if ($queryType == 'cancelled') $query = "SELECT appointments.*, schedules.startTime, schedules.stopTime FROM appointments LEFT JOIN schedules ON appointments.scheduleID = schedules.scheduleID  WHERE appointments.appointmentStatus = 'cancelled' AND appointments.departmentID = '$selectedDept' AND appointments.dateSubmitted BETWEEN (CURDATE() - INTERVAL 30 DAY) AND CURDATE() ORDER BY appointments.dateSubmitted DESC, schedules.startTime ASC;";
+    if($queryType == 'today') $query = "SELECT appointments.*, schedules.scheduleID, schedules.startTime, schedules.stopTime FROM appointments INNER JOIN schedules ON appointments.scheduleID = schedules.scheduleID WHERE appointments.appointmentStatus = 'active' AND appointments.appointmentDate = '$currentDate' AND appointments.departmentID = '$selectedDept' ORDER BY schedules.startTime ASC;";
+    else if ($queryType == 'completed') $query = "SELECT appointments.*, schedules.scheduleID, schedules.startTime, schedules.stopTime FROM appointments INNER JOIN schedules ON appointments.scheduleID = schedules.scheduleID  WHERE appointments.appointmentStatus = 'completed' AND appointments.departmentID = '$selectedDept' AND `appointmentDate` BETWEEN (CURDATE() - INTERVAL 30 DAY) AND CURDATE() ORDER BY `appointmentDate` DESC, schedules.startTime ASC;";
+    else if ($queryType == 'cancelled') $query = "SELECT appointments.*, schedules.scheduleID, schedules.startTime, schedules.stopTime FROM appointments LEFT JOIN schedules ON appointments.scheduleID = schedules.scheduleID  WHERE appointments.appointmentStatus = 'cancelled' AND appointments.departmentID = '$selectedDept' AND appointments.dateSubmitted BETWEEN (CURDATE() - INTERVAL 30 DAY) AND CURDATE() ORDER BY appointments.dateSubmitted DESC, schedules.startTime ASC;";
 
     $result = mysqli_query($conn,$query);
 	$count = mysqli_num_rows($result);
@@ -62,6 +65,7 @@
             $tempObj->barangay = $row['barangay'];
             $tempObj->patientType = $row['patientType'];
             $tempObj->appointmentType = $row['appointmentType'];
+            $tempObj->consultation = $row['consultation'];
             
             if($row['startTime'] != null){
                 $tempObj->startTime = timeConverter($row['startTime']);
@@ -77,9 +81,18 @@
             }
             if($row['appointmentDate'] != null){
                 $tempObj->appointmentDate = dateConverter($row['appointmentDate']);
+                $tempObj->rawAppDate = $row['appointmentDate'];
             }
             else{
                 $tempObj->appointmentDate = "";
+                $tempObj->rawAppDate = "";
+            }
+
+            if($row['scheduleID'] != null){
+                $tempObj->scheduleID = $row['scheduleID'];
+            }
+            else{
+                $tempObj->scheduleID = "";
             }
 
             $tempObj->cancelReason = $row['cancelReason'];

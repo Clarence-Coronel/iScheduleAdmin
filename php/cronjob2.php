@@ -3,6 +3,8 @@
     require 'connect.php';
 
     class appointment {
+        public $appointmentID;
+        public $scheduleID;
         public $departmentID;
         public $firstName;
         public $middleName;
@@ -15,7 +17,7 @@
 
     $allApp = array();
 
-    $query = "SELECT appointments.*, schedules.startTime, schedules.stopTime FROM `appointments` LEFT JOIN `schedules` ON appointments.scheduleID = schedules.scheduleID WHERE DATE(appointmentDate) = DATE_ADD(CURDATE(), INTERVAL 1 DAY);";
+    $query = "SELECT appointments.*, schedules.scheduleID, schedules.startTime, schedules.stopTime FROM `appointments` LEFT JOIN `schedules` ON appointments.scheduleID = schedules.scheduleID WHERE DATE(appointmentDate) = DATE_ADD(CURDATE(), INTERVAL 1 DAY);";
 
     $result = mysqli_query($conn,$query);
     $count = mysqli_num_rows($result);
@@ -23,6 +25,8 @@
     if($count > 0){
         while($row = mysqli_fetch_array($result)){
             $tempObj = new appointment();     
+            $tempObj->appointmentID = $row['appointmentID'];
+            $tempObj->scheduleID = $row['scheduleID'];
             $tempObj->departmentID = $row['departmentID'];
             $tempObj->firstName = $row['firstName'];
             $tempObj->lastName = $row['lastName'];
@@ -64,8 +68,9 @@
         $dept = $depts[$tempObj->departmentID-1];
         $time = timeConverter($tempObj->startTime) . ' - ' . timeConverter($tempObj->stopTime);
         $date = dateConverter($tempObj->appointmentDate);
+        $ref = generateCode($tempObj->appointmentDate, $tempObj->departmentID, $tempObj->schedulesID, $tempObj->appointmentID);
 
-        $msg = "$name ito ay isang paalala para sa iyong scheduled appointment sa $dept department ng Bulacan Medical Center bukas; $date sa oras na $time.";
+        $msg = "$name ito ay isang paalala para sa iyong scheduled appointment sa $dept department ng Bulacan Medical Center bukas; \n \n$date sa oras na $time. \n \nIpakita ang SMS/Text na ito bilang patunay ng iyong appointment. \n \nReference #: $ref ";
         // \n\nIto ay isang automated message; huwag mag reply. removed
         sendSMS($phone, $msg);
     }

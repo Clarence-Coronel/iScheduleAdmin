@@ -1442,9 +1442,27 @@ function viewRequestReject(appID){
     let negative = document.querySelector('.negative');
 
     title.innerText = 'Rejecting Appointment...';
-    body.innerText = 'Are you sure?';
+    // body.innerHTML = `
+    // <div class="note-container">
+    //     <input type="text" name="note" id="note" placeholder="Reason for rejecting request">
+    //     <div class="error-container">
+    //         <span class="msg"></span>
+    //     </div>
+    // </div>`;
+
+
+    body.innerHTML = `
+    <div class="note-container">
+        <textarea name="text" cols="30" rows="3" name="note" id="note" placeholder="Reason for rejecting request"></textarea>
+        <div class="error-container">
+            <span class="msg"></span>
+        </div>
+    </div>`;
+
     positive.innerText = 'Confirm';
     negative.innerText = 'Cancel';
+
+    positive.removeAttribute("data-bs-dismiss");
 
     positive.setAttribute('onclick', `applyRequestReject(${appID})`);
     modalLauncher();
@@ -1454,6 +1472,28 @@ function applyRequestReject(appID){
     if (posting) return;
     posting = true;
 
+    let note = document.querySelector('#note').value;
+
+    if(note.length == 0){
+        showError("Reason for rejecting request cannot be empty");
+        posting = false;
+        return;
+    }
+    else if(note.length > 60){
+        showError("Reason for rejecting request cannot exceed 60 characters");
+        posting = false;
+        return;
+    }
+    else if(!isLettersNumsOnly(note)){
+        showError("Reason for rejecting request cannot contain special characters");
+        posting = false;
+        return;
+    }
+
+    showError("");
+    document.querySelector('.positive').setAttribute("data-bs-dismiss", "modal");
+    document.querySelector('.positive').click();
+    
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function(){
         if(this.readyState == 4){
@@ -1474,7 +1514,7 @@ function applyRequestReject(appID){
     
     xhr.open("POST", "./php/updateAppointment2.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send(`appID=${appID}`);
+    xhr.send(`appID=${appID}&note=${note}`);
     posting = false;
 }
 
@@ -1701,8 +1741,8 @@ function openModalOTP_Edit(){
 }
 
 function sendOTP_Edit(){
-    // OTP = generateOTP();
-    OTP = "12345";
+    OTP = generateOTP();
+    // OTP = "12345";
 
     const xhr = new XMLHttpRequest();
 
@@ -1860,6 +1900,7 @@ function applyNewPhone(){
         return;
     }
 
+    // processing(".changeInfo__submit");
     if(posting) return;
     posting = true;
 
@@ -1894,6 +1935,7 @@ function applyNewPhone(){
                 if(xhr.status == 200){
                     if(xhr.responseText == 1){
                         newInsertedPhone = newPhone
+                        posting = false;
                         sendOTP_Edit();
                     }
                     else{
@@ -1907,7 +1949,6 @@ function applyNewPhone(){
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send(`password=${pass}`);
     }
-    posting = false;
 }
 
 function applyNewPhoneEmpty(){
@@ -4320,7 +4361,9 @@ function insertAppBtn(query){
                         <tr class="table-row">
                             <td>${item.appointmentID}</td>
                             <td class="always-visible">${capitalFirstLetter(item.lastName)}, ${capitalFirstLetter(item.firstName)} ${capitalFirstLetter(item.middleName)}</td>
+                            <td class="always-visible">${generateCode(item.rawAppDate, item.departmentID, item.scheduleID, item.appointmentID)}</td>
                             <td>${deptName}</td>
+                            <td>${item.consultation}</td>
                             <td>${item.appointmentDate}</td>
                             <td>${time}</td>
                             <td class="${item.appointmentStatus}" id="status_${item.appointmentID}">${capitalFirstLetter(item.appointmentStatus)}</td>
@@ -4557,7 +4600,9 @@ function searchAppointment(){
                             <tr class="table-row">
                                 <td>${item.appointmentID}</td>
                                 <td class="always-visible">${capitalFirstLetter(item.lastName)}, ${capitalFirstLetter(item.firstName)} ${capitalFirstLetter(item.middleName)}</td>
+                                <td class="always-visible">${generateCode(item.rawAppDate, item.departmentID, item.scheduleID, item.appointmentID)}</td>
                                 <td>${deptName}</td>
+                                <td>${item.consultation}</td>
                                 <td>${item.appointmentDate}</td>
                                 <td>${time}</td>
                                 <td class="${item.appointmentStatus}" id="status_${item.appointmentID}">${capitalFirstLetter(item.appointmentStatus)}</td>
@@ -4683,7 +4728,9 @@ function filterAppointment(){
                         <tr class="table-row">
                             <td>${item.appointmentID}</td>
                             <td class="always-visible">${capitalFirstLetter(item.lastName)}, ${capitalFirstLetter(item.firstName)} ${capitalFirstLetter(item.middleName)}</td>
+                            <td class="always-visible">${generateCode(item.rawAppDate, item.departmentID, item.scheduleID, item.appointmentID)}</td>
                             <td>${deptName}</td>
+                            <td>${item.consultation}</td>
                             <td>${item.appointmentDate}</td>
                             <td>${time}</td>
                             <td class="${item.appointmentStatus}" id="status_${item.appointmentID}">${capitalFirstLetter(item.appointmentStatus)}</td>
@@ -4710,7 +4757,6 @@ function filterAppointment(){
                         <td colspan="16" class="empty">No Result</td>
                     </tr>
                     `;
-                    
                 }
             }
         }
@@ -4877,4 +4923,45 @@ function loading(){
 
 function removeLoading(){
     document.body.classList.remove("loading-cursor");
+}
+
+function addDashEvery4Characters(input) {
+    const output = [];
+    for (let i = 0; i < input.length; i++) {
+        output.push(input[i]);
+        if ((i + 1) % 4 === 0 && i < input.length - 1) {
+            output.push('-');
+        }
+    }
+    return output.join('');
+}
+
+function generateCode(date, deptID, schedID, appID){
+
+    date = date.toString();
+    deptID = deptID.toString();
+    schedID = schedID.toString();
+    appID = appID.toString();
+
+    if(date.length == 0 || deptID.length == 0 || schedID.length == 0 || appID.length == 0){
+        return "Invalid";
+    }
+
+    date = date.replaceAll('-', '');
+
+    return addDashEvery4Characters(`${date}${deptID}${schedID}${appID}`);
+}
+
+function processing(elClass){
+    let el = document.querySelector(`${elClass}`);
+
+    el.innerText = "Processing...";
+    el.classList.add('processing');
+}
+
+function removeProcessing(elClass, text){
+    let el = document.querySelector(`${elClass}`);
+
+    el.innerText = text;
+    el.classList.remove('processing');
 }

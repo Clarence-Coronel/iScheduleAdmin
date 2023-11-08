@@ -10,6 +10,7 @@ input, select, textarea, input:focus, select:focus, textarea:focus{
   outline: none !important; 
   border-width: 1px !important;
   border-color: $fontbase-color;
+  resize: none;
 }
 
 // select {

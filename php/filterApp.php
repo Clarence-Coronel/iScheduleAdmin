@@ -6,7 +6,7 @@
     $requestPayload = file_get_contents("php://input");
     $object = json_decode($requestPayload);
 
-    $query = "SELECT appointments.*, schedules.startTime, schedules.stopTime FROM `appointments` LEFT JOIN `schedules` ON appointments.scheduleID = schedules.scheduleID";
+    $query = "SELECT appointments.*, schedules.scheduleID, schedules.startTime, schedules.stopTime FROM `appointments` LEFT JOIN `schedules` ON appointments.scheduleID = schedules.scheduleID";
     $firstConditionDone = false;
     
     if($object->dept != NULL){
@@ -116,10 +116,10 @@
             $sortBy = " appointments.appointmentDate ASC";
         }
         else if($object->sortBy == "4"){
-            $sortBy = " appointments.appointmentDate DESC";
+            $sortBy = " appointments.dateSubmitted DESC";
         }
         else if($object->sortBy == "5"){
-            $sortBy = " appointments.appointmentDate ASC";
+            $sortBy = " appointments.dateSubmitted ASC";
         }
 
         $Q_sortBy = " ORDER BY $sortBy; ";
@@ -151,6 +151,9 @@
         public $appointmentStatus;
         public $cancelReason;
         public $dateSubmitted;
+        public $scheduleID;
+        public $rawAppDate;
+        public $consultation;
     }
 
     $allApp = array();
@@ -172,6 +175,7 @@
             $tempObj->barangay = $row['barangay'];
             $tempObj->patientType = $row['patientType'];
             $tempObj->appointmentType = $row['appointmentType'];
+            $tempObj->consultation = $row['consultation'];
             
             if($row['startTime'] != null){
                 $tempObj->startTime = timeConverter($row['startTime']);
@@ -187,9 +191,17 @@
             }
             if($row['appointmentDate'] != null){
                 $tempObj->appointmentDate = dateConverter($row['appointmentDate']);
+                $tempObj->rawAppDate = $row['appointmentDate'];
             }
             else{
                 $tempObj->appointmentDate = "";
+                $tempObj->rawAppDate = "";
+            }
+            if($row['scheduleID'] != null){
+                $tempObj->scheduleID = $row['scheduleID'];
+            }
+            else{
+                $tempObj->scheduleID = "";
             }
 
             $tempObj->cancelReason = $row['cancelReason'];

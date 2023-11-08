@@ -11,6 +11,7 @@ input, select, textarea, input:focus, select:focus, textarea:focus {
   outline: none !important;
   border-width: 1px !important;
   border-color: rgb(80, 78, 78);
+  resize: none;
 }
 
 *::-webkit-scrollbar {
