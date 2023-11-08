@@ -10,7 +10,7 @@
         $input = htmlspecialchars($temp, ENT_QUOTES);
     }
 
-    $query = "SELECT * FROM admins WHERE isActive = true AND username != '$username' AND CONCAT(username, lastName, ', ', firstName, ' ', middleName, adminType, phone) LIKE '%$input%' ORDER BY lastName ASC;";
+    $query = "SELECT * FROM admins WHERE isActive = true AND username != '$username' AND CONCAT(username, firstName, ' ', middleName, ' ', lastName, firstName, ' ', LastName, lastName, ', ', firstName, ' ', middleName, adminType, phone) LIKE '%$input%' ORDER BY lastName ASC;";
     $result = mysqli_query($conn,$query);
 	$count = mysqli_num_rows($result);
 

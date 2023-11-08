@@ -11,7 +11,7 @@
         $input = htmlspecialchars($temp, ENT_QUOTES);
     }
 
-    $query = "SELECT appointments.*, schedules.startTime, schedules.stopTime FROM appointments INNER JOIN schedules ON appointments.scheduleID = schedules.scheduleID WHERE CONCAT(lastName, ', ', firstName, ' ', middleName, phone, province, municipality, barangay, patientType, appointmentType, caseNo, appointmentStatus, schedules.startTime, schedules.stopTime) LIKE '%$input%' ORDER BY lastName ASC;";
+    $query = "SELECT appointments.*, schedules.startTime, schedules.stopTime FROM appointments INNER JOIN schedules ON appointments.scheduleID = schedules.scheduleID WHERE CONCAT(firstName, ' ', middleName, ' ', lastName, firstName, ' ', LastName, lastName, ', ', firstName, ' ', middleName, phone, province, municipality, barangay, patientType, appointmentType, caseNo, appointmentStatus, schedules.startTime, schedules.stopTime) LIKE '%$input%' ORDER BY lastName ASC;";
     $result = mysqli_query($conn,$query);
 	$count = mysqli_num_rows($result);
 
