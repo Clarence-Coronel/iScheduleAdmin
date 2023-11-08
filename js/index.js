@@ -71,7 +71,7 @@ function checkSession(){
     xhr.onreadystatechange = function(){
         if(xhr.readyState == 4){
             if(xhr.status == 200){
-                if(xhr.responseText == 1){
+                if(xhr.responseText == 0){
                     alert('Your session has ended. Please login again to continue.');
                     window.location.replace("./page/login.php");
                 }
@@ -2933,11 +2933,6 @@ function checkAdminPrivChange(){
                 if(xhr.responseText == 1){
                     alert('Your admin privilege has been changed. Login again to continue.');
                 }
-                else{
-                    alert('Your admin privilege has not changed. Login again to continue.');
-
-                }
-
             }
         }
     }
