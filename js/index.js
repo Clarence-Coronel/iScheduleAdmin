@@ -53,6 +53,7 @@ const patient = {
     'province': '',
     'typeOfPatient': '',
     'caseNo': '',
+    'consultation': ''
 }
 
 // if(window.innerWidth > window.innerHeight){
@@ -670,7 +671,7 @@ function errorHandler(code){
         formErrorMessage = 'Phone # cannot be empty.';
     }
     else if(code == '121'){
-        formErrorMessage = 'Phone # must be contain 11 digits.';
+        formErrorMessage = 'Phone # must contain 11 digits.';
     }
     else if(code == '122'){
         formErrorMessage = 'Phone # must start with "09".';
@@ -691,7 +692,7 @@ function errorHandler(code){
         formErrorMessage = 'Province cannot be empty.';
     }
     else if(code == '141'){
-        formErrorMessage = 'Province cannot have more than 30 letters.';
+        formErrorMessage = 'Province cannot have more than 30 characters.';
     }
     else if(code == '142'){
         formErrorMessage = 'Province cannot contain special characters.';
@@ -703,7 +704,7 @@ function errorHandler(code){
         formErrorMessage = 'Municipality cannot be empty.';
     }
     else if(code == '144'){
-        formErrorMessage = 'Municipality cannot have more than 30 letters.';
+        formErrorMessage = 'Municipality cannot have more than 30 characters.';
     }
     else if(code == '145'){
         formErrorMessage = 'Municipality cannot contain special characters.';
@@ -715,7 +716,7 @@ function errorHandler(code){
         formErrorMessage = 'Barangay cannot be empty.';
     }
     else if(code == '147'){
-        formErrorMessage = 'Barangay cannot have more than 30 letters.';
+        formErrorMessage = 'Barangay cannot have more than 30 characters.';
     }
     else if(code == '148'){
         formErrorMessage = 'Barangay cannot contain special characters.';
@@ -738,8 +739,20 @@ function errorHandler(code){
     else if(code == '170'){
         formErrorMessage = 'Choose a slot for the appointment';
     }
-    generateErrorModal();
+    // 
+    // CONSULTATION *****************************
+    // 
+    else if(code == '180'){
+        formErrorMessage = 'Symptoms cannot be empty.';
+    }
+    else if(code == '181'){
+        formErrorMessage = 'Symptoms cannot have more than 200 characters.';
+    }
+    else if(code == '182'){
+        formErrorMessage = 'Symptoms cannot contain special characters.';
+    }
 
+    generateErrorModal();
 }
 
 function createAdminSuccess(){
@@ -1151,6 +1164,21 @@ function checkFormA(){
 
     patient.caseNo = document.querySelector('#caseNo').value;
 
+    // SYMPTOMS
+    patient["consultation"] = document.querySelector('#consultation').value.trim();
+    if(patient["consultation"] == ''){
+        errorHandler('180', document.querySelector('#consultation').id);
+        return false;
+    }
+    else if(patient["consultation"].length > 200){
+        errorHandler('181', document.querySelector('#consultation').id);
+        return false;
+    }
+    else if(!isLettersNumsOnly(patient["consultation"])){
+        errorHandler('182', document.querySelector('#consultation').id);
+        return false;
+    }
+    
     return true;
 }
 
@@ -1223,6 +1251,9 @@ function grabPatient(){
                 break;
             case 8:
                 item.querySelector('.schedule__field-content').innerHTML = patient['caseNo'];
+                break;
+            case 9:
+                item.querySelector('.schedule__field-content').innerHTML = patient['consultation'];
                 break;
         }
     });

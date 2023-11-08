@@ -267,6 +267,10 @@ let schedule = `
                 <input type="text" name="caseNo" id="caseNo" oninput="filterCaseNo(this.id)">
             </div>
 
+            <div class="schedule__input-container">
+                <label for="">Symptoms</label>
+                <input type="text" name="consultation" id="consultation">
+            </div>
         </div>
         <div class="schedule__form schedule__partB" style="display: none;">
             <div class="form-part third">                                
@@ -356,6 +360,10 @@ let schedule = `
             </div>
             <div class="schedule__review-field">
                 <span class="schedule__field-name">Case #</span>
+                <span class="schedule__field-content"></span>
+            </div>
+            <div class="schedule__review-field">
+                <span class="schedule__field-name">Symptoms</span>
                 <span class="schedule__field-content"></span>
             </div>
         </div>
