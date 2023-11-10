@@ -2404,31 +2404,29 @@ function getFeedback(sortBy = 1){
         if(xhr.readyState == 4){
             if(xhr.status == 200){
                 if(xhr.responseText != 0){
-                    try {
-                        table.innerHTML = ""
-                        let arrayOfObjects = JSON.parse(xhr.responseText);
-                        arrayOfObjects.forEach(item=>{
-                            let rowTemplate =
-                            `
-                            <tr class="table-row">
-                                <td>${item.rate}</td>
-                                <td>${item.content}</td>
-                                <td class="always-visible">${convertRetrievedDate(item.dateSubmitted)}</td>
-                            </tr>
-                            `;
-        
-                            table.innerHTML += rowTemplate;
-                            
-                        });
-                        showTableCell();
-                    } catch (error) {
-                        table.innerHTML = `
+                    table.innerHTML = ""
+                    let arrayOfObjects = JSON.parse(xhr.responseText);
+                    arrayOfObjects.forEach(item=>{
+                        let rowTemplate =
+                        `
+                        <tr class="table-row">
+                            <td>${item.rate}</td>
+                            <td>${item.content}</td>
+                            <td class="always-visible">${convertRetrievedDate(item.dateSubmitted)}</td>
+                        </tr>
+                        `;
+    
+                        table.innerHTML += rowTemplate;
+                        
+                    });
+                    showTableCell();       
+                }
+                else{
+                    table.innerHTML = `
                         <tr>
                             <td colspan="3" class="empty">There is currently no feedback</td>
                         </tr>
-                        `
-                    }
-                    
+                        `;
                 }
             }
         }

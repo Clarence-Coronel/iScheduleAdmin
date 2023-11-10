@@ -473,6 +473,7 @@ let filter = `
     <div class="filter-fields">
         <select class="form-select" id="dept" aria-label="Default select example" onchange="generateSlots()">
             <option value="" selected hidden disabled>Department</option>
+            <option value="">None</option>
             <option value="1">ENT</option>
             <option value="2">Hematology</option>
             <option value="3">Internal Medicine</option>

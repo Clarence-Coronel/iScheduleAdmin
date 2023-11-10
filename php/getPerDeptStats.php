@@ -104,8 +104,8 @@
     function getCancelRate($dept){
         require 'connect.php';
 
-        $primaryQ = "SELECT COUNT(appointmentID) as 'total' from appointments WHERE appointmentDate BETWEEN (CURDATE() - INTERVAL 30 DAY) AND CURDATE() AND departmentID = '$dept';";
-        $secondaryQ = "SELECT COUNT(appointmentID) as 'total' from appointments WHERE appointmentDate BETWEEN (CURDATE() - INTERVAL 30 DAY) AND CURDATE() AND appointmentStatus = 'cancelled' AND departmentID = '$dept';";
+        $primaryQ = "SELECT COUNT(appointmentID) as 'total' from appointments WHERE dateSubmitted BETWEEN (CURDATE() - INTERVAL 30 DAY) AND CURDATE() AND departmentID = '$dept';";
+        $secondaryQ = "SELECT COUNT(appointmentID) as 'total' from appointments WHERE dateSubmitted BETWEEN (CURDATE() - INTERVAL 30 DAY) AND CURDATE() AND appointmentStatus = 'cancelled' AND departmentID = '$dept';";
       
         $total = null;
         $deptTotal = null;
