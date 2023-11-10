@@ -2848,11 +2848,12 @@ td:hover{
     }
 
     .schedule__field-content{
-        font-size: 1.1rem;
+        font-size: 1rem;
         font-weight: 1000;
         text-align: right;
         max-width: max(240px, 60vw);
         overflow-wrap: break-word;
+        
     }
 }
 
@@ -2860,12 +2861,18 @@ td:hover{
     .schedule__partC{
     
         .schedule__review-field{
-            width: 100%;
-            display: flex;
             flex-flow: column;
-            // justify-content: space-between;
-
-            padding: max(7px, 0.7vw)  max(10px, 1vw);
+            gap: 1vh;
+        }
+        .schedule__field-content{
+            font-size: 0.9rem;
+            font-weight: 1000;
+            text-align: right;
+            max-width: unset;
+            width: 100%;
+            overflow-wrap: break-word;
+            word-break: break-word;
+            
         }
 }
 }
