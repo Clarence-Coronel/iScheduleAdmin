@@ -15,5 +15,5 @@
 
     $msg = "iSchedule: Ang iyong One-Time Password (OTP) ay $OTP. ";
 
-    // sendSMS($phone, $msg);
+    sendSMS($phone, $msg);
 ?>

@@ -185,15 +185,13 @@ function showError(str = ""){
 }
 
 function sendOTPtoPhone(){
-    // OTP = generateOTP();
-    OTP = "12345";
+    resetCD();
+    OTP = generateOTP();
     const xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = function(){
         if(xhr.readyState == 4){
-            if(this.status == 200){
-            }
-            else{
+            if(this.status != 200){
                 alert('Something went wrong...');
             }
         }
@@ -211,7 +209,6 @@ function resendOTPtoPhone(){
     if(isResendAvail){
         sendOTPtoPhone();
         isResendAvail = false;
-        resetCD();
     }
 }
 

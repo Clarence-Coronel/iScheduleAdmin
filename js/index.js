@@ -337,7 +337,7 @@ function editType(data){
 }
 
 function applyNewType(username, currentType){
-
+    
     let selected = null;
 
     if(document.querySelector("#adminI").checked){
@@ -1773,7 +1773,6 @@ function openModalOTP_Edit(){
 
 function sendOTP_Edit(){
     OTP = generateOTP();
-    // OTP = "12345";
 
     const xhr = new XMLHttpRequest();
 
@@ -1794,16 +1793,13 @@ function sendOTP_Edit(){
 }
 
 function resendOTP_Edit(){
-    // OTP = generateOTP();
-    OTP = "12345";
+    OTP = generateOTP();
+
     const xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = function(){
         if(xhr.readyState == 4){
-            if(this.status == 200){
-                
-            }
-            else{
+            if(this.status != 200){
                 alert('Something went wrong...');
             }
         }
@@ -1966,7 +1962,6 @@ function applyNewPhone(){
                 if(xhr.status == 200){
                     if(xhr.responseText == 1){
                         newInsertedPhone = newPhone
-                        posting = false;
                         sendOTP_Edit();
                     }
                     else{
@@ -1979,6 +1974,7 @@ function applyNewPhone(){
         xhr.open("POST", "./php/testPassword.php", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send(`password=${pass}`);
+        posting = false;
     }
 }
 
@@ -2375,10 +2371,10 @@ function insertAnnouncement(){
         xhr.onreadystatechange = function(){
             if(xhr.readyState == 4){
                 if(xhr.status == 200){
+                    posting = false;
                     if(xhr.responseText == 1){
                         showResModal("Announcement has been posted");
                         generatePostAnnouncement();
-                        posting = false;
                     }
                     else{
                         showResModal("Something went wrong", false, "Failed");
