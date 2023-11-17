@@ -187,6 +187,7 @@ function showError(str = ""){
 function sendOTPtoPhone(){
     resetCD();
     OTP = generateOTP();
+    console.log("OTP: " + OTP);
     const xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = function(){

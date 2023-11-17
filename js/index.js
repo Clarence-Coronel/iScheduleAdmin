@@ -1773,6 +1773,7 @@ function openModalOTP_Edit(){
 
 function sendOTP_Edit(){
     OTP = generateOTP();
+    console.log("OTP: " + OTP);
 
     const xhr = new XMLHttpRequest();
 
@@ -1794,6 +1795,7 @@ function sendOTP_Edit(){
 
 function resendOTP_Edit(){
     OTP = generateOTP();
+    console.log("OTP: " + OTP);
 
     const xhr = new XMLHttpRequest();
 
