@@ -282,6 +282,7 @@ function showTableCell(){
             });
 
             item.querySelectorAll('td').forEach((item2)=>{
+
                 item2.classList.add('selected');
 
                 // try {
@@ -2407,7 +2408,7 @@ function getFeedback(sortBy = 1){
                     arrayOfObjects.forEach(item=>{
                         let rowTemplate =
                         `
-                        <tr class="table-row">
+                        <tr class="table-row" title="Click to highlight/see more.">
                             <td>${item.rate}</td>
                             <td>${item.content}</td>
                             <td class="always-visible">${convertRetrievedDate(item.dateSubmitted)}</td>
@@ -2686,7 +2687,7 @@ function insertBlockDate(){
 
                         const template = 
                         `
-                        <tr class="table-row">
+                        <tr class="table-row" title="Click to highlight/see more.">
                             <td>${date}</td>
                             <td>${dateName}</td>
                             <td>${isYearly}</td>
@@ -2826,7 +2827,7 @@ function insertPostedAnn(){
 
                         const template = 
                         `
-                        <tr class="table-row">
+                        <tr class="table-row" title="Click to highlight/see more.">
                             <td>${title}</td>
                             <td>${datePosted}</td>
                             <td>${timePosted}</td>
@@ -2920,7 +2921,7 @@ function insertAdmin(isInitial = true){
 
                         const template = 
                         `
-                        <tr class="table-row">
+                        <tr class="table-row" title="Click to highlight/see more.">
                             <td class="always-visible">${capitalFirstLetter(lastName)}, ${capitalFirstLetter(firstName)} ${capitalFirstLetter(middleName)}</td>
                             <td class="always-visible">${username}</td>
                             <td>${phone}</td>
@@ -3061,7 +3062,7 @@ function insertAdminLogs(isInitial = true){
 
                         const template = 
                         `
-                        <tr class="table-row">
+                        <tr class="table-row" title="Click to highlight/see more.">
                             <td class="always-visible">${username}</td>
                             <td class="always-visible">${activity}</td>
                             <td>${adminType}</td>
@@ -3180,7 +3181,7 @@ function applyLogFilter(){
 
                         const template = 
                         `
-                        <tr class="table-row">
+                        <tr class="table-row" title="Click to highlight/see more.">
                             <td>${username}</td>
                             <td>${activity}</td>
                             <td>${adminType}</td>
@@ -4315,12 +4316,12 @@ function insertReq(){
                         let deptName = dept[item.deptID-1];
                         let template = 
                         `
-                        <tr class="table-row">
+                        <tr class="table-row" title="Click to highlight/see more.">
                             <td>
-                                <button data-appID="${item.appID}" data-deptID="${item.deptID}" onclick="viewRequestApprove(this.dataset.appid, this.dataset.deptid)"><span class="material-icons-outlined">done</span></button>
-                            </td>
-                            <td>
-                                <button data-appID="${item.appID}" data-deptID="${item.deptID}" onclick="viewRequestReject(this.dataset.appid)"><span class="material-icons-outlined">close</span></button>
+                                <div class="req__btn-container">
+                                    <button class="approve" title="Approve Appointment" data-appID="${item.appID}" data-deptID="${item.deptID}" onclick="viewRequestApprove(this.dataset.appid, this.dataset.deptid)"><span class="material-icons-outlined">done</span></button>
+                                    <button class="reject" title="Reject Appointment" data-appID="${item.appID}" data-deptID="${item.deptID}" onclick="viewRequestReject(this.dataset.appid)"><span class="material-icons-outlined">close</span></button>
+                                </div>
                             </td>
                             <td class="always-visible">${capitalFirstLetter(item.lastName)}, ${capitalFirstLetter(item.firstName)} ${capitalFirstLetter(item.middleName)}</td>
                             <td>${deptName}</td>
@@ -4385,7 +4386,7 @@ function insertAppBtn(query){
 
                         let template = 
                         `
-                        <tr class="table-row">
+                        <tr class="table-row" title="Click to highlight/see more.">
                             <td>${item.appointmentID}</td>
                             <td class="always-visible">${capitalFirstLetter(item.lastName)}, ${capitalFirstLetter(item.firstName)} ${capitalFirstLetter(item.middleName)}</td>
                             <td class="always-visible">${generateCode(item.rawAppDate, item.departmentID, item.scheduleID, item.appointmentID)}</td>
@@ -4624,7 +4625,7 @@ function searchAppointment(){
     
                             let template = 
                             `
-                            <tr class="table-row">
+                            <tr class="table-row" title="Click to highlight/see more.">
                                 <td>${item.appointmentID}</td>
                                 <td class="always-visible">${capitalFirstLetter(item.lastName)}, ${capitalFirstLetter(item.firstName)} ${capitalFirstLetter(item.middleName)}</td>
                                 <td class="always-visible">${generateCode(item.rawAppDate, item.departmentID, item.scheduleID, item.appointmentID)}</td>
@@ -4752,7 +4753,7 @@ function filterAppointment(){
 
                         let template = 
                         `
-                        <tr class="table-row">
+                        <tr class="table-row" title="Click to highlight/see more.">
                             <td>${item.appointmentID}</td>
                             <td class="always-visible">${capitalFirstLetter(item.lastName)}, ${capitalFirstLetter(item.firstName)} ${capitalFirstLetter(item.middleName)}</td>
                             <td class="always-visible">${generateCode(item.rawAppDate, item.departmentID, item.scheduleID, item.appointmentID)}</td>

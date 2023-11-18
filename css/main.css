@@ -2713,28 +2713,25 @@ table {
   font-size: 0.8rem;
   margin: max(5px, 1vw) 0;
 }
-.request .request__table td:nth-child(1) span, .request .request__table td:nth-child(2) span {
-  margin: unset;
-}
-.request .request__table td:nth-child(1) {
-  min-width: unset !important;
-}
-.request .request__table td:nth-child(1) button {
-  justify-content: flex-end;
-}
-.request .request__table td:nth-child(1) span {
+.request .request__table .approve .material-icons-outlined {
   color: rgb(6, 195, 6);
   font-size: 1rem;
 }
-.request .request__table td:nth-child(2) {
-  min-width: unset !important;
-}
-.request .request__table td:nth-child(2) button {
-  justify-content: flex-start;
-}
-.request .request__table td:nth-child(2) span {
+.request .request__table .reject .material-icons-outlined {
   color: red;
   font-size: 1rem;
+}
+.request .request__table .req__btn-container {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 1vw;
+  min-width: unset !important;
+}
+.request .request__table .req__btn-container button {
+  display: flex;
+  width: -moz-fit-content;
+  width: fit-content;
+  justify-content: flex-start;
 }
 .request .table-container {
   width: 100%;

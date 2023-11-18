@@ -389,7 +389,7 @@ let viewSchedule = `
                 
             </div>
         </div>
-        <span>Click the row to highlight/see more.</span>
+        
         <div class="view-schedule__table">
             <div class="table-container">
                 <table class="schedule-table" id="schedule-table">
@@ -547,13 +547,11 @@ let request = `
 <section class="request">
             <div class="request-content" data-aos="fade-right" data-aos-duration="500">
                 <div class="request__table">
-                    <span>Click the row to highlight/see more.</span>
                     <div class="table-container">
                         <table class="request-table" id="request-table">
                             <thead>
                                 <tr>
-                                    <th>&nbsp;</th>
-                                    <th>&nbsp;</th>
+                                    <th>Action</th>
                                     <th>Full Name</th>
                                     <th>Department</th>
                                     <th>Phone #</th>
@@ -702,7 +700,7 @@ let adminLogs = `
                     </div>
                     <button class="apply-logfilter" onclick="applyLogFilter()">Apply</button>
                 </div>
-                <span>Click the row to highlight/see more.</span>
+                
                 <div class="table-container">
                     <table class="logs-table" id="logs-table">
                         <thead>
@@ -739,7 +737,7 @@ let adminList = `
             <button onclick="insertAdmin(false)"><span class="material-icons-outlined ico-search">search</span></button>
         </div>
     </div>
-    <span>Click the row to highlight/see more.</span>
+    
     <div class="table-container">
         <table class="admin-table" id="admin-table">
             <thead>
@@ -885,7 +883,7 @@ let seePostedAnn =`
 <section class="seeAnnouncements">
     <div class="seeAnnouncements__content" data-aos="fade-right" data-aos-duration="500">
         <h2>Users would only be able to see the latest 20 announcements.</h2>
-        <span>Click the row to highlight/see more.</span>
+        
         <div class="table-container">
             <table class="ann-table" id="ann-table">
                 <thead>
@@ -960,7 +958,7 @@ let blockDates = `
                     <span class="msg"></span>
                 </div>
                 <button class="btn-submitblock" onclick="checkBlockDate();">Add</button>
-                <span>Click the row to highlight/see more.</span>
+                
                 <div class="table-container">
                     <table class="date-table" id="date-table">
                         <thead>
@@ -996,7 +994,7 @@ let feedback = `
                     <option value="3">Highest Rating to Lowest Rating</option>
                 </select>
                 <div class="feedback__table">
-                    <span>Click the row to highlight/see more.</span>
+                    
                     <div class="table-container">
                         <table class="feedback-table" id="feedback-table">
                             <thead>

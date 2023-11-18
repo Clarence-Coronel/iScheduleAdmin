@@ -3364,36 +3364,45 @@ table{
             margin: $margin-top-span 0;
         }
 
-        td:nth-child(1), td:nth-child(2){
-            span{
-                margin: unset;
-                // padding: unset;
-            }
+        .approve .material-icons-outlined{
+            color: rgb(6, 195, 6);
+            font-size: 1rem;
         }
 
-        td:nth-child(1){
-            min-width: unset !important;
-            button{
-                justify-content: flex-end;
-            }
-
-            span{
-                color: rgb(6, 195, 6);
-                font-size: 1rem;
-            }
+        .reject .material-icons-outlined{
+            color: red;
+            font-size: 1rem;
         }
 
-        td:nth-child(2){
+        // td:nth-child(1), td:nth-child(2){
+        //     span{
+        //         margin: unset;
+        //         // padding: unset;
+        //     }
+        // }
+
+        .req__btn-container{
+            display: flex;
+            flex-flow: row nowrap;
+            gap: 1vw;
             min-width: unset !important;
+
             button{
+                display: flex;
+                width: fit-content;
                 justify-content: flex-start;
             }
-
-            span{
-                color: red;
-                font-size: 1rem;
-            }
+            
         }
+
+        // td:nth-child(2){
+        //     min-width: unset !important;
+        //     button{
+        //         justify-content: flex-start;
+        //     }
+
+            
+        // }
     }
 
     .table-container{
