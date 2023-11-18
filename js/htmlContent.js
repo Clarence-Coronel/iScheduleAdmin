@@ -273,11 +273,11 @@ let schedule = `
                 <label for=""><span class="asterisk">* </span>Patient Type</label>
                 <div class="radio-group">
                     <label class="radio-container type">
-                        <input class="input-radio" type="radio" name="patientType" value="old">
+                        <input class="input-radio" type="radio" name="patientType" value="old" onclick="addFollowUpBtn();">
                         <span>Old</span>
                     </label>
                     <label class="radio-container type">
-                        <input class="input-radio" type="radio" name="patientType" value="new">
+                        <input class="input-radio" type="radio" name="patientType" value="new" onclick="removeFollowUpBtn();">
                         <span>New</span>
                     </label>
                 </div>
@@ -285,11 +285,6 @@ let schedule = `
 
             <div class="field-container">
                 <label for="isFollowUp"><span class="asterisk">*</span> Visit Type / Klase ng Pagdalaw <span class="fieldtype">(Required)</span></label>
-                <!-- <select class="input-sel-txt" name="patientType" id="patientType" onchange="revertBorder(this.id)">
-                    <option disabled="disabled" selected="selected" hidden="hidden"></option>
-                    <option value="old">Dating Pasyente / Old Patient</option>
-                    <option value="new">Bagong Pasyente / New Patient</option>
-                </select> -->
                 <div class="radio-group">
                     <label class="radio-container visit">
                         <input class="input-radio" onclick="revertRadio()" type="radio" name="isFollowUp" value="false">

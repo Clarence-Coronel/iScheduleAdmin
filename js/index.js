@@ -5032,3 +5032,18 @@ function removeProcessing(elClass, text){
     el.innerText = text;
     el.classList.remove('processing');
 }
+
+function removeFollowUpBtn(){
+    let old = document.querySelector('.visit:nth-child(1)');
+    let _new = document.querySelector('.visit:nth-child(2)');
+
+    old.querySelector('input').checked = true;
+
+    _new.querySelector('input').checked = false;
+    _new.style.display = "none";
+}
+
+function addFollowUpBtn(){
+    let radio = document.querySelector('.visit:nth-child(2)');
+    radio.style.display = "flex";
+}
