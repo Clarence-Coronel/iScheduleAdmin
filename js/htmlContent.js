@@ -271,6 +271,25 @@ let schedule = `
                     </label>
                 </div>
             </div>
+
+            <div class="field-container">
+                <label for="isFollowUp"><span class="asterisk">*</span> Visit Type / Klase ng Pagdalaw <span class="fieldtype">(Required)</span></label>
+                <!-- <select class="input-sel-txt" name="patientType" id="patientType" onchange="revertBorder(this.id)">
+                    <option disabled="disabled" selected="selected" hidden="hidden"></option>
+                    <option value="old">Dating Pasyente / Old Patient</option>
+                    <option value="new">Bagong Pasyente / New Patient</option>
+                </select> -->
+                <div class="radio-group">
+                    <label class="radio-container visit">
+                        <input class="input-radio" onclick="revertRadio()" type="radio" name="isFollowUp" value="false">
+                        <span>Initial Visit</span>
+                    </label>
+                    <label class="radio-container visit">
+                        <input class="input-radio" onclick="revertRadio()" type="radio" name="isFollowUp" value="true">
+                        <span>Follow-Up Visit</span>
+                    </label>
+                </div>
+            </div>
             
             <div class="schedule__input-container">
                 <label for="">Case #</label>
@@ -367,6 +386,10 @@ let schedule = `
             <div class="schedule__review-field">
                 <span class="schedule__field-name">Patient Type</span>
                 <span class="schedule__field-content">New Patient</span>
+            </div>
+            <div class="schedule__review-field">
+                <span class="schedule__field-name">Visit Type</span>
+                <span class="schedule__field-content">Initial Visit</span>
             </div>
             <div class="schedule__review-field">
                 <span class="schedule__field-name">Case #</span>

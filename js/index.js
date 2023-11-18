@@ -53,7 +53,8 @@ const patient = {
     'province': '',
     'typeOfPatient': '',
     'caseNo': '',
-    'consultation': ''
+    'consultation': '',
+    'isFollowUp': '',
 }
 
 // if(window.innerWidth > window.innerHeight){
@@ -753,6 +754,13 @@ function errorHandler(code){
         formErrorMessage = 'Symptoms cannot contain special characters.';
     }
 
+    // 
+    // ISFOLLOWUP *****************************
+    // 
+    else if(code == '190'){
+        formErrorMessage = 'Visit type cannot be empty.';
+    }
+
     generateErrorModal();
 }
 
@@ -1180,6 +1188,18 @@ function checkFormA(){
         return false;
     }
 
+    const isFollowUp = document.getElementsByName('isFollowUp');
+    isFollowUp.forEach(radio =>{
+        if(radio.checked){
+            patient.isFollowUp = radio.value == "true";
+        }
+    })
+
+    if(patient.isFollowUp.toString() == "") {
+        errorHandler('190');
+        return false;
+    }
+
     patient.caseNo = document.querySelector('#caseNo').value;
 
     // SYMPTOMS
@@ -1268,9 +1288,13 @@ function grabPatient(){
                 else item.querySelector('.schedule__field-content').innerHTML = 'Bagong Pasyente';
                 break;
             case 8:
-                item.querySelector('.schedule__field-content').innerHTML = patient['caseNo'];
+                if(patient['isFollowUp']) item.querySelector('.schedule__field-content').innerHTML = 'Follow-Up Visit';
+                else item.querySelector('.schedule__field-content').innerHTML = 'Initial Visit';
                 break;
             case 9:
+                item.querySelector('.schedule__field-content').innerHTML = patient['caseNo'];
+                break;
+            case 10:
                 item.querySelector('.schedule__field-content').innerHTML = patient['consultation'];
                 break;
         }
@@ -4125,6 +4149,8 @@ function postAppointment(){
                     patient.province = null;
                     patient.typeOfPatient = null;
                     patient.caseNo = null;
+                    patient.consultation = null;
+                    patient.isFollowUp = null;
                     showResModal("Appointment is scheduled");
                     generateSchedule();
                 }
