@@ -206,22 +206,9 @@ let schedule = `
             <div class="schedule__input-container">
                 <label for=""><span class="asterisk">* </span>Full Name</label>
                 <div class="name-container">
-                    <input type="text" name="firstName" id="firstName" placeholder="First Name">
-                    <input type="text" name="middleName" id="middleName" placeholder="Middle Name">
-                    <input type="text" name="lastName" id="lastName" placeholder="Last Name">
-                </div>
-            </div>
-            <div class="schedule__input-container">
-                <label for=""><span class="asterisk">* </span>Sex</label>
-                <div class="radio-group">
-                    <label class="radio-container sex">
-                        <input class="input-radio" type="radio" name="sex" value="male">
-                        <span>Male</span>
-                    </label>
-                    <label class="radio-container sex">
-                        <input class="input-radio" type="radio" name="sex" value="female">
-                        <span>Female</span>
-                    </label>
+                    <input type="text" name="firstName" id="firstName" placeholder="First">
+                    <input type="text" name="middleName" id="middleName" placeholder="Middle">
+                    <input type="text" name="lastName" id="lastName" placeholder="Last">
                 </div>
             </div>
             <div class="schedule__input-container">
@@ -259,6 +246,30 @@ let schedule = `
             </div>
             
             <div class="schedule__input-container">
+                <label for="">Case #</label>
+                <input type="text" name="caseNo" id="caseNo" oninput="filterCaseNo(this.id)">
+            </div>
+
+            <div class="schedule__input-container">
+                <label for=""><span class="asterisk">* </span>Symptoms</label>
+                <input type="text" name="consultation" id="consultation">
+            </div>
+
+            <div class="schedule__input-container">
+                <label for=""><span class="asterisk">* </span>Sex</label>
+                <div class="radio-group">
+                    <label class="radio-container sex">
+                        <input class="input-radio" type="radio" name="sex" value="male">
+                        <span>Male</span>
+                    </label>
+                    <label class="radio-container sex">
+                        <input class="input-radio" type="radio" name="sex" value="female">
+                        <span>Female</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="schedule__input-container">
                 <label for=""><span class="asterisk">* </span>Patient Type</label>
                 <div class="radio-group">
                     <label class="radio-container type">
@@ -289,16 +300,6 @@ let schedule = `
                         <span>Follow-Up Visit</span>
                     </label>
                 </div>
-            </div>
-            
-            <div class="schedule__input-container">
-                <label for="">Case #</label>
-                <input type="text" name="caseNo" id="caseNo" oninput="filterCaseNo(this.id)">
-            </div>
-
-            <div class="schedule__input-container">
-                <label for=""><span class="asterisk">* </span>Symptoms</label>
-                <input type="text" name="consultation" id="consultation">
             </div>
         </div>
         <div class="schedule__form schedule__partB" style="display: none;">

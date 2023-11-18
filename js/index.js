@@ -1037,24 +1037,6 @@ function checkFormA(){
     }
 
     patient.lastName = lastName;
-    // SEX
-    // let sex = document.querySelector("#sex").value;
-    // if(sex == ""){
-    //     errorHandler("100");
-    //     return false;
-    // }
-    // patient.sex = sex;
-    const sex = document.getElementsByName('sex');
-    sex.forEach(radio =>{
-        if(radio.checked){
-            patient["sex"] = radio.value;
-        }
-    })
-
-    if(patient.sex == "") {
-        errorHandler('100');
-        return false;
-    }
 
     // BIRTHDATE
     let month = document.querySelector("#month").value;
@@ -1175,30 +1157,6 @@ function checkFormA(){
         }
         patient.barangay = barangayOther;
     }
-    // PATIENT TYPE
-    const type = document.getElementsByName('patientType');
-    type.forEach(radio =>{
-        if(radio.checked){
-            patient.typeOfPatient = radio.value;
-        }
-    })
-
-    if(patient.typeOfPatient == "") {
-        errorHandler('150');
-        return false;
-    }
-
-    const isFollowUp = document.getElementsByName('isFollowUp');
-    isFollowUp.forEach(radio =>{
-        if(radio.checked){
-            patient.isFollowUp = radio.value == "true";
-        }
-    })
-
-    if(patient.isFollowUp.toString() == "") {
-        errorHandler('190');
-        return false;
-    }
 
     patient.caseNo = document.querySelector('#caseNo').value;
 
@@ -1214,6 +1172,44 @@ function checkFormA(){
     }
     else if(!isLettersNumsOnly(patient["consultation"])){
         errorHandler('182', document.querySelector('#consultation').id);
+        return false;
+    }
+
+    // SEX
+    const sex = document.getElementsByName('sex');
+    sex.forEach(radio =>{
+        if(radio.checked){
+            patient["sex"] = radio.value;
+        }
+    })
+
+    if(patient.sex == "") {
+        errorHandler('100');
+        return false;
+    }
+    // PATIENT TYPE
+    const type = document.getElementsByName('patientType');
+    type.forEach(radio =>{
+        if(radio.checked){
+            patient.typeOfPatient = radio.value;
+        }
+    })
+
+    if(patient.typeOfPatient == "") {
+        errorHandler('150');
+        return false;
+    }
+
+    // ISFOLLOWUP
+    const isFollowUp = document.getElementsByName('isFollowUp');
+    isFollowUp.forEach(radio =>{
+        if(radio.checked){
+            patient.isFollowUp = radio.value == "true";
+        }
+    })
+
+    if(patient.isFollowUp.toString() == "") {
+        errorHandler('190');
         return false;
     }
     
