@@ -1030,12 +1030,24 @@ function checkFormA(){
 
     patient.lastName = lastName;
     // SEX
-    let sex = document.querySelector("#sex").value;
-    if(sex == ""){
-        errorHandler("100");
+    // let sex = document.querySelector("#sex").value;
+    // if(sex == ""){
+    //     errorHandler("100");
+    //     return false;
+    // }
+    // patient.sex = sex;
+    const sex = document.getElementsByName('sex');
+    sex.forEach(radio =>{
+        if(radio.checked){
+            patient["sex"] = radio.value;
+        }
+    })
+
+    if(patient.sex == "") {
+        errorHandler('100');
         return false;
     }
-    patient.sex = sex;
+
     // BIRTHDATE
     let month = document.querySelector("#month").value;
     let day = document.querySelector("#day").value;
@@ -1156,12 +1168,17 @@ function checkFormA(){
         patient.barangay = barangayOther;
     }
     // PATIENT TYPE
-    let type = document.querySelector('#patientType').value;
-    if(type == ""){
+    const type = document.getElementsByName('patientType');
+    type.forEach(radio =>{
+        if(radio.checked){
+            patient.typeOfPatient = radio.value;
+        }
+    })
+
+    if(patient.typeOfPatient == "") {
         errorHandler('150');
         return false;
     }
-    patient.typeOfPatient = type;
 
     patient.caseNo = document.querySelector('#caseNo').value;
 

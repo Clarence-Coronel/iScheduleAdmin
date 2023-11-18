@@ -181,7 +181,7 @@ let schedule = `
     <div class="schedule__content">
         <div class="schedule__form schedule__partA">
             <div class="schedule__input-container">
-                <label for="">Department</label>
+                <label for=""><span class="asterisk">* </span>Department</label>
                 <select class="form-select" aria-label="Default select example"  id="dept"">
                         <option value="" selected hidden disabled>Select a Department</option>
                         <option value="1">ENT</option>
@@ -204,7 +204,7 @@ let schedule = `
                     </select>
             </div>
             <div class="schedule__input-container">
-                <label for="">Full Name</label>
+                <label for=""><span class="asterisk">* </span>Full Name</label>
                 <div class="name-container">
                     <input type="text" name="firstName" id="firstName" placeholder="First Name">
                     <input type="text" name="middleName" id="middleName" placeholder="Middle Name">
@@ -212,15 +212,20 @@ let schedule = `
                 </div>
             </div>
             <div class="schedule__input-container">
-                <label for="">Sex</label>
-                <select class="form-select" aria-label="Default select example" id="sex">
-                    <option selected disabled hidden></option>
-                    <option value="m">Male</option>
-                    <option value="f">Female</option>
-                </select>
+                <label for=""><span class="asterisk">* </span>Sex</label>
+                <div class="radio-group">
+                    <label class="radio-container sex">
+                        <input class="input-radio" type="radio" name="sex" value="male">
+                        <span>Male</span>
+                    </label>
+                    <label class="radio-container sex">
+                        <input class="input-radio" type="radio" name="sex" value="female">
+                        <span>Female</span>
+                    </label>
+                </div>
             </div>
             <div class="schedule__input-container">
-                <label for="">Birthdate</label>
+                <label for=""><span class="asterisk">* </span>Birthdate</label>
                 <div class="birth-container">
                     <input type="text" name="" id="month" placeholder="MM" oninput="inputLimiterNum(this.id, 2)" onblur="inputLimiterBlur(this.id, 2)">
                     <span>/</span>
@@ -231,35 +236,40 @@ let schedule = `
             </div>
 
             <div class="schedule__input-container">
-                <label for="">Phone #</label>
+                <label for=""><span class="asterisk">* </span>Phone #</label>
                 <input type="text" name="phone" id="phone" placeholder="09XX XXX XXXX" oninput="filterPhoneInput(this.id)">
             </div>
 
             <div class="schedule__input-container">
-                <label for="">Municipality</label>
+                <label for=""><span class="asterisk">* </span>Municipality</label>
                 <select class="form-select" aria-label="Default select example" id="municipality" onchange="getBarangayList(this.value)">
                         <option disabled="disabled" selected="selected" hidden="hidden"></option>
                 </select>
             </div>
 
             <div class="schedule__input-container">
-                <label for="">Barangay</label>
+                <label for=""><span class="asterisk">* </span>Barangay</label>
                 <select class="form-select" aria-label="Default select example" id="barangay" disabled="disabled">
                     <option selected disabled hidden></option>
                 </select>
             </div>
 
             <div class="schedule__input-container other-container" style="display: none;">
-                <label for="">Location</label>
+                <label for=""><span class="asterisk">* </span>Location</label>
             </div>
             
             <div class="schedule__input-container">
-                <label for="">Patient Type</label>
-                <select class="form-select" aria-label="Default select example" id="patientType">
-                    <option selected disabled hidden></option>
-                    <option value="old">Old Patient</option>
-                    <option value="new">New Patient</option>
-                </select>
+                <label for=""><span class="asterisk">* </span>Patient Type</label>
+                <div class="radio-group">
+                    <label class="radio-container type">
+                        <input class="input-radio" type="radio" name="patientType" value="old">
+                        <span>Old</span>
+                    </label>
+                    <label class="radio-container type">
+                        <input class="input-radio" type="radio" name="patientType" value="new">
+                        <span>New</span>
+                    </label>
+                </div>
             </div>
             
             <div class="schedule__input-container">
@@ -268,7 +278,7 @@ let schedule = `
             </div>
 
             <div class="schedule__input-container">
-                <label for="">Symptoms</label>
+                <label for=""><span class="asterisk">* </span>Symptoms</label>
                 <input type="text" name="consultation" id="consultation">
             </div>
         </div>

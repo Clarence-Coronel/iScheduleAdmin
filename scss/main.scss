@@ -2297,11 +2297,13 @@ td:hover{
     }
 
     .schedule__input-container{
+        height: 100%;
         display: flex;
         flex-flow: column;
 
         label{
-            color: gray;
+            font-weight: 700;
+            color: $fontbase-color;
         }
     }
 }
@@ -4381,4 +4383,33 @@ table{
 .processing:hover{
     background-color: #7e7d7d ;
     cursor:wait;
+}
+
+.asterisk{
+    color: red;
+    font-weight: 100;
+    font-size: 1rem;
+}
+
+.fieldtype{
+    font-size: 0.8rem;
+    font-weight: 100;
+    color: #7e7d7d;
+    font-style: italic;
+}
+
+.radio-group{
+    display: flex;
+    flex-flow: column;
+    margin-top: 1vh;
+
+    .radio-container{
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+
+        span{
+            font-weight: 400;
+        }
+    }
 }

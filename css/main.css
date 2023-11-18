@@ -1924,11 +1924,13 @@ td:hover {
   border-bottom: 1px solid black !important;
 }
 .schedule__partA .schedule__input-container {
+  height: 100%;
   display: flex;
   flex-flow: column;
 }
 .schedule__partA .schedule__input-container label {
-  color: gray;
+  font-weight: 700;
+  color: rgb(80, 78, 78);
 }
 
 .birth-container {
@@ -3556,4 +3558,31 @@ table {
 .processing:hover {
   background-color: #7e7d7d;
   cursor: wait;
+}
+
+.asterisk {
+  color: red;
+  font-weight: 100;
+  font-size: 1rem;
+}
+
+.fieldtype {
+  font-size: 0.8rem;
+  font-weight: 100;
+  color: #7e7d7d;
+  font-style: italic;
+}
+
+.radio-group {
+  display: flex;
+  flex-flow: column;
+  margin-top: 1vh;
+}
+.radio-group .radio-container {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+.radio-group .radio-container span {
+  font-weight: 400;
 }/*# sourceMappingURL=main.css.map */
