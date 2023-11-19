@@ -2,6 +2,7 @@ const main = document.querySelector('main');
 
 //GAWING FORM YUNG MGA CONTAINER NG INPUT FIELDS?
 let accountSettings = `
+<div class="page-header">Home / Account Settings</div>
 <section class="account-settings">
     <div class="account-settings__content"  data-aos="fade-right" data-aos-duration="500">
         <div class="topcloud">
@@ -38,6 +39,7 @@ let accountSettings = `
 </section>`;
 
 let editPhone = `
+<div class="page-header">Home / Account Settings / Edit Phone</div>
 <section class="changeInfo">
     <div class="changeInfo__content" data-aos="fade-right" data-aos-duration="500">
         <div class="topcloud">
@@ -68,6 +70,7 @@ let editPhone = `
 </section>`;
 
 let editPassword = `
+<div class="page-header">Home / Account Settings / Edit Password</div>
 <section class="changeInfo" id="changePassword">
     <div class="changeInfo__content" data-aos="fade-right" data-aos-duration="500">
         <div class="topcloud">
@@ -104,54 +107,21 @@ let editPassword = `
 </section>`;
 
 let dashboard = `
+<div class="page-header">Home / Dashboard</div>
 <section class="dashboard">
-    <div class="dashboard__left">
-        <div class="dashboard__per-dept" data-aos="fade-right" data-aos-duration="500">
-            <select class="form-select" aria-label="Default select example" onchange="selectDeptStat(this.value)">
-                <option value="1" selected>ENT</option>
-                <option value="2">Hematology</option>
-                <option value="3">Internal Medicine</option>
-                <option value="4">Internal Medicine Clearance</option>
-                <option value="5">Nephrology</option>
-                <option value="6">Neurology</option>
-                <option value="7">OB GYNE New</option>
-                <option value="8">OB GYNE Old</option>
-                <option value="9">OB GYNE ROS</option>
-                <option value="10">Oncology</option>
-                <option value="11">Pediatric Cardiology</option>
-                <option value="12">Pediatric Clearance</option>
-                <option value="13">Pediatric General</option>
-                <option value="14">Psychiatry New</option>
-                <option value="15">Psychiatry Old</option>
-                <option value="16">Surgery</option>
-                <option value="17">Surgery ROS</option>
-            </select>
-
-            <div class="data-wrapper">
-                <div class="data" title="Appointment percentage relative to other departments from the past 30 days.">Appointment Percentage: &nbsp;<span>Loading...</span></div>
-                <div class="data" title="Completed appointments percentage from the past 30 days.">Completed Percentage: &nbsp;<span>Loading...</span></div>
-                <div class="data" title="Patient no-show percentage from the past 30 days.">No-Show Percentage: &nbsp;<span>Loading...</span></div>
-                <div class="data" title="Cancel percentage from the past 30 days.">Cancel Percentage: &nbsp;<span>Loading...</span></div>
-            </div>
-        </div>
-        <div class="dashboard__stats" data-aos="fade-right" data-aos-duration="500">
-            <div class="dashboard__block" title="Recent appointments across all departments from the last 30 days.">Appointments<span>Loading...</span></div>
-            <div class="dashboard__block" title="Recent complete appointments across all departments from the last 30 days.">Completed Appointments<span>Loading...</span></div>
-            <div class="dashboard__block" title="Recent cancelled appointments across all departments from the last 30 days.">Cancelled Appointments<span>Loading...</span></div>
-            <div class="dashboard__block" title="Recent missed appointments across all departments from the last 30 days.">Missed Appointments<span>Loading...</span></div>
-            <div class="dashboard__block" title="Recent average from the last 30 days.">Average Rating<span>Loading...</span></div>
-            <div class="dashboard__block" title="Recent admin activities from the last 30 days.">Admin Activities<span>Loading...</span></div>
-        </div>
-    </div>
     <div class="dashboard__right">
-        <div class="dashboard__all-patients" data-aos="fade-left" data-aos-duration="500" data-aos-anchor=".dashboard">
-            <div class="dashboard__header">
-                <span class="title">Appointment Distribution: </span>
+        <div class="controls" data-aos="fade-right" data-aos-duration="500" title="Range">
+            <div class="range-container">
                 <select class="form-select" aria-label="Default select example" onchange="generateDeptStats(this.value)">
                     <option value="7">Last 7 Days</option>
                     <option value="30" selected>Last 30 Days</option>
                     <option value="365">Last 365 Days</option>
                 </select>
+            </div>
+        </div>
+        <div class="dashboard__all-patients" data-aos="fade-right" data-aos-duration="500" title="Click a department to see statistics.">
+            <div class="dashboard__header">
+                <span>Appointment Distribution Per Department</span>
             </div>
             <div class="dept-bargraph">
                 <div class="dept" data-dept="ENT"></div>
@@ -174,9 +144,36 @@ let dashboard = `
             </div>
         </div>
     </div>
+    <div class="dashboard__left">
+    <div class="dashboard__per-dept" data-aos="fade-left" data-aos-duration="500" data-aos-anchor=".dashboard">
+        <div class="per-dept-header" title="Statistics related to the selected department."><span>ENT</span> (Department Statistics)</div>
+        <div class="data-wrapper">
+            <div class="data" title="Appointment percentage relative to other departments.">Appointments &nbsp;<span>Loading...</span></div>
+            <div class="data" title="Completed appointments percentage.">Completed Appointments&nbsp;<span>Loading...</span></div>
+            <div class="data" title="Patient no-show percentage.">Missed Appointments&nbsp;<span>Loading...</span></div>
+            <div class="data" title="Cancel percentage.">Cancelled Appointments &nbsp;<span>Loading...</span></div>
+            <div class="data" title="Male to female ratio.">Male : Female Ratio &nbsp;<span>Loading...</span></div>
+            <div class="data" title="Infants and Toddlers.">Age 0-2 &nbsp;<span>Loading...</span></div>
+            <div class="data" title="Children.">Age 3-12 &nbsp;<span>Loading...</span></div>
+            <div class="data" title="Adolescents.">Age 13-18 &nbsp;<span>Loading...</span></div>
+            <div class="data" title="Young Adults.">Age 19-25 &nbsp;<span>Loading...</span></div>
+            <div class="data" title="Adults.">Age 26-59 &nbsp;<span>Loading...</span></div>
+            <div class="data" title="Seniors.">Age 60+ &nbsp;<span>Loading...</span></div>
+        </div>
+    </div>
+    <div class="dashboard__stats" data-aos="fade-left" data-aos-duration="500" data-aos-anchor=".dashboard">
+        <div class="dashboard__block" title="Appointments across all departments.">Total Appointments<span>Loading...</span></div>
+        <div class="dashboard__block" title="Complete appointments across all departments.">Total Completed Appointments<span>Loading...</span></div>
+        <div class="dashboard__block" title="Cancelled appointments across all departments.">Total Cancelled Appointments<span>Loading...</span></div>
+        <div class="dashboard__block" title="Missed appointments across all departments.">Total Missed Appointments<span>Loading...</span></div>
+        <div class="dashboard__block" title="Average website rating.">Website Average Rating<span>Loading...</span></div>
+        <div class="dashboard__block" title="Admin activities.">Total Admin Activities<span>Loading...</span></div>
+    </div>
+</div>
 </section>`;
 
 let schedule = `
+<div class="page-header">Home / Schedule An Appointment</div>
 <section class="schedule" data-aos="fade-right" data-aos-duration="500">
     <div class="schedule__content">
         <div class="schedule__form schedule__partA">
@@ -407,6 +404,7 @@ let schedule = `
 // Pag inedit yung status tas pinili yung cancel sa modal kailangan hingin din natin reason then automatic siya malalagay rin
 // Pag active lang kailangan pede iedit yung other status bawal na
 let viewSchedule = `
+<div class="page-header">Home / View Appointments</div>
 <section class="view-schedule">
     <div class="view-schedule__content" data-aos="fade-right" data-aos-duration="500">
         <div class="view-schedule__header">
@@ -573,6 +571,7 @@ let filter = `
 </div>`;
 
 let request = `
+<div class="page-header">Home / Follow-Up Request</div>
 <section class="request">
             <div class="request-content" data-aos="fade-right" data-aos-duration="500">
                 <div class="request__table">
@@ -605,6 +604,7 @@ let request = `
 `;
 
 let scheduling = `
+<div class="page-header">Home / Department Schedules</div>
 <section class="scheduling">
             <div class="scheduling-content" data-aos="fade-right" data-aos-duration="500">
                 <div class="scheduling__dept-picker">
@@ -667,6 +667,7 @@ let scheduling = `
 
 // By default yung content ni table is yung today lang
 let adminLogs = `
+    <div class="page-header">Home / Manage Admins / Admin Logs</div>
     <section class="admin-logs">
             <div class="admin-logs-wrapper" data-aos="fade-right" data-aos-duration="500">
                 <div class="admin-logs__body">
@@ -758,6 +759,7 @@ let adminLogs = `
 `;
 
 let adminList = `
+<div class="page-header">Home / Manage Admins / Admin List</div>
 <section class="admin-list">
     <div class="admin-list-wrapper" data-aos="fade-right" data-aos-duration="500">
     <div class="admin-table__body">
@@ -794,6 +796,7 @@ let adminList = `
 
 // mag popup modal hinihingi otp from sa tintype. so bali yung superadmin acc need pero yung actual gamit ng acc mag regis
 let createAccount = `
+<div class="page-header">Home / Manage Admins / Create New Admin</div>
 <section class="add-admin">
     <div class="form-container"  data-aos="fade-right" data-aos-duration="500">
         <form class="form" autocomplete="off">
@@ -851,6 +854,7 @@ let createAccount = `
 </section>`;
 
 let websiteStatus = `
+<div class="page-header">Home / Manage Website Status</div>
 <section class="website-status">
     <div class="website-status__wrapper" data-aos="fade-right" data-aos-duration="500">
         <div class="status">
@@ -889,6 +893,7 @@ let websiteStatus = `
 </section>`;
 
 let postAnnouncement = `
+<div class="page-header">Home / Post An Announcement</div>
 <section class="postAnnouncement">
     <div class="postAnnouncement__content" data-aos="fade-right" data-aos-duration="500">
         <div class="announcement__input-container">
@@ -909,6 +914,7 @@ let postAnnouncement = `
 </section>`;
 
 let seePostedAnn =`
+<div class="page-header">Home / Post An Announcement / See Posted Announcements</div>
 <section class="seeAnnouncements">
     <div class="seeAnnouncements__content" data-aos="fade-right" data-aos-duration="500">
         <h2>Users would only be able to see the latest 20 announcements.</h2>
@@ -940,6 +946,7 @@ let seePostedAnn =`
 `;
 // Add modal when delete is pressed confirming the action and then another modal to obtain OTP  from super admin's number  for additional security
 let manageData = `
+<div class="page-header">Home / Manage Data</div>
 <section class="manage-data">
     <div class="manage-date__content" data-aos="fade-right" data-aos-duration="500">
         <div class="field">
@@ -967,6 +974,7 @@ let manageData = `
 
 // PAG PININDOT YUNG REPEAT EVERY YEAR MADISABLE YUNG YEAR FIELD
 let blockDates = `
+<div class="page-header">Home / Block Dates</div>
 <section class="block-date">
             <div class="add-date" data-aos="fade-right" data-aos-duration="500">
                 <div class="date-picker">
@@ -1013,6 +1021,7 @@ let blockDates = `
 </section>`;
 
 let feedback = `
+<div class="page-header">Home / Feedback</div>
 <section class="feedback">
             <div class="feedback-content" data-aos="fade-right" data-aos-duration="500">
                 <select class="form-select" aria-label="Default select example" onchange="getFeedback(this.value)">
@@ -1052,6 +1061,7 @@ let feedback = `
 `;
 
 let editTutorial = `
+<div class="page-header">Home / Manage Video Tutorial</div>
 <section class="edit-tutorial">
             <div class="edit-tutorial-content" data-aos="fade-right" data-aos-duration="500"z>
                 <div class="edit-tutorial__instruction">

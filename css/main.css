@@ -16,7 +16,7 @@ input, select, textarea, input:focus, select:focus, textarea:focus {
 
 *::-webkit-scrollbar {
   height: 0.8rem;
-  width: 0.8rem;
+  width: 0.6rem;
   margin-right: 20px !important;
 }
 
@@ -1392,7 +1392,7 @@ td:hover {
 
 .dashboard {
   width: 100%;
-  height: 90vh;
+  height: 80vh;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -1400,36 +1400,29 @@ td:hover {
 }
 .dashboard .dashboard__left {
   flex: 1 0 auto;
-  margin-top: max(15px, 1vw);
   width: 50%;
   min-width: 320px;
-  max-width: 960px;
-  height: 90%;
-  overflow: hidden;
+  height: 100%;
   padding-top: 0.5vh;
 }
 .dashboard .dashboard__right {
   flex: 1 0 auto;
-  margin-top: max(15px, 1vw);
   width: 50%;
   min-width: 320px;
-  max-width: 960px;
-  height: 90%;
-  overflow: hidden;
+  height: 100%;
   padding: 0.5vh 0;
 }
 
 .dashboard__left {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column;
   justify-content: center;
-  align-items: flex-start;
-  margin: max(15px, 1vw) 0;
-  gap: 6%;
+  align-items: center;
+  gap: 3vh;
 }
 .dashboard__left .dashboard__stats {
-  width: 90%;
-  height: 45%;
+  width: 96%;
+  height: 50%;
   background-color: white;
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   border-radius: max(5px, 0.4vw);
@@ -1440,14 +1433,13 @@ td:hover {
 .dashboard__left .dashboard__stats .dashboard__block {
   flex: 1 0 30%;
   max-width: 33.333%;
-  height: 50% !important;
+  height: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
-  font-weight: 600;
   text-align: center;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   flex-flow: column;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -1483,13 +1475,16 @@ td:hover {
   background-color: rgb(129, 220, 135);
 }
 .dashboard__left .dashboard__per-dept {
-  width: 90%;
-  height: 45%;
+  width: 96%;
+  height: 50%;
   background-color: white;
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   border-radius: max(5px, 0.4vw);
-  padding: max(10px, 1.5vw);
+  padding: max(5px, 1vw) max(10px, 1.5vw);
   overflow-y: auto;
+  display: flex;
+  flex-flow: column;
+  gap: 1vh;
 }
 .dashboard__left .dashboard__per-dept select {
   font-size: 1rem;
@@ -1497,61 +1492,108 @@ td:hover {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.dashboard__left .per-dept-header {
+  font-size: 0.8rem;
+  color: #878787;
+}
+.dashboard__left .per-dept-header span {
+  font-size: 1rem;
+  font-weight: 700;
+  color: rgb(80, 78, 78);
+}
 
 .dashboard__right {
   display: flex;
-  justify-content: center;
-  margin: max(15px, 1vw) 0;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: center;
   height: 100%;
+  gap: 3vh;
 }
 .dashboard__right .dashboard__all-patients {
   height: 98%;
-  width: 90%;
+  width: 96%;
   background-color: white;
   border-radius: max(5px, 0.4vw);
   overflow-y: auto;
   overflow-x: hidden;
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
 }
+.dashboard__right .controls {
+  padding: max(18px, 3vw);
+  box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
+  border-radius: max(5px, 0.4vw);
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  margin: 0 auto;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 96%;
+  background-color: white;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.dashboard__right .controls label {
+  font-weight: 700;
+  width: 30%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+.dashboard__right .controls .range-container {
+  display: flex;
+  flex-flow: row;
+  width: -moz-fit-content;
+  width: fit-content;
+  width: 100%;
+}
+.dashboard__right .controls .form-select {
+  font-weight: 700;
+  color: rgb(80, 78, 78);
+  width: 100%;
+  font-size: 1rem;
+}
+.dashboard__right .lowkey {
+  color: #adadad;
+  font-size: 0.8rem;
+}
 
 .data-wrapper {
   width: 100%;
-  height: 80%;
+  height: -moz-fit-content;
+  height: fit-content;
   display: flex;
   flex-flow: column;
-  justify-content: space-around;
   align-items: flex-start;
+  gap: 0.6vh;
 }
 .data-wrapper .data {
   width: 100%;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   overflow-wrap: break-word;
-  font-weight: 700;
+  border-bottom: 1px solid rgb(199, 197, 197);
+  padding-bottom: 0.4vh;
 }
-.data-wrapper .data span {
-  font-size: 0.9rem;
-}
-
 .dashboard__header {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
+  font-weight: 700;
   gap: max(5px, 0.5vw);
-  padding: 0 max(7px, 1vw);
-  height: 15%;
+  padding: 3vh 2vw;
 }
 .dashboard__header span {
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 .dashboard__header select {
   width: -moz-fit-content;
   width: fit-content;
   min-width: 40%;
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 .dept-bargraph {
@@ -1579,6 +1621,10 @@ td:hover {
   font-size: 0.7rem;
   height: 3.3vh;
   width: 0%;
+}
+.dept-bargraph .dept:hover {
+  cursor: pointer;
+  background-color: rgb(42, 239, 144);
 }
 
 .account-settings {
@@ -1970,6 +2016,11 @@ td:hover {
   width: 33.33%;
 }
 
+@media only screen and (max-width: 500px) {
+  .dashboard .dashboard__left {
+    margin-top: 2vh;
+  }
+}
 @media only screen and (min-width: 1400px) {
   .schedule__content .schedule__partA {
     grid-template-columns: repeat(2, minmax(30%, 1fr));
@@ -3585,4 +3636,22 @@ table {
 }
 .radio-group .radio-container span {
   font-weight: 400;
+}
+
+.page-header {
+  font-size: 0.8rem;
+  width: 100%;
+  color: #aaa9a9;
+  padding: 2vh max(18px, 3vw);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: max(0.5vw, 10px);
+}
+
+.page-header-logo {
+  color: #7e7d7d;
+  font-size: 0.9rem;
+  padding: unset;
+  margin: unset;
 }/*# sourceMappingURL=main.css.map */

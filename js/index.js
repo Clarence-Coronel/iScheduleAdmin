@@ -106,26 +106,37 @@ function initial(){
 }
 
 function determineDeviceDB(){
-    let deptStatitics = document.querySelector('.dashboard__all-patients');
+    let perDept = document.querySelector('.dashboard__per-dept');
+    let stats = document.querySelector('.dashboard__stats');
     
     if(window.innerWidth < window.innerHeight) {
         // mobile
-        deptStatitics.removeAttribute('data-aos');
-        deptStatitics.removeAttribute('data-aos-duration');
+        perDept.removeAttribute('data-aos');
+        perDept.removeAttribute('data-aos-duration');
+
+        stats.removeAttribute('data-aos');
+        stats.removeAttribute('data-aos-duration');
+
     }
     else{
         // desktop
 
         try {
-            deptStatitics.removeAttribute('data-aos');
-            deptStatitics.removeAttribute('data-aos-duration');
+            perDept.removeAttribute('data-aos');
+            perDept.removeAttribute('data-aos-duration');
+
+            stats.removeAttribute('data-aos');
+            stats.removeAttribute('data-aos-duration');
         } catch (error) {
             
         }
         
 
-        deptStatitics.setAttribute('data-aos', 'fade-left');
-        deptStatitics.setAttribute('data-aos-duration', '500');
+        perDept.setAttribute('data-aos', 'fade-left');
+        perDept.setAttribute('data-aos-duration', '500');
+
+        stats.setAttribute('data-aos', 'fade-left');
+        stats.setAttribute('data-aos-duration', '500');
     }
 }
 
@@ -2215,7 +2226,7 @@ function changeAccess(){
         `
         <button id="5" class="nav-links__item" onclick="generateScheduling()">
             <span class="material-icons-outlined ico-nav">edit_calendar</span>
-            Edit Department Schedules
+            Department Schedules
         </button>
         `,
         `

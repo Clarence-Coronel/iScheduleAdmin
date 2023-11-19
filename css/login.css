@@ -16,7 +16,7 @@ input, select, textarea, input:focus, select:focus, textarea:focus {
 
 *::-webkit-scrollbar {
   height: 0.8rem;
-  width: 0.8rem;
+  width: 0.6rem;
   margin-right: 20px !important;
 }
 
