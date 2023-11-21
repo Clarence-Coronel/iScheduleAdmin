@@ -4865,32 +4865,42 @@ function generateDeptStats(days){
                     let deptBars = document.querySelectorAll('.dept');
                     let highest = 0;
 
-                arrOfObj.forEach(item=>{
-                    if(parseInt(item.count)> highest){
-                        highest = item.count;
-                    }
-                })
-
-                deptBars.forEach((item, index) =>{
-                    let dept = index+1;
-                    let count = null;
-
                     arrOfObj.forEach(item=>{
-                        if(item.deptID == dept){
-                            count = item.count;
+                        if(parseInt(item.count)> highest){
+                            highest = item.count;
                         }
                     })
 
-                    if(count == null){
-                        count = 0;
-                    }
-                    item.innerHTML = `${item.dataset.dept} (${count})`;
-                    item.style.width = `${(count/highest)*95}%`;
-                })
+                    deptBars.forEach((item, index) =>{
+                        let dept = index+1;
+                        let count = null;
+
+                        arrOfObj.forEach(item=>{
+                            if(item.deptID == dept){
+                                count = item.count;
+                            }
+                        })
+
+                        if(count == null){
+                            count = 0;
+                        }
+                        item.innerHTML = `${item.dataset.dept} (${count})`;
+                        item.style.width = `${(count/highest)*95}%`;
+                    })
                 } catch (error) {
                     
                 }
             }
+        }
+        else{
+            let deptBars = document.querySelectorAll('.dept');
+
+            deptBars.forEach((item, index) =>{
+                let count = null;
+                
+                item.style.width = "0%";
+                item.innerHTML = `Loading...`;
+            })
         }
     }
 
@@ -4899,7 +4909,7 @@ function generateDeptStats(days){
     xhr.send("days=" + days);
 }
 
-function insertQuickStats(){
+function insertQuickStats(days){
     let xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = function(){
@@ -4918,13 +4928,22 @@ function insertQuickStats(){
                 }
             }
         }
+        else{
+            let stats = document.querySelectorAll('.dashboard__block span');
+
+            stats.forEach(item=>{
+                item.innerText = "Loading..."
+            })
+
+        }
     };
 
     xhr.open("POST", "./php/getQuickStats.php", true);
-    xhr.send();
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send('days=' + days);
 }
 
-function selectDeptStat(dept){
+function selectDeptStat(dept, days){
     let xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = function(){
@@ -4935,21 +4954,35 @@ function selectDeptStat(dept){
                     let stats = document.querySelectorAll('.data span');
 
                     stats.forEach((item, index)=>{
-                        let stat = arr[index].toFixed(2);
+                        let stat;
 
-                        item.innerText = stat + '%';
+                        if(index < 4) {
+                            stat = arr[index].toFixed(2);
+                            item.innerText = stat + '%';
+                        }
+                        else{
+                            stat = arr[index];
+                            item.innerText = stat;
+                        }
+                        
                     })
 
                 } catch (error) {
                     
                 }
             }
+            else{
+                let stats = document.querySelectorAll('.data span');
+                stats.forEach((item, index)=>{
+                    item.innerText = "Loading...";
+                })
+            }
         }
     }
 
     xhr.open("POST", "./php/getPerDeptStats.php", true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.send('dept='+ dept);
+    xhr.send('dept='+ dept + '&days=' + days);
 }
 
 function deleteData(code){
@@ -5057,4 +5090,19 @@ function removeFollowUpBtn(){
 function addFollowUpBtn(){
     let radio = document.querySelector('.visit:nth-child(2)');
     radio.style.display = "flex";
+}
+
+function deptClicked(){
+    let header = document.querySelector('.per-dept-header span');
+
+    header.innerText = this.dataset.dept;
+    header.setAttribute('data-deptID', this.dataset.deptid)
+
+    selectDeptStat(this.dataset.deptid, document.querySelector('#dashboardDays').value);
+}
+
+function checkSelectedDepartment(){
+    let header = document.querySelector('.per-dept-header span');
+
+    selectDeptStat(header.dataset.deptid, document.querySelector('#dashboardDays').value);
 }

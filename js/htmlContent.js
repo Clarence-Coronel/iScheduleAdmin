@@ -110,64 +110,65 @@ let dashboard = `
 <div class="page-header">Home / Dashboard</div>
 <section class="dashboard">
     <div class="dashboard__right">
-        <div class="controls" data-aos="fade-right" data-aos-duration="500" title="Range">
+        <div class="controls" data-aos="fade-right" data-aos-duration="500">
             <div class="range-container">
-                <select class="form-select" aria-label="Default select example" onchange="generateDeptStats(this.value)">
+                <select title="Range" class="form-select" id="dashboardDays" aria-label="Default select example" onchange="generateDeptStats(this.value); insertQuickStats(this.value); checkSelectedDepartment();">
                     <option value="7">Last 7 Days</option>
                     <option value="30" selected>Last 30 Days</option>
                     <option value="365">Last 365 Days</option>
                 </select>
             </div>
         </div>
-        <div class="dashboard__all-patients" data-aos="fade-right" data-aos-duration="500" title="Click a department to see statistics.">
+        <div class="dashboard__all-patients" data-aos="fade-right" data-aos-duration="500">
             <div class="dashboard__header">
                 <span>Appointment Distribution Per Department</span>
             </div>
             <div class="dept-bargraph">
-                <div class="dept" data-dept="ENT"></div>
-                <div class="dept" data-dept="Hematology"></div>
-                <div class="dept" data-dept="Internal Medicine"></div>
-                <div class="dept" data-dept="Internal Medicine Clearance"></div>
-                <div class="dept" data-dept="Nephrology"></div>
-                <div class="dept" data-dept="Neurology"></div>
-                <div class="dept" data-dept="OB GYNE New"></div>
-                <div class="dept" data-dept="OB GYNE Old"></div>
-                <div class="dept" data-dept="OB GYNE ROS"></div>
-                <div class="dept" data-dept="Oncology"></div>
-                <div class="dept" data-dept="Pediatric Cardiology"></div>
-                <div class="dept" data-dept="Pediatric Clearance"></div>
-                <div class="dept" data-dept="Pediatric General"></div>
-                <div class="dept" data-dept="Psychiatry New"></div>
-                <div class="dept" data-dept="Psychiatry Old"></div>
-                <div class="dept" data-dept="Surgery"></div>
-                <div class="dept" data-dept="Surgery ROS"></div>
+                <div class="dept" data-dept="ENT" data-deptID="1" title="Click to see statistics.">Loading...</div>
+                <div class="dept" data-dept="Hematology" data-deptID="2" title="Click to see statistics.">Loading...</div>
+                <div class="dept" data-dept="Internal Medicine" data-deptID="3" title="Click to see statistics.">Loading...</div>
+                <div class="dept" data-dept="Internal Medicine Clearance" data-deptID="4" title="Click to see statistics.">Loading...</div>
+                <div class="dept" data-dept="Nephrology" data-deptID="5" title="Click to see statistics.">Loading...</div>
+                <div class="dept" data-dept="Neurology" data-deptID="6" title="Click to see statistics.">Loading...</div>
+                <div class="dept" data-dept="OB GYNE New" data-deptID="7" title="Click to see statistics.">Loading...</div>
+                <div class="dept" data-dept="OB GYNE Old" data-deptID="8" title="Click to see statistics.">Loading...</div>
+                <div class="dept" data-dept="OB GYNE ROS" data-deptID="9" title="Click to see statistics.">Loading...</div>
+                <div class="dept" data-dept="Oncology" data-deptID="10" title="Click to see statistics.">Loading...</div>
+                <div class="dept" data-dept="Pediatric Cardiology" data-deptID="11" title="Click to see statistics.">Loading...</div>
+                <div class="dept" data-dept="Pediatric Clearance" data-deptID="12" title="Click to see statistics.">Loading...</div>
+                <div class="dept" data-dept="Pediatric General" data-deptID="13" title="Click to see statistics.">Loading...</div>
+                <div class="dept" data-dept="Psychiatry New" data-deptID="14" title="Click to see statistics.">Loading...</div>
+                <div class="dept" data-dept="Psychiatry Old" data-deptID="15" title="Click to see statistics.">Loading...</div>
+                <div class="dept" data-dept="Surgery" data-deptID="16" title="Click to see statistics.">Loading...</div>
+                <div class="dept" data-dept="Surgery ROS" data-deptID="17" title="Click to see statistics.">Loading...</div>
             </div>
         </div>
     </div>
     <div class="dashboard__left">
     <div class="dashboard__per-dept" data-aos="fade-left" data-aos-duration="500" data-aos-anchor=".dashboard">
-        <div class="per-dept-header" title="Statistics related to the selected department."><span>ENT</span> (Department Statistics)</div>
+        <div class="per-dept-header" title="Statistics related to the selected department."><span>-</span> (Department Statistics)</div>
         <div class="data-wrapper">
-            <div class="data" title="Appointment percentage relative to other departments.">Appointments &nbsp;<span>Loading...</span></div>
-            <div class="data" title="Completed appointments percentage.">Completed Appointments&nbsp;<span>Loading...</span></div>
-            <div class="data" title="Patient no-show percentage.">Missed Appointments&nbsp;<span>Loading...</span></div>
-            <div class="data" title="Cancel percentage.">Cancelled Appointments &nbsp;<span>Loading...</span></div>
-            <div class="data" title="Male to female ratio.">Male : Female Ratio &nbsp;<span>Loading...</span></div>
-            <div class="data" title="Infants and Toddlers.">Age 0-2 &nbsp;<span>Loading...</span></div>
-            <div class="data" title="Children.">Age 3-12 &nbsp;<span>Loading...</span></div>
-            <div class="data" title="Adolescents.">Age 13-18 &nbsp;<span>Loading...</span></div>
-            <div class="data" title="Young Adults.">Age 19-25 &nbsp;<span>Loading...</span></div>
-            <div class="data" title="Adults.">Age 26-59 &nbsp;<span>Loading...</span></div>
-            <div class="data" title="Seniors.">Age 60+ &nbsp;<span>Loading...</span></div>
+            <div class="data" title="Appointment percentage relative to other departments.">Appointments &nbsp;<span>-</span></div>
+            <div class="data" title="Completed appointments percentage.">Completed Appointments&nbsp;<span>-</span></div>
+            <div class="data" title="Patient no-show percentage.">Missed Appointments&nbsp;<span>-</span></div>
+            <div class="data" title="Cancel percentage.">Cancelled Appointments &nbsp;<span>-</span></div>
+            <div class="data" title="Total male patients.">Males &nbsp;<span>-</span></div>
+            <div class="data" title="Total female patients.">Females &nbsp;<span>-</span></div>
+            <div class="data" title="Age 0-2">Infants and Toddlers &nbsp;<span>-</span></div>
+            <div class="data" title="Age 3-12">Children &nbsp;<span>-</span></div>
+            <div class="data" title="Age 13-18">Adolescents &nbsp;<span>-</span></div>
+            <div class="data" title="Age 19-25">Young Adults &nbsp;<span>-</span></div>
+            <div class="data" title="Age 26-59">Adults &nbsp;<span>-</span></div>
+            <div class="data" title="Age 60+">Seniors &nbsp;<span>-</span></div>
         </div>
     </div>
     <div class="dashboard__stats" data-aos="fade-left" data-aos-duration="500" data-aos-anchor=".dashboard">
-        <div class="dashboard__block" title="Appointments across all departments.">Total Appointments<span>Loading...</span></div>
-        <div class="dashboard__block" title="Complete appointments across all departments.">Total Completed Appointments<span>Loading...</span></div>
-        <div class="dashboard__block" title="Cancelled appointments across all departments.">Total Cancelled Appointments<span>Loading...</span></div>
-        <div class="dashboard__block" title="Missed appointments across all departments.">Total Missed Appointments<span>Loading...</span></div>
-        <div class="dashboard__block" title="Average website rating.">Website Average Rating<span>Loading...</span></div>
-        <div class="dashboard__block" title="Admin activities.">Total Admin Activities<span>Loading...</span></div>
+        <div class="dashboard__block" title="Appointments across all departments.">Total Appointments<span>-</span></div>
+        <div class="dashboard__block" title="Complete appointments across all departments.">Total Completed Appointments<span>-</span></div>
+        <div class="dashboard__block" title="Cancelled appointments across all departments.">Total Cancelled Appointments<span>-</span></div>
+        <div class="dashboard__block" title="Missed appointments across all departments.">Total Missed Appointments<span>-</span></div>
+        <div class="dashboard__block" title="Average website rating.">Website Average Rating<span>-</span></div>
+        <div class="dashboard__block" title="Admin activities.">Total Admin Activities<span>-</span></div>
     </div>
 </div>
 </section>`;
@@ -1126,8 +1127,11 @@ function generateDashboard(){
         let navLinks = document.querySelectorAll('.nav-links__item');
         highlightActive(1);
         generateDeptStats(30);
-        insertQuickStats();
-        selectDeptStat(1);
+        insertQuickStats(30);
+
+        document.querySelectorAll('.dept').forEach(item=>{
+            item.addEventListener('click', deptClicked);
+        })
     }
 }
 

@@ -1833,10 +1833,10 @@ td:hover{
         width: 96%;
         background-color: white;
         display: flex;
-        flex-flow: row nowrap;
+        flex-flow: column;
         justify-content: space-between;
         align-items: center;
-        
+
         label{
             font-weight: 700;
             width: 30%;
@@ -1889,7 +1889,7 @@ td:hover{
     display: flex;
     flex-flow: column;
     align-items: flex-start;
-    gap: 0.6vh;
+    gap: 2vh;
     // padding: max(7px, 0.3vw);
 
     .data{
@@ -1899,6 +1899,7 @@ td:hover{
         font-size: 0.8rem;
         display: flex;
         flex-flow: row nowrap;
+        align-items: center;
         justify-content: space-between;
         overflow-wrap: break-word;
         border-bottom: 1px solid rgb(199, 197, 197);
@@ -1946,7 +1947,7 @@ td:hover{
         align-items: center;
         background-color: rgb(95, 205, 124);
         white-space: nowrap;
-        padding-left: max(10px, 1vw);
+        padding-left: max(2px, 0.2vw);
         transition-duration: 1000ms;
         user-select: none;
         font-size: 0.7rem;
@@ -1956,8 +1957,17 @@ td:hover{
 
     .dept:hover{
         cursor: pointer;
-        background-color: rgb(42, 239, 144);
+        padding-left: 20px;
+        // color: $btn-color;
+        background-color: rgb(41, 246, 147);
     }
+
+    // .dept-selected{
+    //     padding-left: 20px;
+    //     font-weight: 700;
+    //     color: $btn-color;
+    //     background-color: rgb(42, 239, 144);
+    // }
     
     
     // 100% is equal to the largest amount

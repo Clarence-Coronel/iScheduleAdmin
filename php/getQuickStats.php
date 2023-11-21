@@ -4,6 +4,12 @@
         public $num;
     }
 
+    $numOfDays = null;
+
+    foreach($_POST as $temp){
+        $numOfDays = $temp;
+    }
+
     $statCollection = array();
 
     for ($i = 0; $i < 6; $i++) {
@@ -50,87 +56,124 @@
     echo json_encode($statCollection);
 
     function getRecentApps(){
+        global $numOfDays;
         require 'connect.php';
         $stat = null;
 
-        $query = "SELECT COUNT(appointmentID) as 'total' from appointments WHERE dateSubmitted BETWEEN (CURDATE() - INTERVAL 30 DAY) AND CURDATE();";
+        $query = "SELECT COUNT(appointmentID) as 'total' from appointments WHERE dateSubmitted BETWEEN (CURDATE() - INTERVAL $numOfDays DAY) AND CURDATE();";
         $result = mysqli_query($conn,$query);
 
         while($row = mysqli_fetch_array($result)){
             $stat = $row['total'];
         }
 
-        return $stat;
+        if(isset($stat)){
+            return $stat;
+        }
+        else{
+            return 0;
+        }
     }
 
     function getRecentComp(){
+        global $numOfDays;
         require 'connect.php';
         $stat = null;
         
-        $query = "SELECT COUNT(appointmentID) as 'total' from appointments WHERE dateSubmitted BETWEEN (CURDATE() - INTERVAL 30 DAY) AND CURDATE() AND appointmentStatus = 'completed';";
+        $query = "SELECT COUNT(appointmentID) as 'total' from appointments WHERE dateSubmitted BETWEEN (CURDATE() - INTERVAL $numOfDays DAY) AND CURDATE() AND appointmentStatus = 'completed';";
         $result = mysqli_query($conn,$query);
 
         while($row = mysqli_fetch_array($result)){
             $stat = $row['total'];
         }
 
-        return $stat;
+        if(isset($stat)){
+            return $stat;
+        }
+        else{
+            return 0;
+        }
     }
 
     function getRecentCancel(){
+        global $numOfDays;
         require 'connect.php';
         $stat = null;
         
-        $query = "SELECT COUNT(appointmentID) as 'total' from appointments WHERE dateSubmitted BETWEEN (CURDATE() - INTERVAL 30 DAY) AND CURDATE() AND appointmentStatus = 'cancelled';";
+        $query = "SELECT COUNT(appointmentID) as 'total' from appointments WHERE dateSubmitted BETWEEN (CURDATE() - INTERVAL $numOfDays DAY) AND CURDATE() AND appointmentStatus = 'cancelled';";
         $result = mysqli_query($conn,$query);
 
         while($row = mysqli_fetch_array($result)){
             $stat = $row['total'];
         }
         
-        return $stat;
+        if(isset($stat)){
+            return $stat;
+        }
+        else{
+            return 0;
+        }
     }
 
     function getRecentAppsMiss(){
+        global $numOfDays;
         require 'connect.php';
         $stat = null;
         
-        $query = "SELECT COUNT(appointmentID) as 'total' from appointments WHERE dateSubmitted BETWEEN (CURDATE() - INTERVAL 30 DAY) AND CURDATE() AND appointmentStatus = 'missed';";
+        $query = "SELECT COUNT(appointmentID) as 'total' from appointments WHERE dateSubmitted BETWEEN (CURDATE() - INTERVAL $numOfDays DAY) AND CURDATE() AND appointmentStatus = 'missed';";
         $result = mysqli_query($conn,$query);
 
         while($row = mysqli_fetch_array($result)){
             $stat = $row['total'];
         }
 
-        return $stat;
+        if(isset($stat)){
+            return $stat;
+        }
+        else{
+            return 0;
+        }
     }
 
     function getRecentAvgFB(){
+        global $numOfDays;
         require 'connect.php';
         $stat = null;
         
-        $query = "SELECT ROUND(AVG(`rate`), 2) as 'total' from feedbacks;";
+        $query = "SELECT ROUND(AVG(`rate`), 2) as 'total' from feedbacks WHERE dateTimeSubmitted BETWEEN (CURDATE() - INTERVAL $numOfDays DAY) AND CURDATE();";
         $result = mysqli_query($conn,$query);
 
         while($row = mysqli_fetch_array($result)){
             $stat = $row['total'];
         }
 
-        return $stat;
+        if(isset($stat)){
+            return $stat;
+        }
+        else{
+            return 0;
+        }
     }
 
     function getRecentAdminActs(){
+        global $numOfDays;
         require 'connect.php';
         $stat = null;
         
-        $query = "SELECT COUNT(adminLogsID) as 'total' from admin_logs WHERE logDateTime BETWEEN (CURDATE() - INTERVAL 30 DAY) AND CURDATE();";
+        $query = "SELECT COUNT(adminLogsID) as 'total' from admin_logs WHERE logDateTime BETWEEN (CURDATE() - INTERVAL $numOfDays DAY) AND CURDATE();";
         $result = mysqli_query($conn,$query);
 
         while($row = mysqli_fetch_array($result)){
             $stat = $row['total'];
         }
         
-        return $stat;
+        if(isset($stat)){
+            return $stat;
+        }
+        else{
+            return 0;
+        }
+        
     }
 
 

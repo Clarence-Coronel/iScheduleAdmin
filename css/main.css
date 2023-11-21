@@ -1531,7 +1531,7 @@ td:hover {
   width: 96%;
   background-color: white;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column;
   justify-content: space-between;
   align-items: center;
 }
@@ -1568,13 +1568,14 @@ td:hover {
   display: flex;
   flex-flow: column;
   align-items: flex-start;
-  gap: 0.6vh;
+  gap: 2vh;
 }
 .data-wrapper .data {
   width: 100%;
   font-size: 0.8rem;
   display: flex;
   flex-flow: row nowrap;
+  align-items: center;
   justify-content: space-between;
   overflow-wrap: break-word;
   border-bottom: 1px solid rgb(199, 197, 197);
@@ -1613,7 +1614,7 @@ td:hover {
   align-items: center;
   background-color: rgb(95, 205, 124);
   white-space: nowrap;
-  padding-left: max(10px, 1vw);
+  padding-left: max(2px, 0.2vw);
   transition-duration: 1000ms;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -1624,7 +1625,8 @@ td:hover {
 }
 .dept-bargraph .dept:hover {
   cursor: pointer;
-  background-color: rgb(42, 239, 144);
+  padding-left: 20px;
+  background-color: rgb(41, 246, 147);
 }
 
 .account-settings {
