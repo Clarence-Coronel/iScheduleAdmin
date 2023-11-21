@@ -1587,8 +1587,13 @@ td:hover {
   gap: max(5px, 0.5vw);
   padding: 3vh 2vw;
 }
-.dashboard__header span {
+.dashboard__header span:nth-child(1) {
   font-size: 1rem;
+}
+.dashboard__header span:nth-child(3) {
+  color: #7e7d7d;
+  font-weight: 400;
+  font-size: 0.8rem;
 }
 .dashboard__header select {
   width: -moz-fit-content;

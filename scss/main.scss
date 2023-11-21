@@ -1919,8 +1919,14 @@ td:hover{
     gap: max(5px, 0.5vw);
     padding: 3vh 2vw;
     
-    span{
+    span:nth-child(1){
         font-size: 1rem;
+    }
+
+    span:nth-child(3){
+        color: #7e7d7d;
+        font-weight: 400;
+        font-size: 0.8rem;
     }
 
     select{
