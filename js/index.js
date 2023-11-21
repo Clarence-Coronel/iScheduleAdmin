@@ -4915,6 +4915,7 @@ function insertQuickStats(days){
     xhr.onreadystatechange = function(){
         if(this.readyState == 4){
             if(this.status == 200){
+                console.log(this.responseText)
                 try {
                     let arrOfObj = JSON.parse(this.responseText);
                     let stats = document.querySelectorAll('.dashboard__block span');

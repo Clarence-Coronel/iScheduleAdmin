@@ -139,11 +139,21 @@
         global $numOfDays;
         require 'connect.php';
         $stat = null;
+        $numFeedbacks = null;
         
-        $query = "SELECT ROUND(AVG(`rate`), 2) as 'total' from feedbacks WHERE dateTimeSubmitted BETWEEN (CURDATE() - INTERVAL $numOfDays DAY) AND CURDATE();";
-        $result = mysqli_query($conn,$query);
+        $query1 = "SELECT COUNT(*) as 'total' from feedbacks WHERE dateTimeSubmitted BETWEEN (CURDATE() - INTERVAL $numOfDays DAY) AND CURDATE();";
+        $result1 = mysqli_query($conn,$query1);
 
-        while($row = mysqli_fetch_array($result)){
+        while($row = mysqli_fetch_array($result1)){
+            $numFeedbacks = $row['total'];
+        }
+
+        if($numFeedbacks == 0) return "-";
+
+        $query2 = "SELECT ROUND(AVG(`rate`), 2) as 'total' from feedbacks WHERE dateTimeSubmitted BETWEEN (CURDATE() - INTERVAL $numOfDays DAY) AND CURDATE();";
+        $result2 = mysqli_query($conn,$query2);
+
+        while($row = mysqli_fetch_array($result2)){
             $stat = $row['total'];
         }
 
