@@ -122,7 +122,7 @@ let dashboard = `
         <div class="dashboard__all-patients" data-aos="fade-right" data-aos-duration="500">
             <div class="dashboard__header">
                 <span>Appointment Distribution Per Department</span> <br>
-                <span>Click a department to see statistics</span>
+                <span>Click a Department to View Statistics</span>
             </div>
             <div class="dept-bargraph">
                 <div class="dept" data-dept="ENT" data-deptID="1" title="Click to see statistics.">Loading...</div>
@@ -147,7 +147,7 @@ let dashboard = `
     </div>
     <div class="dashboard__left">
     <div class="dashboard__per-dept" data-aos="fade-left" data-aos-duration="500" data-aos-anchor=".dashboard">
-        <div class="per-dept-header" title="Statistics related to the selected department."><span>-</span> (Department Statistics)</div>
+        <div class="per-dept-header" title="Statistics related to the selected department."><span>-</span> Department Statistics</div>
         <div class="data-wrapper">
             <div class="data" title="Appointment percentage relative to other departments.">Appointments &nbsp;<span>-</span></div>
             <div class="data" title="Completed appointments percentage.">Completed Appointments&nbsp;<span>-</span></div>

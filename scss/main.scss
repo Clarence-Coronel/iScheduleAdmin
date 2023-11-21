@@ -1788,8 +1788,11 @@ td:hover{
     }
 
     .per-dept-header{
-        font-size: 0.8rem;
+        font-size: 0.7rem;
         color: #878787;
+        display: flex;
+        flex-flow: column;
+        margin-bottom: 1vh;
 
         span{
             font-size: 1rem;
@@ -1823,7 +1826,7 @@ td:hover{
     }
 
     .controls{
-        padding: $box-padding;
+        padding: 2vh max(10px, 1.5vw);
         box-shadow: $box-shadow; 
         border-radius: $box-border-radius;
         padding-top: 2vh;
@@ -1913,11 +1916,11 @@ td:hover{
 }
 
 .dashboard__header{
-    text-align: center;
+    text-align: left;
     font-weight: 700;
     // margin-bottom: max(10px, 1.5vw);
     gap: max(5px, 0.5vw);
-    padding: 3vh 2vw;
+    padding: 2vh max(10px, 1.5vw);
     
     span:nth-child(1){
         font-size: 1rem;
@@ -1926,7 +1929,7 @@ td:hover{
     span:nth-child(3){
         color: #7e7d7d;
         font-weight: 400;
-        font-size: 0.8rem;
+        font-size: 0.7rem;
     }
 
     select{

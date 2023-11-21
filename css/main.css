@@ -1493,8 +1493,11 @@ td:hover {
   text-overflow: ellipsis;
 }
 .dashboard__left .per-dept-header {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: #878787;
+  display: flex;
+  flex-flow: column;
+  margin-bottom: 1vh;
 }
 .dashboard__left .per-dept-header span {
   font-size: 1rem;
@@ -1520,7 +1523,7 @@ td:hover {
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
 }
 .dashboard__right .controls {
-  padding: max(18px, 3vw);
+  padding: 2vh max(10px, 1.5vw);
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   border-radius: max(5px, 0.4vw);
   padding-top: 2vh;
@@ -1582,10 +1585,10 @@ td:hover {
   padding-bottom: 0.4vh;
 }
 .dashboard__header {
-  text-align: center;
+  text-align: left;
   font-weight: 700;
   gap: max(5px, 0.5vw);
-  padding: 3vh 2vw;
+  padding: 2vh max(10px, 1.5vw);
 }
 .dashboard__header span:nth-child(1) {
   font-size: 1rem;
@@ -1593,7 +1596,7 @@ td:hover {
 .dashboard__header span:nth-child(3) {
   color: #7e7d7d;
   font-weight: 400;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
 }
 .dashboard__header select {
   width: -moz-fit-content;
