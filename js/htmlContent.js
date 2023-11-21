@@ -548,7 +548,7 @@ let filter = `
         <select class="form-select" id="status" aria-label="Default select example">
             <option value="" selected hidden disabled>Status</option>
             <option value="">None</option>
-            <option value="active">Active</option>
+            <option value="scheduled">Scheduled</option>
             <option value="cancelled">Cancelled</option>
             <option value="completed">Completed</option>
             <option value="missed">Missed</option>
