@@ -214,9 +214,7 @@ let schedule = `
                 <label for=""><span class="asterisk">* </span>Birthdate</label>
                 <div class="birth-container">
                     <input type="text" name="" id="month" placeholder="MM" oninput="inputLimiterNum(this.id, 2)" onblur="inputLimiterBlur(this.id, 2)">
-                    <span>/</span>
                     <input type="text" name="" id="day" placeholder="DD" oninput="inputLimiterNum(this.id, 2)" onblur="inputLimiterBlur(this.id, 2)">
-                    <span>/</span>
                     <input type="text" name="" id="year" placeholder="YYYY" oninput="inputLimiterNum(this.id, 4)" onblur="inputLimiterBlur(this.id, 4)">
                 </div>
             </div>
@@ -824,7 +822,7 @@ let websiteStatus = `
             <!-- Naka enable lang to if either website is down or scheduling is down hindi kapag completely up si website -->
             <div class="msg-container">
                 <label for="msg">Message:</label>
-                <textarea name="text" id="statusMsg" cols="30" rows="2" onblur="inputLimiterBlur(this.id, 240); statusMsgCounter(this.id, 'textAreaCounter', 240);" oninput="inputLimiter(this.id, 240); statusMsgCounter(this.id, 'textAreaCounter', 240);"></textarea>
+                <textarea name="text" placeholder="" id="statusMsg" cols="30" rows="2" onblur="inputLimiterBlur(this.id, 240); statusMsgCounter(this.id, 'textAreaCounter', 240);" oninput="inputLimiter(this.id, 240); statusMsgCounter(this.id, 'textAreaCounter', 240);"></textarea>
                 <div id="textAreaCounter">240</div>
             </div>
             <button class="changeStatus" onclick="confirmStatusChange()">Apply</button>
@@ -837,12 +835,12 @@ let postAnnouncement = `
 <section class="postAnnouncement">
     <div class="postAnnouncement__content" data-aos="fade-right" data-aos-duration="500">
         <div class="announcement__input-container">
-            <label for="announcementTitle">Announcement Title:</label>
-            <input type="text" name="announcementTitle" id="announcementTitle" onblur="inputLimiterBlur(this.id, 120);" oninput="inputLimiter(this.id, 120)">
+            <label for="announcementTitle">Header:</label>
+            <input type="text" placeholder="" name="announcementTitle" id="announcementTitle" onblur="inputLimiterBlur(this.id, 120);" oninput="inputLimiter(this.id, 120)">
         </div>
         <div class="announcement__input-container">
-            <label for="announcementBody">Announcement Body:</label>
-            <textarea cols="30" rows="10" name="announcementBody" id="announcementBody" onblur="inputLimiterBlur(this.id, 1000); statusMsgCounter(this.id, 'announcementBody__counter', 1000);" oninput="inputLimiter(this.id, 1000); statusMsgCounter(this.id, 'announcementBody__counter', 1000);"></textarea>
+            <label for="announcementBody">Body:</label>
+            <textarea placeholder="Announcement content..." cols="30" rows="10" name="announcementBody" id="announcementBody" onblur="inputLimiterBlur(this.id, 1000); statusMsgCounter(this.id, 'announcementBody__counter', 1000);" oninput="inputLimiter(this.id, 1000); statusMsgCounter(this.id, 'announcementBody__counter', 1000);"></textarea>
             <div id="announcementBody__counter">1000</div>
         </div>
         <div class="error-container">
@@ -918,11 +916,11 @@ let blockDates = `
 <section class="block-date">
             <div class="add-date" data-aos="fade-right" data-aos-duration="500">
                 <div class="date-picker">
-                    <input type="text" name="month" id="block-month" placeholder="MM" oninput="inputLimiterNum(this.id, 2)" onblur="inputLimiterBlur(this.id, 2)">
-                    <span>/</span>
-                    <input type="text" name="day" id="block-day" placeholder="DD" oninput="inputLimiterNum(this.id, 2)" onblur="inputLimiterBlur(this.id, 2)">
-                    <span>/</span>
                     <input type="text" name="year" id="block-year" placeholder="YYYY" oninput="inputLimiterNum(this.id, 4)" onblur="inputLimiterBlur(this.id, 4)">
+
+                    <input type="text" name="month" id="block-month" placeholder="MM" oninput="inputLimiterNum(this.id, 2)" onblur="inputLimiterBlur(this.id, 2)">
+                    
+                    <input type="text" name="day" id="block-day" placeholder="DD" oninput="inputLimiterNum(this.id, 2)" onblur="inputLimiterBlur(this.id, 2)">
                 </div>
                 <div class="other-info">
                     <input type="text" placeholder="Name" id="blockDateName" onblur="inputLimiterBlur(this.id, 30)" oninput="inputLimiter(this.id, 30)">

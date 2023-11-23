@@ -714,7 +714,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
     flex-flow: row nowrap;
     justify-content: flex-start;
     align-items: center;
-    border-radius: max(5px, 0.5vw);
+    border-radius: 5px;
     padding: 2px;
     width: 100%;
     max-width: 500px;
@@ -1240,7 +1240,6 @@ td:hover{
         display: flex;
         flex-flow: column;
         align-items: center;
-        gap: max(7px, 0.3vh);
         border-radius: $box-border-radius;
         box-shadow: $box-shadow;
         height: fit-content;
@@ -1262,6 +1261,8 @@ td:hover{
             // width: fit-content;
             display: flex;
             justify-content: flex-start;
+            gap: 1vw;
+            margin-bottom: 1vw;
 
         }
 
@@ -1271,6 +1272,10 @@ td:hover{
             border-bottom: 2px solid gray;
             border-radius: unset;
             text-align: center;
+
+            border: 1px solid $input-border-clr;
+            padding: 10px;
+            border-radius: 5px;
         }
 
         input:focus{
@@ -1298,9 +1303,12 @@ td:hover{
         justify-content: flex-start;
         align-items: center;
         width: 100%;
-        gap: max(10px, 2vw);
+        gap: 1vw;
 
-        input{
+        input[type="text"]{
+            border: 1px solid $input-border-clr;
+            padding: 10px;
+            border-radius: 5px;
             text-align: center;
             width: 100%;
         }
@@ -1316,6 +1324,7 @@ td:hover{
         border-radius: max(7px, 0.5vw);
         height: $btn-height;
         max-height: $btn-max-height;
+        margin-bottom: 1vw;
     }
 
     .btn-submitblock:hover{
@@ -1366,9 +1375,10 @@ td:hover{
 }
 .form-check-input{
     width: max(22px,3vw) !important;
-    max-width: 40px;
+    max-width: 40px !important;
     border-radius: max(15px, 1vw) !important;
     background-color: $btn-color !important;
+    padding: unset !important;
 }
 
 .website-status{
@@ -1475,8 +1485,9 @@ td:hover{
     #statusMsg{
         width:100%;
         resize: none;
-        padding: max(10px, 1vw);
-        border-radius: max(10px, 1vw);
+        border-radius: 5px !important;
+        padding: 10px !important;
+        border: 1px solid $input-border-clr !important;
     }
 
     #msg:focus{
@@ -1486,6 +1497,9 @@ td:hover{
     .form-select{
         width: 100%;
         min-width: 150px;
+        border-radius: 5px !important;
+        padding: 10px !important;
+        border: 1px solid $input-border-clr !important;
     }
     
 
@@ -1614,13 +1628,15 @@ td:hover{
 
         input{
             border-radius: 5px;
-            padding: max(10px, 0.5vw);
+            border: 1px solid $input-border-clr;
+            padding: 10px
         }
 
         textarea{
             border-radius: 5px;
             resize: none;
-            padding: max(10px, 1vw);
+            padding: 10px;
+            border: 1px solid $input-border-clr;
         }
 
         div{
@@ -1863,6 +1879,10 @@ td:hover{
             color: $fontbase-color;
             width: 100%;
             font-size: 1rem;
+            border: 1px solid $input-border-clr !important;
+            border-radius: 5px !important;
+            padding: 10px !important;
+            
             // background-color: red;
         }
         // input{
@@ -2068,7 +2088,7 @@ td:hover{
             flex-flow: column;
             border: unset;
             border: 1px solid $btn-color;
-            border-radius: max(5px, 0.5vw);
+            border-radius: 5px;
             padding: max(7px, 0.5vw);
             user-select: none;
             position: relative;
@@ -2267,7 +2287,7 @@ td:hover{
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
-    border-radius: max(5px, 0.5vw);
+    border-radius: 5px;
     width: 100%;
     max-width: 500px;
     position: relative;
@@ -2290,7 +2310,7 @@ td:hover{
     
     input{
         border: unset;
-        border-radius: max(10px, 1vw);
+        border-radius: 5px;
         padding: 0 max(5px, 1vw);
         // padding-right: max(10px, 2.5vw);
         min-height: 20px;
@@ -2378,7 +2398,10 @@ td:hover{
         border-radius:  unset !important;
         padding: max(5px, 0.2vw) !important;
 
-        border-bottom: 1px solid black !important;
+
+        border: 1px solid $input-border-clr !important;
+        padding: 10px !important;
+        border-radius: 5px  !important;
     }
 
     .schedule__input-container{
@@ -2397,13 +2420,16 @@ td:hover{
     width: 100%;
     display: flex;
     flex-flow: nowrap;
-    gap: max(10px, 1vw);
+    gap: 1vw;
     justify-content: center;
     align-items: flex-end;
 
     input{
         width: 33.33%;
         text-align: center;
+        border: 1px solid $input-border-clr !important;
+        padding: 10px !important;
+        border-radius: 5px  !important;
     }
 
     span{
@@ -2416,10 +2442,13 @@ td:hover{
     width: 100%;
     display: flex;
     flex-flow: nowrap;
-    gap: max(10px, 1vw);
+    gap: 1vw;
 
     input{
         width: 33.33%;
+        border: 1px solid $input-border-clr !important;
+        padding: 10px !important;
+        border-radius: 5px  !important;
     }
 }
 
@@ -2431,6 +2460,9 @@ td:hover{
 
     input{
         width: 33.33%;
+        border: 1px solid $input-border-clr !important;
+        padding: 10px !important;
+        border-radius: 5px  !important;
     }
 }
 
@@ -3795,7 +3827,7 @@ table{
 
     .edit__input-container{
         width: 100%;
-        border: 1px solid rgb(174, 169, 169);
+        border: 1px solid $input-border-clr;
         overflow: hidden;
         display: flex;
         flex-flow: row nowrap;
@@ -4156,7 +4188,7 @@ table{
     .form-switch{
         display: flex;
         justify-content: center;
-        gap: 1vw;
+        gap: 1vw !important;
         width: 50% !important;
     }
 
@@ -4396,8 +4428,8 @@ table{
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
-    margin-top: 4vh;
-    margin-bottom: 4vh;
+    margin-top: 2vh;
+    margin-bottom: 3vh;
 }
 
 .msg{
@@ -4566,7 +4598,7 @@ table{
 
     input[type="date"], input[type="text"], select{
         border: unset !important;
-        border: 1px solid rgb(195, 193, 193) !important;
+        border: 1px solid $input-border-clr !important;
         padding: 5px !important;
         border-radius: 5px !important;
     }
