@@ -874,11 +874,11 @@ input:-webkit-autofill:focus{
         font-weight: 600;
     }
 
-    span{
-        margin: $margin-top-span 0;
-        color: gray;
-        font-size: 0.8rem;
-    }
+    // span{
+    //     margin: $margin-top-span 0;
+    //     color: gray;
+    //     font-size: 0.8rem;
+    // }
 
     #pageNum{
         margin: unset;
@@ -982,40 +982,41 @@ input:-webkit-autofill:focus{
     // grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
     display: flex;
     flex-flow: row wrap;
-    gap: max(10px, 2vw);
-    justify-content: center;
+    gap: max(1vw, 1vh);
+    // justify-content: space-between;
     align-items: center;
+    // margin-bottom: 7vh;
     
-    .date-picker{
-        display: flex;
-        flex-flow: row nowrap;
-        width: 47%;
-        height: 50px;
-        align-items: flex-end;
-        justify-content: center;
+    // .date-picker{
+    //     display: flex;
+    //     flex-flow: row nowrap;
+    //     width: 47%;
+    //     height: 50px;
+    //     align-items: flex-end;
+    //     justify-content: center;
 
-        input{
-            height: 100%;
-            width: 32%;
-            text-align: center;
-            border-radius: unset;
-            border: unset;
-            border-bottom: 1px solid $fontbase-color;
-        }
+    //     input{
+    //         height: 100%;
+    //         width: 32%;
+    //         text-align: center;
+    //         border-radius: unset;
+    //         border: unset;
+    //         border-bottom: 1px solid $fontbase-color;
+    //     }
 
-        span{
-            width: 2%;
-            color: $fontbase-color;
-            text-align: center;
-        }
-    }
+    //     span{
+    //         width: 2%;
+    //         color: $fontbase-color;
+    //         text-align: center;
+    //     }
+    // }
 
-    .form-select{
-        width: 47%;
-        height: 50px;
-        min-width: unset !important;
-        margin: unset;
-    }
+    // .form-select{
+    //     width: 47%;
+    //     height: 50px;
+    //     min-width: unset !important;
+    //     margin: unset;
+    // }
 }
 
 //Logs Table
@@ -3014,8 +3015,13 @@ table{
         width: 100%;
         height: fit-content;
         display: flex;
-        flex-flow: column;
+        flex-flow: row wrap;
         align-items: center;
+        gap: max(1vw, 1vh);
+        margin-bottom: 7vh;
+
+        // height: 20px;
+        // overflow: hidden;
 
         // border-bottom: 2px solid rgba(185, 183, 183, 0.614);
         // margin-bottom: 2%;
@@ -4390,7 +4396,8 @@ table{
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
-    margin-top: $margin-top-span;
+    margin-top: 4vh;
+    margin-bottom: 4vh;
 }
 
 .msg{
@@ -4420,8 +4427,7 @@ table{
         // grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
         display: flex;
         flex-flow: row wrap;
-        gap: max(10px, 2vw);
-        justify-content: center;
+        // justify-content: center;
         align-items: center;
         
         .date-picker{
@@ -4522,4 +4528,60 @@ table{
     font-size: 0.9rem;
     padding: unset;
     margin: unset;
+}
+
+
+
+.date-picker-holder{
+    display: flex;
+
+    .date-filter-field{
+        padding: unset !important;
+        margin: unset !important;
+        padding:5px !important;
+        border-radius: 5px;
+        width: 70px;
+        border: unset !important;
+        border-bottom: 1px solid black;
+    }
+
+    .form-select{
+        color: gray;
+        border: unset !important;
+        border-bottom: 1px solid black !important;
+        width: fit-content;
+        width: max(40px, 8vw);
+    }
+}
+.filter-holder{
+    display: flex;
+    flex-flow: column;
+
+    label{
+        font-size: 0.7rem;
+        color: gray;
+        width: 100%;
+        word-wrap: break-word;
+    }
+
+    input[type="date"], input[type="text"], select{
+        border: unset !important;
+        border: 1px solid rgb(195, 193, 193) !important;
+        padding: 5px !important;
+        border-radius: 5px !important;
+    }
+
+
+    select{
+        // padding-right: 30px; /* Adjust as needed */
+        margin-right: 30px;
+    }
+}
+
+.input-error{
+    max-width: 160px;
+    color: red;
+    font-size: 0.7rem;
+    height: 5vh;
+    word-wrap: break-word;
 }

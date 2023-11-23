@@ -182,25 +182,25 @@ let schedule = `
             <div class="schedule__input-container">
                 <label for=""><span class="asterisk">* </span>Department</label>
                 <select class="form-select" aria-label="Default select example"  id="dept"">
-                        <option value="" selected hidden disabled>Select a Department</option>
-                        <option value="1">ENT</option>
-                        <option value="2">Hematology</option>
-                        <option value="3">Internal Medicine</option>
-                        <option value="4">Internal Medicine Clearance</option>
-                        <option value="5">Nephrology</option>
-                        <option value="6">Neurology</option>
-                        <option value="7">OB GYNE New</option>
-                        <option value="8">OB GYNE Old</option>
-                        <option value="9">OB GYNE ROS</option>
-                        <option value="10">Oncology</option>
-                        <option value="11">Pediatric Cardiology</option>
-                        <option value="12">Pediatric Clearance</option>
-                        <option value="13">Pediatric General</option>
-                        <option value="14">Psychiatry New</option>
-                        <option value="15">Psychiatry Old</option>
-                        <option value="16">Surgery</option>
-                        <option value="17">Surgery ROS</option>
-                    </select>
+                    <option value="" selected hidden disabled>Select a Department</option>
+                    <option value="1">ENT</option>
+                    <option value="2">Hematology</option>
+                    <option value="3">Internal Medicine</option>
+                    <option value="4">Internal Medicine Clearance</option>
+                    <option value="5">Nephrology</option>
+                    <option value="6">Neurology</option>
+                    <option value="7">OB GYNE New</option>
+                    <option value="8">OB GYNE Old</option>
+                    <option value="9">OB GYNE ROS</option>
+                    <option value="10">Oncology</option>
+                    <option value="11">Pediatric Cardiology</option>
+                    <option value="12">Pediatric Clearance</option>
+                    <option value="13">Pediatric General</option>
+                    <option value="14">Psychiatry New</option>
+                    <option value="15">Psychiatry Old</option>
+                    <option value="16">Surgery</option>
+                    <option value="17">Surgery ROS</option>
+                </select>
             </div>
             <div class="schedule__input-container">
                 <label for=""><span class="asterisk">* </span>Full Name</label>
@@ -406,62 +406,7 @@ let schedule = `
 // Pag inedit yung status tas pinili yung cancel sa modal kailangan hingin din natin reason then automatic siya malalagay rin
 // Pag active lang kailangan pede iedit yung other status bawal na
 let viewSchedule = `
-<div class="page-header">Home / View Appointments</div>
-<section class="view-schedule">
-    <div class="view-schedule__content" data-aos="fade-right" data-aos-duration="500">
-        <div class="view-schedule__header">
-            <div class="view-schedule__nav">
-                <div class="btn--quick-view view-schedule__selected" onclick="viewScheduleNav(this.id)" id="quickViewBtn">Quick View</div>
-                <div class="btn--filter" onclick="viewScheduleNav(this.id)" id="filterBtn">Search & Filter</div>
-            </div>
-            <div class="view-schedule__field">
-                
-            </div>
-        </div>
-        
-        <div class="view-schedule__table">
-            <div class="table-container">
-                <table class="schedule-table" id="schedule-table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Full Name</th>
-                            <th>Reference #</th>
-                            <th>Department</th>
-                            <th>Consultation</th>
-                            <th>Appointment Date</th>
-                            <th>Slot</th>
-                            <th>Status</th>
-                            <th>Scheduled Through</th>
-                            <th>Sex</th>
-                            <th>Birthdate</th>
-                            <th>Phone #</th>
-                            <th>Address</th>
-                            <th>Patient Type</th>
-                            <th>Case #</th>
-                            <th>Submitted On</th>
-                            <th>Reason Cancelled</th>
-                            <th>&nbsp;</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td colspan="15" class="empty">No Department Selected</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="cmds-container">
-            <button type="button" class="export" data-table="schedule-table">Export Table</button>
-            <div class="table-nav">
-                <button id="prevButton"><< Previous</button>
-                <span id="pageNum">1</span>
-                <button id="nextButton">Next >></button>
-            </div>
-        </div>
-    </div>
-</section>`;
+`;
 
 let quickView = `
 <div class="quick-view-container">
@@ -673,64 +618,58 @@ let adminLogs = `
     <section class="admin-logs">
             <div class="admin-logs-wrapper" data-aos="fade-right" data-aos-duration="500">
                 <div class="admin-logs__body">
-                    <div class="search-container">
-                        <input type="text" placeholder="Search" id="adminSearch" onblur="inputLimiterBlur(this.id, 60)" oninput="inputLimiter(this.id, 60); resetAdminTable(this.value, 'adminlog');">
-                        <button onclick="insertAdminLogs(false)"><span class="material-icons-outlined ico-search">search</span></button>
-                    </div>
-                    <h2>Filter</h2>
                     <div class="admin-logs__filters">
-                        <div class="date-picker">
-                            <input type="text" name="month" id="logMonth" placeholder="MM" oninput="inputLimiterNum(this.id, 2)" onblur="inputLimiterBlur(this.id, 2)">
-                            <span>/</span>
-                            <input type="text" name="day" id="logDay" placeholder="DD" oninput="inputLimiterNum(this.id, 2)" onblur="inputLimiterBlur(this.id, 2)">
-                            <span>/</span>
-                            <input type="text" name="year" id="logYear" placeholder="YYYY" oninput="inputLimiterNum(this.id, 4)" onblur="inputLimiterBlur(this.id, 4)">
+                        <div class="filter-holder">
+                            <label for="from">From</label>
+                            <input type="date" name="" id="from" onchange='insertAdminLogs()'>
                         </div>
-                        <select id="logActivity" class="form-select" aria-label="Default select example">
-                            <option hidden selected disabled value="">Activity</option>
-                            <option value="">None</option>
-                            <option value="Approved">Approved a follow up request</option>
-                            <option value="Blocked a new date">Blocked a date</option>
-                            <option value="Changed a slot in ">Changed a slot in a department</option>
-                            <option value="Changed admin type of">Changed an admin's type</option>
-                            <option value="appointment status">Changed an appointment's status</option>
-                            <option value="Changed Desktop Video Tutorial">Changed desktop video tutorial</option>
-                            <option value="Changed Mobile Video Tutorial">Changed mobile video tutorial</option>
-                            <option value="Changed Password">Changed password</option>
-                            <option value="Changed Phone">Changed phone</option>
-                            <option value="Changed the website status">Changed website status</option>
-                            <option value="Created a new admin">Created a new admin</option>
-                            <option value="Inserted a new slot in ">Inserted a new slot in a department</option>
-                            <option value="Posted an announcement">Posted an announcement</option>
-                            <option value="Rejected">Rejected a follow up request</option>
-                            <option value="Removed a slot in ">Removed a slot in a department</option>
-                            <option value="Removed an admin">Removed an admin</option>
-                            <option value="Removed an announcement">Removed an announcement</option>
-                            <option value="Scheduled an appointment">Scheduled an appointment</option>
-                            <option value="Removed a blocked date">Unblocked a date</option>
-                            <option value="Viewed appointments">Viewed appointments</option> 
-                        </select>
-                        <select id="logAdminType" class="form-select" aria-label="Default select example">
-                            <option hidden selected disabled value="">Admin Type</option>
-                            <option value="">None</option>
-                            <option value="admin i">Admin I</option>
-                            <option value="admin ii">Admin II</option>
-                            <option value="super admin">Admin Super</option>
-                        </select>
-                        <select id="logSortBy" class="form-select" aria-label="Default select example">
-                            <option hidden disabled value="">Sort By</option>
-                            <option value="0">Username (A-Z)</option>
-                            <option value="1">Username (Z-A)</option>
-                            <option value="2">Activity</option>
-                            <option value="3">Admin Type</option>
-                            <option value="4" selected >Latest - Oldest</option>
-                            <option value="5">Oldest - Latest</option>
-                        </select>
+                        <div class="filter-holder">
+                            <label for="">To</label>
+                            <input type="date" name="" id="to" onchange='insertAdminLogs()'>
+                        </div>
+                        <div class="filter-holder">
+                            <label for="activity">Activity</label>
+                            <select class="form-select" aria-label="Default select example" id="activity" onchange='insertAdminLogs()'>
+                                <option value="all" selected>All</option>
+                                <option value="Approved">Approved a follow up request</option>
+                                <option value="Blocked a new date">Blocked a date</option>
+                                <option value="Changed a slot in ">Changed a slot in a department</option>
+                                <option value="Changed admin type of">Changed an admin's type</option>
+                                <option value="appointment status">Changed an appointment's status</option>
+                                <option value="Changed Desktop Video Tutorial">Changed desktop video tutorial</option>
+                                <option value="Changed Mobile Video Tutorial">Changed mobile video tutorial</option>
+                                <option value="Changed Password">Changed password</option>
+                                <option value="Changed Phone">Changed phone</option>
+                                <option value="Changed the website status">Changed website status</option>
+                                <option value="Created a new admin">Created a new admin</option>
+                                <option value="Inserted a new slot in ">Inserted a new slot in a department</option>
+                                <option value="Posted an announcement">Posted an announcement</option>
+                                <option value="Rejected">Rejected a follow up request</option>
+                                <option value="Removed a slot in ">Removed a slot in a department</option>
+                                <option value="Removed an admin">Removed an admin</option>
+                                <option value="Removed an announcement">Removed an announcement</option>
+                                <option value="Scheduled an appointment">Scheduled an appointment</option>
+                                <option value="Removed a blocked date">Unblocked a date</option>
+                                <option value="Viewed appointments">Viewed appointments</option> 
+                            </select>
+                        </div>
+                        <div class="filter-holder">
+                            <label for="adminType">Admin Type</label>
+                            <select class="form-select" aria-label="Default select example" id="adminType" onchange='insertAdminLogs()'>
+                                <option value="all">All</option>
+                                <option value="admin i">Admin I</option>
+                                <option value="admin ii ">Admin II</option>
+                                <option value="super admin">Super Admin</option>
+                            </select>
+                        </div>
+                        <div class="filter-holder">
+                            <label for="username">Username</label>
+                            <input type="text" oninput='insertAdminLogs()' id="username">
+                        </div>
                     </div>
                     <div class="error-container">
                         <span class="msg"></span>
                     </div>
-                    <button class="apply-logfilter" onclick="applyLogFilter()">Apply</button>
                 </div>
                 
                 <div class="table-container">
@@ -740,8 +679,7 @@ let adminLogs = `
                                 <th>Username</th>
                                 <th>Activity</th>
                                 <th>Admin Type</th>
-                                <th>Date</th>
-                                <th >Time</th>
+                                <th>Date & Time</th>
                             </tr>
                         </thead>
                         <tbody>

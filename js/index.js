@@ -1619,7 +1619,7 @@ function viewScheduleNav(id){
         document.querySelector('.view-schedule__table tbody').innerHTML = 
         `
         <tr>
-            <td colspan="16" class="empty">Empty</td>
+            <td colspan="17" class="empty">Empty</td>
         </tr>
         `;
         setupTablePagination('schedule-table', 'prevButton', 'nextButton', 10);
@@ -1633,7 +1633,7 @@ function viewScheduleNav(id){
         document.querySelector('.view-schedule__table tbody').innerHTML = 
         `
         <tr>
-            <td colspan="16" class="empty">No Department Selected</td>
+            <td colspan="17" class="empty">No Department Selected</td>
         </tr>
         `;
         setupTablePagination('schedule-table', 'prevButton', 'nextButton', 10);
@@ -2367,7 +2367,7 @@ function changeAccess(){
         generateSchedule();
     }
     else if(signedInAdmin.adminType == 'super admin'){
-        generateDashboard();
+        // generateDashboard();
         // commented for testing
     }
 }
@@ -3086,40 +3086,101 @@ function removeAdmin(username){
 }
 
 function insertAdminLogs(isInitial = true){
+
+    const from =  document.querySelector('#from').value;
+    const to =  document.querySelector('#to').value;
+    const activity =  document.querySelector('#activity').value;
+    const adminType =  document.querySelector('#adminType').value;
+    const username =  document.querySelector('#username').value;
+
+    let fromDate = new Date(from);
+    let toDate = new Date(to);
+
+    if(fromDate>toDate){
+        showError('Invalid date range');
+        return;
+    }
+    if(username.length != 0 && username.length > 90){
+        showError("Username cannot exceed 90 characters");
+        return;
+    }
+
+    showError();
+    // if(from != "" || to != ""){
+    //     if(from == "" || to == ""){
+    //         showError("Invalid date range")
+    //         return;
+    //     }
+    // }
+
+    const obj = {
+        'from': from,
+        'to': to,
+        'activity': activity,
+        'adminType': adminType,
+        'username': username,
+    }
+
+    const toSend = JSON.stringify(obj);
+
+
     const table = document.querySelector(".logs-table tbody");
     
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function(){
         if(xhr.readyState == 4){
             if(xhr.status == 200){
-
+                console.log(this.responseText)
                 try {
                     let arrayOfObjects = JSON.parse(xhr.responseText);
                     table.innerHTML = "";
 
                     arrayOfObjects.forEach((item)=>{
-                        let username = item.username;
-                        let activity = item.activity;
-                        let adminType = item.adminType
-                        let logDate = item.logDate;
-                        let logTime = item.logTime;
-                        
-                        if(adminType == 'admin i') adminType = "Admin I";
-                        else if(adminType == 'admin ii') adminType = "Admin II";
-                        else if(adminType == 'super admin') adminType = "Super Admin";
+                            let username = item.username;
+                            let activity = item.activity;
+                            let adminType = item.adminType
+                            let logDate = item.logDate;
+                            let logTime = item.logTime;
+                            
+                            if(adminType == 'admin i') adminType = "Admin I";
+                            else if(adminType == 'admin ii') adminType = "Admin II";
+                            else if(adminType == 'super admin') adminType = "Super Admin";
+    
+                            // const template = 
+                            // `
+                            // <tr class="table-row" title="Click to highlight/see more.">
+                            //     <td class="always-visible">${username}</td>
+                            //     <td class="always-visible">${activity}</td>
+                            //     <td>${adminType}</td>
+                            //     <td>${logDate} - ${logTime}</td>
+                            // </tr>
+                            // `;
 
-                        const template = 
-                        `
-                        <tr class="table-row" title="Click to highlight/see more.">
-                            <td class="always-visible">${username}</td>
-                            <td class="always-visible">${activity}</td>
-                            <td>${adminType}</td>
-                            <td>${logDate}</td>
-                            <td>${logTime}</td>
-                        </tr>
-                        `;
+                            // Create a new table row
+                            const tableRow = document.createElement('tr');
+                            tableRow.classList.add('table-row');
+                            tableRow.setAttribute('title', 'Click to highlight/see more.');
 
-                        table.innerHTML += template;
+                            // Create and append table cells
+                            const cell1 = document.createElement('td');
+                            cell1.classList.add('always-visible');
+                            cell1.textContent = username;
+                            tableRow.appendChild(cell1);
+
+                            const cell2 = document.createElement('td');
+                            cell2.classList.add('always-visible');
+                            cell2.textContent = activity;
+                            tableRow.appendChild(cell2);
+
+                            const cell3 = document.createElement('td');
+                            cell3.textContent = adminType;
+                            tableRow.appendChild(cell3);
+
+                            const cell4 = document.createElement('td');
+                            cell4.textContent = `${logDate} - ${logTime}`;
+                            tableRow.appendChild(cell4);
+    
+                            table.appendChild(tableRow);
                     })
                     showTableCell();              
                 } catch (error) {
@@ -3153,120 +3214,110 @@ function insertAdminLogs(isInitial = true){
         setupTablePagination('logs-table', 'prevButton', 'nextButton', 10);  
     }
 
-    if(isInitial){
-        xhr.open("POST", "./php/getAdminLogs.php", true);
-        xhr.send();
-    }
-    else{
-        let input = document.querySelector("#adminSearch").value;
-
-        if(input == "") return;
-
-        xhr.open("POST", "./php/searchAdminLogs.php", true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.send("input="+input);
-    }
-}
-
-function applyLogFilter(){
-    const month = document.querySelector('#logMonth').value;
-    const day = document.querySelector('#logDay').value;
-    const year = document.querySelector('#logYear').value;
-    const activity = document.querySelector('#logActivity').value;
-    const adminType = document.querySelector('#logAdminType').value;
-    const sortBy = document.querySelector('#logSortBy').value;
-    let fullDate = `${year}-${month}-${day}`;
-    const table = document.querySelector(".logs-table tbody");
-
-    if(month != "" || day != "" || year != ""){
-        if(month == "" || day == "" || year == ""){
-            showError("Date is incomplete");
-            return;
-        }
-        else if(!isDateValid(fullDate)){
-            showError("Invalid Date")
-            return;
-        }
-        else if(year.length != 4){
-            showError("Invalid Date")
-            return;
-        }
-    }
-    else{
-        fullDate = "";
-    }
-
-    showError("");
-
-    let obj = {
-        date: fullDate,
-        activity: activity,
-        adminType: adminType,
-        sortBy: sortBy
-    }
-
-    const toSend = JSON.stringify(obj);
-
-    const xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function(){
-        if(this.readyState == 4){
-            if(this.status == 200){
-               try {
-                    
-                    let arrayOfObjects = JSON.parse(xhr.responseText);
-                    table.innerHTML = "";
-
-                    arrayOfObjects.forEach((item)=>{
-                        let username = item.username;
-                        let activity = item.activity;
-                        let adminType = item.adminType
-                        let logDate = item.logDate;
-                        let logTime = item.logTime;
-                        
-                        if(adminType == 'admin i') adminType = "Admin I";
-                        else if(adminType == 'admin ii') adminType = "Admin II";
-                        else if(adminType == 'super admin') adminType = "Super Admin";
-
-                        const template = 
-                        `
-                        <tr class="table-row" title="Click to highlight/see more.">
-                            <td>${username}</td>
-                            <td>${activity}</td>
-                            <td>${adminType}</td>
-                            <td>${logDate}</td>
-                            <td>${logTime}</td>
-                        </tr>
-                        `;
-
-                        table.innerHTML += template;
-                    })
-
-                    showTableCell();
-                } catch (error) {
-                    table.innerHTML = 
-                    `
-                    <tr>
-                        <td colspan="6" class="empty">No result</td>
-                    </tr>
-                    `;
-                }
-            }
-        }
-        else{
-            table.innerHTML = 
-            `
-            <tr>
-                <td colspan="5" class="empty">Loading Table...</td>
-            </tr>
-            `;
-        }
-        setupTablePagination('logs-table', 'prevButton', 'nextButton', 10);     
-    }
-
-    xhr.open("POST", "./php/filterAdminLog.php", true);
+    xhr.open("POST", "./php/getAdminLogs.php", true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(toSend);
 }
+
+// function applyLogFilter(){
+//     const month = document.querySelector('#logMonth').value;
+//     const day = document.querySelector('#logDay').value;
+//     const year = document.querySelector('#logYear').value;
+//     const activity = document.querySelector('#logActivity').value;
+//     const adminType = document.querySelector('#logAdminType').value;
+//     const sortBy = document.querySelector('#logSortBy').value;
+//     let fullDate = `${year}-${month}-${day}`;
+//     const table = document.querySelector(".logs-table tbody");
+
+//     if(month != "" || day != "" || year != ""){
+//         if(month == "" || day == "" || year == ""){
+//             showError("Date is incomplete");
+//             return;
+//         }
+//         else if(!isDateValid(fullDate)){
+//             showError("Invalid Date")
+//             return;
+//         }
+//         else if(year.length != 4){
+//             showError("Invalid Date")
+//             return;
+//         }
+//     }
+//     else{
+//         fullDate = "";
+//     }
+
+//     showError("");
+
+//     let obj = {
+//         date: fullDate,
+//         activity: activity,
+//         adminType: adminType,
+//         sortBy: sortBy
+//     }
+
+//     const toSend = JSON.stringify(obj);
+
+//     const xhr = new XMLHttpRequest();
+//     xhr.onreadystatechange = function(){
+//         if(this.readyState == 4){
+//             if(this.status == 200){
+//                try {
+                    
+//                     let arrayOfObjects = JSON.parse(xhr.responseText);
+//                     table.innerHTML = "";
+
+//                     arrayOfObjects.forEach((item)=>{
+//                         let username = item.username;
+//                         let activity = item.activity;
+//                         let adminType = item.adminType
+//                         let logDate = item.logDate;
+//                         let logTime = item.logTime;
+                        
+//                         if(adminType == 'admin i') adminType = "Admin I";
+//                         else if(adminType == 'admin ii') adminType = "Admin II";
+//                         else if(adminType == 'super admin') adminType = "Super Admin";
+
+//                         const template = 
+//                         `
+//                         <tr class="table-row" title="Click to highlight/see more.">
+//                             <td>${username}</td>
+//                             <td>${activity}</td>
+//                             <td>${adminType}</td>
+//                             <td>${logDate}</td>
+//                             <td>${logTime}</td>
+//                         </tr>
+//                         `;
+
+//                         table.innerHTML += template;
+//                     })
+
+//                     showTableCell();
+//                 } catch (error) {
+//                     table.innerHTML = 
+//                     `
+//                     <tr>
+//                         <td colspan="6" class="empty">No result</td>
+//                     </tr>
+//                     `;
+//                 }
+//             }
+//         }
+//         else{
+//             table.innerHTML = 
+//             `
+//             <tr>
+//                 <td colspan="5" class="empty">Loading Table...</td>
+//             </tr>
+//             `;
+//         }
+//         setupTablePagination('logs-table', 'prevButton', 'nextButton', 10);     
+//     }
+
+//     xhr.open("POST", "./php/filterAdminLog.php", true);
+//     xhr.setRequestHeader("Content-Type", "application/json");
+//     xhr.send(toSend);
+// }
 
 function insertWebsiteStatus(){
     const xhr = new XMLHttpRequest();
@@ -4832,7 +4883,7 @@ function filterAppointment(){
                     table.innerHTML = 
                     `
                     <tr>
-                        <td colspan="16" class="empty">No Result</td>
+                        <td colspan="17" class="empty">No Result</td>
                     </tr>
                     `;
                 }
@@ -4842,7 +4893,7 @@ function filterAppointment(){
             table.innerHTML = 
             `
             <tr>
-                <td colspan="15" class="empty">Loading Table...</td>
+                <td colspan="17" class="empty">Loading Table...</td>
             </tr>
             `;
         }

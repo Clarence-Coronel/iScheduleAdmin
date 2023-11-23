@@ -787,11 +787,6 @@ input:-webkit-autofill:focus {
   font-size: 1.5rem;
   font-weight: 600;
 }
-.admin-logs span, .admin-list span {
-  margin: max(5px, 1vw) 0;
-  color: gray;
-  font-size: 0.8rem;
-}
 .admin-logs #pageNum, .admin-list #pageNum {
   margin: unset;
 }
@@ -869,36 +864,8 @@ input:-webkit-autofill:focus {
   height: fit-content;
   display: flex;
   flex-flow: row wrap;
-  gap: max(10px, 2vw);
-  justify-content: center;
+  gap: max(1vw, 1vh);
   align-items: center;
-}
-.admin-logs__filters .date-picker {
-  display: flex;
-  flex-flow: row nowrap;
-  width: 47%;
-  height: 50px;
-  align-items: flex-end;
-  justify-content: center;
-}
-.admin-logs__filters .date-picker input {
-  height: 100%;
-  width: 32%;
-  text-align: center;
-  border-radius: unset;
-  border: unset;
-  border-bottom: 1px solid rgb(80, 78, 78);
-}
-.admin-logs__filters .date-picker span {
-  width: 2%;
-  color: rgb(80, 78, 78);
-  text-align: center;
-}
-.admin-logs__filters .form-select {
-  width: 47%;
-  height: 50px;
-  min-width: unset !important;
-  margin: unset;
 }
 
 .table-container {
@@ -2481,8 +2448,10 @@ table {
   height: -moz-fit-content;
   height: fit-content;
   display: flex;
-  flex-flow: column;
+  flex-flow: row wrap;
   align-items: center;
+  gap: max(1vw, 1vh);
+  margin-bottom: 7vh;
 }
 .view-schedule__content .view-schedule__table {
   width: 100%;
@@ -3544,7 +3513,8 @@ table {
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
-  margin-top: max(5px, 1vw);
+  margin-top: 4vh;
+  margin-bottom: 4vh;
 }
 
 .msg {
@@ -3574,8 +3544,6 @@ table {
     height: fit-content;
     display: flex;
     flex-flow: row wrap;
-    gap: max(10px, 2vw);
-    justify-content: center;
     align-items: center;
   }
   .admin-logs__filters .date-picker {
@@ -3664,4 +3632,53 @@ table {
   font-size: 0.9rem;
   padding: unset;
   margin: unset;
+}
+
+.date-picker-holder {
+  display: flex;
+}
+.date-picker-holder .date-filter-field {
+  padding: unset !important;
+  margin: unset !important;
+  padding: 5px !important;
+  border-radius: 5px;
+  width: 70px;
+  border: unset !important;
+  border-bottom: 1px solid black;
+}
+.date-picker-holder .form-select {
+  color: gray;
+  border: unset !important;
+  border-bottom: 1px solid black !important;
+  width: -moz-fit-content;
+  width: fit-content;
+  width: max(40px, 8vw);
+}
+
+.filter-holder {
+  display: flex;
+  flex-flow: column;
+}
+.filter-holder label {
+  font-size: 0.7rem;
+  color: gray;
+  width: 100%;
+  word-wrap: break-word;
+}
+.filter-holder input[type=date], .filter-holder input[type=text], .filter-holder select {
+  border: unset !important;
+  border: 1px solid rgb(195, 193, 193) !important;
+  padding: 5px !important;
+  border-radius: 5px !important;
+}
+.filter-holder select {
+  margin-right: 30px;
+}
+
+.input-error {
+  max-width: 160px;
+  color: red;
+  font-size: 0.7rem;
+  height: 5vh;
+  word-wrap: break-word;
 }/*# sourceMappingURL=main.css.map */
