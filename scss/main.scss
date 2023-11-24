@@ -1403,6 +1403,8 @@ td:hover{
         box-shadow: $box-shadow;
         overflow: hidden;
 
+        padding: $box-padding;
+
     }
 }
 
@@ -1411,7 +1413,7 @@ td:hover{
     display: flex;
     flex-flow: column;
     align-items: center;
-    padding: max(10px, 2vw);
+    padding: max(2vw, 2vh);
     // box-shadow: $box-shadow;
     color: rgb(10, 204, 10);
     border-bottom: 1px solid rgb(208, 206, 206);
@@ -1458,7 +1460,7 @@ td:hover{
     width: 100%;
     display: flex;
     flex-flow: column;
-    padding: $box-padding;
+    padding: max(2vw, 2vh);
     align-items: center;
     gap: max(15px, 5vh);
     border-radius: 20px;
@@ -3635,8 +3637,7 @@ table{
         flex-flow: row wrap;
         justify-content: flex-start;
         align-items: flex-end;
-        gap: 1vw;
-        margin-bottom: 3vh;
+        gap: max(1vw, 1vh);
 
         .form-select{
             width: fit-content !important;
@@ -3669,7 +3670,7 @@ table{
         flex-flow: row nowrap;
         align-items: center;
         justify-content: center;
-        gap: 0.7vw;
+        gap: max(0.9vw, 10px);
 
         button{
             background-color: transparent;
@@ -3717,6 +3718,67 @@ table{
         cursor: not-allowed;
     }
 
+    .edit-inputs-container{
+
+        border-top: 1px solid $input-border-clr;
+        padding-top: 2vh;
+
+        display: flex;
+        flex-flow: row wrap;
+        gap: 1vw;
+        margin-top: 4vh;
+        align-items: flex-end;
+
+        input[type="date"]{
+            padding: 5px !important;
+            border: 1px solid $input-border-clr !important;
+            border-radius: 5px !important;
+        }
+
+        button{
+            font-size: 1rem;
+            padding: 2px 5px;
+            color: white;
+            border-radius: 5px;
+            height: fit-content;
+            border: unset;
+        }
+    }
+
+    .state-container{
+        width: 100%;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-end;
+        // margin-top: 5vh;
+        gap: max(0.9vw, 10px);
+
+        button:nth-child(1){
+            border: unset;
+            background-color: $btn-color;
+            color: white;
+            border-radius: 5px;
+            padding: 5px 15px;
+        }
+
+        button:nth-child(2){
+            border: unset;
+            background-color: transparent;
+            color: $btn-color;
+            font-size: 0.8rem;
+            border-radius: 5px;
+            padding: 5px 0px;
+        }
+
+        button:nth-child(1):hover{
+            background-color: lighten($color: $btn-color, $amount: 5);
+        }
+
+        button:nth-child(2):hover{
+            color: lighten($color: $btn-color, $amount: 5);
+        }
+    }
+
     .week-container{
         width: 100%;
         height: 92%;
@@ -3724,6 +3786,7 @@ table{
         grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
         gap: 1%;
         padding-top: max(1%, 10px);
+        margin-top: 3vh;
 
         .day{
             // border: 1px solid black;
@@ -4700,4 +4763,16 @@ table{
     font-size: 0.7rem;
     height: 5vh;
     word-wrap: break-word;
+}
+
+.general-disabled:hover{
+    cursor: not-allowed;
+}
+
+.select-disabled{
+    background-color: #f7f7f7 !important;
+}
+
+.select-disabled:hover{
+    cursor: not-allowed !important;
 }

@@ -736,7 +736,7 @@ let scheduling = `
                 <div class="scheduling-header">
                     <div class="scheduling-input-container">
                         <label for="deptSelect">Department</label>
-                        <select class="form-select" aria-label="Default select example" onchange="generateDeptSched(this.value)" id="deptSelect">
+                        <select class="form-select" aria-label="Default select example" onchange="generateDeptSched(this.value); enableAdd();" id="deptSelect">
                             <option value="" selected hidden disabled>Select a Department</option>
                             <option value="1">ENT</option>
                             <option value="2">Hematology</option>
@@ -758,8 +758,8 @@ let scheduling = `
                         </select>
                     </div>
                     <div class="scheduling-input-container">
-                        <label for="deptSelect">Schedule</label>
-                        <select class="form-select" aria-label="Default select example" onchange="generateDeptSched(this.value)" id="deptSelect">
+                        <label for="scheduleSet">Schedule</label>
+                        <select class="form-select" aria-label="Default select example" onchange="generateDeptSched(this.value)" id="scheduleSet">
                             <option value="" selected hidden disabled>-</option>
                             <option value="">November 22, 2023 - February 26, 2024</option>
                             <option value="">November 22, 2023 - February 26, 2024</option>
@@ -769,22 +769,53 @@ let scheduling = `
                         </select>
                     </div>
                     <div class="scheduling-btns-container">
-                        <button title="Add new schedule.">
-                            <span class="material-icons-outlined scheduling-btns-ico scheduling-btns-add">
+                        <button title="Add schedule." id="scheduleAdd" onclick="addMode()" disabled="disabled">
+                            <span class="material-icons-outlined scheduling-btns-ico scheduling-btns-add scheduling-btn-disabled">
                                 add
                             </span>
                         </button>
-                        <button title="Edit schedule.">
+                        <button title="Edit schedule." id="scheduleEdit" onclick="editMode()" disabled="disabled">
                             <span class="material-icons-outlined scheduling-btns-ico scheduling-btns-edit scheduling-btn-disabled">
                                 edit
                             </span>
                         </button>
-                        <button title="Delete schedule.">
+                        <button title="Delete schedule." id="scheduleDlt" disabled="disabled">
                             <span class="material-icons-outlined scheduling-btns-ico scheduling-btns-dlt scheduling-btn-disabled">
                                 delete
                             </span>
                         </button>
+
+                        <div class="state-container" style="display:none">
+                            <button>Save</button>
+                            <button onclick="cancel()">Cancel</button>
+                        </div>
                     </div>
+                </div>
+
+                <div class="edit-inputs-container" id="addContainer" style="display:none">
+                    <div class="scheduling-input-container">
+                        <label for="addStart">Start Date</label>
+                        <input type="date" id="addStart">
+                    </div>
+                    <div class="scheduling-input-container">
+                        <label for="addEnd">End Date</label>
+                        <input type="date" id="addEnd">
+                    </div>
+                </div>
+
+                <div class="edit-inputs-container" id="editContainer" style="display:none">
+                    <div class="scheduling-input-container">
+                        <label for="editStart">Start Date</label>
+                        <input type="date" value="2023-01-01" id="editStart">
+                    </div>
+                    <div class="scheduling-input-container">
+                        <label for="editEnd">End Date</label>
+                        <input type="date" value="2023-12-31" id="editEnd">
+                    </div>
+                </div>
+
+                <div class="error-container">
+                    <span class="msg"></span>
                 </div>
                 <div class="week-container">
                     <div id="monday" class="day">

@@ -5186,3 +5186,96 @@ function checkSelectedDepartment(){
 
     selectDeptStat(header.dataset.deptid, document.querySelector('#dashboardDays').value);
 }
+
+function addMode(){
+    let addContainer = document.querySelector('#addContainer');
+    let scheduleSet = document.querySelector('#scheduleSet');
+
+    document.querySelector('#addStart').value = "";
+    document.querySelector('#addEnd').value = "";
+
+    let tempObj = new Date();
+    document.querySelector('#addStart').setAttribute("min", `${tempObj.getFullYear()}-${tempObj.getMonth()+1}-${tempObj.getDate()}`);
+    document.querySelector('#addEnd').setAttribute("min", `${tempObj.getFullYear()}-${tempObj.getMonth()+1}-${tempObj.getDate()}`);
+
+    scheduleSet.selectedIndex = '0';
+    scheduleSet.setAttribute('disabled', 'disabled');
+    scheduleSet.classList.add('general-disabled');
+
+    addContainer.style.display = 'flex';
+
+    disableScheduleBtn(document.querySelector('#scheduleAdd'));
+    disableScheduleBtn(document.querySelector('#scheduleEdit'));
+    disableScheduleBtn(document.querySelector('#scheduleDlt'));
+
+    disableSelect(document.querySelector("#deptSelect"));
+    disableSelect(document.querySelector("#scheduleSet"));
+
+    document.querySelector('.state-container').style.display="flex";
+    
+    // Add function that clears schedules inside week  
+    
+}
+
+function editMode(){
+    
+}
+
+function enableAdd(){
+    let add = document.querySelector('#scheduleAdd');
+    let addStart = document.querySelector('#addStart');
+    let addEnd = document.querySelector('#addEnd');
+
+    addStart.value = "";
+    addEnd.value = "";
+
+    removeDisabledSchedBtn(add);
+}
+
+function disableSelect(el){
+
+    if(!el.hasAttribute("disabled")){
+        el.setAttribute('disabled', 'disabled');
+    }
+
+    if(!el.classList.contains("select-disabled")){
+        el.classList.add('select-disabled');
+    }
+}
+
+function removeDisabledSelect(el){
+    el.removeAttribute('disabled', 'disabled');
+    el.classList.remove('select-disabled');
+}
+
+function disableScheduleBtn(button){
+
+    if(!button.hasAttribute("disabled")){
+        button.setAttribute('disabled', 'disabled');
+    }
+    
+    if(!button.querySelector('span').classList.contains("scheduling-btn-disabled")){
+        button.querySelector('span').classList.add('scheduling-btn-disabled');
+    }
+}
+
+function removeDisabledSchedBtn(button){
+    button.removeAttribute('disabled');
+    button.querySelector('span').classList.remove('scheduling-btn-disabled');
+}
+
+function cancel(){
+    removeDisabledSelect(document.querySelector('#deptSelect'));
+    removeDisabledSelect(document.querySelector('#scheduleSet'));
+
+    removeDisabledSchedBtn(document.querySelector('#scheduleAdd'));
+
+    if(document.querySelector('#scheduleSet').value != ""){
+        removeDisabledSchedBtn(document.querySelector('#scheduleEdit'));
+        removeDisabledSchedBtn(document.querySelector('#scheduleDlt'));
+    }
+
+    document.querySelector('.state-container').style.display="none";
+    document.querySelector('#addContainer').style.display="none";
+    
+}

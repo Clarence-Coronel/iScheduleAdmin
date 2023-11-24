@@ -47,7 +47,7 @@ label:hover {
 }
 
 .form-select:disabled {
-  background-color: white !important;
+  background-color: #f4f4f4 !important;
 }
 
 .form-select:focus {

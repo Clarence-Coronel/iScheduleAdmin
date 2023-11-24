@@ -47,7 +47,7 @@ label:hover {
 }
 
 .form-select:disabled {
-  background-color: white !important;
+  background-color: #f4f4f4 !important;
 }
 
 .form-select:focus {
@@ -1153,6 +1153,7 @@ td:hover {
   align-items: center;
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
   overflow: hidden;
+  padding: max(18px, 3vw);
 }
 
 .status {
@@ -1160,7 +1161,7 @@ td:hover {
   display: flex;
   flex-flow: column;
   align-items: center;
-  padding: max(10px, 2vw);
+  padding: max(2vw, 2vh);
   color: rgb(10, 204, 10);
   border-bottom: 1px solid rgb(208, 206, 206);
   background-color: white;
@@ -1202,7 +1203,7 @@ td:hover {
   width: 100%;
   display: flex;
   flex-flow: column;
-  padding: max(18px, 3vw);
+  padding: max(2vw, 2vh);
   align-items: center;
   gap: max(15px, 5vh);
   border-radius: 20px;
@@ -2894,8 +2895,7 @@ table {
   flex-flow: row wrap;
   justify-content: flex-start;
   align-items: flex-end;
-  gap: 1vw;
-  margin-bottom: 3vh;
+  gap: max(1vw, 1vh);
 }
 .scheduling .scheduling-header .form-select {
   width: -moz-fit-content !important;
@@ -2923,7 +2923,7 @@ table {
   flex-flow: row nowrap;
   align-items: center;
   justify-content: center;
-  gap: 0.7vw;
+  gap: max(0.9vw, 10px);
 }
 .scheduling .scheduling-btns-container button {
   background-color: transparent;
@@ -2960,6 +2960,57 @@ table {
   background-color: #b9b5b5;
   cursor: not-allowed;
 }
+.scheduling .edit-inputs-container {
+  border-top: 1px solid rgb(220, 217, 217);
+  padding-top: 2vh;
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1vw;
+  margin-top: 4vh;
+  align-items: flex-end;
+}
+.scheduling .edit-inputs-container input[type=date] {
+  padding: 5px !important;
+  border: 1px solid rgb(220, 217, 217) !important;
+  border-radius: 5px !important;
+}
+.scheduling .edit-inputs-container button {
+  font-size: 1rem;
+  padding: 2px 5px;
+  color: white;
+  border-radius: 5px;
+  height: -moz-fit-content;
+  height: fit-content;
+  border: unset;
+}
+.scheduling .state-container {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  gap: max(0.9vw, 10px);
+}
+.scheduling .state-container button:nth-child(1) {
+  border: unset;
+  background-color: #0577fa;
+  color: white;
+  border-radius: 5px;
+  padding: 5px 15px;
+}
+.scheduling .state-container button:nth-child(2) {
+  border: unset;
+  background-color: transparent;
+  color: #0577fa;
+  font-size: 0.8rem;
+  border-radius: 5px;
+  padding: 5px 0px;
+}
+.scheduling .state-container button:nth-child(1):hover {
+  background-color: #1e85fb;
+}
+.scheduling .state-container button:nth-child(2):hover {
+  color: #1e85fb;
+}
 .scheduling .week-container {
   width: 100%;
   height: 92%;
@@ -2967,6 +3018,7 @@ table {
   grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
   gap: 1%;
   padding-top: max(1%, 10px);
+  margin-top: 3vh;
 }
 .scheduling .week-container .day {
   height: 100%;
@@ -3793,4 +3845,16 @@ table {
   font-size: 0.7rem;
   height: 5vh;
   word-wrap: break-word;
+}
+
+.general-disabled:hover {
+  cursor: not-allowed;
+}
+
+.select-disabled {
+  background-color: #f7f7f7 !important;
+}
+
+.select-disabled:hover {
+  cursor: not-allowed !important;
 }/*# sourceMappingURL=main.css.map */
