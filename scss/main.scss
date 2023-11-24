@@ -1274,7 +1274,7 @@ td:hover{
             text-align: center;
 
             border: 1px solid $input-border-clr;
-            padding: 10px;
+            padding: 5px;
             border-radius: 5px;
         }
 
@@ -1307,7 +1307,7 @@ td:hover{
 
         input[type="text"]{
             border: 1px solid $input-border-clr;
-            padding: 10px;
+            padding: 5px;
             border-radius: 5px;
             text-align: center;
             width: 100%;
@@ -1486,7 +1486,7 @@ td:hover{
         width:100%;
         resize: none;
         border-radius: 5px !important;
-        padding: 10px !important;
+        padding:  5px !important;
         border: 1px solid $input-border-clr !important;
     }
 
@@ -1498,7 +1498,7 @@ td:hover{
         width: 100%;
         min-width: 150px;
         border-radius: 5px !important;
-        padding: 10px !important;
+        padding:  5px !important;
         border: 1px solid $input-border-clr !important;
     }
     
@@ -1629,13 +1629,13 @@ td:hover{
         input{
             border-radius: 5px;
             border: 1px solid $input-border-clr;
-            padding: 10px
+            padding: 5px;
         }
 
         textarea{
             border-radius: 5px;
             resize: none;
-            padding: 10px;
+            padding: 5px;
             border: 1px solid $input-border-clr;
         }
 
@@ -1881,7 +1881,7 @@ td:hover{
             font-size: 1rem;
             border: 1px solid $input-border-clr !important;
             border-radius: 5px !important;
-            padding: 10px !important;
+            padding: 5px !important;
             
             // background-color: red;
         }
@@ -2400,7 +2400,7 @@ td:hover{
 
 
         border: 1px solid $input-border-clr !important;
-        padding: 10px !important;
+        padding:  5px !important;
         border-radius: 5px  !important;
     }
 
@@ -2428,7 +2428,7 @@ td:hover{
         width: 33.33%;
         text-align: center;
         border: 1px solid $input-border-clr !important;
-        padding: 10px !important;
+        padding:  5px !important;
         border-radius: 5px  !important;
     }
 
@@ -2447,7 +2447,7 @@ td:hover{
     input{
         width: 33.33%;
         border: 1px solid $input-border-clr !important;
-        padding: 10px !important;
+        padding:  5px !important;
         border-radius: 5px  !important;
     }
 }
@@ -2461,7 +2461,7 @@ td:hover{
     input{
         width: 33.33%;
         border: 1px solid $input-border-clr !important;
-        padding: 10px !important;
+        padding:  5px !important;
         border-radius: 5px  !important;
     }
 }
@@ -3629,8 +3629,92 @@ table{
         height: fit-content;        
     }
 
-    .scheduling__dept-picker{
+    .scheduling-header{
+        height: fit-content;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+        align-items: flex-end;
+        gap: 1vw;
+        margin-bottom: 3vh;
 
+        .form-select{
+            width: fit-content !important;
+
+            padding: 5px !important;
+            border: 1px solid $input-border-clr !important;
+            border-radius: 5px !important;
+
+            padding-right: 40px !important;
+        }
+    }
+
+    .scheduling-input-container{
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: flex-start;
+
+        label{
+            font-size: 0.7rem;
+            color: gray;
+            width: 100%;
+            word-wrap: break-word;
+        }
+    }
+
+    .scheduling-btns-container{
+        height: 100%;
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        justify-content: center;
+        gap: 0.7vw;
+
+        button{
+            background-color: transparent;
+            border: unset;
+        }
+    }
+
+    .scheduling-btns-ico{
+        font-size: 1.3rem;
+        padding: 5px;
+        color: white;
+        border-radius: 5px;
+    }
+
+    .scheduling-btns-add{
+        background-color: rgb(87, 192, 98);
+    }
+
+    .scheduling-btns-edit{
+        background-color: rgb(246, 177, 48);
+    }
+
+    .scheduling-btns-dlt{
+        background-color: rgb(230, 87, 87);
+    }
+
+    .scheduling-btns-add:hover{
+        background-color: lighten($color: rgb(87, 192, 98), $amount: 5);
+    }
+
+    .scheduling-btns-edit:hover{
+        background-color: lighten($color: rgb(246, 177, 48), $amount: 5);
+    }
+
+    .scheduling-btns-dlt:hover{
+        background-color: lighten($color: rgb(230, 87, 87), $amount: 5);
+    }
+
+    .scheduling-btn-disabled{
+        background-color: #c5c2c2;
+    }
+
+    .scheduling-btn-disabled:hover{
+        background-color: darken($color: #c5c2c2, $amount: 5);
+        cursor: not-allowed;
     }
 
     .week-container{
@@ -4414,12 +4498,12 @@ table{
 }
 
 .edit-disabled{
-    background-color: #999898;
+    background-color: #c5c2c2;
 }
 
 .edit-disabled:hover{
     cursor:not-allowed;
-    background-color: lighten($color: #7e7d7d, $amount: 5);
+    background-color: lighten($color: #c5c2c2, $amount: 5);
 }
 
 .error-container{
@@ -4605,7 +4689,7 @@ table{
 
 
     select{
-        // padding-right: 30px; /* Adjust as needed */
+        padding-right: 30px; /* Adjust as needed */
         margin-right: 30px;
     }
 }

@@ -22,7 +22,7 @@
             $tempObj = new announcement();
 
             $tempObj->id = $row['annID'];
-            $tempObj->title = $row['annTitle'];
+            $tempObj->title = htmlspecialchars_decode($row['annTitle']);
 
             $seperatedDateTime = seperateDateTime($row['annDateTime']);
 

@@ -2873,18 +2873,47 @@ function insertPostedAnn(){
 
                         
 
-                        const template = 
-                        `
-                        <tr class="table-row" title="Click to highlight/see more.">
-                            <td>${title}</td>
-                            <td>${datePosted}</td>
-                            <td>${timePosted}</td>
-                            <td>${author}</td>
-                            <td><button class="removeBtn" id="ann-${id}" data-title="${title}" onclick="confirmAnnRemove(this.id)">Delete</button></td>
-                        </tr>
-                        `;
+                        // const template = 
+                        // `
+                        // <tr class="table-row" title="Click to highlight/see more.">
+                        //     <td>${title}</td>
+                        //     <td>${datePosted} - ${timePosted}</td>
+                        //     <td>${author}</td>
+                        //     <td><button class="removeBtn" id="ann-${id}" data-title="${title}" onclick="confirmAnnRemove(this.id)">Delete</button></td>
+                        // </tr>
+                        // `;
 
-                        table.innerHTML += template;
+                        // table.innerHTML += template;
+
+                        const newRow = document.createElement('tr');
+                        newRow.classList.add('table-row');
+                        newRow.setAttribute('title', 'Click to highlight/see more.');
+
+                        const titleCell = document.createElement('td');
+                        titleCell.innerHTML = title;
+                        newRow.appendChild(titleCell);
+
+                        const dateCell = document.createElement('td');
+                        dateCell.textContent = `${datePosted} - ${timePosted}`;
+                        newRow.appendChild(dateCell);
+
+                        const authorCell = document.createElement('td');
+                        authorCell.textContent = author;
+                        newRow.appendChild(authorCell);
+
+                        const buttonCell = document.createElement('td');
+                        const deleteButton = document.createElement('button');
+                        deleteButton.classList.add('removeBtn');
+                        deleteButton.setAttribute('id', `ann-${id}`);
+                        deleteButton.setAttribute('data-title', title);
+                        deleteButton.addEventListener('click', function() {
+                            confirmAnnRemove(this.id);
+                        });
+                        deleteButton.textContent = 'Delete';
+                        buttonCell.appendChild(deleteButton);
+                        newRow.appendChild(buttonCell);
+
+                        table.appendChild(newRow);
                     })
                 } catch (error) {
                     table.innerHTML = 
@@ -3130,7 +3159,6 @@ function insertAdminLogs(isInitial = true){
     xhr.onreadystatechange = function(){
         if(xhr.readyState == 4){
             if(xhr.status == 200){
-                console.log(this.responseText)
                 try {
                     let arrayOfObjects = JSON.parse(xhr.responseText);
                     table.innerHTML = "";

@@ -125,23 +125,23 @@ let dashboard = `
                 <span>Click a Department to View Statistics</span>
             </div>
             <div class="dept-bargraph">
-                <div class="dept" data-dept="ENT" data-deptID="1" title="Click to see statistics.">Loading...</div>
-                <div class="dept" data-dept="Hematology" data-deptID="2" title="Click to see statistics.">Loading...</div>
-                <div class="dept" data-dept="Internal Medicine" data-deptID="3" title="Click to see statistics.">Loading...</div>
-                <div class="dept" data-dept="Internal Medicine Clearance" data-deptID="4" title="Click to see statistics.">Loading...</div>
-                <div class="dept" data-dept="Nephrology" data-deptID="5" title="Click to see statistics.">Loading...</div>
-                <div class="dept" data-dept="Neurology" data-deptID="6" title="Click to see statistics.">Loading...</div>
-                <div class="dept" data-dept="OB GYNE New" data-deptID="7" title="Click to see statistics.">Loading...</div>
-                <div class="dept" data-dept="OB GYNE Old" data-deptID="8" title="Click to see statistics.">Loading...</div>
-                <div class="dept" data-dept="OB GYNE ROS" data-deptID="9" title="Click to see statistics.">Loading...</div>
-                <div class="dept" data-dept="Oncology" data-deptID="10" title="Click to see statistics.">Loading...</div>
-                <div class="dept" data-dept="Pediatric Cardiology" data-deptID="11" title="Click to see statistics.">Loading...</div>
-                <div class="dept" data-dept="Pediatric Clearance" data-deptID="12" title="Click to see statistics.">Loading...</div>
-                <div class="dept" data-dept="Pediatric General" data-deptID="13" title="Click to see statistics.">Loading...</div>
-                <div class="dept" data-dept="Psychiatry New" data-deptID="14" title="Click to see statistics.">Loading...</div>
-                <div class="dept" data-dept="Psychiatry Old" data-deptID="15" title="Click to see statistics.">Loading...</div>
-                <div class="dept" data-dept="Surgery" data-deptID="16" title="Click to see statistics.">Loading...</div>
-                <div class="dept" data-dept="Surgery ROS" data-deptID="17" title="Click to see statistics.">Loading...</div>
+                <div class="dept" data-dept="ENT" data-deptID="1" title="Click to view statistics.">Loading...</div>
+                <div class="dept" data-dept="Hematology" data-deptID="2" title="Click to view statistics.">Loading...</div>
+                <div class="dept" data-dept="Internal Medicine" data-deptID="3" title="Click to view statistics.">Loading...</div>
+                <div class="dept" data-dept="Internal Medicine Clearance" data-deptID="4" title="Click to view statistics.">Loading...</div>
+                <div class="dept" data-dept="Nephrology" data-deptID="5" title="Click to view statistics.">Loading...</div>
+                <div class="dept" data-dept="Neurology" data-deptID="6" title="Click to view statistics.">Loading...</div>
+                <div class="dept" data-dept="OB GYNE New" data-deptID="7" title="Click to view statistics.">Loading...</div>
+                <div class="dept" data-dept="OB GYNE Old" data-deptID="8" title="Click to view statistics.">Loading...</div>
+                <div class="dept" data-dept="OB GYNE ROS" data-deptID="9" title="Click to view statistics.">Loading...</div>
+                <div class="dept" data-dept="Oncology" data-deptID="10" title="Click to view statistics.">Loading...</div>
+                <div class="dept" data-dept="Pediatric Cardiology" data-deptID="11" title="Click to view statistics.">Loading...</div>
+                <div class="dept" data-dept="Pediatric Clearance" data-deptID="12" title="Click to view statistics.">Loading...</div>
+                <div class="dept" data-dept="Pediatric General" data-deptID="13" title="Click to view statistics.">Loading...</div>
+                <div class="dept" data-dept="Psychiatry New" data-deptID="14" title="Click to view statistics.">Loading...</div>
+                <div class="dept" data-dept="Psychiatry Old" data-deptID="15" title="Click to view statistics.">Loading...</div>
+                <div class="dept" data-dept="Surgery" data-deptID="16" title="Click to view statistics.">Loading...</div>
+                <div class="dept" data-dept="Surgery ROS" data-deptID="17" title="Click to view statistics.">Loading...</div>
             </div>
         </div>
     </div>
@@ -403,7 +403,188 @@ let schedule = `
 
 // Pag inedit yung status tas pinili yung cancel sa modal kailangan hingin din natin reason then automatic siya malalagay rin
 // Pag active lang kailangan pede iedit yung other status bawal na
-let viewSchedule = `
+let viewSchedule = `<div class="page-header">Home / View Appointments</div>
+<section class="view-schedule">
+    <div class="view-schedule__content" data-aos="fade-right" data-aos-duration="500">
+        <div class="view-schedule__header">
+            <div class="filter-holder">
+                <label for="dept">Department</label>
+                <select class="form-select" aria-label="Default select example"  id="dept"">
+                    <option value="0" selected>All</option>
+                    <option value="1">ENT</option>
+                    <option value="2">Hematology</option>
+                    <option value="3">Internal Medicine</option>
+                    <option value="4">Internal Medicine Clearance</option>
+                    <option value="5">Nephrology</option>
+                    <option value="6">Neurology</option>
+                    <option value="7">OB GYNE New</option>
+                    <option value="8">OB GYNE Old</option>
+                    <option value="9">OB GYNE ROS</option>
+                    <option value="10">Oncology</option>
+                    <option value="11">Pediatric Cardiology</option>
+                    <option value="12">Pediatric Clearance</option>
+                    <option value="13">Pediatric General</option>
+                    <option value="14">Psychiatry New</option>
+                    <option value="15">Psychiatry Old</option>
+                    <option value="16">Surgery</option>
+                    <option value="17">Surgery ROS</option>
+                </select>
+            </div>
+            <div class="filter-holder">
+                <label for="">Appointment Date From</label>
+                <input type="date" name="" id="">
+            </div>
+            <div class="filter-holder">
+                <label for="">Appointment Date To</label>
+                <input type="date" name="" id="">
+            </div>
+            <div class="filter-holder">
+                <label for="dept">Time Slot</label>
+                <select class="form-select" aria-label="Default select example" >
+                    <option value="" selected>-</option>
+                    <!-- <option value="all" selected>All</option> -->
+                    <option value="0">9:20 AM - 10:20 AM</option>
+                    <option value="0">9:20 AM - 10:20 AM</option>
+                </select>
+            </div>
+            <div class="filter-holder">
+                <label for="dept">Sex</label>
+                <select class="form-select" aria-label="Default select example" >
+                    <option value="all" selected>All</option>
+                    <option value="m">Male</option>
+                    <option value="f">Female</option>
+                </select>
+            </div>
+            <div class="filter-holder">
+                <label for="dept">Province</label>
+                <select class="form-select" aria-label="Default select example" >
+                    <option value="all" selected>All</option>
+                    <option value="m">Bulacan</option>
+                    <option value="f">Outside Bulacan</option>
+                </select>
+            </div>
+            <div class="filter-holder">
+                <label for="dept">Municipality</label>
+                <select class="form-select" aria-label="Default select example" >
+                    <option value="all" selected>All</option>
+                    <option value="m">Angat</option>
+                    <option value="f">Plaridel</option>
+                    <option value="m">Baliuag</option>
+                    <option value="f">San Jose del Monte</option>
+                </select>
+            </div>
+            <div class="filter-holder">
+                <label for="dept">Barangay</label>
+                <select class="form-select" aria-label="Default select example" >
+                    <option value="all">All</option>
+                    <option value="m">Banga I</option>
+                    <option value="f">Banga II</option>
+                </select>
+            </div>
+            <div class="filter-holder">
+                <label for="dept">Patient Type</label>
+                <select class="form-select" aria-label="Default select example" >
+                    <option value="all" selected>All</option>
+                    <option value="old">Old</option>
+                    <option value="new">New</option>
+                </select>
+            </div>
+            <div class="filter-holder">
+                <label for="">Case #</label>
+                <input type="text" id="caseNo">
+            </div>
+            <div class="filter-holder">
+                <label for="dept">Visit Type</label>
+                <select class="form-select" aria-label="Default select example" >
+                    <option value="all" selected>All</option>
+                    <option value="">Initial Visit</option>
+                    <option value="">Follow-Up Visit</option>
+                </select>
+            </div>
+            <div class="filter-holder">
+                <label for="dept">Scheduled Through</label>
+                <select class="form-select" aria-label="Default select example" >
+                    <option value="all" selected>All</option>
+                    <option value="">Patient Website</option>
+                    <option value="">Admin Website</option>
+                </select>
+            </div>
+            <div class="filter-holder">
+                <label for="dept">Status</label>
+                <select class="form-select" aria-label="Default select example" >
+                    <option value="all" selected>All</option>
+                    <option value="new">Cancelled</option>
+                    <option value="old">Completed</option>
+                    <option value="new">Missed</option>
+                    <option value="old">Pending</option>
+                    <option value="new">Rejected</option>
+                    <option value="old">Scheduled</option>
+                </select>
+            </div>
+            <div class="filter-holder">
+                <label for="dept">Last Name</label>
+                <input type="text">
+            </div>
+            <div class="filter-holder">
+                <label for="dept">First Name</label>
+                <input type="text">
+            </div>
+            <div class="filter-holder">
+                <label for="dept">Middle Name</label>
+                <input type="text">
+            </div>
+            <div class="filter-holder">
+                <label for="">Submitted Date From</label>
+                <input type="date" name="" id="">
+            </div>
+            <div class="filter-holder">
+                <label for="">Submitted Date To</label>
+                <input type="date" name="" id="">
+            </div>
+        </div>             
+        <div class="view-schedule__table">
+            <div class="table-container">
+                <table class="schedule-table" id="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Full Name</th>
+                            <th>Reference #</th>
+                            <th>Department</th>
+                            <th>Consultation</th>
+                            <th>Appointment Date</th>
+                            <th>Slot</th>
+                            <th>Status</th>
+                            <th>Scheduled Through</th>
+                            <th>Sex</th>
+                            <th>Birthdate</th>
+                            <th>Phone #</th>
+                            <th>Address</th>
+                            <th>Patient Type</th>
+                            <th>Case #</th>
+                            <th>Submitted On</th>
+                            <th>Reason Cancelled</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td colspan="15" class="empty">No Department Selected</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="cmds-container">
+            <button type="button" class="export" data-table="schedule-table">Export Table</button>
+            <div class="table-nav">
+                <button id="prevButton"><< Previous</button>
+                <span id="pageNum">1</span>
+                <button id="nextButton">Next >></button>
+            </div>
+        </div>
+    </div>
+</section>
 `;
 
 let quickView = `
@@ -552,27 +733,58 @@ let scheduling = `
 <div class="page-header">Home / Department Schedules</div>
 <section class="scheduling">
             <div class="scheduling-content" data-aos="fade-right" data-aos-duration="500">
-                <div class="scheduling__dept-picker">
-                    <select class="form-select" aria-label="Default select example" onchange="generateDeptSched(this.value)" id="deptSelect">
-                        <option value="" selected hidden disabled>Select a Department</option>
-                        <option value="1">ENT</option>
-                        <option value="2">Hematology</option>
-                        <option value="3">Internal Medicine</option>
-                        <option value="4">Internal Medicine Clearance</option>
-                        <option value="5">Nephrology</option>
-                        <option value="6">Neurology</option>
-                        <option value="7">OB GYNE New</option>
-                        <option value="8">OB GYNE Old</option>
-                        <option value="9">OB GYNE ROS</option>
-                        <option value="10">Oncology</option>
-                        <option value="11">Pediatric Cardiology</option>
-                        <option value="12">Pediatric Clearance</option>
-                        <option value="13">Pediatric General</option>
-                        <option value="14">Psychiatry New</option>
-                        <option value="15">Psychiatry Old</option>
-                        <option value="16">Surgery</option>
-                        <option value="17">Surgery ROS</option>
-                    </select>
+                <div class="scheduling-header">
+                    <div class="scheduling-input-container">
+                        <label for="deptSelect">Department</label>
+                        <select class="form-select" aria-label="Default select example" onchange="generateDeptSched(this.value)" id="deptSelect">
+                            <option value="" selected hidden disabled>Select a Department</option>
+                            <option value="1">ENT</option>
+                            <option value="2">Hematology</option>
+                            <option value="3">Internal Medicine</option>
+                            <option value="4">Internal Medicine Clearance</option>
+                            <option value="5">Nephrology</option>
+                            <option value="6">Neurology</option>
+                            <option value="7">OB GYNE New</option>
+                            <option value="8">OB GYNE Old</option>
+                            <option value="9">OB GYNE ROS</option>
+                            <option value="10">Oncology</option>
+                            <option value="11">Pediatric Cardiology</option>
+                            <option value="12">Pediatric Clearance</option>
+                            <option value="13">Pediatric General</option>
+                            <option value="14">Psychiatry New</option>
+                            <option value="15">Psychiatry Old</option>
+                            <option value="16">Surgery</option>
+                            <option value="17">Surgery ROS</option>
+                        </select>
+                    </div>
+                    <div class="scheduling-input-container">
+                        <label for="deptSelect">Schedule</label>
+                        <select class="form-select" aria-label="Default select example" onchange="generateDeptSched(this.value)" id="deptSelect">
+                            <option value="" selected hidden disabled>-</option>
+                            <option value="">November 22, 2023 - February 26, 2024</option>
+                            <option value="">November 22, 2023 - February 26, 2024</option>
+                            <option value="">November 22, 2023 - February 26, 2024</option>
+                            <option value="">November 22, 2023 - February 26, 2024</option>
+                            <option value="">November 22, 2023 - February 26, 2024</option>
+                        </select>
+                    </div>
+                    <div class="scheduling-btns-container">
+                        <button title="Add new schedule.">
+                            <span class="material-icons-outlined scheduling-btns-ico scheduling-btns-add">
+                                add
+                            </span>
+                        </button>
+                        <button title="Edit schedule.">
+                            <span class="material-icons-outlined scheduling-btns-ico scheduling-btns-edit scheduling-btn-disabled">
+                                edit
+                            </span>
+                        </button>
+                        <button title="Delete schedule.">
+                            <span class="material-icons-outlined scheduling-btns-ico scheduling-btns-dlt scheduling-btn-disabled">
+                                delete
+                            </span>
+                        </button>
+                    </div>
                 </div>
                 <div class="week-container">
                     <div id="monday" class="day">
@@ -862,8 +1074,7 @@ let seePostedAnn =`
                 <thead>
                     <tr>
                         <th>Title</th>
-                        <th>Date Posted</th>
-                        <th>Time Posted</th>
+                        <th>Date & Time Posted</th>
                         <th>Author</th>
                         <th>&nbsp;</th>
                     </tr>

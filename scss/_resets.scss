@@ -69,7 +69,17 @@ label:hover{
 .form-select:focus{
   border-color: unset !important;
   box-shadow: unset !important;
+  border: 1px solid $input-border-clr !important;
 }
+
+.form-select:hover{
+  cursor: pointer;
+}
+
+input[type="date"]:hover{
+  cursor: pointer !important;
+}
+
 
 .form-check-input:hover{
   cursor: pointer;
