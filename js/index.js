@@ -5444,6 +5444,67 @@ function addMode(){
     document.querySelector('.state-container').style.display="flex";
     // Add function that clears schedules inside week  
     createAddSchedBtn();
+
+    let schedulingSave = document.querySelector('#schedulingSave');
+
+    schedulingSave.removeAttribute('onclick');
+    schedulingSave.setAttribute('onclick', 'saveAdd()');
+}
+
+function saveAdd(){
+    const addStart = document.querySelector('#addStart');
+    const addEnd = document.querySelector('#addEnd');
+
+    const startDateObj = new Date(addStart.value);
+    const endDateObj = new Date(addEnd.value);
+
+    if(addStart.value == "" && addEnd.value == "") {
+        showError("Start & end date cannot be empty");
+        return;
+    }
+    else if(addStart.value == "" || addEnd.value == ""){
+        if(addStart.value == ""){
+            showError("Start date cannot be empty");
+            return;
+        }
+        else if(addEnd.value == ""){
+            showError("End date cannot be empty");
+            return;
+        }
+    }
+    else if(startDateObj > endDateObj){
+        showError("Start date cannot be later than end date");
+        return;
+    }
+    else if (startDateObj == endDateObj){
+        showError("Start date cannot be equal to end date");
+        return;
+    }
+    else if(document.querySelectorAll('.block').length == document.querySelectorAll('.add').length){
+        showError("Schedule must contain a time slot");
+        return;
+    }
+    else{
+        showError();
+
+        const toSend = JSON.stringify(schedTempCol);
+
+        const xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function(){
+            if(this.readyState == 4){
+                if(this.status == 200){
+                    showResModal("New schedule has been saved")
+                }
+            }
+        }
+
+        xhr.open("POST", "", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(toSend);
+
+        // ICHECK DIN DAPAT IF YUNG START AND END DATE IS NAG OVERLAP SA EXISTING NA SCHEDULESETS
+    }
 }
 
 function editMode(){
@@ -5507,6 +5568,11 @@ function cancel(){
     document.querySelector('.state-container').style.display="none";
     document.querySelector('#addContainer').style.display="none";
     
+    reset2DArray(schedTempCol)
+
+    document.querySelectorAll('.timeslot-container').forEach(item=>{
+        removeAllChildNodes(item);
+    })
 }
 
 function removeAllChildNodes(parent) {

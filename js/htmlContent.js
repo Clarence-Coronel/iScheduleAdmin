@@ -786,7 +786,7 @@ let scheduling = `
                         </button>
 
                         <div class="state-container" style="display:none">
-                            <button>Save</button>
+                            <button id="schedulingSave">Save</button>
                             <button onclick="cancel()">Cancel</button>
                         </div>
                     </div>
