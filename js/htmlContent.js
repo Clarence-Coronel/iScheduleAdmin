@@ -728,7 +728,7 @@ let request = `
             </div>
         </section>
 `;
-
+                        // generateDeptSched(this.value);
 let scheduling = `
 <div class="page-header">Home / Department Schedules</div>
 <section class="scheduling">
@@ -736,7 +736,7 @@ let scheduling = `
                 <div class="scheduling-header">
                     <div class="scheduling-input-container">
                         <label for="deptSelect">Department</label>
-                        <select class="form-select" aria-label="Default select example" onchange="generateDeptSched(this.value); enableAdd();" id="deptSelect">
+                        <select class="form-select" aria-label="Default select example" onchange="enableAdd();" id="deptSelect">
                             <option value="" selected hidden disabled>Select a Department</option>
                             <option value="1">ENT</option>
                             <option value="2">Hematology</option>
@@ -759,7 +759,7 @@ let scheduling = `
                     </div>
                     <div class="scheduling-input-container">
                         <label for="scheduleSet">Schedule</label>
-                        <select class="form-select" aria-label="Default select example" onchange="generateDeptSched(this.value)" id="scheduleSet">
+                        <select class="form-select" aria-label="Default select example" onchange="" id="scheduleSet">
                             <option value="" selected hidden disabled>-</option>
                             <option value="">November 22, 2023 - February 26, 2024</option>
                             <option value="">November 22, 2023 - February 26, 2024</option>

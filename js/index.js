@@ -16,6 +16,14 @@ let currentWebStatus = null;
 let eventListenerAdded = false;
 let posting = false;
 let processingCal = false;
+const schedTempCol = [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+];
 
 // If want natin ireset auto increment
 // ALTER TABLE tableName AUTO_INCREMENT = 1
@@ -2114,6 +2122,18 @@ function showError(str = ""){
     msg.innerText = str;
 }
 
+function showErrorModal(str = ""){
+    let msg = document.querySelector('.msg-modal');
+
+    if(msg.innerText != ""){
+        msg.classList.add('error-animate');
+        setTimeout(()=>{
+            msg.classList.remove('error-animate');
+        },500);
+    } 
+    msg.innerText = str;
+}
+
 function applyNewPass(){
     if(posting) return;
     posting = true;
@@ -3774,7 +3794,7 @@ function addSched(day){
                 <input onclick="this.select()" type="text" class="timepart time-hourA" id="startHourA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01'); checkHourB('start')">
                 <input onclick="this.select()" type="text" class="timepart time-hourB" id="startHourB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789'); checkHourA('start');">
                 <span>:</span>
-                <input onclick="this.select()" type="text" class="timepart time-minA" id="startMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01345');">
+                <input onclick="this.select()" type="text" class="timepart time-minA" id="startMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '012345');">
                 <input onclick="this.select()" type="text" class="timepart time-minB" id="startMinuteB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789');">
                 <input type="text" class="timepart time-minB" id="startPeriod" value="AM" readonly>
             </div>
@@ -3783,7 +3803,7 @@ function addSched(day){
                 <input onclick="this.select()" type="text" class="timepart time-hourA" id="stopHourA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01'); checkHourB('stop')">
                 <input onclick="this.select()" type="text" class="timepart time-hourB" id="stopHourB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789'); checkHourA('stop');">
                 <span>:</span>
-                <input onclick="this.select()"  type="text" class="timepart time-minA" id="stopMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01345');">
+                <input onclick="this.select()"  type="text" class="timepart time-minA" id="stopMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '012345');">
                 <input onclick="this.select()" type="text" class="timepart time-minB" id="stopMinuteB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789');">
                 <input type="text" class="timepart time-minB" id="stopPeriod" value="AM" readonly>
             </div>
@@ -3799,7 +3819,7 @@ function addSched(day){
             </div>
         </div>
         <div class="error-container">
-            <span class="msg"></span>
+            <span class="msg-modal"></span>
         </div>
     </div>
     `;
@@ -4011,52 +4031,52 @@ function applyAddSched(day){
     const stopTime = convertToMilitaryTime(`${stopHourA}${stopHourB}:${stopMinuteA}${stopMinuteB} ${stopPeriod}`);
 
     if(startHourA == "0" && startHourB == "0" && startMinuteA == "0" && startMinuteB == "0"){
-        showError("Starting time cannot be empty");
+        showErrorModal("Starting time cannot be empty");
         posting = false;
         return;
     }
     else if(startHourA == "" && startHourB == "" && startMinuteA == "" && startMinuteB == ""){
-        showError("Starting time cannot be empty");
+        showErrorModal("Starting time cannot be empty");
         posting = false;
         return;
     }
     else if(startHourA == "" || startHourB == "" || startMinuteA == "" || startMinuteB == ""){
-        showError("Invalid starting time");
+        showErrorModal("Invalid starting time");
         posting = false;
         return;
     }
     else if(startHourA == "0" && startHourB == "0"){
-        showError("Invalid starting time");
+        showErrorModal("Invalid starting time");
         posting = false;
         return;
     }
     else if(stopHourA == "0" && stopHourB == "0" && stopMinuteA == "0" && stopMinuteB == "0"){
-        showError("Closing time cannot be empty");
+        showErrorModal("Closing time cannot be empty");
         posting = false;
         return;
     }
     else if(stopHourA == "" && stopHourB == "" && stopMinuteA == "" && stopMinuteB == ""){
-        showError("Closing time cannot be empty");
+        showErrorModal("Closing time cannot be empty");
         posting = false;
         return;
     }
     else if(stopHourA == "" || stopHourB == "" || stopMinuteA == "" || stopMinuteB == ""){
-        showError("Invalid closing time");
+        showErrorModal("Invalid closing time");
         posting = false;
         return;
     }
     else if(stopHourA == "0" && stopHourB == "0"){
-        showError("Invalid closing time");
+        showErrorModal("Invalid closing time");
         posting = false;
         return;
     }
     else if(startTime >= stopTime){
-        showError("Starting time cannot be later than closing time");
+        showErrorModal("Starting time cannot be later than closing time");
         posting = false;
         return;
     }
     else if(maxSlot == '' || maxSlot == '0'){
-        showError("Slot cannot be empty");
+        showErrorModal("Slot cannot be empty");
         posting = false;
         return;
     }
@@ -4084,32 +4104,241 @@ function applyAddSched(day){
         stopTime: stopTime,
         max: maxSlot,
         isBuffer: isBuffer,
-        dayName: dayName,
-        deptName: deptName,
     };
 
-    const toSend = JSON.stringify(obj);
-
-    const xhr = new XMLHttpRequest();
-
-    xhr.onreadystatechange = function(){
-        if(this.readyState == 4){
-            if(this.status == 200){
-                if(this.responseText == 1){
-                    posting = false;
-                    setTimeout(()=>{
-                        showResModal("New slot has been added");
-                        generateDeptSched(document.querySelector('#deptSelect').value);
-                    }, 500)
-                    
-                }
-            }
-        }
+    if(day == 'mon'){
+        schedTempCol[0].push(obj);
     }
+    else if(day == 'tue'){
+        schedTempCol[1].push(obj);
+    }
+    else if(day == 'wed'){
+        schedTempCol[2].push(obj);
+    }   
+    else if(day == 'thu'){
+        schedTempCol[3].push(obj);
+    }   
+    else if(day == 'fri'){
+        schedTempCol[4].push(obj);
+    }   
+    else if(da == 'sat'){
+        schedTempCol[5].push(obj);
+    }   
 
-    xhr.open("POST","./php/postDeptSched.php", true);
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.send(toSend);
+    sortSchedTempCol();
+
+
+    posting = false;
+
+    updateSchedTable()
+}
+
+function updateSchedTable(){
+    clearSlots();
+    schedTempCol.forEach((day,index)=>{
+        day.forEach(sched=>{
+            if(index == 0){
+                let container = document.querySelector('#monday .timeslot-container');
+
+                let clss = null;
+                if(sched.isBuffer) clss = 'buffer';
+                else clss = '';
+
+                console.log(sched.startTime);
+                console.log(sched.stopTime);
+
+                let template = 
+                `
+                <div class="block ${clss}">
+                    <div class="timeslot">
+                        <div class="time">${convertTo12HourFormat(sched.startTime)} - ${convertTo12HourFormat(sched.stopTime)}</div>
+                        <div class="max">${sched.max}</div>
+                    </div>
+                    <div class="button-container">
+                        <button title="Edit this time slot." data-sched_id="" data-start="${sched.startTime}" data-stop="${sched.stopTime}" data-max="${sched.max}" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="editSched(this.dataset.sched_id, this.dataset.start, this.dataset.stop, this.dataset.max, this.dataset.dept, this.dataset.day)">
+                            <span class="material-icons-outlined edit-sched-btn">
+                                edit
+                            </span>
+                        </button>
+                        <button title="Remove this time slot." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="deleteSched(this.dataset.sched_id, this.dataset.dept, this.dataset.day)">
+                            <span class="material-icons-outlined remove-sched-btn">
+                                close
+                            </span>
+                        </button>
+                    </div>
+                </div>`;
+
+                container.innerHTML+= template;
+            }
+            else if(index == 1){
+                let container = document.querySelector('#tuesday .timeslot-container');
+
+                let clss = null;
+                if(sched.isBuffer) clss = 'buffer';
+                else clss = '';
+
+                console.log(sched.startTime);
+                console.log(sched.stopTime);
+
+                let template = 
+                `
+                <div class="block ${clss}">
+                    <div class="timeslot">
+                        <div class="time">${convertTo12HourFormat(sched.startTime)} - ${convertTo12HourFormat(sched.stopTime)}</div>
+                        <div class="max">${sched.max}</div>
+                    </div>
+                    <div class="button-container">
+                        <button title="Edit this time slot." data-sched_id="" data-start="${sched.startTime}" data-stop="${sched.stopTime}" data-max="${sched.max}" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="editSched(this.dataset.sched_id, this.dataset.start, this.dataset.stop, this.dataset.max, this.dataset.dept, this.dataset.day)">
+                            <span class="material-icons-outlined edit-sched-btn">
+                                edit
+                            </span>
+                        </button>
+                        <button title="Remove this time slot." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="deleteSched(this.dataset.sched_id, this.dataset.dept, this.dataset.day)">
+                            <span class="material-icons-outlined remove-sched-btn">
+                                close
+                            </span>
+                        </button>
+                    </div>
+                </div>`;
+
+                container.innerHTML+= template;
+            }
+            else if(index == 2){
+                let container = document.querySelector('#wednesday .timeslot-container');
+
+                let clss = null;
+                if(sched.isBuffer) clss = 'buffer';
+                else clss = '';
+
+                console.log(sched.startTime);
+                console.log(sched.stopTime);
+
+                let template = 
+                `
+                <div class="block ${clss}">
+                    <div class="timeslot">
+                        <div class="time">${convertTo12HourFormat(sched.startTime)} - ${convertTo12HourFormat(sched.stopTime)}</div>
+                        <div class="max">${sched.max}</div>
+                    </div>
+                    <div class="button-container">
+                        <button title="Edit this time slot." data-sched_id="" data-start="${sched.startTime}" data-stop="${sched.stopTime}" data-max="${sched.max}" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="editSched(this.dataset.sched_id, this.dataset.start, this.dataset.stop, this.dataset.max, this.dataset.dept, this.dataset.day)">
+                            <span class="material-icons-outlined edit-sched-btn">
+                                edit
+                            </span>
+                        </button>
+                        <button title="Remove this time slot." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="deleteSched(this.dataset.sched_id, this.dataset.dept, this.dataset.day)">
+                            <span class="material-icons-outlined remove-sched-btn">
+                                close
+                            </span>
+                        </button>
+                    </div>
+                </div>`;
+
+                container.innerHTML+= template;
+            }
+            else if(index == 3){
+                let container = document.querySelector('#thursday .timeslot-container');
+
+                let clss = null;
+                if(sched.isBuffer) clss = 'buffer';
+                else clss = '';
+
+                console.log(sched.startTime);
+                console.log(sched.stopTime);
+
+                let template = 
+                `
+                <div class="block ${clss}">
+                    <div class="timeslot">
+                        <div class="time">${convertTo12HourFormat(sched.startTime)} - ${convertTo12HourFormat(sched.stopTime)}</div>
+                        <div class="max">${sched.max}</div>
+                    </div>
+                    <div class="button-container">
+                        <button title="Edit this time slot." data-sched_id="" data-start="${sched.startTime}" data-stop="${sched.stopTime}" data-max="${sched.max}" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="editSched(this.dataset.sched_id, this.dataset.start, this.dataset.stop, this.dataset.max, this.dataset.dept, this.dataset.day)">
+                            <span class="material-icons-outlined edit-sched-btn">
+                                edit
+                            </span>
+                        </button>
+                        <button title="Remove this time slot." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="deleteSched(this.dataset.sched_id, this.dataset.dept, this.dataset.day)">
+                            <span class="material-icons-outlined remove-sched-btn">
+                                close
+                            </span>
+                        </button>
+                    </div>
+                </div>`;
+
+                container.innerHTML+= template;
+            }
+            else if(index == 4){
+                let container = document.querySelector('#friday .timeslot-container');
+
+                let clss = null;
+                if(sched.isBuffer) clss = 'buffer';
+                else clss = '';
+
+                console.log(sched.startTime);
+                console.log(sched.stopTime);
+
+                let template = 
+                `
+                <div class="block ${clss}">
+                    <div class="timeslot">
+                        <div class="time">${convertTo12HourFormat(sched.startTime)} - ${convertTo12HourFormat(sched.stopTime)}</div>
+                        <div class="max">${sched.max}</div>
+                    </div>
+                    <div class="button-container">
+                        <button title="Edit this time slot." data-sched_id="" data-start="${sched.startTime}" data-stop="${sched.stopTime}" data-max="${sched.max}" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="editSched(this.dataset.sched_id, this.dataset.start, this.dataset.stop, this.dataset.max, this.dataset.dept, this.dataset.day)">
+                            <span class="material-icons-outlined edit-sched-btn">
+                                edit
+                            </span>
+                        </button>
+                        <button title="Remove this time slot." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="deleteSched(this.dataset.sched_id, this.dataset.dept, this.dataset.day)">
+                            <span class="material-icons-outlined remove-sched-btn">
+                                close
+                            </span>
+                        </button>
+                    </div>
+                </div>`;
+
+                container.innerHTML+= template;
+            }
+            else if(index == 5){
+                let container = document.querySelector('#saturday .timeslot-container');
+
+                let clss = null;
+                if(sched.isBuffer) clss = 'buffer';
+                else clss = '';
+
+                console.log(sched.startTime);
+                console.log(sched.stopTime);
+
+                let template = 
+                `
+                <div class="block ${clss}">
+                    <div class="timeslot">
+                        <div class="time">${convertTo12HourFormat(sched.startTime)} - ${convertTo12HourFormat(sched.stopTime)}</div>
+                        <div class="max">${sched.max}</div>
+                    </div>
+                    <div class="button-container">
+                        <button title="Edit this time slot." data-sched_id="" data-start="${sched.startTime}" data-stop="${sched.stopTime}" data-max="${sched.max}" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="editSched(this.dataset.sched_id, this.dataset.start, this.dataset.stop, this.dataset.max, this.dataset.dept, this.dataset.day)">
+                            <span class="material-icons-outlined edit-sched-btn">
+                                edit
+                            </span>
+                        </button>
+                        <button title="Remove this time slot." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="deleteSched(this.dataset.sched_id, this.dataset.dept, this.dataset.day)">
+                            <span class="material-icons-outlined remove-sched-btn">
+                                close
+                            </span>
+                        </button>
+                    </div>
+                </div>`;
+
+                container.innerHTML+= template;
+            }
+        })
+    })
+
+    createAddSchedBtn();
 }
 
 function splitTime(time){
@@ -5188,6 +5417,7 @@ function checkSelectedDepartment(){
 }
 
 function addMode(){
+    reset2DArray(schedTempCol);
     let addContainer = document.querySelector('#addContainer');
     let scheduleSet = document.querySelector('#scheduleSet');
 
@@ -5212,9 +5442,8 @@ function addMode(){
     disableSelect(document.querySelector("#scheduleSet"));
 
     document.querySelector('.state-container').style.display="flex";
-    
     // Add function that clears schedules inside week  
-    
+    createAddSchedBtn();
 }
 
 function editMode(){
@@ -5278,4 +5507,107 @@ function cancel(){
     document.querySelector('.state-container').style.display="none";
     document.querySelector('#addContainer').style.display="none";
     
+}
+
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
+
+function sortSchedTempCol(){
+    schedTempCol.forEach(day=>{
+        day.sort((a, b) => {
+            // Convert the time strings to Date objects for proper comparison
+            const timeA = new Date(`1970-01-01T${a.startTime}`);
+            const timeB = new Date(`1970-01-01T${b.startTime}`);
+            
+            // Compare the Date objects
+            return timeA - timeB;
+        });
+    })
+}
+
+function reset2DArray(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        arr[i] = [];
+    }
+}
+
+function createAddSchedBtn(){
+    const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+
+    days.forEach(item=>{
+        // Create div element with classes
+        var blockDiv = document.createElement('div');
+        blockDiv.className = 'block add';
+
+        // Create button element
+        var addButton = document.createElement('button');
+        addButton.className = 'add-btn';
+        addButton.setAttribute('data-day', item);
+        addButton.onclick = function () {
+            addSched(this.dataset.day);
+        };
+
+        // Create span element for the icon
+        var iconSpan = document.createElement('span');
+        iconSpan.className = 'material-icons-outlined';
+        iconSpan.textContent = 'add';
+
+        // Append span to button
+        addButton.appendChild(iconSpan);
+
+        // Append button to div
+        blockDiv.appendChild(addButton);
+
+        if(item == 'mon'){
+            document.querySelector("#monday .timeslot-container").append(blockDiv);
+        }
+        else if(item == 'tue'){
+            document.querySelector("#tuesday .timeslot-container").append(blockDiv);
+        }
+        else if(item == 'wed'){
+            document.querySelector("#wednesday .timeslot-container").append(blockDiv);
+        }
+        else if(item == 'thu'){
+            document.querySelector("#thursday .timeslot-container").append(blockDiv);
+        }
+        else if(item == 'fri'){
+            document.querySelector("#friday .timeslot-container").append(blockDiv);
+        }
+        else if(item == 'sat'){
+            document.querySelector("#saturday .timeslot-container").append(blockDiv);
+        }
+
+        })
+}
+
+function clearSlots(){
+    const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+
+    let timeSlotCon = document.querySelectorAll('.timeslot-container');
+    timeSlotCon.forEach(item=>{
+        removeAllChildNodes(item);
+    })
+}
+
+function convertTo12HourFormat(militaryTime) {
+    // Parse the military time string
+    const [hours, minutes] = militaryTime.split(':');
+    
+    // Convert to 12-hour format
+    let formattedHours = parseInt(hours, 10);
+    const amPm = formattedHours >= 12 ? 'PM' : 'AM';
+
+    // Adjust hours for 12-hour format
+    formattedHours = formattedHours % 12 || 12;
+
+    // Add leading zero to minutes if needed
+    const formattedMinutes = minutes.padStart(2, '0');
+
+    // Construct the 12-hour time string
+    const twelveHourTime = `${formattedHours}:${formattedMinutes} ${amPm}`;
+
+    return twelveHourTime;
 }

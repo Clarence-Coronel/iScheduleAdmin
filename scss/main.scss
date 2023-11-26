@@ -3618,6 +3618,7 @@ table{
     flex-flow: column;
     align-items: center;
     height: fit-content;
+    min-height: 400px;
     // overflow: hidden;
 
     .scheduling-content{
@@ -3627,7 +3628,7 @@ table{
         padding: $box-padding $box-padding 6vh $box-padding;
         margin: $box-margin-top 0;
         width: 98%;
-        min-height: 20vh;
+        min-height: 400px;
         height: fit-content;        
     }
 
@@ -3710,11 +3711,11 @@ table{
     }
 
     .scheduling-btn-disabled{
-        background-color: #c5c2c2;
+        background-color: #dddddd;
     }
 
     .scheduling-btn-disabled:hover{
-        background-color: darken($color: #c5c2c2, $amount: 5);
+        background-color: #dddddd;
         cursor: not-allowed;
     }
 
@@ -3811,12 +3812,13 @@ table{
         .block{
             margin-top: 2%;
             width: 100%;
-            padding: 5%;
+            // padding: 5%;
             background-color: rgb(235, 235, 235);
             border-radius: max(0.1vw, 5px);
             display: flex;
             flex-flow: column;
-            justify-content: space-around;
+            justify-content: center;
+            gap: 2vh;
             align-items: center;
             height: max(15vh, 100px);
             overflow: hidden;
@@ -3831,14 +3833,19 @@ table{
         }
 
         .add{
-            padding: 5%;
+            
             height: unset;
             // transition-duration: 500ms;
             .add-btn{
+                padding: 5%;
                 border: unset;
                 background-color: transparent;
                 width: 100%;
                 user-select: none;
+
+                span{
+                    font-size: 1rem !important;
+                }
             }
         }
         
@@ -3874,11 +3881,12 @@ table{
             flex-flow: row nowrap;
             justify-content: center;
             align-items: center;
-            gap: 2%;
+            gap: 1vh;
+            padding: 0 5%;
 
             button{
                 border: unset;
-                background-color: $btn-color;
+                background-color: transparent;
                 color: white;
                 width: 49%;
                 padding: max(0.2rem, 5px) 0;
@@ -3887,10 +3895,43 @@ table{
                 text-align: center;
             }
 
-            button:hover{
-                background-color: lighten($color: $btn-color, $amount: 5);
+            .edit-sched-btn{
+                width: 100%;
+                font-size: 1.3rem;
+                padding: 5px;
+                color: white;
+                border-radius: 5px;
+                background-color: rgb(246, 177, 48);
             }
 
+            .remove-sched-btn{
+                width: 100%;
+                font-size: 1.3rem;
+                padding: 5px;
+                color: white;
+                border-radius: 5px;
+                background-color: rgb(230, 87, 87);
+            }
+
+
+            // .scheduling-btns-ico{
+            //     font-size: 1.3rem;
+            //     padding: 5px;
+            //     color: white;
+            //     border-radius: 5px;
+            // }
+        
+            // .scheduling-btns-add{
+            //     background-color: rgb(87, 192, 98);
+            // }
+        
+            // .scheduling-btns-edit{
+            //     background-color: rgb(246, 177, 48);
+            // }
+        
+            // .scheduling-btns-dlt{
+            //     background-color: rgb(230, 87, 87);
+            // }
             // button:nth-child(2){
             //     background-color: red;
             // }
@@ -4579,7 +4620,7 @@ table{
     margin-bottom: 3vh;
 }
 
-.msg{
+.msg, .msg-modal{
     width: 100% !important;
     height: fit-content !important;
     text-align: center !important;

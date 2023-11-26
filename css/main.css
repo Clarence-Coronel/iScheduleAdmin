@@ -2876,6 +2876,7 @@ table {
   align-items: center;
   height: -moz-fit-content;
   height: fit-content;
+  min-height: 400px;
 }
 .scheduling .scheduling-content {
   background-color: white;
@@ -2884,7 +2885,7 @@ table {
   padding: max(18px, 3vw) max(18px, 3vw) 6vh max(18px, 3vw);
   margin: max(15px, 1vw) 0;
   width: 98%;
-  min-height: 20vh;
+  min-height: 400px;
   height: -moz-fit-content;
   height: fit-content;
 }
@@ -2954,10 +2955,10 @@ table {
   background-color: #e96d6d;
 }
 .scheduling .scheduling-btn-disabled {
-  background-color: #c5c2c2;
+  background-color: #dddddd;
 }
 .scheduling .scheduling-btn-disabled:hover {
-  background-color: #b9b5b5;
+  background-color: #dddddd;
   cursor: not-allowed;
 }
 .scheduling .edit-inputs-container {
@@ -3041,12 +3042,12 @@ table {
 .scheduling .week-container .block {
   margin-top: 2%;
   width: 100%;
-  padding: 5%;
   background-color: rgb(235, 235, 235);
   border-radius: max(0.1vw, 5px);
   display: flex;
   flex-flow: column;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 2vh;
   align-items: center;
   height: max(15vh, 100px);
   overflow: hidden;
@@ -3058,16 +3059,19 @@ table {
   content: " (Buffer)";
 }
 .scheduling .week-container .add {
-  padding: 5%;
   height: unset;
 }
 .scheduling .week-container .add .add-btn {
+  padding: 5%;
   border: unset;
   background-color: transparent;
   width: 100%;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+}
+.scheduling .week-container .add .add-btn span {
+  font-size: 1rem !important;
 }
 .scheduling .week-container .add:hover {
   cursor: pointer;
@@ -3096,11 +3100,12 @@ table {
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-  gap: 2%;
+  gap: 1vh;
+  padding: 0 5%;
 }
 .scheduling .week-container .button-container button {
   border: unset;
-  background-color: #0577fa;
+  background-color: transparent;
   color: white;
   width: 49%;
   padding: max(0.2rem, 5px) 0;
@@ -3108,8 +3113,21 @@ table {
   font-size: 0.8rem;
   text-align: center;
 }
-.scheduling .week-container .button-container button:hover {
-  background-color: #1e85fb;
+.scheduling .week-container .button-container .edit-sched-btn {
+  width: 100%;
+  font-size: 1.3rem;
+  padding: 5px;
+  color: white;
+  border-radius: 5px;
+  background-color: rgb(246, 177, 48);
+}
+.scheduling .week-container .button-container .remove-sched-btn {
+  width: 100%;
+  font-size: 1.3rem;
+  padding: 5px;
+  color: white;
+  border-radius: 5px;
+  background-color: rgb(230, 87, 87);
 }
 
 .edit-tutorial {
@@ -3680,7 +3698,7 @@ table {
   margin-bottom: 3vh;
 }
 
-.msg {
+.msg, .msg-modal {
   width: 100% !important;
   height: -moz-fit-content !important;
   height: fit-content !important;
