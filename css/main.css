@@ -3121,6 +3121,9 @@ table {
   border-radius: 5px;
   background-color: rgb(246, 177, 48);
 }
+.scheduling .week-container .button-container .edit-sched-btn:hover {
+  background-color: #f7ba48;
+}
 .scheduling .week-container .button-container .remove-sched-btn {
   width: 100%;
   font-size: 1.3rem;
@@ -3128,6 +3131,9 @@ table {
   color: white;
   border-radius: 5px;
   background-color: rgb(230, 87, 87);
+}
+.scheduling .week-container .button-container .remove-sched-btn:hover {
+  background-color: #e96d6d;
 }
 
 .edit-tutorial {

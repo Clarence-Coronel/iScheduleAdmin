@@ -25,6 +25,7 @@ const schedTempCol = [
     [],
 ];
 
+
 // If want natin ireset auto increment
 // ALTER TABLE tableName AUTO_INCREMENT = 1
 
@@ -4121,7 +4122,7 @@ function applyAddSched(day){
     else if(day == 'fri'){
         schedTempCol[4].push(obj);
     }   
-    else if(da == 'sat'){
+    else if(day == 'sat'){
         schedTempCol[5].push(obj);
     }   
 
@@ -4136,7 +4137,7 @@ function applyAddSched(day){
 function updateSchedTable(){
     clearSlots();
     schedTempCol.forEach((day,index)=>{
-        day.forEach(sched=>{
+        day.forEach((sched,index2)=>{
             if(index == 0){
                 let container = document.querySelector('#monday .timeslot-container');
 
@@ -4155,12 +4156,12 @@ function updateSchedTable(){
                         <div class="max">${sched.max}</div>
                     </div>
                     <div class="button-container">
-                        <button title="Edit this time slot." data-sched_id="" data-start="${sched.startTime}" data-stop="${sched.stopTime}" data-max="${sched.max}" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="editSched(this.dataset.sched_id, this.dataset.start, this.dataset.stop, this.dataset.max, this.dataset.dept, this.dataset.day)">
+                        <button data-tempid="${index}-${index2}" title="Edit this time slot." data-sched_id="" data-start="${sched.startTime}" data-stop="${sched.stopTime}" data-max="${sched.max}" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="editSched(this.dataset.sched_id, this.dataset.start, this.dataset.stop, this.dataset.max, this.dataset.dept, this.dataset.day)">
                             <span class="material-icons-outlined edit-sched-btn">
                                 edit
                             </span>
                         </button>
-                        <button title="Remove this time slot." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="deleteSched(this.dataset.sched_id, this.dataset.dept, this.dataset.day)">
+                        <button data-tempid="${index}-${index2}" title="Remove this time slot." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="deleteSched(this.dataset.sched_id, this.dataset.dept, this.dataset.day)">
                             <span class="material-icons-outlined remove-sched-btn">
                                 close
                             </span>
@@ -4188,12 +4189,12 @@ function updateSchedTable(){
                         <div class="max">${sched.max}</div>
                     </div>
                     <div class="button-container">
-                        <button title="Edit this time slot." data-sched_id="" data-start="${sched.startTime}" data-stop="${sched.stopTime}" data-max="${sched.max}" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="editSched(this.dataset.sched_id, this.dataset.start, this.dataset.stop, this.dataset.max, this.dataset.dept, this.dataset.day)">
+                        <button data-tempid="${index}-${index2}" title="Edit this time slot." data-sched_id="" data-start="${sched.startTime}" data-stop="${sched.stopTime}" data-max="${sched.max}" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="editSched(this.dataset.sched_id, this.dataset.start, this.dataset.stop, this.dataset.max, this.dataset.dept, this.dataset.day)">
                             <span class="material-icons-outlined edit-sched-btn">
                                 edit
                             </span>
                         </button>
-                        <button title="Remove this time slot." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="deleteSched(this.dataset.sched_id, this.dataset.dept, this.dataset.day)">
+                        <button data-tempid="${index}-${index2}" title="Remove this time slot." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="deleteSched(this.dataset.sched_id, this.dataset.dept, this.dataset.day)">
                             <span class="material-icons-outlined remove-sched-btn">
                                 close
                             </span>
@@ -4221,12 +4222,12 @@ function updateSchedTable(){
                         <div class="max">${sched.max}</div>
                     </div>
                     <div class="button-container">
-                        <button title="Edit this time slot." data-sched_id="" data-start="${sched.startTime}" data-stop="${sched.stopTime}" data-max="${sched.max}" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="editSched(this.dataset.sched_id, this.dataset.start, this.dataset.stop, this.dataset.max, this.dataset.dept, this.dataset.day)">
+                        <button data-tempid="${index}-${index2}" title="Edit this time slot." data-sched_id="" data-start="${sched.startTime}" data-stop="${sched.stopTime}" data-max="${sched.max}" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="editSched(this.dataset.sched_id, this.dataset.start, this.dataset.stop, this.dataset.max, this.dataset.dept, this.dataset.day)">
                             <span class="material-icons-outlined edit-sched-btn">
                                 edit
                             </span>
                         </button>
-                        <button title="Remove this time slot." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="deleteSched(this.dataset.sched_id, this.dataset.dept, this.dataset.day)">
+                        <button data-tempid="${index}-${index2}" title="Remove this time slot." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="deleteSched(this.dataset.sched_id, this.dataset.dept, this.dataset.day)">
                             <span class="material-icons-outlined remove-sched-btn">
                                 close
                             </span>
@@ -4254,12 +4255,12 @@ function updateSchedTable(){
                         <div class="max">${sched.max}</div>
                     </div>
                     <div class="button-container">
-                        <button title="Edit this time slot." data-sched_id="" data-start="${sched.startTime}" data-stop="${sched.stopTime}" data-max="${sched.max}" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="editSched(this.dataset.sched_id, this.dataset.start, this.dataset.stop, this.dataset.max, this.dataset.dept, this.dataset.day)">
+                        <button data-tempid="${index}-${index2}" title="Edit this time slot." data-sched_id="" data-start="${sched.startTime}" data-stop="${sched.stopTime}" data-max="${sched.max}" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="editSched(this.dataset.sched_id, this.dataset.start, this.dataset.stop, this.dataset.max, this.dataset.dept, this.dataset.day)">
                             <span class="material-icons-outlined edit-sched-btn">
                                 edit
                             </span>
                         </button>
-                        <button title="Remove this time slot." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="deleteSched(this.dataset.sched_id, this.dataset.dept, this.dataset.day)">
+                        <button data-tempid="${index}-${index2}" title="Remove this time slot." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="deleteSched(this.dataset.sched_id, this.dataset.dept, this.dataset.day)">
                             <span class="material-icons-outlined remove-sched-btn">
                                 close
                             </span>
@@ -4287,12 +4288,12 @@ function updateSchedTable(){
                         <div class="max">${sched.max}</div>
                     </div>
                     <div class="button-container">
-                        <button title="Edit this time slot." data-sched_id="" data-start="${sched.startTime}" data-stop="${sched.stopTime}" data-max="${sched.max}" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="editSched(this.dataset.sched_id, this.dataset.start, this.dataset.stop, this.dataset.max, this.dataset.dept, this.dataset.day)">
+                        <button data-tempid="${index}-${index2}" title="Edit this time slot." data-sched_id="" data-start="${sched.startTime}" data-stop="${sched.stopTime}" data-max="${sched.max}" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="editSched(this.dataset.sched_id, this.dataset.start, this.dataset.stop, this.dataset.max, this.dataset.dept, this.dataset.day)">
                             <span class="material-icons-outlined edit-sched-btn">
                                 edit
                             </span>
                         </button>
-                        <button title="Remove this time slot." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="deleteSched(this.dataset.sched_id, this.dataset.dept, this.dataset.day)">
+                        <button data-tempid="${index}-${index2}" title="Remove this time slot." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="deleteSched(this.dataset.sched_id, this.dataset.dept, this.dataset.day)">
                             <span class="material-icons-outlined remove-sched-btn">
                                 close
                             </span>
@@ -4320,12 +4321,12 @@ function updateSchedTable(){
                         <div class="max">${sched.max}</div>
                     </div>
                     <div class="button-container">
-                        <button title="Edit this time slot." data-sched_id="" data-start="${sched.startTime}" data-stop="${sched.stopTime}" data-max="${sched.max}" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="editSched(this.dataset.sched_id, this.dataset.start, this.dataset.stop, this.dataset.max, this.dataset.dept, this.dataset.day)">
+                        <button data-tempid="${index}-${index2}" title="Edit this time slot." data-sched_id="" data-start="${sched.startTime}" data-stop="${sched.stopTime}" data-max="${sched.max}" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="editSched(this.dataset.sched_id, this.dataset.start, this.dataset.stop, this.dataset.max, this.dataset.dept, this.dataset.day)">
                             <span class="material-icons-outlined edit-sched-btn">
                                 edit
                             </span>
                         </button>
-                        <button title="Remove this time slot." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="deleteSched(this.dataset.sched_id, this.dataset.dept, this.dataset.day)">
+                        <button data-tempid="${index}-${index2}" title="Remove this time slot." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="deleteSched(this.dataset.sched_id, this.dataset.dept, this.dataset.day)">
                             <span class="material-icons-outlined remove-sched-btn">
                                 close
                             </span>
@@ -4337,7 +4338,6 @@ function updateSchedTable(){
             }
         })
     })
-
     createAddSchedBtn();
 }
 
@@ -5487,19 +5487,32 @@ function saveAdd(){
     else{
         showError();
 
-        const toSend = JSON.stringify(schedTempCol);
+        let meta = {
+            dept: document.querySelector('#deptSelect').value,
+            start: addStart.value,
+            end: addEnd.value,
+        }
+        
+        let set = {
+            meta: meta,
+            sched: schedTempCol
+        }
+
+        
+        const toSend = JSON.stringify(set);
 
         const xhr = new XMLHttpRequest();
 
         xhr.onreadystatechange = function(){
             if(this.readyState == 4){
                 if(this.status == 200){
+                    console.log(this.responseText)
                     showResModal("New schedule has been saved")
                 }
             }
         }
 
-        xhr.open("POST", "", true);
+        xhr.open("POST", "./php/postNewSet.php", true);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(toSend);
 
