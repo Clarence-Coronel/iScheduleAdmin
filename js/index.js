@@ -5196,7 +5196,13 @@ function generateDeptStats(days){
                         item.style.width = `${(count/highest)*95}%`;
                     })
                 } catch (error) {
-                    
+                    let deptBars = document.querySelectorAll('.dept');
+
+                    deptBars.forEach((item, index) =>{
+                        
+                        item.style.width = "0%";
+                        item.innerHTML = item.dataset.dept + "(0)";
+                    })
                 }
             }
         }
