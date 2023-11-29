@@ -3051,11 +3051,14 @@ table {
   border: unset;
   height: -moz-fit-content;
   height: fit-content;
-  background-color: rgb(250, 108, 108);
+  background-color: #6aa9f3;
   color: white;
   border-radius: max(0.1vw, 5px);
   padding: 0.2rem;
   font-size: 1rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 .scheduling .week-container .block {
   margin-top: 2%;
@@ -3147,10 +3150,10 @@ table {
   padding: 5px;
   color: white;
   border-radius: 5px;
-  background-color: rgb(230, 87, 87);
+  background-color: rgb(239, 97, 97);
 }
 .scheduling .week-container .button-container .remove-sched-btn:hover {
-  background-color: #e96d6d;
+  background-color: #f17878;
 }
 
 .edit-tutorial {
@@ -3906,4 +3909,8 @@ table {
 
 .previous-schedule {
   display: none;
+}
+
+.newDelete {
+  width: 90% !important;
 }/*# sourceMappingURL=main.css.map */

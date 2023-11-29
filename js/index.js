@@ -4156,7 +4156,7 @@ function updateSchedTable(){
                         <div class="max">${sched.max}</div>
                     </div>
                     <div class="button-container">
-                        <button data-tempid="${index}-${index2}" title="Remove this time slot." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="removeTempSlot(this.dataset.tempid)">
+                        <button class="newDelete" data-tempid="${index}-${index2}" title="Remove." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="removeTempSlot(this.dataset.tempid)">
                             <span class="material-icons-outlined remove-sched-btn">
                                 close
                             </span>
@@ -4184,7 +4184,7 @@ function updateSchedTable(){
                         <div class="max">${sched.max}</div>
                     </div>
                     <div class="button-container">
-                        <button data-tempid="${index}-${index2}" title="Remove this time slot." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="removeTempSlot(this.dataset.tempid)">
+                        <button data-tempid="${index}-${index2}" title="Remove." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="removeTempSlot(this.dataset.tempid)">
                             <span class="material-icons-outlined remove-sched-btn">
                                 close
                             </span>
@@ -4212,7 +4212,7 @@ function updateSchedTable(){
                         <div class="max">${sched.max}</div>
                     </div>
                     <div class="button-container">
-                        <button data-tempid="${index}-${index2}" title="Remove this time slot." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="removeTempSlot(this.dataset.tempid)">
+                        <button class="newDelete" data-tempid="${index}-${index2}" title="Remove." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="removeTempSlot(this.dataset.tempid)">
                             <span class="material-icons-outlined remove-sched-btn">
                                 close
                             </span>
@@ -4240,7 +4240,7 @@ function updateSchedTable(){
                         <div class="max">${sched.max}</div>
                     </div>
                     <div class="button-container">
-                        <button data-tempid="${index}-${index2}" title="Remove this time slot." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="removeTempSlot(this.dataset.tempid)">
+                        <button class="newDelete" data-tempid="${index}-${index2}" title="Remove." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="removeTempSlot(this.dataset.tempid)">
                             <span class="material-icons-outlined remove-sched-btn">
                                 close
                             </span>
@@ -4268,7 +4268,7 @@ function updateSchedTable(){
                         <div class="max">${sched.max}</div>
                     </div>
                     <div class="button-container">
-                        <button data-tempid="${index}-${index2}" title="Remove this time slot." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="removeTempSlot(this.dataset.tempid)">
+                        <button class="newDelete" data-tempid="${index}-${index2}" title="Remove." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="removeTempSlot(this.dataset.tempid)">
                             <span class="material-icons-outlined remove-sched-btn">
                                 close
                             </span>
@@ -4296,7 +4296,7 @@ function updateSchedTable(){
                         <div class="max">${sched.max}</div>
                     </div>
                     <div class="button-container">
-                        <button data-tempid="${index}-${index2}" title="Remove this time slot." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="removeTempSlot(this.dataset.tempid)">
+                        <button class="newDelete" data-tempid="${index}-${index2}" title="Remove." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="removeTempSlot(this.dataset.tempid)">
                             <span class="material-icons-outlined remove-sched-btn">
                                 close
                             </span>
@@ -5486,10 +5486,18 @@ function saveAdd(){
         xhr.onreadystatechange = function(){
             if(this.readyState == 4){
                 if(this.status == 200){
-                    document.querySelector("#showPrevious").removeAttribute("disabled");
-                    cancel();
-                    deptChange(document.querySelector("#deptSelect").value);
-                    showResModal("New schedule has been saved")
+                    if(this.responseText == 2){
+                        showError("Schedule date range cannot overlap an existing active schedule")
+                    }
+                    else if (this.responseText == 1){
+                        document.querySelector("#showPrevious").removeAttribute("disabled");
+                        cancel();
+                        deptChange(document.querySelector("#deptSelect").value);
+                        showResModal("New schedule has been saved")
+                    }
+                    else{
+                        alert("Something went wrong...")
+                    }
                 }
             }
         }
@@ -5775,6 +5783,12 @@ function removeTempSlot(tempid){
 }
 
 
-function showSched(){
-    // show selected sched
+function showSched(schedule){
+    
+    if(schedule == "") return;
+
+    // code: show selected sched
+    removeDisabledSchedBtn(document.querySelector('#scheduleEdit'));
+    removeDisabledSchedBtn(document.querySelector('#scheduleDlt'));
+
 }

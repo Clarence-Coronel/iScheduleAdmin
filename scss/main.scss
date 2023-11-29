@@ -3826,11 +3826,13 @@ table{
             text-align: center;
             border: unset;
             height: fit-content;
-            background-color: rgb(250, 108, 108);
+            // background-color: rgb(250, 108, 108);
+            background-color: #6aa9f3;
             color: white;
             border-radius: max(0.1vw, 5px);
             padding: 0.2rem;
             font-size: 1rem;
+            user-select: none;
         }
 
         .block{
@@ -3938,11 +3940,11 @@ table{
                 padding: 5px;
                 color: white;
                 border-radius: 5px;
-                background-color: rgb(230, 87, 87);
+                background-color: rgb(239, 97, 97);
             }
 
             .remove-sched-btn:hover{
-                background-color: lighten($color: rgb(230, 87, 87), $amount: 5);
+                background-color: lighten($color: rgb(239, 97, 97), $amount: 5);
             }
 
 
@@ -4856,4 +4858,8 @@ table{
 
 .previous-schedule{
     display: none;
+}
+
+.newDelete{
+    width: 90% !important;
 }

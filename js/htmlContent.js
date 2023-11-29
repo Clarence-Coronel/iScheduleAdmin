@@ -765,7 +765,7 @@ let scheduling = `
                                 <input type="checkbox" disabled="disabled" id="showPrevious" name="showPrevious" onchange="showPreviousToggle()">
                             </div>
                         </label>
-                        <select class="form-select select-disabled" disabled="disabled" aria-label="Default select example" onchange="showSched()" id="scheduleSet">
+                        <select class="form-select select-disabled" disabled="disabled" aria-label="Default select example" onchange="showSched(this.value);" id="scheduleSet">
                             <option value="" selected hidden disabled>-</option>
                         </select>
                     </div>
