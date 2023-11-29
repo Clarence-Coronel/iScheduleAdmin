@@ -3737,12 +3737,11 @@ function editSched(schedID, start, stop, max, deptID, day){
     `;
 
     modalPositive.innerText = 'Apply';
-    modalPositive.setAttribute("onclick", `applyEditSched(${schedID}, ${deptID}, "${day}")`);
+    modalPositive.setAttribute("onclick", `applyEditSched(${schedID}, ${deptID}, ${day})`);
     modalPositive.removeAttribute('data-bs-dismiss');
     modalLauncher();
 
-
-    startVal = splitTime(start);
+    startVal = splitTime(convertTo12HourFormat(start));
 
     document.querySelector('#startHourA').value = startVal[0];
     document.querySelector('#startHourB').value = startVal[1];
@@ -3751,13 +3750,13 @@ function editSched(schedID, start, stop, max, deptID, day){
     document.querySelector('#startPeriod').value = startVal[4];
 
 
-    startVal = splitTime(stop);
+    stopVal = splitTime(convertTo12HourFormat(stop));
 
-    document.querySelector('#stopHourA').value = startVal[0];
-    document.querySelector('#stopHourB').value = startVal[1];
-    document.querySelector('#stopMinuteA').value = startVal[2];
-    document.querySelector('#stopMinuteB').value = startVal[3];
-    document.querySelector('#stopPeriod').value = startVal[4];
+    document.querySelector('#stopHourA').value = stopVal[0];
+    document.querySelector('#stopHourB').value = stopVal[1];
+    document.querySelector('#stopMinuteA').value = stopVal[2];
+    document.querySelector('#stopMinuteB').value = stopVal[3];
+    document.querySelector('#stopPeriod').value = stopVal[4];
 
     document.querySelector('#startPeriod').setAttribute('onclick', 'periodToggle(this.id, this.value)')
     document.querySelector('#stopPeriod').setAttribute('onclick', 'periodToggle(this.id, this.value)')
@@ -3854,6 +3853,10 @@ function applyEditSched(id, deptID, day){
 
     posting = true;
 
+    alert(id);
+    alert(deptID);
+    alert(day);
+
     let maxSlot = document.querySelector("#maxSlot").value;
 
     let startHourA = document.querySelector(`#startHourA`).value;
@@ -3916,45 +3919,45 @@ function applyEditSched(id, deptID, day){
         document.querySelector('.negative').click();
     }
 
-    const xhr = new XMLHttpRequest();
-    const dept = ['ENT', 'Hematology', 'Internal Medicine', 'Internal Medicine Clearance', 'Nephrology', 'Neurology', 'OB GYNE New', 'OB GYNE Old', 'OB GYNE ROS', 'Oncology', 'Pediatric Cardiology', 'Pediatric Clearance', 'Pediatric General', 'Psychiatry New', 'Psychiatry Old', 'Surgery', 'Surgery ROS'];
+    // const xhr = new XMLHttpRequest();
+    // const dept = ['ENT', 'Hematology', 'Internal Medicine', 'Internal Medicine Clearance', 'Nephrology', 'Neurology', 'OB GYNE New', 'OB GYNE Old', 'OB GYNE ROS', 'Oncology', 'Pediatric Cardiology', 'Pediatric Clearance', 'Pediatric General', 'Psychiatry New', 'Psychiatry Old', 'Surgery', 'Surgery ROS'];
     
-    if(day == 'mon') day = 'monday';
-    else if(day == 'tue') day = 'tuesday';
-    else if(day == 'wed') day = 'wednesday';
-    else if(day == 'thu') day = 'thursday';
-    else if(day == 'fri') day = 'friday';
-    else if(day == 'sat') day = 'saturday';
+    // if(day == 'mon') day = 'monday';
+    // else if(day == 'tue') day = 'tuesday';
+    // else if(day == 'wed') day = 'wednesday';
+    // else if(day == 'thu') day = 'thursday';
+    // else if(day == 'fri') day = 'friday';
+    // else if(day == 'sat') day = 'saturday';
 
-    const obj = {
-        schedID: id,
-        department:dept[deptID-1],
-        day: day,
-        startTime: startTime,
-        stopTime: stopTime,
-        max: maxSlot,
-    }
+    // const obj = {
+    //     schedID: id,
+    //     department:dept[deptID-1],
+    //     day: day,
+    //     startTime: startTime,
+    //     stopTime: stopTime,
+    //     max: maxSlot,
+    // }
 
-    const toSend = JSON.stringify(obj);
+    // const toSend = JSON.stringify(obj);
 
-    xhr.onreadystatechange = function(){
-        if(this.readyState == 4){
-            if(this.status){
-                if(this.responseText == 1){
-                    setTimeout(()=>{
-                        showResModal("Slot has been updated");
-                        generateDeptSched(document.querySelector('#deptSelect').value);
+    // xhr.onreadystatechange = function(){
+    //     if(this.readyState == 4){
+    //         if(this.status){
+    //             if(this.responseText == 1){
+    //                 setTimeout(()=>{
+    //                     showResModal("Slot has been updated");
+    //                     generateDeptSched(document.querySelector('#deptSelect').value);
                         
-                    }, 500)
-                }
-            }
-        }
-    }
+    //                 }, 500)
+    //             }
+    //         }
+    //     }
+    // }
 
-    xhr.open('POST', './php/changeDeptSched.php', true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(toSend);
-    posting = false;
+    // xhr.open('POST', './php/changeDeptSched.php', true);
+    // xhr.setRequestHeader('Content-Type', 'application/json');
+    // xhr.send(toSend);
+    // posting = false;
 }
 
 function applyDeleteSched(schedID, deptID, day){
@@ -4145,9 +4148,6 @@ function updateSchedTable(){
                 if(sched.isBuffer) clss = 'buffer';
                 else clss = '';
 
-                console.log(sched.startTime);
-                console.log(sched.stopTime);
-
                 let template = 
                 `
                 <div class="block ${clss}">
@@ -4156,12 +4156,7 @@ function updateSchedTable(){
                         <div class="max">${sched.max}</div>
                     </div>
                     <div class="button-container">
-                        <button data-tempid="${index}-${index2}" title="Edit this time slot." data-sched_id="" data-start="${sched.startTime}" data-stop="${sched.stopTime}" data-max="${sched.max}" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="editSched(this.dataset.sched_id, this.dataset.start, this.dataset.stop, this.dataset.max, this.dataset.dept, this.dataset.day)">
-                            <span class="material-icons-outlined edit-sched-btn">
-                                edit
-                            </span>
-                        </button>
-                        <button data-tempid="${index}-${index2}" title="Remove this time slot." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="deleteSched(this.dataset.sched_id, this.dataset.dept, this.dataset.day)">
+                        <button data-tempid="${index}-${index2}" title="Remove this time slot." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="removeTempSlot(this.dataset.tempid)">
                             <span class="material-icons-outlined remove-sched-btn">
                                 close
                             </span>
@@ -4189,12 +4184,7 @@ function updateSchedTable(){
                         <div class="max">${sched.max}</div>
                     </div>
                     <div class="button-container">
-                        <button data-tempid="${index}-${index2}" title="Edit this time slot." data-sched_id="" data-start="${sched.startTime}" data-stop="${sched.stopTime}" data-max="${sched.max}" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="editSched(this.dataset.sched_id, this.dataset.start, this.dataset.stop, this.dataset.max, this.dataset.dept, this.dataset.day)">
-                            <span class="material-icons-outlined edit-sched-btn">
-                                edit
-                            </span>
-                        </button>
-                        <button data-tempid="${index}-${index2}" title="Remove this time slot." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="deleteSched(this.dataset.sched_id, this.dataset.dept, this.dataset.day)">
+                        <button data-tempid="${index}-${index2}" title="Remove this time slot." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="removeTempSlot(this.dataset.tempid)">
                             <span class="material-icons-outlined remove-sched-btn">
                                 close
                             </span>
@@ -4222,12 +4212,7 @@ function updateSchedTable(){
                         <div class="max">${sched.max}</div>
                     </div>
                     <div class="button-container">
-                        <button data-tempid="${index}-${index2}" title="Edit this time slot." data-sched_id="" data-start="${sched.startTime}" data-stop="${sched.stopTime}" data-max="${sched.max}" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="editSched(this.dataset.sched_id, this.dataset.start, this.dataset.stop, this.dataset.max, this.dataset.dept, this.dataset.day)">
-                            <span class="material-icons-outlined edit-sched-btn">
-                                edit
-                            </span>
-                        </button>
-                        <button data-tempid="${index}-${index2}" title="Remove this time slot." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="deleteSched(this.dataset.sched_id, this.dataset.dept, this.dataset.day)">
+                        <button data-tempid="${index}-${index2}" title="Remove this time slot." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="removeTempSlot(this.dataset.tempid)">
                             <span class="material-icons-outlined remove-sched-btn">
                                 close
                             </span>
@@ -4255,12 +4240,7 @@ function updateSchedTable(){
                         <div class="max">${sched.max}</div>
                     </div>
                     <div class="button-container">
-                        <button data-tempid="${index}-${index2}" title="Edit this time slot." data-sched_id="" data-start="${sched.startTime}" data-stop="${sched.stopTime}" data-max="${sched.max}" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="editSched(this.dataset.sched_id, this.dataset.start, this.dataset.stop, this.dataset.max, this.dataset.dept, this.dataset.day)">
-                            <span class="material-icons-outlined edit-sched-btn">
-                                edit
-                            </span>
-                        </button>
-                        <button data-tempid="${index}-${index2}" title="Remove this time slot." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="deleteSched(this.dataset.sched_id, this.dataset.dept, this.dataset.day)">
+                        <button data-tempid="${index}-${index2}" title="Remove this time slot." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="removeTempSlot(this.dataset.tempid)">
                             <span class="material-icons-outlined remove-sched-btn">
                                 close
                             </span>
@@ -4288,12 +4268,7 @@ function updateSchedTable(){
                         <div class="max">${sched.max}</div>
                     </div>
                     <div class="button-container">
-                        <button data-tempid="${index}-${index2}" title="Edit this time slot." data-sched_id="" data-start="${sched.startTime}" data-stop="${sched.stopTime}" data-max="${sched.max}" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="editSched(this.dataset.sched_id, this.dataset.start, this.dataset.stop, this.dataset.max, this.dataset.dept, this.dataset.day)">
-                            <span class="material-icons-outlined edit-sched-btn">
-                                edit
-                            </span>
-                        </button>
-                        <button data-tempid="${index}-${index2}" title="Remove this time slot." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="deleteSched(this.dataset.sched_id, this.dataset.dept, this.dataset.day)">
+                        <button data-tempid="${index}-${index2}" title="Remove this time slot." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="removeTempSlot(this.dataset.tempid)">
                             <span class="material-icons-outlined remove-sched-btn">
                                 close
                             </span>
@@ -4321,12 +4296,7 @@ function updateSchedTable(){
                         <div class="max">${sched.max}</div>
                     </div>
                     <div class="button-container">
-                        <button data-tempid="${index}-${index2}" title="Edit this time slot." data-sched_id="" data-start="${sched.startTime}" data-stop="${sched.stopTime}" data-max="${sched.max}" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="editSched(this.dataset.sched_id, this.dataset.start, this.dataset.stop, this.dataset.max, this.dataset.dept, this.dataset.day)">
-                            <span class="material-icons-outlined edit-sched-btn">
-                                edit
-                            </span>
-                        </button>
-                        <button data-tempid="${index}-${index2}" title="Remove this time slot." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="deleteSched(this.dataset.sched_id, this.dataset.dept, this.dataset.day)">
+                        <button data-tempid="${index}-${index2}" title="Remove this time slot." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="removeTempSlot(this.dataset.tempid)">
                             <span class="material-icons-outlined remove-sched-btn">
                                 close
                             </span>
@@ -5771,6 +5741,34 @@ function showPreviousToggle(){
         })
     }
 }
+
+function removeTempSlot(tempid){
+    let dayIndex = tempid.split("-")[0];
+    let schedIndex = tempid.split("-")[1];
+
+    for(let day = 0; day < schedTempCol.length; day++){
+
+        for(let sched = 0; sched < schedTempCol[day].length; sched++){
+            if(day == dayIndex && sched == schedIndex){
+                schedTempCol[day].splice(schedIndex, 1);
+            }
+        }
+    }
+
+    updateSchedTable();
+
+    // console.table(schedTempCol[0]);
+    // schedTempCol.forEach((day, index)=>{
+    //     if(index == dayIndex){
+    //         day.forEach((sched, innerIndex)=>{
+    //             if(innerIndex == schedIndex){
+    //                 day = day.splice(innerIndex, 1);
+    //             }
+    //         });
+    //     }
+    // });
+}
+
 
 function showSched(){
     // show selected sched

@@ -3119,13 +3119,12 @@ table {
   justify-content: center;
   align-items: center;
   gap: 1vh;
-  padding: 0 5%;
 }
 .scheduling .week-container .button-container button {
   border: unset;
   background-color: transparent;
   color: white;
-  width: 49%;
+  width: 40%;
   padding: max(0.2rem, 5px) 0;
   border-radius: max(0.1rem, 5px);
   font-size: 0.8rem;

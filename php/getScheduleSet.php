@@ -17,7 +17,7 @@
 
     $allSchedules = array();
 
-    $query = "SELECT * FROM schedules_set WHERE deptID = $deptID AND isActive = true;";
+    $query = "SELECT * FROM schedules_set WHERE deptID = $deptID AND isActive = true ORDER BY startDate ASC;";
     $result = mysqli_query($conn,$query);
 	$count = mysqli_num_rows($result);
 
