@@ -5406,6 +5406,7 @@ function addMode(){
 
     scheduleSet.selectedIndex = '0';
     scheduleSet.setAttribute('disabled', 'disabled');
+    document.querySelector("#showPrevious").setAttribute("disabled", "disabled");
     scheduleSet.classList.add('general-disabled');
 
     addContainer.style.display = 'flex';
@@ -5485,12 +5486,15 @@ function saveAdd(){
         xhr.onreadystatechange = function(){
             if(this.readyState == 4){
                 if(this.status == 200){
-                    console.log(this.responseText)
+                    document.querySelector("#showPrevious").removeAttribute("disabled");
+                    cancel();
+                    deptChange(document.querySelector("#deptSelect").value);
                     showResModal("New schedule has been saved")
                 }
             }
         }
 
+        
         xhr.open("POST", "./php/postNewSet.php", true);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(toSend);
@@ -5705,6 +5709,7 @@ function deptChange(deptID){
                     scheduleSet.appendChild(optionElement);
                 })
                 
+                document.querySelector("#showPrevious").removeAttribute("disabled");
                 removeDisabledSelect(scheduleSet);
                 enableAdd();
             }
