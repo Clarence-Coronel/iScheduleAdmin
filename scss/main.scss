@@ -4647,16 +4647,18 @@ table{
 .error-container{
     width: 100% !important;
     height: fit-content !important;
+    min-height: 3vh !important;
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
-    margin-top: 2vh;
-    margin-bottom: 3vh;
+    margin-top: 1vh;
+    margin-bottom: 1.5vh;
 }
 
 .msg, .msg-modal{
     width: 100% !important;
     height: fit-content !important;
+    min-height: 3vh !important;
     text-align: center !important;
     font-size: 0.9rem !important;
     color: red !important;

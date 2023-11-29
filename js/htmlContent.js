@@ -1330,7 +1330,6 @@ function generateSchedule(){
 function generateViewSchedule(){
     if(checkPrivilege('admin i') || checkPrivilege('admin ii') || checkPrivilege('super admin')){
         main.innerHTML = viewSchedule;
-        document.querySelector('.view-schedule__field').innerHTML = quickView;
         
         document.querySelector(".export").addEventListener('click', (e)=>{
             let tableClass = e.target.dataset.table;

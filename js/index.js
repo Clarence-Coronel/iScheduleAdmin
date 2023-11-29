@@ -5559,6 +5559,7 @@ function removeDisabledSchedBtn(button){
 }
 
 function cancel(){
+    showError();
     removeDisabledSelect(document.querySelector('#deptSelect'));
     removeDisabledSelect(document.querySelector('#scheduleSet'));
 
