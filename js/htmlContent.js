@@ -736,7 +736,7 @@ let scheduling = `
                 <div class="scheduling-header">
                     <div class="scheduling-input-container">
                         <label for="deptSelect">Department</label>
-                        <select class="form-select" aria-label="Default select example" onchange="enableAdd();" id="deptSelect">
+                        <select class="form-select" aria-label="Default select example" onchange="deptChange(this.value);" id="deptSelect">
                             <option value="" selected hidden disabled>Select a Department</option>
                             <option value="1">ENT</option>
                             <option value="2">Hematology</option>
@@ -758,14 +758,15 @@ let scheduling = `
                         </select>
                     </div>
                     <div class="scheduling-input-container">
-                        <label for="scheduleSet">Schedule</label>
-                        <select class="form-select" aria-label="Default select example" onchange="" id="scheduleSet">
+                        <label for="scheduleSet">
+                            Schedule 
+                            <div class="checkbox-container">
+                                <label for="showPrevious">Show Previous</label>
+                                <input type="checkbox" id="showPrevious" name="showPrevious" onchange="showPreviousToggle()">
+                            </div>
+                        </label>
+                        <select class="form-select select-disabled" disabled="disabled" aria-label="Default select example" onchange="showSched()" id="scheduleSet">
                             <option value="" selected hidden disabled>-</option>
-                            <option value="">November 22, 2023 - February 26, 2024</option>
-                            <option value="">November 22, 2023 - February 26, 2024</option>
-                            <option value="">November 22, 2023 - February 26, 2024</option>
-                            <option value="">November 22, 2023 - February 26, 2024</option>
-                            <option value="">November 22, 2023 - February 26, 2024</option>
                         </select>
                     </div>
                     <div class="scheduling-btns-container">
@@ -883,7 +884,7 @@ let adminLogs = `
                                 <option value="Changed Phone">Changed phone</option>
                                 <option value="Changed the website status">Changed website status</option>
                                 <option value="Created a new admin">Created a new admin</option>
-                                <option value="Inserted a new slot in ">Inserted a new slot in a department</option>
+                                <option value="Created a new schedule">Created a new schedule</option>
                                 <option value="Posted an announcement">Posted an announcement</option>
                                 <option value="Rejected">Rejected a follow up request</option>
                                 <option value="Removed a slot in ">Removed a slot in a department</option>

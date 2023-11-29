@@ -1,5 +1,4 @@
 <?php
-    session_start();
     require "connect.php";
 
     $requestPayload = file_get_contents("php://input");
@@ -9,6 +8,7 @@
     $startDate = $object->meta->start;
     $endDate = $object->meta->end;
     $isActive = true;
+    $deptName = $object->meta->deptName;
 
     $schedulesObj = $object->sched;
 
@@ -32,7 +32,13 @@
     $scheduleQuery = rtrim($scheduleQuery, ', ');
 
     if (mysqli_query($conn, $scheduleSetQuery)){
-        if(mysqli_query($conn, $scheduleQuery)) echo 1;
+        if(mysqli_query($conn, $scheduleQuery)){
+            session_start();
+            $username = $_SESSION['username'];
+            $adminStampQuery = "INSERT INTO `admin_logs`(`username`, `activity`) VALUES ('$username','Created a new schedule in $deptName')";
+            mysqli_query($conn, $adminStampQuery);
+            echo 1;
+        }
         else echo 0;
     }
     else echo 0;

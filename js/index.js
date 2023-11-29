@@ -5487,10 +5487,13 @@ function saveAdd(){
     else{
         showError();
 
+        const dept = ['ENT', 'Hematology', 'Internal Medicine', 'Internal Medicine Clearance', 'Nephrology', 'Neurology', 'OB GYNE New', 'OB GYNE Old', 'OB GYNE ROS', 'Oncology', 'Pediatric Cardiology', 'Pediatric Clearance', 'Pediatric General', 'Psychiatry New', 'Psychiatry Old', 'Surgery', 'Surgery ROS'];
+
         let meta = {
             dept: document.querySelector('#deptSelect').value,
             start: addStart.value,
             end: addEnd.value,
+            deptName: dept[document.querySelector('#deptSelect').value-1],
         }
         
         let set = {
@@ -5689,4 +5692,80 @@ function convertTo12HourFormat(militaryTime) {
     const twelveHourTime = `${formattedHours}:${formattedMinutes} ${amPm}`;
 
     return twelveHourTime;
+}
+
+function deptChange(deptID){
+    let scheduleSet = document.querySelector('#scheduleSet');
+
+    const xhr  = new XMLHttpRequest();
+    
+    xhr.onreadystatechange = function(){
+        if(this.readyState == 4){
+            if(this.status == 200){
+                removeAllChildNodes(scheduleSet);
+                const obj = JSON.parse(this.responseText);
+
+                let optionElement = document.createElement("option");
+
+                optionElement.value = "";
+                optionElement.text = "-";
+                optionElement.selected = true;
+                // optionElement.hidden = true;
+                optionElement.disabled = true;
+
+                scheduleSet.appendChild(optionElement);
+
+
+                obj.forEach((item)=>{
+
+                    let optionElement = document.createElement("option");
+                    optionElement.value = item.setID;
+                    optionElement.textContent = `${item.startDate} - ${item.endDate}`;
+
+                    if(isDateInThePast(item.endDate)){
+                        optionElement.className = "previous-schedule";
+                    }
+                    
+                    scheduleSet.appendChild(optionElement);
+                })
+                
+                removeDisabledSelect(scheduleSet);
+                enableAdd();
+            }
+        }
+    }
+
+    xhr.open("POST", "./php/getScheduleSet.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("deptID=" + deptID);
+}
+
+function isDateInThePast(dateString) {
+    // Convert the input date string to a Date object
+    var inputDate = new Date(dateString);
+  
+    // Get the current date
+    var currentDate = new Date();
+  
+    // Compare the input date with the current date
+    return inputDate < currentDate;
+  }
+
+function showPreviousToggle(){
+    const hidden = document.querySelectorAll(".previous-schedule");
+
+    if(document.getElementById("showPrevious").checked){
+        hidden.forEach(el=>{
+            el.style.display = 'unset';
+        })
+    }
+    else{
+        hidden.forEach(el=>{
+            el.style.display = 'none';
+        })
+    }
+}
+
+function showSched(){
+    // show selected sched
 }

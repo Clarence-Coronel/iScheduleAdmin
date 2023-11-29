@@ -2907,6 +2907,7 @@ table {
   padding-right: 40px !important;
 }
 .scheduling .scheduling-input-container {
+  height: 100%;
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -2918,8 +2919,25 @@ table {
   width: 100%;
   word-wrap: break-word;
 }
+.scheduling .scheduling-input-container label[for=scheduleSet] {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+.scheduling .scheduling-input-container div.checkbox-container {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 0.5vw;
+  align-items: center;
+}
+.scheduling .scheduling-input-container div.checkbox-container label {
+  font-size: 0.6rem;
+}
+.scheduling .scheduling-input-container div.checkbox-container #showPrevious {
+  width: 0.5rem;
+  height: 0.5rem;
+}
 .scheduling .scheduling-btns-container {
-  height: 100%;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -3881,4 +3899,12 @@ table {
 
 .select-disabled:hover {
   cursor: not-allowed !important;
+}
+
+#scheduleSet {
+  min-width: 280px !important;
+}
+
+.previous-schedule {
+  display: none;
 }/*# sourceMappingURL=main.css.map */
