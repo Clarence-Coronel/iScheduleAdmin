@@ -16,7 +16,7 @@
 	$result = mysqli_query($conn,$query);
 	$setID = mysqli_num_rows($result) + 1;
 
-    $query2 = "SELECT * FROM schedules_set WHERE `isActive` = true AND '$startDate' BETWEEN startDate AND endDate OR '$endDate' BETWEEN startDate AND endDate;";
+    $query2 = "SELECT * FROM schedules_set WHERE `deptID` = '$deptID' AND `isActive` = true AND (('$startDate' BETWEEN startDate AND endDate) OR ('$endDate' BETWEEN startDate AND endDate));";
 	$result2 = mysqli_query($conn,$query2);
 	$existingCount = mysqli_num_rows($result2);
 

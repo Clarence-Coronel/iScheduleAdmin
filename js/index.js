@@ -5394,6 +5394,7 @@ function checkSelectedDepartment(){
 
 function addMode(){
     reset2DArray(schedTempCol);
+    clearSlots();
     let addContainer = document.querySelector('#addContainer');
     let scheduleSet = document.querySelector('#scheduleSet');
 
@@ -5490,7 +5491,6 @@ function saveAdd(){
                         showError("Schedule date range cannot overlap an existing active schedule")
                     }
                     else if (this.responseText == 1){
-                        document.querySelector("#showPrevious").removeAttribute("disabled");
                         cancel();
                         deptChange(document.querySelector("#deptSelect").value);
                         showResModal("New schedule has been saved")
@@ -5560,6 +5560,7 @@ function removeDisabledSchedBtn(button){
 
 function cancel(){
     showError();
+    document.querySelector("#showPrevious").removeAttribute("disabled");
     removeDisabledSelect(document.querySelector('#deptSelect'));
     removeDisabledSelect(document.querySelector('#scheduleSet'));
 
@@ -5717,6 +5718,10 @@ function deptChange(deptID){
                     
                     scheduleSet.appendChild(optionElement);
                 })
+
+                disableScheduleBtn(document.querySelector("#scheduleEdit"));
+                disableScheduleBtn(document.querySelector("#scheduleDlt"));
+                
                 
                 document.querySelector("#showPrevious").removeAttribute("disabled");
                 removeDisabledSelect(scheduleSet);
@@ -5734,12 +5739,13 @@ function isDateInThePast(dateString) {
     // Convert the input date string to a Date object
     var inputDate = new Date(dateString);
   
-    // Get the current date
+    // Get the current date without the time (start of the day)
     var currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0);
   
-    // Compare the input date with the current date
+    // Compare the input date with the start of the current day
     return inputDate < currentDate;
-  }
+}
 
 function showPreviousToggle(){
     const hidden = document.querySelectorAll(".previous-schedule");
@@ -5788,8 +5794,239 @@ function showSched(schedule){
     
     if(schedule == "") return;
 
-    // code: show selected sched
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4){
+            if(this.status == 200){
+                try {
+                    
+                    let monContainer = document.querySelector('#monday .timeslot-container');
+                    let tueContainer = document.querySelector('#tuesday .timeslot-container');
+                    let wedContainer = document.querySelector('#wednesday .timeslot-container');
+                    let thuContainer = document.querySelector('#thursday .timeslot-container');
+                    let friContainer = document.querySelector('#friday .timeslot-container');
+                    let satContainer = document.querySelector('#saturday .timeslot-container');
+
+                    monContainer.innerHTML = "";
+                    tueContainer.innerHTML = "";
+                    wedContainer.innerHTML = "";
+                    thuContainer.innerHTML = "";
+                    friContainer.innerHTML = "";
+                    satContainer.innerHTML = "";
+
+                    const arrayOfObjects = JSON.parse(xhr.responseText);
+
+                    const mon = [];
+                    const tue = [];
+                    const wed = [];
+                    const thu = [];
+                    const fri = [];
+                    const sat = [];
+
+                    arrayOfObjects.forEach(item=>{
+                        const id = item.scheduleID;
+                        const day = item.day;
+                        const startTime = item.startTime;
+                        const stopTime = item.stopTime;
+                        const max = item.max;
+                        let isBuffer = item.isBuffer;
+                        let clss;
+
+                        if(isBuffer == 1) isBuffer = true;
+                        else if(isBuffer == 0) isBuffer = false;
+
+                        if(isBuffer) clss = 'buffer';
+                        else clss = '';
+                        
+                        let blockTemplate = 
+                        `
+                        <div class="block ${clss}">
+                            <div class="timeslot viewMode">
+                                <div class="time">${startTime} - ${stopTime}</div>
+                                <div class="max">${max}</div>
+                            </div>
+                        </div>
+                        `;
+
+                        if(day == 'mon'){
+                            mon.push(blockTemplate);
+                        }
+                        else if(day == 'tue'){
+                            tue.push(blockTemplate);
+                        }
+                        else if(day == 'wed'){
+                            wed.push(blockTemplate);
+                        }
+                        else if(day == 'thu'){
+                            thu.push(blockTemplate);
+                        }
+                        else if(day == 'fri'){
+                            fri.push(blockTemplate);
+                        }
+                        else if(day == 'sat'){
+                            sat.push(blockTemplate);
+                        }
+                    })
+
+                    // mon.push(`
+                    // <div class="block add">
+                    //     <button class="add-btn" data-day="mon" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                    // </div>`);
+
+                    // tue.push(`
+                    // <div class="block add">
+                    //     <button class="add-btn" data-day="tue" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                    // </div>`);
+
+                    // wed.push(`
+                    // <div class="block add">
+                    //     <button class="add-btn" data-day="wed" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                    // </div>`);
+
+                    // thu.push(`
+                    // <div class="block add">
+                    //     <button class="add-btn" data-day="thu" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                    // </div>`);
+
+                    // fri.push(`
+                    // <div class="block add">
+                    //     <button class="add-btn" data-day="fri" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                    // </div>`);
+
+                    // sat.push(`
+                    // <div class="block add">
+                    //     <button class="add-btn" data-day="sat" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                    // </div>`);
+
+                    mon.forEach(item=>{
+                        monContainer.innerHTML += item; 
+                    });
+                    tue.forEach(item=>{
+                        tueContainer.innerHTML += item;
+                    });
+                    wed.forEach(item=>{
+                        wedContainer.innerHTML += item;
+                    });
+                    thu.forEach(item=>{
+                        thuContainer.innerHTML += item;
+                    });
+                    fri.forEach(item=>{
+                        friContainer.innerHTML += item;
+                    });
+                    sat.forEach(item=>{
+                        satContainer.innerHTML += item;
+                    });
+                } catch (error) {
+                    // let monContainer = document.querySelector('#monday .timeslot-container');
+                    // let tueContainer = document.querySelector('#tuesday .timeslot-container');
+                    // let wedContainer = document.querySelector('#wednesday .timeslot-container');
+                    // let thuContainer = document.querySelector('#thursday .timeslot-container');
+                    // let friContainer = document.querySelector('#friday .timeslot-container');
+                    // let satContainer = document.querySelector('#saturday .timeslot-container');
+
+                    // const mon = [];
+                    // const tue = [];
+                    // const wed = [];
+                    // const thu = [];
+                    // const fri = [];
+                    // const sat = [];
+
+                    // mon.push(`
+                    // <div class="block add">
+                    //     <button class="add-btn" data-day="mon" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                    // </div>`);
+
+                    // tue.push(`
+                    // <div class="block add">
+                    //     <button class="add-btn" data-day="tue" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                    // </div>`);
+
+                    // wed.push(`
+                    // <div class="block add">
+                    //     <button class="add-btn" data-day="wed" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                    // </div>`);
+
+                    // thu.push(`
+                    // <div class="block add">
+                    //     <button class="add-btn" data-day="thu" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                    // </div>`);
+
+                    // fri.push(`
+                    // <div class="block add">
+                    //     <button class="add-btn" data-day="fri" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                    // </div>`);
+
+                    // sat.push(`
+                    // <div class="block add">
+                    //     <button class="add-btn" data-day="sat" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                    // </div>`);
+
+                    // mon.forEach((item)=>{
+                    //     monContainer.innerHTML += item;
+                    // })
+                    // tue.forEach((item)=>{
+                    //     tueContainer.innerHTML += item;
+                    // })
+                    // wed.forEach((item)=>{
+                    //     wedContainer.innerHTML += item;
+                    // })
+                    // thu.forEach((item)=>{
+                    //     thuContainer.innerHTML += item;
+                    // })
+                    // fri.forEach((item)=>{
+                    //     friContainer.innerHTML += item;
+                    // })
+                    // sat.forEach((item)=>{
+                    //     satContainer.innerHTML += item;
+                    // })
+                }
+            }
+        }
+    }
+
+    xhr.open("POST", "./php/getScheduleTimeSlot.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("schedID="+schedule);
+
     removeDisabledSchedBtn(document.querySelector('#scheduleEdit'));
     removeDisabledSchedBtn(document.querySelector('#scheduleDlt'));
 
+}
+
+function deleteSchedule(){
+    confirmModal("Deleting Schedule...", "Are you sure?", "applyDeleteSchedule()");
+}
+
+function applyDeleteSchedule(){
+    let scheduleSet = document.querySelector("#scheduleSet").value;
+
+    const xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function(){
+        if(this.readyState ==4){
+            if(this.status == 200){
+
+                if(this.responseText == 1){
+                    setTimeout(()=>{
+                        showResModal("Schedule has been deleted.");
+                        clearSlots();
+                        
+                        disableScheduleBtn(document.querySelector("#scheduleEdit"));
+                        disableScheduleBtn(document.querySelector("#scheduleDlt"));
+
+                        deptChange(document.querySelector("#deptSelect").value);
+                    }, 500)
+                }
+                else{
+                    alert("Something went wrong...");
+                }
+                
+                
+            }
+        }
+    }
+
+    xhr.open("POST", "./php/deleteSchedule.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("setID="+scheduleSet);
 }

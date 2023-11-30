@@ -3805,12 +3805,14 @@ table{
     }
 
     .week-container{
+        border: 1px solid #6aa9f3;
+        border-radius: 5px;
         width: 100%;
         height: 92%;
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
-        gap: 1%;
-        padding-top: max(1%, 10px);
+        // gap: 1%;
+        // padding-top: max(1%, 10px);
         margin-top: 3vh;
 
         .day{
@@ -3818,7 +3820,7 @@ table{
             height: 100%;
             display: flex;
             flex-flow: column;
-            padding: 5% 0;
+            // padding: 5% 0;
         }
 
         .day-header{
@@ -3829,15 +3831,15 @@ table{
             // background-color: rgb(250, 108, 108);
             background-color: #6aa9f3;
             color: white;
-            border-radius: max(0.1vw, 5px);
-            padding: 0.2rem;
+            // border-radius: max(0.1vw, 5px);
+            padding: 0.5rem 0.2rem;
             font-size: 1rem;
             user-select: none;
         }
 
         .block{
             margin-top: 2%;
-            width: 100%;
+            width: 95%;
             // padding: 5%;
             background-color: rgb(235, 235, 235);
             border-radius: max(0.1vw, 5px);
@@ -3881,8 +3883,15 @@ table{
         }
 
         .timeslot-container{
+            // margin-top: 1vh;
             display: flex;
             flex-flow: column;
+            align-items: center;
+            padding: 1vh 0;
+            gap: 0.7vh;
+            // min-height: 200px;
+            // border:  1px solid rgb(235, 235, 235);
+            // border-radius: 5px;
         }
 
         .timeslot{
@@ -3890,6 +3899,10 @@ table{
             text-align: center;
             font-weight: 700;
             font-size: 0.7rem;
+        }
+
+        .viewMode{
+            font-size: 0.8rem;
         }
 
         .max{
