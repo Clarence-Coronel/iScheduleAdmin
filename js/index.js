@@ -6325,12 +6325,12 @@ function showSchedEdit(schedule){
                                 <div class="max">${max}</div>
                             </div>
                             <div class="button-container">
-                                <button onclick="editSchedTemp('${id}')">
+                                <button onclick="editSchedTemp('${id}')" title="Edit time slot.">
                                     <span class="material-icons-outlined edit-sched-btn">
                                         edit
                                     </span>
                                 </button>
-                                <button onclick="applyDeleteSched('${id}')">
+                                <button onclick="applyDeleteSched('${id}')" title="Remove time slot.">
                                     <span class="material-icons-outlined remove-sched-btn">
                                         close
                                     </span>
@@ -6361,32 +6361,32 @@ function showSchedEdit(schedule){
                     })
 
                     mon.push(`
-                    <div class="block add">
+                    <div class="block add" title="Add time slot.">
                         <button class="add-btn" data-day="mon" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
                     </div>`);
 
                     tue.push(`
-                    <div class="block add">
+                    <div class="block add" title="Add time slot.">
                         <button class="add-btn" data-day="tue" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
                     </div>`);
 
                     wed.push(`
-                    <div class="block add">
+                    <div class="block add" title="Add time slot.">
                         <button class="add-btn" data-day="wed" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
                     </div>`);
 
                     thu.push(`
-                    <div class="block add">
+                    <div class="block add" title="Add time slot.">
                         <button class="add-btn" data-day="thu" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
                     </div>`);
 
                     fri.push(`
-                    <div class="block add">
+                    <div class="block add" title="Add time slot.">
                         <button class="add-btn" data-day="fri" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
                     </div>`);
 
                     sat.push(`
-                    <div class="block add">
+                    <div class="block add" title="Add time slot.">
                         <button class="add-btn" data-day="sat" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
                     </div>`);
 
