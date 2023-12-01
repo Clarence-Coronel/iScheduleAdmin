@@ -4184,7 +4184,7 @@ function updateSchedTable(){
                         <div class="max">${sched.max}</div>
                     </div>
                     <div class="button-container">
-                        <button data-tempid="${index}-${index2}" title="Remove." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="removeTempSlot(this.dataset.tempid)">
+                        <button class="newDelete" data-tempid="${index}-${index2}" title="Remove." data-sched_id="" data-dept="${sched.deptID}" data-day="${sched.day}" onclick="removeTempSlot(this.dataset.tempid)">
                             <span class="material-icons-outlined remove-sched-btn">
                                 close
                             </span>
@@ -5313,12 +5313,12 @@ function getRandomInt() {
     return Math.floor(Math.random() * 9).toString();
 }
 
-function loading(){
-    document.body.classList.add("loading-cursor");
+function loading(el){
+    el.classList.add("loading-cursor");
 }
 
-function removeLoading(){
-    document.body.classList.remove("loading-cursor");
+function removeLoading(el){
+    el.classList.remove("loading-cursor");
 }
 
 function addDashEvery4Characters(input) {
@@ -5427,9 +5427,16 @@ function addMode(){
 
     schedulingSave.removeAttribute('onclick');
     schedulingSave.setAttribute('onclick', 'saveAdd()');
+
+    document.querySelector('#schedulingSave').removeAttribute("onclick");
+    document.querySelector('#schedulingSave').setAttribute("onclick", "saveAdd()");
 }
 
 function saveAdd(){
+    if(posting) return;
+
+    posting = true;
+
     const addStart = document.querySelector('#addStart');
     const addEnd = document.querySelector('#addEnd');
 
@@ -5438,31 +5445,38 @@ function saveAdd(){
 
     if(addStart.value == "" && addEnd.value == "") {
         showError("Start & end date cannot be empty");
+        posting = false;
         return;
     }
     else if(addStart.value == "" || addEnd.value == ""){
         if(addStart.value == ""){
             showError("Start date cannot be empty");
+            posting = false;
             return;
         }
         else if(addEnd.value == ""){
             showError("End date cannot be empty");
+            posting = false;
             return;
         }
     }
     else if(startDateObj > endDateObj){
         showError("Start date cannot be later than end date");
+        posting = false;
         return;
     }
     else if (startDateObj == endDateObj){
         showError("Start date cannot be equal to end date");
+        posting = false;
         return;
     }
     else if(document.querySelectorAll('.block').length == document.querySelectorAll('.add').length){
         showError("Schedule must contain a time slot");
+        posting = false;
         return;
     }
     else{
+        loading(document.querySelector('#schedulingSave'));
         showError();
 
         const dept = ['ENT', 'Hematology', 'Internal Medicine', 'Internal Medicine Clearance', 'Nephrology', 'Neurology', 'OB GYNE New', 'OB GYNE Old', 'OB GYNE ROS', 'Oncology', 'Pediatric Cardiology', 'Pediatric Clearance', 'Pediatric General', 'Psychiatry New', 'Psychiatry Old', 'Surgery', 'Surgery ROS'];
@@ -5498,6 +5512,8 @@ function saveAdd(){
                     else{
                         alert("Something went wrong...")
                     }
+                    removeLoading(document.querySelector('#schedulingSave'));
+                    posting = false;
                 }
             }
         }
