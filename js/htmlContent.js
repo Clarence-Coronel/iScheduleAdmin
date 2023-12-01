@@ -788,7 +788,7 @@ let scheduling = `
 
                         <div class="state-container" style="display:none">
                             <button id="schedulingSave">Save</button>
-                            <button onclick="cancel()">Cancel</button>
+                            <button id="cancel" onclick="cancel()">Cancel</button>
                         </div>
                     </div>
                 </div>
@@ -875,6 +875,7 @@ let adminLogs = `
                                 <option value="all" selected>All</option>
                                 <option value="Approved">Approved a follow up request</option>
                                 <option value="Blocked a new date">Blocked a date</option>
+                                <option value="Changed a schedule in">Changed a department's schedule</option>
                                 <option value="Changed a slot in ">Changed a slot in a department</option>
                                 <option value="Changed admin type of">Changed an admin's type</option>
                                 <option value="appointment status">Changed an appointment's status</option>

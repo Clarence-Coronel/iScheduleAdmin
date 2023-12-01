@@ -3972,8 +3972,6 @@ function applyDeleteSched(schedID){
 
     toDeleteSlots.push(schedID);
     block.remove();
-
-    console.table(toDeleteSlots);
 }
 
 function applyAddSched(day){
@@ -5399,12 +5397,13 @@ function addMode(){
     createAddSchedBtn();
 
     let schedulingSave = document.querySelector('#schedulingSave');
+    let schedulingCancel = document.querySelector('#cancel');
 
     schedulingSave.removeAttribute('onclick');
     schedulingSave.setAttribute('onclick', 'saveAdd()');
 
-    schedulingSave.removeAttribute("onclick");
-    schedulingSave.setAttribute("onclick", "saveAdd()");
+    schedulingCancel.removeAttribute('onclick');
+    schedulingCancel.setAttribute('onclick', 'cancel()');
 
 }
 
@@ -5452,7 +5451,6 @@ function saveAdd(){
         return;
     }
     else{
-        loading(document.querySelector('#schedulingSave'));
         showError();
 
         const dept = ['ENT', 'Hematology', 'Internal Medicine', 'Internal Medicine Clearance', 'Nephrology', 'Neurology', 'OB GYNE New', 'OB GYNE Old', 'OB GYNE ROS', 'Oncology', 'Pediatric Cardiology', 'Pediatric Clearance', 'Pediatric General', 'Psychiatry New', 'Psychiatry Old', 'Surgery', 'Surgery ROS'];
@@ -5492,6 +5490,9 @@ function saveAdd(){
                     posting = false;
                 }
             }
+            else{
+                loading(document.querySelector('#schedulingSave'));
+            }
         }
 
         
@@ -5506,7 +5507,8 @@ function saveAdd(){
 function editMode(){
     let deptID = document.querySelector("#deptSelect").value;
     let setID = document.querySelector("#scheduleSet").value;
-    // let scheduleSet = document.querySelector('#scheduleSet');
+    let schedulingSave = document.querySelector("#schedulingSave");
+    let schedulingCancel = document.querySelector("#cancel");
 
     // scheduleSet.selectedIndex = '0';
 
@@ -5527,16 +5529,76 @@ function editMode(){
     clearSlots();
 
     schedulingSave.removeAttribute('onclick');
-    schedulingSave.setAttribute('onclick', 'saveEdit()');
+    schedulingSave.setAttribute('onclick', 'saveEdit();');
 
-    schedulingSave.removeAttribute("onclick");
-    schedulingSave.setAttribute("onclick", "saveEdit()");
+
+    schedulingCancel.removeAttribute('onclick');
+    schedulingCancel.setAttribute('onclick', 'cancelEdit();');
+
 
     showSchedEdit(setID);
 }
 
 function saveEdit(){
-    alert("EY saving")
+    // DELETE MUNA
+
+    let schedSetIndex = document.querySelector("#scheduleSet").selectedIndex;
+
+    const dept = ['ENT', 'Hematology', 'Internal Medicine', 'Internal Medicine Clearance', 'Nephrology', 'Neurology', 'OB GYNE New', 'OB GYNE Old', 'OB GYNE ROS', 'Oncology', 'Pediatric Cardiology', 'Pediatric Clearance', 'Pediatric General', 'Psychiatry New', 'Psychiatry Old', 'Surgery', 'Surgery ROS'];
+
+    let editStart = document.querySelector("#editStart");
+    let editEnd = document.querySelector("#editEnd");
+
+    // idagdag dito yung if wala rin inedit di lang delete
+    if (toDeleteSlots.length == 0 && 
+        editStart.dataset.initial == editStart.value &&
+        editEnd.dataset.initial == editEnd.value){
+
+        cancelEdit();
+        return;
+    }  
+    
+
+    const obj = {
+        deptName:dept[document.querySelector("#deptSelect").value-1],
+        range: {
+            deptID: document.querySelector("#deptSelect").value,
+            setID: document.querySelector("#scheduleSet").value,
+            start: editStart.value, 
+            end: editEnd.value, 
+            oldStart: editStart.dataset.initial, 
+            oldEnd: editEnd.dataset.initial, 
+        },
+        // edit: toEditSlots,
+        delete: toDeleteSlots,
+    }
+
+    const toSend = JSON.stringify(obj);
+
+    const xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function(){
+        if(this.readyState == 4){
+            if(this.status == 200){
+                console.log(this.responseText)
+                if(this.responseText == 1){
+                    showResModal("Schedule has been saved");
+                    cancelEdit();
+                    deptChange(document.querySelector("#deptSelect").value, "editSaved", schedSetIndex);
+                    
+                }
+                else if(this.responseText == 2){
+                    showError("Schedule date range cannot overlap an existing active schedule");
+                }else alert("Something went wrong...");
+
+                toDeleteSlots.splice(0, toDeleteSlots.length)
+            }
+        }
+    }
+
+    xhr.open("POST", "./php/postEditSchedule.php", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(toSend)
 }
 
 function enableAdd(){
@@ -5584,6 +5646,7 @@ function removeDisabledSchedBtn(button){
 
 function cancel(){
     showError();
+
     document.querySelector("#showPrevious").removeAttribute("disabled");
     removeDisabledSelect(document.querySelector('#deptSelect'));
     removeDisabledSelect(document.querySelector('#scheduleSet'));
@@ -5597,13 +5660,35 @@ function cancel(){
 
     document.querySelector('.state-container').style.display="none";
     document.querySelector('#addContainer').style.display="none";
-    document.querySelector('#editContainer').style.display="none";
     
-    reset2DArray(schedTempCol)
+    reset2DArray(schedTempCol);
 
     document.querySelectorAll('.timeslot-container').forEach(item=>{
         removeAllChildNodes(item);
     })
+}
+
+function cancelEdit(){
+    showError();
+
+    document.querySelector("#showPrevious").removeAttribute("disabled");
+    removeDisabledSelect(document.querySelector('#deptSelect'));
+    removeDisabledSelect(document.querySelector('#scheduleSet'));
+
+    removeDisabledSchedBtn(document.querySelector('#scheduleAdd'));
+
+    if(document.querySelector('#scheduleSet').value != ""){
+        removeDisabledSchedBtn(document.querySelector('#scheduleEdit'));
+        removeDisabledSchedBtn(document.querySelector('#scheduleDlt'));
+    }
+
+    document.querySelector('.state-container').style.display="none";
+    document.querySelector('#editContainer').style.display="none";
+
+    reset2DArray(toEditSlots);
+    toDeleteSlots.splice(0, toDeleteSlots.length);
+
+    showSched(document.querySelector("#scheduleSet").value);
 }
 
 function removeAllChildNodes(parent) {
@@ -5709,7 +5794,8 @@ function convertTo12HourFormat(militaryTime) {
     return twelveHourTime;
 }
 
-function deptChange(deptID){
+function deptChange(deptID, mode = "", index = null){
+    clearSlots();
     let scheduleSet = document.querySelector('#scheduleSet');
 
     const xhr  = new XMLHttpRequest();
@@ -5735,7 +5821,7 @@ function deptChange(deptID){
 
                     let optionElement = document.createElement("option");
                     optionElement.value = item.setID;
-                    optionElement.textContent = `${item.startDate} - ${item.endDate}`;
+                    optionElement.textContent = `${shortenDate(item.startDate)} - ${shortenDate(item.endDate)}`;
 
                     if(isDateInThePast(item.endDate)){
                         optionElement.className = "previous-schedule";
@@ -5751,6 +5837,11 @@ function deptChange(deptID){
                 document.querySelector("#showPrevious").removeAttribute("disabled");
                 removeDisabledSelect(scheduleSet);
                 enableAdd();
+
+                if(mode == 'editSaved'){
+                    document.querySelector("#scheduleSet").selectedIndex = index;
+                    showSched(document.querySelector("#scheduleSet").value);
+                }
             }
         }
     }
@@ -6227,6 +6318,28 @@ function showSchedEdit(schedule){
     xhr.open("POST", "./php/getScheduleTimeSlot.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send("schedID="+schedule);
+
+
+    const xhr2 = new XMLHttpRequest();
+
+    xhr2.onreadystatechange = function(){
+        if(this.readyState == 4){
+            if(this.status == 200){
+                let range = JSON.parse(this.responseText);
+                
+                document.querySelector("#editStart").value = range[0];
+                document.querySelector("#editEnd").value = range[1];
+
+                document.querySelector("#editStart").setAttribute("data-initial", `${range[0]}`);
+                document.querySelector("#editEnd").setAttribute("data-initial", `${range[1]}`);
+            }
+        }
+    }
+
+    xhr2.open("POST", "./php/getSetIDRange.php", true);
+    xhr2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr2.send("setID="+schedule);
+    
 }
 
 function deleteSchedule(){
@@ -6266,3 +6379,30 @@ function applyDeleteSchedule(){
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send("setID="+scheduleSet);
 }
+
+function shortenDate(inputDate) {
+    // Create a Date object from the input date string
+    var dateObject = new Date(inputDate);
+
+    // Ensure the input date is valid
+    if (isNaN(dateObject.getTime())) {
+        return "Invalid Date";
+    }
+
+    // Define months in short format
+    var months = [
+        "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    ];
+
+    // Extract day, month, and year
+    var day = dateObject.getDate();
+    var month = months[dateObject.getMonth()];
+    var year = dateObject.getFullYear();
+
+    // Construct the new date format
+    var formattedDate = `${("0" + day).slice(-2)} ${month} ${year}`;
+
+    return formattedDate;
+}
+
