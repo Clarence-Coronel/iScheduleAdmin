@@ -7,14 +7,15 @@
 
     $toDelete = $object->delete;
     $toEditRange = $object->range;
+    $toEditSched = $object->edit;
 
-    if(delete($toDelete) && editRange($toEditRange)){
+    if(delete($toDelete) && editRange($toEditRange) && edit($toEditSched)){
         session_start();
         $username = $_SESSION['username'];
         $adminStampQuery = "INSERT INTO `admin_logs`(`username`, `activity`) VALUES ('$username','Changed a schedule in $object->deptName')";
         mysqli_query($conn, $adminStampQuery);
         echo 1;
-    }
+    }else echo 0;
 
     function delete($toDelete){
         require 'connect.php';
@@ -54,6 +55,23 @@
 
         if(mysqli_query($conn, $rangeQuery)) return true;
         else return false;
+    }
+
+    function edit($toEditSched){
+        require 'connect.php';
+
+        $query = "";
+
+        foreach($toEditSched as $sched){
+            $query .= "UPDATE `schedules` SET `startTime`='$sched->startTime',`stopTime`='$sched->stopTime',`max`='$sched->max', `isBuffer`='$sched->isBuffer' WHERE `scheduleID` = '$sched->schedID'; ";
+        }
+
+        if(mysqli_multi_query($conn, $query)){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
 ?>

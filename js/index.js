@@ -16,8 +16,19 @@ let currentWebStatus = null;
 let eventListenerAdded = false;
 let posting = false;
 let processingCal = false;
+let schedEdited = false;
+let blockSchedEdit = [];
 
 const schedTempCol = [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+];
+
+const toAddSlots = [
     [],
     [],
     [],
@@ -29,12 +40,6 @@ const schedTempCol = [
 const toDeleteSlots = [];
 
 const toEditSlots = [
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
 ];
 
 
@@ -3749,7 +3754,7 @@ function editSched(schedID, start, stop, max, deptID, day){
     `;
 
     modalPositive.innerText = 'Apply';
-    modalPositive.setAttribute("onclick", `applyEditSched(${schedID}, ${deptID}, ${day})`);
+    modalPositive.setAttribute("onclick", `applyEditSched(${schedID})`);
     modalPositive.removeAttribute('data-bs-dismiss');
     modalLauncher();
 
@@ -3763,6 +3768,88 @@ function editSched(schedID, start, stop, max, deptID, day){
 
 
     stopVal = splitTime(convertTo12HourFormat(stop));
+
+    document.querySelector('#stopHourA').value = stopVal[0];
+    document.querySelector('#stopHourB').value = stopVal[1];
+    document.querySelector('#stopMinuteA').value = stopVal[2];
+    document.querySelector('#stopMinuteB').value = stopVal[3];
+    document.querySelector('#stopPeriod').value = stopVal[4];
+
+    document.querySelector('#startPeriod').setAttribute('onclick', 'periodToggle(this.id, this.value)')
+    document.querySelector('#stopPeriod').setAttribute('onclick', 'periodToggle(this.id, this.value)')
+    
+}
+
+function editSchedTemp(schedID){
+    resetModal();
+
+    let src = document.querySelector(`.block[data-sched_id="${schedID}"]`)
+
+    let modalTitle = document.querySelector('.modal-title');
+    let modalBody = document.querySelector('.modal-body');
+    let modalPositive = document.querySelector('.positive');
+    let modalNegative = document.querySelector('.negative');
+    let close = document.querySelector('.btn-close');
+    let modalHeader = document.querySelector('.modal-header');
+    let modalFooter = document.querySelector('.modal-footer');
+
+    modalTitle.innerText = 'Editing...';
+    modalBody.innerHTML = `
+    <div class="editSched-container">
+        <div class="time-container">
+            <div class="editTime-container start">
+                <input onclick="this.select()" type="text" class="timepart time-hourA" id="startHourA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01'); checkHourB('start')">
+                <input onclick="this.select()" type="text" class="timepart time-hourB" id="startHourB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789'); checkHourA('start');">
+                <span>:</span>
+                <input onclick="this.select()" type="text" class="timepart time-minA" id="startMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01345');">
+                <input onclick="this.select()" type="text" class="timepart time-minB" id="startMinuteB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789');">
+                <input type="text" class="timepart time-minB" id="startPeriod" value="AM" readonly>
+            </div>
+            <span class="divider">-</span>
+            <div class="editTime-container stop">
+                <input onclick="this.select()" type="text" class="timepart time-hourA" id="stopHourA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01'); checkHourB('stop')">
+                <input onclick="this.select()" type="text" class="timepart time-hourB" id="stopHourB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789'); checkHourA('stop');">
+                <span>:</span>
+                <input onclick="this.select()" type="text" class="timepart time-minA" id="stopMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01345');">
+                <input onclick="this.select()" type="text" class="timepart time-minB" id="stopMinuteB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789');">
+                <input type="text" class="timepart time-minB" id="stopPeriod" value="AM" readonly>
+            </div>
+        </div>
+        <div class="max-container alt">
+            <div class="slot-wrapper">
+                <label for="maxSlot">Slot: </label>
+                <input type="text" placeholder="0" value="${src.dataset.ini_max}" id="maxSlot" oninput="filterPhoneInput(this.id); inputLimiter(this.id,2)" onblur="inputLimiterBlur(this.id, 2)">   
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input add-sched" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Buffer</label>
+            </div>
+        </div>
+        <div class="error-container">
+            <span class="msg-modal"></span>
+        </div>
+    </div>
+    `;
+
+    if(src.dataset.ini_buffer == 'true') document.querySelector(".form-check-input").checked = true;
+    else document.querySelector(".form-check-label").checked = false;
+
+    modalPositive.innerText = 'Apply';
+
+    modalPositive.setAttribute("onclick", `applyEditSched(${schedID})`);
+    modalPositive.removeAttribute('data-bs-dismiss');
+    modalLauncher();
+
+    startVal = splitTime(convertTo12HourFormat(src.dataset.ini_start));
+
+    document.querySelector('#startHourA').value = startVal[0];
+    document.querySelector('#startHourB').value = startVal[1];
+    document.querySelector('#startMinuteA').value = startVal[2];
+    document.querySelector('#startMinuteB').value = startVal[3];
+    document.querySelector('#startPeriod').value = startVal[4];
+
+
+    stopVal = splitTime(convertTo12HourFormat(src.dataset.ini_stop));
 
     document.querySelector('#stopHourA').value = stopVal[0];
     document.querySelector('#stopHourB').value = stopVal[1];
@@ -3853,16 +3940,13 @@ function addSched(day){
     document.querySelector('#stopPeriod').setAttribute('onclick', 'periodToggle(this.id, this.value)')
 }
 
-function applyEditSched(id, deptID, day){
+function applyEditSched(schedID){
+    
     if(posting){
         return;
     }
 
     posting = true;
-
-    alert(id);
-    alert(deptID);
-    alert(day);
 
     let maxSlot = document.querySelector("#maxSlot").value;
 
@@ -3878,52 +3962,113 @@ function applyEditSched(id, deptID, day){
     let stopMinuteB = document.querySelector(`#stopMinuteB`).value;
     let stopPeriod = document.querySelector(`#stopPeriod`).value;
 
+    let isBuffer = document.querySelector("#flexSwitchCheckDefault").checked;
+
     const startTime = convertToMilitaryTime(`${startHourA}${startHourB}:${startMinuteA}${startMinuteB} ${startPeriod}`);
     const stopTime = convertToMilitaryTime(`${stopHourA}${stopHourB}:${stopMinuteA}${stopMinuteB} ${stopPeriod}`);
 
     if(startHourA == "0" && startHourB == "0" && startMinuteA == "0" && startMinuteB == "0"){
-        showError("Starting time cannot be empty");
+        showErrorModal("Starting time cannot be empty");
+        posting = false;
         return;
     }
     else if(startHourA == "" && startHourB == "" && startMinuteA == "" && startMinuteB == ""){
-        showError("Starting time cannot be empty");
+        showErrorModal("Starting time cannot be empty");
+        posting = false;
         return;
     }
     else if(startHourA == "" || startHourB == "" || startMinuteA == "" || startMinuteB == ""){
-        showError("Invalid starting time");
+        showErrorModal("Invalid starting time");
+        posting = false;
         return;
     }
     else if(startHourA == "0" && startHourB == "0"){
-        showError("Invalid starting time");
+        showErrorModal("Invalid starting time");
+        posting = false;
         return;
     }
     else if(stopHourA == "0" && stopHourB == "0" && stopMinuteA == "0" && stopMinuteB == "0"){
-        showError("Closing time cannot be empty");
+        showErrorModal("Closing time cannot be empty");
+        posting = false;
         return;
     }
     else if(stopHourA == "" && stopHourB == "" && stopMinuteA == "" && stopMinuteB == ""){
-        showError("Closing time cannot be empty");
+        showErrorModal("Closing time cannot be empty");
+        posting = false;
         return;
     }
     else if(stopHourA == "" || stopHourB == "" || stopMinuteA == "" || stopMinuteB == ""){
-        showError("Invalid closing time");
+        showErrorModal("Invalid closing time");
+        posting = false;
         return;
     }
     else if(stopHourA == "0" && stopHourB == "0"){
-        showError("Invalid closing time");
+        showErrorModal("Invalid closing time");
+        posting = false;
         return;
     }
     else if(startTime >= stopTime){
-        showError("Starting time cannot be later than closing time");
+        showErrorModal("Starting time cannot be later than closing time");
+        posting = false;
         return;
     }
     else if(maxSlot == '' || maxSlot == '0'){
-        showError("Slot cannot be empty");
+        showErrorModal("Slot cannot be empty");
+        posting = false;
         return;
     }
     else{
+
+        showErrorModal();
         document.querySelector('.positive').setAttribute('data-bs-dismiss', 'modal');
         document.querySelector('.negative').click();
+        schedEdited = true;
+                
+
+        posting = false;
+
+        // let duplicate = null;
+
+        for(i =0; i<toEditSlots.length; i++){
+            if(toEditSlots[i].schedID == schedID){
+                toEditSlots.splice(i, 1);
+                break;
+            }
+        }
+
+        let temp = {
+            schedID: schedID,
+            startTime: startTime,
+            stopTime: stopTime,
+            max: maxSlot,
+            isBuffer: isBuffer,
+        };
+
+        toEditSlots.push(temp);
+        
+        let toChange = document.querySelector(`.block[data-sched_id="${schedID}"]`);
+        
+        toChange.removeAttribute('data-ini_max');
+        toChange.removeAttribute('data-ini_start');
+        toChange.removeAttribute('data-ini_stop');
+        toChange.removeAttribute('data-ini_buffer');
+
+        toChange.setAttribute('data-ini_max', temp.max);
+        toChange.setAttribute('data-ini_start', convertTo12HourFormat(temp.startTime));
+        toChange.setAttribute('data-ini_stop', convertTo12HourFormat(temp.stopTime));
+        toChange.setAttribute('data-ini_buffer', temp.isBuffer);
+        
+
+        toChange.querySelector(".time").innerText = `${convertTo12HourFormat(temp.startTime)} - ${convertTo12HourFormat(temp.stopTime)}`;
+        toChange.querySelector(".max").innerText = `${temp.max}`;
+
+        if(temp.isBuffer){
+            toChange.classList.add("buffer");
+        }
+        else{
+            toChange.classList.remove("buffer");
+        }
+        
     }
 
     // const xhr = new XMLHttpRequest();
@@ -3937,7 +4082,7 @@ function applyEditSched(id, deptID, day){
     // else if(day == 'sat') day = 'saturday';
 
     // const obj = {
-    //     schedID: id,
+    //     schedID: schedId,
     //     department:dept[deptID-1],
     //     day: day,
     //     startTime: startTime,
@@ -5549,10 +5694,12 @@ function saveEdit(){
     let editStart = document.querySelector("#editStart");
     let editEnd = document.querySelector("#editEnd");
 
-    // idagdag dito yung if wala rin inedit di lang delete
+    // idagdag dito yung if wala rin inedit at wala inadd na new slot
     if (toDeleteSlots.length == 0 && 
         editStart.dataset.initial == editStart.value &&
-        editEnd.dataset.initial == editEnd.value){
+        editEnd.dataset.initial == editEnd.value &&
+        !schedEdited
+        ){
 
         cancelEdit();
         return;
@@ -5569,8 +5716,9 @@ function saveEdit(){
             oldStart: editStart.dataset.initial, 
             oldEnd: editEnd.dataset.initial, 
         },
-        // edit: toEditSlots,
+        edit: toEditSlots,
         delete: toDeleteSlots,
+        // add: toAddSlots,
     }
 
     const toSend = JSON.stringify(obj);
@@ -5671,6 +5819,8 @@ function cancel(){
 function cancelEdit(){
     showError();
 
+    schedEdited = false;
+
     document.querySelector("#showPrevious").removeAttribute("disabled");
     removeDisabledSelect(document.querySelector('#deptSelect'));
     removeDisabledSelect(document.querySelector('#scheduleSet'));
@@ -5685,7 +5835,8 @@ function cancelEdit(){
     document.querySelector('.state-container').style.display="none";
     document.querySelector('#editContainer').style.display="none";
 
-    reset2DArray(toEditSlots);
+    reset2DArray(toAddSlots);
+    toEditSlots.splice(0, toEditSlots.length);
     toDeleteSlots.splice(0, toDeleteSlots.length);
 
     showSched(document.querySelector("#scheduleSet").value);
@@ -5825,6 +5976,7 @@ function deptChange(deptID, mode = "", index = null){
 
                     if(isDateInThePast(item.endDate)){
                         optionElement.className = "previous-schedule";
+                        blockSchedEdit.push(item.setID);
                     }
                     
                     scheduleSet.appendChild(optionElement);
@@ -6106,6 +6258,10 @@ function showSched(schedule){
     removeDisabledSchedBtn(document.querySelector('#scheduleEdit'));
     removeDisabledSchedBtn(document.querySelector('#scheduleDlt'));
 
+    if(blockSchedEdit.includes(document.querySelector("#scheduleSet").value)){
+        disableScheduleBtn(document.querySelector('#scheduleEdit'));
+    }
+
 }
 
 function showSchedEdit(schedule){
@@ -6155,21 +6311,21 @@ function showSchedEdit(schedule){
 
                         if(isBuffer) clss = 'buffer';
                         else clss = '';
-                        
+
                         let blockTemplate = 
                         `
-                        <div class="block ${clss}" data-sched_id="${id}">
+                        <div class="block ${clss}" data-sched_id="${id}" data-ini_max="${max}" data-ini_start="${startTime}" data-ini_stop="${stopTime}" data-ini_buffer="${isBuffer}">
                             <div class="timeslot">
                                 <div class="time">${startTime} - ${stopTime}</div>
                                 <div class="max">${max}</div>
                             </div>
                             <div class="button-container">
-                                <button data-sched_id="${id}" data-start="${startTime}" data-stop="${stopTime}" data-max="${max}" data-day="${day}" onclick="editSched(this.dataset.sched_id, this.dataset.start, this.dataset.stop, this.dataset.max, this.dataset.dept, this.dataset.day)">
+                                <button onclick="editSchedTemp('${id}')">
                                     <span class="material-icons-outlined edit-sched-btn">
                                         edit
                                     </span>
                                 </button>
-                                <button data-sched_id="${id}" data-day="${day}" onclick="applyDeleteSched('${id}')">
+                                <button onclick="applyDeleteSched('${id}')">
                                     <span class="material-icons-outlined remove-sched-btn">
                                         close
                                     </span>
