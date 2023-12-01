@@ -16,7 +16,19 @@ let currentWebStatus = null;
 let eventListenerAdded = false;
 let posting = false;
 let processingCal = false;
+
 const schedTempCol = [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+];
+
+const toDeleteSlots = [];
+
+const toEditSlots = [
     [],
     [],
     [],
@@ -3769,11 +3781,6 @@ function periodToggle(id, val){
 
 }
 
-function deleteSched(schedID, deptID, day){
-    confirmModal("Deleting...", "Are you sure?", `applyDeleteSched("${schedID}", "${deptID}", "${day}")`)
-
-}
-
 function addSched(day){
 
     resetModal();
@@ -3960,45 +3967,13 @@ function applyEditSched(id, deptID, day){
     // posting = false;
 }
 
-function applyDeleteSched(schedID, deptID, day){
+function applyDeleteSched(schedID){
+    let block = document.querySelector(`.block[data-sched_id="${schedID}"]`);
 
-    if(posting){
-        return;
-    }
+    toDeleteSlots.push(schedID);
+    block.remove();
 
-    posting = true;
-
-    const xhr = new XMLHttpRequest();
-
-    xhr.onreadystatechange = function(){
-        if(this.readyState == 4){
-            if(this.status == 200){
-                if(this.responseText == 1){
-                    setTimeout(()=>{
-                        showResModal("Slot has been deleted")
-                        generateDeptSched(document.querySelector('#deptSelect').value);
-                    }, 500)
-                    
-                }
-            }
-        }
-    }
-
-    const dept = ['ENT', 'Hematology', 'Internal Medicine', 'Internal Medicine Clearance', 'Nephrology', 'Neurology', 'OB GYNE New', 'OB GYNE Old', 'OB GYNE ROS', 'Oncology', 'Pediatric Cardiology', 'Pediatric Clearance', 'Pediatric General', 'Psychiatry New', 'Psychiatry Old', 'Surgery', 'Surgery ROS'];
-    
-    if(day == 'mon') day = 'monday';
-    else if(day == 'tue') day = 'tuesday';
-    else if(day == 'wed') day = 'wednesday';
-    else if(day == 'thu') day = 'thursday';
-    else if(day == 'fri') day = 'friday';
-    else if(day == 'sat') day = 'saturday';
-
-    deptID = dept[deptID-1];
-
-    xhr.open("POST", "./php/deleteSched.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send(`id=${schedID}&dept=${deptID}&day=${day}`);
-    posting = false;
+    console.table(toDeleteSlots);
 }
 
 function applyAddSched(day){
@@ -5428,8 +5403,9 @@ function addMode(){
     schedulingSave.removeAttribute('onclick');
     schedulingSave.setAttribute('onclick', 'saveAdd()');
 
-    document.querySelector('#schedulingSave').removeAttribute("onclick");
-    document.querySelector('#schedulingSave').setAttribute("onclick", "saveAdd()");
+    schedulingSave.removeAttribute("onclick");
+    schedulingSave.setAttribute("onclick", "saveAdd()");
+
 }
 
 function saveAdd(){
@@ -5528,7 +5504,39 @@ function saveAdd(){
 }
 
 function editMode(){
-    
+    let deptID = document.querySelector("#deptSelect").value;
+    let setID = document.querySelector("#scheduleSet").value;
+    // let scheduleSet = document.querySelector('#scheduleSet');
+
+    // scheduleSet.selectedIndex = '0';
+
+    document.querySelector('#editStart').value = "";
+    document.querySelector('#editEnd').value = "";
+
+    document.querySelector('#editContainer').style.display = 'flex';
+    document.querySelector('.state-container').style.display="flex";
+
+    disableScheduleBtn(document.querySelector('#scheduleAdd'));
+    disableScheduleBtn(document.querySelector('#scheduleEdit'));
+    disableScheduleBtn(document.querySelector('#scheduleDlt'));
+    disableSelect(document.querySelector("#deptSelect"));
+    disableSelect(document.querySelector("#scheduleSet"));
+    document.querySelector("#showPrevious").setAttribute("disabled", "disabled");
+
+
+    clearSlots();
+
+    schedulingSave.removeAttribute('onclick');
+    schedulingSave.setAttribute('onclick', 'saveEdit()');
+
+    schedulingSave.removeAttribute("onclick");
+    schedulingSave.setAttribute("onclick", "saveEdit()");
+
+    showSchedEdit(setID);
+}
+
+function saveEdit(){
+    alert("EY saving")
 }
 
 function enableAdd(){
@@ -5589,6 +5597,7 @@ function cancel(){
 
     document.querySelector('.state-container').style.display="none";
     document.querySelector('#addContainer').style.display="none";
+    document.querySelector('#editContainer').style.display="none";
     
     reset2DArray(schedTempCol)
 
@@ -5805,7 +5814,6 @@ function removeTempSlot(tempid){
     // });
 }
 
-
 function showSched(schedule){
     
     if(schedule == "") return;
@@ -6007,6 +6015,218 @@ function showSched(schedule){
     removeDisabledSchedBtn(document.querySelector('#scheduleEdit'));
     removeDisabledSchedBtn(document.querySelector('#scheduleDlt'));
 
+}
+
+function showSchedEdit(schedule){
+    
+    if(schedule == "") return;
+
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4){
+            if(this.status == 200){
+                try {
+                    
+                    let monContainer = document.querySelector('#monday .timeslot-container');
+                    let tueContainer = document.querySelector('#tuesday .timeslot-container');
+                    let wedContainer = document.querySelector('#wednesday .timeslot-container');
+                    let thuContainer = document.querySelector('#thursday .timeslot-container');
+                    let friContainer = document.querySelector('#friday .timeslot-container');
+                    let satContainer = document.querySelector('#saturday .timeslot-container');
+
+                    monContainer.innerHTML = "";
+                    tueContainer.innerHTML = "";
+                    wedContainer.innerHTML = "";
+                    thuContainer.innerHTML = "";
+                    friContainer.innerHTML = "";
+                    satContainer.innerHTML = "";
+
+                    const arrayOfObjects = JSON.parse(xhr.responseText);
+
+                    const mon = [];
+                    const tue = [];
+                    const wed = [];
+                    const thu = [];
+                    const fri = [];
+                    const sat = [];
+
+                    arrayOfObjects.forEach(item=>{
+                        const id = item.schedID;
+                        const day = item.day;
+                        const startTime = item.startTime;
+                        const stopTime = item.stopTime;
+                        const max = item.max;
+                        let isBuffer = item.isBuffer;
+                        let clss;
+
+                        if(isBuffer == 1) isBuffer = true;
+                        else if(isBuffer == 0) isBuffer = false;
+
+                        if(isBuffer) clss = 'buffer';
+                        else clss = '';
+                        
+                        let blockTemplate = 
+                        `
+                        <div class="block ${clss}" data-sched_id="${id}">
+                            <div class="timeslot">
+                                <div class="time">${startTime} - ${stopTime}</div>
+                                <div class="max">${max}</div>
+                            </div>
+                            <div class="button-container">
+                                <button data-sched_id="${id}" data-start="${startTime}" data-stop="${stopTime}" data-max="${max}" data-day="${day}" onclick="editSched(this.dataset.sched_id, this.dataset.start, this.dataset.stop, this.dataset.max, this.dataset.dept, this.dataset.day)">
+                                    <span class="material-icons-outlined edit-sched-btn">
+                                        edit
+                                    </span>
+                                </button>
+                                <button data-sched_id="${id}" data-day="${day}" onclick="applyDeleteSched('${id}')">
+                                    <span class="material-icons-outlined remove-sched-btn">
+                                        close
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                        `;
+
+
+                        if(day == 'mon'){
+                            mon.push(blockTemplate);
+                        }
+                        else if(day == 'tue'){
+                            tue.push(blockTemplate);
+                        }
+                        else if(day == 'wed'){
+                            wed.push(blockTemplate);
+                        }
+                        else if(day == 'thu'){
+                            thu.push(blockTemplate);
+                        }
+                        else if(day == 'fri'){
+                            fri.push(blockTemplate);
+                        }
+                        else if(day == 'sat'){
+                            sat.push(blockTemplate);
+                        }
+                    })
+
+                    mon.push(`
+                    <div class="block add">
+                        <button class="add-btn" data-day="mon" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                    </div>`);
+
+                    tue.push(`
+                    <div class="block add">
+                        <button class="add-btn" data-day="tue" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                    </div>`);
+
+                    wed.push(`
+                    <div class="block add">
+                        <button class="add-btn" data-day="wed" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                    </div>`);
+
+                    thu.push(`
+                    <div class="block add">
+                        <button class="add-btn" data-day="thu" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                    </div>`);
+
+                    fri.push(`
+                    <div class="block add">
+                        <button class="add-btn" data-day="fri" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                    </div>`);
+
+                    sat.push(`
+                    <div class="block add">
+                        <button class="add-btn" data-day="sat" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                    </div>`);
+
+                    mon.forEach(item=>{
+                        monContainer.innerHTML += item; 
+                    });
+                    tue.forEach(item=>{
+                        tueContainer.innerHTML += item;
+                    });
+                    wed.forEach(item=>{
+                        wedContainer.innerHTML += item;
+                    });
+                    thu.forEach(item=>{
+                        thuContainer.innerHTML += item;
+                    });
+                    fri.forEach(item=>{
+                        friContainer.innerHTML += item;
+                    });
+                    sat.forEach(item=>{
+                        satContainer.innerHTML += item;
+                    });
+                } catch (error) {
+                    // let monContainer = document.querySelector('#monday .timeslot-container');
+                    // let tueContainer = document.querySelector('#tuesday .timeslot-container');
+                    // let wedContainer = document.querySelector('#wednesday .timeslot-container');
+                    // let thuContainer = document.querySelector('#thursday .timeslot-container');
+                    // let friContainer = document.querySelector('#friday .timeslot-container');
+                    // let satContainer = document.querySelector('#saturday .timeslot-container');
+
+                    // const mon = [];
+                    // const tue = [];
+                    // const wed = [];
+                    // const thu = [];
+                    // const fri = [];
+                    // const sat = [];
+
+                    // mon.push(`
+                    // <div class="block add">
+                    //     <button class="add-btn" data-day="mon" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                    // </div>`);
+
+                    // tue.push(`
+                    // <div class="block add">
+                    //     <button class="add-btn" data-day="tue" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                    // </div>`);
+
+                    // wed.push(`
+                    // <div class="block add">
+                    //     <button class="add-btn" data-day="wed" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                    // </div>`);
+
+                    // thu.push(`
+                    // <div class="block add">
+                    //     <button class="add-btn" data-day="thu" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                    // </div>`);
+
+                    // fri.push(`
+                    // <div class="block add">
+                    //     <button class="add-btn" data-day="fri" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                    // </div>`);
+
+                    // sat.push(`
+                    // <div class="block add">
+                    //     <button class="add-btn" data-day="sat" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                    // </div>`);
+
+                    // mon.forEach((item)=>{
+                    //     monContainer.innerHTML += item;
+                    // })
+                    // tue.forEach((item)=>{
+                    //     tueContainer.innerHTML += item;
+                    // })
+                    // wed.forEach((item)=>{
+                    //     wedContainer.innerHTML += item;
+                    // })
+                    // thu.forEach((item)=>{
+                    //     thuContainer.innerHTML += item;
+                    // })
+                    // fri.forEach((item)=>{
+                    //     friContainer.innerHTML += item;
+                    // })
+                    // sat.forEach((item)=>{
+                    //     satContainer.innerHTML += item;
+                    // })
+                }
+            }
+        }
+    }
+
+    xhr.open("POST", "./php/getScheduleTimeSlot.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("schedID="+schedule);
 }
 
 function deleteSchedule(){
