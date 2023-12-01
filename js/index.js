@@ -4113,10 +4113,15 @@ function applyEditSched(schedID){
 }
 
 function applyDeleteSched(schedID){
-    let block = document.querySelector(`.block[data-sched_id="${schedID}"]`);
 
-    toDeleteSlots.push(schedID);
-    block.remove();
+    if(document.querySelectorAll(".day .block").length == 7){
+        showError("Schedule requires a minimum of at least one (1) time slot");
+    }
+    else{
+        let block = document.querySelector(`.block[data-sched_id="${schedID}"]`);
+        toDeleteSlots.push(schedID);
+        block.remove();
+    }
 }
 
 function applyAddSched(day){
