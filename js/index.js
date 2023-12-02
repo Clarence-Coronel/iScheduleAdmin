@@ -4099,8 +4099,6 @@ function addTempTimeSlot(day){
         tempIndex: toAddSlots.length,
     };
 
-
-
     toAddSlots.push(obj);
 
     insertTempTimeslot(obj);
