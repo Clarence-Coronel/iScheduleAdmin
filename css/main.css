@@ -3062,7 +3062,7 @@ table {
 .scheduling .week-container .block {
   margin-top: 2%;
   width: 95%;
-  padding: 1vw 1vh;
+  padding: 1vw;
   background-color: rgb(235, 235, 235);
   border-radius: max(0.1vw, 5px);
   display: flex;
@@ -3070,18 +3070,15 @@ table {
   justify-content: center;
   gap: 2vh;
   align-items: center;
-  height: max(15vh, 100px);
+  min-height: 100px;
   overflow: hidden;
 }
 .scheduling .week-container .buffer {
   background-color: rgb(245, 234, 170);
 }
-.scheduling .week-container .buffer .time::after {
-  content: " (Buffer)";
-}
 .scheduling .week-container .add {
   padding: unset;
-  height: unset;
+  min-height: unset;
 }
 .scheduling .week-container .add .add-btn {
   padding: 5%;
@@ -3111,6 +3108,7 @@ table {
   text-align: center;
   font-weight: 700;
   font-size: 0.8rem;
+  padding: 0.5vw;
 }
 .scheduling .week-container .viewMode {
   font-size: 0.8rem;

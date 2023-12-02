@@ -3720,7 +3720,7 @@ function editSched(schedID, start, stop, max, deptID, day){
                 <input onclick="this.select()" type="text" class="timepart time-hourA" id="startHourA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01'); checkHourB('start')">
                 <input onclick="this.select()" type="text" class="timepart time-hourB" id="startHourB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789'); checkHourA('start');">
                 <span>:</span>
-                <input onclick="this.select()" type="text" class="timepart time-minA" id="startMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01345');">
+                <input onclick="this.select()" type="text" class="timepart time-minA" id="startMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '012345');">
                 <input onclick="this.select()" type="text" class="timepart time-minB" id="startMinuteB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789');">
                 <input type="text" class="timepart time-minB" id="startPeriod" value="AM" readonly>
             </div>
@@ -3729,7 +3729,7 @@ function editSched(schedID, start, stop, max, deptID, day){
                 <input onclick="this.select()" type="text" class="timepart time-hourA" id="stopHourA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01'); checkHourB('stop')">
                 <input onclick="this.select()" type="text" class="timepart time-hourB" id="stopHourB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789'); checkHourA('stop');">
                 <span>:</span>
-                <input onclick="this.select()" type="text" class="timepart time-minA" id="stopMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01345');">
+                <input onclick="this.select()" type="text" class="timepart time-minA" id="stopMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '012345');">
                 <input onclick="this.select()" type="text" class="timepart time-minB" id="stopMinuteB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789');">
                 <input type="text" class="timepart time-minB" id="stopPeriod" value="AM" readonly>
             </div>
@@ -3794,7 +3794,7 @@ function editSchedTemp(schedID){
                 <input onclick="this.select()" type="text" class="timepart time-hourA" id="startHourA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01'); checkHourB('start')">
                 <input onclick="this.select()" type="text" class="timepart time-hourB" id="startHourB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789'); checkHourA('start');">
                 <span>:</span>
-                <input onclick="this.select()" type="text" class="timepart time-minA" id="startMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01345');">
+                <input onclick="this.select()" type="text" class="timepart time-minA" id="startMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '012345');">
                 <input onclick="this.select()" type="text" class="timepart time-minB" id="startMinuteB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789');">
                 <input type="text" class="timepart time-minB" id="startPeriod" value="AM" readonly>
             </div>
@@ -3803,7 +3803,7 @@ function editSchedTemp(schedID){
                 <input onclick="this.select()" type="text" class="timepart time-hourA" id="stopHourA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01'); checkHourB('stop')">
                 <input onclick="this.select()" type="text" class="timepart time-hourB" id="stopHourB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789'); checkHourA('stop');">
                 <span>:</span>
-                <input onclick="this.select()" type="text" class="timepart time-minA" id="stopMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01345');">
+                <input onclick="this.select()" type="text" class="timepart time-minA" id="stopMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '012345');">
                 <input onclick="this.select()" type="text" class="timepart time-minB" id="stopMinuteB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789');">
                 <input type="text" class="timepart time-minB" id="stopPeriod" value="AM" readonly>
             </div>
@@ -4200,7 +4200,85 @@ function rearrangeTimeslots(day){
 }
 
 function editTempTimeslot(index){
-    alert(index)
+
+    resetModal();
+
+    // let src = document.querySelector(`.block[data-temp_index="${index}"]`);
+
+    let modalTitle = document.querySelector('.modal-title');
+    let modalBody = document.querySelector('.modal-body');
+    let modalPositive = document.querySelector('.positive');
+    let modalNegative = document.querySelector('.negative');
+    let close = document.querySelector('.btn-close');
+    let modalHeader = document.querySelector('.modal-header');
+    let modalFooter = document.querySelector('.modal-footer');
+
+    modalTitle.innerText = 'Editing...';
+    modalBody.innerHTML = `
+    <div class="editSched-container">
+        <div class="time-container">
+            <div class="editTime-container start">
+                <input onclick="this.select()" type="text" class="timepart time-hourA" id="startHourA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01'); checkHourB('start')">
+                <input onclick="this.select()" type="text" class="timepart time-hourB" id="startHourB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789'); checkHourA('start');">
+                <span>:</span>
+                <input onclick="this.select()" type="text" class="timepart time-minA" id="startMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '012345');">
+                <input onclick="this.select()" type="text" class="timepart time-minB" id="startMinuteB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789');">
+                <input type="text" class="timepart time-minB" id="startPeriod" value="AM" readonly>
+            </div>
+            <span class="divider">-</span>
+            <div class="editTime-container stop">
+                <input onclick="this.select()" type="text" class="timepart time-hourA" id="stopHourA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01'); checkHourB('stop')">
+                <input onclick="this.select()" type="text" class="timepart time-hourB" id="stopHourB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789'); checkHourA('stop');">
+                <span>:</span>
+                <input onclick="this.select()" type="text" class="timepart time-minA" id="stopMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '012345');">
+                <input onclick="this.select()" type="text" class="timepart time-minB" id="stopMinuteB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789');">
+                <input type="text" class="timepart time-minB" id="stopPeriod" value="AM" readonly>
+            </div>
+        </div>
+        <div class="max-container alt">
+            <div class="slot-wrapper">
+                <label for="maxSlot">Slot: </label>
+                <input type="text" placeholder="0" value="${toAddSlots[index].max}" id="maxSlot" oninput="filterPhoneInput(this.id); inputLimiter(this.id,2)" onblur="inputLimiterBlur(this.id, 2)">   
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input add-sched" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Buffer</label>
+            </div>
+        </div>
+        <div class="error-container">
+            <span class="msg-modal"></span>
+        </div>
+    </div>
+    `;
+
+    if(toAddSlots[index].isBuffer == 'true') document.querySelector(".form-check-input").checked = true;
+    else document.querySelector(".form-check-label").checked = false;
+
+    modalPositive.innerText = 'Apply';
+
+    modalPositive.setAttribute("onclick", ``);
+    modalPositive.removeAttribute('data-bs-dismiss');
+    modalLauncher();
+
+    startVal = splitTime(convertTo12HourFormat(toAddSlots[index].startTime));
+
+    document.querySelector('#startHourA').value = startVal[0];
+    document.querySelector('#startHourB').value = startVal[1];
+    document.querySelector('#startMinuteA').value = startVal[2];
+    document.querySelector('#startMinuteB').value = startVal[3];
+    document.querySelector('#startPeriod').value = startVal[4];
+
+
+    stopVal = splitTime(convertTo12HourFormat(toAddSlots[index].stopTime));
+
+    document.querySelector('#stopHourA').value = stopVal[0];
+    document.querySelector('#stopHourB').value = stopVal[1];
+    document.querySelector('#stopMinuteA').value = stopVal[2];
+    document.querySelector('#stopMinuteB').value = stopVal[3];
+    document.querySelector('#stopPeriod').value = stopVal[4];
+
+    document.querySelector('#startPeriod').setAttribute('onclick', 'periodToggle(this.id, this.value)')
+    document.querySelector('#stopPeriod').setAttribute('onclick', 'periodToggle(this.id, this.value)')
 }
 
 function dltTempTimeslot(index){

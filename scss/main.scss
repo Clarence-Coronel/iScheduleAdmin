@@ -3841,7 +3841,7 @@ table{
         .block{
             margin-top: 2%;
             width: 95%;
-            padding: 1vw 1vh;
+            padding: 1vw;
             background-color: rgb(235, 235, 235);
             border-radius: max(0.1vw, 5px);
             display: flex;
@@ -3849,21 +3849,21 @@ table{
             justify-content: center;
             gap: 2vh;
             align-items: center;
-            height: max(15vh, 100px);
+            min-height: 100px;
             overflow: hidden;
         }
 
         .buffer{
             background-color: rgb(245, 234, 170);
 
-            .time::after{
-                content: ' (Buffer)';
-            }
+            // .time::after{
+            //     content: ' (Buffer)';
+            // }
         }
 
         .add{
             padding: unset;
-            height: unset;
+            min-height: unset;
             // transition-duration: 500ms;
             .add-btn{
                 padding: 5%;
@@ -3900,6 +3900,7 @@ table{
             text-align: center;
             font-weight: 700;
             font-size: 0.8rem;
+            padding: 0.5vw;
         }
 
         .viewMode{
