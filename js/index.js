@@ -4099,11 +4099,8 @@ function addTempTimeSlot(day){
         tempIndex: toAddSlots.length,
     };
 
-
-
-    toAddSlots.push(obj);
-
-    insertTempTimeslot(obj);
+    // Update interface hanapin using index .block[data-temp_index=""]
+    // 
 }
 
 function insertTempTimeslot(timeslot){
@@ -4256,7 +4253,7 @@ function editTempTimeslot(index){
 
     modalPositive.innerText = 'Apply';
 
-    modalPositive.setAttribute("onclick", ``);
+    modalPositive.setAttribute("onclick", `applyEditTempTS(${index})`);
     modalPositive.removeAttribute('data-bs-dismiss');
     modalLauncher();
 
@@ -4279,6 +4276,134 @@ function editTempTimeslot(index){
 
     document.querySelector('#startPeriod').setAttribute('onclick', 'periodToggle(this.id, this.value)')
     document.querySelector('#stopPeriod').setAttribute('onclick', 'periodToggle(this.id, this.value)')
+}
+
+function applyEditTempTS(index){
+
+    let maxSlot = document.querySelector("#maxSlot").value;
+
+    let startHourA = document.querySelector(`#startHourA`).value;
+    let startHourB = document.querySelector(`#startHourB`).value;
+    let startMinuteA = document.querySelector(`#startMinuteA`).value;
+    let startMinuteB = document.querySelector(`#startMinuteB`).value;
+    let startPeriod = document.querySelector(`#startPeriod`).value;
+
+    let stopHourA = document.querySelector(`#stopHourA`).value;
+    let stopHourB = document.querySelector(`#stopHourB`).value;
+    let stopMinuteA = document.querySelector(`#stopMinuteA`).value;
+    let stopMinuteB = document.querySelector(`#stopMinuteB`).value;
+    let stopPeriod = document.querySelector(`#stopPeriod`).value;
+
+    let isBuffer = document.querySelector("#flexSwitchCheckDefault").checked;
+
+    const startTime = convertToMilitaryTime(`${startHourA}${startHourB}:${startMinuteA}${startMinuteB} ${startPeriod}`);
+    const stopTime = convertToMilitaryTime(`${stopHourA}${stopHourB}:${stopMinuteA}${stopMinuteB} ${stopPeriod}`);
+
+    if(startHourA == "0" && startHourB == "0" && startMinuteA == "0" && startMinuteB == "0"){
+        showErrorModal("Starting time cannot be empty");
+        return;
+    }
+    else if(startHourA == "" && startHourB == "" && startMinuteA == "" && startMinuteB == ""){
+        showErrorModal("Starting time cannot be empty");
+        return;
+    }
+    else if(startHourA == "" || startHourB == "" || startMinuteA == "" || startMinuteB == ""){
+        showErrorModal("Invalid starting time");
+        return;
+    }
+    else if(startHourA == "0" && startHourB == "0"){
+        showErrorModal("Invalid starting time");
+        return;
+    }
+    else if(stopHourA == "0" && stopHourB == "0" && stopMinuteA == "0" && stopMinuteB == "0"){
+        showErrorModal("Closing time cannot be empty");
+        return;
+    }
+    else if(stopHourA == "" && stopHourB == "" && stopMinuteA == "" && stopMinuteB == ""){
+        showErrorModal("Closing time cannot be empty");
+        return;
+    }
+    else if(stopHourA == "" || stopHourB == "" || stopMinuteA == "" || stopMinuteB == ""){
+        showErrorModal("Invalid closing time");
+        return;
+    }
+    else if(stopHourA == "0" && stopHourB == "0"){
+        showErrorModal("Invalid closing time");
+        return;
+    }
+    else if(startTime >= stopTime){
+        showErrorModal("Starting time cannot be later than closing time");
+        return;
+    }
+    else if(maxSlot == '' || maxSlot == '0'){
+        showErrorModal("Slot cannot be empty");
+        return;
+    }
+    else{
+
+        showErrorModal();
+        document.querySelector('.positive').setAttribute('data-bs-dismiss', 'modal');
+        document.querySelector('.negative').click();
+        schedEdited = true;
+
+        // let duplicate = null;
+
+        for(i =0; i<toEditSlots.length; i++){
+            if(toEditSlots[i].schedID == schedID){
+                toEditSlots.splice(i, 1);
+                break;
+            }
+        }
+
+
+        // let temp = {
+        //     schedID: schedID,
+        //     startTime: startTime,
+        //     stopTime: stopTime,
+        //     max: maxSlot,
+        //     isBuffer: isBuffer,
+        // };
+
+        // const obj = {
+        //     deptID: deptVal,
+        //     day: day,
+        //     startTime: startTime,
+        //     stopTime: stopTime,
+        //     max: maxSlot,
+        //     isBuffer: isBuffer,
+        //     tempActive: true,
+        //     tempIndex: toAddSlots.length,
+        // };
+
+        toAddSlots[index].startTime = startTime;
+        toAddSlots[index].stopTime = stopTime;
+        toAddSlots[index].max = maxSlot;
+        toAddSlots[index].isBuffer = isBuffer;
+        
+        let toChange = document.querySelector(`.block[data-sched_id="${schedID}"]`);
+        
+        toChange.removeAttribute('data-ini_max');
+        toChange.removeAttribute('data-ini_start');
+        toChange.removeAttribute('data-ini_stop');
+        toChange.removeAttribute('data-ini_buffer');
+
+        toChange.setAttribute('data-ini_max', temp.max);
+        toChange.setAttribute('data-ini_start', convertTo12HourFormat(temp.startTime));
+        toChange.setAttribute('data-ini_stop', convertTo12HourFormat(temp.stopTime));
+        toChange.setAttribute('data-ini_buffer', temp.isBuffer);
+        
+
+        toChange.querySelector(".time").innerText = `${convertTo12HourFormat(temp.startTime)} - ${convertTo12HourFormat(temp.stopTime)}`;
+        toChange.querySelector(".max").innerText = `${temp.max}`;
+
+        if(temp.isBuffer){
+            toChange.classList.add("buffer");
+        }
+        else{
+            toChange.classList.remove("buffer");
+        }
+        
+    }
 }
 
 function dltTempTimeslot(index){
