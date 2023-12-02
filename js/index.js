@@ -28,14 +28,7 @@ const schedTempCol = [
     [],
 ];
 
-const toAddSlots = [
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-];
+const toAddSlots = [];
 
 const toDeleteSlots = [];
 
@@ -3940,6 +3933,286 @@ function addSched(day){
     document.querySelector('#stopPeriod').setAttribute('onclick', 'periodToggle(this.id, this.value)')
 }
 
+function addSchedTemp(day){
+    resetModal();
+
+    let modalTitle = document.querySelector('.modal-title');
+    let modalBody = document.querySelector('.modal-body');
+    let modalPositive = document.querySelector('.positive');
+    let modalNegative = document.querySelector('.negative');
+    let close = document.querySelector('.btn-close');
+    let modalHeader = document.querySelector('.modal-header');
+    let modalFooter = document.querySelector('.modal-footer');
+
+    modalTitle.innerText = 'Creating...';
+    modalBody.innerHTML = `
+    <div class="editSched-container"> 
+        <div class="time-container">
+            <div class="editTime-container start">
+                <input onclick="this.select()" type="text" class="timepart time-hourA" id="startHourA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01'); checkHourB('start')">
+                <input onclick="this.select()" type="text" class="timepart time-hourB" id="startHourB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789'); checkHourA('start');">
+                <span>:</span>
+                <input onclick="this.select()" type="text" class="timepart time-minA" id="startMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '012345');">
+                <input onclick="this.select()" type="text" class="timepart time-minB" id="startMinuteB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789');">
+                <input type="text" class="timepart time-minB" id="startPeriod" value="AM" readonly>
+            </div>
+            <span class="divider">-</span>
+            <div class="editTime-container stop">
+                <input onclick="this.select()" type="text" class="timepart time-hourA" id="stopHourA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01'); checkHourB('stop')">
+                <input onclick="this.select()" type="text" class="timepart time-hourB" id="stopHourB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789'); checkHourA('stop');">
+                <span>:</span>
+                <input onclick="this.select()"  type="text" class="timepart time-minA" id="stopMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '012345');">
+                <input onclick="this.select()" type="text" class="timepart time-minB" id="stopMinuteB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789');">
+                <input type="text" class="timepart time-minB" id="stopPeriod" value="AM" readonly>
+            </div>
+        </div>
+        <div class="max-container alt">
+            <div class="slot-wrapper">
+                <label for="maxSlot">Slot: </label>
+                <input type="text" placeholder="0" value="" id="maxSlot" oninput="filterPhoneInput(this.id); inputLimiter(this.id,2)" onblur="inputLimiterBlur(this.id, 2)">
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input add-sched" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Buffer</label>
+            </div>
+        </div>
+        <div class="error-container">
+            <span class="msg-modal"></span>
+        </div>
+    </div>
+    `;
+
+    modalPositive.innerText = 'Create';
+    modalPositive.setAttribute("onclick", `addTempTimeSlot("${day}")`);
+    modalPositive.removeAttribute('data-bs-dismiss');
+    modalLauncher();
+
+
+    document.querySelector('#startHourA').value = 0;
+    document.querySelector('#startHourB').value = 0;
+    document.querySelector('#startMinuteA').value = 0;
+    document.querySelector('#startMinuteB').value = 0;
+    document.querySelector('#startPeriod').value = 'AM';
+
+    document.querySelector('#stopHourA').value = 0;
+    document.querySelector('#stopHourB').value = 0;
+    document.querySelector('#stopMinuteA').value = 0;
+    document.querySelector('#stopMinuteB').value = 0;
+    document.querySelector('#stopPeriod').value = 'AM'
+
+    document.querySelector('#startPeriod').setAttribute('onclick', 'periodToggle(this.id, this.value)')
+    document.querySelector('#stopPeriod').setAttribute('onclick', 'periodToggle(this.id, this.value)')
+}
+
+function addTempTimeSlot(day){
+    const deptVal = document.querySelector("#deptSelect").value;
+
+    // Start
+    const startHourA = document.querySelector(`#startHourA`).value;
+    const startHourB = document.querySelector(`#startHourB`).value;
+    const startMinuteA = document.querySelector(`#startMinuteA`).value;
+    const startMinuteB = document.querySelector(`#startMinuteB`).value;
+    const startPeriod = document.querySelector(`#startPeriod`).value;
+
+    // Stop
+    const stopHourA = document.querySelector(`#stopHourA`).value;
+    const stopHourB = document.querySelector(`#stopHourB`).value;
+    const stopMinuteA = document.querySelector(`#stopMinuteA`).value;
+    const stopMinuteB = document.querySelector(`#stopMinuteB`).value;
+    const stopPeriod = document.querySelector(`#stopPeriod`).value;
+
+    const maxSlot = document.querySelector('#maxSlot').value;
+
+    let isBuffer = document.querySelector('.add-sched').checked;
+
+    if(isBuffer) isBuffer = 1;
+    else isBuffer = 0;
+
+    const startTime =  convertToMilitaryTime(`${startHourA}${startHourB}:${startMinuteA}${startMinuteB} ${startPeriod}`);
+    const stopTime = convertToMilitaryTime(`${stopHourA}${stopHourB}:${stopMinuteA}${stopMinuteB} ${stopPeriod}`);
+
+    if(startHourA == "0" && startHourB == "0" && startMinuteA == "0" && startMinuteB == "0"){
+        showErrorModal("Starting time cannot be empty");
+        return;
+    }
+    else if(startHourA == "" && startHourB == "" && startMinuteA == "" && startMinuteB == ""){
+        showErrorModal("Starting time cannot be empty");
+        return;
+    }
+    else if(startHourA == "" || startHourB == "" || startMinuteA == "" || startMinuteB == ""){
+        showErrorModal("Invalid starting time");
+        return;
+    }
+    else if(startHourA == "0" && startHourB == "0"){
+        showErrorModal("Invalid starting time");
+        return;
+    }
+    else if(stopHourA == "0" && stopHourB == "0" && stopMinuteA == "0" && stopMinuteB == "0"){
+        showErrorModal("Closing time cannot be empty");
+        return;
+    }
+    else if(stopHourA == "" && stopHourB == "" && stopMinuteA == "" && stopMinuteB == ""){
+        showErrorModal("Closing time cannot be empty");
+        return;
+    }
+    else if(stopHourA == "" || stopHourB == "" || stopMinuteA == "" || stopMinuteB == ""){
+        showErrorModal("Invalid closing time");
+        return;
+    }
+    else if(stopHourA == "0" && stopHourB == "0"){
+        showErrorModal("Invalid closing time");
+        return;
+    }
+    else if(startTime >= stopTime){
+        showErrorModal("Starting time cannot be later than closing time");
+        return;
+    }
+    else if(maxSlot == '' || maxSlot == '0'){
+        showErrorModal("Slot cannot be empty");
+        return;
+    }
+    else{
+        document.querySelector('.positive').setAttribute('data-bs-dismiss', 'modal');
+        document.querySelector('.negative').click();
+    }
+
+    const dept = ['ENT', 'Hematology', 'Internal Medicine', 'Internal Medicine Clearance', 'Nephrology', 'Neurology', 'OB GYNE New', 'OB GYNE Old', 'OB GYNE ROS', 'Oncology', 'Pediatric Cardiology', 'Pediatric Clearance', 'Pediatric General', 'Psychiatry New', 'Psychiatry Old', 'Surgery', 'Surgery ROS'];
+    let dayName = "";
+
+    if(day == 'mon') dayName = 'monday';
+    else if(day == 'tue') dayName = 'tuesday';
+    else if(day == 'wed') dayName = 'wednesday';
+    else if(day == 'thu') dayName = 'thursday';
+    else if(day == 'fri') dayName = 'friday';
+    else if(day == 'sat') dayName = 'saturday';
+
+    deptName = dept[deptVal-1];
+
+    const obj = {
+        deptID: deptVal,
+        day: day,
+        startTime: startTime,
+        stopTime: stopTime,
+        max: maxSlot,
+        isBuffer: isBuffer,
+        tempActive: true,
+        tempIndex: toAddSlots.length,
+    };
+
+
+
+    toAddSlots.push(obj);
+
+    insertTempTimeslot(obj);
+}
+
+function insertTempTimeslot(timeslot){
+    let container = null;
+
+    if(timeslot.day == 'mon') container = document.querySelector('#monday .timeslot-container');
+    else if(timeslot.day == 'tue') container = document.querySelector('#tuesday .timeslot-container');
+    else if(timeslot.day == 'wed') container = document.querySelector('#wednesday .timeslot-container');  
+    else if(timeslot.day == 'thu') container = document.querySelector('#thursday .timeslot-container');  
+    else if(timeslot.day == 'fri') container = document.querySelector('#friday .timeslot-container');  
+    else if(timeslot.day == 'sat') container = document.querySelector('#saturday .timeslot-container');  
+
+    let clss = null;
+    if(timeslot.isBuffer) clss = 'buffer';
+    else clss = '';
+
+    let template = 
+    `
+    <div class="timeslot">
+        <div class="time">${convertTo12HourFormat(timeslot.startTime)} - ${convertTo12HourFormat(timeslot.stopTime)}</div>
+        <div class="max">${timeslot.max}</div>
+    </div>
+    <div class="button-container">
+        <button onclick="editTempTimeslot('${timeslot.tempIndex}')" title="Edit time slot.">
+            <span class="material-icons-outlined edit-sched-btn">
+                edit
+            </span>
+        </button>
+        <button onclick="dltTempTimeslot('${timeslot.tempIndex}')" title="Remove time slot.">
+            <span class="material-icons-outlined remove-sched-btn">
+                close
+            </span>
+        </button>
+    </div>`;
+
+    let blockEl = document.createElement('div');
+    blockEl.classList.add('block');
+    if(timeslot.isBuffer) blockEl.classList.add('buffer');
+    blockEl.setAttribute("data-temp_index", `${timeslot.tempIndex}`);
+
+    blockEl.innerHTML = template;
+
+    container.insertBefore(blockEl, container.querySelector(".add"));
+    
+    rearrangeTimeslots(timeslot.day);
+}
+
+function rearrangeTimeslots(day){
+    let parent = null;
+    let children = [];
+    let addBtn = null;
+
+    if(day == 'mon') parent = document.querySelector('#monday .timeslot-container');
+    else if(day == 'tue') parent = document.querySelector('#tuesday .timeslot-container');
+    else if(day == 'wed') parent = document.querySelector('#wednesday .timeslot-container');  
+    else if(day == 'thu') parent = document.querySelector('#thursday .timeslot-container');  
+    else if(day == 'fri') parent = document.querySelector('#friday .timeslot-container');  
+    else if(day == 'sat') parent = document.querySelector('#saturday .timeslot-container');  
+
+    Array.from(parent.children).forEach(function(child) {
+        if(child.classList.contains('add')){
+            addBtn = child;
+        }
+        else{
+            children.push(child);
+        }
+        
+        // You can perform operations on each child element here
+    });
+
+    children.sort(function(a, b) {
+        var value1A = new Date("2023-12-01 " + convertToMilitaryTime(a.querySelector(".time").innerText.split(' - ')[0])).getTime();
+        var value1B = new Date("2023-12-01 " + convertToMilitaryTime(b.querySelector(".time").innerText.split(' - ')[0])).getTime();
+
+  
+        // If the first values are equal, compare using the second values
+        if (value1A == value1B) {
+          var value2A = new Date("2023-12-01 " + convertToMilitaryTime(a.querySelector(".time").innerText.split(' - ')[1])).getTime();
+          var value2B = new Date("2023-12-01 " + convertToMilitaryTime(b.querySelector(".time").innerText.split(' - ')[1])).getTime();
+
+          return value2A < value2B ? -1 : 1;
+        }
+  
+        return value1A < value1B ? -1 : 1;
+    });
+
+    removeAllChildNodes(parent);
+
+    children.forEach(child=>{
+        parent.appendChild(child);
+    })
+
+    parent.appendChild(addBtn);
+}
+
+function editTempTimeslot(index){
+    alert(index)
+}
+
+function dltTempTimeslot(index){
+    toAddSlots.forEach(timeslot=>{
+        if(timeslot.tempIndex == index){
+            timeslot.tempActive = false;
+        }
+    });
+
+    document.querySelector(`.block[data-temp_index="${index}"]`).remove();
+}
+
 function applyEditSched(schedID){
     
     if(posting){
@@ -5840,7 +6113,8 @@ function cancelEdit(){
     document.querySelector('.state-container').style.display="none";
     document.querySelector('#editContainer').style.display="none";
 
-    reset2DArray(toAddSlots);
+
+    toAddSlots.splice(0, toAddSlots.length);
     toEditSlots.splice(0, toEditSlots.length);
     toDeleteSlots.splice(0, toDeleteSlots.length);
 
@@ -6140,36 +6414,6 @@ function showSched(schedule){
                         }
                     })
 
-                    // mon.push(`
-                    // <div class="block add">
-                    //     <button class="add-btn" data-day="mon" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
-                    // </div>`);
-
-                    // tue.push(`
-                    // <div class="block add">
-                    //     <button class="add-btn" data-day="tue" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
-                    // </div>`);
-
-                    // wed.push(`
-                    // <div class="block add">
-                    //     <button class="add-btn" data-day="wed" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
-                    // </div>`);
-
-                    // thu.push(`
-                    // <div class="block add">
-                    //     <button class="add-btn" data-day="thu" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
-                    // </div>`);
-
-                    // fri.push(`
-                    // <div class="block add">
-                    //     <button class="add-btn" data-day="fri" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
-                    // </div>`);
-
-                    // sat.push(`
-                    // <div class="block add">
-                    //     <button class="add-btn" data-day="sat" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
-                    // </div>`);
-
                     mon.forEach(item=>{
                         monContainer.innerHTML += item; 
                     });
@@ -6189,68 +6433,6 @@ function showSched(schedule){
                         satContainer.innerHTML += item;
                     });
                 } catch (error) {
-                    // let monContainer = document.querySelector('#monday .timeslot-container');
-                    // let tueContainer = document.querySelector('#tuesday .timeslot-container');
-                    // let wedContainer = document.querySelector('#wednesday .timeslot-container');
-                    // let thuContainer = document.querySelector('#thursday .timeslot-container');
-                    // let friContainer = document.querySelector('#friday .timeslot-container');
-                    // let satContainer = document.querySelector('#saturday .timeslot-container');
-
-                    // const mon = [];
-                    // const tue = [];
-                    // const wed = [];
-                    // const thu = [];
-                    // const fri = [];
-                    // const sat = [];
-
-                    // mon.push(`
-                    // <div class="block add">
-                    //     <button class="add-btn" data-day="mon" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
-                    // </div>`);
-
-                    // tue.push(`
-                    // <div class="block add">
-                    //     <button class="add-btn" data-day="tue" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
-                    // </div>`);
-
-                    // wed.push(`
-                    // <div class="block add">
-                    //     <button class="add-btn" data-day="wed" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
-                    // </div>`);
-
-                    // thu.push(`
-                    // <div class="block add">
-                    //     <button class="add-btn" data-day="thu" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
-                    // </div>`);
-
-                    // fri.push(`
-                    // <div class="block add">
-                    //     <button class="add-btn" data-day="fri" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
-                    // </div>`);
-
-                    // sat.push(`
-                    // <div class="block add">
-                    //     <button class="add-btn" data-day="sat" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
-                    // </div>`);
-
-                    // mon.forEach((item)=>{
-                    //     monContainer.innerHTML += item;
-                    // })
-                    // tue.forEach((item)=>{
-                    //     tueContainer.innerHTML += item;
-                    // })
-                    // wed.forEach((item)=>{
-                    //     wedContainer.innerHTML += item;
-                    // })
-                    // thu.forEach((item)=>{
-                    //     thuContainer.innerHTML += item;
-                    // })
-                    // fri.forEach((item)=>{
-                    //     friContainer.innerHTML += item;
-                    // })
-                    // sat.forEach((item)=>{
-                    //     satContainer.innerHTML += item;
-                    // })
                 }
             }
         }
@@ -6362,32 +6544,32 @@ function showSchedEdit(schedule){
 
                     mon.push(`
                     <div class="block add" title="Add time slot.">
-                        <button class="add-btn" data-day="mon" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                        <button class="add-btn" data-day="mon" onclick="addSchedTemp(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
                     </div>`);
 
                     tue.push(`
                     <div class="block add" title="Add time slot.">
-                        <button class="add-btn" data-day="tue" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                        <button class="add-btn" data-day="tue" onclick="addSchedTemp(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
                     </div>`);
 
                     wed.push(`
                     <div class="block add" title="Add time slot.">
-                        <button class="add-btn" data-day="wed" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                        <button class="add-btn" data-day="wed" onclick="addSchedTemp(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
                     </div>`);
 
                     thu.push(`
                     <div class="block add" title="Add time slot.">
-                        <button class="add-btn" data-day="thu" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                        <button class="add-btn" data-day="thu" onclick="addSchedTemp(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
                     </div>`);
 
                     fri.push(`
                     <div class="block add" title="Add time slot.">
-                        <button class="add-btn" data-day="fri" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                        <button class="add-btn" data-day="fri" onclick="addSchedTemp(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
                     </div>`);
 
                     sat.push(`
                     <div class="block add" title="Add time slot.">
-                        <button class="add-btn" data-day="sat" onclick="addSched(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
+                        <button class="add-btn" data-day="sat" onclick="addSchedTemp(this.dataset.day)"><span class="material-icons-outlined">add</span></button>
                     </div>`);
 
                     mon.forEach(item=>{
