@@ -3720,7 +3720,7 @@ function editSched(schedID, start, stop, max, deptID, day){
                 <input onclick="this.select()" type="text" class="timepart time-hourA" id="startHourA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01'); checkHourB('start')">
                 <input onclick="this.select()" type="text" class="timepart time-hourB" id="startHourB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789'); checkHourA('start');">
                 <span>:</span>
-                <input onclick="this.select()" type="text" class="timepart time-minA" id="startMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '012345');">
+                <input onclick="this.select()" type="text" class="timepart time-minA" id="startMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01345');">
                 <input onclick="this.select()" type="text" class="timepart time-minB" id="startMinuteB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789');">
                 <input type="text" class="timepart time-minB" id="startPeriod" value="AM" readonly>
             </div>
@@ -3729,7 +3729,7 @@ function editSched(schedID, start, stop, max, deptID, day){
                 <input onclick="this.select()" type="text" class="timepart time-hourA" id="stopHourA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01'); checkHourB('stop')">
                 <input onclick="this.select()" type="text" class="timepart time-hourB" id="stopHourB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789'); checkHourA('stop');">
                 <span>:</span>
-                <input onclick="this.select()" type="text" class="timepart time-minA" id="stopMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '012345');">
+                <input onclick="this.select()" type="text" class="timepart time-minA" id="stopMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01345');">
                 <input onclick="this.select()" type="text" class="timepart time-minB" id="stopMinuteB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789');">
                 <input type="text" class="timepart time-minB" id="stopPeriod" value="AM" readonly>
             </div>
@@ -3794,7 +3794,7 @@ function editSchedTemp(schedID){
                 <input onclick="this.select()" type="text" class="timepart time-hourA" id="startHourA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01'); checkHourB('start')">
                 <input onclick="this.select()" type="text" class="timepart time-hourB" id="startHourB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789'); checkHourA('start');">
                 <span>:</span>
-                <input onclick="this.select()" type="text" class="timepart time-minA" id="startMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '012345');">
+                <input onclick="this.select()" type="text" class="timepart time-minA" id="startMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01345');">
                 <input onclick="this.select()" type="text" class="timepart time-minB" id="startMinuteB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789');">
                 <input type="text" class="timepart time-minB" id="startPeriod" value="AM" readonly>
             </div>
@@ -3803,7 +3803,7 @@ function editSchedTemp(schedID){
                 <input onclick="this.select()" type="text" class="timepart time-hourA" id="stopHourA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01'); checkHourB('stop')">
                 <input onclick="this.select()" type="text" class="timepart time-hourB" id="stopHourB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789'); checkHourA('stop');">
                 <span>:</span>
-                <input onclick="this.select()" type="text" class="timepart time-minA" id="stopMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '012345');">
+                <input onclick="this.select()" type="text" class="timepart time-minA" id="stopMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01345');">
                 <input onclick="this.select()" type="text" class="timepart time-minB" id="stopMinuteB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789');">
                 <input type="text" class="timepart time-minB" id="stopPeriod" value="AM" readonly>
             </div>
@@ -4099,8 +4099,11 @@ function addTempTimeSlot(day){
         tempIndex: toAddSlots.length,
     };
 
-    // Update interface hanapin using index .block[data-temp_index=""]
-    // 
+
+
+    toAddSlots.push(obj);
+
+    insertTempTimeslot(obj);
 }
 
 function insertTempTimeslot(timeslot){
@@ -4197,213 +4200,7 @@ function rearrangeTimeslots(day){
 }
 
 function editTempTimeslot(index){
-
-    resetModal();
-
-    // let src = document.querySelector(`.block[data-temp_index="${index}"]`);
-
-    let modalTitle = document.querySelector('.modal-title');
-    let modalBody = document.querySelector('.modal-body');
-    let modalPositive = document.querySelector('.positive');
-    let modalNegative = document.querySelector('.negative');
-    let close = document.querySelector('.btn-close');
-    let modalHeader = document.querySelector('.modal-header');
-    let modalFooter = document.querySelector('.modal-footer');
-
-    modalTitle.innerText = 'Editing...';
-    modalBody.innerHTML = `
-    <div class="editSched-container">
-        <div class="time-container">
-            <div class="editTime-container start">
-                <input onclick="this.select()" type="text" class="timepart time-hourA" id="startHourA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01'); checkHourB('start')">
-                <input onclick="this.select()" type="text" class="timepart time-hourB" id="startHourB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789'); checkHourA('start');">
-                <span>:</span>
-                <input onclick="this.select()" type="text" class="timepart time-minA" id="startMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '012345');">
-                <input onclick="this.select()" type="text" class="timepart time-minB" id="startMinuteB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789');">
-                <input type="text" class="timepart time-minB" id="startPeriod" value="AM" readonly>
-            </div>
-            <span class="divider">-</span>
-            <div class="editTime-container stop">
-                <input onclick="this.select()" type="text" class="timepart time-hourA" id="stopHourA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01'); checkHourB('stop')">
-                <input onclick="this.select()" type="text" class="timepart time-hourB" id="stopHourB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789'); checkHourA('stop');">
-                <span>:</span>
-                <input onclick="this.select()" type="text" class="timepart time-minA" id="stopMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '012345');">
-                <input onclick="this.select()" type="text" class="timepart time-minB" id="stopMinuteB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789');">
-                <input type="text" class="timepart time-minB" id="stopPeriod" value="AM" readonly>
-            </div>
-        </div>
-        <div class="max-container alt">
-            <div class="slot-wrapper">
-                <label for="maxSlot">Slot: </label>
-                <input type="text" placeholder="0" value="${toAddSlots[index].max}" id="maxSlot" oninput="filterPhoneInput(this.id); inputLimiter(this.id,2)" onblur="inputLimiterBlur(this.id, 2)">   
-            </div>
-            <div class="form-check form-switch">
-                <input class="form-check-input add-sched" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                <label class="form-check-label" for="flexSwitchCheckDefault">Buffer</label>
-            </div>
-        </div>
-        <div class="error-container">
-            <span class="msg-modal"></span>
-        </div>
-    </div>
-    `;
-
-    if(toAddSlots[index].isBuffer == 'true') document.querySelector(".form-check-input").checked = true;
-    else document.querySelector(".form-check-label").checked = false;
-
-    modalPositive.innerText = 'Apply';
-
-    modalPositive.setAttribute("onclick", `applyEditTempTS(${index})`);
-    modalPositive.removeAttribute('data-bs-dismiss');
-    modalLauncher();
-
-    startVal = splitTime(convertTo12HourFormat(toAddSlots[index].startTime));
-
-    document.querySelector('#startHourA').value = startVal[0];
-    document.querySelector('#startHourB').value = startVal[1];
-    document.querySelector('#startMinuteA').value = startVal[2];
-    document.querySelector('#startMinuteB').value = startVal[3];
-    document.querySelector('#startPeriod').value = startVal[4];
-
-
-    stopVal = splitTime(convertTo12HourFormat(toAddSlots[index].stopTime));
-
-    document.querySelector('#stopHourA').value = stopVal[0];
-    document.querySelector('#stopHourB').value = stopVal[1];
-    document.querySelector('#stopMinuteA').value = stopVal[2];
-    document.querySelector('#stopMinuteB').value = stopVal[3];
-    document.querySelector('#stopPeriod').value = stopVal[4];
-
-    document.querySelector('#startPeriod').setAttribute('onclick', 'periodToggle(this.id, this.value)')
-    document.querySelector('#stopPeriod').setAttribute('onclick', 'periodToggle(this.id, this.value)')
-}
-
-function applyEditTempTS(index){
-
-    let maxSlot = document.querySelector("#maxSlot").value;
-
-    let startHourA = document.querySelector(`#startHourA`).value;
-    let startHourB = document.querySelector(`#startHourB`).value;
-    let startMinuteA = document.querySelector(`#startMinuteA`).value;
-    let startMinuteB = document.querySelector(`#startMinuteB`).value;
-    let startPeriod = document.querySelector(`#startPeriod`).value;
-
-    let stopHourA = document.querySelector(`#stopHourA`).value;
-    let stopHourB = document.querySelector(`#stopHourB`).value;
-    let stopMinuteA = document.querySelector(`#stopMinuteA`).value;
-    let stopMinuteB = document.querySelector(`#stopMinuteB`).value;
-    let stopPeriod = document.querySelector(`#stopPeriod`).value;
-
-    let isBuffer = document.querySelector("#flexSwitchCheckDefault").checked;
-
-    const startTime = convertToMilitaryTime(`${startHourA}${startHourB}:${startMinuteA}${startMinuteB} ${startPeriod}`);
-    const stopTime = convertToMilitaryTime(`${stopHourA}${stopHourB}:${stopMinuteA}${stopMinuteB} ${stopPeriod}`);
-
-    if(startHourA == "0" && startHourB == "0" && startMinuteA == "0" && startMinuteB == "0"){
-        showErrorModal("Starting time cannot be empty");
-        return;
-    }
-    else if(startHourA == "" && startHourB == "" && startMinuteA == "" && startMinuteB == ""){
-        showErrorModal("Starting time cannot be empty");
-        return;
-    }
-    else if(startHourA == "" || startHourB == "" || startMinuteA == "" || startMinuteB == ""){
-        showErrorModal("Invalid starting time");
-        return;
-    }
-    else if(startHourA == "0" && startHourB == "0"){
-        showErrorModal("Invalid starting time");
-        return;
-    }
-    else if(stopHourA == "0" && stopHourB == "0" && stopMinuteA == "0" && stopMinuteB == "0"){
-        showErrorModal("Closing time cannot be empty");
-        return;
-    }
-    else if(stopHourA == "" && stopHourB == "" && stopMinuteA == "" && stopMinuteB == ""){
-        showErrorModal("Closing time cannot be empty");
-        return;
-    }
-    else if(stopHourA == "" || stopHourB == "" || stopMinuteA == "" || stopMinuteB == ""){
-        showErrorModal("Invalid closing time");
-        return;
-    }
-    else if(stopHourA == "0" && stopHourB == "0"){
-        showErrorModal("Invalid closing time");
-        return;
-    }
-    else if(startTime >= stopTime){
-        showErrorModal("Starting time cannot be later than closing time");
-        return;
-    }
-    else if(maxSlot == '' || maxSlot == '0'){
-        showErrorModal("Slot cannot be empty");
-        return;
-    }
-    else{
-
-        showErrorModal();
-        document.querySelector('.positive').setAttribute('data-bs-dismiss', 'modal');
-        document.querySelector('.negative').click();
-        schedEdited = true;
-
-        // let duplicate = null;
-
-        for(i =0; i<toEditSlots.length; i++){
-            if(toEditSlots[i].schedID == schedID){
-                toEditSlots.splice(i, 1);
-                break;
-            }
-        }
-
-
-        // let temp = {
-        //     schedID: schedID,
-        //     startTime: startTime,
-        //     stopTime: stopTime,
-        //     max: maxSlot,
-        //     isBuffer: isBuffer,
-        // };
-
-        // const obj = {
-        //     deptID: deptVal,
-        //     day: day,
-        //     startTime: startTime,
-        //     stopTime: stopTime,
-        //     max: maxSlot,
-        //     isBuffer: isBuffer,
-        //     tempActive: true,
-        //     tempIndex: toAddSlots.length,
-        // };
-
-        toAddSlots[index].startTime = startTime;
-        toAddSlots[index].stopTime = stopTime;
-        toAddSlots[index].max = maxSlot;
-        toAddSlots[index].isBuffer = isBuffer;
-        
-        let toChange = document.querySelector(`.block[data-sched_id="${schedID}"]`);
-        
-        toChange.removeAttribute('data-ini_max');
-        toChange.removeAttribute('data-ini_start');
-        toChange.removeAttribute('data-ini_stop');
-        toChange.removeAttribute('data-ini_buffer');
-
-        toChange.setAttribute('data-ini_max', temp.max);
-        toChange.setAttribute('data-ini_start', convertTo12HourFormat(temp.startTime));
-        toChange.setAttribute('data-ini_stop', convertTo12HourFormat(temp.stopTime));
-        toChange.setAttribute('data-ini_buffer', temp.isBuffer);
-        
-
-        toChange.querySelector(".time").innerText = `${convertTo12HourFormat(temp.startTime)} - ${convertTo12HourFormat(temp.stopTime)}`;
-        toChange.querySelector(".max").innerText = `${temp.max}`;
-
-        if(temp.isBuffer){
-            toChange.classList.add("buffer");
-        }
-        else{
-            toChange.classList.remove("buffer");
-        }
-        
-    }
+    alert(index)
 }
 
 function dltTempTimeslot(index){
