@@ -33,7 +33,7 @@
         }
         else{
             if((int)$seperated[0] == 0){
-                $seperated[0] = 1;
+                $seperated[0] = 12;
             }
             return ltrim("{$seperated[0]}:{$seperated[1]} AM", "0");
         }  

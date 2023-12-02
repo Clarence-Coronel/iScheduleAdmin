@@ -4005,6 +4005,7 @@ function addSchedTemp(day){
 }
 
 function addTempTimeSlot(day){
+
     const deptVal = document.querySelector("#deptSelect").value;
 
     // Start
@@ -6152,17 +6153,17 @@ function saveEdit(){
     let editStart = document.querySelector("#editStart");
     let editEnd = document.querySelector("#editEnd");
 
+
     // idagdag dito yung if wala rin inedit at wala inadd na new slot
     if (toDeleteSlots.length == 0 && 
         editStart.dataset.initial == editStart.value &&
         editEnd.dataset.initial == editEnd.value &&
-        !schedEdited
+        !schedEdited && toAddSlots.length == 0
         ){
 
         cancelEdit();
         return;
     }  
-    
 
     const obj = {
         deptName:dept[document.querySelector("#deptSelect").value-1],
@@ -6176,7 +6177,7 @@ function saveEdit(){
         },
         edit: toEditSlots,
         delete: toDeleteSlots,
-        // add: toAddSlots,
+        add: toAddSlots,
     }
 
     const toSend = JSON.stringify(obj);
