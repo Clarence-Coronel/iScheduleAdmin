@@ -14,7 +14,7 @@
         }
     }
 
-    $query = "SELECT COUNT(`appointmentID`) AS 'total' FROM `appointments` WHERE `appointmentDate` = '$date' AND `scheduleID` = $schedID;";
+    $query = "SELECT COUNT(`appointmentID`) AS 'total' FROM `appointments` WHERE `appointmentDate` = '$date' AND `scheduleID` = $schedID AND `appointmentStatus` = 'scheduled';";
 
     $result = mysqli_query($conn,$query);
 
