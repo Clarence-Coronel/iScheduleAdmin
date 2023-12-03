@@ -5969,6 +5969,15 @@ function checkSelectedDepartment(){
     selectDeptStat(header.dataset.deptid, document.querySelector('#dashboardDays').value);
 }
 
+function addZeroDate(inputDate) {
+    const parts = inputDate.split('-');
+    const year = parts[0];
+    const month = parts[1].padStart(2, '0'); // Ensures two-digit month
+    const day = parts[2].padStart(2, '0');   // Ensures two-digit day
+  
+    return `${year}-${month}-${day}`;
+  }
+
 function addMode(){
     reset2DArray(schedTempCol);
     clearSlots();
@@ -5979,8 +5988,8 @@ function addMode(){
     document.querySelector('#addEnd').value = "";
 
     let tempObj = new Date();
-    document.querySelector('#addStart').setAttribute("min", `${tempObj.getFullYear()}-${tempObj.getMonth()+1}-${tempObj.getDate()}`);
-    document.querySelector('#addEnd').setAttribute("min", `${tempObj.getFullYear()}-${tempObj.getMonth()+1}-${tempObj.getDate()}`);
+    document.querySelector('#addStart').setAttribute("min", addZeroDate(`${tempObj.getFullYear()}-${tempObj.getMonth()+1}-${tempObj.getDate()}`));
+    document.querySelector('#addEnd').setAttribute("min", addZeroDate(`${tempObj.getFullYear()}-${tempObj.getMonth()+1}-${tempObj.getDate()}`));
 
     scheduleSet.selectedIndex = '0';
     scheduleSet.setAttribute('disabled', 'disabled');
@@ -6118,6 +6127,11 @@ function editMode(){
 
     document.querySelector('#editStart').value = "";
     document.querySelector('#editEnd').value = "";
+
+    let tempObj = new Date();
+    document.querySelector('#editStart').setAttribute("min", addZeroDate(`${tempObj.getFullYear()}-${tempObj.getMonth()+1}-${tempObj.getDate()}`));
+    document.querySelector('#editEnd').setAttribute("min", addZeroDate(`${tempObj.getFullYear()}-${tempObj.getMonth()+1}-${tempObj.getDate()}`));
+
 
     document.querySelector('#editContainer').style.display = 'flex';
     document.querySelector('.state-container').style.display="flex";
