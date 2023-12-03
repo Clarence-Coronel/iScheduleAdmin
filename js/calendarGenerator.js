@@ -692,6 +692,7 @@ function loadSched(){
             if(this.readyState == 4){
                 if(this.status == 200){
                     counter++;
+                    console.log(this.responseText);
                     try {
                         let schedules = JSON.parse(this.responseText);
                         proceedChkFull = true;
@@ -748,6 +749,6 @@ function loadSched(){
         
         xhr.open("POST", "./php/getSched.php", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.send(`deptID=${patient['department']}&day=${day}`);
+        xhr.send(`deptID=${patient['department']}&day=${day}&curDate=${curDate}`);
     });
 }
