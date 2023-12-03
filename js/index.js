@@ -6456,6 +6456,12 @@ function convertTo12HourFormat(militaryTime) {
     return twelveHourTime;
 }
 
+function revertRadio(){
+    document.querySelectorAll('.radio-group span').forEach(item=>{
+        item.style.color = 'rgb(80, 78, 78)';
+    })
+}
+
 function deptChange(deptID, mode = "", index = null){
     clearSlots();
     clearMarkMissed();
