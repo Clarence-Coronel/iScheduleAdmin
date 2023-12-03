@@ -5980,7 +5980,13 @@ function addZeroDate(inputDate) {
 
 function addMode(){
     reset2DArray(schedTempCol);
+    clearMarkMissed()
     clearSlots();
+
+    document.querySelectorAll('.day-header').forEach(header=>{
+        header.classList.add("noday");
+    });
+
     let addContainer = document.querySelector('#addContainer');
     let scheduleSet = document.querySelector('#scheduleSet');
 
@@ -6166,6 +6172,37 @@ function saveEdit(){
 
     let editStart = document.querySelector("#editStart");
     let editEnd = document.querySelector("#editEnd");
+
+
+    const startDateObj = new Date(editStart.value);
+    const endDateObj = new Date(editEnd.value);
+
+    if(editStart.value == "" && editEnd.value == "") {
+        showError("Start & end date cannot be empty");
+        return;
+    }
+    else if(editStart.value == "" || editEnd.value == ""){
+        if(editStart.value == ""){
+            showError("Start date cannot be empty");
+            return;
+        }
+        else if(editEnd.value == ""){
+            showError("End date cannot be empty");
+            return;
+        }
+    }
+    else if(startDateObj > endDateObj){
+        showError("Start date cannot be later than end date");
+        return;
+    }
+    else if (startDateObj == endDateObj){
+        showError("Start date cannot be equal to end date");
+        return;
+    }
+    else if(document.querySelectorAll('.block').length == document.querySelectorAll('.add').length){
+        showError("Schedule must contain a time slot");
+        return;
+    }
 
 
     // idagdag dito yung if wala rin inedit at wala inadd na new slot
@@ -6421,6 +6458,12 @@ function convertTo12HourFormat(militaryTime) {
 
 function deptChange(deptID, mode = "", index = null){
     clearSlots();
+    clearMarkMissed();
+
+    document.querySelectorAll('.day-header').forEach(header=>{
+        header.classList.add("noday");
+    });
+    
     let scheduleSet = document.querySelector('#scheduleSet');
 
     const xhr  = new XMLHttpRequest();
@@ -6944,3 +6987,98 @@ function shortenDate(inputDate) {
     return formattedDate;
 }
 
+function findMissingDays(startDate, endDate) {
+    const daysOfWeek = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+    const missingDays = [];
+
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+
+    for (let current = start; current <= end; current.setDate(current.getDate() + 1)) {
+        const currentDayOfWeek = daysOfWeek[current.getDay() - 1]; // Adjust for 0-based index
+        if (!missingDays.includes(currentDayOfWeek)) {
+            missingDays.push(currentDayOfWeek);
+        }
+    }
+
+    const presentDays = missingDays.filter(day => daysOfWeek.includes(day));
+    const result = daysOfWeek.filter(day => !presentDays.includes(day));
+
+    return result;
+}
+
+function markMissedDay(mode){
+    let start = null;
+    let end = null;
+
+    if(mode == 'add'){
+        start = document.querySelector('#addStart').value;
+        end = document.querySelector('#addEnd').value;
+    }
+    else if(mode == 'view'){
+        range = convertDateRange(document.querySelector("#scheduleSet").options[document.querySelector("#scheduleSet").selectedIndex].innerText)
+        console.table(range)
+        start = range.startDate;
+        end = range.endDate;
+        
+    }
+    else if(mode == 'edit'){
+        start = document.querySelector('#editStart').value;
+        end = document.querySelector('#editEnd').value;
+    }
+    
+    const missingDays = findMissingDays(start,end);
+    const dayHeader = document.querySelectorAll(".day-header");
+
+    dayHeader.forEach(day=>{
+        if(day.classList.contains('noday')) day.classList.remove('noday');
+    });
+
+    missingDays.forEach(element => {
+
+
+        if(element == 'mon') {
+            document.querySelector("#monday .day-header").classList.add("noday");
+            console.log(document.querySelector("#monday .day-header").classList)
+        }
+        else if(element == 'tue') document.querySelector("#tuesday .day-header").classList.add("noday");
+        else if(element == 'wed') document.querySelector("#wednesday .day-header").classList.add("noday");
+        else if(element == 'thu') document.querySelector("#thursday .day-header").classList.add("noday");
+        else if(element == 'fri') document.querySelector("#friday .day-header").classList.add("noday");
+        else if(element == 'sat') document.querySelector("#saturday .day-header").classList.add("noday");
+    });
+}
+
+function clearMarkMissed(){
+    const dayHeader = document.querySelectorAll(".day-header");
+
+    dayHeader.forEach(day=>{
+        if(day.classList.contains('noday')) day.classList.remove('noday');
+    });
+}
+
+function convertDateRange(inputDateRange) {
+    // Split the input into start and end date parts
+    const dateParts = inputDateRange.split(' - ');
+
+    // Convert each date part to the 'YYYY-MM-DD' format
+    const startDate = convertToDateYYYYMMDD(dateParts[0]);
+    const endDate = convertToDateYYYYMMDD(dateParts[1]);
+
+    return { startDate, endDate };
+}
+
+function convertToDateYYYYMMDD(inputDate) {
+    // Convert the input date to a JavaScript Date object
+    const dateObject = new Date(inputDate);
+
+    // Extract year, month, and day
+    const year = dateObject.getFullYear();
+    const month = String(dateObject.getMonth() + 1).padStart(2, '0');
+    const day = String(dateObject.getDate()).padStart(2, '0');
+
+    // Format the date as 'YYYY-MM-DD'
+    const formattedDate = `${year}-${month}-${day}`;
+
+    return formattedDate;
+}

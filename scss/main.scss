@@ -3805,6 +3805,41 @@ table{
         }
     }
 
+    .legend-container{
+        display: flex;
+        flex-flow: row wrap;
+        gap: 2vw;
+        width: 100%;
+        justify-content: flex-end;
+        margin-bottom: 0.5vh;
+
+        .legend-label{
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+            justify-content: center;
+            gap: max(0.5vw,5px);
+        }
+
+        span{
+            color: rgb(191, 189, 189);
+            font-size: 0.7rem;
+        }
+    }
+
+    .box{
+        width: 10px;
+        height: 10px;
+    }
+
+    .included .box{
+        background-color: #6aa9f3;
+    }
+
+    .excluded .box{
+        background-color: #7f7f7f;
+    }
+
     .week-container{
         border: 1px solid #6aa9f3;
         border-radius: 5px;
@@ -3814,7 +3849,7 @@ table{
         grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
         // gap: 1%;
         // padding-top: max(1%, 10px);
-        margin-top: 3vh;
+        // margin-top: 3vh;
 
         .day{
             // border: 1px solid black;
@@ -4883,4 +4918,8 @@ table{
 
 .newDelete{
     width: 90% !important;
+}
+
+.scheduling .week-container .noday{
+    background-color: #7f7f7f;
 }

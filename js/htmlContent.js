@@ -765,7 +765,7 @@ let scheduling = `
                                 <input type="checkbox" disabled="disabled" id="showPrevious" name="showPrevious" onchange="showPreviousToggle();">
                             </div>
                         </label>
-                        <select class="form-select select-disabled" disabled="disabled" aria-label="Default select example" onchange="showSched(this.value);" id="scheduleSet">
+                        <select class="form-select select-disabled" disabled="disabled" aria-label="Default select example" onchange="markMissedDay('view'); showSched(this.value);" id="scheduleSet">
                             <option value="" selected hidden disabled>-</option>
                         </select>
                     </div>
@@ -796,56 +796,66 @@ let scheduling = `
                 <div class="edit-inputs-container" id="addContainer" style="display:none">
                     <div class="scheduling-input-container">
                         <label for="addStart">Start Date</label>
-                        <input type="date" id="addStart">
+                        <input oninput="markMissedDay('add')" type="date" id="addStart">
                     </div>
                     <div class="scheduling-input-container">
                         <label for="addEnd">End Date</label>
-                        <input type="date" id="addEnd">
+                        <input oninput="markMissedDay('add')" type="date" id="addEnd">
                     </div>
                 </div>
 
                 <div class="edit-inputs-container" id="editContainer" style="display:none">
                     <div class="scheduling-input-container">
                         <label for="editStart">Start Date</label>
-                        <input type="date" value="2023-01-01" id="editStart">
+                        <input oninput="markMissedDay('edit')" type="date" value="2023-01-01" id="editStart">
                     </div>
                     <div class="scheduling-input-container">
                         <label for="editEnd">End Date</label>
-                        <input type="date" value="2023-12-31" id="editEnd">
+                        <input oninput="markMissedDay('edit')" type="date" value="2023-12-31" id="editEnd">
                     </div>
                 </div>
 
                 <div class="error-container">
                     <span class="msg"></span>
                 </div>
+                <div class="legend-container">
+                    <div class="legend-label included">
+                        <div class="box"></div>
+                        <span>Included in date range</span>
+                    </div>
+                    <div class="legend-label excluded">
+                        <div class="box"></div>
+                        <span>Excluded in date range</span>
+                    </div>
+                </div>
                 <div class="week-container">
                     <div id="monday" class="day">
-                        <div class="day-header">Mon</div>
+                        <div class="day-header noday">Mon</div>
                         <div class="timeslot-container">
                         </div>
                     </div>
                     <div id="tuesday" class="day">
-                        <div class="day-header">Tue</div>
+                        <div class="day-header noday">Tue</div>
                         <div class="timeslot-container">
                         </div>
                     </div>
                     <div id="wednesday" class="day">
-                        <div class="day-header">Wed</div>
+                        <div class="day-header noday">Wed</div>
                         <div class="timeslot-container">
                         </div> 
                     </div>
                     <div id="thursday" class="day">
-                        <div class="day-header">Thu</div>
+                        <div class="day-header noday">Thu</div>
                         <div class="timeslot-container">
                         </div>
                     </div>
                     <div id="friday" class="day">
-                        <div class="day-header">Fri</div>
+                        <div class="day-header noday">Fri</div>
                         <div class="timeslot-container">
                         </div>
                     </div>
                     <div id="saturday" class="day">
-                        <div class="day-header">Sat</div>
+                        <div class="day-header noday">Sat</div>
                         <div class="timeslot-container">
                         </div>
                     </div>
