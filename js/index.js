@@ -7193,17 +7193,20 @@ function getSchedTimeslots(){
                     }
                                      
                 } catch (error) {
-
+                    removeAllChildNodes(timeSlot);
                     let optionElement = document.createElement("option");
 
                     optionElement.value = "";
                     optionElement.selected = true;
                     optionElement.setAttribute("hidden", "hidden");
 
-                    let optionText = document.createTextNode("-");
+                    let optionText = document.createTextNode("No time slot");
                     optionElement.appendChild(optionText);
 
                     timeSlot.appendChild(optionElement);
+                    timeSlot.setAttribute("disabled", "disabled");
+
+                    document.querySelector("#inactiveCB").setAttribute("disabled", "disabled");
                 }
             }
         }
