@@ -3053,7 +3053,7 @@ table{
         flex-flow: row wrap;
         align-items: center;
         gap: max(1vw, 1vh);
-        margin-bottom: 7vh;
+       
 
         // height: 20px;
         // overflow: hidden;
@@ -4923,3 +4923,57 @@ table{
 .scheduling .week-container .noday{
     background-color: #7f7f7f;
 }
+
+#timeslot{
+    max-width: 320px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 30px !important;
+}
+
+.inactive-slot-set{
+    display: none;
+    color: rgb(181, 178, 178);
+}
+
+label[for="dept"]{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    gap: 1vw;
+
+    .showInactive{
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 0.5vw;
+
+        label{
+            font-size: 0.6rem;
+        }
+
+        input[type="checkbox"]{
+            width: 0.5rem;
+            height: 0.5rem;
+        }
+    }
+}
+
+
+// div.checkbox-container{
+//     display: flex;
+//     flex-flow: row nowrap;
+//     gap: 0.5vw;
+//     align-items: center;
+
+//     label{
+//         font-size: 0.6rem;
+//     }
+
+//     #showPrevious{
+//         width: 0.5rem;
+//         height: 0.5rem;
+//     }
+// }

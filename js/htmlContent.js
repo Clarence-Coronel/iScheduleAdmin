@@ -409,8 +409,8 @@ let viewSchedule = `<div class="page-header">Home / View Appointments</div>
         <div class="view-schedule__header">
             <div class="filter-holder">
                 <label for="dept">Department</label>
-                <select class="form-select" aria-label="Default select example"  id="dept"">
-                    <option value="0" selected>All</option>
+                <select class="form-select" aria-label="Default select example"  id="dept" onchange="getSchedTimeslots();">
+                    <option value="all" selected>All</option>
                     <option value="1">ENT</option>
                     <option value="2">Hematology</option>
                     <option value="3">Internal Medicine</option>
@@ -432,24 +432,29 @@ let viewSchedule = `<div class="page-header">Home / View Appointments</div>
             </div>
             <div class="filter-holder">
                 <label for="">Appointment Date From</label>
-                <input type="date" name="" id="">
+                <input type="date" name="" id="appStartDate" oninput="getSchedTimeslots();">
             </div>
             <div class="filter-holder">
                 <label for="">Appointment Date To</label>
-                <input type="date" name="" id="">
+                <input type="date" name="" id="appEndDate" oninput="getSchedTimeslots();">
             </div>
             <div class="filter-holder">
-                <label for="dept">Time Slot</label>
-                <select class="form-select" aria-label="Default select example" >
-                    <option value="" selected>-</option>
-                    <!-- <option value="all" selected>All</option> -->
+                <label for="dept">
+                    Time Slot
+                    <div class="showInactive">
+                        <input id="inactiveCB" type="checkbox" onchange="showInactiveTS()">
+                        <label for="inactiveCB" >Show Inactive</label>
+                    </div>
+                </label>
+                <select class="form-select" id="timeslot" aria-label="Default select example" >
+                    <option value="all" selected>All</option>
                     <option value="0">9:20 AM - 10:20 AM</option>
                     <option value="0">9:20 AM - 10:20 AM</option>
                 </select>
             </div>
             <div class="filter-holder">
                 <label for="dept">Sex</label>
-                <select class="form-select" aria-label="Default select example" >
+                <select class="form-select" id="sex" aria-label="Default select example" >
                     <option value="all" selected>All</option>
                     <option value="m">Male</option>
                     <option value="f">Female</option>
@@ -457,7 +462,7 @@ let viewSchedule = `<div class="page-header">Home / View Appointments</div>
             </div>
             <div class="filter-holder">
                 <label for="dept">Province</label>
-                <select class="form-select" aria-label="Default select example" >
+                <select class="form-select" id="province" aria-label="Default select example" >
                     <option value="all" selected>All</option>
                     <option value="m">Bulacan</option>
                     <option value="f">Outside Bulacan</option>
@@ -465,7 +470,7 @@ let viewSchedule = `<div class="page-header">Home / View Appointments</div>
             </div>
             <div class="filter-holder">
                 <label for="dept">Municipality</label>
-                <select class="form-select" aria-label="Default select example" >
+                <select class="form-select" id="municipality" aria-label="Default select example" >
                     <option value="all" selected>All</option>
                     <option value="m">Angat</option>
                     <option value="f">Plaridel</option>
@@ -475,7 +480,7 @@ let viewSchedule = `<div class="page-header">Home / View Appointments</div>
             </div>
             <div class="filter-holder">
                 <label for="dept">Barangay</label>
-                <select class="form-select" aria-label="Default select example" >
+                <select class="form-select" id="barangay" aria-label="Default select example" >
                     <option value="all">All</option>
                     <option value="m">Banga I</option>
                     <option value="f">Banga II</option>
@@ -483,7 +488,7 @@ let viewSchedule = `<div class="page-header">Home / View Appointments</div>
             </div>
             <div class="filter-holder">
                 <label for="dept">Patient Type</label>
-                <select class="form-select" aria-label="Default select example" >
+                <select class="form-select" id="patientType" aria-label="Default select example" >
                     <option value="all" selected>All</option>
                     <option value="old">Old</option>
                     <option value="new">New</option>
@@ -491,11 +496,11 @@ let viewSchedule = `<div class="page-header">Home / View Appointments</div>
             </div>
             <div class="filter-holder">
                 <label for="">Case #</label>
-                <input type="text" id="caseNo">
+                <input type="text" id="caseNo" id="caseNo">
             </div>
             <div class="filter-holder">
                 <label for="dept">Visit Type</label>
-                <select class="form-select" aria-label="Default select example" >
+                <select class="form-select" id="visitType" aria-label="Default select example" >
                     <option value="all" selected>All</option>
                     <option value="">Initial Visit</option>
                     <option value="">Follow-Up Visit</option>
@@ -503,7 +508,7 @@ let viewSchedule = `<div class="page-header">Home / View Appointments</div>
             </div>
             <div class="filter-holder">
                 <label for="dept">Scheduled Through</label>
-                <select class="form-select" aria-label="Default select example" >
+                <select class="form-select" id="scheduledThrough" aria-label="Default select example" >
                     <option value="all" selected>All</option>
                     <option value="">Patient Website</option>
                     <option value="">Admin Website</option>
@@ -511,7 +516,7 @@ let viewSchedule = `<div class="page-header">Home / View Appointments</div>
             </div>
             <div class="filter-holder">
                 <label for="dept">Status</label>
-                <select class="form-select" aria-label="Default select example" >
+                <select class="form-select" id="status" aria-label="Default select example" >
                     <option value="all" selected>All</option>
                     <option value="new">Cancelled</option>
                     <option value="old">Completed</option>
@@ -523,25 +528,28 @@ let viewSchedule = `<div class="page-header">Home / View Appointments</div>
             </div>
             <div class="filter-holder">
                 <label for="dept">Last Name</label>
-                <input type="text">
+                <input type="text" id="lastName">
             </div>
             <div class="filter-holder">
                 <label for="dept">First Name</label>
-                <input type="text">
+                <input type="text" id="firstName">
             </div>
             <div class="filter-holder">
                 <label for="dept">Middle Name</label>
-                <input type="text">
+                <input type="text" id="middleName">
             </div>
             <div class="filter-holder">
                 <label for="">Submitted Date From</label>
-                <input type="date" name="" id="">
+                <input type="date" name="" id="subStartDate">
             </div>
             <div class="filter-holder">
                 <label for="">Submitted Date To</label>
-                <input type="date" name="" id="">
+                <input type="date" name="" id="subEndDate">
             </div>
-        </div>             
+        </div>  
+        <div class="error-container">
+            <span class="msg"></span>
+        </div>           
         <div class="view-schedule__table">
             <div class="table-container">
                 <table class="schedule-table" id="schedule-table">
@@ -1341,7 +1349,7 @@ function generateSchedule(){
 function generateViewSchedule(){
     if(checkPrivilege('admin i') || checkPrivilege('admin ii') || checkPrivilege('super admin')){
         main.innerHTML = viewSchedule;
-        
+        setupViewApp();
         document.querySelector(".export").addEventListener('click', (e)=>{
             let tableClass = e.target.dataset.table;
             let table = document.querySelector(`.${tableClass}`);

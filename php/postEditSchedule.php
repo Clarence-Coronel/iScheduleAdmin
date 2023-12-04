@@ -42,7 +42,6 @@
     function editRange($toEditRange){
         require 'connect.php';
 
-        $query2 = "SELECT * FROM schedules_set WHERE ((`startDate` != '$toEditRange->oldStart') AND (`endDate` != '$toEditRange->oldEnd')) AND `deptID` = '$toEditRange->deptID' AND `isActive` = true AND (('$toEditRange->start' BETWEEN startDate AND endDate) OR ('$toEditRange->end' BETWEEN startDate AND endDate));";
         $query2 = "SELECT * FROM schedules_set WHERE ((`startDate` != '$toEditRange->oldStart') AND (`endDate` != '$toEditRange->oldEnd')) AND  `deptID` = '$toEditRange->deptID' AND `isActive` = true AND ((('$toEditRange->start' BETWEEN startDate AND endDate) OR ('$toEditRange->end' BETWEEN startDate AND endDate)) OR ((startDate BETWEEN '$toEditRange->start' AND '$toEditRange->end') OR (endDate BETWEEN '$toEditRange->start' AND '$toEditRange->end')));";
         $result2 = mysqli_query($conn,$query2);
         $existingCount = mysqli_num_rows($result2);

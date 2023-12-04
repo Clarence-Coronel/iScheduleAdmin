@@ -7088,3 +7088,174 @@ function convertToDateYYYYMMDD(inputDate) {
 
     return formattedDate;
 }
+
+function getSchedTimeslots(){
+    let appStartDate = document.querySelector("#appStartDate").value;
+    let appEndDate = document.querySelector("#appEndDate").value;
+    let dept = document.querySelector("#dept").value;
+
+    let startObj = new Date(appStartDate);
+    let endObj = new Date(appEndDate);
+
+    if(appStartDate == "" && appEndDate == ""){
+        showError("Appointment date range cannot be empty");
+        return;
+    }
+    else if(startObj > endObj){
+        showError("Appointment date range is invalid");
+        return;
+    }
+    else{
+        showError();
+    }
+
+    const xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function(){
+        if(this.readyState == 4){
+            if(this.status == 200){
+                const timeSlot = document.querySelector("#timeslot");
+                removeAllChildNodes(timeSlot);
+
+                console.log(this.responseText)
+                try {
+
+                    let lengthOfInactive = 0;
+                    let arrOfObj = JSON.parse(this.responseText);
+
+                    // Add all timeslot option
+                    let optionElement = document.createElement("option");
+                    optionElement.value = "all";
+                    optionElement.selected = true;
+                    let optionText = document.createTextNode("All");
+                    optionElement.appendChild(optionText);
+                    timeSlot.appendChild(optionElement);      
+                    
+                    if(arrOfObj.length == 0){
+                        removeAllChildNodes(timeSlot);
+                        let optionElement = document.createElement("option");
+
+                        optionElement.value = "";
+                        optionElement.selected = true;
+                        optionElement.setAttribute("hidden", "hidden");
+    
+                        let optionText = document.createTextNode("No time slot");
+                        optionElement.appendChild(optionText);
+    
+                        timeSlot.appendChild(optionElement);
+                        timeSlot.setAttribute("disabled", "disabled");
+
+                        document.querySelector("#inactiveCB").setAttribute("disabled", "disabled");
+                    }
+                    else{
+                        document.querySelector("#inactiveCB").removeAttribute("disabled");
+                        timeSlot.removeAttribute("disabled");
+                        if(dept != "all"){
+                            arrOfObj.forEach(item => {
+                                let option = document.createElement("option");
+                                // Set attributes for the option element using the item properties
+                                option.value = item.scheduleID;
+                                option.textContent = `${item.startTime} - ${item.stopTime}`;
+
+                                if(item.slotActive == "0" || item.setActive == "0"){
+                                   option.classList.add("inactive-slot-set");
+                                   lengthOfInactive++;
+                                }
+        
+                                // Append the option element to the select element
+                                timeSlot.appendChild(option);
+                            })
+                        }else{
+                            arrOfObj.forEach(item => {
+                                let option = document.createElement("option");
+        
+                                const dept = ['ENT', 'Hematology', 'Internal Medicine', 'Internal Medicine Clearance', 'Nephrology', 'Neurology', 'OB GYNE New', 'OB GYNE Old', 'OB GYNE ROS', 'Oncology', 'Pediatric Cardiology', 'Pediatric Clearance', 'Pediatric General', 'Psychiatry New', 'Psychiatry Old', 'Surgery', 'Surgery ROS'];
+        
+                                let deptName = dept[item.deptID-1];
+                                // Set attributes for the option element using the item properties
+                                option.value = item.scheduleID;
+                                option.textContent = `${deptName} (${item.startTime} - ${item.stopTime})`;
+
+                                if(item.slotActive == "0" || item.setActive == "0"){
+                                    option.classList.add("inactive-slot-set");
+                                    lengthOfInactive++;
+                                 }
+        
+                                // Append the option element to the select element
+                                timeSlot.appendChild(option);
+                            })
+                        }
+
+                        if(arrOfObj.length == lengthOfInactive) {
+                            timeSlot.setAttribute("disabled", "disabled");
+                            timeSlot.innerHTML += `<option id="noactiveTS" value="" selected>No active time slot</option>`;
+                        }
+                    }
+                                     
+                } catch (error) {
+
+                    let optionElement = document.createElement("option");
+
+                    optionElement.value = "";
+                    optionElement.selected = true;
+                    optionElement.setAttribute("hidden", "hidden");
+
+                    let optionText = document.createTextNode("-");
+                    optionElement.appendChild(optionText);
+
+                    timeSlot.appendChild(optionElement);
+                }
+            }
+        }
+    }
+
+    xhr.open("POST", "./php/getSchedTimeslots.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send(`appStart=${appStartDate}&appEnd=${appEndDate}&dept=${dept}`)
+}
+
+function setupViewApp(){
+    let appStartDate = document.querySelector("#appStartDate");
+    let appEndDate = document.querySelector("#appEndDate");
+
+    const curDate = new Date();
+
+    let year = curDate.getFullYear();
+    let month = curDate.getMonth()+1;
+    let date = curDate.getDate();
+
+    if(month.toString().length == 1){
+        month = "0" + month.toString();
+    }
+
+    if(date.toString().length == 1){
+        date = "0" + date.toString();
+    }
+
+    appStartDate.value = `${year}-${month}-${date}`;
+    appEndDate.value = `${year}-${month}-${date}`;
+
+    getSchedTimeslots();
+}
+
+function showInactiveTS(){
+    let showInactive = document.querySelector("#inactiveCB").checked;
+    let inactives = document.querySelectorAll(".inactive-slot-set");
+
+    if(showInactive){
+        inactives.forEach(item=>{
+            item.style.display = "unset";
+        })
+
+        document.querySelector("#timeslot").removeAttribute("disabled");
+        document.querySelector("#noactiveTS").remove();
+    }
+    else{
+        inactives.forEach(item=>{
+            item.style.display = "none";
+        })
+
+        document.querySelector("#timeslot").setAttribute("disabled", "disabled");
+        document.querySelector("#timeslot").innerHTML += `<option id="noactiveTS" selected>No active time slot</option>`;
+    }
+}
