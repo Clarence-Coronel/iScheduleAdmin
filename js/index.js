@@ -7372,6 +7372,7 @@ function insertMunicipality(){
     
     
         municipalitySelect.appendChild(newMunicipality);
+        insertBarangay();
     }
     else if(provinceSelect == "other"){
         removeAllChildNodes(municipalitySelect);
@@ -7380,8 +7381,10 @@ function insertMunicipality(){
         newMunicipality.innerText = "Other";
         newMunicipality.setAttribute('value', 'other');
     
-    
+        
         municipalitySelect.appendChild(newMunicipality);
+
+        insertBarangay();
     }
     
 
