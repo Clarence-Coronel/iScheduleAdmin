@@ -7097,12 +7097,8 @@ function getSchedTimeslots(){
     let startObj = new Date(appStartDate);
     let endObj = new Date(appEndDate);
 
-    if(appStartDate == "" && appEndDate == ""){
-        showError("Appointment date range cannot be empty");
-        return;
-    }
-    else if(startObj > endObj){
-        showError("Appointment date range is invalid");
+    if(startObj > endObj){
+        showError("Appointment date start cannot be later than end date");
         return;
     }
     else{
@@ -7155,11 +7151,14 @@ function getSchedTimeslots(){
                                 let option = document.createElement("option");
                                 // Set attributes for the option element using the item properties
                                 option.value = item.scheduleID;
-                                option.textContent = `${item.startTime} - ${item.stopTime}`;
+                                option.textContent = `${item.day[0].toUpperCase()+ item.day.substring(1)} ${item.startTime} - ${item.stopTime} => ${shortenDate(item.startDate)} - ${shortenDate(item.endDate)}`;
 
                                 if(item.slotActive == "0" || item.setActive == "0"){
                                    option.classList.add("inactive-slot-set");
                                    lengthOfInactive++;
+                                }
+                                else{
+                                    option.classList.add("active-slot-set");
                                 }
         
                                 // Append the option element to the select element
@@ -7174,12 +7173,15 @@ function getSchedTimeslots(){
                                 let deptName = dept[item.deptID-1];
                                 // Set attributes for the option element using the item properties
                                 option.value = item.scheduleID;
-                                option.textContent = `${deptName} (${item.startTime} - ${item.stopTime})`;
+                                option.textContent = `${deptName} (${item.day[0].toUpperCase()+ item.day.substring(1)} ${item.startTime} - ${item.stopTime} => ${shortenDate(item.startDate)} - ${shortenDate(item.endDate)})`;
 
                                 if(item.slotActive == "0" || item.setActive == "0"){
                                     option.classList.add("inactive-slot-set");
                                     lengthOfInactive++;
                                  }
+                                 else{
+                                    option.classList.add("active-slot-set");
+                                }
         
                                 // Append the option element to the select element
                                 timeSlot.appendChild(option);
@@ -7208,6 +7210,7 @@ function getSchedTimeslots(){
 
                     document.querySelector("#inactiveCB").setAttribute("disabled", "disabled");
                 }
+                showInactiveTS()
             }
         }
     }
@@ -7244,21 +7247,77 @@ function setupViewApp(){
 function showInactiveTS(){
     let showInactive = document.querySelector("#inactiveCB").checked;
     let inactives = document.querySelectorAll(".inactive-slot-set");
+    let actives = document.querySelectorAll(".active-slot-set");
 
     if(showInactive){
         inactives.forEach(item=>{
             item.style.display = "unset";
         })
 
-        document.querySelector("#timeslot").removeAttribute("disabled");
-        document.querySelector("#noactiveTS").remove();
+        if(inactives.length != 0 || actives.length == 0){
+            document.querySelector("#timeslot").removeAttribute("disabled");
+            document.querySelector("#noactiveTS").remove();
+        }
+
     }
     else{
         inactives.forEach(item=>{
             item.style.display = "none";
         })
 
-        document.querySelector("#timeslot").setAttribute("disabled", "disabled");
-        document.querySelector("#timeslot").innerHTML += `<option id="noactiveTS" selected>No active time slot</option>`;
+        if(actives.length == 0){
+            document.querySelector("#timeslot").setAttribute("disabled", "disabled");
+            document.querySelector("#timeslot").innerHTML += `<option id="noactiveTS" selected>No active time slot</option>`;
+        }
+
     }
+}
+
+function viewAppointments(){
+    const deptID = document.querySelector("#dept").value;
+    const appDateFrom = document.querySelector("#appStartDate").value;
+    const appDateTo = document.querySelector("#appEndDate").value;
+    const timeslotID = document.querySelector("#timeslot").value;
+    const sex = document.querySelector("#sex").value;
+    const province = document.querySelector("#province").value;
+    const municipality = document.querySelector("#municipality").value;
+    const barangay = document.querySelector("#barangay").value;
+    const patientType = document.querySelector("#patientType").value;
+    const caseNo = document.querySelector("#caseNo").value;
+    const visitType = document.querySelector("#visitType").value;
+    const schedVia = document.querySelector("#scheduledThrough").value;
+    const status = document.querySelector("#status").value;
+    const lastName = document.querySelector("#lastName").value.toLowerCase().trim();
+    const firstName = document.querySelector("#firstName").value.toLowerCase().trim();
+    const middleName = document.querySelector("#middleName").value.toLowerCase().trim();
+    const subDateFrom = document.querySelector("#subStartDate").value;
+    const subDateTo = document.querySelector("#subEndDate").value;
+
+    let appStartObj = new Date(appDateFrom);
+    let appEndObj = new Date(appDateTo);
+
+    let subStartObj = new Date(subDateFrom);
+    let subEndObj = new Date(subDateTo);
+
+    if(appStartObj > appEndObj){
+        showError("Appointment date start cannot be later than end date");
+        return;
+    }
+    if (!isLettersOnly(lastName)){
+        showError("Last name can only contain letters");
+        return false;
+    }
+    if (!isLettersOnly(firstName)){
+        showError("First name can only contain letters");
+        return false;
+    }
+    if (!isLettersOnly(middleName)){
+        showError("Middle name can only contain letters");
+        return false;
+    }
+    if(subStartObj > subEndObj){
+        showError("Submitted date start cannot be later than end date");
+        return;
+    }
+    showError();
 }
