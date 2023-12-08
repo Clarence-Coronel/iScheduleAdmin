@@ -462,28 +462,22 @@ let viewSchedule = `<div class="page-header">Home / View Appointments</div>
             </div>
             <div class="filter-holder">
                 <label for="dept">Province</label>
-                <select class="form-select" id="province" aria-label="Default select example" onchange="viewAppointments();">
+                <select class="form-select" id="province" aria-label="Default select example" onchange="viewAppointments(); insertMunicipality();">
                     <option value="all" selected>All</option>
-                    <option value="m">Bulacan</option>
-                    <option value="f">Outside Bulacan</option>
+                    <option value="bulacan">Bulacan</option>
+                    <option value="other">Other</option>
                 </select>
             </div>
             <div class="filter-holder">
                 <label for="dept">Municipality</label>
-                <select class="form-select" id="municipality" aria-label="Default select example" onchange"viewAppointments();">
+                <select class="form-select" id="municipality" aria-label="Default select example" onchange="viewAppointments(); insertBarangay();">
                     <option value="all" selected>All</option>
-                    <option value="m">Angat</option>
-                    <option value="f">Plaridel</option>
-                    <option value="m">Baliuag</option>
-                    <option value="f">San Jose del Monte</option>
                 </select>
             </div>
             <div class="filter-holder">
                 <label for="dept">Barangay</label>
                 <select class="form-select" id="barangay" aria-label="Default select example" onchange="viewAppointments();">
                     <option value="all">All</option>
-                    <option value="m">Banga I</option>
-                    <option value="f">Banga II</option>
                 </select>
             </div>
             <div class="filter-holder">
