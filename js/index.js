@@ -7151,7 +7151,7 @@ function getSchedTimeslots(){
                                 let option = document.createElement("option");
                                 // Set attributes for the option element using the item properties
                                 option.value = item.scheduleID;
-                                option.textContent = `${item.day[0].toUpperCase()+ item.day.substring(1)} ${item.startTime} - ${item.stopTime} => ${shortenDate(item.startDate)} - ${shortenDate(item.endDate)}`;
+                                option.textContent = `${item.day[0].toUpperCase()+ item.day.substring(1)} @ ${item.startTime} - ${item.stopTime} => ${shortenDate(item.startDate)} - ${shortenDate(item.endDate)}`;
 
                                 if(item.slotActive == "0" || item.setActive == "0"){
                                    option.classList.add("inactive-slot-set");
@@ -7173,7 +7173,8 @@ function getSchedTimeslots(){
                                 let deptName = dept[item.deptID-1];
                                 // Set attributes for the option element using the item properties
                                 option.value = item.scheduleID;
-                                option.textContent = `${deptName} (${item.day[0].toUpperCase()+ item.day.substring(1)} ${item.startTime} - ${item.stopTime} => ${shortenDate(item.startDate)} - ${shortenDate(item.endDate)})`;
+                                option.textContent = `${deptName} (${item.day[0].toUpperCase()+ item.day.substring(1)} @ ${item.startTime} - ${item.stopTime} => ${shortenDate(item.startDate)} - ${shortenDate(item.endDate)})`;
+                                
 
                                 if(item.slotActive == "0" || item.setActive == "0"){
                                     option.classList.add("inactive-slot-set");
@@ -7327,6 +7328,7 @@ function viewAppointments(){
 function insertMunicipality(){
     let provinceSelect = document.querySelector("#province").value;
     let municipalitySelect = document.querySelector("#municipality");
+    let barangaySelect = document.querySelector("#barangay");
 
     removeAllChildNodes(municipalitySelect);
 
@@ -7365,14 +7367,21 @@ function insertMunicipality(){
         municipalitySelect.appendChild(newMunicipality);
     });
 
+    barangaySelect.removeAttribute("disabled");
+    municipalitySelect.removeAttribute("disabled");
+
     if(provinceSelect == "all"){
+        removeAllChildNodes(municipalitySelect);
+
         const newMunicipality = document.createElement('option');
-        newMunicipality.innerText = "Other";
-        newMunicipality.setAttribute('value', 'other');
+        newMunicipality.innerText = "All";
+        newMunicipality.setAttribute('value', 'all');
     
     
         municipalitySelect.appendChild(newMunicipality);
-        insertBarangay();
+
+        barangaySelect.setAttribute("disabled", "disabled");
+        municipalitySelect.setAttribute("disabled", "disabled");
     }
     else if(provinceSelect == "other"){
         removeAllChildNodes(municipalitySelect);
@@ -7384,9 +7393,13 @@ function insertMunicipality(){
         
         municipalitySelect.appendChild(newMunicipality);
 
-        insertBarangay();
+        barangaySelect.setAttribute("disabled", "disabled");
+        municipalitySelect.setAttribute("disabled", "disabled");
+
+        
     }
-    
+
+    insertBarangay();
 
 }
 
@@ -7576,6 +7589,8 @@ function insertBarangay(){
         newBarangay.value = 'all';
 
         barangaySelect.appendChild(newBarangay);
+
+        barangaySelect.setAttribute("disabled", "disabled");
     }
     else{
         removeAllChildNodes(barangaySelect);
@@ -7607,5 +7622,7 @@ function insertBarangay(){
             temp.innerHTML = processedItem;
             barangay.appendChild(temp);
         });
+
+        barangaySelect.removeAttribute("disabled");
     }
 }
