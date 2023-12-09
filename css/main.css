@@ -954,7 +954,7 @@ td:hover {
   overflow: unset;
   text-overflow: unset;
   white-space: unset;
-  background-color: #0577fa;
+  background-color: rgb(84, 147, 242);
   color: white;
   cursor: pointer;
   overflow-wrap: break-word;
@@ -3569,7 +3569,8 @@ table {
   justify-content: center;
   align-items: center;
   height: 50%;
-  width: 5vw;
+  width: -moz-fit-content;
+  width: fit-content;
   min-width: 50px;
   margin-left: auto;
   margin-bottom: max(7px, 0.5vh);
@@ -3989,4 +3990,28 @@ label[for=dept] .showInactive label {
 label[for=dept] .showInactive input[type=checkbox] {
   width: 0.5rem;
   height: 0.5rem;
+}
+
+#newStatus {
+  border: 1px solid rgb(204, 203, 203) !important;
+  border-radius: 5px !important;
+  padding: 5px !important;
+}
+
+.changeStatusContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1vh;
+}
+.changeStatusContainer #cancelReason {
+  width: 100%;
+  border: 1px solid rgb(204, 203, 203) !important;
+  border-radius: 5px !important;
+  padding: 5px !important;
+  text-align: left;
+  display: none;
 }/*# sourceMappingURL=main.css.map */

@@ -5263,104 +5263,104 @@ function insertReq(){
     xhr.send();
 }
 
-function insertAppBtn(query){
-    let dept = document.querySelector("#deptSelect").value;
-    let table = document.querySelector('.schedule-table tbody');
-    let quickBtns = document.querySelectorAll('.view-schedule__btn');
-    let xhr = new XMLHttpRequest();
+// function insertAppBtn(query){
+//     let dept = document.querySelector("#deptSelect").value;
+//     let table = document.querySelector('.schedule-table tbody');
+//     let quickBtns = document.querySelectorAll('.view-schedule__btn');
+//     let xhr = new XMLHttpRequest();
     
-    quickBtns.forEach(btn=>{
-        btn.classList.remove('view-disabled');
-        btn.removeAttribute("disabled");
-    })
+//     quickBtns.forEach(btn=>{
+//         btn.classList.remove('view-disabled');
+//         btn.removeAttribute("disabled");
+//     })
     
-    xhr.onreadystatechange = function(){
-        if(this.readyState == 4){
-            if(this.status == 200){
-                try {
-                    table.innerHTML = "";
-                    const arrOfObj = JSON.parse(this.responseText);
+//     xhr.onreadystatechange = function(){
+//         if(this.readyState == 4){
+//             if(this.status == 200){
+//                 try {
+//                     table.innerHTML = "";
+//                     const arrOfObj = JSON.parse(this.responseText);
 
-                    arrOfObj.forEach(item=>{
-                        const dept = ['ENT', 'Hematology', 'Internal Medicine', 'Internal Medicine Clearance', 'Nephrology', 'Neurology', 'OB GYNE New', 'OB GYNE Old', 'OB GYNE ROS', 'Oncology', 'Pediatric Cardiology', 'Pediatric Clearance', 'Pediatric General', 'Psychiatry New', 'Psychiatry Old', 'Surgery', 'Surgery ROS'];
-                        let deptName = dept[item.departmentID-1];
-                        let sex = item.sex == 'm' ? 'Male' : 'Female';
-                        let time = "";
-                        if(item.startTime != "" && item.stopTime != "") time = `${item.startTime} - ${item.stopTime}`;
-                        if (item.cancelReason == null) item.cancelReason = "";
+//                     arrOfObj.forEach(item=>{
+//                         const dept = ['ENT', 'Hematology', 'Internal Medicine', 'Internal Medicine Clearance', 'Nephrology', 'Neurology', 'OB GYNE New', 'OB GYNE Old', 'OB GYNE ROS', 'Oncology', 'Pediatric Cardiology', 'Pediatric Clearance', 'Pediatric General', 'Psychiatry New', 'Psychiatry Old', 'Surgery', 'Surgery ROS'];
+//                         let deptName = dept[item.departmentID-1];
+//                         let sex = item.sex == 'm' ? 'Male' : 'Female';
+//                         let time = "";
+//                         if(item.startTime != "" && item.stopTime != "") time = `${item.startTime} - ${item.stopTime}`;
+//                         if (item.cancelReason == null) item.cancelReason = "";
 
-                        let template = 
-                        `
-                        <tr class="table-row" title="Click to highlight/see more.">
-                            <td>${item.appointmentID}</td>
-                            <td class="always-visible">${capitalFirstLetter(item.lastName)}, ${capitalFirstLetter(item.firstName)} ${capitalFirstLetter(item.middleName)}</td>
-                            <td class="always-visible">${generateCode(item.rawAppDate, item.departmentID, item.scheduleID, item.appointmentID)}</td>
-                            <td>${deptName}</td>
-                            <td>${item.consultation}</td>
-                            <td>${item.appointmentDate}</td>
-                            <td>${time}</td>
-                            <td class="${item.appointmentStatus}" id="status_${item.appointmentID}">${capitalFirstLetter(item.appointmentStatus)}</td>
-                            <td>${capitalFirstLetter(item.appointmentType)}</td>
-                            <td>${sex}</td>
-                            <td>${item.birthdate}</td>
-                            <td>${item.phone}</td>
-                            <td>${capitalFirstLetter(item.barangay)}, ${capitalFirstLetter(item.municipality)}, ${capitalFirstLetter(item.province)}</td>
-                            <td>${capitalFirstLetter(item.patientType)}</td>
-                            <td>${item.caseNo}</td>
-                            <td>${item.dateSubmitted}</td>
-                            <td>${item.cancelReason}</td>
-                            <td><button class="editBtn ${item.appointmentStatus != 'active' ? 'edit-disabled' : ''}" ${item.appointmentStatus != 'active' ? 'disabled="disabled"' : ""} data-appid="${item.appointmentID}" data-status="${item.appointmentStatus}" onclick="editStatus(this.dataset.appid, this.dataset.status)" >Edit</button></td>
-                        </tr>
-                        `;
+//                         let template = 
+//                         `
+//                         <tr class="table-row" title="Click to highlight/see more.">
+//                             <td>${item.appointmentID}</td>
+//                             <td class="always-visible">${capitalFirstLetter(item.lastName)}, ${capitalFirstLetter(item.firstName)} ${capitalFirstLetter(item.middleName)}</td>
+//                             <td class="always-visible">${generateCode(item.rawAppDate, item.departmentID, item.scheduleID, item.appointmentID)}</td>
+//                             <td>${deptName}</td>
+//                             <td>${item.consultation}</td>
+//                             <td>${item.appointmentDate}</td>
+//                             <td>${time}</td>
+//                             <td class="${item.appointmentStatus}" id="status_${item.appointmentID}">${capitalFirstLetter(item.appointmentStatus)}</td>
+//                             <td>${capitalFirstLetter(item.appointmentType)}</td>
+//                             <td>${sex}</td>
+//                             <td>${item.birthdate}</td>
+//                             <td>${item.phone}</td>
+//                             <td>${capitalFirstLetter(item.barangay)}, ${capitalFirstLetter(item.municipality)}, ${capitalFirstLetter(item.province)}</td>
+//                             <td>${capitalFirstLetter(item.patientType)}</td>
+//                             <td>${item.caseNo}</td>
+//                             <td>${item.dateSubmitted}</td>
+//                             <td>${item.cancelReason}</td>
+//                             <td><button class="editBtn ${item.appointmentStatus != 'active' ? 'edit-disabled' : ''}" ${item.appointmentStatus != 'active' ? 'disabled="disabled"' : ""} data-appid="${item.appointmentID}" data-status="${item.appointmentStatus}" onclick="editStatus(this.dataset.appid, this.dataset.status)" >Edit</button></td>
+//                         </tr>
+//                         `;
                         
-                        table.innerHTML += template;
-                    });
-                    showTableCell();
-                } catch (error) {
-                    if(query == 'today'){
-                        table.innerHTML = 
-                        `
-                        <tr>
-                            <td colspan="16" class="empty">No Appointments Today</td>
-                        </tr>
-                        `;
-                    }
-                    else if(query == 'completed'){
-                        table.innerHTML = 
-                        `
-                        <tr>
-                            <td colspan="16" class="empty">No Recent Completed Appointments</td>
-                        </tr>
-                        `;
-                    }
-                    else if(query == 'cancelled'){
-                        table.innerHTML = 
-                        `
-                        <tr>
-                        <td colspan="16" class="empty">No Recent Cancelled Appointments</td>
-                        </tr>
-                        `;
-                    }
+//                         table.innerHTML += template;
+//                     });
+//                     showTableCell();
+//                 } catch (error) {
+//                     if(query == 'today'){
+//                         table.innerHTML = 
+//                         `
+//                         <tr>
+//                             <td colspan="16" class="empty">No Appointments Today</td>
+//                         </tr>
+//                         `;
+//                     }
+//                     else if(query == 'completed'){
+//                         table.innerHTML = 
+//                         `
+//                         <tr>
+//                             <td colspan="16" class="empty">No Recent Completed Appointments</td>
+//                         </tr>
+//                         `;
+//                     }
+//                     else if(query == 'cancelled'){
+//                         table.innerHTML = 
+//                         `
+//                         <tr>
+//                         <td colspan="16" class="empty">No Recent Cancelled Appointments</td>
+//                         </tr>
+//                         `;
+//                     }
 
-                }
-            }
-        }
-        else{
-            table.innerHTML = 
-            `
-            <tr>
-                <td colspan="16" class="empty">Loading...</td>
-            </tr>
-            `;
-        }
-        setupTablePagination('schedule-table', 'prevButton', 'nextButton', 10);
-    };
+//                 }
+//             }
+//         }
+//         else{
+//             table.innerHTML = 
+//             `
+//             <tr>
+//                 <td colspan="16" class="empty">Loading...</td>
+//             </tr>
+//             `;
+//         }
+//         setupTablePagination('schedule-table', 'prevButton', 'nextButton', 10);
+//     };
 
-    xhr.open("POST", "./php/getApp.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send(`deptID=${dept}&query=${query}`);
+//     xhr.open("POST", "./php/getApp.php", true);
+//     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+//     xhr.send(`deptID=${dept}&query=${query}`);
 
-}
+// }
 
 function editStatus(ID, status){
     resetModal();
@@ -5375,14 +5375,17 @@ function editStatus(ID, status){
 
     modalTitle.innerText = "Changing Status..."
     modalBody.innerHTML = `
-        <select class="form-select" aria-label="Default select example" id="newStatus">
-            <option value="" selected hidden disabled>Select Status</option>
-            <option value="completed">Completed</option>
-            <option value="cancelled">Cancelled</option>
-        </select>
-        <div class="change-warning">This cannot be undone.</div>
-        <div class="error-container">
-            <span class="msg"></span>
+        <div class="changeStatusContainer">
+            <select class="form-select" aria-label="Default select example" id="newStatus" onchange="cancelShow(this.value)">
+                <option value="" selected hidden disabled>Select Status</option>
+                <option value="completed">Completed</option>
+                <option value="cancelled">Cancelled</option>
+            </select>
+            <textarea placeholder="Cancel Reason..." cols="30" rows="5" name="cancelReason" id="cancelReason" onblur="inputLimiterBlur(this.id, 150);" oninput="inputLimiter(this.id, 150);"></textarea>
+            <div class="change-warning">This cannot be undone.</div>
+            <div class="error-container">
+                <span class="msg-modal"></span>
+            </div>
         </div>
     `;
 
@@ -5394,18 +5397,36 @@ function editStatus(ID, status){
     modalLauncher();
 }
 
+function cancelShow(val){
+    showErrorModal();
+    if(val == 'cancelled'){
+        document.querySelector("#cancelReason").style.display = "unset";
+    }
+    else{
+        document.querySelector("#cancelReason").value = ""
+        document.querySelector("#cancelReason").style.display = "none";
+    }
+}
+
 function applyEditStatus(ID, status){
     if(posting) return;
     posting = true;
 
     let newStatus = document.querySelector("#newStatus").value;
+    let cancelReason = document.querySelector("#cancelReason").value;
 
     if(newStatus == ""){
-        showError("Select a new status");
+        showErrorModal("Select a new status");
+        posting = false;
+        return;
+    }
+    else if(newStatus == "cancelled" && cancelReason == ""){
+        showErrorModal("Cancel reason cannot be empty");
         posting = false;
         return;
     }
     else{
+        showErrorModal();
         document.querySelector('.positive').setAttribute("data-bs-dismiss", "modal");
         document.querySelector('.positive').click();
     }
@@ -5416,13 +5437,16 @@ function applyEditStatus(ID, status){
         if(this.readyState == 4){
             if(this.status == 200){
                 if(this.responseText == 1){
-                    showResModal("Status has been changed");
-                    document.querySelector(`#status_${ID}`).classList.remove(status);
-                    document.querySelector(`#status_${ID}`).innerText = capitalFirstLetter(newStatus);
-                    document.querySelector(`#status_${ID}`).classList.add(newStatus);
-                    document.querySelector('button[data-appid="'+ ID +'"]').setAttribute('disabled', 'disabled');
-                    document.querySelector('button[data-appid="'+ ID +'"]').classList.add('view-disabled');
-                    showResModal("Status has been changed")
+                    setTimeout(()=>{
+                        document.querySelector(`#status_${ID}`).classList.remove(status);
+                        document.querySelector(`#status_${ID}`).innerText = capitalFirstLetter(newStatus);
+                        document.querySelector(`#status_${ID}`).classList.add(newStatus);
+                        document.querySelector('button[data-appid="'+ ID +'"]').setAttribute('disabled', 'disabled');
+                        document.querySelector('button[data-appid="'+ ID +'"]').classList.add('view-disabled');
+
+                        if(newStatus == "cancelled") document.querySelector(`#statusCancel_${ID}`).innerText = cancelReason;
+                        showResModal("Status has been changed")
+                    }, 500) 
                 }
                 else{
                     showResModal("Something went wrong...", false, "Failed");
@@ -5434,7 +5458,7 @@ function applyEditStatus(ID, status){
 
     xhr.open("POST", "./php/changeStatus.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send(`id=${ID}&newStatus=${newStatus}`);
+    xhr.send(`id=${ID}&newStatus=${newStatus}&cancelReason=${cancelReason}`);
     posting = false;
 
 }
@@ -5506,208 +5530,208 @@ function generateSlots(){
 
 }
 
-function searchAppointment(){
-    let input = document.querySelector("#appointmentSearch").value.trim();
-    let table = document.querySelector('.schedule-table tbody');
+// function searchAppointment(){
+//     let input = document.querySelector("#appointmentSearch").value.trim();
+//     let table = document.querySelector('.schedule-table tbody');
 
-    if(input != ""){
-        let xhr = new XMLHttpRequest();
+//     if(input != ""){
+//         let xhr = new XMLHttpRequest();
 
-        xhr.onreadystatechange = function(){
-            if(this.readyState == 4){
-                if(this.status == 200){
-                    try {
-                        table.innerHTML = "";
-                        const arrOfObj = JSON.parse(this.responseText);
+//         xhr.onreadystatechange = function(){
+//             if(this.readyState == 4){
+//                 if(this.status == 200){
+//                     try {
+//                         table.innerHTML = "";
+//                         const arrOfObj = JSON.parse(this.responseText);
     
-                        arrOfObj.forEach(item=>{
-                            const dept = ['ENT', 'Hematology', 'Internal Medicine', 'Internal Medicine Clearance', 'Nephrology', 'Neurology', 'OB GYNE New', 'OB GYNE Old', 'OB GYNE ROS', 'Oncology', 'Pediatric Cardiology', 'Pediatric Clearance', 'Pediatric General', 'Psychiatry New', 'Psychiatry Old', 'Surgery', 'Surgery ROS'];
-                            let deptName = dept[item.departmentID-1];
-                            let sex = item.sex == 'm' ? 'Male' : 'Female';
-                            let time = "";
-                            if(item.startTime != "" && item.stopTime != "") time = `${item.startTime} - ${item.stopTime}`;
-                            if (item.cancelReason == null) item.cancelReason = "";
+//                         arrOfObj.forEach(item=>{
+//                             const dept = ['ENT', 'Hematology', 'Internal Medicine', 'Internal Medicine Clearance', 'Nephrology', 'Neurology', 'OB GYNE New', 'OB GYNE Old', 'OB GYNE ROS', 'Oncology', 'Pediatric Cardiology', 'Pediatric Clearance', 'Pediatric General', 'Psychiatry New', 'Psychiatry Old', 'Surgery', 'Surgery ROS'];
+//                             let deptName = dept[item.departmentID-1];
+//                             let sex = item.sex == 'm' ? 'Male' : 'Female';
+//                             let time = "";
+//                             if(item.startTime != "" && item.stopTime != "") time = `${item.startTime} - ${item.stopTime}`;
+//                             if (item.cancelReason == null) item.cancelReason = "";
     
-                            let template = 
-                            `
-                            <tr class="table-row" title="Click to highlight/see more.">
-                                <td>${item.appointmentID}</td>
-                                <td class="always-visible">${capitalFirstLetter(item.lastName)}, ${capitalFirstLetter(item.firstName)} ${capitalFirstLetter(item.middleName)}</td>
-                                <td class="always-visible">${generateCode(item.rawAppDate, item.departmentID, item.scheduleID, item.appointmentID)}</td>
-                                <td>${deptName}</td>
-                                <td>${item.consultation}</td>
-                                <td>${item.appointmentDate}</td>
-                                <td>${time}</td>
-                                <td class="${item.appointmentStatus}" id="status_${item.appointmentID}">${capitalFirstLetter(item.appointmentStatus)}</td>
-                                <td>${capitalFirstLetter(item.appointmentType)}</td>
-                                <td>${sex}</td>
-                                <td>${item.birthdate}</td>
-                                <td>${item.phone}</td>
-                                <td>${capitalFirstLetter(item.barangay)}, ${capitalFirstLetter(item.municipality)}, ${capitalFirstLetter(item.province)}</td>
-                                <td>${capitalFirstLetter(item.patientType)}</td>
-                                <td>${item.caseNo}</td>
-                                <td>${item.dateSubmitted}</td>
-                                <td>${item.cancelReason}</td>
-                                <td><button class="editBtn ${item.appointmentStatus != 'active' ? 'edit-disabled' : ''}" ${item.appointmentStatus != 'active' ? 'disabled="disabled"' : ""} data-appid="${item.appointmentID}" data-status="${item.appointmentStatus}" onclick="editStatus(this.dataset.appid, this.dataset.status)" >Edit</button></td>
-                            </tr>
-                            `;
+//                             let template = 
+//                             `
+//                             <tr class="table-row" title="Click to highlight/see more.">
+//                                 <td>${item.appointmentID}</td>
+//                                 <td class="always-visible">${capitalFirstLetter(item.lastName)}, ${capitalFirstLetter(item.firstName)} ${capitalFirstLetter(item.middleName)}</td>
+//                                 <td class="always-visible">${generateCode(item.rawAppDate, item.departmentID, item.scheduleID, item.appointmentID)}</td>
+//                                 <td>${deptName}</td>
+//                                 <td>${item.consultation}</td>
+//                                 <td>${item.appointmentDate}</td>
+//                                 <td>${time}</td>
+//                                 <td class="${item.appointmentStatus}" id="status_${item.appointmentID}">${capitalFirstLetter(item.appointmentStatus)}</td>
+//                                 <td>${capitalFirstLetter(item.appointmentType)}</td>
+//                                 <td>${sex}</td>
+//                                 <td>${item.birthdate}</td>
+//                                 <td>${item.phone}</td>
+//                                 <td>${capitalFirstLetter(item.barangay)}, ${capitalFirstLetter(item.municipality)}, ${capitalFirstLetter(item.province)}</td>
+//                                 <td>${capitalFirstLetter(item.patientType)}</td>
+//                                 <td>${item.caseNo}</td>
+//                                 <td>${item.dateSubmitted}</td>
+//                                 <td>${item.cancelReason}</td>
+//                                 <td><button class="editBtn ${item.appointmentStatus != 'active' ? 'edit-disabled' : ''}" ${item.appointmentStatus != 'active' ? 'disabled="disabled"' : ""} data-appid="${item.appointmentID}" data-status="${item.appointmentStatus}" onclick="editStatus(this.dataset.appid, this.dataset.status)" >Edit</button></td>
+//                             </tr>
+//                             `;
                             
-                            table.innerHTML += template;
-                        });
-                        showTableCell();
-                    } catch (error) {
-                        table.innerHTML = 
-                        `
-                        <tr>
-                            <td colspan="16" class="empty">No Result</td>
-                        </tr>
-                        `;
+//                             table.innerHTML += template;
+//                         });
+//                         showTableCell();
+//                     } catch (error) {
+//                         table.innerHTML = 
+//                         `
+//                         <tr>
+//                             <td colspan="16" class="empty">No Result</td>
+//                         </tr>
+//                         `;
                         
-                    }
-                }
-            }
-            else{
-                table.innerHTML = 
-                `
-                <tr>
-                    <td colspan="16" class="empty">Loading...</td>
-                </tr>
-                `;
-            }
-            setupTablePagination('schedule-table', 'prevButton', 'nextButton', 10);
-        };
+//                     }
+//                 }
+//             }
+//             else{
+//                 table.innerHTML = 
+//                 `
+//                 <tr>
+//                     <td colspan="16" class="empty">Loading...</td>
+//                 </tr>
+//                 `;
+//             }
+//             setupTablePagination('schedule-table', 'prevButton', 'nextButton', 10);
+//         };
 
-        xhr.open("POST", "./php/searchApp.php", true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.send("search=" + input);
-    }
-}
+//         xhr.open("POST", "./php/searchApp.php", true);
+//         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+//         xhr.send("search=" + input);
+//     }
+// }
 
-function filterAppointment(){
-    let dept = document.querySelector('#dept').value;
+// function filterAppointment(){
+//     let dept = document.querySelector('#dept').value;
 
-    let month = document.querySelector('#appMonth').value;
-    let year = document.querySelector('#appYear').value;
-    let day = document.querySelector('#appDay').value;
-    let date = `${year}-${month}-${day}`;
+//     let month = document.querySelector('#appMonth').value;
+//     let year = document.querySelector('#appYear').value;
+//     let day = document.querySelector('#appDay').value;
+//     let date = `${year}-${month}-${day}`;
 
-    let timeSlotID = document.querySelector('#timeSlot').value;
+//     let timeSlotID = document.querySelector('#timeSlot').value;
 
-    let sex = document.querySelector('#sex').value;
+//     let sex = document.querySelector('#sex').value;
     
-    let barangay = document.querySelector('#barangay').value;
-    let municipality = document.querySelector('#municipality').value;
-    let province = document.querySelector('#province').value;
+//     let barangay = document.querySelector('#barangay').value;
+//     let municipality = document.querySelector('#municipality').value;
+//     let province = document.querySelector('#province').value;
 
-    let patientType = document.querySelector('#patientType').value;
+//     let patientType = document.querySelector('#patientType').value;
 
-    let status = document.querySelector('#status').value;
+//     let status = document.querySelector('#status').value;
 
-    let sortBy = document.querySelector('#sortBy').value;
+//     let sortBy = document.querySelector('#sortBy').value;
 
-    if(month != "" || day != "" || year != ""){
-        if(month == "" || day == "" || year == ""){
-            showError("Date is incomplete");
-            return;
-        }
-        else if(!isDateValid(date)){
-            showError("Invalid Date")
-            return;
-        }
-        else if(year.length != 4){
-            showError("Invalid Date")
-            return;
-        }
-    }
-    else{
-        date = "";
-    }
-    showError("");
+//     if(month != "" || day != "" || year != ""){
+//         if(month == "" || day == "" || year == ""){
+//             showError("Date is incomplete");
+//             return;
+//         }
+//         else if(!isDateValid(date)){
+//             showError("Invalid Date")
+//             return;
+//         }
+//         else if(year.length != 4){
+//             showError("Invalid Date")
+//             return;
+//         }
+//     }
+//     else{
+//         date = "";
+//     }
+//     showError("");
 
-    let obj = {
-        dept: dept,
-        appointmentDate: date,
-        scheduleID: timeSlotID,
-        sex: sex,
-        barangay: barangay,
-        municipality: municipality,
-        province: province,
-        patientType: patientType,
-        status: status,
-        sortBy: sortBy,
-    }
+//     let obj = {
+//         dept: dept,
+//         appointmentDate: date,
+//         scheduleID: timeSlotID,
+//         sex: sex,
+//         barangay: barangay,
+//         municipality: municipality,
+//         province: province,
+//         patientType: patientType,
+//         status: status,
+//         sortBy: sortBy,
+//     }
 
-    let toSend = JSON.stringify(obj);
-    let table = document.querySelector('.schedule-table tbody');
+//     let toSend = JSON.stringify(obj);
+//     let table = document.querySelector('.schedule-table tbody');
 
-    const xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function(){
-        if(this.readyState == 4){
-            if(this.status == 200){
-                try {
-                    table.innerHTML = "";
-                    const arrOfObj = JSON.parse(this.responseText);
+//     const xhr = new XMLHttpRequest();
+//     xhr.onreadystatechange = function(){
+//         if(this.readyState == 4){
+//             if(this.status == 200){
+//                 try {
+//                     table.innerHTML = "";
+//                     const arrOfObj = JSON.parse(this.responseText);
 
-                    arrOfObj.forEach(item=>{
-                        const dept = ['ENT', 'Hematology', 'Internal Medicine', 'Internal Medicine Clearance', 'Nephrology', 'Neurology', 'OB GYNE New', 'OB GYNE Old', 'OB GYNE ROS', 'Oncology', 'Pediatric Cardiology', 'Pediatric Clearance', 'Pediatric General', 'Psychiatry New', 'Psychiatry Old', 'Surgery', 'Surgery ROS'];
-                        let deptName = dept[item.departmentID-1];
-                        let sex = item.sex == 'm' ? 'Male' : 'Female';
-                        let time = "";
-                        if(item.startTime != "" && item.stopTime != "") time = `${item.startTime} - ${item.stopTime}`;
-                        if (item.cancelReason == null) item.cancelReason = "";
+//                     arrOfObj.forEach(item=>{
+//                         const dept = ['ENT', 'Hematology', 'Internal Medicine', 'Internal Medicine Clearance', 'Nephrology', 'Neurology', 'OB GYNE New', 'OB GYNE Old', 'OB GYNE ROS', 'Oncology', 'Pediatric Cardiology', 'Pediatric Clearance', 'Pediatric General', 'Psychiatry New', 'Psychiatry Old', 'Surgery', 'Surgery ROS'];
+//                         let deptName = dept[item.departmentID-1];
+//                         let sex = item.sex == 'm' ? 'Male' : 'Female';
+//                         let time = "";
+//                         if(item.startTime != "" && item.stopTime != "") time = `${item.startTime} - ${item.stopTime}`;
+//                         if (item.cancelReason == null) item.cancelReason = "";
 
-                        let template = 
-                        `
-                        <tr class="table-row" title="Click to highlight/see more.">
-                            <td>${item.appointmentID}</td>
-                            <td class="always-visible">${capitalFirstLetter(item.lastName)}, ${capitalFirstLetter(item.firstName)} ${capitalFirstLetter(item.middleName)}</td>
-                            <td class="always-visible">${generateCode(item.rawAppDate, item.departmentID, item.scheduleID, item.appointmentID)}</td>
-                            <td>${deptName}</td>
-                            <td>${item.consultation}</td>
-                            <td>${item.appointmentDate}</td>
-                            <td>${time}</td>
-                            <td class="${item.appointmentStatus}" id="status_${item.appointmentID}">${capitalFirstLetter(item.appointmentStatus)}</td>
-                            <td>${capitalFirstLetter(item.appointmentType)}</td>
-                            <td>${sex}</td>
-                            <td>${item.birthdate}</td>
-                            <td>${item.phone}</td>
-                            <td>${capitalFirstLetter(item.barangay)}, ${capitalFirstLetter(item.municipality)}, ${capitalFirstLetter(item.province)}</td>
-                            <td>${capitalFirstLetter(item.patientType)}</td>
-                            <td>${item.caseNo}</td>
-                            <td>${item.dateSubmitted}</td>
-                            <td>${item.cancelReason}</td>
-                            <td><button class="editBtn ${item.appointmentStatus != 'active' ? 'edit-disabled' : ''}" ${item.appointmentStatus != 'active' ? 'disabled="disabled"' : ""} data-appid="${item.appointmentID}" data-status="${item.appointmentStatus}" onclick="editStatus(this.dataset.appid, this.dataset.status)" >Edit</button></td>
-                        </tr>
-                        `;
+//                         let template = 
+//                         `
+//                         <tr class="table-row" title="Click to highlight/see more.">
+//                             <td>${item.appointmentID}</td>
+//                             <td class="always-visible">${capitalFirstLetter(item.lastName)}, ${capitalFirstLetter(item.firstName)} ${capitalFirstLetter(item.middleName)}</td>
+//                             <td class="always-visible">${generateCode(item.rawAppDate, item.departmentID, item.scheduleID, item.appointmentID)}</td>
+//                             <td>${deptName}</td>
+//                             <td>${item.consultation}</td>
+//                             <td>${item.appointmentDate}</td>
+//                             <td>${time}</td>
+//                             <td class="${item.appointmentStatus}" id="status_${item.appointmentID}">${capitalFirstLetter(item.appointmentStatus)}</td>
+//                             <td>${capitalFirstLetter(item.appointmentType)}</td>
+//                             <td>${sex}</td>
+//                             <td>${item.birthdate}</td>
+//                             <td>${item.phone}</td>
+//                             <td>${capitalFirstLetter(item.barangay)}, ${capitalFirstLetter(item.municipality)}, ${capitalFirstLetter(item.province)}</td>
+//                             <td>${capitalFirstLetter(item.patientType)}</td>
+//                             <td>${item.caseNo}</td>
+//                             <td>${item.dateSubmitted}</td>
+//                             <td>${item.cancelReason}</td>
+//                             <td><button class="editBtn ${item.appointmentStatus != 'active' ? 'edit-disabled' : ''}" ${item.appointmentStatus != 'active' ? 'disabled="disabled"' : ""} data-appid="${item.appointmentID}" data-status="${item.appointmentStatus}" onclick="editStatus(this.dataset.appid, this.dataset.status)" >Edit</button></td>
+//                         </tr>
+//                         `;
                         
-                        table.innerHTML += template;
-                    });
-                    showTableCell();
-                } catch (error) {
-                    table.innerHTML = 
-                    `
-                    <tr>
-                        <td colspan="17" class="empty">No Result</td>
-                    </tr>
-                    `;
-                }
-            }
-        }
-        else{
-            table.innerHTML = 
-            `
-            <tr>
-                <td colspan="17" class="empty">Loading Table...</td>
-            </tr>
-            `;
-        }
-        setupTablePagination('schedule-table', 'prevButton', 'nextButton', 10);
-    }
+//                         table.innerHTML += template;
+//                     });
+//                     showTableCell();
+//                 } catch (error) {
+//                     table.innerHTML = 
+//                     `
+//                     <tr>
+//                         <td colspan="17" class="empty">No Result</td>
+//                     </tr>
+//                     `;
+//                 }
+//             }
+//         }
+//         else{
+//             table.innerHTML = 
+//             `
+//             <tr>
+//                 <td colspan="17" class="empty">Loading Table...</td>
+//             </tr>
+//             `;
+//         }
+//         setupTablePagination('schedule-table', 'prevButton', 'nextButton', 10);
+//     }
 
-    xhr.open("POST", "./php/filterApp.php", true);
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.send(toSend);
-}
+//     xhr.open("POST", "./php/filterApp.php", true);
+//     xhr.setRequestHeader("Content-Type", "application/json");
+//     xhr.send(toSend);
+// }
 
 function generateDeptStats(days){
     let xhr = new XMLHttpRequest();
@@ -7427,8 +7451,8 @@ function viewAppointments(){
                             <td>${capitalFirstLetter(item.patientType)}</td>
                             <td>${item.caseNo}</td>
                             <td>${item.dateSubmitted}</td>
-                            <td>${item.cancelReason}</td>
-                            <td><button class="editBtn ${item.appointmentStatus != 'scheduled' ? 'edit-disabled' : ''}" ${item.appointmentStatus != 'active' ? 'disabled="disabled"' : ""} data-appid="${item.appointmentID}" data-status="${item.appointmentStatus}" onclick="editStatus(this.dataset.appid, this.dataset.status)" >Edit</button></td>
+                            <td id="statusCancel_${item.appointmentID}">${item.cancelReason}</td>
+                            <td><button title="Change appointment status." class="editBtn ${item.appointmentStatus != 'scheduled' ? 'edit-disabled' : ''}" ${item.appointmentStatus != 'scheduled' ? 'disabled="disabled"' : ""} data-appid="${item.appointmentID}" data-status="${item.appointmentStatus}" onclick="editStatus(this.dataset.appid, this.dataset.status)" >Edit Status</button></td>
                         </tr>
                         `;
                         
