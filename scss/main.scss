@@ -250,7 +250,7 @@ header{
     transition-duration: 500ms;
     max-width: 300px;
     z-index: 999;
-    padding: max(5px, 0.5vw);
+    padding: 5px;
     box-shadow: $box-shadow;
 
     // min-height: 900px;
@@ -283,7 +283,7 @@ header{
         flex-flow: column;
         justify-content: flex-start;
         align-items: center;
-        // gap: max(5px, 0.5vw);
+        // gap: 5px;
         text-align: center;
         font-weight: 1000;
     }
@@ -309,7 +309,7 @@ header{
     color: $fontbase-color;
     font-weight: 700;
     // border-bottom: 1px solid rgba(255, 255, 255, 0.27);
-    gap: max(5px, 0.5vw);
+    gap: 5px;
     text-align: left;
     width: 100%;
     user-select: none;
@@ -407,7 +407,7 @@ header{
     align-items: center;
     color: $fontbase-color;
     font-weight: 700;
-    gap: max(5px, 0.5vw);
+    gap: 5px;
     text-align: left;
     width: 100%;
     user-select: none;
@@ -638,7 +638,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav{
         display: flex;
         align-items: center;
         flex-flow: column;
-        gap: max(5px, 0.5vw);
+        gap: 5px;
         font-size: 1.3rem;
         color: $btn-color;
         font-weight: 700;
@@ -1029,7 +1029,7 @@ input:-webkit-autofill:focus{
     border: 1px solid rgb(221, 218, 218);
     border: unset;
     border-radius: 5px;
-    // border-radius: max(7px, 0.5vw);
+    // border-radius: 5px;
 }
 
 .logs-table{
@@ -1322,7 +1322,7 @@ td:hover{
         background-color: $btn-color;
         // padding: max(10px, 0.7vw);
         width: 100%;
-        border-radius: max(7px, 0.5vw);
+        border-radius: 5px;
         height: $btn-height;
         max-height: $btn-max-height;
         margin-bottom: 1vw;
@@ -1511,7 +1511,7 @@ td:hover{
         color: white;
         height: $btn-height;
         max-height: $btn-max-height;
-        border-radius: max(5px, 0.5vw);
+        border-radius: 5px;
         border: unset;
         width: 100%;
         max-width: 600px;
@@ -1584,7 +1584,7 @@ td:hover{
         border: unset;
         background-color: $delete-btn-color;
         color: white;
-        border-radius: max(5px, 0.5vw);
+        border-radius: 5px;
         padding: max(5px, 0.2vw);
         width: 40%;
         margin-left: auto !important;
@@ -1651,7 +1651,7 @@ td:hover{
         background-color: $btn-color;
         color: white;
         border: unset;
-        border-radius: max(5px, 0.5vw);
+        border-radius: 5px;
         height: $btn-height;
         max-height: $btn-max-height;
         width: 100%;
@@ -1744,7 +1744,7 @@ td:hover{
             font-size: 0.7rem;
             flex-flow: column;
             user-select: none;
-            padding: max(5px, 0.5vw);
+            padding: 5px;
             overflow: hidden;
             
             span{
@@ -1943,7 +1943,7 @@ td:hover{
     text-align: left;
     font-weight: 700;
     // margin-bottom: max(10px, 1.5vw);
-    gap: max(5px, 0.5vw);
+    gap: 5px;
     padding: 2vh max(10px, 1.5vw);
     
     span:nth-child(1){
@@ -2092,7 +2092,7 @@ td:hover{
             border: unset;
             border: 1px solid $btn-color;
             border-radius: 5px;
-            padding: max(7px, 0.5vw);
+            padding: 5px;
             user-select: none;
             position: relative;
 
@@ -2499,7 +2499,7 @@ td:hover{
         height: $btn-height;
         max-height: $btn-max-height;
         // padding: max(10px, 0.5vw);
-        border-radius: max(5px, 0.5vw);
+        border-radius: 5px;
         border: unset;
         color: white;
     }
@@ -3187,7 +3187,7 @@ table{
             background-color: $btn-color;
             color: white;
             border: unset;
-            border-radius: max(5px, 0.5vw);
+            border-radius: 5px;
             // height: fit-content;
             // min-height: 35px;
             height: $btn-height;
@@ -4484,7 +4484,7 @@ table{
     color: white;
     background-color: $edit-btn-color;
     // border-color: rgb(12, 100, 232);
-    border-radius: max(7px, 0.5vw);
+    border-radius: 5px;
     padding: 4px;
     // text-decoration: underline;
     font-size: 0.8rem;
@@ -4518,7 +4518,7 @@ table{
     color: white;
     background-color: $delete-btn-color;
     // border-color: rgb(12, 100, 232);
-    border-radius: max(7px, 0.5vw);
+    border-radius: 5px;
     padding: 4px;
     // text-decoration: underline;
     font-size: 0.8rem;

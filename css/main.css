@@ -286,7 +286,7 @@ header .header__right {
   transition-duration: 500ms;
   max-width: 300px;
   z-index: 999;
-  padding: max(5px, 0.5vw);
+  padding: 5px;
   box-shadow: 0 0 10px rgba(148, 146, 146, 0.558);
 }
 .nav-links .nav-item-wrapper {
@@ -331,7 +331,7 @@ header .header__right {
   align-items: center;
   color: rgb(80, 78, 78);
   font-weight: 700;
-  gap: max(5px, 0.5vw);
+  gap: 5px;
   text-align: left;
   width: 100%;
   -webkit-user-select: none;
@@ -410,7 +410,7 @@ header .header__right {
   align-items: center;
   color: rgb(80, 78, 78);
   font-weight: 700;
-  gap: max(5px, 0.5vw);
+  gap: 5px;
   text-align: left;
   width: 100%;
   -webkit-user-select: none;
@@ -599,7 +599,7 @@ button.nav-links__item:hover, button.nav-links__item:hover .ico-nav {
   display: flex;
   align-items: center;
   flex-flow: column;
-  gap: max(5px, 0.5vw);
+  gap: 5px;
   font-size: 1.3rem;
   color: #0577fa;
   font-weight: 700;
@@ -1102,7 +1102,7 @@ td:hover {
   color: white;
   background-color: #0577fa;
   width: 100%;
-  border-radius: max(7px, 0.5vw);
+  border-radius: 5px;
   height: max(40px, 6vh);
   max-height: 60px;
   margin-bottom: 1vw;
@@ -1238,7 +1238,7 @@ td:hover {
   color: white;
   height: max(40px, 6vh);
   max-height: 60px;
-  border-radius: max(5px, 0.5vw);
+  border-radius: 5px;
   border: unset;
   width: 100%;
   max-width: 600px;
@@ -1299,7 +1299,7 @@ td:hover {
   border: unset;
   background-color: rgb(239, 97, 97);
   color: white;
-  border-radius: max(5px, 0.5vw);
+  border-radius: 5px;
   padding: max(5px, 0.2vw);
   width: 40%;
   margin-left: auto !important;
@@ -1355,7 +1355,7 @@ td:hover {
   background-color: #0577fa;
   color: white;
   border: unset;
-  border-radius: max(5px, 0.5vw);
+  border-radius: 5px;
   height: max(40px, 6vh);
   max-height: 60px;
   width: 100%;
@@ -1437,7 +1437,7 @@ td:hover {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
-  padding: max(5px, 0.5vw);
+  padding: 5px;
   overflow: hidden;
 }
 .dashboard__left .dashboard__stats .dashboard__block span {
@@ -1583,7 +1583,7 @@ td:hover {
 .dashboard__header {
   text-align: left;
   font-weight: 700;
-  gap: max(5px, 0.5vw);
+  gap: 5px;
   padding: 2vh max(10px, 1.5vw);
 }
 .dashboard__header span:nth-child(1) {
@@ -1712,7 +1712,7 @@ td:hover {
   border: unset;
   border: 1px solid #0577fa;
   border-radius: 5px;
-  padding: max(7px, 0.5vw);
+  padding: 5px;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
@@ -2056,7 +2056,7 @@ td:hover {
   width: 100%;
   height: max(40px, 6vh);
   max-height: 60px;
-  border-radius: max(5px, 0.5vw);
+  border-radius: 5px;
   border: unset;
   color: white;
 }
@@ -2573,7 +2573,7 @@ table {
   background-color: #0577fa;
   color: white;
   border: unset;
-  border-radius: max(5px, 0.5vw);
+  border-radius: 5px;
   height: max(40px, 6vh);
   max-height: 60px;
   padding: 0.5%;
@@ -3562,7 +3562,7 @@ table {
 .editBtn {
   color: white;
   background-color: rgb(246, 177, 48);
-  border-radius: max(7px, 0.5vw);
+  border-radius: 5px;
   padding: 4px;
   font-size: 0.8rem;
   display: flex;
@@ -3590,7 +3590,7 @@ table {
 .removeBtn {
   color: white;
   background-color: rgb(239, 97, 97);
-  border-radius: max(7px, 0.5vw);
+  border-radius: 5px;
   padding: 4px;
   font-size: 0.8rem;
   display: flex;
