@@ -7097,13 +7097,33 @@ function getSchedTimeslots(){
     let startObj = new Date(appStartDate);
     let endObj = new Date(appEndDate);
 
-    if(startObj > endObj){
+    if(appStartDate == "" && appEndDate == ""){
+        removeAllChildNodes(document.querySelector("#timeslot"));
+
+        let optionElement = document.createElement("option");
+
+        optionElement.value = "all";
+
+        optionElement.selected = true;
+
+        let optionText = document.createTextNode("All");
+
+        optionElement.appendChild(optionText);
+
+        document.querySelector("#timeslot").appendChild(optionElement);    
+        document.querySelector("#timeslot").setAttribute("disabled", "disabled");
+        return;
+    }
+    else if(startObj > endObj){
         showError("Appointment date start cannot be later than end date");
         return;
     }
     else{
         showError();
     }
+
+    document.querySelector("#timeslot").removeAttribute("disabled");
+
 
     const xhr = new XMLHttpRequest();
 
@@ -7113,7 +7133,7 @@ function getSchedTimeslots(){
                 const timeSlot = document.querySelector("#timeslot");
                 removeAllChildNodes(timeSlot);
 
-                console.log(this.responseText)
+                // console.log(this.responseText)
                 try {
 
                     let lengthOfInactive = 0;
@@ -7245,6 +7265,7 @@ function setupViewApp(){
     getSchedTimeslots();
     insertMunicipality();
     insertBarangay();
+    viewAppointments();
 }
 
 function showInactiveTS(){
@@ -7323,6 +7344,57 @@ function viewAppointments(){
         return;
     }
     showError();
+
+    const filter = {
+        deptID: deptID,
+        appDateFrom: appDateFrom,
+        appDateTo: appDateTo,
+        timeslotID: timeslotID,
+        sex: sex,
+        province: province,
+        municipality: municipality,
+        barangay: barangay,
+        patientType: patientType,
+        caseNo: caseNo,
+        visitType: visitType,
+        schedVia: schedVia,
+        status: status,
+        lastName: lastName,
+        firstName: firstName,
+        middleName: middleName,
+        subDateFrom: subDateFrom,
+        subDateTo: subDateTo,
+    };
+
+    console.table(filter);
+
+    const toSend = JSON.stringify(filter);
+
+    const xhr = new XMLHttpRequest();
+    
+    xhr.onreadystatechange = function(){
+        if(this.readyState == 4){
+            if(this.status == 200){
+                try {
+                    console.log(this.responseText)
+                    // const obj = JSON.parse(this.responseText);
+
+                    obj.forEach(app=>{
+
+
+
+                    });
+
+                } catch (error) {
+                    
+                }
+            }
+        }
+    }
+
+    xhr.open("POST", "./php/getFilterApps.php", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(toSend);
 }
 
 function insertMunicipality(){
@@ -7336,6 +7408,8 @@ function insertMunicipality(){
     newMunicipality.innerText = 'All';
     
     newMunicipality.value = 'all';
+
+    newMunicipality.setAttribute("selected", "selected");
 
     municipalitySelect.appendChild(newMunicipality);
 
@@ -7372,35 +7446,54 @@ function insertMunicipality(){
 
     if(provinceSelect == "all"){
         removeAllChildNodes(municipalitySelect);
+        removeAllChildNodes(barangaySelect);
 
         const newMunicipality = document.createElement('option');
         newMunicipality.innerText = "All";
         newMunicipality.setAttribute('value', 'all');
-    
-    
-        municipalitySelect.appendChild(newMunicipality);
 
-        barangaySelect.setAttribute("disabled", "disabled");
-        municipalitySelect.setAttribute("disabled", "disabled");
+        const newBarangay = document.createElement('option');
+        newBarangay.innerText = "All";
+        newBarangay.setAttribute('value', 'all');
+
+        municipalitySelect.appendChild(newMunicipality);
+        barangaySelect.appendChild(newBarangay);
+
+        // barangaySelect.setAttribute("disabled", "disabled");
+        // municipalitySelect.setAttribute("disabled", "disabled");
     }
     else if(provinceSelect == "other"){
         removeAllChildNodes(municipalitySelect);
-       
+        removeAllChildNodes(barangaySelect);
+
         const newMunicipality = document.createElement('option');
         newMunicipality.innerText = "Other";
         newMunicipality.setAttribute('value', 'other');
-    
-        
+
+        const newBarangay = document.createElement('option');
+        newBarangay.innerText = "Other";
+        newBarangay.setAttribute('value', 'other');
+
         municipalitySelect.appendChild(newMunicipality);
+        barangaySelect.appendChild(newBarangay);
 
-        barangaySelect.setAttribute("disabled", "disabled");
-        municipalitySelect.setAttribute("disabled", "disabled");
+        // barangaySelect.setAttribute("disabled", "disabled");
+        // municipalitySelect.setAttribute("disabled", "disabled");
+    }
+    else{
+        removeAllChildNodes(barangaySelect);
 
-        
+        const newBarangay = document.createElement('option');
+        newBarangay.innerText = "All";
+        newBarangay.setAttribute('value', 'all');
+
+        barangaySelect.appendChild(newBarangay);
+
+        // barangaySelect.removeAttribute("disabled");
+        // municipalitySelect.removeAttribute("disabled");
     }
 
-    insertBarangay();
-
+    viewAppointments()
 }
 
 function insertBarangay(){
@@ -7570,31 +7663,27 @@ function insertBarangay(){
         ]
     };
 
-    if(municipalitySelect == "other"){
-        removeAllChildNodes(barangaySelect);
+    removeAllChildNodes(barangaySelect);
 
-        const newBarangay = document.createElement('option');
-        newBarangay.innerText = 'Other';
-        
-        newBarangay.value = 'other';
-
-        barangaySelect.appendChild(newBarangay);
-    }
-    else if(municipalitySelect == "all"){
-        removeAllChildNodes(barangaySelect);
-
+    if(municipalitySelect == "all"){
         const newBarangay = document.createElement('option');
         newBarangay.innerText = 'All';
-        
         newBarangay.value = 'all';
 
         barangaySelect.appendChild(newBarangay);
 
-        barangaySelect.setAttribute("disabled", "disabled");
+        // barangaySelect.setAttribute("disabled", "disabled");
+    }
+    else if(municipalitySelect == "other"){
+        const newBarangay = document.createElement('option');
+        newBarangay.innerText = 'Other';
+        newBarangay.value = 'other';
+
+        barangaySelect.appendChild(newBarangay);
+
+        // barangaySelect.setAttribute("disabled", "disabled");
     }
     else{
-        removeAllChildNodes(barangaySelect);
-
         let barangayContainer = barangaylist[municipalitySelect];
 
         let temp = document.createElement('option');
@@ -7623,6 +7712,7 @@ function insertBarangay(){
             barangay.appendChild(temp);
         });
 
-        barangaySelect.removeAttribute("disabled");
+        // barangaySelect.removeAttribute("disabled");
     }
+    viewAppointments()
 }

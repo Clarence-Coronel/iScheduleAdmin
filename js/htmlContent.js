@@ -462,7 +462,7 @@ let viewSchedule = `<div class="page-header">Home / View Appointments</div>
             </div>
             <div class="filter-holder">
                 <label for="dept">Province</label>
-                <select class="form-select" id="province" aria-label="Default select example" onchange="viewAppointments(); insertMunicipality();">
+                <select class="form-select" id="province" aria-label="Default select example" onchange="insertMunicipality();">
                     <option value="all" selected>All</option>
                     <option value="bulacan">Bulacan</option>
                     <option value="other">Other</option>
