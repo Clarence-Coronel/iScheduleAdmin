@@ -708,9 +708,10 @@ let request = `
                             <thead>
                                 <tr>
                                     <th>Action</th>
-                                    <th>Full Name</th>
-                                    <th>Department</th>
-                                    <th>Phone #</th>
+                                    <th title="Click to sort by this column." onclick="requestSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="name">Full Name</th>
+                                    <th title="Click to sort by this column." onclick="requestSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="dept">Department</th>
+                                    <th title="Click to sort by this column." onclick="requestSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="phoneNo">Phone #</th>
+                                    <th title="Click to sort by this column." onclick="requestSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="dateSubmitted">Date Submitted</th>
                                     <th>Follow-Up Slip</th>
                                 </tr>
                             </thead>
@@ -1361,6 +1362,8 @@ function generateRequest(){
         main.innerHTML = request;
         insertReq();
         highlightActive(4);
+        universalSort = null;
+        universalSortStatus = null;
     }
 }
 

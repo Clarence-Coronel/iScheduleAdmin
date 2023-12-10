@@ -5235,6 +5235,7 @@ function insertReq(){
                             <td class="always-visible">${capitalFirstLetter(item.lastName)}, ${capitalFirstLetter(item.firstName)} ${capitalFirstLetter(item.middleName)}</td>
                             <td>${deptName}</td>
                             <td>${item.phone}</td>
+                            <td class="always-visible">${item.dateSubmitted}</td>
                             <td><a href="${item.imgLink}" target="_blank" class="viewBtn">View Image</a></td>
                         </tr>
                         `;
@@ -5264,7 +5265,8 @@ function insertReq(){
     };
 
     xhr.open("POST", "./php/getReq.php", true);
-    xhr.send();
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send(`sortBy=${universalSort}&sortState=${universalSortStatus}`);
 }
 
 // function insertAppBtn(query){
@@ -8038,4 +8040,56 @@ function adminLogsSort(sortBy, sortState){
     universalSort = sortBy;
     universalSortStatus = newState;
     insertAdminLogs();
+}
+
+function requestSort(sortBy, sortState){
+    let th = document.querySelector(`th[data-sortby=${sortBy}]`);
+    let newState = null;
+
+    let span = document.createElement("span");
+    span.classList.add("material-icons-outlined");
+    span.classList.add("sort");
+
+    // 1 = ASC, 2 = DESC, 0 = DEFAULT
+    if(sortState == 0){
+        try {
+            document.querySelector('.sort').remove();  
+        } catch (error) {
+            
+        }
+
+        th.setAttribute("data-sortState", "1");
+
+        span.innerText = 'arrow_drop_up';
+        th.appendChild(span);
+
+        newState = 1;
+    }
+    else if(sortState == 1){
+        try {
+            document.querySelector('.sort').remove();  
+        } catch (error) {
+            
+        }
+
+        th.setAttribute("data-sortState", "2");
+
+        span.innerText = 'arrow_drop_down';
+        th.appendChild(span);
+
+        newState = 2;
+    }
+    else if(sortState == 2){
+        th.setAttribute("data-sortState", "0");
+        newState = 0;
+        try {
+            document.querySelector('.sort').remove();  
+        } catch (error) {
+            
+        }
+    }
+
+    universalSort = sortBy;
+    universalSortStatus = newState;
+    insertReq();
 }
