@@ -931,10 +931,10 @@ let adminLogs = `
                     <table class="logs-table" id="logs-table">
                         <thead>
                             <tr>
-                                <th>Username</th>
-                                <th>Activity</th>
-                                <th>Admin Type</th>
-                                <th>Date & Time</th>
+                                <th title="Click to sort by this column." onclick="adminLogsSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="username">Username</th>
+                                <th title="Click to sort by this column." onclick="adminLogsSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="activity">Activity</th>
+                                <th title="Click to sort by this column." onclick="adminLogsSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="adminType">Admin Type</th>
+                                <th title="Click to sort by this column." onclick="adminLogsSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="dateTime">Date & Time</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -1350,6 +1350,8 @@ function generateViewSchedule(){
             exportTableToExcel(table, "iSchedule_Appointments", [13]);
         });
         // insertApp();
+        universalSort = null;
+        universalSortStatus = null;
         highlightActive(3);
     }
 }
@@ -1380,6 +1382,8 @@ function generateAdminLogs(){
             exportTableToExcel(table, "iSchedule_AdminLogs", []);
         });
         highlightActiveManage(0);
+        universalSort = null;
+        universalSortStatus = null;
     }
 }
 

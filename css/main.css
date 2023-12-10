@@ -893,8 +893,6 @@ input:-webkit-autofill:focus {
 thead tr th {
   background-color: white;
   color: rgb(80, 78, 78);
-  position: sticky;
-  top: 0;
 }
 
 tr {
@@ -4026,4 +4024,6 @@ th[data-sortby]:hover {
 
 .sort {
   margin: unset !important;
+  color: rgb(80, 78, 78);
+  font-size: 0.8rem;
 }/*# sourceMappingURL=main.css.map */

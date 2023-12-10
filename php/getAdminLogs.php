@@ -81,6 +81,37 @@
         }
     }
 
+    if($object->sortBy != "" && $object->sortState != ""){
+        if($object->sortBy == "username" && $object->sortState == "1"){
+            $query .= "ORDER BY admin_logs.username ASC ";
+        }
+        else if($object->sortBy == "username" && $object->sortState == "2"){
+            $query .= "ORDER BY admin_logs.username DESC ";
+        }
+
+        if($object->sortBy == "activity" && $object->sortState == "1"){
+            $query .= "ORDER BY admin_logs.activity ASC ";
+        }
+        else if($object->sortBy == "activity" && $object->sortState == "2"){
+            $query .= "ORDER BY admin_logs.activity DESC ";
+        }
+
+        if($object->sortBy == "adminType" && $object->sortState == "1"){
+            $query .= "ORDER BY admins.adminType ASC ";
+        }
+        else if($object->sortBy == "adminType" && $object->sortState == "2"){
+            $query .= "ORDER BY admins.adminType DESC ";
+        }
+
+        if($object->sortBy == "dateTime" && $object->sortState == "1"){
+            $query .= "ORDER BY admin_logs.logDateTime ASC ";
+        }
+        else if($object->sortBy == "dateTime" && $object->sortState == "2"){
+            $query .= "ORDER BY admin_logs.logDateTime DESC ";
+        }
+    }
+
+
     $result = mysqli_query($conn,$query);
 	$count = mysqli_num_rows($result);
 

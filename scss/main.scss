@@ -1043,9 +1043,9 @@ thead tr th{
     // color: white;
     background-color: white;
     color: $fontbase-color;
-    position: sticky;
+    // position: sticky;
     // font-size: 0.7rem;
-    top: 0;
+    // top: 0;
     // min-width: 150px;
 }
 
@@ -1069,6 +1069,8 @@ th{
     font-size: 0.7rem;
     max-width: max(10vw, 100px);
     // min-width: 150px;
+
+    // align-items: center;
 
     // text-align: left;
 }
@@ -5008,10 +5010,19 @@ th[data-sortby]:hover{
     color: $btn-color;
     cursor: pointer;
 }
+
 .action-column{
     text-align: left;
 }
 
 .sort{
     margin: unset !important;
+    color: $fontbase-color;
+    font-size: 0.8rem;
 }
+
+// th[data-sortby]{
+//     display: flex !important;
+//     justify-content: space-between !important;
+//     align-items: center !important;
+// }

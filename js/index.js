@@ -3181,6 +3181,8 @@ function insertAdminLogs(isInitial = true){
         'activity': activity,
         'adminType': adminType,
         'username': username,
+        sortBy: universalSort,
+        sortState: universalSortStatus,
     }
 
     const toSend = JSON.stringify(obj);
@@ -7984,4 +7986,56 @@ function appointmentSort(sortBy, sortState){
     universalSortStatus = newState;
     viewAppointments();
 
+}
+
+function adminLogsSort(sortBy, sortState){
+    let th = document.querySelector(`th[data-sortby=${sortBy}]`);
+    let newState = null;
+
+    let span = document.createElement("span");
+    span.classList.add("material-icons-outlined");
+    span.classList.add("sort");
+
+    // 1 = ASC, 2 = DESC, 0 = DEFAULT
+    if(sortState == 0){
+        try {
+            document.querySelector('.sort').remove();  
+        } catch (error) {
+            
+        }
+
+        th.setAttribute("data-sortState", "1");
+
+        span.innerText = 'arrow_drop_up';
+        th.appendChild(span);
+
+        newState = 1;
+    }
+    else if(sortState == 1){
+        try {
+            document.querySelector('.sort').remove();  
+        } catch (error) {
+            
+        }
+
+        th.setAttribute("data-sortState", "2");
+
+        span.innerText = 'arrow_drop_down';
+        th.appendChild(span);
+
+        newState = 2;
+    }
+    else if(sortState == 2){
+        th.setAttribute("data-sortState", "0");
+        newState = 0;
+        try {
+            document.querySelector('.sort').remove();  
+        } catch (error) {
+            
+        }
+    }
+
+    universalSort = sortBy;
+    universalSortStatus = newState;
+    insertAdminLogs();
 }
