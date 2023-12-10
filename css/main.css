@@ -3572,7 +3572,6 @@ table {
   width: -moz-fit-content;
   width: fit-content;
   min-width: 50px;
-  margin-left: auto;
   margin-bottom: max(7px, 0.5vh);
   border: unset;
 }
@@ -4014,4 +4013,13 @@ label[for=dept] .showInactive input[type=checkbox] {
   padding: 5px !important;
   text-align: left;
   display: none;
+}
+
+th[data-sortby]:hover {
+  color: #0577fa;
+  cursor: pointer;
+}
+
+.action-column {
+  text-align: left;
 }/*# sourceMappingURL=main.css.map */

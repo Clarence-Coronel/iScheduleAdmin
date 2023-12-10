@@ -549,24 +549,24 @@ let viewSchedule = `<div class="page-header">Home / View Appointments</div>
                 <table class="schedule-table" id="schedule-table">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Full Name</th>
-                            <th>Reference #</th>
-                            <th>Department</th>
-                            <th>Consultation</th>
-                            <th>Appointment Date</th>
-                            <th>Slot</th>
-                            <th>Status</th>
-                            <th>Scheduled Through</th>
-                            <th>Sex</th>
-                            <th>Birthdate</th>
-                            <th>Phone #</th>
-                            <th>Address</th>
-                            <th>Patient Type</th>
-                            <th>Case #</th>
-                            <th>Submitted On</th>
-                            <th>Reason Cancelled</th>
-                            <th>&nbsp;</th>
+                            <th title="Click to sort by this column." onclick="appointmentSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="id">ID</th>
+                            <th title="Click to sort by this column." onclick="appointmentSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="name">Full Name</th>
+                            <th title="Click to sort by this column." onclick="appointmentSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="refNo">Reference #</th>
+                            <th title="Click to sort by this column." onclick="appointmentSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="dept">Department</th>
+                            <th title="Click to sort by this column." onclick="appointmentSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="consultation">Consultation</th>
+                            <th title="Click to sort by this column." onclick="appointmentSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="appDate">Appointment Date</th>
+                            <th title="Click to sort by this column." onclick="appointmentSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="slot">Slot</th>
+                            <th title="Click to sort by this column." onclick="appointmentSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="status">Status</th>
+                            <th title="Click to sort by this column." onclick="appointmentSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="schedVia">Scheduled Through</th>
+                            <th title="Click to sort by this column." onclick="appointmentSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="sex">Sex</th>
+                            <th title="Click to sort by this column." onclick="appointmentSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="birthdate">Birthdate</th>
+                            <th title="Click to sort by this column." onclick="appointmentSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="phoneNo">Phone #</th>
+                            <th title="Click to sort by this column." onclick="appointmentSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="address">Address</th>
+                            <th title="Click to sort by this column." onclick="appointmentSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="patientType">Patient Type</th>
+                            <th title="Click to sort by this column." onclick="appointmentSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="caseNo">Case #</th>
+                            <th title="Click to sort by this column." onclick="appointmentSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="dateSubmitted">Submitted On</th>
+                            <th title="Click to sort by this column." onclick="appointmentSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="reasonCancelled">Reason Cancelled</th>
+                            <th class="action-column">Action</th>
                         </tr>
                     </thead>
                     <tbody>

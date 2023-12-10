@@ -7321,7 +7321,7 @@ function showInactiveTS(){
     }
 }
 
-function viewAppointments(){
+function viewAppointments(sortBy = "", sortState = ""){
     const deptID = document.querySelector("#dept").value;
     const appDateFrom = document.querySelector("#appStartDate").value;
     const appDateTo = document.querySelector("#appEndDate").value;
@@ -7388,6 +7388,8 @@ function viewAppointments(){
         middleName: middleName,
         subDateFrom: subDateFrom,
         subDateTo: subDateTo,
+        sortBy: sortBy,
+        sortState: sortState,
     };
 
     console.table(filter);
@@ -7419,9 +7421,10 @@ function viewAppointments(){
     xhr.onreadystatechange = function(){
         if(this.readyState == 4){
             if(this.status == 200){
-                // try {
-                    console.log(this.responseText)
-                    table.innerHTML = "";
+                console.log(this.responseText)
+                try {
+                    // console.log(this.responseText)
+                    removeAllChildNodes(table);
                     const arrOfObj = JSON.parse(this.responseText);
 
                     arrOfObj.forEach(item=>{
@@ -7432,45 +7435,164 @@ function viewAppointments(){
                         if(item.startTime != "" && item.stopTime != "") time = `${item.startTime} - ${item.stopTime}`;
                         if (item.cancelReason == null) item.cancelReason = "";
 
-                        let template = 
-                        `
-                        <tr class="table-row" title="Click to highlight/see more.">
-                            <td>${item.appointmentID}</td>
-                            <td class="always-visible">${capitalFirstLetter(item.lastName)}, ${capitalFirstLetter(item.firstName)} ${capitalFirstLetter(item.middleName)}</td>
-                            <td class="always-visible">${generateCode(item.rawAppDate, item.departmentID, item.scheduleID, item.appointmentID)}</td>
-                            <td>${deptName}</td>
-                            <td>${item.consultation}</td>
-                            <td>${item.appointmentDate}</td>
-                            <td>${time}</td>
-                            <td class="${item.appointmentStatus}" id="status_${item.appointmentID}">${capitalFirstLetter(item.appointmentStatus)}</td>
-                            <td>${capitalFirstLetter(item.appointmentType)}</td>
-                            <td>${sex}</td>
-                            <td>${item.birthdate}</td>
-                            <td>${item.phone}</td>
-                            <td>${capitalFirstLetter(item.barangay)}, ${capitalFirstLetter(item.municipality)}, ${capitalFirstLetter(item.province)}</td>
-                            <td>${capitalFirstLetter(item.patientType)}</td>
-                            <td>${item.caseNo}</td>
-                            <td>${item.dateSubmitted}</td>
-                            <td id="statusCancel_${item.appointmentID}">${item.cancelReason}</td>
-                            <td><button title="Change appointment status." class="editBtn ${item.appointmentStatus != 'scheduled' ? 'edit-disabled' : ''}" ${item.appointmentStatus != 'scheduled' ? 'disabled="disabled"' : ""} data-appid="${item.appointmentID}" data-status="${item.appointmentStatus}" onclick="editStatus(this.dataset.appid, this.dataset.status)" >Edit Status</button></td>
-                        </tr>
-                        `;
-                        
-                        table.innerHTML += template;
+                        // row
+                        let tr = document.createElement("tr");
+                        tr.classList.add("table-row");
+                        tr.setAttribute("title", "Click to highlight/see more.");
+
+                        // td/s
+
+                        // appID
+                        let td1 = document.createElement("td");
+                        td1.innerText = item.appointmentID;
+                        tr.appendChild(td1);
+
+                        // name
+                        let td2 = document.createElement("td");
+                        td2.classList.add("always-visible");
+                        td2.innerText = `${capitalFirstLetter(item.lastName)}, ${capitalFirstLetter(item.firstName)} ${capitalFirstLetter(item.middleName)}`;
+                        tr.appendChild(td2);
+
+                        // reference
+                        let td3 = document.createElement("td");
+                        td3.classList.add("always-visible");
+                        td3.innerText = `${generateCode(item.rawAppDate, item.departmentID, item.scheduleID, item.appointmentID)}`;
+                        tr.appendChild(td3);
+
+                        // deptName
+                        let td4 = document.createElement("td");
+                        td4.innerText = deptName;
+                        tr.appendChild(td4);
+
+                        // consultation
+                        let td5 = document.createElement("td");
+                        td5.innerText = item.consultation;
+                        tr.appendChild(td5);
+
+                        // appDate
+                        let td6 = document.createElement("td");
+                        td6.classList.add("always-visible");
+                        td6.innerText = item.appointmentDate;
+                        tr.appendChild(td6);
+
+                        // time
+                        let td7 = document.createElement("td");
+                        td7.innerText = time;
+                        tr.appendChild(td7);
+
+                        // status
+                        let td8 = document.createElement("td");
+                        td8.classList.add(`${item.appointmentStatus}`);
+                        td8.setAttribute("id", `status_${item.appointmentID}`);
+                        td8.innerText = capitalFirstLetter(item.appointmentStatus);
+                        tr.appendChild(td8);
+
+                        // schedVia
+                        let td9 = document.createElement("td");
+                        td9.innerText = capitalFirstLetter(item.appointmentType);
+                        tr.appendChild(td9);
+
+                        // sex
+                        let td10 = document.createElement("td");
+                        td10.innerText = sex;
+                        tr.appendChild(td10);
+
+                        // birthdate
+                        let td11 = document.createElement("td");
+                        td11.innerText = item.birthdate;
+                        tr.appendChild(td11);
+
+                        // phone
+                        let td12 = document.createElement("td");
+                        td12.innerText = item.phone;
+                        tr.appendChild(td12);
+
+                        // address
+                        let td13 = document.createElement("td");
+                        td13.classList.add("always-visible");
+                        td13.innerText = `${capitalFirstLetter(item.barangay)}, ${capitalFirstLetter(item.municipality)}, ${capitalFirstLetter(item.province)}`;
+                        tr.appendChild(td13);
+
+                        // patient type
+                        let td14 = document.createElement("td");
+                        td14.innerText = capitalFirstLetter(item.patientType);
+                        tr.appendChild(td14);
+
+                        // case no
+                        let td15 = document.createElement("td");
+                        td15.innerText = item.caseNo;
+                        tr.appendChild(td15);
+
+                        // date submitted
+                        let td19 = document.createElement("td");
+                        td19.classList.add("always-visible");
+                        td19.innerText = item.dateSubmitted;
+                        tr.appendChild(td19);
+
+                        // cancel reason
+                        let td16 = document.createElement("td");
+                        td16.setAttribute("id", `statusCancel_${item.appointmentID}`);
+                        td16.innerText = item.cancelReason;
+                        tr.appendChild(td16);
+
+                        // edit
+                        let td17 = document.createElement("td");
+
+                        let editBtn = document.createElement('button');
+
+                        editBtn.title = 'Change appointment status.';
+                        editBtn.className = `editBtn ${item.appointmentStatus != 'scheduled' ? 'edit-disabled' : ''}`;
+                        editBtn.setAttribute('data-appid', item.appointmentID);
+                        editBtn.setAttribute('data-status', item.appointmentStatus);
+                        editBtn.textContent = 'Edit Status';
+
+                        editBtn.onclick = function() {
+                            editStatus(this.dataset.appid, this.dataset.status);
+                        };
+
+                        if (item.appointmentStatus != 'scheduled') {
+                            editBtn.disabled = true;
+                        }
+
+                        td17.append(editBtn)
+                        tr.appendChild(td17);
+                        table.appendChild(tr);
                     });
                     showTableCell();
-                // } catch (error) {
+                } catch (error) {
+                    let tr = document.createElement("tr");
+                    let td = document.createElement("td");
+                    td.setAttribute("colspan", "18");
+                    td.classList.add("empty");
+                    td.innerText = 'No Result.';
 
-                // }
+                    tr.appendChild(td);
+                    table.appendChild(tr);
+                    // table.innerHTML = 
+                    // `
+                    // <tr>
+                    //     <td colspan="18" class="empty">No result.</td>
+                    // </tr>
+                    // `;
+                }
             }
         }
         else{
-            table.innerHTML = 
-            `
-            <tr>
-                <td colspan="16" class="empty">Loading...</td>
-            </tr>
-            `;
+
+            let tr = document.createElement("tr");
+                    let td = document.createElement("td");
+                    td.setAttribute("colspan", "18");
+                    td.classList.add("empty");
+                    td.innerText = 'Loading...';
+
+                    tr.appendChild(td);
+                    table.appendChild(tr);
+            // table.innerHTML = 
+            // `
+            // <tr>
+            //     <td colspan="18" class="empty">Loading...</td>
+            // </tr>
+            // `;
         }
         setupTablePagination('schedule-table', 'prevButton', 'nextButton', 10);
     };
@@ -7798,4 +7920,26 @@ function insertBarangay(){
         // barangaySelect.removeAttribute("disabled");
     }
     viewAppointments()
+}
+
+function appointmentSort(sortBy, sortState){
+    let th = document.querySelector(`th[data-sortby=${sortBy}]`);
+    let newState = null;
+
+    // 1 = ASC, 2 = DESC, 0 = DEFAULT
+    if(sortState == 0){
+        th.setAttribute("data-sortState", "1");
+        newState = 1;
+    }
+    else if(sortState == 1){
+        th.setAttribute("data-sortState", "2");
+        newState = 2;
+    }
+    else if(sortState == 2){
+        th.setAttribute("data-sortState", "0");
+        newState = 0;
+    }
+
+    viewAppointments(sortBy, newState);
+
 }

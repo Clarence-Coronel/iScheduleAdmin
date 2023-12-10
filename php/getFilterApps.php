@@ -218,6 +218,127 @@
         }
     }
 
+    if($object->sortBy != "" && $object->sortState != ""){
+        if($object->sortBy == "id" && $object->sortState == "1"){
+            $query .= "ORDER BY appointments.appointmentID ASC ";
+        }
+        else if($object->sortBy == "id" && $object->sortState == "2"){
+            $query .= "ORDER BY appointments.appointmentID DESC ";
+        }
+
+        else if($object->sortBy == "name" && $object->sortState == "1"){
+            $query .= "ORDER BY appointments.lastName ASC, appointments.firstName ASC, appointments.middleName ASC ";
+        }
+        else if($object->sortBy == "name" && $object->sortState == "2"){
+            $query .= "ORDER BY appointments.lastName DESC, appointments.firstName DESC, appointments.middleName DESC ";
+        }
+
+        else if($object->sortBy == "refNo" && $object->sortState == "1"){
+            $query .= "ORDER BY appointments.appointmentDate ASC, appointments.departmentID ASC, appointments.scheduleID ASC, appointments.appointmentID ASC ";
+        }
+        else if($object->sortBy == "refNo" && $object->sortState == "2"){
+            $query .= "ORDER BY appointments.appointmentDate DESC, appointments.departmentID DESC, appointments.scheduleID DESC, appointments.appointmentID DESC ";
+        }
+
+        else if($object->sortBy == "dept" && $object->sortState == "1"){
+            $query .= "ORDER BY appointments.departmentID ASC ";
+        }
+        else if($object->sortBy == "dept" && $object->sortState == "2"){
+            $query .= "ORDER BY appointments.departmentID DESC ";
+        }
+
+        else if($object->sortBy == "consultation" && $object->sortState == "1"){
+            $query .= "ORDER BY appointments.consultation ASC ";
+        }
+        else if($object->sortBy == "consultation" && $object->sortState == "2"){
+            $query .= "ORDER BY appointments.consultation DESC ";
+        }
+
+        else if($object->sortBy == "appDate" && $object->sortState == "1"){
+            $query .= "ORDER BY appointments.appointmentDate ASC ";
+        }
+        else if($object->sortBy == "appDate" && $object->sortState == "2"){
+            $query .= "ORDER BY appointments.appointmentDate DESC ";
+        }
+
+        else if($object->sortBy == "slot" && $object->sortState == "1"){
+            $query .= "ORDER BY schedules.startTime ASC, schedules.stopTime ASC ";
+        }
+        else if($object->sortBy == "slot" && $object->sortState == "2"){
+            $query .= "ORDER BY schedules.startTime DESC, schedules.stopTime DESC ";
+        }
+
+        else if($object->sortBy == "status" && $object->sortState == "1"){
+            $query .= "ORDER BY appointments.appointmentStatus ASC ";
+        }
+        else if($object->sortBy == "status" && $object->sortState == "2"){
+            $query .= "ORDER BY appointments.appointmentStatus DESC ";
+        }
+
+        else if($object->sortBy == "schedVia" && $object->sortState == "1"){
+            $query .= "ORDER BY appointments.appointmentType ASC ";
+        }
+        else if($object->sortBy == "schedVia" && $object->sortState == "2"){
+            $query .= "ORDER BY appointments.appointmentType DESC ";
+        }
+
+        else if($object->sortBy == "sex" && $object->sortState == "1"){
+            $query .= "ORDER BY appointments.sex ASC ";
+        }
+        else if($object->sortBy == "sex" && $object->sortState == "2"){
+            $query .= "ORDER BY appointments.sex DESC ";
+        }
+
+        else if($object->sortBy == "birthdate" && $object->sortState == "1"){
+            $query .= "ORDER BY appointments.birthdate ASC ";
+        }
+        else if($object->sortBy == "birthdate" && $object->sortState == "2"){
+            $query .= "ORDER BY appointments.birthdate DESC ";
+        }
+
+        else if($object->sortBy == "phoneNo" && $object->sortState == "1"){
+            $query .= "ORDER BY appointments.phone ASC ";
+        }
+        else if($object->sortBy == "phoneNo" && $object->sortState == "2"){
+            $query .= "ORDER BY appointments.phone DESC ";
+        }
+
+        else if($object->sortBy == "address" && $object->sortState == "1"){
+            $query .= "ORDER BY appointments.province ASC, appointments.municipality ASC, appointments.barangay ASC ";
+        }
+        else if($object->sortBy == "address" && $object->sortState == "2"){
+            $query .= "ORDER BY appointments.province DESC, appointments.municipality DESC, appointments.barangay DESC ";
+        }
+
+        else if($object->sortBy == "patientType" && $object->sortState == "1"){
+            $query .= "ORDER BY appointments.patientType ASC ";
+        }
+        else if($object->sortBy == "patientType" && $object->sortState == "2"){
+            $query .= "ORDER BY appointments.patientType DESC ";
+        }
+        
+        else if($object->sortBy == "caseNo" && $object->sortState == "1"){
+            $query .= "ORDER BY appointments.caseNo ASC ";
+        }
+        else if($object->sortBy == "caseNo" && $object->sortState == "2"){
+            $query .= "ORDER BY appointments.caseNo DESC ";
+        }
+
+        else if($object->sortBy == "dateSubmitted" && $object->sortState == "1"){
+            $query .= "ORDER BY appointments.dateSubmitted ASC ";
+        }
+        else if($object->sortBy == "dateSubmitted" && $object->sortState == "2"){
+            $query .= "ORDER BY appointments.dateSubmitted DESC ";
+        }
+
+        else if($object->sortBy == "reasonCancelled" && $object->sortState == "1"){
+            $query .= "ORDER BY appointments.cancelReason ASC ";
+        }
+        else if($object->sortBy == "reasonCancelled" && $object->sortState == "2"){
+            $query .= "ORDER BY appointments.cancelReason DESC ";
+        }
+    }
+
     class appointment {
         public $appointmentID;
         public $departmentID;

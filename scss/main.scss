@@ -4494,7 +4494,7 @@ table{
     height: 50%;
     width: fit-content;
     min-width: 50px;
-    margin-left: auto;
+    // margin-left: auto;
     margin-bottom: max(7px, 0.5vh);
     border: unset;
 }
@@ -5002,4 +5002,12 @@ label[for="dept"]{
         text-align: left;
         display: none;
     }
+}
+
+th[data-sortby]:hover{
+    color: $btn-color;
+    cursor: pointer;
+}
+.action-column{
+    text-align: left;
 }
