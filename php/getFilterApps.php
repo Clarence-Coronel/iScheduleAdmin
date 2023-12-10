@@ -174,7 +174,12 @@
             $whereInserted = true;
         }
         else{
-            $query .= "OR firstName LIKE '%$object->firstName%' ";
+            // if($object->lastName !=  ""){
+            //     $query .= "OR firstName LIKE '%$object->firstName%' ";
+            // }
+            // else{
+                $query .= "AND firstName LIKE '%$object->firstName%' ";
+            // }            
         }
     }
 
@@ -184,7 +189,12 @@
             $whereInserted = true;
         }
         else{
-            $query .= "OR middleName LIKE '%$object->middleName%' ";
+            // if($object->firstName !=  ""){
+            //     $query .= "OR middleName LIKE '%$object->middleName%' ";
+            // }
+            // else{
+                $query .= "AND middleName LIKE '%$object->middleName%' ";
+            // }    
         }
     }
 

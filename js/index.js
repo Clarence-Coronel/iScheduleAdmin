@@ -18,6 +18,8 @@ let posting = false;
 let processingCal = false;
 let schedEdited = false;
 let blockSchedEdit = [];
+let universalSort = null;
+let universalSortStatus = null;
 
 const schedTempCol = [
     [],
@@ -7321,7 +7323,7 @@ function showInactiveTS(){
     }
 }
 
-function viewAppointments(sortBy = "", sortState = ""){
+function viewAppointments(){
     const deptID = document.querySelector("#dept").value;
     const appDateFrom = document.querySelector("#appStartDate").value;
     const appDateTo = document.querySelector("#appEndDate").value;
@@ -7388,8 +7390,8 @@ function viewAppointments(sortBy = "", sortState = ""){
         middleName: middleName,
         subDateFrom: subDateFrom,
         subDateTo: subDateTo,
-        sortBy: sortBy,
-        sortState: sortState,
+        sortBy: universalSort,
+        sortState: universalSortStatus,
     };
 
     console.table(filter);
@@ -7601,6 +7603,15 @@ function viewAppointments(sortBy = "", sortState = ""){
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(toSend);
 }
+
+// function resetTHead(){
+//     const headers = document.querySelectorAll("th[data-sortState]");
+
+//     headers.forEach(el=>{
+//         el.setAttribute('data-sortState', '0');
+//     })
+
+// }
 
 function insertMunicipality(){
     let provinceSelect = document.querySelector("#province").value;
@@ -7926,20 +7937,51 @@ function appointmentSort(sortBy, sortState){
     let th = document.querySelector(`th[data-sortby=${sortBy}]`);
     let newState = null;
 
+    let span = document.createElement("span");
+    span.classList.add("material-icons-outlined");
+    span.classList.add("sort");
+
     // 1 = ASC, 2 = DESC, 0 = DEFAULT
     if(sortState == 0){
+        try {
+            document.querySelector('.sort').remove();  
+        } catch (error) {
+            
+        }
+
         th.setAttribute("data-sortState", "1");
+
+        span.innerText = 'arrow_drop_up';
+        th.appendChild(span);
+
         newState = 1;
     }
     else if(sortState == 1){
+        try {
+            document.querySelector('.sort').remove();  
+        } catch (error) {
+            
+        }
+
         th.setAttribute("data-sortState", "2");
+
+        span.innerText = 'arrow_drop_down';
+        th.appendChild(span);
+
         newState = 2;
     }
     else if(sortState == 2){
         th.setAttribute("data-sortState", "0");
         newState = 0;
+        try {
+            document.querySelector('.sort').remove();  
+        } catch (error) {
+            
+        }
     }
 
-    viewAppointments(sortBy, newState);
+    universalSort = sortBy;
+    universalSortStatus = newState;
+    viewAppointments();
 
 }
