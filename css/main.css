@@ -952,7 +952,7 @@ td:hover {
   overflow: unset;
   text-overflow: unset;
   white-space: unset;
-  background-color: rgb(84, 147, 242);
+  background-color: rgb(107, 162, 245);
   color: white;
   cursor: pointer;
   overflow-wrap: break-word;
@@ -2809,7 +2809,7 @@ table {
 }
 
 .viewBtn {
-  color: rgb(135, 176, 241);
+  color: rgb(39, 119, 248);
   text-decoration: none;
 }
 

@@ -5223,24 +5223,109 @@ function insertReq(){
                         const dept = ['ENT', 'Hematology', 'Internal Medicine', 'Internal Medicine Clearance', 'Nephrology', 'Neurology', 'OB GYNE New', 'OB GYNE Old', 'OB GYNE ROS', 'Oncology', 'Pediatric Cardiology', 'Pediatric Clearance', 'Pediatric General', 'Psychiatry New', 'Psychiatry Old', 'Surgery', 'Surgery ROS'];
     
                         let deptName = dept[item.deptID-1];
-                        let template = 
-                        `
-                        <tr class="table-row" title="Click to highlight/see more.">
-                            <td>
-                                <div class="req__btn-container">
-                                    <button class="approve" title="Approve Appointment" data-appID="${item.appID}" data-deptID="${item.deptID}" onclick="viewRequestApprove(this.dataset.appid, this.dataset.deptid)"><span class="material-icons-outlined">done</span></button>
-                                    <button class="reject" title="Reject Appointment" data-appID="${item.appID}" data-deptID="${item.deptID}" onclick="viewRequestReject(this.dataset.appid)"><span class="material-icons-outlined">close</span></button>
-                                </div>
-                            </td>
-                            <td class="always-visible">${capitalFirstLetter(item.lastName)}, ${capitalFirstLetter(item.firstName)} ${capitalFirstLetter(item.middleName)}</td>
-                            <td>${deptName}</td>
-                            <td>${item.phone}</td>
-                            <td class="always-visible">${item.dateSubmitted}</td>
-                            <td><a href="${item.imgLink}" target="_blank" class="viewBtn">View Image</a></td>
-                        </tr>
-                        `;
+
+                        let tr = document.createElement("tr");
+                        tr.classList.add('table-row');
+                        tr.setAttribute("title", "Click to highlight/see more.");
+
+                        let td1 = document.createElement("td");
+                        let div = document.createElement("div");
+                        div.classList.add("req__btn-container");
+
+                        const btn1 = document.createElement('button');
+                        btn1.classList.add('approve');
+                        btn1.setAttribute("title", 'Approve Appointment');
+
+                        let span1 = document.createElement("span");
+                        span1.classList.add("material-icons-outlined");
+                        span1.innerText = 'done';
+
+                        btn1.appendChild(span1);
                         
-                        table.innerHTML += template;
+                        btn1.dataset.appID = item.appID;
+                        btn1.dataset.deptID = item.deptID;
+                        
+                        btn1.addEventListener('click', function() {
+                            viewRequestApprove(this.dataset.appID, this.dataset.deptID);
+                        });
+
+                        const btn2 = document.createElement('button');
+                        btn2.classList.add('reject');
+                        btn2.setAttribute("title", 'Reject Appointment');
+
+                        let span2 = document.createElement("span");
+                        span2.classList.add("material-icons-outlined");
+                        span2.innerText = 'close';
+
+                        btn2.appendChild(span2);
+                        
+                        btn2.dataset.appID = item.appID;
+                        btn2.dataset.deptID = item.deptID;
+                        
+                        btn2.addEventListener('click', function() {
+                            viewRequestApprove(this.dataset.appID, this.dataset.deptID);
+                        });
+
+                        div.appendChild(btn1);
+                        div.appendChild(btn2);
+                        td1.appendChild(div);
+
+                        tr.appendChild(td1);
+
+                        let td2 = document.createElement("td");
+                        td2.classList.add("always-visible");
+                        td2.innerText = `${capitalFirstLetter(item.lastName)}, ${capitalFirstLetter(item.firstName)} ${capitalFirstLetter(item.middleName)}`;
+                        
+                        tr.appendChild(td2);
+
+                        let td3 = document.createElement("td");
+                        td3.classList.add("always-visible");
+                        td3.innerText = deptName;
+                        
+                        tr.appendChild(td3);
+
+                        let td4 = document.createElement("td");
+                        td4.innerText = item.phone;
+                        
+                        tr.appendChild(td4);
+
+                        let td5 = document.createElement("td");
+                        td5.classList.add("always-visible");
+                        td5.innerText = item.dateSubmitted;
+                        
+                        tr.appendChild(td5);
+
+                        let td6 = document.createElement("td");
+                        let a = document.createElement("a");
+                        a.setAttribute("href", `${item.imgLink}`);
+                        a.setAttribute("target", "_blank");
+                        a.classList.add("viewBtn");
+                        a.innerText = "View Image";
+
+                        td6.appendChild(a);
+
+                        tr.appendChild(td6);
+
+                        table.appendChild(tr);
+
+                        // let template = 
+                        // `
+                        // <tr class="table-row" title="Click to highlight/see more.">
+                        //     <td>
+                        //         <div class="req__btn-container">
+                        //             <button class="approve" title="Approve Appointment" data-appID="${item.appID}" data-deptID="${item.deptID}" onclick="viewRequestApprove(this.dataset.appid, this.dataset.deptid)"><span class="material-icons-outlined">done</span></button>
+                        //             <button class="reject" title="Reject Appointment" data-appID="${item.appID}" data-deptID="${item.deptID}" onclick="viewRequestReject(this.dataset.appid)"><span class="material-icons-outlined">close</span></button>
+                        //         </div>
+                        //     </td>
+                        //     <td class="always-visible">${capitalFirstLetter(item.lastName)}, ${capitalFirstLetter(item.firstName)} ${capitalFirstLetter(item.middleName)}</td>
+                        //     <td>${deptName}</td>
+                        //     <td>${item.phone}</td>
+                        //     <td class="always-visible">${item.dateSubmitted}</td>
+                        //     <td><a href="${item.imgLink}" target="_blank" class="viewBtn">View Image</a></td>
+                        // </tr>
+                        // `;
+                        
+                        // table.innerHTML += template;
                     });
                     showTableCell();
                 } catch (error) {
@@ -7467,6 +7552,7 @@ function viewAppointments(){
 
                         // deptName
                         let td4 = document.createElement("td");
+                        td4.classList.add("always-visible");
                         td4.innerText = deptName;
                         tr.appendChild(td4);
 
