@@ -6325,6 +6325,8 @@ function saveEdit(){
         return;
     }
 
+    showError();
+
 
     // idagdag dito yung if wala rin inedit at wala inadd na new slot
     if (toDeleteSlots.length == 0 && 
@@ -6370,14 +6372,16 @@ function saveEdit(){
                     showError("Schedule date range cannot overlap an existing active schedule");
                 }else alert("Something went wrong...");
 
-                toDeleteSlots.splice(0, toDeleteSlots.length)
+                toDeleteSlots.splice(0, toDeleteSlots.length);
+                markMissedDay("edit");
             }
         }
     }
 
     xhr.open("POST", "./php/postEditSchedule.php", true);
     xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.send(toSend)
+    xhr.send(toSend);
+    
 }
 
 function enableAdd(){
@@ -6445,6 +6449,11 @@ function cancel(){
     document.querySelectorAll('.timeslot-container').forEach(item=>{
         removeAllChildNodes(item);
     })
+
+    document.querySelectorAll('.day-header').forEach(header=>{
+        header.classList.add("noday");
+    });
+    
 }
 
 function cancelEdit(){
@@ -6472,6 +6481,8 @@ function cancelEdit(){
     toDeleteSlots.splice(0, toDeleteSlots.length);
 
     showSched(document.querySelector("#scheduleSet").value);
+
+    markMissedDay("view");
 }
 
 function removeAllChildNodes(parent) {
@@ -7144,7 +7155,6 @@ function markMissedDay(mode){
     }
     else if(mode == 'view'){
         range = convertDateRange(document.querySelector("#scheduleSet").options[document.querySelector("#scheduleSet").selectedIndex].innerText)
-        console.table(range)
         start = range.startDate;
         end = range.endDate;
         
@@ -7162,18 +7172,16 @@ function markMissedDay(mode){
     });
 
     missingDays.forEach(element => {
-
-
         if(element == 'mon') {
-            document.querySelector("#monday .day-header").classList.add("noday");
-            console.log(document.querySelector("#monday .day-header").classList)
-        }
+            document.querySelector("#monday .day-header").classList.add("noday");        }
         else if(element == 'tue') document.querySelector("#tuesday .day-header").classList.add("noday");
         else if(element == 'wed') document.querySelector("#wednesday .day-header").classList.add("noday");
         else if(element == 'thu') document.querySelector("#thursday .day-header").classList.add("noday");
         else if(element == 'fri') document.querySelector("#friday .day-header").classList.add("noday");
         else if(element == 'sat') document.querySelector("#saturday .day-header").classList.add("noday");
     });
+
+    console.table(missingDays);
 }
 
 function clearMarkMissed(){
