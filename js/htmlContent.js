@@ -1354,7 +1354,7 @@ function generateViewSchedule(){
 function generateRequest(){
     if(checkPrivilege('admin ii') || checkPrivilege('super admin')){
         main.innerHTML = request;
-        insertReq();
+        requestSort('dateSubmitted','1');
         highlightActive(4);
         universalSort = null;
         universalSortStatus = null;
@@ -1372,7 +1372,8 @@ function generateAdminLogs(){
     // contentIsOpen = true;
     if(checkPrivilege('super admin')){
         main.innerHTML = adminLogs;
-        insertAdminLogs();
+        setupAdminLogs();
+        adminLogsSort("dateTime", "1");
         document.querySelector(".export").addEventListener('click', (e)=>{
             let tableClass = e.target.dataset.table;
             let table = document.querySelector(`.${tableClass}`);
@@ -1431,7 +1432,7 @@ function generatePostAnnouncement(){
 function generateSeePostedAnn(){
     if(checkPrivilege('admin ii') || checkPrivilege('super admin')){
         main.innerHTML = seePostedAnn;
-        insertPostedAnn();
+        postedAnnSort("dateTime", "1");
         universalSort = null;
         universalSortStatus = null;
     }

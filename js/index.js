@@ -2924,6 +2924,7 @@ function insertPostedAnn(){
                         deleteButton.classList.add('removeBtn');
                         deleteButton.setAttribute('id', `ann-${id}`);
                         deleteButton.setAttribute('data-title', title);
+                        deleteButton.setAttribute("title", "Remove posted announcement.");
                         deleteButton.addEventListener('click', function() {
                             confirmAnnRemove(this.id);
                         });
@@ -3048,7 +3049,8 @@ function insertAdmin(){
                         btn.classList.add("editBtn");
                         btn.setAttribute("id", `${username}_${adminType}`);
                         btn.setAttribute("onclick", "editType(this.id)");
-                        btn.innerText = 'Edit';
+                        btn.innerText = 'Edit Type';
+                        btn.setAttribute("title", "Change admin type.");
 
                         td.appendChild(btn);
 
@@ -3057,6 +3059,7 @@ function insertAdmin(){
                         btn.setAttribute("id", `${username}`);
                         btn.setAttribute("onclick", "confirmAdminRemove(this.id)");
                         btn.innerText = 'Delete';
+                        btn.setAttribute("title", "Remove admin.");
 
                         td.appendChild(btn);
                         
@@ -8024,6 +8027,16 @@ function insertBarangay(){
         // barangaySelect.removeAttribute("disabled");
     }
     viewAppointments()
+}
+
+function setupAdminLogs(){
+    let from = document.querySelector("#from");
+    let to = document.querySelector("#to");
+
+    let curDate = new Date();
+
+    from.value = `${curDate.getFullYear()}-${curDate.getMonth()+1}-${curDate.getDate()}`;
+    to.value = `${curDate.getFullYear()}-${curDate.getMonth()+1}-${curDate.getDate()}`;
 }
 
 function appointmentSort(sortBy, sortState){
