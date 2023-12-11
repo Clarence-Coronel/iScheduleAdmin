@@ -4494,9 +4494,9 @@ table{
     justify-content: center;
     align-items: center;
     height: 50%;
-    width: fit-content;
+    width: 6vw;
     min-width: 50px;
-    // margin-left: auto;
+        // margin-left: auto;
     margin-bottom: max(7px, 0.5vh);
     border: unset;
 }
@@ -4505,17 +4505,6 @@ table{
     background-color: lighten($color: $edit-btn-color, $amount: 5);
 }
 
-// .ico-remove{
-//     color: white;
-//     background-color: red;
-//     border-radius: 50px;
-//     padding: 4px;
-//     text-align: center;
-// }
-
-#startPeriod, #startPeriod{
-    user-select: none;
-}
 .removeBtn{
     color: white;
     background-color: $delete-btn-color;
@@ -4528,14 +4517,17 @@ table{
     justify-content: center;
     align-items: center;
     height: 50%;
-    width: 5vw;
+    width: 6vw;
     min-width: 50px;
-    margin-left: auto;
     border: unset;
 }
 
 .removeBtn:hover{
     background-color: lighten($color: $delete-btn-color, $amount: 5);
+}
+
+#startPeriod, #startPeriod{
+    user-select: none;
 }
 
 @media only screen and (max-width:1200px){

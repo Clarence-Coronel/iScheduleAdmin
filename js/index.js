@@ -3005,14 +3005,14 @@ function removeAnn(id, title){
     xhr.send(`id=${id}&${title}`);
 }
 
-function insertAdmin(isInitial = true){
+function insertAdmin(){
     const table = document.querySelector(".admin-table tbody");
     
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function(){
         if(xhr.readyState == 4){
             if(xhr.status == 200){
-                
+                console.log(this.responseText)
                 try {
                     table.innerHTML = "";
                     let arrayOfObjects = JSON.parse(xhr.responseText);
@@ -3078,19 +3078,9 @@ function insertAdmin(isInitial = true){
         }
     }
 
-    if(isInitial){
-        xhr.open("POST", "./php/getAdmin.php", true);
-        xhr.send();
-    }
-    else{
-        let input = document.querySelector("#adminSearch").value;
-
-        if(input == "") return;
-
-        xhr.open("POST", "./php/searchAdmin.php", true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.send("input="+input);
-    }
+    xhr.open("POST", "./php/getAdmin.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send(`sortBy=${universalSort}&sortState=${universalSortStatus}`);
 }
 
 function resetAdminTable(input, table){
@@ -8179,3 +8169,55 @@ function requestSort(sortBy, sortState){
     universalSortStatus = newState;
     insertReq();
 }
+
+function adminListSort(sortBy, sortState){
+    let th = document.querySelector(`th[data-sortby=${sortBy}]`);
+    let newState = null;
+
+    let span = document.createElement("span");
+    span.classList.add("material-icons-outlined");
+    span.classList.add("sort");
+
+    // 1 = ASC, 2 = DESC, 0 = DEFAULT
+    if(sortState == 0){
+        try {
+            document.querySelector('.sort').remove();  
+        } catch (error) {
+            
+        }
+
+        th.setAttribute("data-sortState", "1");
+
+        span.innerText = 'arrow_drop_up';
+        th.appendChild(span);
+
+        newState = 1;
+    }
+    else if(sortState == 1){
+        try {
+            document.querySelector('.sort').remove();  
+        } catch (error) {
+            
+        }
+
+        th.setAttribute("data-sortState", "2");
+
+        span.innerText = 'arrow_drop_down';
+        th.appendChild(span);
+
+        newState = 2;
+    }
+    else if(sortState == 2){
+        th.setAttribute("data-sortState", "0");
+        newState = 0;
+        try {
+            document.querySelector('.sort').remove();  
+        } catch (error) {
+            
+        }
+    }
+
+    universalSort = sortBy;
+    universalSortStatus = newState;
+    insertAdmin();
+};

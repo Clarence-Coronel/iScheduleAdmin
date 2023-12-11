@@ -958,22 +958,16 @@ let adminList = `
 <div class="page-header">Home / Manage Admins / Admin List</div>
 <section class="admin-list">
     <div class="admin-list-wrapper" data-aos="fade-right" data-aos-duration="500">
-    <div class="admin-table__body">
-        <div class="search-container">
-            <input type="text" placeholder="Search" id="adminSearch" onblur="inputLimiterBlur(this.id, 60)" oninput="inputLimiter(this.id, 60); resetAdminTable(this.value, 'admin');">
-            <button onclick="insertAdmin(false)"><span class="material-icons-outlined ico-search">search</span></button>
-        </div>
-    </div>
     
     <div class="table-container">
         <table class="admin-table" id="admin-table">
             <thead>
                 <tr>
-                    <th>Full Name</th>
-                    <th>Username</th>
-                    <th>Phone #</th>
-                    <th>Admin Type</th>
-                    <th>&nbsp;</th>
+                    <th title="Click to sort by this column." onclick="adminListSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="name">Full Name</th>
+                    <th title="Click to sort by this column." onclick="adminListSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="username">Username</th>
+                    <th title="Click to sort by this column." onclick="adminListSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="phoneNo">Phone #</th>
+                    <th title="Click to sort by this column." onclick="adminListSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="adminType">Admin Type</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>

@@ -3567,8 +3567,7 @@ table {
   justify-content: center;
   align-items: center;
   height: 50%;
-  width: -moz-fit-content;
-  width: fit-content;
+  width: 6vw;
   min-width: 50px;
   margin-bottom: max(7px, 0.5vh);
   border: unset;
@@ -3576,12 +3575,6 @@ table {
 
 .editBtn:hover {
   background-color: #f7ba48;
-}
-
-#startPeriod, #startPeriod {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
 }
 
 .removeBtn {
@@ -3594,14 +3587,19 @@ table {
   justify-content: center;
   align-items: center;
   height: 50%;
-  width: 5vw;
+  width: 6vw;
   min-width: 50px;
-  margin-left: auto;
   border: unset;
 }
 
 .removeBtn:hover {
   background-color: #f17878;
+}
+
+#startPeriod, #startPeriod {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 @media only screen and (max-width: 1200px) {
