@@ -1,8 +1,46 @@
 <?php 
     require "connect.php";
     require "functions.php";
+
+    $sortBy = null;
+    $sortState = null;
+
+    foreach($_POST as $temp){
+        if(!isset($sortBy)){
+            $sortBy = $temp;
+        }
+        else{
+            $sortState = $temp;
+        }
+    }
     
-    $query = "SELECT `annID`, `annTitle`, `annDateTime`, `author` FROM `announcements` ORDER BY annDateTime DESC LIMIT 20";
+    $query = "SELECT `annID`, `annTitle`, `annDateTime`, `author` FROM `announcements` ";
+
+    if($sortBy != "" && $sortState != ""){
+        if($sortBy == "title" && $sortState == "1"){
+            $query .= "ORDER BY annTitle ASC ";
+        }
+        else if($sortBy == "title" && $sortState == "2"){
+            $query .= "ORDER BY annTitle DESC ";
+        }
+
+        if($sortBy == "dateTime" && $sortState == "1"){
+            $query .= "ORDER BY annDateTime ASC ";
+        }
+        else if($sortBy == "dateTime" && $sortState == "2"){
+            $query .= "ORDER BY annDateTime DESC ";
+        }
+
+        if($sortBy == "author" && $sortState == "1"){
+            $query .= "ORDER BY author ASC ";
+        }
+        else if($sortBy == "author" && $sortState == "2"){
+            $query .= "ORDER BY author DESC ";
+        }
+    }
+
+    $query .= "LIMIT 20 ";
+
     $result = mysqli_query($conn,$query);
 	$count = mysqli_num_rows($result);
 

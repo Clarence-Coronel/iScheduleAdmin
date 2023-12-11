@@ -2891,7 +2891,6 @@ function insertPostedAnn(){
     xhr.onreadystatechange = function(){
         if(xhr.readyState == 4){
             if(xhr.status == 200){
-                
                 try {
                     table.innerHTML = "";
                     let arrayOfObjects = JSON.parse(xhr.responseText);
@@ -2903,20 +2902,6 @@ function insertPostedAnn(){
                         let datePosted = item.datePosted;
                         let timePosted = item.timePosted;
                         let author = item.author;
-
-                        
-
-                        // const template = 
-                        // `
-                        // <tr class="table-row" title="Click to highlight/see more.">
-                        //     <td>${title}</td>
-                        //     <td>${datePosted} - ${timePosted}</td>
-                        //     <td>${author}</td>
-                        //     <td><button class="removeBtn" id="ann-${id}" data-title="${title}" onclick="confirmAnnRemove(this.id)">Delete</button></td>
-                        // </tr>
-                        // `;
-
-                        // table.innerHTML += template;
 
                         const newRow = document.createElement('tr');
                         newRow.classList.add('table-row');
@@ -2949,22 +2934,26 @@ function insertPostedAnn(){
                         table.appendChild(newRow);
                     })
                 } catch (error) {
-                    table.innerHTML = 
-                    `
-                    <tr>
-                        <td colspan="5" class="empty">There is currently no announcement</td>
-                    </tr>
-                    `;
+                    let tr = document.createElement("tr");
+                    let td = document.createElement("td");
+                    td.setAttribute("colspan", "5");
+                    td.classList.add("empty");
+                    td.innerText = 'There is currently no announcement';
+                    
+                    tr.appendChild(td);
+                    table.appendChild(tr);
                 }               
             }
         }
         else{
-            table.innerHTML = 
-            `
-            <tr>
-                <td colspan="5" class="empty">Loading...</td>
-            </tr>
-            `;
+            let tr = document.createElement("tr");
+            let td = document.createElement("td");
+            td.setAttribute("colspan", "5");
+            td.classList.add("empty");
+            td.innerText = 'Loading...';
+            
+            tr.appendChild(td);
+            table.appendChild(tr);
         }
         showTableCell();
         setupTablePagination('ann-table', 'prevButton', 'nextButton', 10); 
@@ -2972,7 +2961,8 @@ function insertPostedAnn(){
 
 
     xhr.open("POST", "./php/getAnnouncement.php", true);
-    xhr.send();
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send(`sortBy=${universalSort}&sortStatus=${universalSortStatus}`);
 }
 
 function confirmAnnRemove(id){
@@ -3029,40 +3019,63 @@ function insertAdmin(){
                         else if(adminType == 'admin ii') adminType = "Admin II";
                         else if(adminType == 'super admin') adminType = "Super Admin";
 
-                        const template = 
-                        `
-                        <tr class="table-row" title="Click to highlight/see more.">
-                            <td class="always-visible">${capitalFirstLetter(lastName)}, ${capitalFirstLetter(firstName)} ${capitalFirstLetter(middleName)}</td>
-                            <td class="always-visible">${username}</td>
-                            <td>${phone}</td>
-                            <td>${adminType}</td>
-                            <td>
-                                <button class="editBtn" id="${username}_${adminType}" onclick="editType(this.id)">Edit</button>
-                                <button class="removeBtn" onclick="confirmAdminRemove(this.id)" id="${username}">Delete</button>
-                            </td>
-                        </tr>
-                        `;
 
-                        table.innerHTML += template;
+                        let tr = document.createElement("tr");
+                        tr.classList.add("table-row");
+                        tr.setAttribute('title', "Click to highlight/see more.");
+
+                        let td = document.createElement('td');
+                        td.classList.add("always-visible");
+                        td.innerText = `${capitalFirstLetter(lastName)}, ${capitalFirstLetter(firstName)} ${capitalFirstLetter(middleName)}`;
+                        tr.appendChild(td);
+
+                        td = document.createElement("td");
+                        td.classList.add("always-visible");
+                        td.innerText = username;
+                        tr.appendChild(td);
+   
+                        td = document.createElement("td");
+                        td.innerText = phone;
+                        tr.appendChild(td);
+
+                        td = document.createElement("td");
+                        td.innerText = adminType;
+                        tr.appendChild(td);
+
+                        td = document.createElement("td");
+
+                        btn = document.createElement("button");
+                        btn.classList.add("editBtn");
+                        btn.setAttribute("id", `${username}_${adminType}`);
+                        btn.setAttribute("onclick", "editType(this.id)");
+                        btn.innerText = 'Edit';
+
+                        td.appendChild(btn);
+
+                        btn = document.createElement("button");
+                        btn.classList.add("removeBtn");
+                        btn.setAttribute("id", `${username}`);
+                        btn.setAttribute("onclick", "confirmAdminRemove(this.id)");
+                        btn.innerText = 'Delete';
+
+                        td.appendChild(btn);
+                        
+                        tr.appendChild(td);
+
+                        table.appendChild(tr);
                     })
                     showTableCell();
                 } catch (error) {
-                    if(isInitial){
-                        table.innerHTML = 
-                        `
-                        <tr>
-                            <td colspan="5" class="empty">There is currently no other admin</td>
-                        </tr>
-                        `;
-                    }
-                    else{
-                        table.innerHTML = 
-                        `
-                        <tr>
-                            <td colspan="5" class="empty">No result</td>
-                        </tr>
-                        `;
-                    }
+                    let tr = document.createElement("tr");
+                    let td = document.createElement("td");
+                    td.setAttribute("colspan", "5");
+                    td.classList.add("empty");
+                    td.innerText = "No admins to show"
+
+                    tr.appendChild(td);
+
+                    table.appendChild(tr);
+                    
                 }
 
                 setupTablePagination('admin-table', 'prevButton', 'nextButton', 10);                
@@ -8220,4 +8233,56 @@ function adminListSort(sortBy, sortState){
     universalSort = sortBy;
     universalSortStatus = newState;
     insertAdmin();
+};
+
+function postedAnnSort(sortBy, sortState){
+    let th = document.querySelector(`th[data-sortby=${sortBy}]`);
+    let newState = null;
+
+    let span = document.createElement("span");
+    span.classList.add("material-icons-outlined");
+    span.classList.add("sort");
+
+    // 1 = ASC, 2 = DESC, 0 = DEFAULT
+    if(sortState == 0){
+        try {
+            document.querySelector('.sort').remove();  
+        } catch (error) {
+            
+        }
+
+        th.setAttribute("data-sortState", "1");
+
+        span.innerText = 'arrow_drop_up';
+        th.appendChild(span);
+
+        newState = 1;
+    }
+    else if(sortState == 1){
+        try {
+            document.querySelector('.sort').remove();  
+        } catch (error) {
+            
+        }
+
+        th.setAttribute("data-sortState", "2");
+
+        span.innerText = 'arrow_drop_down';
+        th.appendChild(span);
+
+        newState = 2;
+    }
+    else if(sortState == 2){
+        th.setAttribute("data-sortState", "0");
+        newState = 0;
+        try {
+            document.querySelector('.sort').remove();  
+        } catch (error) {
+            
+        }
+    }
+
+    universalSort = sortBy;
+    universalSortStatus = newState;
+    insertPostedAnn();
 };

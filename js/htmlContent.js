@@ -1113,10 +1113,10 @@ let seePostedAnn =`
             <table class="ann-table" id="ann-table">
                 <thead>
                     <tr>
-                        <th>Title</th>
-                        <th>Date & Time Posted</th>
-                        <th>Author</th>
-                        <th>&nbsp;</th>
+                        <th title="Click to sort by this column." onclick="postedAnnSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="title">Title</th>
+                        <th title="Click to sort by this column." onclick="postedAnnSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="dateTime">Date & Time Posted</th>
+                        <th title="Click to sort by this column." onclick="postedAnnSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="author">Author</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -1394,6 +1394,8 @@ function generateAdminList(){
             let table = document.querySelector(`.${tableClass}`);
             exportTableToExcel(table, "iSchedule_AdminList", [4]);
         });
+        universalSort = null;
+        universalSortStatus = null;
         highlightActiveManage(1);
     }
 }
@@ -1430,6 +1432,8 @@ function generateSeePostedAnn(){
     if(checkPrivilege('admin ii') || checkPrivilege('super admin')){
         main.innerHTML = seePostedAnn;
         insertPostedAnn();
+        universalSort = null;
+        universalSortStatus = null;
     }
 }
 

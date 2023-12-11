@@ -3454,14 +3454,6 @@ table {
   padding: max(18px, 3vw);
   margin: max(15px, 1vw) 0;
 }
-.seeAnnouncements span {
-  display: block;
-  margin: max(5px, 1vw) auto;
-  width: -moz-fit-content;
-  width: fit-content;
-  color: gray;
-  font-size: 0.8rem;
-}
 .seeAnnouncements #pageNum {
   margin: unset;
 }
