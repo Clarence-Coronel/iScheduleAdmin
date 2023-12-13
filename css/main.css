@@ -2731,14 +2731,6 @@ table {
 .feedback .feedback__table .table-container {
   max-height: 80%;
 }
-.feedback .feedback__table span {
-  display: block;
-  width: 100%;
-  text-align: center;
-  margin: max(5px, 1vw) 0;
-  font-size: 0.8rem;
-  color: gray;
-}
 .feedback .feedback__table #pageNum {
   margin: unset;
 }

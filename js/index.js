@@ -87,7 +87,6 @@ applyAdminInfo();
 setInterval(checkSession, 30000);
 setInterval(checkAdminPrivChange, 30000);
 
-
 function checkSession(){
     const xhr = new XMLHttpRequest();
 
@@ -2474,7 +2473,7 @@ function insertAnnouncement(){
     })
 }
 
-function getFeedback(sortBy = 1){
+function getFeedback(){
     const table = document.querySelector('.feedback__table tbody');
 
 
@@ -2483,6 +2482,7 @@ function getFeedback(sortBy = 1){
     xhr.onreadystatechange = function(){
         if(xhr.readyState == 4){
             if(xhr.status == 200){
+                console.log(this.responseText)
                 if(xhr.responseText != 0){
                     table.innerHTML = ""
                     let arrayOfObjects = JSON.parse(xhr.responseText);
@@ -2522,7 +2522,7 @@ function getFeedback(sortBy = 1){
 
     xhr.open("POST", "./php/getFeedback.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send(`sortBy=`+sortBy);
+    xhr.send(`sortBy=${universalSort}sortStatus=${universalSortStatus}`);
 }
 
 function confirmModal(title, content, posBtnFunction){
@@ -8384,4 +8384,56 @@ function blockSort(sortBy, sortState){
     universalSort = sortBy;
     universalSortStatus = newState;
     insertBlockDate();
+};
+
+function feedbackSort(sortBy, sortState){
+    let th = document.querySelector(`th[data-sortby=${sortBy}]`);
+    let newState = null;
+
+    let span = document.createElement("span");
+    span.classList.add("material-icons-outlined");
+    span.classList.add("sort");
+
+    // 1 = ASC, 2 = DESC, 0 = DEFAULT
+    if(sortState == 0){
+        try {
+            document.querySelector('.sort').remove();  
+        } catch (error) {
+            
+        }
+
+        th.setAttribute("data-sortState", "1");
+
+        span.innerText = 'arrow_drop_up';
+        th.appendChild(span);
+
+        newState = 1;
+    }
+    else if(sortState == 1){
+        try {
+            document.querySelector('.sort').remove();  
+        } catch (error) {
+            
+        }
+
+        th.setAttribute("data-sortState", "2");
+
+        span.innerText = 'arrow_drop_down';
+        th.appendChild(span);
+
+        newState = 2;
+    }
+    else if(sortState == 2){
+        th.setAttribute("data-sortState", "0");
+        newState = 0;
+        try {
+            document.querySelector('.sort').remove();  
+        } catch (error) {
+            
+        }
+    }
+
+    universalSort = sortBy;
+    universalSortStatus = newState;
+    getFeedback();
 };

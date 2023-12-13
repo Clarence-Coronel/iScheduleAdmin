@@ -1,24 +1,45 @@
 <?php
     require "connect.php";
-    $query = "";
-    $sortBy = null;
+    $query = "";  
     
+    $sortBy = null;
+    $sortState = null;
+
     foreach($_POST as $temp){
-        $sortBy = $temp;
+        if(!isset($sortBy)){
+            $sortBy = $temp;
+        }
+        else{
+            $sortState = $temp;
+        }
     }
 
-    if($sortBy == 0){
-        $query = "SELECT * FROM `feedbacks` ORDER BY dateTimeSubmitted ASC LIMIT 200";
+    $query = "SELECT * FROM `feedbacks` ";
+
+    if($sortBy != null && $sortState != null){
+        if($sortBy == "rating" && $sortState == "1"){
+            $query .= "ORDER BY rate ASC ";
+        }
+        else if($sortBy == "rating" && $sortState == "2"){
+            $query .= "ORDER BY rate DESC ";
+        }
+
+        if($sortBy == "feedback" && $sortState == "1"){
+            $query .= "ORDER BY feedbackContent ASC ";
+        }
+        else if($sortBy == "feedback" && $sortState == "2"){
+            $query .= "ORDER BY feedbackContent DESC ";
+        }
+
+        if($sortBy == "submitDate" && $sortState == "1"){
+            $query .= "ORDER BY dateTimeSubmitted ASC ";
+        }
+        else if($sortBy == "submitDate" && $sortState == "2"){
+            $query .= "ORDER BY dateTimeSubmitted DESC ";
+        }
     }
-    elseif($sortBy == 1){
-        $query = "SELECT * FROM `feedbacks` ORDER BY dateTimeSubmitted DESC LIMIT 200";
-    }
-    elseif($sortBy == 2){
-        $query = "SELECT * FROM `feedbacks` ORDER BY rate ASC LIMIT 200";
-    }
-    elseif($sortBy == 3){
-        $query = "SELECT * FROM `feedbacks` ORDER BY rate DESC LIMIT 200";
-    }
+
+    // echo $query;
 
     $result = mysqli_query($conn,$query);
 	$count = mysqli_num_rows($result);

@@ -1213,26 +1213,17 @@ let feedback = `
 <div class="page-header">Home / Feedback</div>
 <section class="feedback">
             <div class="feedback-content" data-aos="fade-right" data-aos-duration="500">
-                <select class="form-select" aria-label="Default select example" onchange="getFeedback(this.value)">
-                    <option value="" selected hidden disabled>Sort By</option>
-                    <option value="0">Oldest to Latest</option>
-                    <option value="1">Latest to Oldest</option>
-                    <option value="2">Lowest Rating to Highest Rating</option>
-                    <option value="3">Highest Rating to Lowest Rating</option>
-                </select>
                 <div class="feedback__table">
-                    
                     <div class="table-container">
                         <table class="feedback-table" id="feedback-table">
                             <thead>
                                 <tr>
-                                    <th>Rating</th>
-                                    <th>Feedback</th>
-                                    <th>Date Submitted</th>
+                                    <th title="Click to sort by this column." onclick="feedbackSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="rating">Rating</th>
+                                    <th title="Click to sort by this column." onclick="feedbackSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="feedback">Feedback</th>
+                                    <th title="Click to sort by this column." onclick="feedbackSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="submitDate">Date Submitted</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                
                             </tbody>
                         </table>
                     </div>
@@ -1465,6 +1456,8 @@ function generateFeedback(){
             let table = document.querySelector(`.${tableClass}`);
             exportTableToExcel(table, "iSchedule_Feedback", []);
         });
+        universalSort = null;
+        universalSortStatus = null;
         highlightActive(11);
     }
 }
