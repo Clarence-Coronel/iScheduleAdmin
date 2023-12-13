@@ -2487,42 +2487,57 @@ function getFeedback(){
                     table.innerHTML = ""
                     let arrayOfObjects = JSON.parse(xhr.responseText);
                     arrayOfObjects.forEach(item=>{
-                        let rowTemplate =
-                        `
-                        <tr class="table-row" title="Click to highlight/see more.">
-                            <td>${item.rate}</td>
-                            <td>${item.content}</td>
-                            <td class="always-visible">${convertRetrievedDate(item.dateSubmitted)}</td>
-                        </tr>
-                        `;
-    
-                        table.innerHTML += rowTemplate;
-                        
+
+                        let tr = document.createElement("tr");
+                        tr.classList.add('table-row');
+                        tr.setAttribute("title", "Click to highlight/see more.");
+
+                        let td = document.createElement("td");
+                        td.innerText = item.rate;
+                        tr.appendChild(td);
+
+                        td = document.createElement("td");
+                        td.innerText = item.content;
+                        tr.appendChild(td);
+
+                        td = document.createElement("td");
+                        td.classList.add("always-visible");
+                        td.innerText = convertRetrievedDate(item.dateSubmitted);
+                        tr.appendChild(td);
+
+                        table.appendChild(tr);
+                    
                     });
                     showTableCell();       
                 }
                 else{
-                    table.innerHTML = `
-                        <tr>
-                            <td colspan="3" class="empty">There is currently no feedback</td>
-                        </tr>
-                        `;
+                    let tr = document.createElement("tr");
+                    let td = document.createElement("td");
+                    td.setAttribute("colspan", "3");
+                    td.classList.add("empty");
+                    td.innerText = "There is currently no feedback";
+
+                    tr.appendChild(td);
+                    table.appendChild(tr);
                 }
             }
         }
         else{
-            table.innerHTML = `
-                <tr>
-                    <td colspan="3" class="empty">Loading...</td>
-                </tr>
-            `
+            let tr = document.createElement("tr");
+            let td = document.createElement("td");
+            td.setAttribute("colspan", "3");
+            td.classList.add("empty");
+            td.innerText = "Loading...";
+
+            tr.appendChild(td);
+            table.appendChild(tr);
         }
         setupTablePagination('feedback-table', 'prevButton', 'nextButton', 10);
     }
 
     xhr.open("POST", "./php/getFeedback.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send(`sortBy=${universalSort}sortStatus=${universalSortStatus}`);
+    xhr.send(`sortBy=${universalSort}&sortStatus=${universalSortStatus}`);
 }
 
 function confirmModal(title, content, posBtnFunction){

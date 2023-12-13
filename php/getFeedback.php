@@ -39,8 +39,6 @@
         }
     }
 
-    // echo $query;
-
     $result = mysqli_query($conn,$query);
 	$count = mysqli_num_rows($result);
 
