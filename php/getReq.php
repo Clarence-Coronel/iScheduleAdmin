@@ -27,8 +27,8 @@
     $allReq = array();
 
     $query = "SELECT `appointmentID`, `departmentID`, `firstName`, `middleName`, `lastName`, `phone`, `followUpImgLink`, `dateSubmitted` FROM `appointments` WHERE `appointmentStatus` = 'pending' ";
-    
-    if($sortBy != "" && $sortState != ""){
+
+    if($sortBy != null && $sortState != null){
         if($sortBy == "name" && $sortState == "1"){
             $query .= "ORDER BY lastName ASC, firstName ASC, middleName ASC ";
         }

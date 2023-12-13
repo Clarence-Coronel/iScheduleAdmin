@@ -2750,6 +2750,7 @@ function insertBlockDate(){
     xhr.onreadystatechange = function(){
         if(xhr.readyState == 4){
             if(xhr.status == 200){
+                console.log(this.responseText)
                 try {
                     table.innerHTML = "";
                     let arrayOfObjects = JSON.parse(xhr.responseText);
@@ -2760,46 +2761,71 @@ function insertBlockDate(){
                         let isYearly = null;
 
                         if(item.isYearly == 1){
-                            isYearly = true;
+                            isYearly = "Yes";
                         }
                         else{
-                            isYearly = false;
+                            isYearly = "No";
                         }
 
-                        const template = 
-                        `
-                        <tr class="table-row" title="Click to highlight/see more.">
-                            <td>${date}</td>
-                            <td>${dateName}</td>
-                            <td>${isYearly}</td>
-                            <td><button class="removeBtn" id="blockDate-${id}" data-name="${dateName}" onclick="confirmBlockDateRemove(this.id)">Delete</button></td>
-                        </tr>
-                        `;
+                        let tr = document.createElement("tr");
+                        tr.classList.add("table-row");
+                        tr.setAttribute("title", "Click to highlight/see more.");
 
-                        table.innerHTML += template;
+                        let td = document.createElement("td");
+                        td.innerText = date;
+                        tr.appendChild(td);
+
+                        td = document.createElement("td");
+                        td.innerText = dateName;
+                        tr.appendChild(td);
+
+                        td = document.createElement("td");
+                        td.innerText = isYearly;
+                        tr.appendChild(td);
+
+                        td = document.createElement("td");
+                        btn = document.createElement("button");
+                        btn.classList.add("removeBtn");
+                        btn.setAttribute("id",`blockDate-${id}`);
+                        btn.setAttribute("data-name",`${dateName}`);
+                        btn.setAttribute("onclick", "confirmBlockDateRemove(this.id)");
+                        btn.innerText = 'Delete';
+                        btn.setAttribute("title", "Unblock date.")
+                        td.appendChild(btn);
+                        tr.appendChild(td);
+
+                        table.appendChild(tr);
                     })
                     showTableCell();
                 } catch (error) {
-                    table.innerHTML = `
-                    <tr>
-                        <td colspan="4" class="empty">There is currently no blocked date</td>
-                    </tr>
-                    `
+
+                    let tr = document.createElement("tr");
+                    let td = document.createElement("td");
+                    td.setAttribute("colspan", "4");
+                    td.classList.add("empty");
+                    td.innerText = "There is currently no blocked date";
+                    tr.appendChild(td);
+
+                    table.appendChild(tr);
                 }
             }
         }
         else{
-            table.innerHTML = `
-            <tr>
-                <td colspan="4" class="empty">Loading...</td>
-            </tr>
-            `
+            let tr = document.createElement("tr");
+            let td = document.createElement("td");
+            td.setAttribute("colspan", "4");
+            td.classList.add("empty");
+            td.innerText = "Loading...";
+            tr.appendChild(td);
+
+            table.appendChild(tr);
         }
         setupTablePagination('date-table', 'prevButton', 'nextButton', 10);
     }
 
     xhr.open("POST", "./php/getBlockDate.php", true);
-    xhr.send();
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send(`sortBy="${universalSort}"&sortStatus="${universalSortStatus}"`);
 }
 
 function confirmBlockDateRemove(id){
@@ -8306,4 +8332,56 @@ function postedAnnSort(sortBy, sortState){
     universalSort = sortBy;
     universalSortStatus = newState;
     insertPostedAnn();
+};
+
+function blockSort(sortBy, sortState){
+    let th = document.querySelector(`th[data-sortby=${sortBy}]`);
+    let newState = null;
+
+    let span = document.createElement("span");
+    span.classList.add("material-icons-outlined");
+    span.classList.add("sort");
+
+    // 1 = ASC, 2 = DESC, 0 = DEFAULT
+    if(sortState == 0){
+        try {
+            document.querySelector('.sort').remove();  
+        } catch (error) {
+            
+        }
+
+        th.setAttribute("data-sortState", "1");
+
+        span.innerText = 'arrow_drop_up';
+        th.appendChild(span);
+
+        newState = 1;
+    }
+    else if(sortState == 1){
+        try {
+            document.querySelector('.sort').remove();  
+        } catch (error) {
+            
+        }
+
+        th.setAttribute("data-sortState", "2");
+
+        span.innerText = 'arrow_drop_down';
+        th.appendChild(span);
+
+        newState = 2;
+    }
+    else if(sortState == 2){
+        th.setAttribute("data-sortState", "0");
+        newState = 0;
+        try {
+            document.querySelector('.sort').remove();  
+        } catch (error) {
+            
+        }
+    }
+
+    universalSort = sortBy;
+    universalSortStatus = newState;
+    insertBlockDate();
 };
