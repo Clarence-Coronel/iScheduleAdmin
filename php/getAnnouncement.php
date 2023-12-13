@@ -16,7 +16,7 @@
     
     $query = "SELECT `annID`, `annTitle`, `annDateTime`, `author` FROM `announcements` ";
 
-    if($sortBy != "" && $sortState != ""){
+    if($sortBy != null && $sortState != null){
         if($sortBy == "title" && $sortState == "1"){
             $query .= "ORDER BY annTitle ASC ";
         }

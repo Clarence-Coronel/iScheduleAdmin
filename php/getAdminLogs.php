@@ -81,7 +81,7 @@
         }
     }
 
-    if($object->sortBy != "" && $object->sortState != ""){
+    if($object->sortBy != null && $object->sortState != null){
         if($object->sortBy == "username" && $object->sortState == "1"){
             $query .= "ORDER BY admin_logs.username ASC ";
         }

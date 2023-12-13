@@ -228,7 +228,7 @@
         }
     }
 
-    if($object->sortBy != "" && $object->sortState != ""){
+    if($object->sortBy != null && $object->sortState != null){
         if($object->sortBy == "id" && $object->sortState == "1"){
             $query .= "ORDER BY appointments.appointmentID ASC ";
         }

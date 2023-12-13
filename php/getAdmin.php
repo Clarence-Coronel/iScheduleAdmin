@@ -17,7 +17,7 @@
     
     $query = " SELECT `username`, `adminType`, `firstName`, `middleName`, `lastName`, `phone` FROM `admins` WHERE `username` != '$loggedIn' AND `isActive` = true ";
 
-    if($sortBy != "" && $sortState != ""){
+    if($sortBy != null && $sortState != null){
         if($sortBy == "name" && $sortState == "1"){
             $query .= "ORDER BY lastName ASC, firstName ASC, middleName ASC ";
         }
