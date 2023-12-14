@@ -1032,10 +1032,6 @@ let createAccount = `
                     <input type="radio" id="adminII" name="adminType" value="adminII" required onclick="generateAdminTypeModal(1)">
                     <label for="adminII">Admin II</label>
                 </div>
-                <div class="radiobtn-container">
-                    <input type="radio" id="superAdmin" name="adminType" value="superAdmin" required onclick="generateAdminTypeModal(2)">
-                    <label for="superAdmin">Super Admin</label>
-                </div>
             </div>
             <button type="button" class="btn--addAdmin" onclick="createAccountValidator()">Create</button>
             </div>
