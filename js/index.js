@@ -1459,7 +1459,63 @@ function viewRequestApprove(appID, deptID){
 }
 
 function generateCalendarDOM(){
-
+    // gawin din to dun sa schedule an appointment pero tanggalin yung calReq na class
+    let html = `
+    <div class="form-part third calReq">                                
+        <input type="text" name="scheduleDate" id="scheduleDate" style="display: none;">
+        <input type="text" name="timeSlot" id="timeSlot" style="display: none;">
+        <div class="calendar-container">
+            <div class="calendar__header">
+                <div class="calendar__btn" id="calendar__prev"><img draggable="false" class="calendar__arrow" src="./imgs/arrow-back.png" alt="" srcset=""></div>
+                <div class="calendar__month"></div>
+                <div class="calendar__btn" id="calendar__next"><img draggable="false" class="calendar__arrow" src="./imgs/arrow-forward.png" alt="" srcset=""></div>
+            </div>
+            <div class="calendar-row zeroRow">
+                <div class="box day">Sun</div>
+                <div class="box day">Mon</div>
+                <div class="box day">Tue</div>
+                <div class="box day">Wed</div>
+                <div class="box day">Thu</div>
+                <div class="box day">Fri</div>
+                <div class="box day">Sat</div>
+            </div>
+            <div class="calendar-row firstRow date-content">
+            </div>
+            <div class="calendar-row secondRow date-content">
+            </div>
+            <div class="calendar-row thirdRow date-content">
+            </div>
+            <div class="calendar-row fourthRow date-content">
+            </div>
+            <div class="calendar-row fifthRow date-content">
+            </div>
+            <div class="calendar-row sixthRow date-content">
+            </div>
+            <div class="calendar__color-indicator">
+                <div class="calendar__desc">
+                    <div class="green"></div>
+                    <div class="calendar__color-green">Slots Open</div>
+                </div>
+                <div class="calendar__desc">
+                    <div class="red"></div>
+                    <div class="calendar__color-red">Slots Full</div>
+                </div>
+                <div class="calendar__desc">
+                    <div class="gray"></div>
+                    <div class="calendar__color-gray">Closed</div>
+                </div>
+            </div>
+        </div>
+        <div class="calendar__info">
+            <div class="slot-container">
+                <div class="calendar__instruction">Pumili ng Petsa</div>
+            </div>
+        </div>
+    </div>
+    <div class="error-container">
+        <span class="msg"></span>
+    </div>
+    `;
 }
 
 function generateTimeSlotBuffer(deptID){
@@ -5454,22 +5510,26 @@ function insertReq(){
                     });
                     showTableCell();
                 } catch (error) {
-                    table.innerHTML = 
-                    `
-                    <tr>
-                        <td colspan="6" class="empty">No Pending Follow-Up Request</td>
-                    </tr>
-                    `;
+                    let tr = document.createElement("tr");
+                    let td = document.createElement("td");
+                    td.setAttribute("colspan", "6");
+                    td.classList.add("empty");
+                    td.innerText = "No Pending Follow-Up Request";
+
+                    tr.appendChild(td);
+                    table.appendChild(tr);
                 }
             }
         }
         else{
-            table.innerHTML = 
-            `
-            <tr>
-                <td colspan="6" class="empty">Loading...</td>
-            </tr>
-            `;
+            let tr = document.createElement("tr");
+            let td = document.createElement("td");
+            td.setAttribute("colspan", "6");
+            td.classList.add("empty");
+            td.innerText = "Loading...";
+
+            tr.appendChild(td);
+            table.appendChild(tr);
         }
         setupTablePagination('request-table', 'prevButton', 'nextButton', 10);
     };
