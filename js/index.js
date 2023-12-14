@@ -1435,9 +1435,10 @@ function viewRequestApprove(appID, deptID){
     </div>
     `;
 
+    const dept = ['ENT', 'Hematology', 'Internal Medicine', 'Internal Medicine Clearance', 'Nephrology', 'Neurology', 'OB GYNE New', 'OB GYNE Old', 'OB GYNE ROS', 'Oncology', 'Pediatric Cardiology', 'Pediatric Clearance', 'Pediatric General', 'Psychiatry New', 'Psychiatry Old', 'Surgery', 'Surgery ROS'];
 
 
-    title.innerHTML = 'Schedule Appointment On';
+    title.innerHTML = `${dept[deptID-1]} Department`;
     positive.innerText = 'Schedule';
     negative.innerText = 'Cancel';
     body.innerHTML = html;
