@@ -964,8 +964,11 @@ function nextForm(){
 
                 formParts[formState-1].style.display = 'none';
                 formParts[formState].style.display = 'flex';
-                calendarNext.addEventListener('click', nextMonthBtn);
-                calendarPrev.addEventListener('click', prevMonthBtn);
+
+                calendarNext.setAttribute("onclick", "nextMonthBtn()");
+                calendarPrev.setAttribute("onclick", "prevMonthBtn()");
+                // calendarNext.addEventListener('click', nextMonthBtn);
+                // calendarPrev.addEventListener('click', prevMonthBtn);
             }
             else{
                 formState--;
@@ -1048,7 +1051,7 @@ function checkFormA(){
         return false;
     }
     if(middleName == ""){
-        middleName = null;
+        middleName = "";
     }
 
     patient.middleName = middleName;
@@ -1367,23 +1370,72 @@ function viewRequestApprove(appID, deptID){
     modalHeader.style.display = 'flex';
     modalFooter.style.display = 'flex';
 
+    removeAllChildNodes(body);
+
+    nextCounter = 0;
+    date = new Date();
+    oldMonth = "";
+    currentMonth = date.getMonth();
+    year = date.getFullYear();
+
     let html = `
-        <div class="view-container">
-            <div class="viewinput-container">
-                <div class="date-container">
-                    <input type="text" name="month" id="schedMonth" placeholder="MM" oninput="inputLimiterNum(this.id, 2); generateTimeSlotBuffer(${deptID})" onblur="inputLimiterBlur(this.id, 2)">
-                    <input type="text" name="day" id="schedDay" placeholder="DD" oninput="inputLimiterNum(this.id, 2); generateTimeSlotBuffer(${deptID})" onblur="inputLimiterBlur(this.id, 2)">
-                    <input type="text" name="year" id="schedYear" placeholder="YYYY" oninput="inputLimiterNum(this.id, 4); generateTimeSlotBuffer(${deptID})" onblur="inputLimiterBlur(this.id, 4)">
+    <div class="form-part third calReq">                                
+        <input type="text" name="scheduleDate" id="scheduleDate" style="display: none;">
+        <input type="text" name="timeSlot" id="timeSlot" style="display: none;">
+        <div class="calendar-container">
+            <div class="calendar__header">
+                <div class="calendar__btn" id="calendar__prev"><img draggable="false" class="calendar__arrow" src="./imgs/arrow-back.png" alt="" srcset=""></div>
+                <div class="calendar__month"></div>
+                <div class="calendar__btn" id="calendar__next"><img draggable="false" class="calendar__arrow" src="./imgs/arrow-forward.png" alt="" srcset=""></div>
+            </div>
+            <div class="calendar-row zeroRow">
+                <div class="box day">Sun</div>
+                <div class="box day">Mon</div>
+                <div class="box day">Tue</div>
+                <div class="box day">Wed</div>
+                <div class="box day">Thu</div>
+                <div class="box day">Fri</div>
+                <div class="box day">Sat</div>
+            </div>
+            <div class="calendar-row firstRow date-content">
+            </div>
+            <div class="calendar-row secondRow date-content">
+            </div>
+            <div class="calendar-row thirdRow date-content">
+            </div>
+            <div class="calendar-row fourthRow date-content">
+            </div>
+            <div class="calendar-row fifthRow date-content">
+            </div>
+            <div class="calendar-row sixthRow date-content">
+            </div>
+            <div class="calendar__color-indicator">
+                <div class="calendar__desc">
+                    <div class="green"></div>
+                    <div class="calendar__color-green">Slots Open</div>
+                </div>
+                <div class="calendar__desc">
+                    <div class="red"></div>
+                    <div class="calendar__color-red">Slots Full</div>
+                </div>
+                <div class="calendar__desc">
+                    <div class="gray"></div>
+                    <div class="calendar__color-gray">Closed</div>
                 </div>
             </div>
-            <select class="form-select" aria-label="Default select example" onchange="" id="timeSelect" disabled>
-                <option value="" selected hidden disabled>Choose Time Slot</option>
-            </select>
-            <div class="error-container">
-                <span class="msg"></span>
+        </div>
+        <div class="calendar__info">
+            <div class="slot-container">
+                <div class="calendar__instruction">Pumili ng Petsa</div>
             </div>
         </div>
+    </div>
+    <div class="error-container">
+        <span class="msg"></span>
+    </div>
     `;
+
+
 
     title.innerHTML = 'Schedule Appointment On';
     positive.innerText = 'Schedule';
@@ -1392,7 +1444,21 @@ function viewRequestApprove(appID, deptID){
 
     positive.setAttribute("onclick", `applyApproveReq(${appID})`);
     positive.removeAttribute("data-bs-dismiss");
+    document.querySelector(".modal-dialog").classList.add("modal-xl");
+
     modalLauncher();
+    const calendarPrev = document.querySelector('#calendar__prev');
+    const calendarNext = document.querySelector('#calendar__next');
+
+    calendarNext.setAttribute("onclick", `nextMonthBtn(${deptID})`);
+    calendarPrev.setAttribute("onclick", `prevMonthBtn(${deptID})`);
+
+    monthContainer = document.querySelector('.calendar__month');
+    InitialSetup(true, deptID);
+}
+
+function generateCalendarDOM(){
+
 }
 
 function generateTimeSlotBuffer(deptID){
@@ -1438,16 +1504,21 @@ function generateTimeSlotBuffer(deptID){
                                 select.innerHTML += `<option value="" selected hidden disabled>Choose Time Slot</option>`;
                                 arrOfObj.forEach(item=>{
                                     let template = '';
+                                    let isBuffer = "";
+
+                                    if(item.isBuffer == '1'){
+                                        isBuffer = " Buffer";
+                                    }
     
                                     if(item.openSlots <= 0){
                                         template = 
                                         `
-                                        <option value="" disabled>${item.startTime} - ${item.stopTime} (Full)</option>
+                                        <option value="" disabled>${item.startTime} - ${item.stopTime}(Full)</option>
                                         `;
                                     }else{
                                         template = 
                                         `
-                                        <option value="${item.schedID}_${item.max}">${item.startTime} - ${item.stopTime} (${item.openSlots} Slot/s)</option>
+                                        <option value="${item.schedID}_${item.max}">${item.startTime} - ${item.stopTime} (${item.openSlots} Slot/s${isBuffer})</option>
                                         `;
                                     }
     
@@ -1482,20 +1553,24 @@ function applyApproveReq(appID){
         return;
     }
 
+    let scheduleDate = convertCompToPropDate(document.querySelector("#scheduleDate").value);
+    let timeSlot = document.querySelector("#timeSlot").value;
+
     posting = true;
     
-    let month = document.querySelector("#schedMonth").value;
-    let day = document.querySelector("#schedDay").value;
-    let year = document.querySelector("#schedYear").value;
-    let time = document.querySelector("#timeSelect").value.split("_")[0];
-    let max = document.querySelector("#timeSelect").value.split("_")[1];
+    // let month = document.querySelector("#schedMonth").value;
+    // let day = document.querySelector("#schedDay").value;
+    // let year = document.querySelector("#schedYear").value;
+    
+    // let time = document.querySelector("#timeSelect").value.split("_")[0];
+    // let max = document.querySelector("#timeSelect").value.split("_")[1];
 
-    if(month == "" || day == "" || year ==""){
-        showError("Invalid date");
+    if(scheduleDate == ""){
+        showError("Select a date");
         posting = false;
         return;
     }
-    else if(time == ""){
+    else if(timeSlot == ""){
         showError("Select a time slot");
         posting = false;
         return;
@@ -1510,6 +1585,7 @@ function applyApproveReq(appID){
     xhr.onreadystatechange = function(){
         if(this.readyState == 4){
             if(this.status == 200){
+                console.log(this.responseText)
                 if(this.responseText != 0){
                     document.querySelector('#linkToDelete').value = this.responseText;
                     document.querySelector('#deleteImg-btn').click();
@@ -1529,7 +1605,7 @@ function applyApproveReq(appID){
     
     xhr.open("POST", "./php/updateAppointment.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send(`appID=${appID}&schedDate=${year}-${month}-${day}&schedID=${time}&max=${max}`);
+    xhr.send(`appID=${appID}&schedDate=${scheduleDate}&schedID=${timeSlot}`);
     posting = false;
 }
 
@@ -1967,6 +2043,7 @@ function resetModal(){
     let headerClose = document.querySelector('.btn-close');
     let positive = document.querySelector('.positive');
     let negative = document.querySelector('.negative');
+    document.querySelector(".modal-dialog").classList.remove("modal-xl");
 
     header.style.display = 'flex';
     footer.style.display = 'flex';
@@ -5310,7 +5387,7 @@ function insertReq(){
                         btn2.dataset.deptID = item.deptID;
                         
                         btn2.addEventListener('click', function() {
-                            viewRequestApprove(this.dataset.appID, this.dataset.deptID);
+                            viewRequestReject(this.dataset.appID, this.dataset.deptID);
                         });
 
                         div.appendChild(btn1);
@@ -8452,3 +8529,23 @@ function feedbackSort(sortBy, sortState){
     universalSortStatus = newState;
     getFeedback();
 };
+
+function convertCompToPropDate(inputDate) {
+    // Create a Date object from the input string
+    const dateObject = new Date(inputDate);
+  
+    // Check if the date is valid
+    if (isNaN(dateObject.getTime())) {
+      return "Invalid Date";
+    }
+  
+    // Get the components of the date
+    const year = dateObject.getFullYear();
+    const month = String(dateObject.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const day = String(dateObject.getDate()).padStart(2, '0');
+  
+    // Form the output string in the "YYYY-MM-DD" format
+    const outputDate = `${year}-${month}-${day}`;
+  
+    return outputDate;
+  }

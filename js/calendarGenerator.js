@@ -26,7 +26,7 @@ let isExecuted = false;
 let monthNav = true;
 
 
-function loadSlots(date, element){
+function loadSlots(date, element, type = "schedule"){
     let slotContainer = document.querySelector('.slot-container');
     // retrieve dapat yung mga slots nung selectedDate from db pero for now eto hardcoded
     // let tempSlotId = ['a', 'b', 'c', 'd'];
@@ -121,7 +121,10 @@ function loadSlots(date, element){
 
     xhr.open("POST", "./php/getSched2.php", true);
     xhr.setRequestHeader("Content-Type", 'application/x-www-form-urlencoded');
-    xhr.send(`deptID=${patient['department']}&day=${day}&curDate=${date}`);   
+
+    if(type == "schedule") xhr.send(`deptID=${patient['department']}&day=${day}&curDate=${date}`);
+    else xhr.send(`deptID=${type}&day=${day}&curDate=${date}`);
+    
 }
 
 function resetCalData(){
@@ -170,7 +173,7 @@ function selectSlot(element){
     }
 }
 
-function selectDate(element){
+function selectDate(element, type = "schedule"){
     let dateCells = document.querySelectorAll('.date');
     
     element.addEventListener('click', () =>{
@@ -182,12 +185,13 @@ function selectDate(element){
             selectedDate = element.innerHTML;
             document.getElementById('scheduleDate').value = `${selectedMonth} ${selectedDate}, ${selectedYear}`;
             document.querySelector('#timeSlot').value = '';
-            loadSlots(element.dataset.date, element);
+            if(type == "schedule") loadSlots(element.dataset.date, element);
+            else loadSlots(element.dataset.date, element, type);
         }
     });
 }
 
-function nextMonthBtn(){
+function nextMonthBtn(type = "schedule"){
     if(!monthNav) return;
     
     let calendarCell = document.querySelectorAll('.key');
@@ -221,15 +225,22 @@ function nextMonthBtn(){
         } 
         date = new Date(`${nextMonth} 1, ${year}`);
         nextCounter++;
-        InitialSetup();
+
+        if (type == "schedule") InitialSetup();
+        else {
+            InitialSetup(false, type);
+            showError();
+        }
+
         console.log(nextCounter);
     }
     else{
-        openModalUserError("Warning","Scheduling is restricted to a maximum window of 12 months");
+        if (type == "schedule") openModalUserError("Warning","Scheduling is restricted to a maximum window of 12 months");
+        else showError("Scheduling is restricted to a maximum window of 12 months");
     }
 }
 
-function prevMonthBtn(){
+function prevMonthBtn(type = "schedule"){
     if(!monthNav) return;
 
     let calendarCell = document.querySelectorAll('.key');
@@ -279,10 +290,15 @@ function prevMonthBtn(){
         }
         
         nextCounter--;
-        InitialSetup();
+        if (type == "schedule") InitialSetup();
+        else {
+            InitialSetup(false, type);
+            showError();
+        }
     }
     else{ 
-        openModalUserError("Warning","Scheduling is limited to the current month and future dates");
+        if (type == "schedule") openModalUserError("Warning","Scheduling is limited to the current month and beyond");
+        else showError("Scheduling is limited to the current month and beyond")
     }
 
     console.log(currentMonth);
@@ -315,7 +331,7 @@ function openModalUserError(title, body){
     modalLauncher();
 }
 
-function InitialSetup(initial = false){
+function InitialSetup(initial = false, type = "schedule"){
 
     if(initial){
         resetCalData();
@@ -343,7 +359,9 @@ function InitialSetup(initial = false){
         }
     }
 
-    loadSched();
+    if(schedule == "schedule") loadSched();
+    else loadSched(type);
+    
 }
 
 function checkDateValid(date){
@@ -480,7 +498,7 @@ function generateDate(days, NameOfDay1st){
         if(counterOfEmpty == 7) sixthRow.style.display = 'none';
         
     });
-    loadSched();
+    // loadSched();
 }
 
 function getDaysOfMonth(year, month){
@@ -563,106 +581,7 @@ function getBlockedDates(){
     xhr.send();
 }
 
-// function loadSched(){
-//     const dates = document.querySelectorAll('.date');
-
-//     if(dates.length == 0) return;
-
-//     monthNav = false;
-
-//     let thisMonth = currentMonth+1;
-//     let thisYear = year;
-    
-//     let proceedChkFull = false;
-//     let schedules = [];
-//     let availScheds = [];
-
-//     let counter = 0;
-
-//     let calendarTitle = document.querySelector('.calendar__month');
-
-//     calendarTitle.innerText = "Generating Schedule...";
-
-//     dates.forEach((item, index)=>{
-//         let curDate = `${thisYear}-${thisMonth}-${item.innerText}`;
-//         let dateObj = new Date(curDate);
-//         const daysOfWeek = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
-//         let day = daysOfWeek[dateObj.getDay()];
-
-//         let xhr = new XMLHttpRequest();
-
-//         // console.log("Day: " + day)
-//         // console.log("Dept ID: " + patient.department)
-
-//         xhr.onreadystatechange = function(){
-//             if(this.readyState == 4){
-//                 if(this.status == 200){
-//                     counter++;
-//                     try {
-//                         schedules = JSON.parse(this.responseText);
-
-//                         schedules.forEach(sched=>{
-                    
-//                             const xhr2 = new XMLHttpRequest();
-                    
-//                             xhr2.onreadystatechange = function(){
-//                                 if(this.readyState == 4){
-//                                     if(this.status == 200){
-//                                         if(this.responseText == 1){
-//                                             availScheds.push(sched);
-//                                         }
-//                                     }
-//                                 }
-//                                 else{
-//                                 }
-//                             }
-                    
-//                             xhr2.open("POST", "./php/checkSchedFull.php", false);
-//                             xhr2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-//                             xhr2.send(`date=${curDate}&schedID=${sched.schedID}&max=${sched.max}`);
-
-//                             // if(item.innerText == "16"){
-//                             //     console.log(item.innerText);
-//                             //     console.table(availScheds);
-//                             // }
-//                         })
-
-//                         if(availScheds.length == 0) {
-//                             if(parseInt(item.innerText) <= date.getDate()){
-//                                 item.classList.add('block');
-//                                 item.classList.remove('date');
-//                             }
-//                             else{
-//                                 item.classList.add('block');
-//                                 item.classList.remove('date');
-//                                 item.setAttribute('id','full');
-//                                 item.innerText = 'Full';
-//                             }
-//                         }
-//                         else{
-//                             selectDate(item);
-//                         }
-
-//                     } catch (error) {
-//                         item.classList.add('block');
-//                         item.classList.remove('date');
-//                     }
-//                     if(counter == dates.length) {
-//                         calendarTitle.innerText = months[currentMonth] + " " + year;
-//                         monthNav = true;
-//                     }
-//                     availScheds.length = 0;
-//                 }
-//             }
-//         }
-        
-//         xhr.open("POST", "./php/getSched.php", true);
-//         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-//         xhr.send(`deptID=${patient['department']}&day=${day}`);
-//     });
-// }
-
-function loadSched(){
+function loadSched(type = "schedule"){
     const dates = document.querySelectorAll('.date');
     if(dates.length == 0) return;
 
@@ -731,7 +650,8 @@ function loadSched(){
                         else{
                             item.classList.remove('block');
                             item.classList.add('date');
-                            selectDate(item);
+                            if(type == "schedule") selectDate(item);
+                            else selectDate(item, type)
                         }
                     } catch (error) {
                         item.classList.add('block');
@@ -750,6 +670,9 @@ function loadSched(){
         
         xhr.open("POST", "./php/getSched.php", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.send(`deptID=${patient['department']}&day=${day}&curDate=${curDate}`);
+
+        if(type == "schedule") xhr.send(`deptID=${patient['department']}&day=${day}&curDate=${curDate}`);
+        else xhr.send(`deptID=${type}&day=${day}&curDate=${curDate}`)
+        
     });
 }

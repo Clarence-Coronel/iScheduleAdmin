@@ -5013,8 +5013,11 @@ th[data-sortby]:hover{
     font-size: 0.8rem;
 }
 
-// th[data-sortby]{
-//     display: flex !important;
-//     justify-content: space-between !important;
-//     align-items: center !important;
-// }
+.calReq{
+    // display: flex;
+    // flex-flow: column;
+    .calendar-container{
+        // width: 100%;
+        // background-color: red;
+    }
+}

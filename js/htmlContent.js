@@ -280,8 +280,8 @@ let schedule = `
                 </div>
             </div>
 
-            <div class="field-container">
-                <label for="isFollowUp"><span class="asterisk">*</span> Visit Type / Klase ng Pagdalaw <span class="fieldtype">(Required)</span></label>
+            <div class="schedule__input-container">
+                <label for="isFollowUp"><span class="asterisk">*</span> Visit Type / Klase ng Pagdalaw</label>
                 <div class="radio-group">
                     <label class="radio-container visit">
                         <input class="input-radio" onclick="revertRadio()" type="radio" name="isFollowUp" value="false">

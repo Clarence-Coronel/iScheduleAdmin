@@ -5,8 +5,8 @@
     $appID = null;
     $schedDate = null;
     $schedID = null;
-    $max = null;
     $total = null;
+    $max = null;
 
     foreach($_POST as $temp){
         if(!isset($appID)){
@@ -16,12 +16,9 @@
         }else if(!isset($schedID)){
             $schedID = $temp;
         }
-        else{
-            $max = $temp;
-        }
     }
 
-    $queryTotal = "SELECT COUNT(`appointmentID`) AS 'total' FROM `appointments` WHERE `appointmentStatus` = 'active' AND `appointmentDate` = '$schedDate' AND `scheduleID` = $schedID;";
+    $queryTotal = "SELECT COUNT(`appointmentID`) AS 'total' FROM `appointments` WHERE `appointmentStatus` = 'scheduled' AND `appointmentDate` = '$schedDate' AND `scheduleID` = $schedID;";
 
     $result = mysqli_query($conn,$queryTotal);
 
@@ -29,15 +26,20 @@
         $total = (int)$row['total'];
     }
 
+    $queryMax = "SELECT `max` FROM `schedules` WHERE `scheduleID` = '$schedID'";
+
+    $result = mysqli_query($conn,$queryMax);
+
+    while($row = mysqli_fetch_array($result)){
+        $max = (int)$row['max'];
+    }
+
     if($total < $max){
-        $query = "UPDATE `appointments` SET `scheduleID`='$schedID',`appointmentDate`='$schedDate', `appointmentStatus`='active' WHERE `appointmentID` = '$appID';";
+        $query = "UPDATE `appointments` SET `scheduleID`='$schedID',`appointmentDate`='$schedDate', `appointmentStatus`='scheduled' WHERE `appointmentID` = '$appID';";
         if(mysqli_query($conn, $query)){
             $username = $_SESSION['username'];
             $adminStampQuery = "INSERT INTO `admin_logs`(`username`, `activity`) VALUES ('$username','Approved ID=\"$appID\" follow-up request')";
             mysqli_query($conn, $adminStampQuery);
-
-            echo sendResult();
-
             echo getLink($appID);
         }
         else{
@@ -61,6 +63,7 @@
         $subQuery = "UPDATE `appointments` SET `followUpImgLink`='' WHERE `appointmentID` = '$ID';";
         mysqli_query($conn, $subQuery);
 
+        sendResult();
         return $link;
     }
 
