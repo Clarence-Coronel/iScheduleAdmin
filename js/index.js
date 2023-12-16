@@ -4063,20 +4063,20 @@ function addSched(day){
     <div class="editSched-container"> 
         <div class="time-container">
             <div class="editTime-container start">
-                <input onclick="this.select()" type="text" class="timepart time-hourA" id="startHourA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01'); checkHourB('start')">
-                <input onclick="this.select()" type="text" class="timepart time-hourB" id="startHourB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789'); checkHourA('start');">
+                <input onclick="this.select()" type="text" class="timepart time-hourA" id="startHourA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01'); checkHourB('start');" onblur="addZero(this.id);">
+                <input onclick="this.select()" type="text" class="timepart time-hourB" id="startHourB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789'); checkHourA('start');" onblur="addZero(this.id);">
                 <span>:</span>
-                <input onclick="this.select()" type="text" class="timepart time-minA" id="startMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '012345');">
-                <input onclick="this.select()" type="text" class="timepart time-minB" id="startMinuteB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789');">
+                <input onclick="this.select()" type="text" class="timepart time-minA" id="startMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '012345');" onblur="addZero(this.id);">
+                <input onclick="this.select()" type="text" class="timepart time-minB" id="startMinuteB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789');" onblur="addZero(this.id);">
                 <input type="text" class="timepart time-minB" id="startPeriod" value="AM" readonly>
             </div>
             <span class="divider">-</span>
             <div class="editTime-container stop">
-                <input onclick="this.select()" type="text" class="timepart time-hourA" id="stopHourA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01'); checkHourB('stop')">
-                <input onclick="this.select()" type="text" class="timepart time-hourB" id="stopHourB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789'); checkHourA('stop');">
+                <input onclick="this.select()" type="text" class="timepart time-hourA" id="stopHourA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01'); checkHourB('stop')" onblur="addZero(this.id);">
+                <input onclick="this.select()" type="text" class="timepart time-hourB" id="stopHourB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789'); checkHourA('stop');" onblur="addZero(this.id);">
                 <span>:</span>
-                <input onclick="this.select()"  type="text" class="timepart time-minA" id="stopMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '012345');">
-                <input onclick="this.select()" type="text" class="timepart time-minB" id="stopMinuteB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789');">
+                <input onclick="this.select()"  type="text" class="timepart time-minA" id="stopMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '012345');" onblur="addZero(this.id);">
+                <input onclick="this.select()" type="text" class="timepart time-minB" id="stopMinuteB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789');" onblur="addZero(this.id);">
                 <input type="text" class="timepart time-minB" id="stopPeriod" value="AM" readonly>
             </div>
         </div>
@@ -4118,6 +4118,14 @@ function addSched(day){
     document.querySelector('#stopPeriod').setAttribute('onclick', 'periodToggle(this.id, this.value)')
 }
 
+function addZero(id){
+    let el = document.querySelector(`#${id}`);
+
+    if(el.value == ""){
+        el.value = 0;
+    }
+}
+
 function addSchedTemp(day){
     resetModal();
 
@@ -4134,20 +4142,20 @@ function addSchedTemp(day){
     <div class="editSched-container"> 
         <div class="time-container">
             <div class="editTime-container start">
-                <input onclick="this.select()" type="text" class="timepart time-hourA" id="startHourA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01'); checkHourB('start')">
-                <input onclick="this.select()" type="text" class="timepart time-hourB" id="startHourB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789'); checkHourA('start');">
+                <input onclick="this.select()" type="text" class="timepart time-hourA" id="startHourA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01'); checkHourB('start')" onblur="addZero(this.id);">
+                <input onclick="this.select()" type="text" class="timepart time-hourB" id="startHourB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789'); checkHourA('start');" onblur="addZero(this.id);">
                 <span>:</span>
-                <input onclick="this.select()" type="text" class="timepart time-minA" id="startMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '012345');">
-                <input onclick="this.select()" type="text" class="timepart time-minB" id="startMinuteB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789');">
+                <input onclick="this.select()" type="text" class="timepart time-minA" id="startMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '012345');" onblur="addZero(this.id);">
+                <input onclick="this.select()" type="text" class="timepart time-minB" id="startMinuteB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789');" onblur="addZero(this.id);">
                 <input type="text" class="timepart time-minB" id="startPeriod" value="AM" readonly>
             </div>
             <span class="divider">-</span>
             <div class="editTime-container stop">
-                <input onclick="this.select()" type="text" class="timepart time-hourA" id="stopHourA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01'); checkHourB('stop')">
-                <input onclick="this.select()" type="text" class="timepart time-hourB" id="stopHourB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789'); checkHourA('stop');">
+                <input onclick="this.select()" type="text" class="timepart time-hourA" id="stopHourA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '01'); checkHourB('stop')" onblur="addZero(this.id);">
+                <input onclick="this.select()" type="text" class="timepart time-hourB" id="stopHourB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789'); checkHourA('stop');" onblur="addZero(this.id);">
                 <span>:</span>
-                <input onclick="this.select()"  type="text" class="timepart time-minA" id="stopMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '012345');">
-                <input onclick="this.select()" type="text" class="timepart time-minB" id="stopMinuteB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789');">
+                <input onclick="this.select()"  type="text" class="timepart time-minA" id="stopMinuteA" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '012345');" onblur="addZero(this.id);">
+                <input onclick="this.select()" type="text" class="timepart time-minB" id="stopMinuteB" oninput="inputLimiterBlur(this.id, 1); limitNumbers(this.id, '0123456789');" onblur="addZero(this.id);">
                 <input type="text" class="timepart time-minB" id="stopPeriod" value="AM" readonly>
             </div>
         </div>
