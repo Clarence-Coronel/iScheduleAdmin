@@ -22,7 +22,7 @@ let accountSettings = `
             <span type="text" id="accountFullName" class="account-field">Juan Reyes Dela Cruz</span>
         </div>
         <div class="account-settings__input-container">
-            <label for="">Phone Number</label>
+            <label for="">Contact Number</label>
             <div class="acc-edit-container" onclick="generateEditPhone()">
                 <span class="accountPhone account-field"id="accountPhone" >0967 599 2312</span>
                 <span class="account-settings__edit"><span class="material-icons-outlined ico--acc-edit">edit</span></span>
@@ -52,7 +52,7 @@ let editPhone = `
         <span class="material-icons-outlined ico-acc">phone</span>
         <div class="changeInfo__input-container">
             <input type="text" id="newPhone" oninput="filterPhoneInput(this.id)" required onfocus="changeBorderFocus(this.id)" onblur="changeBorderBlur(this.id)">
-            <label for="newPhone">New Phone #</label>
+            <label for="newPhone">New Contact Number</label>
         </div>
         <div class="changeInfo__input-container">
             <input type="password" id="confirmation" onpaste="return false;" ondrop="return false;" required oninput="inputLimiter(this.id, 64)" onfocus="changeBorderFocus(this.id)" onblur="changeBorderBlur(this.id);inputLimiterBlur(this.id, 64)">
@@ -220,7 +220,7 @@ let schedule = `
             </div>
 
             <div class="schedule__input-container">
-                <label for=""><span class="asterisk">* </span>Phone #</label>
+                <label for=""><span class="asterisk">* </span>Contact Number</label>
                 <input type="text" name="phone" id="phone" placeholder="09XX XXX XXXX" oninput="filterPhoneInput(this.id)">
             </div>
 
@@ -369,7 +369,7 @@ let schedule = `
                 <span class="schedule__field-content">January 12, 2000</span>
             </div>
             <div class="schedule__review-field">
-                <span class="schedule__field-name">Phone #</span>
+                <span class="schedule__field-name">Contact Number</span>
                 <span class="schedule__field-content">0957 588 7844</span>
             </div>
             <div class="schedule__review-field">
@@ -560,7 +560,7 @@ let viewSchedule = `<div class="page-header">Home / View Appointments</div>
                             <th title="Click to sort by this column." onclick="appointmentSort(this.dataset.sortby, this.dataset.sortstate, 'viewApp');" data-sortState="0" data-sortby="schedVia">Scheduled Through</th>
                             <th title="Click to sort by this column." onclick="appointmentSort(this.dataset.sortby, this.dataset.sortstate, 'viewApp');" data-sortState="0" data-sortby="sex">Sex</th>
                             <th title="Click to sort by this column." onclick="appointmentSort(this.dataset.sortby, this.dataset.sortstate, 'viewApp');" data-sortState="0" data-sortby="birthdate">Birthdate</th>
-                            <th title="Click to sort by this column." onclick="appointmentSort(this.dataset.sortby, this.dataset.sortstate, 'viewApp');" data-sortState="0" data-sortby="phoneNo">Phone #</th>
+                            <th title="Click to sort by this column." onclick="appointmentSort(this.dataset.sortby, this.dataset.sortstate, 'viewApp');" data-sortState="0" data-sortby="phoneNo">Contact Number</th>
                             <th title="Click to sort by this column." onclick="appointmentSort(this.dataset.sortby, this.dataset.sortstate, 'viewApp');" data-sortState="0" data-sortby="address">Address</th>
                             <th title="Click to sort by this column." onclick="appointmentSort(this.dataset.sortby, this.dataset.sortstate, 'viewApp');" data-sortState="0" data-sortby="patientType">Patient Type</th>
                             <th title="Click to sort by this column." onclick="appointmentSort(this.dataset.sortby, this.dataset.sortstate, 'viewApp');" data-sortState="0" data-sortby="caseNo">Case #</th>
@@ -710,7 +710,7 @@ let request = `
                                     <th>Action</th>
                                     <th title="Click to sort by this column." onclick="requestSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="name">Full Name</th>
                                     <th title="Click to sort by this column." onclick="requestSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="dept">Department</th>
-                                    <th title="Click to sort by this column." onclick="requestSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="phoneNo">Phone #</th>
+                                    <th title="Click to sort by this column." onclick="requestSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="phoneNo">Contact Number</th>
                                     <th title="Click to sort by this column." onclick="requestSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="dateSubmitted">Date Submitted</th>
                                     <th>Follow-Up Slip</th>
                                 </tr>
@@ -965,7 +965,7 @@ let adminList = `
                 <tr>
                     <th title="Click to sort by this column." onclick="adminListSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="name">Full Name</th>
                     <th title="Click to sort by this column." onclick="adminListSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="username">Username</th>
-                    <th title="Click to sort by this column." onclick="adminListSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="phoneNo">Phone #</th>
+                    <th title="Click to sort by this column." onclick="adminListSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="phoneNo">Contact Number</th>
                     <th title="Click to sort by this column." onclick="adminListSort(this.dataset.sortby, this.dataset.sortstate);" data-sortState="0" data-sortby="adminType">Admin Type</th>
                     <th>Action</th>
                 </tr>

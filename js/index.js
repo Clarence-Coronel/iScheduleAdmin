@@ -232,7 +232,7 @@ function generateAdminTypeModal(val){
             *Schedule An Appointment <br>
             *View Appointments  <br>
             *Follow-Up Requests  <br>
-            *Edit Department Schedules  <br>
+            *Manage Department Schedules  <br>
             *Manage Admins <br>
             *Manage Website Status <br>
             *Post An Announcement  <br>
@@ -2392,7 +2392,7 @@ function changeAccess(){
         `
         <button id="5" class="nav-links__item" onclick="generateScheduling()">
             <span class="material-icons-outlined ico-nav">edit_calendar</span>
-            Department Schedules
+            Manage Department Schedules
         </button>
         `,
         `
