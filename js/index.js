@@ -2533,7 +2533,7 @@ function changeAccess(){
         generateSchedule();
     }
     else if(signedInAdmin.adminType == 'super admin'){
-        // generateDashboard();
+        generateDashboard();
         // commented for testing
     }
 }
