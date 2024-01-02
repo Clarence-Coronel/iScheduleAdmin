@@ -2592,6 +2592,7 @@ function insertAnnouncement(){
                     if(xhr.responseText == 1){
                         showResModal("Announcement has been posted");
                         generatePostAnnouncement();
+                        posting = false;
                     }
                     else{
                         showResModal("Something went wrong", false, "Failed");
@@ -2605,6 +2606,7 @@ function insertAnnouncement(){
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(jsonString);
     })
+    posting = false;
 }
 
 function getFeedback(){
